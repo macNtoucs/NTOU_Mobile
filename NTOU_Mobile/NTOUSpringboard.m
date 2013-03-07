@@ -101,7 +101,29 @@
         grid.frame = newGridFrame;
 	}
 }
+- (void)pushModuleWithTag:(NSString *)tag
+{
+     for (NTOUModule *module in self.primaryModules) {
+        if ([[module tag] isEqualToString:tag]) {
+            if ([self.delegate respondsToSelector:@selector(springboard:willPushModule:)]) {
+                [self.delegate springboard:self
+                            willPushModule:module];
+            }
+            
+            [self.navigationController pushViewController:module.moduleHomeController
+                                                 animated:YES];
+            
+            if ([self.delegate respondsToSelector:@selector(springboard:didPushModule:)]) {
+                [self.delegate springboard:self
+                             didPushModule:module];
+            }
+            
+            module.hasLaunchedBegun = YES;
+            [module didAppear];
+        }
+    }
 
+}
 
 #pragma mark UINavigationControllerDelegate
 
@@ -125,10 +147,7 @@
 
 #pragma mark -
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
+-(void)viewWillAppear:(BOOL)animated{
     UIImageView * Nav_BG = [[UIImageView alloc]
                             initWithFrame:CGRectMake(0, 0, 320, 44)];
     Nav_BG.image = [UIImage imageNamed:@"global/Nav_backGround.png"];
@@ -136,10 +155,13 @@
     [logoView setImage:[UIImage imageNamed:@"global/navbar_ntou_logo.png"]];
     [self.navigationController.navigationBar insertSubview:Nav_BG atIndex:1];
     [self.navigationController.navigationBar insertSubview:logoView atIndex:2];
-
+    [super viewWillAppear:animated];
+}
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
-    self.view.backgroundColor= [UIColor whiteColor];
-    self.grid = [[[IconGrid alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)] autorelease];
+    self.grid = [[IconGrid alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)] ;
     self.grid.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.grid setHorizontalMargin:5.0 vertical:10.0];
     [self.grid setHorizontalPadding:5.0 vertical:10.0];
@@ -152,6 +174,7 @@
         [aButton setImage:aModule.springboardIcon forState:UIControlStateNormal];
         [aButton setTitle:aModule.shortName forState:UIControlStateNormal];
         [aButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+      
         aButton.moduleTag = aModule.tag;
         aModule.springboardButton = aButton;
         
@@ -167,9 +190,13 @@
         aButton.titleLabel.font = font;
         [aButton addTarget:self action:@selector(showModuleForIcon:) forControlEvents:UIControlEventTouchUpInside];
         [buttons addObject:aButton];
+        //[self.view addSubview:aButton];
+          [aButton setUserInteractionEnabled:YES];
     }
     self.grid.icons = buttons;
     [self.view addSubview:self.grid];
+    [self.view bringSubviewToFront:self.grid];
+    [self.view setUserInteractionEnabled:YES];
     // prep data for showing banner
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentPath = [paths objectAtIndex:0];
@@ -189,6 +216,12 @@
 													   selector:@selector(checkForFeaturedModule)
 													   userInfo:nil
 														repeats:YES] retain];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    
+    [[self.navigationController.navigationBar.subviews objectAtIndex:2] removeFromSuperview];
+    [[self.navigationController.navigationBar.subviews objectAtIndex:1] removeFromSuperview];
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -214,6 +247,7 @@
 
 - (void)dealloc {
 	self.primaryModules = nil;
+    [self.grid release];
 	[checkBannerTimer release];
 	[bannerInfo release];
     [super dealloc];

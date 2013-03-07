@@ -14,7 +14,7 @@
 #import "Rotation.h"
 #import "NTOUConstants.h"
 @implementation NTOU_MobileAppDelegate
-@synthesize window,
+@synthesize window=_window,
 rootNavigationController = _rootNavigationController,
 modules;
 
@@ -24,7 +24,7 @@ modules;
 #pragma mark -
 #pragma mark Application lifecycle
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [UIWindow new];
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     networkActivityRefCount = 0;
     
     //  [self updateBasicServerInfo];
