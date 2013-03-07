@@ -8,8 +8,9 @@
 
 #import "AppDelegate+ModuleList.h"
 #import "NTOUModule.h"
-/*#import "NewsModule.h"
 #import "ShuttleModule.h"
+/*#import "NewsModule.h"
+
 #import "StellarModule.h"
 #import "PeopleModule.h"
 #import	"CMModule.h"
@@ -42,21 +43,21 @@
     
     // add your NTOUModule subclass here by duplicating this line
     //[result addObject:[[[YourNTOUModuleSubclass alloc] init] autorelease]];
-   /* [result addObject:[[[NewsModule alloc] init] autorelease]];
-    [result addObject:[[[StellarModule alloc] init] autorelease]];
+   // [result addObject:[[[NewsModule alloc] init] autorelease]];
+    //[result addObject:[[[StellarModule alloc] init] autorelease]];
     [result addObject:[[[ShuttleModule alloc] init] autorelease]];
-	[result addObject:[[[CMModule alloc] init] autorelease]];
-    [result addObject:[[[CalendarModule alloc] init] autorelease]];
-	[result addObject:[[[PeopleModule alloc] init] autorelease]];
+	//[result addObject:[[[CMModule alloc] init] autorelease]];
+    //[result addObject:[[[CalendarModule alloc] init] autorelease]];
+	//[result addObject:[[[PeopleModule alloc] init] autorelease]];
     // [result addObject:[[[ToursModule alloc] init] autorelease]];
-    [result addObject:[[[EmergencyModule alloc] init] autorelease]];
+    //[result addObject:[[[EmergencyModule alloc] init] autorelease]];
     // [result addObject:[[[LibrariesModule alloc] init] autorelease]];
     //  [result addObject:[[[FacilitiesModule alloc] init] autorelease]];
     //[result addObject:[[[QRReaderModule alloc] init] autorelease]];
     // [result addObject:[[[LinksModule alloc] init] autorelease]];
-    [result addObject:[[[SettingsModule alloc] init] autorelease]];
-    [result addObject:[[[AboutModule alloc] init] autorelease]];
-    */
+    //[result addObject:[[[SettingsModule alloc] init] autorelease]];
+    //[result addObject:[[[AboutModule alloc] init] autorelease]];
+    
     
     return result;
 }

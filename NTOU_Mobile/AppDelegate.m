@@ -14,7 +14,7 @@
 #import "Rotation.h"
 #import "NTOUConstants.h"
 @implementation NTOU_MobileAppDelegate
-@synthesize window,
+@synthesize window=_window,
 rootNavigationController = _rootNavigationController,
 modules;
 
