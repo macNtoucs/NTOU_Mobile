@@ -170,7 +170,6 @@
     }
     self.grid.icons = buttons;
     [self.view addSubview:self.grid];
-	
     // prep data for showing banner
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentPath = [paths objectAtIndex:0];
