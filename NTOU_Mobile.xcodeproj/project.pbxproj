@@ -93,6 +93,11 @@
 		91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049416E89FE300ECF2CF /* QuartzCore.framework */; };
 		91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */; };
 		91A9049B16E8A09A00ECF2CF /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 91A9049A16E8A09A00ECF2CF /* icons */; };
+		91A9050B16E8C47300ECF2CF /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9050A16E8C47200ECF2CF /* MessageUI.framework */; };
+		91A9054716E8C71700ECF2CF /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A9053A16E8C71700ECF2CF /* CameraViewController.m */; };
+		91A9054B16E8C71700ECF2CF /* EmergencyModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A9054216E8C71700ECF2CF /* EmergencyModule.m */; };
+		91A9054C16E8C71700ECF2CF /* EmergencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A9054416E8C71700ECF2CF /* EmergencyViewController.m */; };
+		91A9054D16E8C71700ECF2CF /* OutCampusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A9054616E8C71700ECF2CF /* OutCampusViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -239,6 +244,16 @@
 		91A9049416E89FE300ECF2CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		91A9049A16E8A09A00ECF2CF /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
+		91A9050A16E8C47200ECF2CF /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		91A9053916E8C71700ECF2CF /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		91A9053A16E8C71700ECF2CF /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		91A9054116E8C71700ECF2CF /* EmergencyModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmergencyModule.h; sourceTree = "<group>"; };
+		91A9054216E8C71700ECF2CF /* EmergencyModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyModule.m; sourceTree = "<group>"; };
+		91A9054316E8C71700ECF2CF /* EmergencyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmergencyViewController.h; sourceTree = "<group>"; };
+		91A9054416E8C71700ECF2CF /* EmergencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyViewController.m; sourceTree = "<group>"; };
+		91A9054516E8C71700ECF2CF /* OutCampusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutCampusViewController.h; sourceTree = "<group>"; };
+		91A9054616E8C71700ECF2CF /* OutCampusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutCampusViewController.m; sourceTree = "<group>"; };
+		91A9055716E8C7E000ECF2CF /* NTOUModule+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NTOUModule+Protected.h"; path = "../../NTOU_MobileBeta/Common/NTOUModule+Protected.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +261,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91A9050B16E8C47300ECF2CF /* MessageUI.framework in Frameworks */,
 				91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */,
 				91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */,
 				91A9049316E89FB000ECF2CF /* MapKit.framework in Frameworks */,
@@ -279,6 +295,7 @@
 		91A9004916E854E500ECF2CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				91A9050A16E8C47200ECF2CF /* MessageUI.framework */,
 				91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */,
 				91A9049416E89FE300ECF2CF /* QuartzCore.framework */,
 				91A9049216E89FAF00ECF2CF /* MapKit.framework */,
@@ -293,6 +310,7 @@
 		91A9005016E854E500ECF2CF /* NTOU_Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				91A904F516E8C20000ECF2CF /* Emergency */,
 				91A903A616E899D100ECF2CF /* ShuttleTrack */,
 				91A9029816E88E0D00ECF2CF /* Resources */,
 				91A9007116E858A400ECF2CF /* common */,
@@ -326,6 +344,7 @@
 		91A9007116E858A400ECF2CF /* common */ = {
 			isa = PBXGroup;
 			children = (
+				91A9055716E8C7E000ECF2CF /* NTOUModule+Protected.h */,
 				91A9048C16E89C8B00ECF2CF /* ClassLabelBasis.h */,
 				91A9048D16E89C8B00ECF2CF /* ClassLabelBasis.m */,
 				91A9048916E89BF100ECF2CF /* SecondaryGroupedTableViewCell.h */,
@@ -497,6 +516,22 @@
 			path = StationPicker;
 			sourceTree = "<group>";
 		};
+		91A904F516E8C20000ECF2CF /* Emergency */ = {
+			isa = PBXGroup;
+			children = (
+				91A9053916E8C71700ECF2CF /* CameraViewController.h */,
+				91A9053A16E8C71700ECF2CF /* CameraViewController.m */,
+				91A9054116E8C71700ECF2CF /* EmergencyModule.h */,
+				91A9054216E8C71700ECF2CF /* EmergencyModule.m */,
+				91A9054316E8C71700ECF2CF /* EmergencyViewController.h */,
+				91A9054416E8C71700ECF2CF /* EmergencyViewController.m */,
+				91A9054516E8C71700ECF2CF /* OutCampusViewController.h */,
+				91A9054616E8C71700ECF2CF /* OutCampusViewController.m */,
+			);
+			name = Emergency;
+			path = module/Emergency;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -637,6 +672,10 @@
 				91A9048B16E89BF200ECF2CF /* SecondaryGroupedTableViewCell.m in Sources */,
 				91A9048E16E89C8B00ECF2CF /* ClassLabelBasis.m in Sources */,
 				91A9049116E89E5500ECF2CF /* StationInfoViewController.m in Sources */,
+				91A9054716E8C71700ECF2CF /* CameraViewController.m in Sources */,
+				91A9054B16E8C71700ECF2CF /* EmergencyModule.m in Sources */,
+				91A9054C16E8C71700ECF2CF /* EmergencyViewController.m in Sources */,
+				91A9054D16E8C71700ECF2CF /* OutCampusViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -755,6 +794,7 @@
 				91A9006616E854E500ECF2CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
