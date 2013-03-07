@@ -1,0 +1,349 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		91A9004B16E854E500ECF2CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9004A16E854E500ECF2CF /* UIKit.framework */; };
+		91A9004D16E854E500ECF2CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9004C16E854E500ECF2CF /* Foundation.framework */; };
+		91A9004F16E854E500ECF2CF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9004E16E854E500ECF2CF /* CoreGraphics.framework */; };
+		91A9005516E854E500ECF2CF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91A9005316E854E500ECF2CF /* InfoPlist.strings */; };
+		91A9005716E854E500ECF2CF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A9005616E854E500ECF2CF /* main.m */; };
+		91A9005B16E854E500ECF2CF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A9005A16E854E500ECF2CF /* AppDelegate.m */; };
+		91A9005D16E854E500ECF2CF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 91A9005C16E854E500ECF2CF /* Default.png */; };
+		91A9005F16E854E500ECF2CF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91A9005E16E854E500ECF2CF /* Default@2x.png */; };
+		91A9006116E854E500ECF2CF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91A9006016E854E500ECF2CF /* Default-568h@2x.png */; };
+		91A9006D16E8555D00ECF2CF /* NTOUSpringboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A9006C16E8555D00ECF2CF /* NTOUSpringboard.m */; };
+		91A9007416E8597400ECF2CF /* UIKit+NTOUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A9007316E8597400ECF2CF /* UIKit+NTOUAdditions.m */; };
+		91A9007716E85A9A00ECF2CF /* IconGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A9007616E85A9A00ECF2CF /* IconGrid.m */; };
+		91A9007A16E85B3500ECF2CF /* NTOUModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A9007916E85B3500ECF2CF /* NTOUModule.m */; };
+		91A9007F16E85C8400ECF2CF /* AppDelegate+ModuleList.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A9007E16E85C8400ECF2CF /* AppDelegate+ModuleList.m */; };
+		91A9008216E8609200ECF2CF /* Rotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A9008116E8609200ECF2CF /* Rotation.m */; };
+		91A9008516E8613800ECF2CF /* NTOU_MobileAppDelegate+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A9008416E8613800ECF2CF /* NTOU_MobileAppDelegate+Private.m */; };
+		91A9008816E8659E00ECF2CF /* NTOUConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A9008716E8659E00ECF2CF /* NTOUConstants.m */; };
+		91A903A116E88E9D00ECF2CF /* global in Resources */ = {isa = PBXBuildFile; fileRef = 91A903A016E88E9D00ECF2CF /* global */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		91A9004616E854E500ECF2CF /* NTOU_Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NTOU_Mobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		91A9004A16E854E500ECF2CF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		91A9004C16E854E500ECF2CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		91A9004E16E854E500ECF2CF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		91A9005216E854E500ECF2CF /* NTOU_Mobile-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NTOU_Mobile-Info.plist"; sourceTree = "<group>"; };
+		91A9005416E854E500ECF2CF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		91A9005616E854E500ECF2CF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		91A9005816E854E500ECF2CF /* NTOU_Mobile-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NTOU_Mobile-Prefix.pch"; sourceTree = "<group>"; };
+		91A9005916E854E500ECF2CF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		91A9005A16E854E500ECF2CF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		91A9005C16E854E500ECF2CF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		91A9005E16E854E500ECF2CF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		91A9006016E854E500ECF2CF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		91A9006B16E8555D00ECF2CF /* NTOUSpringboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUSpringboard.h; sourceTree = "<group>"; };
+		91A9006C16E8555D00ECF2CF /* NTOUSpringboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUSpringboard.m; sourceTree = "<group>"; };
+		91A9006E16E8589C00ECF2CF /* IconGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconGrid.h; sourceTree = "<group>"; };
+		91A9007216E8597400ECF2CF /* UIKit+NTOUAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIKit+NTOUAdditions.h"; sourceTree = "<group>"; };
+		91A9007316E8597400ECF2CF /* UIKit+NTOUAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIKit+NTOUAdditions.m"; sourceTree = "<group>"; };
+		91A9007516E85A2900ECF2CF /* NTOUUIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUUIConstants.h; sourceTree = "<group>"; };
+		91A9007616E85A9A00ECF2CF /* IconGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconGrid.m; sourceTree = "<group>"; };
+		91A9007816E85B3500ECF2CF /* NTOUModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUModule.h; sourceTree = "<group>"; };
+		91A9007916E85B3500ECF2CF /* NTOUModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUModule.m; sourceTree = "<group>"; };
+		91A9007B16E85C5A00ECF2CF /* AppDelegate+ModuleList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+ModuleList.h"; sourceTree = "<group>"; };
+		91A9007E16E85C8400ECF2CF /* AppDelegate+ModuleList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+ModuleList.m"; sourceTree = "<group>"; };
+		91A9008016E8609200ECF2CF /* Rotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rotation.h; sourceTree = "<group>"; };
+		91A9008116E8609200ECF2CF /* Rotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rotation.m; sourceTree = "<group>"; };
+		91A9008316E8613800ECF2CF /* NTOU_MobileAppDelegate+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NTOU_MobileAppDelegate+Private.h"; sourceTree = "<group>"; };
+		91A9008416E8613800ECF2CF /* NTOU_MobileAppDelegate+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NTOU_MobileAppDelegate+Private.m"; sourceTree = "<group>"; };
+		91A9008616E8659D00ECF2CF /* NTOUConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUConstants.h; sourceTree = "<group>"; };
+		91A9008716E8659E00ECF2CF /* NTOUConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUConstants.m; sourceTree = "<group>"; };
+		91A903A016E88E9D00ECF2CF /* global */ = {isa = PBXFileReference; lastKnownFileType = folder; path = global; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		91A9004316E854E500ECF2CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91A9004B16E854E500ECF2CF /* UIKit.framework in Frameworks */,
+				91A9004D16E854E500ECF2CF /* Foundation.framework in Frameworks */,
+				91A9004F16E854E500ECF2CF /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		91A9003B16E854E400ECF2CF = {
+			isa = PBXGroup;
+			children = (
+				91A9005016E854E500ECF2CF /* NTOU_Mobile */,
+				91A9004916E854E500ECF2CF /* Frameworks */,
+				91A9004716E854E500ECF2CF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		91A9004716E854E500ECF2CF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				91A9004616E854E500ECF2CF /* NTOU_Mobile.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		91A9004916E854E500ECF2CF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				91A9004A16E854E500ECF2CF /* UIKit.framework */,
+				91A9004C16E854E500ECF2CF /* Foundation.framework */,
+				91A9004E16E854E500ECF2CF /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		91A9005016E854E500ECF2CF /* NTOU_Mobile */ = {
+			isa = PBXGroup;
+			children = (
+				91A9029816E88E0D00ECF2CF /* Resources */,
+				91A9007116E858A400ECF2CF /* common */,
+				91A9006B16E8555D00ECF2CF /* NTOUSpringboard.h */,
+				91A9006C16E8555D00ECF2CF /* NTOUSpringboard.m */,
+				91A9008616E8659D00ECF2CF /* NTOUConstants.h */,
+				91A9008716E8659E00ECF2CF /* NTOUConstants.m */,
+				91A9005916E854E500ECF2CF /* AppDelegate.h */,
+				91A9005A16E854E500ECF2CF /* AppDelegate.m */,
+				91A9005116E854E500ECF2CF /* Supporting Files */,
+				91A9008016E8609200ECF2CF /* Rotation.h */,
+				91A9008116E8609200ECF2CF /* Rotation.m */,
+			);
+			path = NTOU_Mobile;
+			sourceTree = "<group>";
+		};
+		91A9005116E854E500ECF2CF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				91A9005216E854E500ECF2CF /* NTOU_Mobile-Info.plist */,
+				91A9005316E854E500ECF2CF /* InfoPlist.strings */,
+				91A9005616E854E500ECF2CF /* main.m */,
+				91A9005816E854E500ECF2CF /* NTOU_Mobile-Prefix.pch */,
+				91A9005C16E854E500ECF2CF /* Default.png */,
+				91A9005E16E854E500ECF2CF /* Default@2x.png */,
+				91A9006016E854E500ECF2CF /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		91A9007116E858A400ECF2CF /* common */ = {
+			isa = PBXGroup;
+			children = (
+				91A9007816E85B3500ECF2CF /* NTOUModule.h */,
+				91A9007916E85B3500ECF2CF /* NTOUModule.m */,
+				91A9006E16E8589C00ECF2CF /* IconGrid.h */,
+				91A9007616E85A9A00ECF2CF /* IconGrid.m */,
+				91A9007216E8597400ECF2CF /* UIKit+NTOUAdditions.h */,
+				91A9007316E8597400ECF2CF /* UIKit+NTOUAdditions.m */,
+				91A9007516E85A2900ECF2CF /* NTOUUIConstants.h */,
+				91A9007B16E85C5A00ECF2CF /* AppDelegate+ModuleList.h */,
+				91A9007E16E85C8400ECF2CF /* AppDelegate+ModuleList.m */,
+				91A9008316E8613800ECF2CF /* NTOU_MobileAppDelegate+Private.h */,
+				91A9008416E8613800ECF2CF /* NTOU_MobileAppDelegate+Private.m */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
+		91A9029816E88E0D00ECF2CF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				91A903A016E88E9D00ECF2CF /* global */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		91A9004516E854E500ECF2CF /* NTOU_Mobile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91A9006416E854E500ECF2CF /* Build configuration list for PBXNativeTarget "NTOU_Mobile" */;
+			buildPhases = (
+				91A9004216E854E500ECF2CF /* Sources */,
+				91A9004316E854E500ECF2CF /* Frameworks */,
+				91A9004416E854E500ECF2CF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NTOU_Mobile;
+			productName = NTOU_Mobile;
+			productReference = 91A9004616E854E500ECF2CF /* NTOU_Mobile.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		91A9003D16E854E400ECF2CF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = NTOUcs_MAC;
+			};
+			buildConfigurationList = 91A9004016E854E500ECF2CF /* Build configuration list for PBXProject "NTOU_Mobile" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 91A9003B16E854E400ECF2CF;
+			productRefGroup = 91A9004716E854E500ECF2CF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				91A9004516E854E500ECF2CF /* NTOU_Mobile */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		91A9004416E854E500ECF2CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91A9005516E854E500ECF2CF /* InfoPlist.strings in Resources */,
+				91A9005D16E854E500ECF2CF /* Default.png in Resources */,
+				91A9005F16E854E500ECF2CF /* Default@2x.png in Resources */,
+				91A9006116E854E500ECF2CF /* Default-568h@2x.png in Resources */,
+				91A903A116E88E9D00ECF2CF /* global in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		91A9004216E854E500ECF2CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91A9005716E854E500ECF2CF /* main.m in Sources */,
+				91A9005B16E854E500ECF2CF /* AppDelegate.m in Sources */,
+				91A9006D16E8555D00ECF2CF /* NTOUSpringboard.m in Sources */,
+				91A9007416E8597400ECF2CF /* UIKit+NTOUAdditions.m in Sources */,
+				91A9007716E85A9A00ECF2CF /* IconGrid.m in Sources */,
+				91A9007A16E85B3500ECF2CF /* NTOUModule.m in Sources */,
+				91A9007F16E85C8400ECF2CF /* AppDelegate+ModuleList.m in Sources */,
+				91A9008216E8609200ECF2CF /* Rotation.m in Sources */,
+				91A9008516E8613800ECF2CF /* NTOU_MobileAppDelegate+Private.m in Sources */,
+				91A9008816E8659E00ECF2CF /* NTOUConstants.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		91A9005316E854E500ECF2CF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91A9005416E854E500ECF2CF /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		91A9006216E854E500ECF2CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		91A9006316E854E500ECF2CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		91A9006516E854E500ECF2CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
+				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		91A9006616E854E500ECF2CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
+				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		91A9004016E854E500ECF2CF /* Build configuration list for PBXProject "NTOU_Mobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91A9006216E854E500ECF2CF /* Debug */,
+				91A9006316E854E500ECF2CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		91A9006416E854E500ECF2CF /* Build configuration list for PBXNativeTarget "NTOU_Mobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91A9006516E854E500ECF2CF /* Debug */,
+				91A9006616E854E500ECF2CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 91A9003D16E854E400ECF2CF /* Project object */;
+}
