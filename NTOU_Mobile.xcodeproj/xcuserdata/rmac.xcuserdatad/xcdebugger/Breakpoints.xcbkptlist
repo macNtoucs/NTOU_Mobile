@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NTOU_Mobile/AppDelegate.m"
-         timestampString = "384349896.511149"
+         timestampString = "384356197.852986"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "78"
-         endingLineNumber = "78"
+         startingLineNumber = "93"
+         endingLineNumber = "93"
          landmarkName = "-application:handleOpenURL:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NTOU_Mobile/AppDelegate.m"
-         timestampString = "384349896.511149"
+         timestampString = "384356197.852986"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "119"
-         endingLineNumber = "119"
+         startingLineNumber = "134"
+         endingLineNumber = "134"
          landmarkName = "-applicationShouldSaveState:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NTOU_Mobile/AppDelegate.m"
-         timestampString = "384349896.511149"
+         timestampString = "384356197.852986"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "131"
-         endingLineNumber = "131"
+         startingLineNumber = "146"
+         endingLineNumber = "146"
          landmarkName = "-applicationWillTerminate:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NTOU_Mobile/AppDelegate.m"
-         timestampString = "384349896.511149"
+         timestampString = "384356197.852986"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "135"
-         endingLineNumber = "135"
+         startingLineNumber = "150"
+         endingLineNumber = "150"
          landmarkName = "-applicationDidEnterBackground:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NTOU_Mobile/AppDelegate.m"
-         timestampString = "384349896.511149"
+         timestampString = "384356197.852986"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "141"
-         endingLineNumber = "141"
+         startingLineNumber = "156"
+         endingLineNumber = "156"
          landmarkName = "-applicationWillEnterForeground:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NTOU_Mobile/AppDelegate.m"
-         timestampString = "384349896.511149"
+         timestampString = "384356197.852986"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "150"
-         endingLineNumber = "150"
+         startingLineNumber = "165"
+         endingLineNumber = "165"
          landmarkName = "-dealloc"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NTOU_Mobile/AppDelegate.m"
-         timestampString = "384349896.511149"
+         timestampString = "384356197.852986"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "161"
-         endingLineNumber = "161"
+         startingLineNumber = "176"
+         endingLineNumber = "176"
          landmarkName = "-showNetworkActivityIndicator"
          landmarkType = "5">
       </FileBreakpoint>
@@ -125,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NTOU_Mobile/AppDelegate.m"
-         timestampString = "384349896.511149"
+         timestampString = "384356197.852986"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "166"
-         endingLineNumber = "166"
+         startingLineNumber = "181"
+         endingLineNumber = "181"
          landmarkName = "-hideNetworkActivityIndicator"
          landmarkType = "5">
       </FileBreakpoint>
@@ -402,6 +402,45 @@
          startingLineNumber = "193"
          endingLineNumber = "193"
          landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "NTOU_Mobile/module/ShuttleTrack/StationInfoViewController.m"
+         timestampString = "384355808.141464"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "72"
+         endingLineNumber = "72"
+         landmarkName = "-fetchData"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "NTOU_Mobile/module/ShuttleTrack/SetStationViewController.m"
+         timestampString = "384356022.185102"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "288"
+         endingLineNumber = "288"
+         landmarkName = "-StationInfoURL:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "NTOU_Mobile/module/ShuttleTrack/SetStationViewController.m"
+         timestampString = "384356073.512697"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "101"
+         endingLineNumber = "101"
+         landmarkName = "-initIsHighSpeedTrain:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
