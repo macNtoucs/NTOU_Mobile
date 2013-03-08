@@ -83,7 +83,7 @@
     switch (self->WhatRoute) {
             
         case 0:
-            return 5;
+            return 4;
             break;
         default:
             return 0;
@@ -104,20 +104,15 @@
         case 0:
             switch (indexPath.row) {
                 case 0:
-                    cell.textLabel.text = @"Other";
-                    cell.textLabel.textColor = [UIColor blueColor];
-                    cell.accessoryType = UITableViewCellAccessoryNone;
-                    break;
-                case 1:
                     cell.textLabel.text = @"濱海變電站";
                     break;
-                case 2:
+                case 1:
                     cell.textLabel.text = @"祥豐警衛室";
                     break;
-                case 3:
+                case 2:
                     cell.textLabel.text = @"濱海校門";
                     break;
-                case 4:
+                case 3:
                     cell.textLabel.text = @"祥豐校門";
                     break;
                     
@@ -177,9 +172,6 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!indexPath.row) {
-        return nil;
-    }
     return indexPath;
 }
 
@@ -193,22 +185,22 @@
     switch (self->WhatRoute) {
         case 0:
             switch (indexPath.row) {
-                case 1:
+                case 0:
                     location.longitude = 121.780783;
                     location.latitude = 25.149897;
                     [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
                     break;
-                case 2:
+                case 1:
                     location.longitude = 121.772588;
                     location.latitude = 25.150805;
                     [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
                     break;
-                case 3:
+                case 2:
                     location.longitude = 121.776138;
                     location.latitude = 25.150624;
                     [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
                     break;
-                case 4:
+                case 3:
                     location.longitude = 121.772475;
                     location.latitude = 25.150816;
                     [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
