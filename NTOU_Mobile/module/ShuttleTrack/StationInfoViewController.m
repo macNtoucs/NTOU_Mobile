@@ -161,7 +161,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d%@",indexPath.section,indexPath.row,StartAndTerminalstops];
+    NSString *CellIdentifier;
+    if (!StartAndTerminalstops) 
+        CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
+    else 
+        CellIdentifier = [NSString stringWithFormat:@"Cell%d%d%@",indexPath.section,indexPath.row,StartAndTerminalstops];
+    
     SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
