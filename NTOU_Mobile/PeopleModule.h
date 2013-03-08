@@ -2,11 +2,6 @@
 
 @class PeopleSearchViewController;
 
-@interface PeopleModule : NTOUModule {
-	
-	NTOU_LifeViewController *viewController;
-
-}
-
+@interface PeopleModule : NTOUModule 
 @end
 
