@@ -165,7 +165,7 @@
     if (!StartAndTerminalstops) 
         CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
     else 
-        CellIdentifier = [NSString stringWithFormat:@"Cell%d%d%@",indexPath.section,indexPath.row,StartAndTerminalstops];
+        CellIdentifier = [NSString stringWithFormat:@"Cell%d%d%@+%@",indexPath.section,indexPath.row,StartAndTerminalstops,depatureTimes];
     
     SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
