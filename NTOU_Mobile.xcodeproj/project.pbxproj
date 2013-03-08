@@ -7,11 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		912A536116E999D600BBC013 /* NTOUGuide2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A535C16E999D600BBC013 /* NTOUGuide2ViewController.m */; };
-		912A536216E999D600BBC013 /* NTOUGuideSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A535E16E999D600BBC013 /* NTOUGuideSetViewController.m */; };
-		912A536316E999D600BBC013 /* NTOUGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A536016E999D600BBC013 /* NTOUGuideViewController.m */; };
-		912A53AF16E99CAA00BBC013 /* CMModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A537216E99CAA00BBC013 /* CMModule.m */; };
-		912A53CB16E99CAA00BBC013 /* DownloadTiles.py in Resources */ = {isa = PBXBuildFile; fileRef = 912A53A816E99CAA00BBC013 /* DownloadTiles.py */; };
+		912A53EF16E99F7900BBC013 /* NTOUGuide2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */; };
+		912A53F016E99F7900BBC013 /* NTOUGuideSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EC16E99F7900BBC013 /* NTOUGuideSetViewController.m */; };
+		912A53F116E99F7900BBC013 /* NTOUGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EE16E99F7900BBC013 /* NTOUGuideViewController.m */; };
+		912A53F516E99FF500BBC013 /* CMModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53F416E99FF500BBC013 /* CMModule.m */; };
+		912A540216E9A09600BBC013 /* beining.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 912A53F716E9A09600BBC013 /* beining.jpg */; };
+		912A540316E9A09600BBC013 /* CustomPagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53F916E9A09600BBC013 /* CustomPagerViewController.m */; };
+		912A540416E9A09600BBC013 /* jungjeng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 912A53FA16E9A09600BBC013 /* jungjeng.jpg */; };
+		912A540516E9A09600BBC013 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 912A53FB16E9A09600BBC013 /* MainStoryboard.storyboard */; };
+		912A540616E9A09600BBC013 /* PagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53FD16E9A09600BBC013 /* PagerViewController.m */; };
+		912A540716E9A09600BBC013 /* PeopleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53FF16E9A09600BBC013 /* PeopleModule.m */; };
+		912A540816E9A09600BBC013 /* shiangfeng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 912A540016E9A09600BBC013 /* shiangfeng.jpg */; };
+		912A540916E9A09600BBC013 /* shinfeng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 912A540116E9A09600BBC013 /* shinfeng.jpg */; };
 		913A0D1616E98EBA007BAD8F /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 913A0D0E16E98EBA007BAD8F /* CameraViewController.m */; };
 		913A0D1716E98EBA007BAD8F /* Emergency.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 913A0D0F16E98EBA007BAD8F /* Emergency.xcdatamodeld */; };
 		913A0D1816E98EBA007BAD8F /* EmergencyModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 913A0D1116E98EBA007BAD8F /* EmergencyModule.m */; };
@@ -104,15 +111,25 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		912A535B16E999D600BBC013 /* NTOUGuide2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuide2ViewController.h; sourceTree = "<group>"; };
-		912A535C16E999D600BBC013 /* NTOUGuide2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuide2ViewController.m; sourceTree = "<group>"; };
-		912A535D16E999D600BBC013 /* NTOUGuideSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuideSetViewController.h; sourceTree = "<group>"; };
-		912A535E16E999D600BBC013 /* NTOUGuideSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuideSetViewController.m; sourceTree = "<group>"; };
-		912A535F16E999D600BBC013 /* NTOUGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuideViewController.h; sourceTree = "<group>"; };
-		912A536016E999D600BBC013 /* NTOUGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuideViewController.m; sourceTree = "<group>"; };
-		912A537116E99CAA00BBC013 /* CMModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMModule.h; sourceTree = "<group>"; };
-		912A537216E99CAA00BBC013 /* CMModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMModule.m; sourceTree = "<group>"; };
-		912A53A816E99CAA00BBC013 /* DownloadTiles.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = DownloadTiles.py; sourceTree = "<group>"; };
+		912A53E916E99F7900BBC013 /* NTOUGuide2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuide2ViewController.h; sourceTree = "<group>"; };
+		912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuide2ViewController.m; sourceTree = "<group>"; };
+		912A53EB16E99F7900BBC013 /* NTOUGuideSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuideSetViewController.h; sourceTree = "<group>"; };
+		912A53EC16E99F7900BBC013 /* NTOUGuideSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuideSetViewController.m; sourceTree = "<group>"; };
+		912A53ED16E99F7900BBC013 /* NTOUGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuideViewController.h; sourceTree = "<group>"; };
+		912A53EE16E99F7900BBC013 /* NTOUGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuideViewController.m; sourceTree = "<group>"; };
+		912A53F316E99FF500BBC013 /* CMModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMModule.h; path = "../../../../NTOU_MobileBeta/Modules/Campus Map/CMModule.h"; sourceTree = "<group>"; };
+		912A53F416E99FF500BBC013 /* CMModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CMModule.m; path = "../../../../NTOU_MobileBeta/Modules/Campus Map/CMModule.m"; sourceTree = "<group>"; };
+		912A53F716E9A09600BBC013 /* beining.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = beining.jpg; sourceTree = "<group>"; };
+		912A53F816E9A09600BBC013 /* CustomPagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPagerViewController.h; sourceTree = "<group>"; };
+		912A53F916E9A09600BBC013 /* CustomPagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPagerViewController.m; sourceTree = "<group>"; };
+		912A53FA16E9A09600BBC013 /* jungjeng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jungjeng.jpg; sourceTree = "<group>"; };
+		912A53FB16E9A09600BBC013 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		912A53FC16E9A09600BBC013 /* PagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagerViewController.h; sourceTree = "<group>"; };
+		912A53FD16E9A09600BBC013 /* PagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagerViewController.m; sourceTree = "<group>"; };
+		912A53FE16E9A09600BBC013 /* PeopleModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleModule.h; sourceTree = "<group>"; };
+		912A53FF16E9A09600BBC013 /* PeopleModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleModule.m; sourceTree = "<group>"; };
+		912A540016E9A09600BBC013 /* shiangfeng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shiangfeng.jpg; sourceTree = "<group>"; };
+		912A540116E9A09600BBC013 /* shinfeng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shinfeng.jpg; sourceTree = "<group>"; };
 		913A0D0D16E98EBA007BAD8F /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		913A0D0E16E98EBA007BAD8F /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		913A0D1016E98EBA007BAD8F /* EmergencyModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmergencyModule.h; sourceTree = "<group>"; };
@@ -281,38 +298,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		912A535A16E999D600BBC013 /* Guide */ = {
+		912A53E816E99F7900BBC013 /* Guide */ = {
 			isa = PBXGroup;
 			children = (
-				912A536516E99CAA00BBC013 /* Campus Map */,
-				912A535B16E999D600BBC013 /* NTOUGuide2ViewController.h */,
-				912A535C16E999D600BBC013 /* NTOUGuide2ViewController.m */,
-				912A535D16E999D600BBC013 /* NTOUGuideSetViewController.h */,
-				912A535E16E999D600BBC013 /* NTOUGuideSetViewController.m */,
-				912A535F16E999D600BBC013 /* NTOUGuideViewController.h */,
-				912A536016E999D600BBC013 /* NTOUGuideViewController.m */,
+				912A53F316E99FF500BBC013 /* CMModule.h */,
+				912A53F416E99FF500BBC013 /* CMModule.m */,
+				912A53E916E99F7900BBC013 /* NTOUGuide2ViewController.h */,
+				912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */,
+				912A53EB16E99F7900BBC013 /* NTOUGuideSetViewController.h */,
+				912A53EC16E99F7900BBC013 /* NTOUGuideSetViewController.m */,
+				912A53ED16E99F7900BBC013 /* NTOUGuideViewController.h */,
+				912A53EE16E99F7900BBC013 /* NTOUGuideViewController.m */,
 			);
 			name = Guide;
 			path = module/Guide;
 			sourceTree = "<group>";
 		};
-		912A536516E99CAA00BBC013 /* Campus Map */ = {
+		912A53F616E9A03D00BBC013 /* Life */ = {
 			isa = PBXGroup;
 			children = (
-				912A537116E99CAA00BBC013 /* CMModule.h */,
-				912A537216E99CAA00BBC013 /* CMModule.m */,
-				912A53A716E99CAA00BBC013 /* Utilities */,
+				912A53F716E9A09600BBC013 /* beining.jpg */,
+				912A53F816E9A09600BBC013 /* CustomPagerViewController.h */,
+				912A53F916E9A09600BBC013 /* CustomPagerViewController.m */,
+				912A53FA16E9A09600BBC013 /* jungjeng.jpg */,
+				912A53FB16E9A09600BBC013 /* MainStoryboard.storyboard */,
+				912A53FC16E9A09600BBC013 /* PagerViewController.h */,
+				912A53FD16E9A09600BBC013 /* PagerViewController.m */,
+				912A53FE16E9A09600BBC013 /* PeopleModule.h */,
+				912A53FF16E9A09600BBC013 /* PeopleModule.m */,
+				912A540016E9A09600BBC013 /* shiangfeng.jpg */,
+				912A540116E9A09600BBC013 /* shinfeng.jpg */,
 			);
-			name = "Campus Map";
-			path = "../../../../NTOU_MobileBeta/Modules/Campus Map";
-			sourceTree = "<group>";
-		};
-		912A53A716E99CAA00BBC013 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				912A53A816E99CAA00BBC013 /* DownloadTiles.py */,
-			);
-			path = Utilities;
+			name = Life;
 			sourceTree = "<group>";
 		};
 		91A9003B16E854E400ECF2CF = {
@@ -350,7 +367,8 @@
 		91A9005016E854E500ECF2CF /* NTOU_Mobile */ = {
 			isa = PBXGroup;
 			children = (
-				912A535A16E999D600BBC013 /* Guide */,
+				912A53F616E9A03D00BBC013 /* Life */,
+				912A53E816E99F7900BBC013 /* Guide */,
 				91CAC0FF16E98D48000F9B32 /* Emergency */,
 				91A903A616E899D100ECF2CF /* ShuttleTrack */,
 				91A9029816E88E0D00ECF2CF /* Resources */,
@@ -647,7 +665,11 @@
 				91A9047C16E899D200ECF2CF /* StationPickerBackgroundShadows.png in Resources */,
 				91A9048416E899D200ECF2CF /* Time.png in Resources */,
 				91A9049B16E8A09A00ECF2CF /* icons in Resources */,
-				912A53CB16E99CAA00BBC013 /* DownloadTiles.py in Resources */,
+				912A540216E9A09600BBC013 /* beining.jpg in Resources */,
+				912A540416E9A09600BBC013 /* jungjeng.jpg in Resources */,
+				912A540516E9A09600BBC013 /* MainStoryboard.storyboard in Resources */,
+				912A540816E9A09600BBC013 /* shiangfeng.jpg in Resources */,
+				912A540916E9A09600BBC013 /* shinfeng.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,10 +733,13 @@
 				913A0D1816E98EBA007BAD8F /* EmergencyModule.m in Sources */,
 				913A0D1916E98EBA007BAD8F /* EmergencyViewController.m in Sources */,
 				913A0D1A16E98EBA007BAD8F /* OutCampusViewController.m in Sources */,
-				912A536116E999D600BBC013 /* NTOUGuide2ViewController.m in Sources */,
-				912A536216E999D600BBC013 /* NTOUGuideSetViewController.m in Sources */,
-				912A536316E999D600BBC013 /* NTOUGuideViewController.m in Sources */,
-				912A53AF16E99CAA00BBC013 /* CMModule.m in Sources */,
+				912A53EF16E99F7900BBC013 /* NTOUGuide2ViewController.m in Sources */,
+				912A53F016E99F7900BBC013 /* NTOUGuideSetViewController.m in Sources */,
+				912A53F116E99F7900BBC013 /* NTOUGuideViewController.m in Sources */,
+				912A53F516E99FF500BBC013 /* CMModule.m in Sources */,
+				912A540316E9A09600BBC013 /* CustomPagerViewController.m in Sources */,
+				912A540616E9A09600BBC013 /* PagerViewController.m in Sources */,
+				912A540716E9A09600BBC013 /* PeopleModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
