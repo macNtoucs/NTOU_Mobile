@@ -10,7 +10,6 @@
 		912A53EF16E99F7900BBC013 /* NTOUGuide2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */; };
 		912A53F016E99F7900BBC013 /* NTOUGuideSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EC16E99F7900BBC013 /* NTOUGuideSetViewController.m */; };
 		912A53F116E99F7900BBC013 /* NTOUGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EE16E99F7900BBC013 /* NTOUGuideViewController.m */; };
-		912A53F516E99FF500BBC013 /* CMModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53F416E99FF500BBC013 /* CMModule.m */; };
 		912A540216E9A09600BBC013 /* beining.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 912A53F716E9A09600BBC013 /* beining.jpg */; };
 		912A540316E9A09600BBC013 /* CustomPagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53F916E9A09600BBC013 /* CustomPagerViewController.m */; };
 		912A540416E9A09600BBC013 /* jungjeng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 912A53FA16E9A09600BBC013 /* jungjeng.jpg */; };
@@ -37,6 +36,7 @@
 		91756E4016E9A6DA001D724D /* ntou_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 91756E3B16E9A6DA001D724D /* ntou_default.png */; };
 		91756E4316E9A6E7001D724D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91756E4216E9A6E7001D724D /* Icon.png */; };
 		91756E4516E9A6EB001D724D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91756E4416E9A6EB001D724D /* Icon@2x.png */; };
+		91756E4816E9B5EB001D724D /* CMModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 91756E4716E9B5EB001D724D /* CMModule.m */; };
 		91A9004B16E854E500ECF2CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9004A16E854E500ECF2CF /* UIKit.framework */; };
 		91A9004D16E854E500ECF2CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9004C16E854E500ECF2CF /* Foundation.framework */; };
 		91A9004F16E854E500ECF2CF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9004E16E854E500ECF2CF /* CoreGraphics.framework */; };
@@ -129,8 +129,6 @@
 		912A53EC16E99F7900BBC013 /* NTOUGuideSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuideSetViewController.m; sourceTree = "<group>"; };
 		912A53ED16E99F7900BBC013 /* NTOUGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuideViewController.h; sourceTree = "<group>"; };
 		912A53EE16E99F7900BBC013 /* NTOUGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuideViewController.m; sourceTree = "<group>"; };
-		912A53F316E99FF500BBC013 /* CMModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMModule.h; path = "../../../../NTOU_MobileBeta/Modules/Campus Map/CMModule.h"; sourceTree = "<group>"; };
-		912A53F416E99FF500BBC013 /* CMModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CMModule.m; path = "../../../../NTOU_MobileBeta/Modules/Campus Map/CMModule.m"; sourceTree = "<group>"; };
 		912A53F716E9A09600BBC013 /* beining.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = beining.jpg; sourceTree = "<group>"; };
 		912A53F816E9A09600BBC013 /* CustomPagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPagerViewController.h; sourceTree = "<group>"; };
 		912A53F916E9A09600BBC013 /* CustomPagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPagerViewController.m; sourceTree = "<group>"; };
@@ -168,6 +166,8 @@
 		91756E3B16E9A6DA001D724D /* ntou_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ntou_default.png; sourceTree = "<group>"; };
 		91756E4216E9A6E7001D724D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		91756E4416E9A6EB001D724D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		91756E4616E9B5EB001D724D /* CMModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMModule.h; sourceTree = "<group>"; };
+		91756E4716E9B5EB001D724D /* CMModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMModule.m; sourceTree = "<group>"; };
 		91A9004616E854E500ECF2CF /* NTOU_Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NTOU_Mobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A9004A16E854E500ECF2CF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		91A9004C16E854E500ECF2CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -329,8 +329,8 @@
 		912A53E816E99F7900BBC013 /* Guide */ = {
 			isa = PBXGroup;
 			children = (
-				912A53F316E99FF500BBC013 /* CMModule.h */,
-				912A53F416E99FF500BBC013 /* CMModule.m */,
+				91756E4616E9B5EB001D724D /* CMModule.h */,
+				91756E4716E9B5EB001D724D /* CMModule.m */,
 				912A53E916E99F7900BBC013 /* NTOUGuide2ViewController.h */,
 				912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */,
 				912A53EB16E99F7900BBC013 /* NTOUGuideSetViewController.h */,
@@ -796,7 +796,6 @@
 				912A53EF16E99F7900BBC013 /* NTOUGuide2ViewController.m in Sources */,
 				912A53F016E99F7900BBC013 /* NTOUGuideSetViewController.m in Sources */,
 				912A53F116E99F7900BBC013 /* NTOUGuideViewController.m in Sources */,
-				912A53F516E99FF500BBC013 /* CMModule.m in Sources */,
 				912A540316E9A09600BBC013 /* CustomPagerViewController.m in Sources */,
 				912A540616E9A09600BBC013 /* PagerViewController.m in Sources */,
 				912A540716E9A09600BBC013 /* PeopleModule.m in Sources */,
@@ -804,6 +803,7 @@
 				912A542516E9A22300BBC013 /* AboutModule.m in Sources */,
 				912A542616E9A22300BBC013 /* AboutTableViewController.m in Sources */,
 				912A542916E9A26F00BBC013 /* AboutNTOUVC.m in Sources */,
+				91756E4816E9B5EB001D724D /* CMModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
