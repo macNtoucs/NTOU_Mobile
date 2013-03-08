@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		913A0D1616E98EBA007BAD8F /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 913A0D0E16E98EBA007BAD8F /* CameraViewController.m */; };
+		913A0D1716E98EBA007BAD8F /* Emergency.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 913A0D0F16E98EBA007BAD8F /* Emergency.xcdatamodeld */; };
+		913A0D1816E98EBA007BAD8F /* EmergencyModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 913A0D1116E98EBA007BAD8F /* EmergencyModule.m */; };
+		913A0D1916E98EBA007BAD8F /* EmergencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 913A0D1316E98EBA007BAD8F /* EmergencyViewController.m */; };
+		913A0D1A16E98EBA007BAD8F /* OutCampusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 913A0D1516E98EBA007BAD8F /* OutCampusViewController.m */; };
+		913A0D1E16E98F99007BAD8F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 913A0D1D16E98F99007BAD8F /* MessageUI.framework */; };
 		91A9004B16E854E500ECF2CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9004A16E854E500ECF2CF /* UIKit.framework */; };
 		91A9004D16E854E500ECF2CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9004C16E854E500ECF2CF /* Foundation.framework */; };
 		91A9004F16E854E500ECF2CF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9004E16E854E500ECF2CF /* CoreGraphics.framework */; };
@@ -93,17 +99,19 @@
 		91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049416E89FE300ECF2CF /* QuartzCore.framework */; };
 		91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */; };
 		91A9049B16E8A09A00ECF2CF /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 91A9049A16E8A09A00ECF2CF /* icons */; };
-		C7BC492C16E99055002CB05B /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7BC492216E99055002CB05B /* MainStoryboard.storyboard */; };
-		C7BC492E16E99055002CB05B /* beining.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7BC492416E99055002CB05B /* beining.jpg */; };
-		C7BC492F16E99055002CB05B /* jungjeng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7BC492516E99055002CB05B /* jungjeng.jpg */; };
-		C7BC493016E99055002CB05B /* shiangfeng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7BC492616E99055002CB05B /* shiangfeng.jpg */; };
-		C7BC493116E99055002CB05B /* shinfeng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7BC492716E99055002CB05B /* shinfeng.jpg */; };
-		C7BC493216E99055002CB05B /* CustomPagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BC492816E99055002CB05B /* CustomPagerViewController.m */; };
-		C7BC493416E99055002CB05B /* PagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BC492A16E99055002CB05B /* PagerViewController.m */; };
-		C7BC493516E99055002CB05B /* PeopleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BC492B16E99055002CB05B /* PeopleModule.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		913A0D0D16E98EBA007BAD8F /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		913A0D0E16E98EBA007BAD8F /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		913A0D1016E98EBA007BAD8F /* EmergencyModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmergencyModule.h; sourceTree = "<group>"; };
+		913A0D1116E98EBA007BAD8F /* EmergencyModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyModule.m; sourceTree = "<group>"; };
+		913A0D1216E98EBA007BAD8F /* EmergencyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmergencyViewController.h; sourceTree = "<group>"; };
+		913A0D1316E98EBA007BAD8F /* EmergencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyViewController.m; sourceTree = "<group>"; };
+		913A0D1416E98EBA007BAD8F /* OutCampusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutCampusViewController.h; sourceTree = "<group>"; };
+		913A0D1516E98EBA007BAD8F /* OutCampusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutCampusViewController.m; sourceTree = "<group>"; };
+		913A0D1C16E98F66007BAD8F /* NTOUModule+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NTOUModule+Protected.h"; sourceTree = "<group>"; };
+		913A0D1D16E98F99007BAD8F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		91A9004616E854E500ECF2CF /* NTOU_Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NTOU_Mobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A9004A16E854E500ECF2CF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		91A9004C16E854E500ECF2CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -247,17 +255,6 @@
 		91A9049416E89FE300ECF2CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		91A9049A16E8A09A00ECF2CF /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
-		C7BC491E16E99055002CB05B /* CustomPagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPagerViewController.h; sourceTree = "<group>"; };
-		C7BC492016E99055002CB05B /* PagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagerViewController.h; sourceTree = "<group>"; };
-		C7BC492116E99055002CB05B /* PeopleModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleModule.h; sourceTree = "<group>"; };
-		C7BC492216E99055002CB05B /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
-		C7BC492416E99055002CB05B /* beining.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = beining.jpg; sourceTree = "<group>"; };
-		C7BC492516E99055002CB05B /* jungjeng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jungjeng.jpg; sourceTree = "<group>"; };
-		C7BC492616E99055002CB05B /* shiangfeng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shiangfeng.jpg; sourceTree = "<group>"; };
-		C7BC492716E99055002CB05B /* shinfeng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shinfeng.jpg; sourceTree = "<group>"; };
-		C7BC492816E99055002CB05B /* CustomPagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPagerViewController.m; sourceTree = "<group>"; };
-		C7BC492A16E99055002CB05B /* PagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagerViewController.m; sourceTree = "<group>"; };
-		C7BC492B16E99055002CB05B /* PeopleModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleModule.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +262,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				913A0D1E16E98F99007BAD8F /* MessageUI.framework in Frameworks */,
 				91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */,
 				91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */,
 				91A9049316E89FB000ECF2CF /* MapKit.framework in Frameworks */,
@@ -298,6 +296,7 @@
 		91A9004916E854E500ECF2CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				913A0D1D16E98F99007BAD8F /* MessageUI.framework */,
 				91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */,
 				91A9049416E89FE300ECF2CF /* QuartzCore.framework */,
 				91A9049216E89FAF00ECF2CF /* MapKit.framework */,
@@ -312,7 +311,7 @@
 		91A9005016E854E500ECF2CF /* NTOU_Mobile */ = {
 			isa = PBXGroup;
 			children = (
-				C7BC491D16E98F0F002CB05B /* Life */,
+				91CAC0FF16E98D48000F9B32 /* Emergency */,
 				91A903A616E899D100ECF2CF /* ShuttleTrack */,
 				91A9029816E88E0D00ECF2CF /* Resources */,
 				91A9007116E858A400ECF2CF /* common */,
@@ -346,6 +345,7 @@
 		91A9007116E858A400ECF2CF /* common */ = {
 			isa = PBXGroup;
 			children = (
+				913A0D1C16E98F66007BAD8F /* NTOUModule+Protected.h */,
 				91A9048C16E89C8B00ECF2CF /* ClassLabelBasis.h */,
 				91A9048D16E89C8B00ECF2CF /* ClassLabelBasis.m */,
 				91A9048916E89BF100ECF2CF /* SecondaryGroupedTableViewCell.h */,
@@ -517,30 +517,21 @@
 			path = StationPicker;
 			sourceTree = "<group>";
 		};
-		C7BC491D16E98F0F002CB05B /* Life */ = {
+		91CAC0FF16E98D48000F9B32 /* Emergency */ = {
 			isa = PBXGroup;
 			children = (
-				C7BC493616E99067002CB05B /* resource */,
-				C7BC492216E99055002CB05B /* MainStoryboard.storyboard */,
-				C7BC491E16E99055002CB05B /* CustomPagerViewController.h */,
-				C7BC492816E99055002CB05B /* CustomPagerViewController.m */,
-				C7BC492016E99055002CB05B /* PagerViewController.h */,
-				C7BC492A16E99055002CB05B /* PagerViewController.m */,
-				C7BC492116E99055002CB05B /* PeopleModule.h */,
-				C7BC492B16E99055002CB05B /* PeopleModule.m */,
+				913A0D0D16E98EBA007BAD8F /* CameraViewController.h */,
+				913A0D0E16E98EBA007BAD8F /* CameraViewController.m */,
+				913A0D0F16E98EBA007BAD8F /* Emergency.xcdatamodeld */,
+				913A0D1016E98EBA007BAD8F /* EmergencyModule.h */,
+				913A0D1116E98EBA007BAD8F /* EmergencyModule.m */,
+				913A0D1216E98EBA007BAD8F /* EmergencyViewController.h */,
+				913A0D1316E98EBA007BAD8F /* EmergencyViewController.m */,
+				913A0D1416E98EBA007BAD8F /* OutCampusViewController.h */,
+				913A0D1516E98EBA007BAD8F /* OutCampusViewController.m */,
 			);
-			name = Life;
-			sourceTree = "<group>";
-		};
-		C7BC493616E99067002CB05B /* resource */ = {
-			isa = PBXGroup;
-			children = (
-				C7BC492416E99055002CB05B /* beining.jpg */,
-				C7BC492516E99055002CB05B /* jungjeng.jpg */,
-				C7BC492616E99055002CB05B /* shiangfeng.jpg */,
-				C7BC492716E99055002CB05B /* shinfeng.jpg */,
-			);
-			name = resource;
+			name = Emergency;
+			path = module/Emergency;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -622,11 +613,6 @@
 				91A9047C16E899D200ECF2CF /* StationPickerBackgroundShadows.png in Resources */,
 				91A9048416E899D200ECF2CF /* Time.png in Resources */,
 				91A9049B16E8A09A00ECF2CF /* icons in Resources */,
-				C7BC492C16E99055002CB05B /* MainStoryboard.storyboard in Resources */,
-				C7BC492E16E99055002CB05B /* beining.jpg in Resources */,
-				C7BC492F16E99055002CB05B /* jungjeng.jpg in Resources */,
-				C7BC493016E99055002CB05B /* shiangfeng.jpg in Resources */,
-				C7BC493116E99055002CB05B /* shinfeng.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,9 +674,11 @@
 				91A9048B16E89BF200ECF2CF /* SecondaryGroupedTableViewCell.m in Sources */,
 				91A9048E16E89C8B00ECF2CF /* ClassLabelBasis.m in Sources */,
 				91A9049116E89E5500ECF2CF /* StationInfoViewController.m in Sources */,
-				C7BC493216E99055002CB05B /* CustomPagerViewController.m in Sources */,
-				C7BC493416E99055002CB05B /* PagerViewController.m in Sources */,
-				C7BC493516E99055002CB05B /* PeopleModule.m in Sources */,
+				913A0D1616E98EBA007BAD8F /* CameraViewController.m in Sources */,
+				913A0D1716E98EBA007BAD8F /* Emergency.xcdatamodeld in Sources */,
+				913A0D1816E98EBA007BAD8F /* EmergencyModule.m in Sources */,
+				913A0D1916E98EBA007BAD8F /* EmergencyViewController.m in Sources */,
+				913A0D1A16E98EBA007BAD8F /* OutCampusViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -812,6 +800,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		913A0D0F16E98EBA007BAD8F /* Emergency.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+			);
+			path = Emergency.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 91A9003D16E854E400ECF2CF /* Project object */;
 }

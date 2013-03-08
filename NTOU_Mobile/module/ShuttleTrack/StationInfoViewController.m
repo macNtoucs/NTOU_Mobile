@@ -188,11 +188,14 @@
         cell.textLabel.text=[NSString stringWithFormat:@"%@",[StartAndTerminalstops objectAtIndex:indexPath.row-1]] ;
         
         if ([[trainStyle objectAtIndex:indexPath.row-1] isEqualToString:@"區間車"])
-            cell.imageView.image = [UIImage imageNamed:@"local_train.png"];
+            //cell.imageView.image = [UIImage imageNamed:@"local_train.png"];
+            cell.textLabel.text= @"區間車";
         if ([[trainStyle objectAtIndex:indexPath.row-1]isEqualToString: @"自強"])
-            cell.imageView.image = [UIImage imageNamed:@"speed_train.png"];
+            //cell.imageView.image = [UIImage imageNamed:@"speed_train.png"];
+            cell.textLabel.text= @"自強";
         if ([[trainStyle objectAtIndex:indexPath.row-1]isEqualToString: @"莒光"])
-            cell.imageView.image = [UIImage imageNamed:@"gigoung_train.png"];
+            //cell.imageView.image = [UIImage imageNamed:@"gigoung_train.png"];
+            cell.textLabel.text= @"莒光";
         cell.detailTextLabel.text = detailString;
         cell.detailTextLabel.textColor = [UIColor blueColor];
     }

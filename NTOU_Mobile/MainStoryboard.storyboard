@@ -1548,10 +1548,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="beining.jpg" width="621" height="877"/>
-        <image name="jungjeng.jpg" width="621" height="877"/>
-        <image name="shiangfeng.jpg" width="621" height="877"/>
-        <image name="shinfeng.jpg" width="621" height="877"/>
+        <image name="beining.jpg" width="16" height="16"/>
+        <image name="jungjeng.jpg" width="16" height="16"/>
+        <image name="shiangfeng.jpg" width="16" height="16"/>
+        <image name="shinfeng.jpg" width="16" height="16"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
