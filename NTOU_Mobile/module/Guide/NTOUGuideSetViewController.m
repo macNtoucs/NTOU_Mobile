@@ -75,7 +75,7 @@
     [self mapView:mapView didUpdateUserLocation:userlocation];
     [self addBusAnnotationNearLatitude :region.center.latitude andLongtitude:region.center.longitude];
     mapView.showsUserLocation = YES;
-    mapView.mapType = MKMapTypeSatellite;
+    mapView.mapType = MKMapTypeHybrid;
     [mapView setRegion:region animated:YES];
 
     [self.view addSubview:mapView];
