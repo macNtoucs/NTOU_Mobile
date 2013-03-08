@@ -155,8 +155,8 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [trainStyle count]>=8 || [trainStyle count]==0 ?
-    [trainStyle count]+2 : [trainStyle count]+1;
+    return [StartAndTerminalstops count]>=8 || [StartAndTerminalstops count]==0 ?
+    [StartAndTerminalstops count]+2 : [StartAndTerminalstops count]+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -256,8 +256,6 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)SetOriginAndStationViewTableView:(UITableViewController *)tableView nowSelected:(NSString *)_station{
-    [startStaion release];
-    [DepatureStation release];
     if (tableView==view1)
         startStaion = [[NSString alloc]initWithFormat:@"%@", _station ] ;
     else if (tableView==view2)
