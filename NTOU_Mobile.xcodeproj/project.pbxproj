@@ -30,6 +30,13 @@
 		913A0D1916E98EBA007BAD8F /* EmergencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 913A0D1316E98EBA007BAD8F /* EmergencyViewController.m */; };
 		913A0D1A16E98EBA007BAD8F /* OutCampusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 913A0D1516E98EBA007BAD8F /* OutCampusViewController.m */; };
 		913A0D1E16E98F99007BAD8F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 913A0D1D16E98F99007BAD8F /* MessageUI.framework */; };
+		91756E3C16E9A6DA001D724D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91756E3716E9A6DA001D724D /* Icon.png */; };
+		91756E3D16E9A6DA001D724D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91756E3816E9A6DA001D724D /* Icon@2x.png */; };
+		91756E3E16E9A6DA001D724D /* NTOU_default_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91756E3916E9A6DA001D724D /* NTOU_default_icon.png */; };
+		91756E3F16E9A6DA001D724D /* ntou_default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 91756E3A16E9A6DA001D724D /* ntou_default.jpg */; };
+		91756E4016E9A6DA001D724D /* ntou_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 91756E3B16E9A6DA001D724D /* ntou_default.png */; };
+		91756E4316E9A6E7001D724D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91756E4216E9A6E7001D724D /* Icon.png */; };
+		91756E4516E9A6EB001D724D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91756E4416E9A6EB001D724D /* Icon@2x.png */; };
 		91A9004B16E854E500ECF2CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9004A16E854E500ECF2CF /* UIKit.framework */; };
 		91A9004D16E854E500ECF2CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9004C16E854E500ECF2CF /* Foundation.framework */; };
 		91A9004F16E854E500ECF2CF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9004E16E854E500ECF2CF /* CoreGraphics.framework */; };
@@ -154,6 +161,13 @@
 		913A0D1516E98EBA007BAD8F /* OutCampusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutCampusViewController.m; sourceTree = "<group>"; };
 		913A0D1C16E98F66007BAD8F /* NTOUModule+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NTOUModule+Protected.h"; sourceTree = "<group>"; };
 		913A0D1D16E98F99007BAD8F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		91756E3716E9A6DA001D724D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		91756E3816E9A6DA001D724D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		91756E3916E9A6DA001D724D /* NTOU_default_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NTOU_default_icon.png; sourceTree = "<group>"; };
+		91756E3A16E9A6DA001D724D /* ntou_default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ntou_default.jpg; sourceTree = "<group>"; };
+		91756E3B16E9A6DA001D724D /* ntou_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ntou_default.png; sourceTree = "<group>"; };
+		91756E4216E9A6E7001D724D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		91756E4416E9A6EB001D724D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		91A9004616E854E500ECF2CF /* NTOU_Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NTOU_Mobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A9004A16E854E500ECF2CF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		91A9004C16E854E500ECF2CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -364,6 +378,8 @@
 		91A9003B16E854E400ECF2CF = {
 			isa = PBXGroup;
 			children = (
+				91756E4416E9A6EB001D724D /* Icon@2x.png */,
+				91756E4216E9A6E7001D724D /* Icon.png */,
 				91A9005016E854E500ECF2CF /* NTOU_Mobile */,
 				91A9004916E854E500ECF2CF /* Frameworks */,
 				91A9004716E854E500ECF2CF /* Products */,
@@ -419,6 +435,11 @@
 		91A9005116E854E500ECF2CF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				91756E3716E9A6DA001D724D /* Icon.png */,
+				91756E3816E9A6DA001D724D /* Icon@2x.png */,
+				91756E3916E9A6DA001D724D /* NTOU_default_icon.png */,
+				91756E3A16E9A6DA001D724D /* ntou_default.jpg */,
+				91756E3B16E9A6DA001D724D /* ntou_default.png */,
 				91A9005216E854E500ECF2CF /* NTOU_Mobile-Info.plist */,
 				91A9005316E854E500ECF2CF /* InfoPlist.strings */,
 				912A543616E9A56D00BBC013 /* credits.html */,
@@ -702,6 +723,13 @@
 				912A540816E9A09600BBC013 /* shiangfeng.jpg in Resources */,
 				912A540916E9A09600BBC013 /* shinfeng.jpg in Resources */,
 				912A543716E9A56D00BBC013 /* credits.html in Resources */,
+				91756E3C16E9A6DA001D724D /* Icon.png in Resources */,
+				91756E3D16E9A6DA001D724D /* Icon@2x.png in Resources */,
+				91756E3E16E9A6DA001D724D /* NTOU_default_icon.png in Resources */,
+				91756E3F16E9A6DA001D724D /* ntou_default.jpg in Resources */,
+				91756E4016E9A6DA001D724D /* ntou_default.png in Resources */,
+				91756E4316E9A6E7001D724D /* Icon.png in Resources */,
+				91756E4516E9A6EB001D724D /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

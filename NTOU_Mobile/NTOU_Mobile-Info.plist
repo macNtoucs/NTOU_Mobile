@@ -8,6 +8,17 @@
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>Icon.png</string>
+				<string>Icon@2x.png</string>
+			</array>
+		</dict>
+	</dict>
 	<key>CFBundleIdentifier</key>
 	<string>ntoucs.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -24,16 +35,6 @@
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
 	<key>NTOUAboutAppText</key>
 	<string>NTOU Mobile for iPhone是海大資工系學生合作設計和開發的。
 如果你有想法的改進或新的功能，我們很樂意聽到你的聲音。</string>
@@ -45,6 +46,16 @@
 海大未來的發展不是以漸進成長為策略，而是要以躍進的方式來推展海洋特色。持續「培育兼具人文素之基礎與應用能力之人才」與「致力於海洋相關領域之學術與應用發展」，達成「加強海洋特色、提升學校競爭力」、「培養兼具人文關懷、專業創新、國際視野的人才」與「發展世界的海洋教育及研究」的目標，讓海大成為一所具有活力與高度榮譽感之「卓越教學與特色研究兼具的海洋頂尖大學」。</string>
 	<key>NTOUFeedbackAddress</key>
 	<string>mac.ntoucs@gmail.com</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
 	<key>UISupportedInterfaceOrientations - 2</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
