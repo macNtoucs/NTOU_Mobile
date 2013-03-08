@@ -27,9 +27,9 @@
     K_TimeView* view1,*view2,*view3;
     view1 = [[K_TimeView alloc] initWithStyle:UITableViewStyleGrouped];
     view1.title = [delegate2 changeTimeViewTittle:K_TimeViewtype1];
-    UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:K_TimeViewtype1 image:[UIImage imageNamed:@"Time.png"] tag:1];
-    [item1 setFinishedSelectedImage:[UIImage imageNamed:@"Time.png"]
-        withFinishedUnselectedImage:[UIImage imageNamed:@"Time.png"]];
+    UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:K_TimeViewtype1 image:[UIImage imageNamed:@"TimeDrive.png"] tag:1];
+    [item1 setFinishedSelectedImage:[UIImage imageNamed:@"TimeDrive.png"]
+        withFinishedUnselectedImage:[UIImage imageNamed:@"TimeDrive.png"]];
     view1.tabBarItem = item1;
     [item1 release];
     view1.data = [delegate2 checkExceptionArriveTime:[[data objectAtIndex:1] mutableCopy]];
@@ -37,9 +37,9 @@
     
     view2 = [[K_TimeView alloc] initWithStyle:UITableViewStyleGrouped];
     view2.title = [delegate2 changeTimeViewTittle:K_TimeViewtype2];;
-    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:K_TimeViewtype2 image:[UIImage imageNamed:@"Info.png"] tag:2];
-    [item2 setFinishedSelectedImage:[UIImage imageNamed:@"Info.png"]
-        withFinishedUnselectedImage:[UIImage imageNamed:@"Info.png"]];
+    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:K_TimeViewtype2 image:[UIImage imageNamed:@"bank.png"] tag:2];
+    [item2 setFinishedSelectedImage:[UIImage imageNamed:@"bank.png"]
+        withFinishedUnselectedImage:[UIImage imageNamed:@"bank.png"]];
     view2.tabBarItem = item2;
     [item2 release];
     view2.data = [[data objectAtIndex:2] mutableCopy];
@@ -48,9 +48,9 @@
     
     view3 = [[K_TimeView alloc] initWithStyle:UITableViewStyleGrouped];
     view3.title = [delegate2 changeTimeViewTittle:K_TimeViewtype3];;
-    UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:K_TimeViewtype3 image:[UIImage imageNamed:@"money-icon.png"] tag:3];
-    [item3 setFinishedSelectedImage:[UIImage imageNamed:@"money-icon.png"]
-        withFinishedUnselectedImage:[UIImage imageNamed:@"money-icon.png"]];
+    UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:K_TimeViewtype3 image:[UIImage imageNamed:@"magnify.png"] tag:3];
+    [item3 setFinishedSelectedImage:[UIImage imageNamed:@"magnify.png"]
+        withFinishedUnselectedImage:[UIImage imageNamed:@"magnify.png"]];
     view3.tabBarItem = item3;
     [item3 release];
     view3.data = [[data objectAtIndex:4] mutableCopy];
