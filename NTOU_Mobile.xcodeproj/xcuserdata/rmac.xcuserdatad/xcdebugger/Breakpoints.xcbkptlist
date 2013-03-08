@@ -422,11 +422,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NTOU_Mobile/module/ShuttleTrack/SetStationViewController.m"
-         timestampString = "384356022.185102"
+         timestampString = "384417630.474107"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "288"
-         endingLineNumber = "288"
+         startingLineNumber = "292"
+         endingLineNumber = "292"
          landmarkName = "-StationInfoURL:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -467,6 +467,32 @@
          startingLineNumber = "21"
          endingLineNumber = "21"
          landmarkName = "-loadModuleHomeController"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "NTOU_Mobile/module/ShuttleTrack/SetStationViewController.m"
+         timestampString = "384417630.474107"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "289"
+         endingLineNumber = "289"
+         landmarkName = "-StationInfoURL:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "NTOU_Mobile/module/ShuttleTrack/SetStationViewController.m"
+         timestampString = "384416449.310023"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "235"
+         endingLineNumber = "235"
+         landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

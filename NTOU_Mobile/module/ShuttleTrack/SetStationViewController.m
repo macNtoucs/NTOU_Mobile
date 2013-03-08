@@ -255,19 +255,23 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)SetOriginAndStationViewTableView:(UITableViewController *)tableView nowSelected:(NSString *)station{
+-(void)SetOriginAndStationViewTableView:(UITableViewController *)tableView nowSelected:(NSString *)_station{
+    [startStaion release];
+    [DepatureStation release];
     if (tableView==view1)
-        startStaion = [NSString stringWithFormat:@"%@", station ] ;
+        startStaion = [[NSString alloc]initWithFormat:@"%@", _station ] ;
     else if (tableView==view2)
-        DepatureStation = [NSString stringWithFormat:@"%@", station ];
+        DepatureStation = [[NSString alloc]initWithFormat:@"%@", _station ] ;
     [self viewDidLoad];
 }
 
--(void)setHTOriginAndTerminalTableView:(UITableViewController*) tableView nowSelected:(NSString*) station{
+-(void)setHTOriginAndTerminalTableView:(UITableViewController*) tableView nowSelected:(NSString*) _station{
+    [startStaion release];
+    [DepatureStation release];
     if (tableView==HTView_origin)
-        startStaion = [NSString stringWithFormat:@"%@", station ] ;
+        startStaion = [[NSString alloc]initWithFormat:@"%@", _station ] ;
     else if (tableView==HTView_terminal)
-        DepatureStation = [NSString stringWithFormat:@"%@", station ];
+        DepatureStation = [[NSString alloc]initWithFormat:@"%@", _station ] ;
     [self viewDidLoad];
     
 }
