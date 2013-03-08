@@ -66,9 +66,6 @@
     depatureTimes = [NSMutableArray new];
     arrivalTimes = [NSMutableArray new];
     trainStyle = [NSMutableArray new];
-    [depatureTimes removeAllObjects];
-    [arrivalTimes removeAllObjects];
-    [self.tableView reloadData];
     NSError* error;
     NSData* data = [[NSString stringWithContentsOfURL:dataURL encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
     TFHpple* parser = [[TFHpple alloc] initWithHTMLData:data];
