@@ -12,6 +12,7 @@
 #import "EmergencyModule.h"
 #import	"CMModule.h"
 #import "PeopleModule.h"
+#import "AboutModule.h"
 /*#import "NewsModule.h"
 
 #import "StellarModule.h"
@@ -59,7 +60,7 @@
     //[result addObject:[[[QRReaderModule alloc] init] autorelease]];
     // [result addObject:[[[LinksModule alloc] init] autorelease]];
     //[result addObject:[[[SettingsModule alloc] init] autorelease]];
-    //[result addObject:[[[AboutModule alloc] init] autorelease]];
+    [result addObject:[[[AboutModule alloc] init] autorelease]];
     
     
     return result;

@@ -19,6 +19,11 @@
 		912A540716E9A09600BBC013 /* PeopleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53FF16E9A09600BBC013 /* PeopleModule.m */; };
 		912A540816E9A09600BBC013 /* shiangfeng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 912A540016E9A09600BBC013 /* shiangfeng.jpg */; };
 		912A540916E9A09600BBC013 /* shinfeng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 912A540116E9A09600BBC013 /* shinfeng.jpg */; };
+		912A542316E9A22300BBC013 /* AboutCreditsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A541C16E9A22300BBC013 /* AboutCreditsVC.m */; };
+		912A542516E9A22300BBC013 /* AboutModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A542016E9A22300BBC013 /* AboutModule.m */; };
+		912A542616E9A22300BBC013 /* AboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A542216E9A22300BBC013 /* AboutTableViewController.m */; };
+		912A542916E9A26F00BBC013 /* AboutNTOUVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A542816E9A26F00BBC013 /* AboutNTOUVC.m */; };
+		912A543716E9A56D00BBC013 /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 912A543616E9A56D00BBC013 /* credits.html */; };
 		913A0D1616E98EBA007BAD8F /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 913A0D0E16E98EBA007BAD8F /* CameraViewController.m */; };
 		913A0D1716E98EBA007BAD8F /* Emergency.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 913A0D0F16E98EBA007BAD8F /* Emergency.xcdatamodeld */; };
 		913A0D1816E98EBA007BAD8F /* EmergencyModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 913A0D1116E98EBA007BAD8F /* EmergencyModule.m */; };
@@ -130,6 +135,15 @@
 		912A53FF16E9A09600BBC013 /* PeopleModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleModule.m; sourceTree = "<group>"; };
 		912A540016E9A09600BBC013 /* shiangfeng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shiangfeng.jpg; sourceTree = "<group>"; };
 		912A540116E9A09600BBC013 /* shinfeng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shinfeng.jpg; sourceTree = "<group>"; };
+		912A541B16E9A22300BBC013 /* AboutCreditsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutCreditsVC.h; sourceTree = "<group>"; };
+		912A541C16E9A22300BBC013 /* AboutCreditsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutCreditsVC.m; sourceTree = "<group>"; };
+		912A541D16E9A22300BBC013 /* AboutNTOUVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutNTOUVC.h; sourceTree = "<group>"; };
+		912A541F16E9A22300BBC013 /* AboutModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutModule.h; sourceTree = "<group>"; };
+		912A542016E9A22300BBC013 /* AboutModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutModule.m; sourceTree = "<group>"; };
+		912A542116E9A22300BBC013 /* AboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutTableViewController.h; sourceTree = "<group>"; };
+		912A542216E9A22300BBC013 /* AboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutTableViewController.m; sourceTree = "<group>"; };
+		912A542816E9A26F00BBC013 /* AboutNTOUVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutNTOUVC.m; sourceTree = "<group>"; };
+		912A543616E9A56D00BBC013 /* credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = credits.html; sourceTree = "<group>"; };
 		913A0D0D16E98EBA007BAD8F /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		913A0D0E16E98EBA007BAD8F /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		913A0D1016E98EBA007BAD8F /* EmergencyModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmergencyModule.h; sourceTree = "<group>"; };
@@ -332,6 +346,21 @@
 			name = Life;
 			sourceTree = "<group>";
 		};
+		912A541A16E9A22300BBC013 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				912A541B16E9A22300BBC013 /* AboutCreditsVC.h */,
+				912A541C16E9A22300BBC013 /* AboutCreditsVC.m */,
+				912A541D16E9A22300BBC013 /* AboutNTOUVC.h */,
+				912A542816E9A26F00BBC013 /* AboutNTOUVC.m */,
+				912A541F16E9A22300BBC013 /* AboutModule.h */,
+				912A542016E9A22300BBC013 /* AboutModule.m */,
+				912A542116E9A22300BBC013 /* AboutTableViewController.h */,
+				912A542216E9A22300BBC013 /* AboutTableViewController.m */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
 		91A9003B16E854E400ECF2CF = {
 			isa = PBXGroup;
 			children = (
@@ -367,6 +396,7 @@
 		91A9005016E854E500ECF2CF /* NTOU_Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				912A541A16E9A22300BBC013 /* About */,
 				912A53F616E9A03D00BBC013 /* Life */,
 				912A53E816E99F7900BBC013 /* Guide */,
 				91CAC0FF16E98D48000F9B32 /* Emergency */,
@@ -391,6 +421,7 @@
 			children = (
 				91A9005216E854E500ECF2CF /* NTOU_Mobile-Info.plist */,
 				91A9005316E854E500ECF2CF /* InfoPlist.strings */,
+				912A543616E9A56D00BBC013 /* credits.html */,
 				91A9005616E854E500ECF2CF /* main.m */,
 				91A9005816E854E500ECF2CF /* NTOU_Mobile-Prefix.pch */,
 				91A9005C16E854E500ECF2CF /* Default.png */,
@@ -670,6 +701,7 @@
 				912A540516E9A09600BBC013 /* MainStoryboard.storyboard in Resources */,
 				912A540816E9A09600BBC013 /* shiangfeng.jpg in Resources */,
 				912A540916E9A09600BBC013 /* shinfeng.jpg in Resources */,
+				912A543716E9A56D00BBC013 /* credits.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,6 +772,10 @@
 				912A540316E9A09600BBC013 /* CustomPagerViewController.m in Sources */,
 				912A540616E9A09600BBC013 /* PagerViewController.m in Sources */,
 				912A540716E9A09600BBC013 /* PeopleModule.m in Sources */,
+				912A542316E9A22300BBC013 /* AboutCreditsVC.m in Sources */,
+				912A542516E9A22300BBC013 /* AboutModule.m in Sources */,
+				912A542616E9A22300BBC013 /* AboutTableViewController.m in Sources */,
+				912A542916E9A26F00BBC013 /* AboutNTOUVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -52,7 +52,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "134"
          endingLineNumber = "134"
-         landmarkName = "-applicationDidEnterBackground:"
+         landmarkName = "-applicationShouldSaveState:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -65,8 +65,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "146"
          endingLineNumber = "146"
-         landmarkName = "@implementation NTOU_MobileAppDelegate"
-         landmarkType = "3">
+         landmarkName = "-applicationWillTerminate:"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -78,7 +78,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "150"
          endingLineNumber = "150"
-         landmarkName = "-dealloc"
+         landmarkName = "-applicationDidEnterBackground:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -91,8 +91,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "156"
          endingLineNumber = "156"
-         landmarkName = "@implementation NTOU_MobileAppDelegate"
-         landmarkType = "3">
+         landmarkName = "-applicationWillEnterForeground:"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -104,7 +104,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "165"
          endingLineNumber = "165"
-         landmarkName = "-hideNetworkActivityIndicator"
+         landmarkName = "-dealloc"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -116,7 +116,9 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "176"
-         endingLineNumber = "176">
+         endingLineNumber = "176"
+         landmarkName = "-showNetworkActivityIndicator"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -127,7 +129,9 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "181"
-         endingLineNumber = "181">
+         endingLineNumber = "181"
+         landmarkName = "-hideNetworkActivityIndicator"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -186,11 +190,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NTOU_Mobile/AppDelegate+ModuleList.m"
-         timestampString = "384409756.61896"
+         timestampString = "384410470.024534"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "63"
-         endingLineNumber = "63"
+         startingLineNumber = "64"
+         endingLineNumber = "64"
          landmarkName = "-createModules"
          landmarkType = "5">
       </FileBreakpoint>
@@ -199,11 +203,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NTOU_Mobile/AppDelegate+ModuleList.m"
-         timestampString = "384409756.61896"
+         timestampString = "384410470.024534"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "78"
-         endingLineNumber = "78"
+         startingLineNumber = "79"
+         endingLineNumber = "79"
          landmarkName = "-showModuleForTag:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -212,11 +216,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NTOU_Mobile/AppDelegate+ModuleList.m"
-         timestampString = "384409756.61896"
+         timestampString = "384410470.024534"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "104"
-         endingLineNumber = "104"
+         startingLineNumber = "105"
+         endingLineNumber = "105"
          landmarkName = "-loadSavedModuleOrder"
          landmarkType = "5">
       </FileBreakpoint>
@@ -225,11 +229,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NTOU_Mobile/AppDelegate+ModuleList.m"
-         timestampString = "384409756.61896"
+         timestampString = "384410470.024534"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "117"
-         endingLineNumber = "117"
+         startingLineNumber = "118"
+         endingLineNumber = "118"
          landmarkName = "-loadSavedModuleOrder"
          landmarkType = "5">
       </FileBreakpoint>
@@ -437,6 +441,32 @@
          startingLineNumber = "101"
          endingLineNumber = "101"
          landmarkName = "-initIsHighSpeedTrain:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "NTOU_Mobile/About/AboutTableViewController.m"
+         timestampString = "384410499.498141"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "14"
+         endingLineNumber = "14"
+         landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "NTOU_Mobile/About/AboutModule.m"
+         timestampString = "384410713.953145"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "21"
+         endingLineNumber = "21"
+         landmarkName = "-loadModuleHomeController"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
