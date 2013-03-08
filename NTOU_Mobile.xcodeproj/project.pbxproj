@@ -234,10 +234,10 @@
 		91A903C816E899D200ECF2CF /* KUO_RouteViewController_Bra2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUO_RouteViewController_Bra2.m; sourceTree = "<group>"; };
 		91A903C916E899D200ECF2CF /* KUO_TimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUO_TimeViewController.h; sourceTree = "<group>"; };
 		91A903CA16E899D200ECF2CF /* KUO_TimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUO_TimeViewController.m; sourceTree = "<group>"; };
-		91A903CC16E899D200ECF2CF /* NTOUGuide3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuide3ViewController.h; sourceTree = "<group>"; };
-		91A903CD16E899D200ECF2CF /* NTOUGuide3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuide3ViewController.m; sourceTree = "<group>"; };
-		91A903CE16E899D200ECF2CF /* NTOUGuide4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuide4ViewController.h; sourceTree = "<group>"; };
-		91A903CF16E899D200ECF2CF /* NTOUGuide4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuide4ViewController.m; sourceTree = "<group>"; };
+		91A903CC16E899D200ECF2CF /* NTOUGuide3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NTOUGuide3ViewController.h; path = ../ShuttleTrack/Model/NTOUGuide3ViewController.h; sourceTree = "<group>"; };
+		91A903CD16E899D200ECF2CF /* NTOUGuide3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NTOUGuide3ViewController.m; path = ../ShuttleTrack/Model/NTOUGuide3ViewController.m; sourceTree = "<group>"; };
+		91A903CE16E899D200ECF2CF /* NTOUGuide4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NTOUGuide4ViewController.h; path = ../ShuttleTrack/Model/NTOUGuide4ViewController.h; sourceTree = "<group>"; };
+		91A903CF16E899D200ECF2CF /* NTOUGuide4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NTOUGuide4ViewController.m; path = ../ShuttleTrack/Model/NTOUGuide4ViewController.m; sourceTree = "<group>"; };
 		91A903D816E899D200ECF2CF /* money-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "money-icon.png"; sourceTree = "<group>"; };
 		91A903DF16E899D200ECF2CF /* NTOUTableViewControllerLayer1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUTableViewControllerLayer1.h; sourceTree = "<group>"; };
 		91A903E016E899D200ECF2CF /* NTOUTableViewControllerLayer1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUTableViewControllerLayer1.m; sourceTree = "<group>"; };
@@ -337,6 +337,10 @@
 				912A53EC16E99F7900BBC013 /* NTOUGuideSetViewController.m */,
 				912A53ED16E99F7900BBC013 /* NTOUGuideViewController.h */,
 				912A53EE16E99F7900BBC013 /* NTOUGuideViewController.m */,
+				91A903CC16E899D200ECF2CF /* NTOUGuide3ViewController.h */,
+				91A903CD16E899D200ECF2CF /* NTOUGuide3ViewController.m */,
+				91A903CE16E899D200ECF2CF /* NTOUGuide4ViewController.h */,
+				91A903CF16E899D200ECF2CF /* NTOUGuide4ViewController.m */,
 			);
 			name = Guide;
 			path = module/Guide;
@@ -516,7 +520,6 @@
 				91A903C816E899D200ECF2CF /* KUO_RouteViewController_Bra2.m */,
 				91A903C916E899D200ECF2CF /* KUO_TimeViewController.h */,
 				91A903CA16E899D200ECF2CF /* KUO_TimeViewController.m */,
-				91A903CB16E899D200ECF2CF /* Model */,
 				91A903D816E899D200ECF2CF /* money-icon.png */,
 				91A903DF16E899D200ECF2CF /* NTOUTableViewControllerLayer1.h */,
 				91A903E016E899D200ECF2CF /* NTOUTableViewControllerLayer1.m */,
@@ -580,17 +583,6 @@
 				91A903B216E899D200ECF2CF /* right_arrow.png */,
 			);
 			path = Calendar;
-			sourceTree = "<group>";
-		};
-		91A903CB16E899D200ECF2CF /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				91A903CC16E899D200ECF2CF /* NTOUGuide3ViewController.h */,
-				91A903CD16E899D200ECF2CF /* NTOUGuide3ViewController.m */,
-				91A903CE16E899D200ECF2CF /* NTOUGuide4ViewController.h */,
-				91A903CF16E899D200ECF2CF /* NTOUGuide4ViewController.m */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		91A903E716E899D200ECF2CF /* resource */ = {
