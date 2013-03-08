@@ -187,7 +187,7 @@
         cell.textLabel.text=@"";
     }
     else {
-        NSString * detailString = [NSString stringWithFormat:@"(%d)%@         %@", indexPath.row-1,[depatureTimes objectAtIndex:indexPath.row-1],[arrivalTimes objectAtIndex:indexPath.row-1] ] ;
+        NSString * detailString = [NSString stringWithFormat:@"%@         %@", [depatureTimes objectAtIndex:indexPath.row-1],[arrivalTimes objectAtIndex:indexPath.row-1] ] ;
         cell.textLabel.text=[NSString stringWithFormat:@"%@",[StartAndTerminalstops objectAtIndex:indexPath.row-1]] ;
          
         if ([[trainStyle objectAtIndex:indexPath.row-1] isEqualToString:@"區間車"])
