@@ -62,11 +62,13 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [downloadView AlertViewStart];
     });
-
     StartAndTerminalstops = [NSMutableArray new];
     depatureTimes = [NSMutableArray new];
     arrivalTimes = [NSMutableArray new];
     trainStyle = [NSMutableArray new];
+    [depatureTimes removeAllObjects];
+    [arrivalTimes removeAllObjects];
+    [self.tableView reloadData];
     NSError* error;
     NSData* data = [[NSString stringWithContentsOfURL:dataURL encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
     TFHpple* parser = [[TFHpple alloc] initWithHTMLData:data];
@@ -153,12 +155,13 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [StartAndTerminalstops count]>=8 || [StartAndTerminalstops count]==0 ? [StartAndTerminalstops count]+2 : [StartAndTerminalstops count]+1;
+    return [trainStyle count]>=8 || [trainStyle count]==0 ?
+    [trainStyle count]+2 : [trainStyle count]+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d%@",indexPath.section,indexPath.row,StartAndTerminalstops];
     SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
@@ -184,9 +187,9 @@
         cell.textLabel.text=@"";
     }
     else {
-        NSString * detailString = [NSString stringWithFormat:@"%@         %@", [depatureTimes objectAtIndex:indexPath.row-1],[arrivalTimes objectAtIndex:indexPath.row-1] ] ;
+        NSString * detailString = [NSString stringWithFormat:@"(%d)%@         %@", indexPath.row-1,[depatureTimes objectAtIndex:indexPath.row-1],[arrivalTimes objectAtIndex:indexPath.row-1] ] ;
         cell.textLabel.text=[NSString stringWithFormat:@"%@",[StartAndTerminalstops objectAtIndex:indexPath.row-1]] ;
-        
+         
         if ([[trainStyle objectAtIndex:indexPath.row-1] isEqualToString:@"區間車"])
             //cell.imageView.image = [UIImage imageNamed:@"local_train.png"];
             cell.textLabel.text= @"區間車";
@@ -196,8 +199,10 @@
         if ([[trainStyle objectAtIndex:indexPath.row-1]isEqualToString: @"莒光"])
             //cell.imageView.image = [UIImage imageNamed:@"gigoung_train.png"];
             cell.textLabel.text= @"莒光";
+       
         cell.detailTextLabel.text = detailString;
         cell.detailTextLabel.textColor = [UIColor blueColor];
+        
     }
     
     return cell;
