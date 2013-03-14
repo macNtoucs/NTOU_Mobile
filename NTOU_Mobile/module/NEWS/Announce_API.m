@@ -85,6 +85,7 @@
     isConnected = false;
     NSError * parseError;
     NSString * XMLResponse = [[NSString alloc] initWithData:updatePackage encoding:NSUTF8StringEncoding];
+    XMLResponse = [XMLResponse stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n"];
     content= [XMLReader dictionaryForXMLString:XMLResponse error:&parseError];
     [delegate parserDidFinishParsing:self];
 }
