@@ -231,6 +231,7 @@
 		C74699E316F21C680060F49C /* NavScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699E216F21C680060F49C /* NavScrollerView.m */; };
 		C74699E716F21CC90060F49C /* StoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699E616F21CC90060F49C /* StoryDetailViewController.m */; };
 		C74699E916F21CF40060F49C /* news in Resources */ = {isa = PBXBuildFile; fileRef = C74699E816F21CF40060F49C /* news */; };
+		C7AD321F16F24ABC00A58326 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7AD321E16F24ABC00A58326 /* QuickLook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -572,6 +573,7 @@
 		C74699E616F21CC90060F49C /* StoryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoryDetailViewController.m; path = module/NEWS/StoryDetailViewController.m; sourceTree = "<group>"; };
 		C74699E816F21CF40060F49C /* news */ = {isa = PBXFileReference; lastKnownFileType = folder; path = news; sourceTree = "<group>"; };
 		C74699EA16F21D590060F49C /* Announce_API_Key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Announce_API_Key.h; path = module/NEWS/Announce_API_Key.h; sourceTree = "<group>"; };
+		C7AD321E16F24ABC00A58326 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -579,6 +581,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7AD321F16F24ABC00A58326 /* QuickLook.framework in Frameworks */,
 				91756FEE16F21236001D724D /* ImageIO.framework in Frameworks */,
 				91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */,
 				913A0D1E16E98F99007BAD8F /* MessageUI.framework in Frameworks */,
@@ -765,6 +768,7 @@
 		91A9003B16E854E400ECF2CF = {
 			isa = PBXGroup;
 			children = (
+				C7AD321E16F24ABC00A58326 /* QuickLook.framework */,
 				91756E4416E9A6EB001D724D /* Icon@2x.png */,
 				91756E4216E9A6E7001D724D /* Icon.png */,
 				91A9005016E854E500ECF2CF /* NTOU_Mobile */,

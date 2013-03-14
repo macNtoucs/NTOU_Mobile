@@ -16,6 +16,7 @@
     NSString* courseId;
     NSString* classId;
     NSString *token;
+    NSString* moodleid;
     MBProgressHUD *HUD;
 }
 @property int tag;
