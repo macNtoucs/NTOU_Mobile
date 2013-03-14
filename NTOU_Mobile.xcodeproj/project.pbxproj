@@ -120,6 +120,8 @@
 		91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049416E89FE300ECF2CF /* QuartzCore.framework */; };
 		91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */; };
 		91A9049B16E8A09A00ECF2CF /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 91A9049A16E8A09A00ECF2CF /* icons */; };
+		C74A1DCB16F1E6BE00C6560F /* StoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C74A1DCA16F1E6BE00C6560F /* StoryDetailViewController.m */; };
+		C74A1DCE16F1F2BD00C6560F /* news in Resources */ = {isa = PBXBuildFile; fileRef = C74A1DCD16F1F2BD00C6560F /* news */; };
 		C77D91E316F0DB0F00A69A3C /* NewsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = C77D91E116F0DB0F00A69A3C /* NewsModule.m */; };
 		C77D91E416F0DB0F00A69A3C /* StoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C77D91E216F0DB0F00A69A3C /* StoryListViewController.m */; };
 		C77D91E716F0DC8C00A69A3C /* NavScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C77D91E616F0DC8C00A69A3C /* NavScrollerView.m */; };
@@ -310,6 +312,10 @@
 		91A9049416E89FE300ECF2CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		91A9049A16E8A09A00ECF2CF /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
+		C74A1DC916F1E6BE00C6560F /* StoryDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryDetailViewController.h; sourceTree = "<group>"; };
+		C74A1DCA16F1E6BE00C6560F /* StoryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryDetailViewController.m; sourceTree = "<group>"; };
+		C74A1DCC16F1EC9D00C6560F /* Announce_API_Key.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Announce_API_Key.h; sourceTree = "<group>"; };
+		C74A1DCD16F1F2BD00C6560F /* news */ = {isa = PBXFileReference; lastKnownFileType = folder; path = news; sourceTree = "<group>"; };
 		C77D91DF16F0DB0F00A69A3C /* NewsModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsModule.h; path = NTOU_Mobile/module/NEWS/NewsModule.h; sourceTree = SOURCE_ROOT; };
 		C77D91E016F0DB0F00A69A3C /* StoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryListViewController.h; path = NTOU_Mobile/module/NEWS/StoryListViewController.h; sourceTree = SOURCE_ROOT; };
 		C77D91E116F0DB0F00A69A3C /* NewsModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsModule.m; path = NTOU_Mobile/module/NEWS/NewsModule.m; sourceTree = SOURCE_ROOT; };
@@ -500,6 +506,7 @@
 		91A9029816E88E0D00ECF2CF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C74A1DCD16F1F2BD00C6560F /* news */,
 				91A9049A16E8A09A00ECF2CF /* icons */,
 				91A903A016E88E9D00ECF2CF /* global */,
 			);
@@ -656,6 +663,9 @@
 				C77D91E116F0DB0F00A69A3C /* NewsModule.m */,
 				C77D91E016F0DB0F00A69A3C /* StoryListViewController.h */,
 				C77D91E216F0DB0F00A69A3C /* StoryListViewController.m */,
+				C74A1DC916F1E6BE00C6560F /* StoryDetailViewController.h */,
+				C74A1DCA16F1E6BE00C6560F /* StoryDetailViewController.m */,
+				C74A1DCC16F1EC9D00C6560F /* Announce_API_Key.h */,
 			);
 			name = NEW;
 			path = About;
@@ -764,6 +774,7 @@
 				91756E4016E9A6DA001D724D /* ntou_default.png in Resources */,
 				91756E4316E9A6E7001D724D /* Icon.png in Resources */,
 				91756E4516E9A6EB001D724D /* Icon@2x.png in Resources */,
+				C74A1DCE16F1F2BD00C6560F /* news in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -843,6 +854,7 @@
 				C77D91E716F0DC8C00A69A3C /* NavScrollerView.m in Sources */,
 				C77D91ED16F0F58B00A69A3C /* Announce_API.m in Sources */,
 				C77D91EE16F0F58B00A69A3C /* XMLReader.m in Sources */,
+				C74A1DCB16F1E6BE00C6560F /* StoryDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -926,6 +938,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -937,6 +950,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

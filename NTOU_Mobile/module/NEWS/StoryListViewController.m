@@ -5,7 +5,6 @@
 //  Created by mac_hero on 13/3/14.
 //  Copyright (c) 2013年 NTOUcs_MAC. All rights reserved.
 //
-
 #import "StoryListViewController.h"
 #import "UIKit+NTOUAdditions.h"
 #import "NTOUUIConstants.h"
@@ -19,31 +18,13 @@
 #define STORY_TEXT_PADDING_BOTTOM 7.0 // from baseline of 12pt font, is roughly 5px
 #define STORY_TEXT_PADDING_LEFT 7.0
 #define STORY_TEXT_PADDING_RIGHT 7.0
-#define STORY_TEXT_WIDTH (320.0 - STORY_TEXT_PADDING_LEFT - STORY_TEXT_PADDING_RIGHT - THUMBNAIL_WIDTH - ACCESSORY_WIDTH_PLUS_PADDING) // 8px horizontal padding
+#define STORY_TEXT_WIDTH (320.0 - STORY_TEXT_PADDING_LEFT - STORY_TEXT_PADDING_RIGHT  - ACCESSORY_WIDTH_PLUS_PADDING) // 8px horizontal padding
 #define STORY_TEXT_HEIGHT (THUMBNAIL_WIDTH - STORY_TEXT_PADDING_TOP - STORY_TEXT_PADDING_BOTTOM) // 8px vertical padding (bottom is less because descenders on dekLabel go below baseline)
 #define STORY_TITLE_FONT_SIZE 15.0
 #define STORY_DEK_FONT_SIZE 12.0
 
 #define SEARCH_BUTTON_TAG 7947
 #define BOOKMARK_BUTTON_TAG 7948
-
-#define NewsCategoryIdAnnounceAPI  @"announce"
-#define NewsCategorySymposiumAPI  @"symposium"
-#define NewsCategoryArtAPI  @"art"
-#define NewsCategoryLectureAPI  @"lecture"
-#define NewsCategoryDocumentAPI  @"document"
-#define NewsCategoryInformationAPI  @"Information"
-
-#define NewsAPIKeyNtou @"ntou"
-#define NewsAPIKeyNotice @"notice"
-#define NewsAPIKeyPromoter @"promoter"
-#define NewsAPIKeyTel @"tel"
-#define NewsAPIKeyTitle @"title"
-#define NewsAPIKeyBody @"body"
-#define NewsAPIKeyStartdate @"startdate"
-#define NewsAPIKeyClass @"class"
-#define NewsAPIKeyEmail @"email"
-#define NewsAPIKeyText @"text"
 
 @interface StoryListViewController (Private)
 
@@ -67,6 +48,8 @@
 @implementation StoryListViewController
 @synthesize activeCategoryId;
 @synthesize catchData;
+@synthesize connect;
+
 NSString *const NewsCategoryAnnounce = @"學校公告";
 NSString *const NewsCategorySymposium = @"研討會";
 NSString *const NewsCategoryArt = @"藝文活動";
@@ -121,12 +104,11 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
 {
     [super loadView];
     
-    self.navigationItem.title = @"MIT News";
+    self.navigationItem.title = @"公告";
     self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Headlines" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)] autorelease];
     
     tempTableSelection = nil;
-    
     storyTable = [[UITableView alloc] initWithFrame:self.view.bounds];
     storyTable.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     storyTable.delegate = self;
@@ -146,7 +128,6 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     storyTable.frame = CGRectMake(0, navScrollView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - navScrollView.frame.size.height);
     [self setupActivityIndicator];
     
-    [self loadFromCache];
 	// Do any additional setup after loading the view.
 }
 
@@ -168,6 +149,9 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    if (!pageCount[self.activeCategoryId]) {
+        [self loadFromCache];
+    }
     if (tempTableSelection)
     {
         [storyTable reloadRowsAtIndexPaths:[NSArray arrayWithObject:tempTableSelection] withRowAnimation:UITableViewRowAnimationNone];
@@ -180,20 +164,19 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
 {
     [tableDisplayData[self.activeCategoryId] release];
     tableDisplayData[self.activeCategoryId] = nil;
+    pageCount[self.activeCategoryId] = 0;
     [self loadFromCache];
 }
 
 
 - (void)loadFromCache
 {
-    catchData = [Announce_API getAnnounceInfo_Count:6 andType:titleForCategoryId(buttonCategories[self.activeCategoryId]) andPage:1];
-    NSArray* temp = [[catchData objectForKey:NewsAPIKeyNtou]objectForKey:NewsAPIKeyNotice];
-    if (!tableDisplayData[self.activeCategoryId]) {
-        tableDisplayData[self.activeCategoryId] = [[NSMutableArray alloc] init];
-        [tableDisplayData[self.activeCategoryId] addObjectsFromArray:temp];
+    if (self.connect) {
+        [connect CancelConnection];
     }
-    [storyTable reloadData];
-    [storyTable flashScrollIndicators];
+    connect = [[Announce_API alloc] init];
+    connect.delegate = self;
+    [connect getAnnounceInfo_Count:6 andType:titleForCategoryId(buttonCategories[self.activeCategoryId]) andPage:pageCount[self.activeCategoryId]+1];
 }
 
 - (void)didReceiveMemoryWarning
@@ -254,11 +237,17 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
 {
     if (category != self.activeCategoryId)
     {
-
+        if (self.connect) {
+            [self.connect CancelConnection];
+            self.connect = nil;
+        }
+        [self setStatusText:@""];
         self.activeCategoryId = category;
-
+        
         [storyTable reloadData];
-        [self loadFromCache]; // makes request to server if no request has been made this session
+        if (!pageCount[self.activeCategoryId]) {
+            [self loadFromCache];
+        } // makes request to server if no request has been made this session
     }
 }
 
@@ -344,34 +333,20 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                 
                 titleLabel = (UILabel *)[cell viewWithTag:1];
                 dekLabel = (UILabel *)[cell viewWithTag:2];
-                
-                titleLabel.text = [[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText];
-                dekLabel.text = [[story objectForKey:NewsAPIKeyStartdate] objectForKey:NewsAPIKeyText];
+                titleLabel.text = [[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+                dekLabel.text = [[[story objectForKey:NewsAPIKeyStartdate] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""];
                 
                 titleLabel.textColor = [UIColor blackColor];
                 titleLabel.highlightedTextColor = [UIColor whiteColor];
-                
-                // Calculate height
-                CGFloat availableHeight = STORY_TEXT_HEIGHT;
-                CGSize titleDimensions = [titleLabel.text sizeWithFont:titleLabel.font constrainedToSize:CGSizeMake(STORY_TEXT_WIDTH, availableHeight) lineBreakMode:UILineBreakModeTailTruncation];
-                availableHeight -= titleDimensions.height;
-                
-                CGSize dekDimensions = CGSizeZero;
-                // if not even one line will fit, don't show the deck at all
-                if (availableHeight > dekLabel.font.leading)
-                {
-                    dekDimensions = [dekLabel.text sizeWithFont:dekLabel.font constrainedToSize:CGSizeMake(STORY_TEXT_WIDTH, availableHeight) lineBreakMode:UILineBreakModeTailTruncation];
-                }
-                
-                
+    
                 titleLabel.frame = CGRectMake(STORY_TEXT_PADDING_LEFT,
                                               STORY_TEXT_PADDING_TOP,
-                                              THUMBNAIL_WIDTH +STORY_TEXT_WIDTH,
-                                              titleDimensions.height);
+                                            STORY_TEXT_WIDTH,
+                                              THUMBNAIL_WIDTH-15-STORY_TEXT_PADDING_TOP);
                 dekLabel.frame = CGRectMake(STORY_TEXT_PADDING_LEFT,
-                                            ceil(CGRectGetMaxY(titleLabel.frame)),
-                                            THUMBNAIL_WIDTH +STORY_TEXT_WIDTH,
-                                            dekDimensions.height);
+                                            THUMBNAIL_WIDTH-15,
+                                            STORY_TEXT_WIDTH,
+                                            15);
                 
                 
                 result = cell;
@@ -390,7 +365,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                     moreArticlesLabel.font = [UIFont boldSystemFontOfSize:16];
                     moreArticlesLabel.numberOfLines = 1;
                     moreArticlesLabel.textColor = [UIColor colorWithHexString:@"#990000"];
-                    moreArticlesLabel.text = @"Load 10 more articles..."; // just something to make it place correctly
+                    moreArticlesLabel.text = @"載入更多..."; // just something to make it place correctly
                     [moreArticlesLabel sizeToFit];
                     moreArticlesLabel.tag = 1234;
                     CGRect frame = moreArticlesLabel.frame;
@@ -407,7 +382,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                 {
                     NSInteger remainingArticlesToLoad = (!searchResults) ? (200 - [self.stories count]) : (searchTotalAvailableResults - [self.stories count]);
                     moreArticlesLabel.text = [NSString stringWithFormat:@"Load %d more articles...", (remainingArticlesToLoad > 10) ? 10 : remainingArticlesToLoad];
-                    if (!self.xmlParser)
+                    if (!self.connect)
                     { // disable when a load is already in progress
                         moreArticlesLabel.textColor = [UIColor colorWithHexString:@"#990000"]; // enable
                     }
@@ -426,6 +401,24 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
             break;
     }
     return result;
+}
+
+
+- (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == [self->tableDisplayData[self.activeCategoryId] count])
+    {
+        [self loadFromCache];
+    }
+    else
+    {
+        StoryDetailViewController *detailViewController = [[StoryDetailViewController alloc] init];
+        NSDictionary *story = [self->tableDisplayData[self.activeCategoryId] objectAtIndex:indexPath.row];
+        detailViewController.story = story;
+        
+        [self.navigationController pushViewController:detailViewController animated:YES];
+        [detailViewController release];
+    }
 }
 
 
@@ -523,6 +516,111 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     CGRect frame = storyTable.frame;
     frame.size.height = frame.size.height - height;
     storyTable.frame = frame;
+}
+
+
+#pragma mark -
+#pragma mark Parser delegation
+
+- (void)parserDidStartDownloading:(Announce_API *)parser
+{
+    if (parser == self.connect)
+    {
+        [self setProgress:0.1];
+        [storyTable reloadData];
+    }
+}
+
+- (void)parserDidStartParsing:(Announce_API *)parser
+{
+    if (parser == self.connect)
+    {
+        [self setProgress:0.3];
+    }
+}
+
+- (void)parser:(Announce_API *)parser didMakeProgress:(CGFloat)percentDone
+{
+    if (parser == self.connect)
+    {
+        [self setProgress:0.3 + 0.7 * percentDone];
+    }
+}
+
+- (void)parser:(Announce_API *)parser didFailWithDownloadError:(NSError *)error
+{
+    if (parser == self.connect)
+    {
+        // TODO: communicate download failure to user
+
+        [self setStatusText:@"Update failed"];
+        
+        [self showError:error header:@"新聞" alertViewDelegate:nil];
+        if ([self->tableDisplayData[self.activeCategoryId] count] > 0)
+        {
+            [storyTable deselectRowAtIndexPath:[NSIndexPath indexPathForRow:[self->tableDisplayData[self.activeCategoryId] count] inSection:0] animated:YES];
+        }
+    }
+}
+
+- (void)parser:(Announce_API *)parser didFailWithParseError:(NSError *)error
+{
+    if (parser == self.connect)
+    {
+        // TODO: communicate parse failure to user
+        [self setStatusText:@"Update failed"];
+        [self showError:error header:@"新聞" alertViewDelegate:nil];
+        if ([self->tableDisplayData[self.activeCategoryId] count] > 0)
+        {
+            [storyTable deselectRowAtIndexPath:[NSIndexPath indexPathForRow:[self->tableDisplayData[self.activeCategoryId] count] inSection:0] animated:YES];
+        }
+    }
+}
+
+- (void)parserDidFinishParsing:(Announce_API *)parser
+{
+    if (parser == self.connect)
+    {
+        pageCount[self.activeCategoryId]++;
+        catchData = [[[NSDictionary alloc] initWithDictionary:self.connect.content] autorelease];
+        NSArray* temp = [[catchData objectForKey:NewsAPIKeyNtou]objectForKey:NewsAPIKeyNotice];
+        if (!tableDisplayData[self.activeCategoryId])
+            tableDisplayData[self.activeCategoryId] = [[NSMutableArray alloc] init];
+        [tableDisplayData[self.activeCategoryId] addObjectsFromArray:temp];
+        [storyTable reloadData];
+        [storyTable flashScrollIndicators];
+        [self setLastUpdated:[NSDate date]];
+    }
+}
+
+#define TIMED_OUT_CODE -1001
+#define JSON_ERROR_CODE -2
+
+-(void)showError:(NSError *)error header:(NSString *)header alertViewDelegate:(id<UIAlertViewDelegate>)alertViewDelegate {
+	
+	NSLog(@"MITMoileWebAPI.m header = %@", header);
+    if(![header isEqual:@"Events"])
+    {
+        // Generic message
+        NSString *message = @"Connection Failure. Please try again later.";
+        // if the error can be classifed we will use a more specific error message
+        if(error) {
+            if ([[error domain] isEqualToString:@"NSURLErrorDomain"] && ([error code] == TIMED_OUT_CODE)) {
+                message = @"Connection Timed Out. Please try again later.";
+            } else if ([[error domain] isEqualToString:@"MITMobileWebAPI"] && ([error code] == JSON_ERROR_CODE)) {
+                message = @"Server Failure. Please try again later.";
+            }
+        }
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:header
+                                                            message:message
+                                                           delegate:alertViewDelegate
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        
+        [alertView show];
+        [alertView release];
+    }
 }
 
 
