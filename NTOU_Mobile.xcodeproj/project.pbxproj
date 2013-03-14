@@ -302,21 +302,21 @@
 		91756EA316F206F7001D724D /* ClassInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassInfoViewController.m; sourceTree = "<group>"; };
 		91756EA416F206F7001D724D /* ClassInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassInfoViewController.xib; sourceTree = "<group>"; };
 		91756EA716F206F7001D724D /* CommonCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCryptor.h; sourceTree = "<group>"; };
-		91756EA816F206F7001D724D /* Course */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Course; sourceTree = "<group>"; };
-		91756EA916F206F7001D724D /* CourseInfo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CourseInfo; sourceTree = "<group>"; };
+		91756EA816F206F7001D724D /* Course */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Course; path = ../Course; sourceTree = "<group>"; };
+		91756EA916F206F7001D724D /* CourseInfo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CourseInfo; path = ../CourseInfo; sourceTree = "<group>"; };
 		91756EAA16F206F7001D724D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		91756EAB16F206F7001D724D /* DefineConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefineConstant.h; sourceTree = "<group>"; };
 		91756EAC16F206F7001D724D /* EditScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditScheduleViewController.h; sourceTree = "<group>"; };
 		91756EAD16F206F7001D724D /* EditScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditScheduleViewController.m; sourceTree = "<group>"; };
-		91756EAE16F206F7001D724D /* Grade */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Grade; sourceTree = "<group>"; };
-		91756EB116F206F7001D724D /* Login */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Login; sourceTree = "<group>"; };
+		91756EAE16F206F7001D724D /* Grade */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Grade; path = ../Grade; sourceTree = "<group>"; };
+		91756EB116F206F7001D724D /* Login */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Login; path = ../Login; sourceTree = "<group>"; };
 		91756EB216F206F7001D724D /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		91756EB316F206F7001D724D /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		91756EC416F206F7001D724D /* Moodle_API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moodle_API.h; sourceTree = "<group>"; };
-		91756EC516F206F7001D724D /* Moodle_API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Moodle_API.m; sourceTree = "<group>"; };
-		91756EC616F206F7001D724D /* MoodleID */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MoodleID; sourceTree = "<group>"; };
-		91756EC716F206F7001D724D /* MoodleInfo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MoodleInfo; sourceTree = "<group>"; };
-		91756EC816F206F7001D724D /* MoodleInfo2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MoodleInfo2; sourceTree = "<group>"; };
+		91756EC416F206F7001D724D /* Moodle_API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Moodle_API.h; path = ../Moodle_API.h; sourceTree = "<group>"; };
+		91756EC516F206F7001D724D /* Moodle_API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Moodle_API.m; path = ../Moodle_API.m; sourceTree = "<group>"; };
+		91756EC616F206F7001D724D /* MoodleID */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MoodleID; path = ../MoodleID; sourceTree = "<group>"; };
+		91756EC716F206F7001D724D /* MoodleInfo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MoodleInfo; path = ../MoodleInfo; sourceTree = "<group>"; };
+		91756EC816F206F7001D724D /* MoodleInfo2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MoodleInfo2; path = ../MoodleInfo2; sourceTree = "<group>"; };
 		91756ECB16F206F7001D724D /* NTOU_ClassColorTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOU_ClassColorTableController.h; sourceTree = "<group>"; };
 		91756ECC16F206F7001D724D /* NTOU_ClassColorTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOU_ClassColorTableController.m; sourceTree = "<group>"; };
 		91756ECD16F206F7001D724D /* Reader-Button-H.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Button-H.png"; path = "../Reader-Button-H.png"; sourceTree = "<group>"; };
@@ -650,6 +650,8 @@
 		91756E7716F206F7001D724D /* Stellar */ = {
 			isa = PBXGroup;
 			children = (
+				91756E9B16F206F7001D724D /* Classes */,
+				C74699EB16F21DF10060F49C /* Reader */,
 				91756FCE16F20C79001D724D /* LessonTimeView.h */,
 				91756FCF16F20C79001D724D /* LessonTimeView.m */,
 				91756FCB16F20AD3001D724D /* TabViewControl.h */,
@@ -666,29 +668,18 @@
 				91756E9816F206F7001D724D /* ClassAddRetina4.xib */,
 				91756E9916F206F7001D724D /* ClassDataBase.h */,
 				91756E9A16F206F7001D724D /* ClassDataBase.m */,
-				91756E9B16F206F7001D724D /* Classes */,
-				C74699EB16F21DF10060F49C /* Reader */,
 				91756EA016F206F7001D724D /* ClassInfoView.h */,
 				91756EA116F206F7001D724D /* ClassInfoView.m */,
 				91756EA216F206F7001D724D /* ClassInfoViewController.h */,
 				91756EA316F206F7001D724D /* ClassInfoViewController.m */,
 				91756EA416F206F7001D724D /* ClassInfoViewController.xib */,
 				91756EA716F206F7001D724D /* CommonCryptor.h */,
-				91756EA816F206F7001D724D /* Course */,
-				91756EA916F206F7001D724D /* CourseInfo */,
 				91756EAA16F206F7001D724D /* Default-568h@2x.png */,
 				91756EAB16F206F7001D724D /* DefineConstant.h */,
 				91756EAC16F206F7001D724D /* EditScheduleViewController.h */,
 				91756EAD16F206F7001D724D /* EditScheduleViewController.m */,
-				91756EAE16F206F7001D724D /* Grade */,
-				91756EB116F206F7001D724D /* Login */,
 				91756EB216F206F7001D724D /* MBProgressHUD.h */,
 				91756EB316F206F7001D724D /* MBProgressHUD.m */,
-				91756EC416F206F7001D724D /* Moodle_API.h */,
-				91756EC516F206F7001D724D /* Moodle_API.m */,
-				91756EC616F206F7001D724D /* MoodleID */,
-				91756EC716F206F7001D724D /* MoodleInfo */,
-				91756EC816F206F7001D724D /* MoodleInfo2 */,
 				91756ECB16F206F7001D724D /* NTOU_ClassColorTableController.h */,
 				91756ECC16F206F7001D724D /* NTOU_ClassColorTableController.m */,
 				91756EF916F206F7001D724D /* right.png */,
@@ -719,6 +710,15 @@
 		91756E9B16F206F7001D724D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				91756EA816F206F7001D724D /* Course */,
+				91756EA916F206F7001D724D /* CourseInfo */,
+				91756EAE16F206F7001D724D /* Grade */,
+				91756EB116F206F7001D724D /* Login */,
+				91756EC616F206F7001D724D /* MoodleID */,
+				91756EC716F206F7001D724D /* MoodleInfo */,
+				91756EC816F206F7001D724D /* MoodleInfo2 */,
+				91756EC416F206F7001D724D /* Moodle_API.h */,
+				91756EC516F206F7001D724D /* Moodle_API.m */,
 				91756E9E16F206F7001D724D /* NSData+DES.h */,
 				91756E9F16F206F7001D724D /* NSData+DES.m */,
 			);

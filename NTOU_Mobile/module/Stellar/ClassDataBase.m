@@ -629,7 +629,7 @@ static ClassDataBase *sharedData = nil;
     
 }
 
--(void)loginAccount:(NSString *)account Password:(NSString *)password ClearAllCourses:(BOOL)clear
+-(BOOL)loginAccount:(NSString *)account Password:(NSString *)password ClearAllCourses:(BOOL)clear
 {
     NSDictionary* info = [Moodle_API Login:account andPassword:password];
     //NSLog(@"%@",[info objectForKey:moodleLoginResultKey]);
@@ -643,16 +643,20 @@ static ClassDataBase *sharedData = nil;
         [self updataScheduleFromMoodle:schedule];
         [self ClassAddDecide];
         [[ScheduleViewDelegate weekschedule] drawRect:CGRectZero];
+        return true;
     }
     else
     {
+        dispatch_async(dispatch_get_main_queue(), ^{
         UIAlertView *loadingAlertView = [[UIAlertView alloc]
                                          initWithTitle:nil message:@"帳號、密碼錯誤"
                                          delegate:self cancelButtonTitle:@"確定"
                                          otherButtonTitles:nil];
         [loadingAlertView show];
         [loadingAlertView release];
+        });
     }
+    return false;
 }
 
 -(NSString *)loginTokenWhenAccountFromUserDefault

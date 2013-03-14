@@ -102,7 +102,7 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
 -(void)ClassAddDecide;
 
 -(void)ClearAllCourses;
--(void)loginAccount:(NSString *)account Password:(NSString *)password ClearAllCourses:(BOOL)clear;
+-(BOOL)loginAccount:(NSString *)account Password:(NSString *)password ClearAllCourses:(BOOL)clear;
 -(NSString *)loginTokenWhenAccountFromUserDefault;
 -(NSDictionary *)loginCourseToGetCourseidAndClassid:(NSString *)courseName;
 

@@ -15,6 +15,7 @@
     int willbeset_ClassSessionTimes;
     bool willbeset_showClassTimes;
     MBProgressHUD *HUD;
+    BOOL loginSuccess;
 }
 
 @end
