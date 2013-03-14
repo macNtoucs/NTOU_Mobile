@@ -120,6 +120,11 @@
 		91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049416E89FE300ECF2CF /* QuartzCore.framework */; };
 		91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */; };
 		91A9049B16E8A09A00ECF2CF /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 91A9049A16E8A09A00ECF2CF /* icons */; };
+		C77D91E316F0DB0F00A69A3C /* NewsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = C77D91E116F0DB0F00A69A3C /* NewsModule.m */; };
+		C77D91E416F0DB0F00A69A3C /* StoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C77D91E216F0DB0F00A69A3C /* StoryListViewController.m */; };
+		C77D91E716F0DC8C00A69A3C /* NavScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C77D91E616F0DC8C00A69A3C /* NavScrollerView.m */; };
+		C77D91ED16F0F58B00A69A3C /* Announce_API.m in Sources */ = {isa = PBXBuildFile; fileRef = C77D91EB16F0F58B00A69A3C /* Announce_API.m */; };
+		C77D91EE16F0F58B00A69A3C /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = C77D91EC16F0F58B00A69A3C /* XMLReader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -305,6 +310,16 @@
 		91A9049416E89FE300ECF2CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		91A9049A16E8A09A00ECF2CF /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
+		C77D91DF16F0DB0F00A69A3C /* NewsModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsModule.h; path = NTOU_Mobile/module/NEWS/NewsModule.h; sourceTree = SOURCE_ROOT; };
+		C77D91E016F0DB0F00A69A3C /* StoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryListViewController.h; path = NTOU_Mobile/module/NEWS/StoryListViewController.h; sourceTree = SOURCE_ROOT; };
+		C77D91E116F0DB0F00A69A3C /* NewsModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsModule.m; path = NTOU_Mobile/module/NEWS/NewsModule.m; sourceTree = SOURCE_ROOT; };
+		C77D91E216F0DB0F00A69A3C /* StoryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoryListViewController.m; path = NTOU_Mobile/module/NEWS/StoryListViewController.m; sourceTree = SOURCE_ROOT; };
+		C77D91E516F0DC8C00A69A3C /* NavScrollerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavScrollerView.h; sourceTree = "<group>"; };
+		C77D91E616F0DC8C00A69A3C /* NavScrollerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavScrollerView.m; sourceTree = "<group>"; };
+		C77D91E916F0F58B00A69A3C /* Announce_API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Announce_API.h; path = NTOU_Mobile/module/NEWS/Announce_API.h; sourceTree = SOURCE_ROOT; };
+		C77D91EA16F0F58B00A69A3C /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = NTOU_Mobile/module/NEWS/XMLReader.h; sourceTree = SOURCE_ROOT; };
+		C77D91EB16F0F58B00A69A3C /* Announce_API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Announce_API.m; path = NTOU_Mobile/module/NEWS/Announce_API.m; sourceTree = SOURCE_ROOT; };
+		C77D91EC16F0F58B00A69A3C /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = NTOU_Mobile/module/NEWS/XMLReader.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -416,6 +431,7 @@
 		91A9005016E854E500ECF2CF /* NTOU_Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				C77D91D816F0D8E900A69A3C /* NEW */,
 				912A541A16E9A22300BBC013 /* About */,
 				912A53F616E9A03D00BBC013 /* Life */,
 				912A53E816E99F7900BBC013 /* Guide */,
@@ -425,6 +441,8 @@
 				91A9007116E858A400ECF2CF /* common */,
 				91A9006B16E8555D00ECF2CF /* NTOUSpringboard.h */,
 				91A9006C16E8555D00ECF2CF /* NTOUSpringboard.m */,
+				91A9007B16E85C5A00ECF2CF /* AppDelegate+ModuleList.h */,
+				91A9007E16E85C8400ECF2CF /* AppDelegate+ModuleList.m */,
 				91A9008616E8659D00ECF2CF /* NTOUConstants.h */,
 				91A9008716E8659E00ECF2CF /* NTOUConstants.m */,
 				91A9005916E854E500ECF2CF /* AppDelegate.h */,
@@ -459,6 +477,8 @@
 		91A9007116E858A400ECF2CF /* common */ = {
 			isa = PBXGroup;
 			children = (
+				C77D91E516F0DC8C00A69A3C /* NavScrollerView.h */,
+				C77D91E616F0DC8C00A69A3C /* NavScrollerView.m */,
 				913A0D1C16E98F66007BAD8F /* NTOUModule+Protected.h */,
 				91A9048C16E89C8B00ECF2CF /* ClassLabelBasis.h */,
 				91A9048D16E89C8B00ECF2CF /* ClassLabelBasis.m */,
@@ -471,8 +491,6 @@
 				91A9007216E8597400ECF2CF /* UIKit+NTOUAdditions.h */,
 				91A9007316E8597400ECF2CF /* UIKit+NTOUAdditions.m */,
 				91A9007516E85A2900ECF2CF /* NTOUUIConstants.h */,
-				91A9007B16E85C5A00ECF2CF /* AppDelegate+ModuleList.h */,
-				91A9007E16E85C8400ECF2CF /* AppDelegate+ModuleList.m */,
 				91A9008316E8613800ECF2CF /* NTOU_MobileAppDelegate+Private.h */,
 				91A9008416E8613800ECF2CF /* NTOU_MobileAppDelegate+Private.m */,
 			);
@@ -628,6 +646,30 @@
 			);
 			name = Emergency;
 			path = module/Emergency;
+			sourceTree = "<group>";
+		};
+		C77D91D816F0D8E900A69A3C /* NEW */ = {
+			isa = PBXGroup;
+			children = (
+				C77D91E816F0F55500A69A3C /* Announce_API */,
+				C77D91DF16F0DB0F00A69A3C /* NewsModule.h */,
+				C77D91E116F0DB0F00A69A3C /* NewsModule.m */,
+				C77D91E016F0DB0F00A69A3C /* StoryListViewController.h */,
+				C77D91E216F0DB0F00A69A3C /* StoryListViewController.m */,
+			);
+			name = NEW;
+			path = About;
+			sourceTree = "<group>";
+		};
+		C77D91E816F0F55500A69A3C /* Announce_API */ = {
+			isa = PBXGroup;
+			children = (
+				C77D91EA16F0F58B00A69A3C /* XMLReader.h */,
+				C77D91EC16F0F58B00A69A3C /* XMLReader.m */,
+				C77D91E916F0F58B00A69A3C /* Announce_API.h */,
+				C77D91EB16F0F58B00A69A3C /* Announce_API.m */,
+			);
+			name = Announce_API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -796,6 +838,11 @@
 				912A542616E9A22300BBC013 /* AboutTableViewController.m in Sources */,
 				912A542916E9A26F00BBC013 /* AboutNTOUVC.m in Sources */,
 				91756E4816E9B5EB001D724D /* CMModule.m in Sources */,
+				C77D91E316F0DB0F00A69A3C /* NewsModule.m in Sources */,
+				C77D91E416F0DB0F00A69A3C /* StoryListViewController.m in Sources */,
+				C77D91E716F0DC8C00A69A3C /* NavScrollerView.m in Sources */,
+				C77D91ED16F0F58B00A69A3C /* Announce_API.m in Sources */,
+				C77D91EE16F0F58B00A69A3C /* XMLReader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
