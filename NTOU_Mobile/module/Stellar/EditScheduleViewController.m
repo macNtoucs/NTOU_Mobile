@@ -31,7 +31,7 @@
 }
 
 -(void) addNavRightButton {
-    UIBarButtonItem * right = [[UIBarButtonItem alloc]initWithBarButtonSysteNTOUem:UIBarButtonSystemItemDone target:self action:@selector(finishSetting)];
+    UIBarButtonItem * right = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishSetting)];
     [self.navigationItem setRightBarButtonItem:right animated:YES];
 }
 
@@ -289,7 +289,6 @@
 */
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
     switch (buttonIndex) {
         case 1:{
             dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -300,12 +299,13 @@
                     hud.labelText = @"Loading";
                 });
 
-                [[ClassDataBase sharedData] loginAccount:[(UITextField*)accountDelegate text]
+                loginSuccess = [[ClassDataBase sharedData] loginAccount:[(UITextField*)accountDelegate text]
                                             Password:[(UITextField*)passwordDelegate text]
                                             ClearAllCourses:YES];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                    [self dismissModalViewControllerAnimated:YES];
+                    if (loginSuccess)
+                        [self finishSetting];
                 });
             });
         }
@@ -319,12 +319,13 @@
                     hud.labelText = @"Loading";
                 });
                 
-                [[ClassDataBase sharedData] loginAccount:[(UITextField*)accountDelegate text]
+                loginSuccess = [[ClassDataBase sharedData] loginAccount:[(UITextField*)accountDelegate text]
                                                 Password:[(UITextField*)passwordDelegate text]
                                          ClearAllCourses:NO];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                    [self dismissModalViewControllerAnimated:YES];
+                    if (loginSuccess)
+                        [self finishSetting];
                 });
             });
         }

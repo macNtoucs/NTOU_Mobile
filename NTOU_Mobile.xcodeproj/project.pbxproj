@@ -96,7 +96,6 @@
 		91756F7C16F206F7001D724D /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91756EFB16F206F7001D724D /* ScheduleViewController.m */; };
 		91756F7D16F206F7001D724D /* SetWeekTimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91756EFD16F206F7001D724D /* SetWeekTimesViewController.m */; };
 		91756F8816F206F7001D724D /* StellarModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 91756F1316F206F7001D724D /* StellarModule.m */; };
-		91756F8A16F206F7001D724D /* Syllabus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 91756F1616F206F7001D724D /* Syllabus.pdf */; };
 		91756F8B16F206F7001D724D /* TabBarNipple.png in Resources */ = {isa = PBXBuildFile; fileRef = 91756F1716F206F7001D724D /* TabBarNipple.png */; };
 		91756F8C16F206F7001D724D /* TabBarNipple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91756F1816F206F7001D724D /* TabBarNipple@2x.png */; };
 		91756F8D16F206F7001D724D /* ThumbsMainToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 91756F1A16F206F7001D724D /* ThumbsMainToolbar.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -225,6 +224,13 @@
 		91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049416E89FE300ECF2CF /* QuartzCore.framework */; };
 		91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */; };
 		91A9049B16E8A09A00ECF2CF /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 91A9049A16E8A09A00ECF2CF /* icons */; };
+		C74699DD16F21C2D0060F49C /* Announce_API.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699D916F21C2D0060F49C /* Announce_API.m */; };
+		C74699DE16F21C2D0060F49C /* NewsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699DA16F21C2D0060F49C /* NewsModule.m */; };
+		C74699DF16F21C2D0060F49C /* StoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699DB16F21C2D0060F49C /* StoryListViewController.m */; };
+		C74699E016F21C2D0060F49C /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699DC16F21C2D0060F49C /* XMLReader.m */; };
+		C74699E316F21C680060F49C /* NavScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699E216F21C680060F49C /* NavScrollerView.m */; };
+		C74699E716F21CC90060F49C /* StoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699E616F21CC90060F49C /* StoryDetailViewController.m */; };
+		C74699E916F21CF40060F49C /* news in Resources */ = {isa = PBXBuildFile; fileRef = C74699E816F21CF40060F49C /* news */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -273,12 +279,12 @@
 		91756E4416E9A6EB001D724D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		91756E4616E9B5EB001D724D /* CMModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMModule.h; sourceTree = "<group>"; };
 		91756E4716E9B5EB001D724D /* CMModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMModule.m; sourceTree = "<group>"; };
-		91756E8C16F206F7001D724D /* AppIcon-057.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-057.png"; sourceTree = "<group>"; };
-		91756E8D16F206F7001D724D /* AppIcon-072.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-072.png"; sourceTree = "<group>"; };
-		91756E8E16F206F7001D724D /* AppIcon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-114.png"; sourceTree = "<group>"; };
-		91756E8F16F206F7001D724D /* AppIcon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-144.png"; sourceTree = "<group>"; };
-		91756E9016F206F7001D724D /* CGPDFDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPDFDocument.h; sourceTree = "<group>"; };
-		91756E9116F206F7001D724D /* CGPDFDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGPDFDocument.m; sourceTree = "<group>"; };
+		91756E8C16F206F7001D724D /* AppIcon-057.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-057.png"; path = "../AppIcon-057.png"; sourceTree = "<group>"; };
+		91756E8D16F206F7001D724D /* AppIcon-072.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-072.png"; path = "../AppIcon-072.png"; sourceTree = "<group>"; };
+		91756E8E16F206F7001D724D /* AppIcon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-114.png"; path = "../AppIcon-114.png"; sourceTree = "<group>"; };
+		91756E8F16F206F7001D724D /* AppIcon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-144.png"; path = "../AppIcon-144.png"; sourceTree = "<group>"; };
+		91756E9016F206F7001D724D /* CGPDFDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGPDFDocument.h; path = ../CGPDFDocument.h; sourceTree = "<group>"; };
+		91756E9116F206F7001D724D /* CGPDFDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGPDFDocument.m; path = ../CGPDFDocument.m; sourceTree = "<group>"; };
 		91756E9216F206F7001D724D /* ClassAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassAdd.h; sourceTree = "<group>"; };
 		91756E9316F206F7001D724D /* ClassAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassAdd.m; sourceTree = "<group>"; };
 		91756E9416F206F7001D724D /* ClassAdd.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassAdd.xib; sourceTree = "<group>"; };
@@ -296,81 +302,67 @@
 		91756EA316F206F7001D724D /* ClassInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassInfoViewController.m; sourceTree = "<group>"; };
 		91756EA416F206F7001D724D /* ClassInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassInfoViewController.xib; sourceTree = "<group>"; };
 		91756EA716F206F7001D724D /* CommonCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCryptor.h; sourceTree = "<group>"; };
-		91756EA816F206F7001D724D /* Course */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Course; sourceTree = "<group>"; };
-		91756EA916F206F7001D724D /* CourseInfo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CourseInfo; sourceTree = "<group>"; };
+		91756EA816F206F7001D724D /* Course */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Course; path = ../Course; sourceTree = "<group>"; };
+		91756EA916F206F7001D724D /* CourseInfo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CourseInfo; path = ../CourseInfo; sourceTree = "<group>"; };
 		91756EAA16F206F7001D724D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		91756EAB16F206F7001D724D /* DefineConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefineConstant.h; sourceTree = "<group>"; };
 		91756EAC16F206F7001D724D /* EditScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditScheduleViewController.h; sourceTree = "<group>"; };
 		91756EAD16F206F7001D724D /* EditScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditScheduleViewController.m; sourceTree = "<group>"; };
-		91756EAE16F206F7001D724D /* Grade */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Grade; sourceTree = "<group>"; };
-		91756EB116F206F7001D724D /* Login */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Login; sourceTree = "<group>"; };
+		91756EAE16F206F7001D724D /* Grade */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Grade; path = ../Grade; sourceTree = "<group>"; };
+		91756EB116F206F7001D724D /* Login */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Login; path = ../Login; sourceTree = "<group>"; };
 		91756EB216F206F7001D724D /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		91756EB316F206F7001D724D /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		91756EB616F206F7001D724D /* Stellar 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Stellar 2.xcdatamodel"; sourceTree = "<group>"; };
-		91756EB716F206F7001D724D /* Stellar 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Stellar 3.xcdatamodel"; sourceTree = "<group>"; };
-		91756EB816F206F7001D724D /* StellarAnnouncement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StellarAnnouncement.h; sourceTree = "<group>"; };
-		91756EB916F206F7001D724D /* StellarAnnouncement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StellarAnnouncement.m; sourceTree = "<group>"; };
-		91756EBA16F206F7001D724D /* StellarAnnouncementDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StellarAnnouncementDetail.h; sourceTree = "<group>"; };
-		91756EBB16F206F7001D724D /* StellarAnnouncementDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StellarAnnouncementDetail.m; sourceTree = "<group>"; };
-		91756EBC16F206F7001D724D /* StellarClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StellarClass.h; sourceTree = "<group>"; };
-		91756EBD16F206F7001D724D /* StellarClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StellarClass.m; sourceTree = "<group>"; };
-		91756EBE16F206F7001D724D /* StellarClassTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StellarClassTime.h; sourceTree = "<group>"; };
-		91756EBF16F206F7001D724D /* StellarClassTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StellarClassTime.m; sourceTree = "<group>"; };
-		91756EC016F206F7001D724D /* StellarCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StellarCourse.h; sourceTree = "<group>"; };
-		91756EC116F206F7001D724D /* StellarCourse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StellarCourse.m; sourceTree = "<group>"; };
-		91756EC216F206F7001D724D /* StellarStaffMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StellarStaffMember.h; sourceTree = "<group>"; };
-		91756EC316F206F7001D724D /* StellarStaffMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StellarStaffMember.m; sourceTree = "<group>"; };
-		91756EC416F206F7001D724D /* Moodle_API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moodle_API.h; sourceTree = "<group>"; };
-		91756EC516F206F7001D724D /* Moodle_API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Moodle_API.m; sourceTree = "<group>"; };
-		91756EC616F206F7001D724D /* MoodleID */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MoodleID; sourceTree = "<group>"; };
-		91756EC716F206F7001D724D /* MoodleInfo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MoodleInfo; sourceTree = "<group>"; };
-		91756EC816F206F7001D724D /* MoodleInfo2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MoodleInfo2; sourceTree = "<group>"; };
+		91756EC416F206F7001D724D /* Moodle_API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Moodle_API.h; path = ../Moodle_API.h; sourceTree = "<group>"; };
+		91756EC516F206F7001D724D /* Moodle_API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Moodle_API.m; path = ../Moodle_API.m; sourceTree = "<group>"; };
+		91756EC616F206F7001D724D /* MoodleID */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MoodleID; path = ../MoodleID; sourceTree = "<group>"; };
+		91756EC716F206F7001D724D /* MoodleInfo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MoodleInfo; path = ../MoodleInfo; sourceTree = "<group>"; };
+		91756EC816F206F7001D724D /* MoodleInfo2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MoodleInfo2; path = ../MoodleInfo2; sourceTree = "<group>"; };
 		91756ECB16F206F7001D724D /* NTOU_ClassColorTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOU_ClassColorTableController.h; sourceTree = "<group>"; };
 		91756ECC16F206F7001D724D /* NTOU_ClassColorTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOU_ClassColorTableController.m; sourceTree = "<group>"; };
-		91756ECD16F206F7001D724D /* Reader-Button-H.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Button-H.png"; sourceTree = "<group>"; };
-		91756ECE16F206F7001D724D /* Reader-Button-H@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Button-H@2x.png"; sourceTree = "<group>"; };
-		91756ECF16F206F7001D724D /* Reader-Button-N.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Button-N.png"; sourceTree = "<group>"; };
-		91756ED016F206F7001D724D /* Reader-Button-N@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Button-N@2x.png"; sourceTree = "<group>"; };
-		91756ED116F206F7001D724D /* Reader-Email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Email.png"; sourceTree = "<group>"; };
-		91756ED216F206F7001D724D /* Reader-Email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Email@2x.png"; sourceTree = "<group>"; };
-		91756ED316F206F7001D724D /* Reader-Mark-N.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Mark-N.png"; sourceTree = "<group>"; };
-		91756ED416F206F7001D724D /* Reader-Mark-N@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Mark-N@2x.png"; sourceTree = "<group>"; };
-		91756ED516F206F7001D724D /* Reader-Mark-Y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Mark-Y.png"; sourceTree = "<group>"; };
-		91756ED616F206F7001D724D /* Reader-Mark-Y@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Mark-Y@2x.png"; sourceTree = "<group>"; };
-		91756ED716F206F7001D724D /* Reader-Print.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Print.png"; sourceTree = "<group>"; };
-		91756ED816F206F7001D724D /* Reader-Print@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Print@2x.png"; sourceTree = "<group>"; };
-		91756ED916F206F7001D724D /* Reader-Thumbs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Thumbs.png"; sourceTree = "<group>"; };
-		91756EDA16F206F7001D724D /* Reader-Thumbs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Thumbs@2x.png"; sourceTree = "<group>"; };
-		91756EDB16F206F7001D724D /* ReaderConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderConstants.h; sourceTree = "<group>"; };
-		91756EDC16F206F7001D724D /* ReaderConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderConstants.m; sourceTree = "<group>"; };
-		91756EDD16F206F7001D724D /* ReaderContentPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderContentPage.h; sourceTree = "<group>"; };
-		91756EDE16F206F7001D724D /* ReaderContentPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderContentPage.m; sourceTree = "<group>"; };
-		91756EDF16F206F7001D724D /* ReaderContentTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderContentTile.h; sourceTree = "<group>"; };
-		91756EE016F206F7001D724D /* ReaderContentTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderContentTile.m; sourceTree = "<group>"; };
-		91756EE116F206F7001D724D /* ReaderContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderContentView.h; sourceTree = "<group>"; };
-		91756EE216F206F7001D724D /* ReaderContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderContentView.m; sourceTree = "<group>"; };
-		91756EE316F206F7001D724D /* ReaderDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderDocument.h; sourceTree = "<group>"; };
-		91756EE416F206F7001D724D /* ReaderDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderDocument.m; sourceTree = "<group>"; };
-		91756EE516F206F7001D724D /* ReaderMainPagebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderMainPagebar.h; sourceTree = "<group>"; };
-		91756EE616F206F7001D724D /* ReaderMainPagebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderMainPagebar.m; sourceTree = "<group>"; };
-		91756EE716F206F7001D724D /* ReaderMainToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderMainToolbar.h; sourceTree = "<group>"; };
-		91756EE816F206F7001D724D /* ReaderMainToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderMainToolbar.m; sourceTree = "<group>"; };
-		91756EE916F206F7001D724D /* ReaderThumbCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderThumbCache.h; sourceTree = "<group>"; };
-		91756EEA16F206F7001D724D /* ReaderThumbCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderThumbCache.m; sourceTree = "<group>"; };
-		91756EEB16F206F7001D724D /* ReaderThumbFetch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderThumbFetch.h; sourceTree = "<group>"; };
-		91756EEC16F206F7001D724D /* ReaderThumbFetch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderThumbFetch.m; sourceTree = "<group>"; };
-		91756EED16F206F7001D724D /* ReaderThumbQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderThumbQueue.h; sourceTree = "<group>"; };
-		91756EEE16F206F7001D724D /* ReaderThumbQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderThumbQueue.m; sourceTree = "<group>"; };
-		91756EEF16F206F7001D724D /* ReaderThumbRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderThumbRender.h; sourceTree = "<group>"; };
-		91756EF016F206F7001D724D /* ReaderThumbRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderThumbRender.m; sourceTree = "<group>"; };
-		91756EF116F206F7001D724D /* ReaderThumbRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderThumbRequest.h; sourceTree = "<group>"; };
-		91756EF216F206F7001D724D /* ReaderThumbRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderThumbRequest.m; sourceTree = "<group>"; };
-		91756EF316F206F7001D724D /* ReaderThumbsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderThumbsView.h; sourceTree = "<group>"; };
-		91756EF416F206F7001D724D /* ReaderThumbsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderThumbsView.m; sourceTree = "<group>"; };
-		91756EF516F206F7001D724D /* ReaderThumbView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderThumbView.h; sourceTree = "<group>"; };
-		91756EF616F206F7001D724D /* ReaderThumbView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderThumbView.m; sourceTree = "<group>"; };
-		91756EF716F206F7001D724D /* ReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderViewController.h; sourceTree = "<group>"; };
-		91756EF816F206F7001D724D /* ReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderViewController.m; sourceTree = "<group>"; };
+		91756ECD16F206F7001D724D /* Reader-Button-H.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Button-H.png"; path = "../Reader-Button-H.png"; sourceTree = "<group>"; };
+		91756ECE16F206F7001D724D /* Reader-Button-H@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Button-H@2x.png"; path = "../Reader-Button-H@2x.png"; sourceTree = "<group>"; };
+		91756ECF16F206F7001D724D /* Reader-Button-N.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Button-N.png"; path = "../Reader-Button-N.png"; sourceTree = "<group>"; };
+		91756ED016F206F7001D724D /* Reader-Button-N@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Button-N@2x.png"; path = "../Reader-Button-N@2x.png"; sourceTree = "<group>"; };
+		91756ED116F206F7001D724D /* Reader-Email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Email.png"; path = "../Reader-Email.png"; sourceTree = "<group>"; };
+		91756ED216F206F7001D724D /* Reader-Email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Email@2x.png"; path = "../Reader-Email@2x.png"; sourceTree = "<group>"; };
+		91756ED316F206F7001D724D /* Reader-Mark-N.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Mark-N.png"; path = "../Reader-Mark-N.png"; sourceTree = "<group>"; };
+		91756ED416F206F7001D724D /* Reader-Mark-N@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Mark-N@2x.png"; path = "../Reader-Mark-N@2x.png"; sourceTree = "<group>"; };
+		91756ED516F206F7001D724D /* Reader-Mark-Y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Mark-Y.png"; path = "../Reader-Mark-Y.png"; sourceTree = "<group>"; };
+		91756ED616F206F7001D724D /* Reader-Mark-Y@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Mark-Y@2x.png"; path = "../Reader-Mark-Y@2x.png"; sourceTree = "<group>"; };
+		91756ED716F206F7001D724D /* Reader-Print.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Print.png"; path = "../Reader-Print.png"; sourceTree = "<group>"; };
+		91756ED816F206F7001D724D /* Reader-Print@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Print@2x.png"; path = "../Reader-Print@2x.png"; sourceTree = "<group>"; };
+		91756ED916F206F7001D724D /* Reader-Thumbs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Thumbs.png"; path = "../Reader-Thumbs.png"; sourceTree = "<group>"; };
+		91756EDA16F206F7001D724D /* Reader-Thumbs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Thumbs@2x.png"; path = "../Reader-Thumbs@2x.png"; sourceTree = "<group>"; };
+		91756EDB16F206F7001D724D /* ReaderConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderConstants.h; path = ../ReaderConstants.h; sourceTree = "<group>"; };
+		91756EDC16F206F7001D724D /* ReaderConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderConstants.m; path = ../ReaderConstants.m; sourceTree = "<group>"; };
+		91756EDD16F206F7001D724D /* ReaderContentPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderContentPage.h; path = ../ReaderContentPage.h; sourceTree = "<group>"; };
+		91756EDE16F206F7001D724D /* ReaderContentPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderContentPage.m; path = ../ReaderContentPage.m; sourceTree = "<group>"; };
+		91756EDF16F206F7001D724D /* ReaderContentTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderContentTile.h; path = ../ReaderContentTile.h; sourceTree = "<group>"; };
+		91756EE016F206F7001D724D /* ReaderContentTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderContentTile.m; path = ../ReaderContentTile.m; sourceTree = "<group>"; };
+		91756EE116F206F7001D724D /* ReaderContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderContentView.h; path = ../ReaderContentView.h; sourceTree = "<group>"; };
+		91756EE216F206F7001D724D /* ReaderContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderContentView.m; path = ../ReaderContentView.m; sourceTree = "<group>"; };
+		91756EE316F206F7001D724D /* ReaderDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderDocument.h; path = ../ReaderDocument.h; sourceTree = "<group>"; };
+		91756EE416F206F7001D724D /* ReaderDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderDocument.m; path = ../ReaderDocument.m; sourceTree = "<group>"; };
+		91756EE516F206F7001D724D /* ReaderMainPagebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderMainPagebar.h; path = ../ReaderMainPagebar.h; sourceTree = "<group>"; };
+		91756EE616F206F7001D724D /* ReaderMainPagebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderMainPagebar.m; path = ../ReaderMainPagebar.m; sourceTree = "<group>"; };
+		91756EE716F206F7001D724D /* ReaderMainToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderMainToolbar.h; path = ../ReaderMainToolbar.h; sourceTree = "<group>"; };
+		91756EE816F206F7001D724D /* ReaderMainToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderMainToolbar.m; path = ../ReaderMainToolbar.m; sourceTree = "<group>"; };
+		91756EE916F206F7001D724D /* ReaderThumbCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbCache.h; path = ../ReaderThumbCache.h; sourceTree = "<group>"; };
+		91756EEA16F206F7001D724D /* ReaderThumbCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbCache.m; path = ../ReaderThumbCache.m; sourceTree = "<group>"; };
+		91756EEB16F206F7001D724D /* ReaderThumbFetch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbFetch.h; path = ../ReaderThumbFetch.h; sourceTree = "<group>"; };
+		91756EEC16F206F7001D724D /* ReaderThumbFetch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbFetch.m; path = ../ReaderThumbFetch.m; sourceTree = "<group>"; };
+		91756EED16F206F7001D724D /* ReaderThumbQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbQueue.h; path = ../ReaderThumbQueue.h; sourceTree = "<group>"; };
+		91756EEE16F206F7001D724D /* ReaderThumbQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbQueue.m; path = ../ReaderThumbQueue.m; sourceTree = "<group>"; };
+		91756EEF16F206F7001D724D /* ReaderThumbRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbRender.h; path = ../ReaderThumbRender.h; sourceTree = "<group>"; };
+		91756EF016F206F7001D724D /* ReaderThumbRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbRender.m; path = ../ReaderThumbRender.m; sourceTree = "<group>"; };
+		91756EF116F206F7001D724D /* ReaderThumbRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbRequest.h; path = ../ReaderThumbRequest.h; sourceTree = "<group>"; };
+		91756EF216F206F7001D724D /* ReaderThumbRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbRequest.m; path = ../ReaderThumbRequest.m; sourceTree = "<group>"; };
+		91756EF316F206F7001D724D /* ReaderThumbsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbsView.h; path = ../ReaderThumbsView.h; sourceTree = "<group>"; };
+		91756EF416F206F7001D724D /* ReaderThumbsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbsView.m; path = ../ReaderThumbsView.m; sourceTree = "<group>"; };
+		91756EF516F206F7001D724D /* ReaderThumbView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbView.h; path = ../ReaderThumbView.h; sourceTree = "<group>"; };
+		91756EF616F206F7001D724D /* ReaderThumbView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbView.m; path = ../ReaderThumbView.m; sourceTree = "<group>"; };
+		91756EF716F206F7001D724D /* ReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderViewController.h; path = ../ReaderViewController.h; sourceTree = "<group>"; };
+		91756EF816F206F7001D724D /* ReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderViewController.m; path = ../ReaderViewController.m; sourceTree = "<group>"; };
 		91756EF916F206F7001D724D /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right.png; sourceTree = "<group>"; };
 		91756EFA16F206F7001D724D /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
 		91756EFB16F206F7001D724D /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
@@ -378,7 +370,6 @@
 		91756EFD16F206F7001D724D /* SetWeekTimesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetWeekTimesViewController.m; sourceTree = "<group>"; };
 		91756F1216F206F7001D724D /* StellarModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StellarModule.h; sourceTree = "<group>"; };
 		91756F1316F206F7001D724D /* StellarModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StellarModule.m; sourceTree = "<group>"; };
-		91756F1616F206F7001D724D /* Syllabus.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Syllabus.pdf; sourceTree = "<group>"; };
 		91756F1716F206F7001D724D /* TabBarNipple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarNipple.png; sourceTree = "<group>"; };
 		91756F1816F206F7001D724D /* TabBarNipple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarNipple@2x.png"; sourceTree = "<group>"; };
 		91756F1916F206F7001D724D /* ThumbsMainToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbsMainToolbar.h; sourceTree = "<group>"; };
@@ -567,6 +558,20 @@
 		91A9049416E89FE300ECF2CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		91A9049A16E8A09A00ECF2CF /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
+		C74699D516F21C2D0060F49C /* Announce_API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Announce_API.h; path = module/NEWS/Announce_API.h; sourceTree = "<group>"; };
+		C74699D616F21C2D0060F49C /* NewsModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsModule.h; path = module/NEWS/NewsModule.h; sourceTree = "<group>"; };
+		C74699D716F21C2D0060F49C /* StoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryListViewController.h; path = module/NEWS/StoryListViewController.h; sourceTree = "<group>"; };
+		C74699D816F21C2D0060F49C /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = module/NEWS/XMLReader.h; sourceTree = "<group>"; };
+		C74699D916F21C2D0060F49C /* Announce_API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Announce_API.m; path = module/NEWS/Announce_API.m; sourceTree = "<group>"; };
+		C74699DA16F21C2D0060F49C /* NewsModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsModule.m; path = module/NEWS/NewsModule.m; sourceTree = "<group>"; };
+		C74699DB16F21C2D0060F49C /* StoryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoryListViewController.m; path = module/NEWS/StoryListViewController.m; sourceTree = "<group>"; };
+		C74699DC16F21C2D0060F49C /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = module/NEWS/XMLReader.m; sourceTree = "<group>"; };
+		C74699E116F21C680060F49C /* NavScrollerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavScrollerView.h; sourceTree = "<group>"; };
+		C74699E216F21C680060F49C /* NavScrollerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavScrollerView.m; sourceTree = "<group>"; };
+		C74699E516F21CC90060F49C /* StoryDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryDetailViewController.h; path = module/NEWS/StoryDetailViewController.h; sourceTree = "<group>"; };
+		C74699E616F21CC90060F49C /* StoryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoryDetailViewController.m; path = module/NEWS/StoryDetailViewController.m; sourceTree = "<group>"; };
+		C74699E816F21CF40060F49C /* news */ = {isa = PBXFileReference; lastKnownFileType = folder; path = news; sourceTree = "<group>"; };
+		C74699EA16F21D590060F49C /* Announce_API_Key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Announce_API_Key.h; path = module/NEWS/Announce_API_Key.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -645,6 +650,8 @@
 		91756E7716F206F7001D724D /* Stellar */ = {
 			isa = PBXGroup;
 			children = (
+				91756E9B16F206F7001D724D /* Classes */,
+				C74699EB16F21DF10060F49C /* Reader */,
 				91756FCE16F20C79001D724D /* LessonTimeView.h */,
 				91756FCF16F20C79001D724D /* LessonTimeView.m */,
 				91756FCB16F20AD3001D724D /* TabViewControl.h */,
@@ -652,12 +659,6 @@
 				91756FC616F20A59001D724D /* NTOU_ClassColorViewController.h */,
 				91756FC716F20A59001D724D /* NTOU_ClassColorViewController.m */,
 				91756FC816F20A5A001D724D /* NTOU_ClassColorViewController.xib */,
-				91756E8C16F206F7001D724D /* AppIcon-057.png */,
-				91756E8D16F206F7001D724D /* AppIcon-072.png */,
-				91756E8E16F206F7001D724D /* AppIcon-114.png */,
-				91756E8F16F206F7001D724D /* AppIcon-144.png */,
-				91756E9016F206F7001D724D /* CGPDFDocument.h */,
-				91756E9116F206F7001D724D /* CGPDFDocument.m */,
 				91756E9216F206F7001D724D /* ClassAdd.h */,
 				91756E9316F206F7001D724D /* ClassAdd.m */,
 				91756E9416F206F7001D724D /* ClassAdd.xib */,
@@ -667,75 +668,20 @@
 				91756E9816F206F7001D724D /* ClassAddRetina4.xib */,
 				91756E9916F206F7001D724D /* ClassDataBase.h */,
 				91756E9A16F206F7001D724D /* ClassDataBase.m */,
-				91756E9B16F206F7001D724D /* Classes */,
 				91756EA016F206F7001D724D /* ClassInfoView.h */,
 				91756EA116F206F7001D724D /* ClassInfoView.m */,
 				91756EA216F206F7001D724D /* ClassInfoViewController.h */,
 				91756EA316F206F7001D724D /* ClassInfoViewController.m */,
 				91756EA416F206F7001D724D /* ClassInfoViewController.xib */,
 				91756EA716F206F7001D724D /* CommonCryptor.h */,
-				91756EA816F206F7001D724D /* Course */,
-				91756EA916F206F7001D724D /* CourseInfo */,
 				91756EAA16F206F7001D724D /* Default-568h@2x.png */,
 				91756EAB16F206F7001D724D /* DefineConstant.h */,
 				91756EAC16F206F7001D724D /* EditScheduleViewController.h */,
 				91756EAD16F206F7001D724D /* EditScheduleViewController.m */,
-				91756EAE16F206F7001D724D /* Grade */,
-				91756EB116F206F7001D724D /* Login */,
 				91756EB216F206F7001D724D /* MBProgressHUD.h */,
 				91756EB316F206F7001D724D /* MBProgressHUD.m */,
-				91756EB416F206F7001D724D /* Model */,
-				91756EC416F206F7001D724D /* Moodle_API.h */,
-				91756EC516F206F7001D724D /* Moodle_API.m */,
-				91756EC616F206F7001D724D /* MoodleID */,
-				91756EC716F206F7001D724D /* MoodleInfo */,
-				91756EC816F206F7001D724D /* MoodleInfo2 */,
 				91756ECB16F206F7001D724D /* NTOU_ClassColorTableController.h */,
 				91756ECC16F206F7001D724D /* NTOU_ClassColorTableController.m */,
-				91756ECD16F206F7001D724D /* Reader-Button-H.png */,
-				91756ECE16F206F7001D724D /* Reader-Button-H@2x.png */,
-				91756ECF16F206F7001D724D /* Reader-Button-N.png */,
-				91756ED016F206F7001D724D /* Reader-Button-N@2x.png */,
-				91756ED116F206F7001D724D /* Reader-Email.png */,
-				91756ED216F206F7001D724D /* Reader-Email@2x.png */,
-				91756ED316F206F7001D724D /* Reader-Mark-N.png */,
-				91756ED416F206F7001D724D /* Reader-Mark-N@2x.png */,
-				91756ED516F206F7001D724D /* Reader-Mark-Y.png */,
-				91756ED616F206F7001D724D /* Reader-Mark-Y@2x.png */,
-				91756ED716F206F7001D724D /* Reader-Print.png */,
-				91756ED816F206F7001D724D /* Reader-Print@2x.png */,
-				91756ED916F206F7001D724D /* Reader-Thumbs.png */,
-				91756EDA16F206F7001D724D /* Reader-Thumbs@2x.png */,
-				91756EDB16F206F7001D724D /* ReaderConstants.h */,
-				91756EDC16F206F7001D724D /* ReaderConstants.m */,
-				91756EDD16F206F7001D724D /* ReaderContentPage.h */,
-				91756EDE16F206F7001D724D /* ReaderContentPage.m */,
-				91756EDF16F206F7001D724D /* ReaderContentTile.h */,
-				91756EE016F206F7001D724D /* ReaderContentTile.m */,
-				91756EE116F206F7001D724D /* ReaderContentView.h */,
-				91756EE216F206F7001D724D /* ReaderContentView.m */,
-				91756EE316F206F7001D724D /* ReaderDocument.h */,
-				91756EE416F206F7001D724D /* ReaderDocument.m */,
-				91756EE516F206F7001D724D /* ReaderMainPagebar.h */,
-				91756EE616F206F7001D724D /* ReaderMainPagebar.m */,
-				91756EE716F206F7001D724D /* ReaderMainToolbar.h */,
-				91756EE816F206F7001D724D /* ReaderMainToolbar.m */,
-				91756EE916F206F7001D724D /* ReaderThumbCache.h */,
-				91756EEA16F206F7001D724D /* ReaderThumbCache.m */,
-				91756EEB16F206F7001D724D /* ReaderThumbFetch.h */,
-				91756EEC16F206F7001D724D /* ReaderThumbFetch.m */,
-				91756EED16F206F7001D724D /* ReaderThumbQueue.h */,
-				91756EEE16F206F7001D724D /* ReaderThumbQueue.m */,
-				91756EEF16F206F7001D724D /* ReaderThumbRender.h */,
-				91756EF016F206F7001D724D /* ReaderThumbRender.m */,
-				91756EF116F206F7001D724D /* ReaderThumbRequest.h */,
-				91756EF216F206F7001D724D /* ReaderThumbRequest.m */,
-				91756EF316F206F7001D724D /* ReaderThumbsView.h */,
-				91756EF416F206F7001D724D /* ReaderThumbsView.m */,
-				91756EF516F206F7001D724D /* ReaderThumbView.h */,
-				91756EF616F206F7001D724D /* ReaderThumbView.m */,
-				91756EF716F206F7001D724D /* ReaderViewController.h */,
-				91756EF816F206F7001D724D /* ReaderViewController.m */,
 				91756EF916F206F7001D724D /* right.png */,
 				91756EFA16F206F7001D724D /* ScheduleViewController.h */,
 				91756EFB16F206F7001D724D /* ScheduleViewController.m */,
@@ -743,7 +689,6 @@
 				91756EFD16F206F7001D724D /* SetWeekTimesViewController.m */,
 				91756F1216F206F7001D724D /* StellarModule.h */,
 				91756F1316F206F7001D724D /* StellarModule.m */,
-				91756F1616F206F7001D724D /* Syllabus.pdf */,
 				91756F1716F206F7001D724D /* TabBarNipple.png */,
 				91756F1816F206F7001D724D /* TabBarNipple@2x.png */,
 				91756F1916F206F7001D724D /* ThumbsMainToolbar.h */,
@@ -765,30 +710,19 @@
 		91756E9B16F206F7001D724D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				91756EA816F206F7001D724D /* Course */,
+				91756EA916F206F7001D724D /* CourseInfo */,
+				91756EAE16F206F7001D724D /* Grade */,
+				91756EB116F206F7001D724D /* Login */,
+				91756EC616F206F7001D724D /* MoodleID */,
+				91756EC716F206F7001D724D /* MoodleInfo */,
+				91756EC816F206F7001D724D /* MoodleInfo2 */,
+				91756EC416F206F7001D724D /* Moodle_API.h */,
+				91756EC516F206F7001D724D /* Moodle_API.m */,
 				91756E9E16F206F7001D724D /* NSData+DES.h */,
 				91756E9F16F206F7001D724D /* NSData+DES.m */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		91756EB416F206F7001D724D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				91756EB516F206F7001D724D /* Stellar.xcdatamodeld */,
-				91756EB816F206F7001D724D /* StellarAnnouncement.h */,
-				91756EB916F206F7001D724D /* StellarAnnouncement.m */,
-				91756EBA16F206F7001D724D /* StellarAnnouncementDetail.h */,
-				91756EBB16F206F7001D724D /* StellarAnnouncementDetail.m */,
-				91756EBC16F206F7001D724D /* StellarClass.h */,
-				91756EBD16F206F7001D724D /* StellarClass.m */,
-				91756EBE16F206F7001D724D /* StellarClassTime.h */,
-				91756EBF16F206F7001D724D /* StellarClassTime.m */,
-				91756EC016F206F7001D724D /* StellarCourse.h */,
-				91756EC116F206F7001D724D /* StellarCourse.m */,
-				91756EC216F206F7001D724D /* StellarStaffMember.h */,
-				91756EC316F206F7001D724D /* StellarStaffMember.m */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		91756F9416F20859001D724D /* JSON */ = {
@@ -866,6 +800,7 @@
 		91A9005016E854E500ECF2CF /* NTOU_Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				C74699D416F21BE20060F49C /* News */,
 				91756E7716F206F7001D724D /* Stellar */,
 				912A541A16E9A22300BBC013 /* About */,
 				912A53F616E9A03D00BBC013 /* Life */,
@@ -911,6 +846,8 @@
 			isa = PBXGroup;
 			children = (
 				91756F9416F20859001D724D /* JSON */,
+				C74699E116F21C680060F49C /* NavScrollerView.h */,
+				C74699E216F21C680060F49C /* NavScrollerView.m */,
 				913A0D1C16E98F66007BAD8F /* NTOUModule+Protected.h */,
 				91A9048C16E89C8B00ECF2CF /* ClassLabelBasis.h */,
 				91A9048D16E89C8B00ECF2CF /* ClassLabelBasis.m */,
@@ -934,6 +871,7 @@
 		91A9029816E88E0D00ECF2CF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C74699E816F21CF40060F49C /* news */,
 				91A9049A16E8A09A00ECF2CF /* icons */,
 				91A903A016E88E9D00ECF2CF /* global */,
 			);
@@ -1082,6 +1020,90 @@
 			path = module/Emergency;
 			sourceTree = "<group>";
 		};
+		C74699D416F21BE20060F49C /* News */ = {
+			isa = PBXGroup;
+			children = (
+				C74699E416F21C780060F49C /* Announce_API */,
+				C74699D616F21C2D0060F49C /* NewsModule.h */,
+				C74699DA16F21C2D0060F49C /* NewsModule.m */,
+				C74699D716F21C2D0060F49C /* StoryListViewController.h */,
+				C74699DB16F21C2D0060F49C /* StoryListViewController.m */,
+				C74699E516F21CC90060F49C /* StoryDetailViewController.h */,
+				C74699E616F21CC90060F49C /* StoryDetailViewController.m */,
+				C74699EA16F21D590060F49C /* Announce_API_Key.h */,
+			);
+			name = News;
+			sourceTree = "<group>";
+		};
+		C74699E416F21C780060F49C /* Announce_API */ = {
+			isa = PBXGroup;
+			children = (
+				C74699D516F21C2D0060F49C /* Announce_API.h */,
+				C74699D916F21C2D0060F49C /* Announce_API.m */,
+				C74699D816F21C2D0060F49C /* XMLReader.h */,
+				C74699DC16F21C2D0060F49C /* XMLReader.m */,
+			);
+			name = Announce_API;
+			sourceTree = "<group>";
+		};
+		C74699EB16F21DF10060F49C /* Reader */ = {
+			isa = PBXGroup;
+			children = (
+				91756E8C16F206F7001D724D /* AppIcon-057.png */,
+				91756E8D16F206F7001D724D /* AppIcon-072.png */,
+				91756E8E16F206F7001D724D /* AppIcon-114.png */,
+				91756E8F16F206F7001D724D /* AppIcon-144.png */,
+				91756E9016F206F7001D724D /* CGPDFDocument.h */,
+				91756E9116F206F7001D724D /* CGPDFDocument.m */,
+				91756ECD16F206F7001D724D /* Reader-Button-H.png */,
+				91756ECE16F206F7001D724D /* Reader-Button-H@2x.png */,
+				91756ECF16F206F7001D724D /* Reader-Button-N.png */,
+				91756ED016F206F7001D724D /* Reader-Button-N@2x.png */,
+				91756ED116F206F7001D724D /* Reader-Email.png */,
+				91756ED216F206F7001D724D /* Reader-Email@2x.png */,
+				91756ED316F206F7001D724D /* Reader-Mark-N.png */,
+				91756ED416F206F7001D724D /* Reader-Mark-N@2x.png */,
+				91756ED516F206F7001D724D /* Reader-Mark-Y.png */,
+				91756ED616F206F7001D724D /* Reader-Mark-Y@2x.png */,
+				91756ED716F206F7001D724D /* Reader-Print.png */,
+				91756ED816F206F7001D724D /* Reader-Print@2x.png */,
+				91756ED916F206F7001D724D /* Reader-Thumbs.png */,
+				91756EDA16F206F7001D724D /* Reader-Thumbs@2x.png */,
+				91756EDB16F206F7001D724D /* ReaderConstants.h */,
+				91756EDC16F206F7001D724D /* ReaderConstants.m */,
+				91756EDD16F206F7001D724D /* ReaderContentPage.h */,
+				91756EDE16F206F7001D724D /* ReaderContentPage.m */,
+				91756EDF16F206F7001D724D /* ReaderContentTile.h */,
+				91756EE016F206F7001D724D /* ReaderContentTile.m */,
+				91756EE116F206F7001D724D /* ReaderContentView.h */,
+				91756EE216F206F7001D724D /* ReaderContentView.m */,
+				91756EE316F206F7001D724D /* ReaderDocument.h */,
+				91756EE416F206F7001D724D /* ReaderDocument.m */,
+				91756EE516F206F7001D724D /* ReaderMainPagebar.h */,
+				91756EE616F206F7001D724D /* ReaderMainPagebar.m */,
+				91756EE716F206F7001D724D /* ReaderMainToolbar.h */,
+				91756EE816F206F7001D724D /* ReaderMainToolbar.m */,
+				91756EE916F206F7001D724D /* ReaderThumbCache.h */,
+				91756EEA16F206F7001D724D /* ReaderThumbCache.m */,
+				91756EEB16F206F7001D724D /* ReaderThumbFetch.h */,
+				91756EEC16F206F7001D724D /* ReaderThumbFetch.m */,
+				91756EED16F206F7001D724D /* ReaderThumbQueue.h */,
+				91756EEE16F206F7001D724D /* ReaderThumbQueue.m */,
+				91756EEF16F206F7001D724D /* ReaderThumbRender.h */,
+				91756EF016F206F7001D724D /* ReaderThumbRender.m */,
+				91756EF116F206F7001D724D /* ReaderThumbRequest.h */,
+				91756EF216F206F7001D724D /* ReaderThumbRequest.m */,
+				91756EF316F206F7001D724D /* ReaderThumbsView.h */,
+				91756EF416F206F7001D724D /* ReaderThumbsView.m */,
+				91756EF516F206F7001D724D /* ReaderThumbView.h */,
+				91756EF616F206F7001D724D /* ReaderThumbView.m */,
+				91756EF716F206F7001D724D /* ReaderViewController.h */,
+				91756EF816F206F7001D724D /* ReaderViewController.m */,
+			);
+			name = Reader;
+			path = Classes;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1205,11 +1227,11 @@
 				91756F6A16F206F7001D724D /* Reader-Thumbs.png in Resources */,
 				91756F6B16F206F7001D724D /* Reader-Thumbs@2x.png in Resources */,
 				91756F7B16F206F7001D724D /* right.png in Resources */,
-				91756F8A16F206F7001D724D /* Syllabus.pdf in Resources */,
 				91756F8B16F206F7001D724D /* TabBarNipple.png in Resources */,
 				91756F8C16F206F7001D724D /* TabBarNipple@2x.png in Resources */,
 				91756F9216F206F7001D724D /* wrong.png in Resources */,
 				91756FCA16F20A5A001D724D /* NTOU_ClassColorViewController.xib in Resources */,
+				C74699E916F21CF40060F49C /* news in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1352,6 +1374,12 @@
 				91756FC916F20A5A001D724D /* NTOU_ClassColorViewController.m in Sources */,
 				91756FCD16F20AD3001D724D /* TabViewControl.m in Sources */,
 				91756FD016F20C7A001D724D /* LessonTimeView.m in Sources */,
+				C74699DD16F21C2D0060F49C /* Announce_API.m in Sources */,
+				C74699DE16F21C2D0060F49C /* NewsModule.m in Sources */,
+				C74699DF16F21C2D0060F49C /* StoryListViewController.m in Sources */,
+				C74699E016F21C2D0060F49C /* XMLReader.m in Sources */,
+				C74699E316F21C680060F49C /* NavScrollerView.m in Sources */,
+				C74699E716F21CC90060F49C /* StoryDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1439,6 +1467,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1454,6 +1483,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1488,17 +1518,6 @@
 			children = (
 			);
 			path = Emergency.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		91756EB516F206F7001D724D /* Stellar.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				91756EB616F206F7001D724D /* Stellar 2.xcdatamodel */,
-				91756EB716F206F7001D724D /* Stellar 3.xcdatamodel */,
-			);
-			currentVersion = 91756EB716F206F7001D724D /* Stellar 3.xcdatamodel */;
-			path = Stellar.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
