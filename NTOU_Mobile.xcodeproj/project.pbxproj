@@ -224,6 +224,16 @@
 		91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049416E89FE300ECF2CF /* QuartzCore.framework */; };
 		91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */; };
 		91A9049B16E8A09A00ECF2CF /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 91A9049A16E8A09A00ECF2CF /* icons */; };
+		BA06A07316F2EE6600212CB9 /* BIDNameAndColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06516F2EE6600212CB9 /* BIDNameAndColorCell.m */; };
+		BA06A07416F2EE6600212CB9 /* BIDNameAndColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06616F2EE6600212CB9 /* BIDNameAndColorCell.xib */; };
+		BA06A07516F2EE6600212CB9 /* LibrariesModule.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06816F2EE6600212CB9 /* LibrariesModule.m */; };
+		BA06A07616F2EE6600212CB9 /* CalenderList.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06A16F2EE6600212CB9 /* CalenderList.plist */; };
+		BA06A07716F2EE6600212CB9 /* CalenderList_eng.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */; };
+		BA06A07816F2EE6600212CB9 /* WOLChiListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06D16F2EE6600212CB9 /* WOLChiListViewController.m */; };
+		BA06A07916F2EE6600212CB9 /* WOLEnglistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06F16F2EE6600212CB9 /* WOLEnglistViewController.m */; };
+		BA06A07A16F2EE6600212CB9 /* WOLSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A07116F2EE6600212CB9 /* WOLSwitchViewController.m */; };
+		BA06A07B16F2EE6600212CB9 /* WOLSwitchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA06A07216F2EE6600212CB9 /* WOLSwitchViewController.xib */; };
+		BA06A07D16F2EF5B00212CB9 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA06A07C16F2EF5B00212CB9 /* EventKit.framework */; };
 		C74699DD16F21C2D0060F49C /* Announce_API.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699D916F21C2D0060F49C /* Announce_API.m */; };
 		C74699DE16F21C2D0060F49C /* NewsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699DA16F21C2D0060F49C /* NewsModule.m */; };
 		C74699DF16F21C2D0060F49C /* StoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699DB16F21C2D0060F49C /* StoryListViewController.m */; };
@@ -558,6 +568,21 @@
 		91A9049416E89FE300ECF2CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		91A9049A16E8A09A00ECF2CF /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
+		BA06A06416F2EE6600212CB9 /* BIDNameAndColorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIDNameAndColorCell.h; sourceTree = "<group>"; };
+		BA06A06516F2EE6600212CB9 /* BIDNameAndColorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIDNameAndColorCell.m; sourceTree = "<group>"; };
+		BA06A06616F2EE6600212CB9 /* BIDNameAndColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIDNameAndColorCell.xib; sourceTree = "<group>"; };
+		BA06A06716F2EE6600212CB9 /* LibrariesModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibrariesModule.h; sourceTree = "<group>"; };
+		BA06A06816F2EE6600212CB9 /* LibrariesModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibrariesModule.m; sourceTree = "<group>"; };
+		BA06A06A16F2EE6600212CB9 /* CalenderList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CalenderList.plist; sourceTree = "<group>"; };
+		BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CalenderList_eng.plist; sourceTree = "<group>"; };
+		BA06A06C16F2EE6600212CB9 /* WOLChiListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOLChiListViewController.h; sourceTree = "<group>"; };
+		BA06A06D16F2EE6600212CB9 /* WOLChiListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOLChiListViewController.m; sourceTree = "<group>"; };
+		BA06A06E16F2EE6600212CB9 /* WOLEnglistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOLEnglistViewController.h; sourceTree = "<group>"; };
+		BA06A06F16F2EE6600212CB9 /* WOLEnglistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOLEnglistViewController.m; sourceTree = "<group>"; };
+		BA06A07016F2EE6600212CB9 /* WOLSwitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOLSwitchViewController.h; sourceTree = "<group>"; };
+		BA06A07116F2EE6600212CB9 /* WOLSwitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOLSwitchViewController.m; sourceTree = "<group>"; };
+		BA06A07216F2EE6600212CB9 /* WOLSwitchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WOLSwitchViewController.xib; sourceTree = "<group>"; };
+		BA06A07C16F2EF5B00212CB9 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		C74699D516F21C2D0060F49C /* Announce_API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Announce_API.h; path = module/NEWS/Announce_API.h; sourceTree = "<group>"; };
 		C74699D616F21C2D0060F49C /* NewsModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsModule.h; path = module/NEWS/NewsModule.h; sourceTree = "<group>"; };
 		C74699D716F21C2D0060F49C /* StoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryListViewController.h; path = module/NEWS/StoryListViewController.h; sourceTree = "<group>"; };
@@ -579,6 +604,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA06A07D16F2EF5B00212CB9 /* EventKit.framework in Frameworks */,
 				91756FEE16F21236001D724D /* ImageIO.framework in Frameworks */,
 				91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */,
 				913A0D1E16E98F99007BAD8F /* MessageUI.framework in Frameworks */,
@@ -765,6 +791,7 @@
 		91A9003B16E854E400ECF2CF = {
 			isa = PBXGroup;
 			children = (
+				BA06A07C16F2EF5B00212CB9 /* EventKit.framework */,
 				91756E4416E9A6EB001D724D /* Icon@2x.png */,
 				91756E4216E9A6E7001D724D /* Icon.png */,
 				91A9005016E854E500ECF2CF /* NTOU_Mobile */,
@@ -800,6 +827,7 @@
 		91A9005016E854E500ECF2CF /* NTOU_Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				BA06A06316F2EE6600212CB9 /* Calendar */,
 				C74699D416F21BE20060F49C /* News */,
 				91756E7716F206F7001D724D /* Stellar */,
 				912A541A16E9A22300BBC013 /* About */,
@@ -1020,6 +1048,36 @@
 			path = module/Emergency;
 			sourceTree = "<group>";
 		};
+		BA06A06316F2EE6600212CB9 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				BA06A06916F2EE6600212CB9 /* list */,
+				BA06A06416F2EE6600212CB9 /* BIDNameAndColorCell.h */,
+				BA06A06516F2EE6600212CB9 /* BIDNameAndColorCell.m */,
+				BA06A06616F2EE6600212CB9 /* BIDNameAndColorCell.xib */,
+				BA06A06716F2EE6600212CB9 /* LibrariesModule.h */,
+				BA06A06816F2EE6600212CB9 /* LibrariesModule.m */,
+				BA06A06C16F2EE6600212CB9 /* WOLChiListViewController.h */,
+				BA06A06D16F2EE6600212CB9 /* WOLChiListViewController.m */,
+				BA06A06E16F2EE6600212CB9 /* WOLEnglistViewController.h */,
+				BA06A06F16F2EE6600212CB9 /* WOLEnglistViewController.m */,
+				BA06A07016F2EE6600212CB9 /* WOLSwitchViewController.h */,
+				BA06A07116F2EE6600212CB9 /* WOLSwitchViewController.m */,
+				BA06A07216F2EE6600212CB9 /* WOLSwitchViewController.xib */,
+			);
+			name = Calendar;
+			path = module/Calendar;
+			sourceTree = "<group>";
+		};
+		BA06A06916F2EE6600212CB9 /* list */ = {
+			isa = PBXGroup;
+			children = (
+				BA06A06A16F2EE6600212CB9 /* CalenderList.plist */,
+				BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */,
+			);
+			path = list;
+			sourceTree = "<group>";
+		};
 		C74699D416F21BE20060F49C /* News */ = {
 			isa = PBXGroup;
 			children = (
@@ -1232,6 +1290,10 @@
 				91756F9216F206F7001D724D /* wrong.png in Resources */,
 				91756FCA16F20A5A001D724D /* NTOU_ClassColorViewController.xib in Resources */,
 				C74699E916F21CF40060F49C /* news in Resources */,
+				BA06A07416F2EE6600212CB9 /* BIDNameAndColorCell.xib in Resources */,
+				BA06A07616F2EE6600212CB9 /* CalenderList.plist in Resources */,
+				BA06A07716F2EE6600212CB9 /* CalenderList_eng.plist in Resources */,
+				BA06A07B16F2EE6600212CB9 /* WOLSwitchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1380,6 +1442,11 @@
 				C74699E016F21C2D0060F49C /* XMLReader.m in Sources */,
 				C74699E316F21C680060F49C /* NavScrollerView.m in Sources */,
 				C74699E716F21CC90060F49C /* StoryDetailViewController.m in Sources */,
+				BA06A07316F2EE6600212CB9 /* BIDNameAndColorCell.m in Sources */,
+				BA06A07516F2EE6600212CB9 /* LibrariesModule.m in Sources */,
+				BA06A07816F2EE6600212CB9 /* WOLChiListViewController.m in Sources */,
+				BA06A07916F2EE6600212CB9 /* WOLEnglistViewController.m in Sources */,
+				BA06A07A16F2EE6600212CB9 /* WOLSwitchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
