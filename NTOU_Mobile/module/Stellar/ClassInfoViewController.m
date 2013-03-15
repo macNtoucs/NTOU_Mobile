@@ -85,7 +85,7 @@
         key = moodleFileLetureKey;
         classinfo.text = @"上課講義";
     }
-    view.view.frame = CGRectMake(0, 40, 320, 330);
+    view.view.frame = CGRectMake(0, 40, 320, [[UIScreen mainScreen] bounds].size.height-150);
 
     view.resource = [[NSMutableArray alloc] initWithArray:[Moodle_API getFilesFolder_InDir:[NSString stringWithFormat:@"/%@/%@",moodleid,key]]];
     if (!view.resource) {
@@ -220,7 +220,7 @@
         view3 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view3.title = type2;
         view3.moodleData = [Moodle_API GetGrade_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
-        view3.resource = [[NSMutableArray alloc] initWithArray:[Moodle_API getFilesFolder_InDir:[NSString stringWithFormat:@"/%@/%@",moodleid,moodleFileLetureKey]]];
+        view3.resource = [[NSMutableArray alloc] initWithArray:[Moodle_API getFilesFolder_InDir:[NSString stringWithFormat:@"/%@/%@",moodleid,moodleFileAssignmentKey]]];
         view3.moodleid = moodleid;
         view3.delegatetype5 = self;
         view3.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-30);

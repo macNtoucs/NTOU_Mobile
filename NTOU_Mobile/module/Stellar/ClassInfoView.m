@@ -298,13 +298,15 @@
         }
         cell.backgroundColor = SECONDARY_GROUP_BACKGROUND_COLOR;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        label.tag=indexPath.row;
+        if (types==4)
+            label.tag=indexPath.row;
+        else if((types==2&&indexPath.section==1)||types==6)
+            label.tag=indexPath.row-1;
         label.lineBreakMode = UILineBreakModeWordWrap;
         label.numberOfLines = 0;
         label.font = [UIFont fontWithName:STANDARD_FONT size:CELL_STANDARD_FONT_SIZE];
         label.textColor = CELL_STANDARD_FONT_COLOR;
         label.backgroundColor = [UIColor clearColor];
-        detailLabel.tag=indexPath.row;
         detailLabel.backgroundColor = [UIColor clearColor];
         detailLabel.textAlignment = UITextAlignmentRight;
         [cell.contentView addSubview:label];
@@ -336,7 +338,6 @@
     else
     {
         label = (UILabel *)[cell.contentView viewWithTag:indexPath.row];
-        detailLabel = (UILabel *)[cell.contentView viewWithTag:indexPath.row];
     }
     
     if (types==5) {
