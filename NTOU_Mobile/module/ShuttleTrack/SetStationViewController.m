@@ -264,8 +264,6 @@
 }
 
 -(void)setHTOriginAndTerminalTableView:(UITableViewController*) tableView nowSelected:(NSString*) _station{
-    [startStaion release];
-    [DepatureStation release];
     if (tableView==HTView_origin)
         startStaion = [[NSString alloc]initWithFormat:@"%@", _station ] ;
     else if (tableView==HTView_terminal)
