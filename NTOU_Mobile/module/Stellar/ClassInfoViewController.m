@@ -67,36 +67,36 @@
 
 -(void)Task
 {
+    NSString* key;
     UIViewController *viewController = [self.viewControllers objectAtIndex:1];
     [viewController.view removeAllSubviews];
     ClassInfoView *view = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
-    if (self.navigationItem.rightBarButtonItem.title == type6) {
+    if ([self.navigationItem.rightBarButtonItem.title isEqual: type6]) {
         self.navigationItem.rightBarButtonItem.title = @"上課講義";
         view.title = type6;
         viewController.title = type6;
         classinfo.text = type6;
+        key = moodleFileExamKey;
     }
     else{
         self.navigationItem.rightBarButtonItem.title = type6;
         view.title = type4;
         viewController.title = type4;
+        key = moodleFileLetureKey;
         classinfo.text = @"上課講義";
     }
-    view.view.frame = CGRectMake(0, 40, 320, 330);
-    NSDictionary* apiKey = [[ClassDataBase sharedData] loginCourseToGetCourseidAndClassid:self.title];
-    view.moodleData = [Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
-    if (!view.moodleData) {
-        token = [[ClassDataBase sharedData] loginTokenWhenAccountFromUserDefault];
-        view.moodleData = [Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
-        if (!view.moodleData) {
-            UIAlertView *loadingAlertView = [[UIAlertView alloc]
-                                             initWithTitle:nil message:@"網路連線失敗"
-                                             delegate:self cancelButtonTitle:@"確定"
-                                             otherButtonTitles:nil];
-            [loadingAlertView show];
-            [loadingAlertView release];
-        }
+    view.view.frame = CGRectMake(0, 40, 320, [[UIScreen mainScreen] bounds].size.height-150);
+
+    view.resource = [[NSMutableArray alloc] initWithArray:[Moodle_API getFilesFolder_InDir:[NSString stringWithFormat:@"/%@/%@",moodleid,key]]];
+    if (!view.resource) {
+        UIAlertView *loadingAlertView = [[UIAlertView alloc]
+                                         initWithTitle:nil message:@"網路連線失敗"
+                                         delegate:self cancelButtonTitle:@"確定"
+                                         otherButtonTitles:nil];
+        [loadingAlertView show];
+        [loadingAlertView release];
     }
+    [view.tableView reloadData];
     [viewController.view addSubview:view.tableView];
 }
 
@@ -194,10 +194,11 @@
         }
         data = [[data reverseObjectEnumerator] allObjects];
         NSMutableArray* resource = [[NSMutableArray alloc] init];
+        moodleid = [[[Moodle_API GetMoodleID_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]] objectForKey:moodleMoodleID] retain];
         for (NSDictionary* info in data) {
-            [resource addObject:[Moodle_API GetMoodleInfo_AndUseToken:token
+            [resource addObject:[Moodle_API MoodleID_AndUseToken:token
                                                                module:[info objectForKey:moodleResourceModuleKey]
-                                                                  mid:@" "
+                                                                  moodleID:moodleid
                                                              courseID:[apiKey objectForKey:courseIDKey]
                                                               classID:[apiKey objectForKey:classIDKey]]];
         }
@@ -211,19 +212,22 @@
         view2.title = type4;
         view2.delegatetype5 = self;
         view2.moodleData = [Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
+        view2.resource = [[NSMutableArray alloc] initWithArray:[Moodle_API getFilesFolder_InDir:[NSString stringWithFormat:@"/%@/%@",moodleid,moodleFileLetureKey]]];
+        view2.moodleid = moodleid;
         view2.view.frame = CGRectMake(0, 40, 320, [[UIScreen mainScreen] bounds].size.height-60);
         [viewController2.view addSubview:view2.tableView];
         
         view3 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view3.title = type2;
         view3.moodleData = [Moodle_API GetGrade_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
+        view3.resource = [[NSMutableArray alloc] initWithArray:[Moodle_API getFilesFolder_InDir:[NSString stringWithFormat:@"/%@/%@",moodleid,moodleFileAssignmentKey]]];
+        view3.moodleid = moodleid;
         view3.delegatetype5 = self;
         view3.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-30);
         [viewController3.view addSubview:view3.tableView];
         
         view4 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view4.title = type1;
-        view4.moodleData = [Moodle_API GetGrade_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
         view4.delegatetype5 = self;
         view4.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-30);
         [viewController4.view addSubview:view4.tableView];
