@@ -134,9 +134,10 @@
 
 - (void)handleSingle:(NSString*)filename
 {
-	NSString *phrase = nil; // Document password (for unlocking most encrypted PDF files)
+	NSString *phrase = [filename stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
    // NSString *filePath = [[[NSBundle mainBundle] bundlePath]stringByAppendingPathComponent:filename];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:filename]];
+
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phrase]];
 	/*ReaderDocument *document = [ReaderDocument withDocumentFilePath:filename password:phrase];
     
 	if (document != nil) // Must have a valid ReaderDocument object in order to proceed with things
@@ -320,7 +321,7 @@
         if (types==6) {
             label.textAlignment = UITextAlignmentCenter;
         }
-        if (types == 4||(types == 2&&indexPath.row>0) ||(types == 6&&indexPath.row>0)) {
+        if (types == 4||(types == 2&&indexPath.section==1&&indexPath.row>0) ||(types == 6&&indexPath.row>0)) {
             label.userInteractionEnabled = YES;
             label.textColor = [UIColor blueColor];
             UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(myAction:)];

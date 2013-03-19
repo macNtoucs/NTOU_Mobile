@@ -203,7 +203,7 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
 {
     //moodle.ntou.edu.tw/file.php/19367/課程講義/_10_JavaScript_for_Ajax.pptx
     NSString *URL = [NSString stringWithFormat:@"http://moodle.ntou.edu.tw/file.php%@/%@",dir,FileName];
-    URL = [URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+   /* URL = [URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL  *url = [NSURL URLWithString:URL];
     
     NSData *urlData = [NSData dataWithContentsOfURL:url];
@@ -213,11 +213,11 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
         NSString  *documentsDirectory = [paths objectAtIndex:0];
         
         NSString  *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,FileName];
-        [urlData writeToFile:filePath atomically:YES];
+        [urlData writeToFile:filePath atomically:YES];*/
         return URL;
 
-    }
-    else return @"Error_dir_or_FileName";
+    //}
+   // else return @"Error_dir_or_FileName";
     
 }
 

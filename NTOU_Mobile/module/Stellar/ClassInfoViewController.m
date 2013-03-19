@@ -213,7 +213,7 @@
         view2.delegatetype5 = self;
         view2.moodleData = [Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
         view2.resource = [[NSMutableArray alloc] initWithArray:[Moodle_API getFilesFolder_InDir:[NSString stringWithFormat:@"/%@/%@",moodleid,moodleFileLetureKey]]];
-        view2.moodleid = moodleid;
+        view2.moodleid = [moodleid retain];
         view2.view.frame = CGRectMake(0, 40, 320, [[UIScreen mainScreen] bounds].size.height-60);
         [viewController2.view addSubview:view2.tableView];
         
@@ -221,7 +221,7 @@
         view3.title = type2;
         view3.moodleData = [Moodle_API GetGrade_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
         view3.resource = [[NSMutableArray alloc] initWithArray:[Moodle_API getFilesFolder_InDir:[NSString stringWithFormat:@"/%@/%@",moodleid,moodleFileAssignmentKey]]];
-        view3.moodleid = moodleid;
+        view3.moodleid = [moodleid retain];
         view3.delegatetype5 = self;
         view3.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-30);
         [viewController3.view addSubview:view3.tableView];
