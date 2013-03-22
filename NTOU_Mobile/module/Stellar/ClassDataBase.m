@@ -102,9 +102,9 @@ static ClassDataBase *sharedData = nil;
     if (self) {
         NSUserDefaults *userPrefs = [NSUserDefaults standardUserDefaults];
         if ([userPrefs objectForKey:ClassDataBaseKey]==nil) {
-            WeekTimes = 7;
+            WeekTimes = 5;
             ClassSessionTimes = 14;
-            showClassTimes = false;
+            showClassTimes = YES;
             ScheduleInfo = [self VoidSchedule];
             ScheduleTempInfo = (NSDictionary *)CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (CFDictionaryRef)ScheduleInfo, kCFPropertyListMutableContainers);
             WeekDays=[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES], nil];

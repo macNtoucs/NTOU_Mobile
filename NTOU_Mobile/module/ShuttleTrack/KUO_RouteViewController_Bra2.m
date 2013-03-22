@@ -21,9 +21,8 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        data = [KUO_Data_Bra2 sharedData];
-        inbound = [[data fetchInboundJourney] mutableCopy] ;
-        outbound = [[data fetchOutboundJourney] mutableCopy] ;
+        inbound = [[[KUO_Data_Bra2 sharedData] fetchInboundJourney] mutableCopy] ;
+        outbound = [[[KUO_Data_Bra2 sharedData] fetchOutboundJourney] mutableCopy] ;
         display = inbound;
         except = FALSE;
         direct = FALSE;
@@ -40,7 +39,7 @@
 -(void)changeDirectType
 {
     if (direct) {
-        if ([[[display allKeys]objectAtIndex:tabcIndexPath.section] isEqualToString:@"基隆"]&&tabcIndexPath.row==exceptionIndex&&except==FALSE) {
+        if ([[[display allKeys]objectAtIndex:tabcIndexPath.section] isEqualToString:@"基隆"]&&(tabcIndexPath.row==exceptionIndex)&&except==FALSE) {
             except = TRUE;
         }
         else{
@@ -58,10 +57,10 @@
 }
 
 -(NSArray *)checkExceptionArriveTime:(NSArray*) arr{
-    if ([[[display allKeys]objectAtIndex:tabcIndexPath.section] isEqualToString:@"基隆"]&&tabcIndexPath.row==exceptionIndex&&except==FALSE&&direct==TRUE) {
+    if ([[[display allKeys]objectAtIndex:tabcIndexPath.section] isEqualToString:@"基隆"]&&(tabcIndexPath.row==exceptionIndex)&&except==FALSE&&direct==TRUE) {
         return [arr objectAtIndex:0];
     }
-    else if ([[[display allKeys]objectAtIndex:tabcIndexPath.section] isEqualToString:@"基隆"]&&tabcIndexPath.row==exceptionIndex&&except==TRUE){
+    else if ([[[display allKeys]objectAtIndex:tabcIndexPath.section] isEqualToString:@"基隆"]&&(tabcIndexPath.row==exceptionIndex)&&except==TRUE){
         return [arr objectAtIndex:1];
     }
     else

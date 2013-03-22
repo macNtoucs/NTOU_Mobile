@@ -333,8 +333,8 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                 
                 titleLabel = (UILabel *)[cell viewWithTag:1];
                 dekLabel = (UILabel *)[cell viewWithTag:2];
-                titleLabel.text = [[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-                dekLabel.text = [[[story objectForKey:NewsAPIKeyStartdate] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+                titleLabel.text = [[[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText] stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+                dekLabel.text = [[[[story objectForKey:NewsAPIKeyStartdate] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
                 
                 titleLabel.textColor = [UIColor blackColor];
                 titleLabel.highlightedTextColor = [UIColor whiteColor];
@@ -343,7 +343,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                                               STORY_TEXT_PADDING_TOP,
                                             STORY_TEXT_WIDTH,
                                               THUMBNAIL_WIDTH-15-STORY_TEXT_PADDING_TOP);
-                dekLabel.frame = CGRectMake(STORY_TEXT_PADDING_LEFT,
+                dekLabel.frame = CGRectMake(180+STORY_TEXT_PADDING_LEFT,
                                             THUMBNAIL_WIDTH-15,
                                             STORY_TEXT_WIDTH,
                                             15);
