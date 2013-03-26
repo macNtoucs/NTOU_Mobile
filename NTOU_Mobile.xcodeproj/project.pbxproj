@@ -99,6 +99,11 @@
 		91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049416E89FE300ECF2CF /* QuartzCore.framework */; };
 		91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */; };
 		91A9049B16E8A09A00ECF2CF /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 91A9049A16E8A09A00ECF2CF /* icons */; };
+		A620FCA51701F4C600C3AD34 /* map-01.png in Resources */ = {isa = PBXBuildFile; fileRef = A620FCA01701F4C600C3AD34 /* map-01.png */; };
+		A620FCA61701F4C600C3AD34 /* map-02.png in Resources */ = {isa = PBXBuildFile; fileRef = A620FCA11701F4C600C3AD34 /* map-02.png */; };
+		A620FCA71701F4C600C3AD34 /* map-03.png in Resources */ = {isa = PBXBuildFile; fileRef = A620FCA21701F4C600C3AD34 /* map-03.png */; };
+		A620FCA81701F4C600C3AD34 /* map-04.png in Resources */ = {isa = PBXBuildFile; fileRef = A620FCA31701F4C600C3AD34 /* map-04.png */; };
+		A620FCA91701F4C600C3AD34 /* map-05.png in Resources */ = {isa = PBXBuildFile; fileRef = A620FCA41701F4C600C3AD34 /* map-05.png */; };
 		C7BC4AB316E992D1002CB05B /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7BC4A0E16E992D1002CB05B /* MainStoryboard.storyboard */; };
 		C7BC4AB416E992D1002CB05B /* beining.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7BC4A0F16E992D1002CB05B /* beining.jpg */; };
 		C7BC4AB516E992D1002CB05B /* jungjeng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7BC4A1016E992D1002CB05B /* jungjeng.jpg */; };
@@ -263,6 +268,11 @@
 		91A9049416E89FE300ECF2CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		91A9049A16E8A09A00ECF2CF /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
+		A620FCA01701F4C600C3AD34 /* map-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-01.png"; sourceTree = "<group>"; };
+		A620FCA11701F4C600C3AD34 /* map-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-02.png"; sourceTree = "<group>"; };
+		A620FCA21701F4C600C3AD34 /* map-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-03.png"; sourceTree = "<group>"; };
+		A620FCA31701F4C600C3AD34 /* map-04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-04.png"; sourceTree = "<group>"; };
+		A620FCA41701F4C600C3AD34 /* map-05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-05.png"; sourceTree = "<group>"; };
 		C7BC493816E992D1002CB05B /* CustomPagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPagerViewController.h; sourceTree = "<group>"; };
 		C7BC493916E992D1002CB05B /* PagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagerViewController.h; sourceTree = "<group>"; };
 		C7BC493A16E992D1002CB05B /* PeopleModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleModule.h; sourceTree = "<group>"; };
@@ -388,6 +398,11 @@
 		91A9029816E88E0D00ECF2CF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A620FCA01701F4C600C3AD34 /* map-01.png */,
+				A620FCA11701F4C600C3AD34 /* map-02.png */,
+				A620FCA21701F4C600C3AD34 /* map-03.png */,
+				A620FCA31701F4C600C3AD34 /* map-04.png */,
+				A620FCA41701F4C600C3AD34 /* map-05.png */,
 				91A9049A16E8A09A00ECF2CF /* icons */,
 				91A903A016E88E9D00ECF2CF /* global */,
 			);
@@ -664,6 +679,11 @@
 				C7BC4AB516E992D1002CB05B /* jungjeng.jpg in Resources */,
 				C7BC4AB616E992D1002CB05B /* shiangfeng.jpg in Resources */,
 				C7BC4AB716E992D1002CB05B /* shinfeng.jpg in Resources */,
+				A620FCA51701F4C600C3AD34 /* map-01.png in Resources */,
+				A620FCA61701F4C600C3AD34 /* map-02.png in Resources */,
+				A620FCA71701F4C600C3AD34 /* map-03.png in Resources */,
+				A620FCA81701F4C600C3AD34 /* map-04.png in Resources */,
+				A620FCA91701F4C600C3AD34 /* map-05.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
