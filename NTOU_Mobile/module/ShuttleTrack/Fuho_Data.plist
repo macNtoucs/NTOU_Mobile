@@ -34,7 +34,8 @@
 				<string>基隆火車站</string>
 			</array>
 			<array>
-				<string>台北-基隆	45	24</string>
+				<string>     路線               全票  半票</string>
+				<string>台北-基隆             45    24</string>
 			</array>
 		</array>
 		<key>新店</key>
@@ -79,19 +80,20 @@
 				<string>捷運新店站</string>
 			</array>
 			<array>
-				<string>基隆-內湖	35	18
+				<string>       路線         全票   半票</string>
+				<string>基隆-內湖         35     18
 基隆-世貿中心	40	20
 基隆-六張犁	45	20
 基隆-公館	45	24
 基隆-景美	55	30
 基隆-大坪林	65	35
 基隆-內湖	35	18</string>
-				<string>基隆-世貿中心	40	20</string>
-				<string>基隆-六張犁	45	20</string>
-				<string>基隆-公館	45	24</string>
-				<string>基隆-景美	55	30</string>
-				<string>基隆-大坪林	65	35</string>
-				<string>基隆-新店	65	35</string>
+				<string>基隆-世貿         40     20</string>
+				<string>基隆-六張犁      45     20</string>
+				<string>基隆-公館         45     24</string>
+				<string>基隆-景美         55     30</string>
+				<string>基隆-大坪林      65     35</string>
+				<string>基隆-新店         65     35</string>
 			</array>
 		</array>
 		<key>木柵</key>
@@ -136,7 +138,8 @@
 				<string>木柵動物園</string>
 			</array>
 			<array>
-				<string>基隆-木柵動物園	50	25</string>
+				<string>               路線          全票  半票</string>
+				<string>基隆-木柵動物園     50     25</string>
 			</array>
 		</array>
 	</dict>
@@ -172,7 +175,8 @@
 				<string>行天宮</string>
 			</array>
 			<array>
-				<string>台北-基隆	45	24</string>
+				<string>     路線               全票  半票</string>
+				<string>台北-基隆             45    24</string>
 			</array>
 		</array>
 		<key>新店</key>
@@ -217,19 +221,20 @@
 				<string>基隆火車站</string>
 			</array>
 			<array>
-				<string>基隆-內湖	35	18
+				<string>       路線         全票   半票</string>
+				<string>基隆-內湖         35     18
 基隆-世貿中心	40	20
 基隆-六張犁	45	20
 基隆-公館	45	24
 基隆-景美	55	30
 基隆-大坪林	65	35
 基隆-內湖	35	18</string>
-				<string>基隆-世貿中心	40	20</string>
-				<string>基隆-六張犁	45	20</string>
-				<string>基隆-公館	45	24</string>
-				<string>基隆-景美	55	30</string>
-				<string>基隆-大坪林	65	35</string>
-				<string>基隆-新店	65	35</string>
+				<string>基隆-世貿         40     20</string>
+				<string>基隆-六張犁      45     20</string>
+				<string>基隆-公館         45     24</string>
+				<string>基隆-景美         55     30</string>
+				<string>基隆-大坪林      65     35</string>
+				<string>基隆-新店         65     35</string>
 			</array>
 		</array>
 		<key>木柵</key>
@@ -275,7 +280,8 @@
 				<string>基隆火車站</string>
 			</array>
 			<array>
-				<string>基隆-木柵動物園	50	25</string>
+				<string>               路線          全票  半票</string>
+				<string>基隆-木柵動物園     50     25</string>
 			</array>
 		</array>
 	</dict>

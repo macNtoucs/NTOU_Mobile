@@ -74,7 +74,7 @@
             cell.textLabel.text=@"國光客運";
             break;
         case 3:
-            cell.textLabel.text=@"福合客運";
+            cell.textLabel.text=@"福和客運";
             break;
         default:
             break;
