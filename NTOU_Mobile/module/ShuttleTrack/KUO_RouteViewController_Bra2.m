@@ -17,12 +17,19 @@
 
 @implementation KUO_RouteViewController_Bra2
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithStyle:(UITableViewStyle)style WithType:(int)type
 {
     self = [super initWithStyle:style];
     if (self) {
-        inbound = [[[KUO_Data_Bra2 sharedData] fetchInboundJourney] mutableCopy] ;
-        outbound = [[[KUO_Data_Bra2 sharedData] fetchOutboundJourney] mutableCopy] ;
+        if (type == Kuo_Data) {
+            inbound = [[[KUO_Data_Bra2 sharedData] fetchInboundJourney] mutableCopy] ;
+            outbound = [[[KUO_Data_Bra2 sharedData] fetchOutboundJourney] mutableCopy] ;
+        }
+        else
+        {
+            inbound = [[[Fuhobus_Data sharedData] fetchInboundJourney] mutableCopy] ;
+            outbound = [[[Fuhobus_Data sharedData] fetchOutboundJourney] mutableCopy] ;
+        }
         display = inbound;
         except = FALSE;
         direct = FALSE;

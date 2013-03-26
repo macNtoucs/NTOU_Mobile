@@ -18,7 +18,7 @@
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
     self = [super initWithStyle:style];
     if (self) {
-        self.title = @"Routes";
+        self.title = @"教職員/綜合大樓";
     }
     return self;
 }
