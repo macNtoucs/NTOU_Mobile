@@ -224,6 +224,8 @@
 		91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049416E89FE300ECF2CF /* QuartzCore.framework */; };
 		91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */; };
 		91A9049B16E8A09A00ECF2CF /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 91A9049A16E8A09A00ECF2CF /* icons */; };
+		A68F4C3216FF33C300385F48 /* Fuhobus_Data.m in Sources */ = {isa = PBXBuildFile; fileRef = A68F4C3116FF33C300385F48 /* Fuhobus_Data.m */; };
+		A68F4C3716FF422600385F48 /* Fuho_Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = A68F4C3616FF422500385F48 /* Fuho_Data.plist */; };
 		BA06A07316F2EE6600212CB9 /* BIDNameAndColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06516F2EE6600212CB9 /* BIDNameAndColorCell.m */; };
 		BA06A07416F2EE6600212CB9 /* BIDNameAndColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06616F2EE6600212CB9 /* BIDNameAndColorCell.xib */; };
 		BA06A07516F2EE6600212CB9 /* LibrariesModule.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06816F2EE6600212CB9 /* LibrariesModule.m */; };
@@ -568,6 +570,10 @@
 		91A9049416E89FE300ECF2CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		91A9049A16E8A09A00ECF2CF /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
+		A68F4C3016FF33C300385F48 /* Fuhobus_Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fuhobus_Data.h; sourceTree = "<group>"; };
+		A68F4C3116FF33C300385F48 /* Fuhobus_Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fuhobus_Data.m; sourceTree = "<group>"; };
+		A68F4C3316FF34B000385F48 /* ShuttleConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShuttleConstants.h; sourceTree = "<group>"; };
+		A68F4C3616FF422500385F48 /* Fuho_Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Fuho_Data.plist; sourceTree = "<group>"; };
 		BA06A06416F2EE6600212CB9 /* BIDNameAndColorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIDNameAndColorCell.h; sourceTree = "<group>"; };
 		BA06A06516F2EE6600212CB9 /* BIDNameAndColorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIDNameAndColorCell.m; sourceTree = "<group>"; };
 		BA06A06616F2EE6600212CB9 /* BIDNameAndColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIDNameAndColorCell.xib; sourceTree = "<group>"; };
@@ -924,14 +930,18 @@
 				91A903BA16E899D200ECF2CF /* HTSearchResultViewController.m */,
 				91A903BB16E899D200ECF2CF /* Info.png */,
 				91A903BC16E899D200ECF2CF /* K_data.plist */,
+				A68F4C3616FF422500385F48 /* Fuho_Data.plist */,
 				91A903BD16E899D200ECF2CF /* K_RouteViewController.h */,
 				91A903BE16E899D200ECF2CF /* K_RouteViewController.m */,
 				91A903BF16E899D200ECF2CF /* K_TimeView.h */,
 				91A903C016E899D200ECF2CF /* K_TimeView.m */,
+				A68F4C3316FF34B000385F48 /* ShuttleConstants.h */,
 				91A903C116E899D200ECF2CF /* Kuo_Data.h */,
 				91A903C216E899D200ECF2CF /* Kuo_Data.m */,
 				91A903C316E899D200ECF2CF /* KUO_Data_Bra2.h */,
 				91A903C416E899D200ECF2CF /* KUO_Data_Bra2.m */,
+				A68F4C3016FF33C300385F48 /* Fuhobus_Data.h */,
+				A68F4C3116FF33C300385F48 /* Fuhobus_Data.m */,
 				91A903C516E899D200ECF2CF /* KUO_KUANGViewController.h */,
 				91A903C616E899D200ECF2CF /* KUO_KUANGViewController.m */,
 				91A903C716E899D200ECF2CF /* KUO_RouteViewController_Bra2.h */,
@@ -1294,6 +1304,7 @@
 				BA06A07616F2EE6600212CB9 /* CalenderList.plist in Resources */,
 				BA06A07716F2EE6600212CB9 /* CalenderList_eng.plist in Resources */,
 				BA06A07B16F2EE6600212CB9 /* WOLSwitchViewController.xib in Resources */,
+				A68F4C3716FF422600385F48 /* Fuho_Data.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1447,6 +1458,7 @@
 				BA06A07816F2EE6600212CB9 /* WOLChiListViewController.m in Sources */,
 				BA06A07916F2EE6600212CB9 /* WOLEnglistViewController.m in Sources */,
 				BA06A07A16F2EE6600212CB9 /* WOLSwitchViewController.m in Sources */,
+				A68F4C3216FF33C300385F48 /* Fuhobus_Data.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

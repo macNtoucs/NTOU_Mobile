@@ -18,7 +18,7 @@
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
     self = [super initWithStyle:style];
     if (self) {
-        self.title = @"Routes";
+        self.title = @"其他";
     }
     return self;
 }
@@ -63,7 +63,7 @@
     switch (self->WhatRoute) {
 
         case 0:
-            headerTitle = @"Others";
+            headerTitle = @"校門口、警衛室";
             break;
 
         default:

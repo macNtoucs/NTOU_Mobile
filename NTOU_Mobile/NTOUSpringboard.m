@@ -151,10 +151,10 @@
     UIImageView * Nav_BG = [[UIImageView alloc]
                             initWithFrame:CGRectMake(0, 0, 320, 44)];
     Nav_BG.image = [UIImage imageNamed:@"global/Nav_backGround.png"];
-    UIImageView *logoView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 50, 30)];
-    [logoView setImage:[UIImage imageNamed:@"global/navbar_ntou_logo.png"]];
+    //UIImageView *logoView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 50, 30)];
+    //[logoView setImage:[UIImage imageNamed:@"global/navbar_ntou_logo.png"]];
     [self.navigationController.navigationBar insertSubview:Nav_BG atIndex:1];
-    [self.navigationController.navigationBar insertSubview:logoView atIndex:2];
+    //[self.navigationController.navigationBar insertSubview:logoView atIndex:2];
     [super viewWillAppear:animated];
 }
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -219,7 +219,7 @@
 }
 -(void)viewWillDisappear:(BOOL)animated{
     
-    [[self.navigationController.navigationBar.subviews objectAtIndex:2] removeFromSuperview];
+    //[[self.navigationController.navigationBar.subviews objectAtIndex:2] removeFromSuperview];
     [[self.navigationController.navigationBar.subviews objectAtIndex:1] removeFromSuperview];
     [super viewWillDisappear:animated];
 }

@@ -185,7 +185,7 @@
         case 2:
             switch (indexPath.row) {
                 case 0:
-                    cell.textLabel.text= @"其他";
+                    cell.textLabel.text= @"校門口、警衛室";
                     break;
             }
         default:
