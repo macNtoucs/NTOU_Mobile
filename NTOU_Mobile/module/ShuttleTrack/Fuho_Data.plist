@@ -34,8 +34,109 @@
 				<string>基隆火車站</string>
 			</array>
 			<array>
-				<string>全票    :   45元</string>
-				<string>半票    :   24元</string>
+				<string>台北-基隆	45	24</string>
+			</array>
+		</array>
+		<key>新店</key>
+		<array>
+			<string>基隆</string>
+			<array>
+				<string>基隆營運時間(05:00-23:00)</string>
+				<string>新店營運時間(05:30-23:30)</string>
+				<string>尖峰:8~12分</string>
+				<string>離峰:15~20分</string>
+				<string>假日:15~20分</string>
+			</array>
+			<array>
+				<string>基隆火車站</string>
+				<string>新湖一路口</string>
+				<string>松山高中</string>
+				<string>世貿中心</string>
+				<string>吳興街口</string>
+				<string>三興國小</string>
+				<string>喬治商職</string>
+				<string>捷運六張犁站</string>
+				<string>和平高中</string>
+				<string>自來水廠</string>
+				<string>台大公館醫院</string>
+				<string>臺灣科技大學</string>
+				<string>師大分部</string>
+				<string>武功國小</string>
+				<string>萬隆捷運站</string>
+				<string>萬隆</string>
+				<string>三福街口</string>
+				<string>捷運景美站</string>
+				<string>捷運大坪林站</string>
+				<string>大坪林</string>
+				<string>新店郵局</string>
+				<string>捷運七張站</string>
+				<string>七張</string>
+				<string>捷運市公所站</string>
+				<string>檳榔路</string>
+				<string>碧潭橋頭</string>
+			</array>
+			<array>
+				<string>捷運新店站</string>
+			</array>
+			<array>
+				<string>基隆-內湖	35	18
+基隆-世貿中心	40	20
+基隆-六張犁	45	20
+基隆-公館	45	24
+基隆-景美	55	30
+基隆-大坪林	65	35
+基隆-內湖	35	18</string>
+				<string>基隆-世貿中心	40	20</string>
+				<string>基隆-六張犁	45	20</string>
+				<string>基隆-公館	45	24</string>
+				<string>基隆-景美	55	30</string>
+				<string>基隆-大坪林	65	35</string>
+				<string>基隆-新店	65	35</string>
+			</array>
+		</array>
+		<key>木柵</key>
+		<array>
+			<string>基隆</string>
+			<array>
+				<string>[假日]一小時一班</string>
+				<string>[經深坑]06:00-20:00 </string>
+				<string></string>
+				<string>[平日]</string>
+				<string>06:00</string>
+				<string>06:30</string>
+				<string>[經深坑]07:00</string>
+				<string>[經深坑]07:30</string>
+				<string>[經深坑]08:00</string>
+				<string>[經深坑]08:30</string>
+				<string>09:00-16:00</string>
+				<string>16:30</string>
+				<string>17:00</string>
+				<string>17:30</string>
+				<string>18:00</string>
+				<string>19:00</string>
+				<string>20:00</string>
+			</array>
+			<array>
+				<string>基隆火車站</string>
+				<string>光華國宅</string>
+				<string>自強隧道</string>
+				<string>電信大樓</string>
+				<string>長庚醫院</string>
+				<string>安樂社區</string>
+				<string>石皮賴</string>
+				<string>興寮</string>
+				<string>[深坑] 台新工廠</string>
+				<string>[深坑] 東南科技大學</string>
+				<string>[深坑] 萬順寮</string>
+				<string>[深坑] 草地尾</string>
+				<string>木柵高工</string>
+				<string>貓纜動物園站</string>
+			</array>
+			<array>
+				<string>木柵動物園</string>
+			</array>
+			<array>
+				<string>基隆-木柵動物園	50	25</string>
 			</array>
 		</array>
 	</dict>
@@ -71,8 +172,110 @@
 				<string>行天宮</string>
 			</array>
 			<array>
-				<string>全票    :   45元</string>
-				<string>半票    :   24元</string>
+				<string>台北-基隆	45	24</string>
+			</array>
+		</array>
+		<key>新店</key>
+		<array>
+			<string>基隆</string>
+			<array>
+				<string>基隆營運時間(05:00-23:00)</string>
+				<string>新店營運時間(05:30-23:30)</string>
+				<string>尖峰:8~12分</string>
+				<string>離峰:15~20分</string>
+				<string>假日:15~20分</string>
+			</array>
+			<array>
+				<string>捷運新店站</string>
+				<string>碧潭橋頭</string>
+				<string>檳榔路</string>
+				<string>捷運市公所站</string>
+				<string>七張</string>
+				<string>捷運七張站</string>
+				<string>新店郵局</string>
+				<string>大坪林</string>
+				<string>捷運大坪林站</string>
+				<string>捷運景美站</string>
+				<string>三福街口</string>
+				<string>萬隆</string>
+				<string>萬隆捷運站</string>
+				<string>武功國小</string>
+				<string>師大分部</string>
+				<string>公館站</string>
+				<string>臺灣科技大學</string>
+				<string>台大公館醫院</string>
+				<string>自來水廠</string>
+				<string>和平高中</string>
+				<string>捷運六張犁站</string>
+				<string>喬治商職</string>
+				<string>三興國小</string>
+				<string>吳興街口</string>
+				<string>市府轉運站</string>
+				<string>新湖一路口</string>
+			</array>
+			<array>
+				<string>基隆火車站</string>
+			</array>
+			<array>
+				<string>基隆-內湖	35	18
+基隆-世貿中心	40	20
+基隆-六張犁	45	20
+基隆-公館	45	24
+基隆-景美	55	30
+基隆-大坪林	65	35
+基隆-內湖	35	18</string>
+				<string>基隆-世貿中心	40	20</string>
+				<string>基隆-六張犁	45	20</string>
+				<string>基隆-公館	45	24</string>
+				<string>基隆-景美	55	30</string>
+				<string>基隆-大坪林	65	35</string>
+				<string>基隆-新店	65	35</string>
+			</array>
+		</array>
+		<key>木柵</key>
+		<array>
+			<string>基隆</string>
+			<array>
+				<string>[假日]一小時一班</string>
+				<string>[經深坑]07:00-21:00 </string>
+				<string></string>
+				<string>[平日]</string>
+				<string>07:00</string>
+				<string>07:30</string>
+				<string>[經深坑]08:00</string>
+				<string>[經深坑]08:30</string>
+				<string>[經深坑]09:00</string>
+				<string>[經深坑]09:30</string>
+				<string>10:00-14:00</string>
+				<string>[經深坑]15:00-17:00</string>
+				<string>17:30</string>
+				<string>[經深坑]18:00</string>
+				<string>18:30</string>
+				<string>[經深坑]19:00</string>
+				<string>[經深坑]20:00</string>
+				<string>21:00</string>
+			</array>
+			<array>
+				<string>木柵動物園</string>
+				<string>貓纜動物園站</string>
+				<string>木柵高工</string>
+				<string>[深坑] 草地尾</string>
+				<string>[深坑] 萬順寮</string>
+				<string>[深坑] 東南科技大學</string>
+				<string>[深坑] 台新工廠</string>
+				<string>興寮</string>
+				<string>石皮賴</string>
+				<string>安樂社區</string>
+				<string>長庚醫院</string>
+				<string>電信大樓</string>
+				<string>自強隧道</string>
+				<string>光華國宅</string>
+			</array>
+			<array>
+				<string>基隆火車站</string>
+			</array>
+			<array>
+				<string>基隆-木柵動物園	50	25</string>
 			</array>
 		</array>
 	</dict>
