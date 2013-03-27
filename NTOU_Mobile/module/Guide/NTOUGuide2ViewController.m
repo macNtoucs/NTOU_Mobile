@@ -316,7 +316,7 @@
         case 0:
             switch (indexPath.row) {
                 case 0:
-                    location.longitude = 121.780852;
+                    location.longitude = 121.780853;
                     location.latitude = 25.150650;
                     [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
                     break;
@@ -483,8 +483,8 @@
                     [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
                     break;
                 case 7:
-                    location.longitude = 121.778222;
-                    location.latitude = 25.149991;
+                    location.longitude = 121.775178;
+                    location.latitude = 25.149031;
                     [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
                     break;
                 default:
@@ -515,8 +515,8 @@
                     [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
                     break;
                 case 4:
-                    location.longitude = 121.783155;
-                    location.latitude = 25.144302;
+                    location.longitude = 121.766489;
+                    location.latitude = 25.144303;
                     [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
                     break;
                
