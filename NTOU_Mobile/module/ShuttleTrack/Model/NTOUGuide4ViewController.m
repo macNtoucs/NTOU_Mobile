@@ -83,7 +83,7 @@
     switch (self->WhatRoute) {
             
         case 0:
-            return 4;
+            return 5;
             break;
         default:
             return 0;
@@ -115,7 +115,9 @@
                 case 3:
                     cell.textLabel.text = @"祥豐校門";
                     break;
-                    
+                case 4:
+                    cell.textLabel.text = @"郵局";
+                    break;
                 default:
                     break;
             }
@@ -203,6 +205,11 @@
                 case 3:
                     location.longitude = 121.772475;
                     location.latitude = 25.150816;
+                    [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
+                    break;
+                case 4:
+                    location.longitude = 121.775844;
+                    location.latitude = 25.150594;
                     [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
                     break;
                 default:
