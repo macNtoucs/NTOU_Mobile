@@ -31,8 +31,14 @@
     downloadView = [DownloadingView new];
     _isHightSpeedTrain = isHighSpeedTrain;
     if (!isHighSpeedTrain){
-        startStaion = [[NSString alloc]initWithString:@"基隆"];
-        DepatureStation = [[NSString alloc]initWithString:@"臺北"];
+        startStaion = [[ NSUserDefaults standardUserDefaults]objectForKey:@"startStaion"];
+        DepatureStation = [[ NSUserDefaults standardUserDefaults]objectForKey:@"DepatureStaion"];
+        if (!startStaion||!DepatureStation) {
+            startStaion = [[NSString alloc]initWithFormat:@"基隆"];
+            DepatureStation = [[NSString alloc]initWithFormat:@"台北"];
+            [[NSUserDefaults standardUserDefaults]setObject:startStaion forKey:@"startStaion"];
+            [[NSUserDefaults standardUserDefaults]setObject:DepatureStation forKey:@"DepatureStaion"];
+        }
         view1 = [[SetOriginAndStationViewController alloc] initWithStyle:UITableViewStyleGrouped];
         view1.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
         [setStartStationController.view addSubview:view1.view];
@@ -227,9 +233,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor clearColor];
-    if(!_isHightSpeedTrain)
-        self.title = [NSString stringWithFormat: @" 基隆 → 臺北"];
+    if(!_isHightSpeedTrain){
+        self.title = [NSString stringWithFormat: @" %@ → %@",
+                      [[ NSUserDefaults standardUserDefaults]objectForKey:@"startStaion"] ,[[ NSUserDefaults standardUserDefaults]objectForKey:@"DepatureStaion"]];
+    }
     else self.title = [NSString stringWithFormat: @" 台北 → 左營"];
     
     if (((startStaion && DepatureStation) &&![startStaion isEqualToString:@""] ))
@@ -256,19 +265,26 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)SetOriginAndStationViewTableView:(UITableViewController *)tableView nowSelected:(NSString *)_station{
-    if (tableView==view1)
+    if (tableView==view1){
         startStaion = [[NSString alloc]initWithFormat:@"%@", _station ] ;
-    else if (tableView==view2)
+        [[NSUserDefaults standardUserDefaults]setObject:_station forKey:@"startStaion"];
+    }
+    else if (tableView==view2){
         DepatureStation = [[NSString alloc]initWithFormat:@"%@", _station ] ;
+        [[NSUserDefaults standardUserDefaults]setObject:_station forKey:@"DepatureStaion"];
+    }
     [self viewDidLoad];
 }
 
 -(void)setHTOriginAndTerminalTableView:(UITableViewController*) tableView nowSelected:(NSString*) _station{
-    if (tableView==HTView_origin)
+    if (tableView==HTView_origin){
         startStaion = [[NSString alloc]initWithFormat:@"%@", _station ] ;
-    else if (tableView==HTView_terminal)
+        [[NSUserDefaults standardUserDefaults]setObject:_station forKey:@"HTstartStaion"];
+    }
+    else if (tableView==HTView_terminal){
         DepatureStation = [[NSString alloc]initWithFormat:@"%@", _station ] ;
-    [self viewDidLoad];
+        [[NSUserDefaults standardUserDefaults]setObject:_station forKey:@"HTDepatureStaion"];
+    }[self viewDidLoad];
     
 }
 
@@ -327,12 +343,12 @@
 - (NSString *)startStationTitile:(StaionInfoTableViewController *)stationInfoTableView{
     if (![startStaion isEqualToString:@""] && startStaion)
         return startStaion;
-    else return @"基隆";
+    else return [[ NSUserDefaults standardUserDefaults]objectForKey:@"startStaion"];
 }
 - (NSString *)depatureStationTitile:(StaionInfoTableViewController *)stationInfoTableView{
     if (![DepatureStation isEqualToString:@""] && DepatureStation)
         return DepatureStation;
-    else return @"臺北";
+    else return [[ NSUserDefaults standardUserDefaults]objectForKey:@"DepatureStaion"];
 }
 
 
