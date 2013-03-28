@@ -431,7 +431,7 @@
 		91756FCE16F20C79001D724D /* LessonTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LessonTimeView.h; sourceTree = "<group>"; };
 		91756FCF16F20C79001D724D /* LessonTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LessonTimeView.m; sourceTree = "<group>"; };
 		91756FED16F21235001D724D /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		91A9004616E854E500ECF2CF /* NTOU_Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NTOU_Mobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		91A9004616E854E500ECF2CF /* 海大App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "海大App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A9004A16E854E500ECF2CF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		91A9004C16E854E500ECF2CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		91A9004E16E854E500ECF2CF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -803,7 +803,7 @@
 		91A9004716E854E500ECF2CF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				91A9004616E854E500ECF2CF /* NTOU_Mobile.app */,
+				91A9004616E854E500ECF2CF /* 海大App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1179,7 +1179,7 @@
 			);
 			name = NTOU_Mobile;
 			productName = NTOU_Mobile;
-			productReference = 91A9004616E854E500ECF2CF /* NTOU_Mobile.app */;
+			productReference = 91A9004616E854E500ECF2CF /* 海大App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1535,7 +1535,7 @@
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "海大App";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1551,7 +1551,7 @@
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "海大App";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
