@@ -42,8 +42,7 @@ modules;
     
     Rotation *rootController = [[Rotation alloc] init];
     rootController.delegate = springboard;
-    rootController.navigationBar.barStyle = UIBarStyleDefault;
-    
+    rootController.navigationBar.barStyle = UIBarStyleBlack;
     self.springboardController = springboard;
     self.rootNavigationController = rootController;
     

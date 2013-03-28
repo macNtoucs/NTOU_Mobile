@@ -8,7 +8,7 @@
 
 #import "EditScheduleViewController.h"
 #import "NTOUUIConstants.h"
-#import "NTOU_ClassColorTableController.h"
+#import "NTOU_ClassColorViewController.h"
 @interface EditScheduleViewController (){
     SetWeekTimesViewController * setweek;
     id accountDelegate;
@@ -345,7 +345,7 @@
         setweek.title = @"設定一周天數";
     }
     else if (indexPath.section==0&&indexPath.row==1){
-        NTOU_ClassColorTableController* classColor = [[NTOU_ClassColorTableController alloc] init];
+        NTOU_ClassColorViewController* classColor = [[NTOU_ClassColorViewController alloc] init];
         classColor.title = @"設定課堂顏色";
         [self.navigationController pushViewController:classColor animated:YES];
     }

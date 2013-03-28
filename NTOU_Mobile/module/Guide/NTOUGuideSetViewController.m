@@ -67,7 +67,7 @@
     MKUserLocation *userlocation = [[MKUserLocation alloc]init];
     [userlocation setCoordinate:location];
     
-    mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height)];
     MKCoordinateRegion region;
     region.center.latitude = location.latitude;
     region.center.longitude = location.longitude;

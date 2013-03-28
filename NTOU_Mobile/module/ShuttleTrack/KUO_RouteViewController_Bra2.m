@@ -9,6 +9,7 @@
 #import "KUO_RouteViewController_Bra2.h"
 #import "UIKit+NTOUAdditions.h"
 @interface KUO_RouteViewController_Bra2 (){
+    int busType;
     NSIndexPath *tabcIndexPath;
     BOOL except;
     BOOL direct;
@@ -17,12 +18,20 @@
 
 @implementation KUO_RouteViewController_Bra2
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithStyle:(UITableViewStyle)style WithType:(int)type
 {
+    busType = type;
     self = [super initWithStyle:style];
     if (self) {
-        inbound = [[[KUO_Data_Bra2 sharedData] fetchInboundJourney] mutableCopy] ;
-        outbound = [[[KUO_Data_Bra2 sharedData] fetchOutboundJourney] mutableCopy] ;
+        if (type == Kuo_Data) {
+            inbound = [[[KUO_Data_Bra2 sharedData] fetchInboundJourney] mutableCopy] ;
+            outbound = [[[KUO_Data_Bra2 sharedData] fetchOutboundJourney] mutableCopy] ;
+        }
+        else
+        {
+            inbound = [[[Fuhobus_Data sharedData] fetchInboundJourney] mutableCopy] ;
+            outbound = [[[Fuhobus_Data sharedData] fetchOutboundJourney] mutableCopy] ;
+        }
         display = inbound;
         except = FALSE;
         direct = FALSE;
@@ -33,7 +42,9 @@
 
 -(NSArray*)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    return [display allKeys];
+    if (busType == Kuo_Data)
+        return [display allKeys];
+    return nil;
 }
 
 -(void)changeDirectType
@@ -71,7 +82,10 @@
 {
     [self changeDirectType];
     [self changeTabcTittle];
-    tabc.data = [[display objectForKey:[[display allKeys] objectAtIndex:tabcIndexPath.section]] objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(tabcIndexPath.row*5, 5)]];
+    if (busType == Kuo_Data)
+        tabc.data = [[display objectForKey:[[display allKeys] objectAtIndex:tabcIndexPath.section]] objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(tabcIndexPath.row*5, 5)]];
+    else
+        tabc.data = [[display objectForKey:[[display allKeys] objectAtIndex:tabcIndexPath.section]] objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 5)]];
 }
 
 - (void)viewDidLoad
@@ -83,12 +97,15 @@
                                                                    target:self
                                                                    action:@selector(changeDirectType)];
     [self.navigationItem setRightBarButtonItem:rightButton];*/
-    UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self                                                                                                 action:@selector(changeDirectType)];
-    swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft|UISwipeGestureRecognizerDirectionRight;
+    if (busType == Kuo_Data) {
+        UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self                                                                                                 action:@selector(changeDirectType)];
+        swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft|UISwipeGestureRecognizerDirectionRight;
+        
+        [self.tableView addGestureRecognizer:swipeGestureRecognizer];
+        
+        [swipeGestureRecognizer release];
 
-    [self.tableView addGestureRecognizer:swipeGestureRecognizer];
-
-    [swipeGestureRecognizer release];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -113,25 +130,37 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @" ";
+    if (busType == Kuo_Data)
+        return @" ";
+    return nil;
 }
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (display==inbound) {
-        return [UITableView groupedSectionHeaderWithTitle:[[[display allKeys]objectAtIndex:section] stringByAppendingString:@"  → "]] ;
+    if (busType == Kuo_Data)
+    {
+        if (display==inbound) {
+            return [UITableView groupedSectionHeaderWithTitle:[[[display allKeys]objectAtIndex:section] stringByAppendingString:@"  → "]] ;
+        }
+        else
+            return [UITableView groupedSectionHeaderWithTitle:[[NSString stringWithFormat:@"  → "]  stringByAppendingString:[[display allKeys]objectAtIndex:section]]] ;
     }
-    else
-        return [UITableView groupedSectionHeaderWithTitle:[[NSString stringWithFormat:@"  → "]  stringByAppendingString:[[display allKeys]objectAtIndex:section]]] ;
+    return nil;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [display count];
+    if (busType == Kuo_Data) {
+        return [display count];
+    }
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [[display objectForKey:[[display allKeys] objectAtIndex:section]] count]/StationInformationCount;
+    if (busType == Kuo_Data)
+        return [[display objectForKey:[[display allKeys] objectAtIndex:section]] count]/StationInformationCount;
+    else
+        return [display count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -146,7 +175,12 @@
         cell.textLabel.numberOfLines = 0;
     }
     //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text= [[display objectForKey:[[display allKeys] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row*StationInformationCount];
+    if (busType == Kuo_Data) {
+        cell.textLabel.text= [[display objectForKey:[[display allKeys] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row*StationInformationCount];
+    }
+    else{
+        cell.textLabel.text=[[[[display allKeys]objectAtIndex:indexPath.row] stringByAppendingString:@"  ⇌  "] stringByAppendingString:[[display objectForKey:[[display allKeys] objectAtIndex:indexPath.row]] objectAtIndex:0]];
+    }
     return cell;
 }
 
@@ -180,12 +214,23 @@
 {
     tabcIndexPath = [indexPath retain];
     SecondaryGroupedTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (busType == Kuo_Data){
     tabc = [[KUO_TimeViewController alloc] init:[[display objectForKey:[[display allKeys] objectAtIndex:indexPath.section]] objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(indexPath.row*StationInformationCount, StationInformationCount)]]delegate:self];
-    if (display==inbound) {
+        
+        if (display==inbound) {
             tabc.title = [[[[display allKeys]objectAtIndex:indexPath.section] stringByAppendingString:@"  →  "] stringByAppendingString:cell.textLabel.text];
-    } else {
+        } else {
             tabc.title = [[cell.textLabel.text stringByAppendingString:@"  →  "] stringByAppendingString:[[display allKeys]objectAtIndex:indexPath.section]];
+        }
+        
     }
+    else
+    {
+        tabc = [[KUO_TimeViewController alloc] init:[[display objectForKey:[[display allKeys] objectAtIndex:indexPath.row]] objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, StationInformationCount)]]delegate:self];
+        tabc.title = [cell.textLabel.text stringByReplacingOccurrencesOfString:@"⇌" withString:@"→"];
+        
+    }
+    
     except = FALSE;
     [self.navigationController pushViewController:tabc animated:YES];
     [tabc release];
