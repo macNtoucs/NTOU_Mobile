@@ -210,6 +210,7 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
 {
     //moodle.ntou.edu.tw/file.php/19367/課程講義/_10_JavaScript_for_Ajax.pptx
     NSString *URL = [NSString stringWithFormat:@"http://moodle.ntou.edu.tw/file.php%@/%@",dir,FileName];
+    return URL;
     URL = [URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL  *url = [NSURL URLWithString:URL];
     
