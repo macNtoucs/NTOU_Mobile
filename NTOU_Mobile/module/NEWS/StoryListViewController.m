@@ -207,8 +207,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     // create buttons for nav scroller view
     NSArray *buttonTitles = [NSArray arrayWithObjects:
                              NewsCategoryAnnounce,NewsCategorySymposium,NewsCategoryArt,NewsCategoryLecture
-                             ,NewsCategoryDocument,NewsCategoryInformation,
-                             nil];
+                             ,NewsCategoryInformation,nil];
     
     //NSMutableArray *buttons = [[NSMutableArray alloc] initWithCapacity:[buttonTitles count]];
     

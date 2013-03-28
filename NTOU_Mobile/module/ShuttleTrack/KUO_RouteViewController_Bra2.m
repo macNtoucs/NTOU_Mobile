@@ -9,6 +9,7 @@
 #import "KUO_RouteViewController_Bra2.h"
 #import "UIKit+NTOUAdditions.h"
 @interface KUO_RouteViewController_Bra2 (){
+    int busType;
     NSIndexPath *tabcIndexPath;
     BOOL except;
     BOOL direct;
@@ -19,6 +20,7 @@
 
 - (id)initWithStyle:(UITableViewStyle)style WithType:(int)type
 {
+    busType = type;
     self = [super initWithStyle:style];
     if (self) {
         if (type == Kuo_Data) {
@@ -40,7 +42,9 @@
 
 -(NSArray*)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    return [display allKeys];
+    if (busType == Kuo_Data)
+        return [display allKeys];
+    return nil;
 }
 
 -(void)changeDirectType
@@ -90,12 +94,15 @@
                                                                    target:self
                                                                    action:@selector(changeDirectType)];
     [self.navigationItem setRightBarButtonItem:rightButton];*/
-    UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self                                                                                                 action:@selector(changeDirectType)];
-    swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft|UISwipeGestureRecognizerDirectionRight;
+    if (busType == Kuo_Data) {
+        UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self                                                                                                 action:@selector(changeDirectType)];
+        swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft|UISwipeGestureRecognizerDirectionRight;
+        
+        [self.tableView addGestureRecognizer:swipeGestureRecognizer];
+        
+        [swipeGestureRecognizer release];
 
-    [self.tableView addGestureRecognizer:swipeGestureRecognizer];
-
-    [swipeGestureRecognizer release];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -123,22 +130,32 @@
     return @" ";
 }
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (display==inbound) {
-        return [UITableView groupedSectionHeaderWithTitle:[[[display allKeys]objectAtIndex:section] stringByAppendingString:@"  → "]] ;
+    if (busType == Kuo_Data)
+    {
+        if (display==inbound) {
+            return [UITableView groupedSectionHeaderWithTitle:[[[display allKeys]objectAtIndex:section] stringByAppendingString:@"  → "]] ;
+        }
+        else
+            return [UITableView groupedSectionHeaderWithTitle:[[NSString stringWithFormat:@"  → "]  stringByAppendingString:[[display allKeys]objectAtIndex:section]]] ;
     }
-    else
-        return [UITableView groupedSectionHeaderWithTitle:[[NSString stringWithFormat:@"  → "]  stringByAppendingString:[[display allKeys]objectAtIndex:section]]] ;
+    return nil;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [display count];
+    if (busType == Kuo_Data) {
+        return [display count];
+    }
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [[display objectForKey:[[display allKeys] objectAtIndex:section]] count]/StationInformationCount;
+    if (busType == Kuo_Data)
+        return [[display objectForKey:[[display allKeys] objectAtIndex:section]] count]/StationInformationCount;
+    else
+        return [display count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -153,7 +170,12 @@
         cell.textLabel.numberOfLines = 0;
     }
     //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text= [[display objectForKey:[[display allKeys] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row*StationInformationCount];
+    if (busType == Kuo_Data) {
+        cell.textLabel.text= [[display objectForKey:[[display allKeys] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row*StationInformationCount];
+    }
+    else{
+        cell.textLabel.text=[[[[display allKeys]objectAtIndex:indexPath.section] stringByAppendingString:@"  → "] stringByAppendingString:[[display objectForKey:[[display allKeys] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row*StationInformationCount]];
+    }
     return cell;
 }
 

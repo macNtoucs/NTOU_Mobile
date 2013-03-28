@@ -235,6 +235,8 @@
 		C737C12D1703F9B900173A4F /* map-03.png in Resources */ = {isa = PBXBuildFile; fileRef = C737C1281703F9B900173A4F /* map-03.png */; };
 		C737C12E1703F9B900173A4F /* map-04.png in Resources */ = {isa = PBXBuildFile; fileRef = C737C1291703F9B900173A4F /* map-04.png */; };
 		C737C12F1703F9B900173A4F /* map-05.png in Resources */ = {isa = PBXBuildFile; fileRef = C737C12A1703F9B900173A4F /* map-05.png */; };
+		C737C1331703FCDF00173A4F /* Fuhobus_Data.m in Sources */ = {isa = PBXBuildFile; fileRef = C737C1311703FCDF00173A4F /* Fuhobus_Data.m */; };
+		C737C13D1703FECA00173A4F /* Fuho_Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = C737C13C1703FECA00173A4F /* Fuho_Data.plist */; };
 		C74699DD16F21C2D0060F49C /* Announce_API.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699D916F21C2D0060F49C /* Announce_API.m */; };
 		C74699DE16F21C2D0060F49C /* NewsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699DA16F21C2D0060F49C /* NewsModule.m */; };
 		C74699DF16F21C2D0060F49C /* StoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699DB16F21C2D0060F49C /* StoryListViewController.m */; };
@@ -585,6 +587,10 @@
 		C737C1281703F9B900173A4F /* map-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-03.png"; sourceTree = "<group>"; };
 		C737C1291703F9B900173A4F /* map-04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-04.png"; sourceTree = "<group>"; };
 		C737C12A1703F9B900173A4F /* map-05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-05.png"; sourceTree = "<group>"; };
+		C737C1301703FCDF00173A4F /* Fuhobus_Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fuhobus_Data.h; sourceTree = "<group>"; };
+		C737C1311703FCDF00173A4F /* Fuhobus_Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fuhobus_Data.m; sourceTree = "<group>"; };
+		C737C1351703FD3E00173A4F /* ShuttleConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuttleConstants.h; sourceTree = "<group>"; };
+		C737C13C1703FECA00173A4F /* Fuho_Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Fuho_Data.plist; sourceTree = "<group>"; };
 		C74699D516F21C2D0060F49C /* Announce_API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Announce_API.h; path = module/NEWS/Announce_API.h; sourceTree = "<group>"; };
 		C74699D616F21C2D0060F49C /* NewsModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsModule.h; path = module/NEWS/NewsModule.h; sourceTree = "<group>"; };
 		C74699D716F21C2D0060F49C /* StoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryListViewController.h; path = module/NEWS/StoryListViewController.h; sourceTree = "<group>"; };
@@ -913,6 +919,10 @@
 			isa = PBXGroup;
 			children = (
 				91A9048F16E89E5200ECF2CF /* StationInfoViewController.h */,
+				C737C1301703FCDF00173A4F /* Fuhobus_Data.h */,
+				C737C13C1703FECA00173A4F /* Fuho_Data.plist */,
+				C737C1311703FCDF00173A4F /* Fuhobus_Data.m */,
+				C737C1351703FD3E00173A4F /* ShuttleConstants.h */,
 				91A9049016E89E5400ECF2CF /* StationInfoViewController.m */,
 				91A903A716E899D200ECF2CF /* Annotation.h */,
 				91A903A816E899D200ECF2CF /* Annotation.m */,
@@ -1298,6 +1308,7 @@
 				C737C12D1703F9B900173A4F /* map-03.png in Resources */,
 				C737C12E1703F9B900173A4F /* map-04.png in Resources */,
 				C737C12F1703F9B900173A4F /* map-05.png in Resources */,
+				C737C13D1703FECA00173A4F /* Fuho_Data.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1451,6 +1462,7 @@
 				BA06A07816F2EE6600212CB9 /* WOLChiListViewController.m in Sources */,
 				BA06A07916F2EE6600212CB9 /* WOLEnglistViewController.m in Sources */,
 				BA06A07A16F2EE6600212CB9 /* WOLSwitchViewController.m in Sources */,
+				C737C1331703FCDF00173A4F /* Fuhobus_Data.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
