@@ -71,22 +71,22 @@
     }
     
     [self.view addSubview:self.scrollView];
-
+    
 	/*
-	for (NSUInteger i =0; i < [self.childViewControllers count]; i++) {
-		[self loadScrollViewWithPage:i];
-	}
-	
-	self.pageControl.currentPage = 0;
-	_page = 0;
-	[self.pageControl setNumberOfPages:[self.childViewControllers count]];
-	
-	UIViewController *viewController = [self.childViewControllers objectAtIndex:self.pageControl.currentPage];
-	if (viewController.view.superview != nil) {
-		[viewController viewWillAppear:animated];
-	}
-	
-	self.scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * [self.childViewControllers count], scrollView.frame.size.height);*/
+     for (NSUInteger i =0; i < [self.childViewControllers count]; i++) {
+     [self loadScrollViewWithPage:i];
+     }
+     
+     self.pageControl.currentPage = 0;
+     _page = 0;
+     [self.pageControl setNumberOfPages:[self.childViewControllers count]];
+     
+     UIViewController *viewController = [self.childViewControllers objectAtIndex:self.pageControl.currentPage];
+     if (viewController.view.superview != nil) {
+     [viewController viewWillAppear:animated];
+     }
+     
+     self.scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * [self.childViewControllers count], scrollView.frame.size.height);*/
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -118,31 +118,31 @@
 	[super viewDidDisappear:animated];
 }
 /*
-- (void)loadScrollViewWithPage:(int)page {
-    if (page < 0)
-        return;
-    if (page >= [self.childViewControllers count])
-        return;
-    
-	// replace the placeholder if necessary
-    UIViewController *controller = [self.childViewControllers objectAtIndex:page];
-    if (controller == nil) {
-		return;
-    }
-	
-	// add the controller's view to the scroll view
-    if (controller.view.superview == nil) {
-        CGRect frame = self.scrollView.frame;
-        frame.origin.x = frame.size.width * page;
-        frame.origin.y = 0;
-        controller.view.frame = frame;
-        [self.scrollView addSubview:controller.view];
-    }
-}
-*/
+ - (void)loadScrollViewWithPage:(int)page {
+ if (page < 0)
+ return;
+ if (page >= [self.childViewControllers count])
+ return;
+ 
+ // replace the placeholder if necessary
+ UIViewController *controller = [self.childViewControllers objectAtIndex:page];
+ if (controller == nil) {
+ return;
+ }
+ 
+ // add the controller's view to the scroll view
+ if (controller.view.superview == nil) {
+ CGRect frame = self.scrollView.frame;
+ frame.origin.x = frame.size.width * page;
+ frame.origin.y = 0;
+ controller.view.frame = frame;
+ [self.scrollView addSubview:controller.view];
+ }
+ }
+ */
 - (void)previousPage {
 	if (_page - 1 > 0) {
-	
+        
 		// update the scroll view to the appropriate page
 		CGRect frame = self.scrollView.frame;
 		frame.origin.x = frame.size.width * (_page - 1);
@@ -212,239 +212,431 @@
 
 -(NSString *)displayContent:(int) tag
 {
-
+    
     switch (tag) {
         case 1:
-            return @"02-24635696";
+            return @"02-24629171";
             break;
         case 2:
-            return @"02-24631198";
+            return @"02-24621098";
             break;
         case 3:
-            return @"0960749858";
+            return @"0936151863";
             break;
         case 4:
-            return @"02-24622782";
+            return @"0910953652";
             break;
         case 5:
-            return @"02-24628313";
+            return @"0937865330";
             break;
         case 6:
-            return @"02-24620082";
+            return @"02-24650507";
             break;
         case 7:
-            return @"02-24622872";
+            return @"02-24626759";
             break;
         case 8:
-            return @"02-24631894";
+            return @"02-24625858";
             break;
         case 9:
-            return @"02-24622123";
+            return @"02-24621957";
             break;
         case 10:
-            return @"02-24628621";
+            return @"02-24636215";
             break;
         case 11:
-            return @"02-24624226";
+            return @"02-24622099";
             break;
         case 12:
-            return @"02-24627799";
+            return @"02-24629255";
             break;
         case 13:
-            return @"02-24622294";
+            return @"02-24631868";
             break;
         case 14:
-            return @"02-66375121";
+            return @"02-24633616";
             break;
         case 15:
-            return nil;
+            return @"02-24621632";
             break;
         case 16:
-            return @"02-24620700";
+            return @"02-24629561";
             break;
         case 17:
-            return @"02-24625688";
+            return @"02-24621462";
             break;
         case 18:
             return @"02-24626266";
             break;
         case 19:
-            return nil;
+            return @"02-24628585";
             break;
         case 20:
-            return @"02-24629561";
+            return nil;
             break;
         case 21:
-            return @"02-24621632";
+            return @"02-24625688";
             break;
         case 22:
-            return @"02-24633616";
+            return @"02-24620700";
             break;
         case 23:
             return nil;
             break;
         case 24:
-            return @"02-24631868";
+            return @"02-66375121";
             break;
         case 25:
-            return @"02-24622099";
+            return @"02-24622294";
             break;
         case 26:
-            return nil;
+            return @"02-24637089";
             break;
         case 27:
-            return @"02-24621957";
+            return @"02-24625888";
             break;
         case 28:
-            return @"02-24625858";
+            return @"02-24628151";
             break;
         case 29:
-            return @"02-24626759";
+            return @"02-24627799";
             break;
         case 30:
-            return @"02-24631558";
+            return @"02-24623101";
             break;
         case 31:
-            return @"02-24622030";
+            return @"02-24624226";
             break;
         case 32:
-            return nil;
-            break;
-        case 33:
-            return @"02-24621098";
-            break;
-        case 34:
             return @"02-24622381";
             break;
+        case 33:
+            return @"02-24627260";
+            break;
+        case 34:
+            return @"02-24637174";
+            break;
         case 35:
-            return @"02-24622099";
+            return @"02-24622130";
             break;
         case 36:
             return @"02-24636753";
             break;
         case 37:
-            return @"02-24622130";
+            return @"02-24622099";
             break;
         case 38:
-            return @"02-24637174";
+            return @"02-24631235";
             break;
         case 39:
-            return @"02-24627260";
-            break;
-        case 40:
-            return @"02-24628001";
-            break;
-        case 41:
-            return @"02-24628954";
-            break;
-        case 42:
-            return @"0986101218";
-            break;
-        case 43:
-            return @"0936141312";
-            break;
-        case 44:
-            return @"02-24626962";
-            break;
-        case 45:
-            return @"02-24633369";
-            break;
-        case 46:
-            return @"02-24624778";
-            break;
-        case 47:
-            return @"02-24624362";
-            break;
-        case 48:
-            return @"02-24620660";
-            break;
-        case 49:
-            return @"02-24636928";
-            break;
-        case 50:
-            return @"0977503192";
-            break;
-        case 51:
-            return @"0981364816";
-            break;
-        case 52:
-            return @"02-24626002";
-            break;
-        case 53:
-            return nil;
-            break;
-        case 54:
-            return @"02-24620185";
-            break;
-        case 55:
-            return @"02-24620158";
-            break;
-        case 56:
-            return @"02-24627904";
-            break;
-        case 57:
-            return @"02-24620845";
-            break;
-        case 58:
-            return @"02-24632911";
-            break;
-        case 59:
             return @"02-24624026";
             break;
+        case 40:
+            return @"02-24632911";
+            break;
+        case 41:
+            return @"02-24620845";
+            break;
+        case 42:
+            return @"02-24620158";
+            break;
+        case 43:
+            return @"02-24620185";
+            break;
+        case 44:
+            return @"02-24621098";
+            break;
+        case 45:
+            return @"02-24626002";
+            break;
+        case 46:
+            return @"0981364816";
+            break;
+        case 47:
+            return @"0977-503192";
+            break;
+        case 48:
+            return @"02-24636928";
+            break;
+        case 49:
+            return @"02-24620860";
+            break;
+        case 50:
+            return @"02-24624362";
+            break;
+        case 51:
+            return @"02-24624778";
+            break;
+        case 52:
+            return @"02-24621158";
+            break;
+        case 53:
+            return @"02-24633369";
+            break;
+        case 54:
+            return @"02-24626962";
+            break;
+        case 55:
+            return @"0936141312";
+            break;
+        case 56:
+            return @"0986101218";
+            break;
+        case 57:
+            return @"02-24628954";
+            break;
+        case 58:
+            return @"02-24628001";
+            break;
+        case 59:
+            return @"02-24635696";
+            break;
         case 60:
-            return @"02-23128016";
+            return @"02-24631198";
             break;
         case 61:
-            return @"02-24665291";
+            return @"0960749858";
             break;
         case 62:
-            return @"02-24699896";
+            return @"02-24622782";
             break;
         case 63:
-            return @"02-24694634";
+            return @"02-24620082";
             break;
         case 64:
-            return @"02-77298202";
+            return @"02-24628313";
             break;
         case 65:
-            return @"02-24695318";
+            return @"02-24631003";
             break;
         case 66:
-            return @"02-24693818";
+            return @"02-24622872";
             break;
         case 67:
-            return @"02-24692802";
+            return @"02-24631894";
             break;
         case 68:
-            return @"02-23316540";
+            return @"02-24622123";
             break;
         case 69:
-            return @"02-24696606";
+            return @"02-24634746";
             break;
         case 70:
-            return @"02-24692356";
+            return @"02-24628621";
             break;
         case 71:
-            return @"02-24602602";
+            return @"02-24665291";
             break;
         case 72:
-            return @"02-24601533";
+            return @"02-24663399";
             break;
         case 73:
-            return @"02-24603832";
+            return @"02-24667701";
             break;
         case 74:
-            return @"02-24692788";
+            return @"02-24655409";
             break;
         case 75:
-            return @"02-24692488";
+            return @"02-24685199";
+            break;
+        case 76:
+            return @"02-24666063";
+            break;
+        case 77:
+            return @"02-24683985";
+            break;
+        case 78:
+            return @"02-24669473";
+            break;
+        case 79:
+            return @"02-24652023";
+            break;
+        case 80:
+            return @"02-24684991";
+            break;
+        case 81:
+            return @"02-24684173";
+            break;
+        case 82:
+            return @"02-24655900";
+            break;
+        case 83:
+            return @"02-24685030";
+            break;
+        case 84:
+            return @"02-24666767";
+            break;
+        case 85:
+            return @"02-24666000";
+            break;
+        case 86:
+            return @"02-24652880";
+            break;
+        case 87:
+            return @"02-24683189";
+            break;
+        case 88:
+            return @"02-24660988";
+            break;
+        case 89:
+            return @"02-24687101";
+            break;
+        case 90:
+            return @"02-24665009";
+            break;
+        case 91:
+            return @"02-24660577";
+            break;
+        case 92:
+            return @"02-24650507";
+            break;
+        case 93:
+            return @"02-24680089";
+            break;
+        case 94:
+            return @"02-24622203";
+            break;
+        case 95:
+            return @"02-24663285";
+            break;
+        case 96:
+            return @"02-24666606";
+            break;
+        case 97:
+            return @"02-24652258";
+            break;
+        case 98:
+            return @"02-23128016";
+            break;
+        case 99:
+            return @"02-24663488";
+            break;
+        case 100:
+            return @"02-24685768";
+            break;
+        case 101:
+            return @"02-24667094";
+            break;
+        case 102:
+            return @"02-24603368";
+            break;
+        case 103:
+            return @"02-24602602";
+            break;
+        case 104:
+            return @"02-24601307";
+            break;
+        case 105:
+            return @"02-24601533";
             break;
             
+        case 106:
+            return @"02-24603832";
+            break;
+        case 107:
+            return @"02-24601356";
+            break;
+        case 108:
+            return @"02-24601316";
+            break;
+        case 109:
+            return @"02-24601425";
+            break;
+        case 110:
+            return @"02-24601597";
+            break;
+        case 111:
+            return @"02-24692788";
+            break;
+        case 112:
+            return @"02-24692488";
+            break;
+        case 113:
+            return @"02-24693531";
+            break;
+        case 114:
+            return @"02-24695133";
+            break;
+        case 115:
+            return @"02-24698466";
+            break;
+        case 116:
+            return @"02-24697101";
+            break;
+        case 117:
+            return @"02-24699222";
+            break;
+        case 118:
+            return @"02-24692091";
+            break;
+        case 119:
+            return @"02-24691937";
+            break;
+        case 120:
+            return @"02-24690861";
+            break;
+        case 121:
+            return @"02-24699896";
+            break;
+        case 122:
+            return @"02-24698502";
+            break;
+        case 123:
+            return @"02-24695888";
+            break;
+        case 124:
+            return @"02-24694634";
+            break;
+        case 125:
+            return @"02-77298202";
+            break;
+        case 126:
+            return @"02-24695318";
+            break;
+        case 127:
+            return @"02-24699439";
+            break;
+        case 128:
+            return @"02-24693818";
+            break;
+        case 129:
+            return @"02-24696678";
+            break;
+        case 130:
+            return @"02-24692802";
+            break;
+        case 131:
+            return @"02-23316540";
+            break;
+        case 132:
+            return @"02-24692356";
+            break;
+        case 133:
+            return @"02-24695698";
+            break;
+        case 134:
+            return @"02-24691742";
+            break;
+        case 135:
+            return @"02-24691743";
+            break;
+        case 136:
+            return @"02-24692595";
+            break;
+        case 137:
+            return @"02-24696780";
+            break;
+        case 138:
+            return @"02-24699556";
+            break;
+        case 139:
+            return nil;
+            break;
         default:
             break;
     }
     return nil;
-
+    
 }
 
 -(NSString *)displayTitle:(int) tag
@@ -1027,3 +1219,4 @@
 
 
 @end
+

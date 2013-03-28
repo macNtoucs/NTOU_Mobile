@@ -105,10 +105,6 @@
 		A620FCA81701F4C600C3AD34 /* map-04.png in Resources */ = {isa = PBXBuildFile; fileRef = A620FCA31701F4C600C3AD34 /* map-04.png */; };
 		A620FCA91701F4C600C3AD34 /* map-05.png in Resources */ = {isa = PBXBuildFile; fileRef = A620FCA41701F4C600C3AD34 /* map-05.png */; };
 		C7BC4AB316E992D1002CB05B /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7BC4A0E16E992D1002CB05B /* MainStoryboard.storyboard */; };
-		C7BC4AB416E992D1002CB05B /* beining.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7BC4A0F16E992D1002CB05B /* beining.jpg */; };
-		C7BC4AB516E992D1002CB05B /* jungjeng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7BC4A1016E992D1002CB05B /* jungjeng.jpg */; };
-		C7BC4AB616E992D1002CB05B /* shiangfeng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7BC4A1116E992D1002CB05B /* shiangfeng.jpg */; };
-		C7BC4AB716E992D1002CB05B /* shinfeng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7BC4A1216E992D1002CB05B /* shinfeng.jpg */; };
 		C7BC4AB816E992D1002CB05B /* CustomPagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BC4A1316E992D1002CB05B /* CustomPagerViewController.m */; };
 		C7BC4AB916E992D1002CB05B /* PagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BC4A1416E992D1002CB05B /* PagerViewController.m */; };
 		C7BC4ABA16E992D1002CB05B /* PeopleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BC4A1516E992D1002CB05B /* PeopleModule.m */; };
@@ -277,10 +273,6 @@
 		C7BC493916E992D1002CB05B /* PagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagerViewController.h; sourceTree = "<group>"; };
 		C7BC493A16E992D1002CB05B /* PeopleModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleModule.h; sourceTree = "<group>"; };
 		C7BC4A0E16E992D1002CB05B /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
-		C7BC4A0F16E992D1002CB05B /* beining.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = beining.jpg; sourceTree = "<group>"; };
-		C7BC4A1016E992D1002CB05B /* jungjeng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jungjeng.jpg; sourceTree = "<group>"; };
-		C7BC4A1116E992D1002CB05B /* shiangfeng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shiangfeng.jpg; sourceTree = "<group>"; };
-		C7BC4A1216E992D1002CB05B /* shinfeng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shinfeng.jpg; sourceTree = "<group>"; };
 		C7BC4A1316E992D1002CB05B /* CustomPagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPagerViewController.m; sourceTree = "<group>"; };
 		C7BC4A1416E992D1002CB05B /* PagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagerViewController.m; sourceTree = "<group>"; };
 		C7BC4A1516E992D1002CB05B /* PeopleModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleModule.m; sourceTree = "<group>"; };
@@ -572,7 +564,6 @@
 		C7BC493716E992B2002CB05B /* Life */ = {
 			isa = PBXGroup;
 			children = (
-				C7BC4ABB16E992DC002CB05B /* Resource */,
 				C7BC4A0E16E992D1002CB05B /* MainStoryboard.storyboard */,
 				C7BC493A16E992D1002CB05B /* PeopleModule.h */,
 				C7BC4A1516E992D1002CB05B /* PeopleModule.m */,
@@ -582,17 +573,6 @@
 				C7BC4A1416E992D1002CB05B /* PagerViewController.m */,
 			);
 			name = Life;
-			sourceTree = "<group>";
-		};
-		C7BC4ABB16E992DC002CB05B /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				C7BC4A0F16E992D1002CB05B /* beining.jpg */,
-				C7BC4A1016E992D1002CB05B /* jungjeng.jpg */,
-				C7BC4A1116E992D1002CB05B /* shiangfeng.jpg */,
-				C7BC4A1216E992D1002CB05B /* shinfeng.jpg */,
-			);
-			name = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -675,10 +655,6 @@
 				91A9048416E899D200ECF2CF /* Time.png in Resources */,
 				91A9049B16E8A09A00ECF2CF /* icons in Resources */,
 				C7BC4AB316E992D1002CB05B /* MainStoryboard.storyboard in Resources */,
-				C7BC4AB416E992D1002CB05B /* beining.jpg in Resources */,
-				C7BC4AB516E992D1002CB05B /* jungjeng.jpg in Resources */,
-				C7BC4AB616E992D1002CB05B /* shiangfeng.jpg in Resources */,
-				C7BC4AB716E992D1002CB05B /* shinfeng.jpg in Resources */,
 				A620FCA51701F4C600C3AD34 /* map-01.png in Resources */,
 				A620FCA61701F4C600C3AD34 /* map-02.png in Resources */,
 				A620FCA71701F4C600C3AD34 /* map-03.png in Resources */,
