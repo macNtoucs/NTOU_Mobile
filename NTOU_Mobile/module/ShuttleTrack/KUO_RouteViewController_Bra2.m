@@ -82,7 +82,10 @@
 {
     [self changeDirectType];
     [self changeTabcTittle];
-    tabc.data = [[display objectForKey:[[display allKeys] objectAtIndex:tabcIndexPath.section]] objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(tabcIndexPath.row*5, 5)]];
+    if (busType == Kuo_Data)
+        tabc.data = [[display objectForKey:[[display allKeys] objectAtIndex:tabcIndexPath.section]] objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(tabcIndexPath.row*5, 5)]];
+    else
+        tabc.data = [[display objectForKey:[[display allKeys] objectAtIndex:tabcIndexPath.section]] objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 5)]];
 }
 
 - (void)viewDidLoad
@@ -127,7 +130,9 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @" ";
+    if (busType == Kuo_Data)
+        return @" ";
+    return nil;
 }
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (busType == Kuo_Data)
@@ -174,7 +179,7 @@
         cell.textLabel.text= [[display objectForKey:[[display allKeys] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row*StationInformationCount];
     }
     else{
-        cell.textLabel.text=[[[[display allKeys]objectAtIndex:indexPath.section] stringByAppendingString:@"  → "] stringByAppendingString:[[display objectForKey:[[display allKeys] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row*StationInformationCount]];
+        cell.textLabel.text=[[[[display allKeys]objectAtIndex:indexPath.row] stringByAppendingString:@"  ⇌  "] stringByAppendingString:[[display objectForKey:[[display allKeys] objectAtIndex:indexPath.row]] objectAtIndex:0]];
     }
     return cell;
 }
@@ -209,12 +214,23 @@
 {
     tabcIndexPath = [indexPath retain];
     SecondaryGroupedTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (busType == Kuo_Data){
     tabc = [[KUO_TimeViewController alloc] init:[[display objectForKey:[[display allKeys] objectAtIndex:indexPath.section]] objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(indexPath.row*StationInformationCount, StationInformationCount)]]delegate:self];
-    if (display==inbound) {
+        
+        if (display==inbound) {
             tabc.title = [[[[display allKeys]objectAtIndex:indexPath.section] stringByAppendingString:@"  →  "] stringByAppendingString:cell.textLabel.text];
-    } else {
+        } else {
             tabc.title = [[cell.textLabel.text stringByAppendingString:@"  →  "] stringByAppendingString:[[display allKeys]objectAtIndex:indexPath.section]];
+        }
+        
     }
+    else
+    {
+        tabc = [[KUO_TimeViewController alloc] init:[[display objectForKey:[[display allKeys] objectAtIndex:indexPath.row]] objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, StationInformationCount)]]delegate:self];
+        tabc.title = [cell.textLabel.text stringByReplacingOccurrencesOfString:@"⇌" withString:@"→"];
+        
+    }
+    
     except = FALSE;
     [self.navigationController pushViewController:tabc animated:YES];
     [tabc release];
