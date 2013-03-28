@@ -440,7 +440,6 @@
 		91A9005916E854E500ECF2CF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		91A9005A16E854E500ECF2CF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		91A9005C16E854E500ECF2CF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		91A9005E16E854E500ECF2CF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		91A9006B16E8555D00ECF2CF /* NTOUSpringboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUSpringboard.h; sourceTree = "<group>"; };
 		91A9006C16E8555D00ECF2CF /* NTOUSpringboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUSpringboard.m; sourceTree = "<group>"; };
 		91A9006E16E8589C00ECF2CF /* IconGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconGrid.h; sourceTree = "<group>"; };
@@ -877,7 +876,6 @@
 				91A9005616E854E500ECF2CF /* main.m */,
 				91A9005816E854E500ECF2CF /* NTOU_Mobile-Prefix.pch */,
 				91A9005C16E854E500ECF2CF /* Default.png */,
-				91A9005E16E854E500ECF2CF /* Default@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

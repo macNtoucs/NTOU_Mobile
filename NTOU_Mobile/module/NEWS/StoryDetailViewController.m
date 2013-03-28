@@ -149,7 +149,7 @@
         case 3:
             //cell.textLabel.text = tmpAttachment;
             //cell.detailTextLabel.text = [story objectAtIndex:5];
-            cell.textLabel.text = [[[[story objectForKey:NewsAPIKeyEmail] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+            cell.textLabel.text = nil;
             cell.imageView.image = [UIImage imageNamed:@"news/action-pdf"];
             cell.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"news/cell4.png"]];
             cell.detailTextLabel.backgroundColor = [UIColor clearColor];

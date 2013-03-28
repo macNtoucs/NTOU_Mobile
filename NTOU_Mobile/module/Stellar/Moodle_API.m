@@ -123,8 +123,15 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
 }
 
 +(NSDictionary* )GetMoodleInfo_AndUseToken:(NSString *)token courseID:(NSString *)cosID classID:(NSString *)clsID{
-    NSDictionary *postDic = [[NSDictionary alloc]initWithObjectsAndKeys:token,@"stid",cosID,@"cosid",clsID,@"clsid",nil];
-    NSString *jsonRequest = [postDic JSONRepresentation];
+    NSDictionary * Jsonlist =[[NSDictionary alloc]initWithObjectsAndKeys:cosID,@"cosid",clsID,@"clsid",nil];
+    NSString * jsonArray = [Jsonlist JSONRepresentation];
+    NSDictionary *postDic = [[NSDictionary alloc]initWithObjectsAndKeys:token,@"stid",Jsonlist,@"list",nil];
+    NSString *const_jsonRequest = [postDic JSONRepresentation];
+    NSMutableString *jsonRequest = [[NSMutableString alloc]initWithString:const_jsonRequest];
+    
+    [jsonRequest insertString:@"[" atIndex:8];
+    [jsonRequest insertString:@"]" atIndex:[jsonRequest rangeOfString:@"stid"].location-2];
+    
     NSString *finailPost = [NSString stringWithFormat:@"json=%@",jsonRequest];
     NSDictionary *dictionary = [self queryFunctionType:@"getMoodleInfo" PostString:finailPost];
     return dictionary;
@@ -203,7 +210,7 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
 {
     //moodle.ntou.edu.tw/file.php/19367/課程講義/_10_JavaScript_for_Ajax.pptx
     NSString *URL = [NSString stringWithFormat:@"http://moodle.ntou.edu.tw/file.php%@/%@",dir,FileName];
-   /* URL = [URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    URL = [URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL  *url = [NSURL URLWithString:URL];
     
     NSData *urlData = [NSData dataWithContentsOfURL:url];
@@ -213,11 +220,10 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
         NSString  *documentsDirectory = [paths objectAtIndex:0];
         
         NSString  *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,FileName];
-        [urlData writeToFile:filePath atomically:YES];*/
-        return URL;
-
-    //}
-   // else return @"Error_dir_or_FileName";
+        [urlData writeToFile:filePath atomically:YES];
+        return filePath;
+    }
+    else return @"Error_dir_or_FileName";
     
 }
 

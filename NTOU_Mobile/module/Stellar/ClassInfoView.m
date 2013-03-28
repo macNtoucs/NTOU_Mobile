@@ -264,7 +264,12 @@
             return [resource objectAtIndex:indexPath.row];
     }
     else if (types == 3){
-        return [[resource objectAtIndex:indexPath.row] objectForKey:moodleInfoDescriptionKey];
+        NSString* cellDisplay = [[resource objectAtIndex:indexPath.section] objectForKey:moodleInfoDescriptionKey];
+        if ([cellDisplay isEqualToString:@""]) {
+            return [[resource objectAtIndex:indexPath.section] objectForKey:moodleInfoSummaryKey];
+        }
+        else
+            return cellDisplay;
         
     }
     return nil;

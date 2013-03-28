@@ -196,11 +196,17 @@
         NSMutableArray* resource = [[NSMutableArray alloc] init];
         moodleid = [[[Moodle_API GetMoodleID_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]] objectForKey:moodleMoodleID] retain];
         for (NSDictionary* info in data) {
-            [resource addObject:[Moodle_API MoodleID_AndUseToken:token
-                                                               module:[info objectForKey:moodleResourceModuleKey]
-                                                                  moodleID:moodleid
-                                                             courseID:[apiKey objectForKey:courseIDKey]
-                                                              classID:[apiKey objectForKey:classIDKey]]];
+            NSRange range  = [[info objectForKey:moodleResourceUrlKey] rangeOfString:@"php?id="];
+            if (![[info objectForKey:moodleResourceModuleKey] isEqualToString:@"forum"]) {
+                NSDictionary* infoDetail = [Moodle_API MoodleID_AndUseToken:token
+                                                                     module:[info objectForKey:moodleResourceModuleKey]
+                                                                   moodleID:[[info objectForKey:moodleResourceUrlKey] substringFromIndex: range.location+range.length]
+                                                                   courseID:[apiKey objectForKey:courseIDKey]
+                                                                    classID:[apiKey objectForKey:classIDKey]];
+                if ((![[infoDetail objectForKey:moodleInfoDescriptionKey] isEqualToString:@""])||(!([infoDetail objectForKey:moodleInfoSummaryKey]==NULL||[[infoDetail objectForKey:moodleInfoSummaryKey] isEqualToString:@""]))) {
+                    [resource addObject:infoDetail];
+                }
+            }
         }
         
         view1.delegatetype5 = self;
