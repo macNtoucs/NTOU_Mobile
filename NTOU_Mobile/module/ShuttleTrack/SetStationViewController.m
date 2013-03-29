@@ -22,7 +22,6 @@
 
 -(id)initIsHighSpeedTrain:(bool)isHighSpeedTrain{
     ThroughTap *bg = [[ThroughTap alloc]initWithFrame:CGRectMake(0,0,320,[[UIScreen mainScreen] bounds].size.height)];
-    NSLog(@"%f",bg.frame.size.height);
     startStaion_origin =0;
     depatureStation_origin=0;
     dateSelected=0;
@@ -42,7 +41,6 @@
         }
         view1 = [[SetOriginAndStationViewController alloc] initWithStyle:UITableViewStyleGrouped];
         view1.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
-        NSLog(@"%f",view1.view.frame.size.height);
         [setStartStationController.view addSubview:bg];
         [setStartStationController.view addSubview:view1.view];
         setStartStationController.tabBarItem.tag=0;
@@ -51,8 +49,7 @@
         ///////////////////////////////////////////////////////////
         view2 = [[SetOriginAndStationViewController alloc] initWithStyle:UITableViewStyleGrouped];
         view2.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
-         NSLog(@"%f",view2.view.frame.size.height);
-         [setdepatureStationviewController.view addSubview:bg];
+        [setdepatureStationviewController.view addSubview:bg];
         [setdepatureStationviewController.view addSubview:view2.view];      setdepatureStationviewController.tabBarItem.tag=1;
         view2.delegate = self;
         setdepatureStationviewController.tabBarItem.image = [UIImage imageNamed:@"bank.png"];
@@ -194,7 +191,6 @@
 - (CGFloat) horizontalLocationFor:(NSUInteger)tabIndex
 {
     CGFloat tabItemWidth = self.tabBar.frame.size.width / [viewControllers count];
-    NSLog(@"%f / %u",self.tabBar.frame.size.width , self.tabBar.items.count);
     CGFloat halfTabItemWidth = (tabItemWidth / 2.0) - (tabBarArrow.frame.size.width / 2.0);
     return (tabIndex * tabItemWidth) + halfTabItemWidth;
 }
@@ -217,7 +213,6 @@
     frame.origin.x = [self horizontalLocationFor:self.selectedIndex];
     tabBarArrow.frame = frame;
     [UIView commitAnimations];
-    NSLog(@"%d", viewController.tabBarItem.tag);
     if (viewController.tabBarItem.tag==4){
        
         dispatch_async( dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -298,8 +293,6 @@
         return [NSURL URLWithString:@""];
     }
     
-    NSLog(@"%@",calendar.selectedDate);
-    
     if (![startStaion isEqualToString:@""] && ![DepatureStation isEqualToString:@""] ){
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
        
@@ -376,7 +369,6 @@
 
 -(void)HTTime:(SetTimeViewController *) controller nowselectedTime:(NSString *)Time{
     selectedHTTime = Time;
-    NSLog(@"%@",Time);
 }
 
 
