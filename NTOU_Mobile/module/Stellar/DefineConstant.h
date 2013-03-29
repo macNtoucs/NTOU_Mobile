@@ -34,6 +34,7 @@
 #define moodleInfoCourseNameKey @"course_name"
 #define moodleInfoDescriptionKey @"description"
 #define moodleInfoTitleKey @"title"
+#define moodleInfoSummaryKey @"summary"
 
 #define moodleGradeNameKey @"name"
 #define moodleGradeKey @"grade"

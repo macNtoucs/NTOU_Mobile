@@ -365,7 +365,7 @@
             return @"02-24624362";
             break;
         case 51:
-            return @"02-24624778";
+            return @"02-24627904";
             break;
         case 52:
             return @"02-24621158";
@@ -491,7 +491,7 @@
             return @"02-24650507";
             break;
         case 93:
-            return @"02-24680089";
+            return @"02-24654548";
             break;
         case 94:
             return @"02-24622203";
@@ -793,7 +793,7 @@
             return @"光泰影印";
             break;
         case 51:
-            return @"早安媽美食館";
+            return @"瑞麟美而美";
             break;
         case 52:
             return @"古早味麵店";
@@ -919,7 +919,7 @@
             return @"三媽臭臭鍋";
             break;
         case 93:
-            return @"山月亭小火鍋";
+            return @"頂好超市";
             break;
         case 94:
             return @"清心福全深溪店";

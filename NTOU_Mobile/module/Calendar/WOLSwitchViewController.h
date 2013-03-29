@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class WOLChilistViewController;
+@class WOLChiListViewController;
 @class WOLEnglistViewController;
 
-@interface WOLSwitchViewController : UIViewController
+@interface WOLSwitchViewController : UIViewController <UIGestureRecognizerDelegate>
 
-@property (strong, nonatomic) WOLChilistViewController *chiViewController;
+@property (strong, nonatomic) WOLChiListViewController *chiViewController;
 @property (strong, nonatomic) WOLEnglistViewController *engViewController;
 
 -(void)Chichooseitem;

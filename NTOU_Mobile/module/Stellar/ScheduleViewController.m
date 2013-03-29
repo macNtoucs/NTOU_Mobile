@@ -55,8 +55,9 @@
     }
     else
     {
+        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
         UIAlertView *loadingAlertView = [[UIAlertView alloc]
-                                         initWithTitle:nil message:@"帳號、密碼錯誤"
+                                         initWithTitle:nil message:@"登入失敗"
                                          delegate:self cancelButtonTitle:@"確定"
                                          otherButtonTitles:nil];
         [loadingAlertView show];

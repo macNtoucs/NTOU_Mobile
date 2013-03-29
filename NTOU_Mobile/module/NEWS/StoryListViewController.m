@@ -60,7 +60,7 @@ NSString *const NewsCategoryInformation = @"校外訊息";
 NewsCategoryId buttonCategories[] = {
     NewsCategoryIdAnnounce, NewsCategoryIdSymposium,
     NewsCategoryIdArt, NewsCategoryIdLecture,
-    NewsCategoryIdDocument, NewsCategoryIdInformation,
+    /*NewsCategoryIdDocument,*/ NewsCategoryIdInformation,
 };
 
 NSString *titleForCategoryId(NewsCategoryId category_id) {
