@@ -71,7 +71,7 @@
 @synthesize expired;
 - (void)setDate:(NSDate *)aDate {
     _date = aDate;
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init]autorelease];
     dateFormatter.dateFormat = @"d";
     [self setTitle:[dateFormatter stringFromDate:_date] forState:UIControlStateNormal];
     [_date retain];
@@ -158,7 +158,7 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        self.calendar = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar]autorelease];
         [self.calendar setLocale:[NSLocale currentLocale]]; 
         [self.calendar setFirstWeekday:self.calendarStartDay];
         self.cellWidth = DEFAULT_CELL_WIDTH;
@@ -170,14 +170,14 @@
         self.layer.borderColor = [UIColor blackColor].CGColor;
         self.layer.borderWidth = 1.0f;
 
-        UIView *highlight = [[UIView alloc] initWithFrame:CGRectZero];
+        UIView *highlight = [[[UIView alloc] initWithFrame:CGRectZero]autorelease];
         highlight.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
         highlight.layer.cornerRadius = 6.0f;
         [self addSubview:highlight];
         self.highlight = highlight;
 
         // SET UP THE HEADER
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero]autorelease];
         titleLabel.textAlignment = UITextAlignmentCenter;
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
@@ -199,7 +199,7 @@
         self.nextButton = nextButton;
 
         // THE CALENDAR ITSELF
-        ContainerView *calendarContainer = [[ContainerView alloc] initWithFrame:CGRectZero];
+        ContainerView *calendarContainer = [[[ContainerView alloc] initWithFrame:CGRectZero]autorelease];
         calendarContainer.layer.borderWidth = 1.0f;
         calendarContainer.layer.borderColor = [UIColor blackColor].CGColor;
         calendarContainer.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
@@ -208,14 +208,14 @@
         [self addSubview:calendarContainer];
         self.calendarContainer = calendarContainer;
 
-        GradientView *daysHeader = [[GradientView alloc] initWithFrame:CGRectZero];
+        GradientView *daysHeader = [[[GradientView alloc] initWithFrame:CGRectZero]autorelease];
         daysHeader.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
         [self.calendarContainer addSubview:daysHeader];
         self.daysHeader = daysHeader;
 
         NSMutableArray *labels = [NSMutableArray array];
         for (NSString *day in [self getDaysOfTheWeek]) {
-            UILabel *dayOfWeekLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+            UILabel *dayOfWeekLabel = [[[UILabel alloc] initWithFrame:CGRectZero]autorelease];
             dayOfWeekLabel.text = NSLocalizedString([day uppercaseString],nil);
             dayOfWeekLabel.textAlignment = UITextAlignmentCenter;
             dayOfWeekLabel.backgroundColor = [UIColor clearColor];
@@ -239,7 +239,7 @@
             dateButton.titleLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
             dateButton.titleLabel.textAlignment = UITextAlignmentCenter;
             // set date label.
-            UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+            UILabel *dateLabel = [[[UILabel alloc] initWithFrame:CGRectZero]autorelease];
             dateLabel.textAlignment = UITextAlignmentCenter;
             dateLabel.backgroundColor = [UIColor clearColor];
             dateLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -255,7 +255,7 @@
         
 
         // initialize the thing
-        self.monthShowing = [[NSDate alloc]init];
+        self.monthShowing = [[[NSDate alloc]init]autorelease];
         self.monthShowing = [NSDate date];
         [self.monthShowing retain];
         [self setDefaultStyle];
@@ -274,14 +274,15 @@
     NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
     NSDate *selectedDate = [[NSDate alloc] initWithTimeInterval:interval sinceDate:date] ;
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
-    
-    NSDateComponents* todayComponents = [self.calendar components:unitFlags fromDate:tody];
+    if (tody){
+       NSDateComponents* todayComponents = [self.calendar components:unitFlags fromDate:tody];
     
     NSDateComponents* otherComponents = [self.calendar components:unitFlags fromDate:selectedDate];
     if (  otherComponents.year<todayComponents.year ||
           ((otherComponents.year == todayComponents.year) && otherComponents.month<todayComponents.month) ||
           ((otherComponents.year == todayComponents.year)&& (otherComponents.month == todayComponents.month) && otherComponents.day<todayComponents.day)
         ) return true;
+    }
     else return  false;
 }
 
@@ -384,7 +385,7 @@
 - (void)setMonthShowing:(NSDate *)aMonthShowing {
     _monthShowing = aMonthShowing;
     [_monthShowing retain];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init]autorelease];
     dateFormatter.dateFormat = @"MM月 YYYY年";
     self.titleLabel.text = [dateFormatter stringFromDate:aMonthShowing];
     [self setNeedsLayout];
@@ -423,7 +424,7 @@
 }
 
 - (void)moveCalendarToNextMonth {
-    NSDateComponents* comps = [[NSDateComponents alloc]init];
+    NSDateComponents* comps = [[[NSDateComponents alloc]init]autorelease];
     [comps setMonth:1];
     [self.monthShowing retain];
     self.monthShowing = [self.calendar dateByAddingComponents:comps toDate:self.monthShowing options:0];
@@ -541,7 +542,7 @@
 }
 
 - (NSArray *)getDaysOfTheWeek {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init]autorelease];
     
     // adjust array depending on which weekday should be first
     NSArray *weekdays = [dateFormatter shortWeekdaySymbols];
@@ -586,7 +587,7 @@
 }
 
 - (NSDate *)nextDay:(NSDate *)date {
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSDateComponents *comps = [[[NSDateComponents alloc] init]autorelease];
     [comps setDay:1];
     return [self.calendar dateByAddingComponents:comps toDate:date options:0];
 }
