@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "91A9004516E854E500ECF2CF"
-               BuildableName = "&#28023;&#22823;App.app"
+               BuildableName = "NTOU_Mobile.app"
                BlueprintName = "NTOU_Mobile"
                ReferencedContainer = "container:NTOU_Mobile.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "91A9004516E854E500ECF2CF"
-            BuildableName = "&#28023;&#22823;App.app"
+            BuildableName = "NTOU_Mobile.app"
             BlueprintName = "NTOU_Mobile"
             ReferencedContainer = "container:NTOU_Mobile.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "91A9004516E854E500ECF2CF"
-            BuildableName = "&#28023;&#22823;App.app"
+            BuildableName = "NTOU_Mobile.app"
             BlueprintName = "NTOU_Mobile"
             ReferencedContainer = "container:NTOU_Mobile.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "91A9004516E854E500ECF2CF"
-            BuildableName = "&#28023;&#22823;App.app"
+            BuildableName = "NTOU_Mobile.app"
             BlueprintName = "NTOU_Mobile"
             ReferencedContainer = "container:NTOU_Mobile.xcodeproj">
          </BuildableReference>
