@@ -21,7 +21,8 @@
 @synthesize station;
 
 -(id)initIsHighSpeedTrain:(bool)isHighSpeedTrain{
-    ThroughTap *bg = [[ThroughTap alloc]initWithFrame:CGRectMake(0,0,320,480)];
+    ThroughTap *bg = [[ThroughTap alloc]initWithFrame:CGRectMake(0,0,320,[[UIScreen mainScreen] bounds].size.height)];
+    NSLog(@"%f",bg.frame.size.height);
     startStaion_origin =0;
     depatureStation_origin=0;
     dateSelected=0;
@@ -35,24 +36,25 @@
         DepatureStation = [[ NSUserDefaults standardUserDefaults]objectForKey:@"DepatureStaion"];
         if (!startStaion||!DepatureStation) {
             startStaion = [[NSString alloc]initWithFormat:@"基隆"];
-            DepatureStation = [[NSString alloc]initWithFormat:@"台北"];
+            DepatureStation = [[NSString alloc]initWithFormat:@"臺北"];
             [[NSUserDefaults standardUserDefaults]setObject:startStaion forKey:@"startStaion"];
             [[NSUserDefaults standardUserDefaults]setObject:DepatureStation forKey:@"DepatureStaion"];
         }
         view1 = [[SetOriginAndStationViewController alloc] initWithStyle:UITableViewStyleGrouped];
         view1.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
-        [setStartStationController.view addSubview:view1.view];
+        NSLog(@"%f",view1.view.frame.size.height);
         [setStartStationController.view addSubview:bg];
+        [setStartStationController.view addSubview:view1.view];
         setStartStationController.tabBarItem.tag=0;
         view1.delegate = self;
         setStartStationController.tabBarItem.image = [UIImage imageNamed:@"bank.png"];
         ///////////////////////////////////////////////////////////
         view2 = [[SetOriginAndStationViewController alloc] initWithStyle:UITableViewStyleGrouped];
         view2.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
-        [setdepatureStationviewController.view addSubview:view2.view];
-        [setdepatureStationviewController.view addSubview:bg];
+         NSLog(@"%f",view2.view.frame.size.height);
+         [setdepatureStationviewController.view addSubview:bg];
+        [setdepatureStationviewController.view addSubview:view2.view];      setdepatureStationviewController.tabBarItem.tag=1;
         view2.delegate = self;
-        setdepatureStationviewController.tabBarItem.tag=1;
         setdepatureStationviewController.tabBarItem.image = [UIImage imageNamed:@"bank.png"];
         ///////////////////////////////////////////////////////////
     }
@@ -150,17 +152,17 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        setStartStationController = [[UIViewController alloc] init];
+        setStartStationController = [[[UIViewController alloc] init]autorelease];
         setStartStationController.title = @"起站";
-        setdepatureStationviewController = [[UIViewController alloc] init];
+        setdepatureStationviewController = [[[UIViewController alloc] init]autorelease];
         setdepatureStationviewController.title = @"訖站";
-        setTimeviewController = [[UIViewController alloc] init];
+        setTimeviewController = [[[UIViewController alloc] init]autorelease];
         setTimeviewController.title = @"日期";
-        setTrainTypeviewController = [[UIViewController alloc] init];
+        setTrainTypeviewController = [[[UIViewController alloc] init]autorelease];
         setTrainTypeviewController.title = @"車種";
-        resultViewController = [[UIViewController alloc] init];
+        resultViewController = [[[UIViewController alloc] init]autorelease];
         resultViewController.title = @"查詢";
-        setHTTimeviewController = [[UIViewController alloc] init];
+        setHTTimeviewController = [[[UIViewController alloc] init]autorelease];
         setHTTimeviewController.title = @"時間";
     }
     return self;
