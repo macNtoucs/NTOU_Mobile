@@ -169,7 +169,7 @@
 
 
 -(void)navAddRightButton{
-    UIBarButtonItem * swapStation = [[UIBarButtonItem alloc]initWithTitle:@"往返切換" style:UIBarButtonItemStylePlain target:self action:@selector(SwapStation)];
+    UIBarButtonItem * swapStation = [[UIBarButtonItem alloc]initWithTitle:@"往返" style:UIBarButtonItemStylePlain target:self action:@selector(SwapStation)];
     self.navigationItem.rightBarButtonItem = swapStation;
 }
 -(void)SwapStation{

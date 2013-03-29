@@ -58,14 +58,14 @@
     if (!self.viewControllers) {
         [self.viewControllers release];
     }
-    [self setViewControllers:[NSArray arrayWithObjects:view1, view2,view3, nil] animated:YES];
+    [self setViewControllers:[NSArray arrayWithObjects:view1, view2,view3, nil] animated:NO];
 }
 - (id)init:(NSArray*)array delegate:(id)dele
 {
     self = [super init];
     if (self) {
         
-        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"往返切換"
+        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"往返"
                                                                         style:UIBarButtonItemStyleBordered
                                                                        target:self
                                                                        action:@selector(changeDirect)];
