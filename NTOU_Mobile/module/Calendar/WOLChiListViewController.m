@@ -6,12 +6,11 @@
 //  Copyright (c) 2013年 apple. All rights reserved.
 //
 #import <EventKit/EventKit.h>
-#import "WOLChilistViewController.h"
-#import "BIDNameAndColorCell.h"
+#import "WOLChiListViewController.h"
 #import "NTOUUIConstants.h"
 #import "MBProgressHUD.h"
 
-@interface WOLChilistViewController ()
+@interface WOLChiListViewController ()
 
 @property (nonatomic, strong) UIToolbar *actionToolbar;
 @property (nonatomic, strong) NSMutableArray *selectindexs;
@@ -19,12 +18,12 @@
 @property (nonatomic, strong) UIActionSheet *endactionsheet;
 @property (nonatomic, strong) EKEventStore *eventStore;
 @property (nonatomic, strong) UIView *mask;
-
+@property (nonatomic) BOOL allSelecting;
 @property (nonatomic) BOOL showing;
 
 @end
 
-@implementation WOLChilistViewController
+@implementation WOLChiListViewController
 
 @synthesize events;
 @synthesize keys;
@@ -35,8 +34,9 @@
 @synthesize switchviewcontroller;
 @synthesize eventStore;
 @synthesize mask;
-
+@synthesize downLoadEditing;
 @synthesize showing;
+@synthesize allSelecting;
 
 -(id)initWithStyle:(UITableViewStyle)style
 {
@@ -62,14 +62,6 @@
     
     NSArray *array = [[NSArray alloc] initWithObjects:@"8",@"9",@"10",@"11",@"12",@"1",@"2",@"3",@"4",@"5",@"6",@"7", nil];
     self.keys = array;
-    
-    /*
-     UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
-     initWithTitle:@"下載"
-     style:UIBarButtonItemStyleBordered
-     target:self
-     action:@selector(chooseitem)];
-     self.navigationItem.rightBarButtonItem = addButton;*/
     
     self.actionToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 416, 320, 44)];
     
@@ -101,9 +93,8 @@
     [self.actionToolbar setItems:[NSArray arrayWithObjects:flexiblespace_l,allselectButton,flexiblespace_m,finishButton,flexiblespace_r, nil]];
     self.actionToolbar.barStyle = UIBarStyleBlack;
     
-    [self.tableView setAllowsSelectionDuringEditing:YES];
-    
-   // [self.view ]
+    downLoadEditing = NO;
+    allSelecting = NO;
 }
 
 -(void)viewDidUnload
@@ -140,92 +131,70 @@
 {
     NSUInteger section = [indexPath section];
     NSUInteger row = [indexPath row];
-    
+
     NSString *key = [keys objectAtIndex:section];
-    NSArray *eventsection = [events objectForKey:key];
+    NSArray *monthevent = [events objectForKey:key];
+    NSDictionary *dateevent = [monthevent objectAtIndex:row];
+    UITableViewCell *cell = [self mackCell:tableView sectionForCell:section rowForCell:row eventForRow:dateevent monthForEvent:key];
     
-    NSDictionary *dateevent = [eventsection objectAtIndex:row];
-    NSString *value = [dateevent objectForKey:@"value"];
-    NSString *startdate = [dateevent objectForKey:@"startdate"];
-    NSString *enddate = [dateevent objectForKey:@"enddate"];
-    NSString *cross = [dateevent objectForKey:@"cross"];
+    BOOL selet = NO;
+    for(NSIndexPath *index in selectindexs)
+    {
+        if([indexPath isEqual:index])
+        {
+            selet = YES;
+            [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        }
+    }
+    if(selet == NO)
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
     
-    //-----------------
-    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
+    return cell;
+}
+
+-(UITableViewCell*)mackCell:(UITableView *)tableView sectionForCell:(NSUInteger)section rowForCell:(NSUInteger)row eventForRow:(NSDictionary *)rowevent monthForEvent:(NSString*)month
+{
+    NSString *value = [rowevent objectForKey:@"value"];
+    NSString *startdate = [rowevent objectForKey:@"startdate"];
+    NSString *enddate = [rowevent objectForKey:@"enddate"];
+    NSString *cross = [rowevent objectForKey:@"cross"];
+    NSString *startweek = [rowevent objectForKey:@"startweek"];
+    NSString *endweek = [rowevent objectForKey:@"endweek"];
+    
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d%@%@",section,row,month,startdate];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     UILabel *datelabel = nil;
     UILabel *eventlabel = nil;
     UILabel *date = nil;
     UILabel *event = nil;
+    
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+    CGSize maximumLabelSize = CGSizeMake(230,9999);
+    CGSize expectedLabelSize = [value sizeWithFont:cellFont
+                                 constrainedToSize:maximumLabelSize
+                                     lineBreakMode:UILineBreakModeWordWrap];
+    
     if (cell == nil)
     {
-        UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
-        CGSize maximumLabelSize = CGSizeMake(230,9999);
-        CGSize expectedLabelSize = [value sizeWithFont:cellFont
-                                     constrainedToSize:maximumLabelSize
-                                         lineBreakMode:UILineBreakModeWordWrap];
-
         datelabel = [[UILabel alloc] init];
         eventlabel = [[UILabel alloc] init];
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         
-        datelabel.frame = CGRectMake(62,8,230,14);
-        eventlabel.frame = CGRectMake(62,29,230,expectedLabelSize.height);
-
-        cell.backgroundColor = SECONDARY_GROUP_BACKGROUND_COLOR;
-        
-        datelabel.tag = indexPath.row;
-        datelabel.font = cellFont;
-        datelabel.textColor = CELL_STANDARD_FONT_COLOR;
-        datelabel.backgroundColor = [UIColor clearColor];
-        
-        if([startdate isEqualToString:enddate])
-        {
-            NSString *valuestring = [[NSString alloc]initWithFormat:@"%@/%@",key,startdate];
-            datelabel.text = valuestring;
-        }
-        else
-        {
-            NSString *nextkey;
-            if(section != 11)
-                nextkey = [keys objectAtIndex:section+1];
-            else
-                nextkey = @"8";
-            
-            if([cross isEqualToString:@"no"])
-            {
-                NSString *valuestring = [[NSString alloc]initWithFormat:@"%@/%@ - %@/%@",key,startdate,key,enddate];
-                datelabel.text = valuestring;
-            }
-            else
-            {
-                NSString *valuestring = [[NSString alloc]initWithFormat:@"%@/%@ - %@/%@",key,startdate,nextkey,enddate];
-                datelabel.text = valuestring;
-            }
-        }
-        
-        eventlabel.tag=indexPath.row;
-        eventlabel.lineBreakMode = UILineBreakModeWordWrap;
-        eventlabel.numberOfLines = 0;
-        eventlabel.backgroundColor = [UIColor clearColor];
-        eventlabel.font = cellFont;
-        eventlabel.textColor = CELL_STANDARD_FONT_COLOR;
-        eventlabel.text = value;
-        
-        
         event = [[UILabel alloc] init];
         date= [[UILabel alloc] init];
         
-        event.frame = CGRectMake(14,25,45,21);
+        event.frame = CGRectMake(11,25,45,21);
         event.text = @"事件：";
-        event.tag=indexPath.row;
+        event.textAlignment = UITextAlignmentRight;
+        event.tag=row;
         event.backgroundColor = [UIColor clearColor];
         event.font = cellFont;
         event.textColor = CELL_STANDARD_FONT_COLOR;
-
-        date.frame = CGRectMake(14,4,45,21);
-        date.text = @"日期：";
-        date.tag=indexPath.row;
+        
+        date.frame = CGRectMake(11,4,45,21);
+        date.text = @"時間：";
+        date.textAlignment = UITextAlignmentRight;
+        date.tag=row;
         date.backgroundColor = [UIColor clearColor];
         date.font = cellFont;
         date.textColor = CELL_STANDARD_FONT_COLOR;
@@ -235,11 +204,60 @@
         [cell.contentView addSubview:date];
         [cell.contentView addSubview:event];
     }
-
-    if (self.tableView.editing)
+    
+    datelabel.frame = CGRectMake(62,8,230,14);
+    eventlabel.frame = CGRectMake(62,29,230,expectedLabelSize.height);
+    
+    cell.backgroundColor = SECONDARY_GROUP_BACKGROUND_COLOR;
+    
+    datelabel.tag = row;
+    datelabel.font = cellFont;
+    datelabel.textColor = CELL_STANDARD_FONT_COLOR;
+    datelabel.backgroundColor = [UIColor clearColor];
+    
+    if([startdate isEqualToString:enddate])
+    {
+        NSString *valuestring = [[NSString alloc]initWithFormat:@"%@/%@ (%@)",month,startdate,startweek];
+        datelabel.text = valuestring;
+    }
+    else
+    {
+        NSString *nextkey;
+        if(section != 11)
+            nextkey = [keys objectAtIndex:section+1];
+        else
+            nextkey = @"8";
+        
+        if([cross isEqualToString:@"no"])
+        {
+            NSString *valuestring = [[NSString alloc]initWithFormat:@"%@/%@ (%@) ~ %@/%@ (%@)",month,startdate,startweek,month,enddate,endweek];
+            datelabel.text = valuestring;
+        }
+        else
+        {
+            NSString *valuestring = [[NSString alloc]initWithFormat:@"%@/%@ (%@) ~ %@/%@ (%@)",month,startdate,startweek,nextkey,enddate,endweek];
+            datelabel.text = valuestring;
+        }
+    }
+    
+    eventlabel.tag=row;
+    eventlabel.lineBreakMode = UILineBreakModeWordWrap;
+    eventlabel.numberOfLines = 0;
+    eventlabel.backgroundColor = [UIColor clearColor];
+    eventlabel.font = cellFont;
+    eventlabel.textColor = CELL_STANDARD_FONT_COLOR;
+    eventlabel.text = value;
+    
+    
+    if (downLoadEditing)
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     else
+    {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+    }
+
+    
     return cell;
 }
 
@@ -283,14 +301,10 @@
     return keys;
 }
 
--(UITableViewCellEditingStyle)tableView:(UITableView*)tableView editingStyleForRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    return 3;
-}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableView.editing)//編輯中
+    if (downLoadEditing)//編輯中
     {
         BOOL selected = NO;
         for(NSIndexPath *index in selectindexs)
@@ -300,18 +314,24 @@
         }
         
         if(selected == NO)
+        {
+            [[tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];
             [selectindexs addObject:indexPath];
-        NSLog(@"select %@",indexPath);
+            NSLog(@"%@",indexPath);
+        }
+        
+        NSLog(@"end a select");
     }
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tableView.editing)//編輯中
+    if (downLoadEditing)//編輯中
     {
         [selectindexs removeObject:indexPath];
+        [[self.tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryNone];
         
-        NSLog(@"end a select");           
+        NSLog(@"end a select");
     }
 }
 #pragma mark -
@@ -355,28 +375,28 @@
 
 - (IBAction)chooseitem
 {
-    [self.tableView setEditing:!self.tableView.editing animated:YES];
-    if (self.tableView.editing) {//編輯中
-        [selectindexs removeAllObjects];
-
+    downLoadEditing = !downLoadEditing;
+   // [self.tableView setEditing:!self.tableView.editing animated:YES];
+    if (downLoadEditing)//編輯中
         [self showActionToolbar:YES];
-    }
-    else    
+    else
+    {
+        [selectindexs removeAllObjects];
         [self showActionToolbar:NO];
+    }
 
     [self.tableView reloadData];
 }
 
 - (IBAction)allselect:(id)sender
 {
-    for (int i = 0; i < [self.tableView numberOfSections]; i++) {
-        for (int j = 0; j < [self.tableView numberOfRowsInSection:i]; j++) {
-            NSUInteger ints[2] = {i,j};
-            NSIndexPath *indexPath = [NSIndexPath indexPathWithIndexes:ints length:2];
-            [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
-            [self.tableView selectRowAtIndexPath:indexPath
+    NSInteger s,r;
+    for (s = 0; s < self.tableView.numberOfSections; s++) {
+        for (r = 0; r < [self.tableView numberOfRowsInSection:s]; r++) {
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:r inSection:s]
                                         animated:YES
                                   scrollPosition:UITableViewScrollPositionNone];
+            [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:r inSection:s]];
         }
     }
 }
@@ -419,7 +439,7 @@
                             // Show the HUD in the main tread
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 // No need to hod onto (retain)
-                                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.switchviewcontroller.view animated:YES];
                                 hud.labelText = @"DownLoading";
                             });
                             
@@ -429,7 +449,7 @@
                             //[self.tableView setEditing:YES animated:NO];
                             
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                [MBProgressHUD hideHUDForView:self.switchviewcontroller.view animated:YES];
                                 [alertfinish show];
                                 [self.switchviewcontroller Chichooseitem];
                                 [eventStore release];

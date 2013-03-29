@@ -13,6 +13,10 @@
 			<string>1</string>
 			<key>enddate</key>
 			<string>1</string>
+			<key>startweek</key>
+			<string>三</string>
+			<key>endweek</key>
+			<string>三</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -23,6 +27,10 @@
 			<string>6</string>
 			<key>enddate</key>
 			<string>9</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>四</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -33,6 +41,10 @@
 			<string>10</string>
 			<key>enddate</key>
 			<string>10</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -43,6 +55,10 @@
 			<string>16</string>
 			<key>enddate</key>
 			<string>20</string>
+			<key>startweek</key>
+			<string>四</string>
+			<key>endweek</key>
+			<string>一</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -53,6 +69,10 @@
 			<string>18</string>
 			<key>enddate</key>
 			<string>18</string>
+			<key>startweek</key>
+			<string>六</string>
+			<key>endweek</key>
+			<string>六</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -63,6 +83,10 @@
 			<string>26</string>
 			<key>enddate</key>
 			<string>26</string>
+			<key>startweek</key>
+			<string>日</string>
+			<key>endweek</key>
+			<string>日</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -73,28 +97,474 @@
 			<string>27</string>
 			<key>enddate</key>
 			<string>7</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 	</array>
 	<key>9</key>
-	<array/>
-	<key>10</key>
-	<array/>
-	<key>11</key>
-	<array/>
-	<key>12</key>
-	<array/>
-	<key>1</key>
 	<array>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>開國紀念日（放假）</string>
+			<string>暑假結束</string>
 			<key>startdate</key>
-			<string>1</string>
+			<string>8</string>
 			<key>enddate</key>
-			<string>1</string>
+			<string>8</string>
+			<key>startweek</key>
+			<string>六</string>
+			<key>endweek</key>
+			<string>六</string>
 		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>學生宿舍開放</string>
+			<key>startdate</key>
+			<string>8</string>
+			<key>enddate</key>
+			<string>9</string>
+			<key>startweek</key>
+			<string>六</string>
+			<key>endweek</key>
+			<string>日</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>日間學制研究生新生及進修學士班、碩專班新生體檢；進修學士班、碩專班新生註冊及就學貸款申辦截止日；進修學士班、碩專班新生入學教育</string>
+			<key>startdate</key>
+			<string>10</string>
+			<key>enddate</key>
+			<string>10</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>一</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>日間學制研究生新生註冊暨選課說明會及就學貸款申辦截止日；日間學制學士班新生體檢</string>
+			<key>startdate</key>
+			<string>11</string>
+			<key>enddate</key>
+			<string>11</string>
+			<key>startweek</key>
+			<string>二</string>
+			<key>endweek</key>
+			<string>二</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>日間學制學士班新生註冊暨選課說明會及就學貸款申辦截止日</string>
+			<key>startdate</key>
+			<string>12</string>
+			<key>enddate</key>
+			<string>12</string>
+			<key>startweek</key>
+			<string>三</string>
+			<key>endweek</key>
+			<string>三</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>新生安全日</string>
+			<key>startdate</key>
+			<string>14</string>
+			<key>enddate</key>
+			<string>14</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>五</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>日間學制新生入學教育</string>
+			<key>startdate</key>
+			<string>13</string>
+			<key>enddate</key>
+			<string>14</string>
+			<key>startweek</key>
+			<string>四</string>
+			<key>endweek</key>
+			<string>五</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>1011 舊生第三階段電腦選課作業，新生電腦選課作業</string>
+			<key>startdate</key>
+			<string>13</string>
+			<key>enddate</key>
+			<string>21</string>
+			<key>startweek</key>
+			<string>四</string>
+			<key>endweek</key>
+			<string>五</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>yes</string>
+			<key>value</key>
+			<string>弱勢助學計畫申請</string>
+			<key>startdate</key>
+			<string>10</string>
+			<key>enddate</key>
+			<string>10</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>三</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>各學制學生開始上課</string>
+			<key>startdate</key>
+			<string>16</string>
+			<key>enddate</key>
+			<string>16</string>
+			<key>startweek</key>
+			<string>日</string>
+			<key>endweek</key>
+			<string>日</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>各學制舊生註冊</string>
+			<key>startdate</key>
+			<string>17</string>
+			<key>enddate</key>
+			<string>18</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>二</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>舊生就學貸款申辦截止日，各學制學雜費減免申辦截止日</string>
+			<key>startdate</key>
+			<string>18</string>
+			<key>enddate</key>
+			<string>18</string>
+			<key>startweek</key>
+			<string>二</string>
+			<key>endweek</key>
+			<string>二</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>准假學生補註冊</string>
+			<key>startdate</key>
+			<string>19</string>
+			<key>enddate</key>
+			<string>20</string>
+			<key>startweek</key>
+			<string>三</string>
+			<key>endweek</key>
+			<string>四</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>1011人工特殊加選及超修學分申請</string>
+			<key>startdate</key>
+			<string>22</string>
+			<key>enddate</key>
+			<string>28</string>
+			<key>startweek</key>
+			<string>六</string>
+			<key>endweek</key>
+			<string>五</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>yes</string>
+			<key>value</key>
+			<string>校內獎學金申請</string>
+			<key>startdate</key>
+			<string>17</string>
+			<key>enddate</key>
+			<string>19</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>五</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>中秋節（適逢例假日，不補假）</string>
+			<key>startdate</key>
+			<string>30</string>
+			<key>enddate</key>
+			<string>30</string>
+			<key>startweek</key>
+			<string>日</string>
+			<key>endweek</key>
+			<string>日</string>
+		</dict>
+	</array>
+	<key>10</key>
+	<array>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>選課上網確認截止日</string>
+			<key>startdate</key>
+			<string>5</string>
+			<key>enddate</key>
+			<string>5</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>五</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>國慶日(放假)</string>
+			<key>startdate</key>
+			<string>10</string>
+			<key>enddate</key>
+			<string>10</string>
+			<key>startweek</key>
+			<string>三</string>
+			<key>endweek</key>
+			<string>三</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>本校五十九週年校慶（全校正常上班上課）；陸上運動會</string>
+			<key>startdate</key>
+			<string>20</string>
+			<key>enddate</key>
+			<string>20</string>
+			<key>startweek</key>
+			<string>六</string>
+			<key>endweek</key>
+			<string>六</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>碩士生學位考試申請</string>
+			<key>startdate</key>
+			<string>20</string>
+			<key>enddate</key>
+			<string>31</string>
+			<key>startweek</key>
+			<string>六</string>
+			<key>endweek</key>
+			<string>三</string>
+		</dict>
+	</array>
+	<key>11</key>
+	<array>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>期中考試</string>
+			<key>startdate</key>
+			<string>11</string>
+			<key>enddate</key>
+			<string>17</string>
+			<key>startweek</key>
+			<string>日</string>
+			<key>endweek</key>
+			<string>六</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>學分費繳交截止日</string>
+			<key>startdate</key>
+			<string>16</string>
+			<key>enddate</key>
+			<string>16</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>五</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>期中預警輸入開始日</string>
+			<key>startdate</key>
+			<string>19</string>
+			<key>enddate</key>
+			<string>19</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>一</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>1011期中退選作業</string>
+			<key>startdate</key>
+			<string>19</string>
+			<key>enddate</key>
+			<string>30</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>五</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>yes</string>
+			<key>value</key>
+			<string>下學期學雜費減免申請</string>
+			<key>startdate</key>
+			<string>21</string>
+			<key>enddate</key>
+			<string>5</string>
+			<key>startweek</key>
+			<string>三</string>
+			<key>endweek</key>
+			<string>三</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>博士生學位考試申請截止日</string>
+			<key>startdate</key>
+			<string>30</string>
+			<key>enddate</key>
+			<string>30</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>五</string>
+		</dict>
+	</array>
+	<key>12</key>
+	<array>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>期中預警輸入截止日</string>
+			<key>startdate</key>
+			<string>3</string>
+			<key>enddate</key>
+			<string>3</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>一</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>1012第一階段電腦選課作業</string>
+			<key>startdate</key>
+			<string>7</string>
+			<key>enddate</key>
+			<string>13</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>四</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>輔系、雙主修申請</string>
+			<key>startdate</key>
+			<string>10</string>
+			<key>enddate</key>
+			<string>14</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>五</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>1012電腦選課抽籤作業</string>
+			<key>startdate</key>
+			<string>19</string>
+			<key>enddate</key>
+			<string>21</string>
+			<key>startweek</key>
+			<string>三</string>
+			<key>endweek</key>
+			<string>五</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>補行上班</string>
+			<key>startdate</key>
+			<string>22</string>
+			<key>enddate</key>
+			<string>22</string>
+			<key>startweek</key>
+			<string>六</string>
+			<key>endweek</key>
+			<string>六</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>調整放假日</string>
+			<key>startdate</key>
+			<string>31</string>
+			<key>enddate</key>
+			<string>31</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>一</string>
+		</dict>
+	</array>
+	<key>1</key>
+	<array>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
@@ -104,6 +574,10 @@
 			<string>3</string>
 			<key>enddate</key>
 			<string>3</string>
+			<key>startweek</key>
+			<string>四</string>
+			<key>endweek</key>
+			<string>四</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -114,6 +588,10 @@
 			<string>4</string>
 			<key>enddate</key>
 			<string>11</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -124,6 +602,10 @@
 			<string>11</string>
 			<key>enddate</key>
 			<string>11</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -134,6 +616,10 @@
 			<string>13</string>
 			<key>enddate</key>
 			<string>19</string>
+			<key>startweek</key>
+			<string>日</string>
+			<key>endweek</key>
+			<string>六</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -144,6 +630,10 @@
 			<string>20</string>
 			<key>enddate</key>
 			<string>20</string>
+			<key>startweek</key>
+			<string>日</string>
+			<key>endweek</key>
+			<string>日</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -154,6 +644,10 @@
 			<string>31</string>
 			<key>enddate</key>
 			<string>31</string>
+			<key>startweek</key>
+			<string>四</string>
+			<key>endweek</key>
+			<string>四</string>
 		</dict>
 	</array>
 	<key>2</key>
@@ -167,6 +661,10 @@
 			<string>1</string>
 			<key>enddate</key>
 			<string>1</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -177,6 +675,10 @@
 			<string>4</string>
 			<key>enddate</key>
 			<string>4</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>一</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -187,6 +689,10 @@
 			<string>4</string>
 			<key>enddate</key>
 			<string>16</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>六</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -197,6 +703,10 @@
 			<string>8</string>
 			<key>enddate</key>
 			<string>8</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -207,6 +717,10 @@
 			<string>9</string>
 			<key>enddate</key>
 			<string>14</string>
+			<key>startweek</key>
+			<string>六</string>
+			<key>endweek</key>
+			<string>四</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -217,6 +731,10 @@
 			<string>15</string>
 			<key>enddate</key>
 			<string>15</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -227,6 +745,10 @@
 			<string>16</string>
 			<key>enddate</key>
 			<string>16</string>
+			<key>startweek</key>
+			<string>六</string>
+			<key>endweek</key>
+			<string>六</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -237,6 +759,10 @@
 			<string>17</string>
 			<key>enddate</key>
 			<string>17</string>
+			<key>startweek</key>
+			<string>日</string>
+			<key>endweek</key>
+			<string>日</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -247,6 +773,10 @@
 			<string>18</string>
 			<key>enddate</key>
 			<string>19</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>二</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -257,6 +787,10 @@
 			<string>18</string>
 			<key>enddate</key>
 			<string>25</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>一</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -267,6 +801,10 @@
 			<string>19</string>
 			<key>enddate</key>
 			<string>19</string>
+			<key>startweek</key>
+			<string>二</string>
+			<key>endweek</key>
+			<string>二</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -277,6 +815,10 @@
 			<string>20</string>
 			<key>enddate</key>
 			<string>21</string>
+			<key>startweek</key>
+			<string>三</string>
+			<key>endweek</key>
+			<string>四</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -287,6 +829,10 @@
 			<string>26</string>
 			<key>enddate</key>
 			<string>8</string>
+			<key>startweek</key>
+			<string>二</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -297,6 +843,10 @@
 			<string>28</string>
 			<key>enddate</key>
 			<string>28</string>
+			<key>startweek</key>
+			<string>四</string>
+			<key>endweek</key>
+			<string>四</string>
 		</dict>
 	</array>
 	<key>3</key>
@@ -310,6 +860,10 @@
 			<string>1</string>
 			<key>enddate</key>
 			<string>1</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -320,6 +874,10 @@
 			<string>4</string>
 			<key>enddate</key>
 			<string>3</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>三</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -330,6 +888,10 @@
 			<string>14</string>
 			<key>enddate</key>
 			<string>19</string>
+			<key>startweek</key>
+			<string>四</string>
+			<key>endweek</key>
+			<string>二</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -340,6 +902,10 @@
 			<string>15</string>
 			<key>enddate</key>
 			<string>15</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -350,6 +916,10 @@
 			<string>16</string>
 			<key>enddate</key>
 			<string>16</string>
+			<key>startweek</key>
+			<string>六</string>
+			<key>endweek</key>
+			<string>六</string>
 		</dict>
 	</array>
 	<key>4</key>
@@ -363,6 +933,10 @@
 			<string>4</string>
 			<key>enddate</key>
 			<string>4</string>
+			<key>startweek</key>
+			<string>四</string>
+			<key>endweek</key>
+			<string>四</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -373,6 +947,10 @@
 			<string>5</string>
 			<key>enddate</key>
 			<string>5</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -383,6 +961,10 @@
 			<string>14</string>
 			<key>enddate</key>
 			<string>20</string>
+			<key>startweek</key>
+			<string>日</string>
+			<key>endweek</key>
+			<string>六</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -393,6 +975,10 @@
 			<string>19</string>
 			<key>enddate</key>
 			<string>19</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -403,6 +989,10 @@
 			<string>20</string>
 			<key>enddate</key>
 			<string>30</string>
+			<key>startweek</key>
+			<string>六</string>
+			<key>endweek</key>
+			<string>二</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -413,6 +1003,10 @@
 			<string>22</string>
 			<key>enddate</key>
 			<string>22</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>一</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -423,6 +1017,10 @@
 			<string>22</string>
 			<key>enddate</key>
 			<string>26</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -433,6 +1031,10 @@
 			<string>22</string>
 			<key>enddate</key>
 			<string>25</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>四</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -443,6 +1045,10 @@
 			<string>22</string>
 			<key>enddate</key>
 			<string>3</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -453,6 +1059,10 @@
 			<string>29</string>
 			<key>enddate</key>
 			<string>10</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 	</array>
 	<key>5</key>
@@ -466,6 +1076,10 @@
 			<string>2</string>
 			<key>enddate</key>
 			<string>3</string>
+			<key>startweek</key>
+			<string>四</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -473,9 +1087,13 @@
 			<key>value</key>
 			<string>期中預警輸入截止日</string>
 			<key>startdate</key>
-			<string>6</string>
+			<string>一</string>
 			<key>enddate</key>
-			<string>6</string>
+			<string>一</string>
+			<key>startweek</key>
+			<string>四</string>
+			<key>endweek</key>
+			<string>四</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -486,6 +1104,10 @@
 			<string>10</string>
 			<key>enddate</key>
 			<string>16</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>四</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -496,6 +1118,10 @@
 			<string>13</string>
 			<key>enddate</key>
 			<string>17</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -506,6 +1132,10 @@
 			<string>17</string>
 			<key>enddate</key>
 			<string>17</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -516,6 +1146,10 @@
 			<string>19</string>
 			<key>enddate</key>
 			<string>25</string>
+			<key>startweek</key>
+			<string>日</string>
+			<key>endweek</key>
+			<string>六</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -526,6 +1160,10 @@
 			<string>22</string>
 			<key>enddate</key>
 			<string>24</string>
+			<key>startweek</key>
+			<string>三</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -536,6 +1174,10 @@
 			<string>27</string>
 			<key>enddate</key>
 			<string>31</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -546,6 +1188,10 @@
 			<string>30</string>
 			<key>enddate</key>
 			<string>30</string>
+			<key>startweek</key>
+			<string>四</string>
+			<key>endweek</key>
+			<string>四</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -556,6 +1202,10 @@
 			<string>31</string>
 			<key>enddate</key>
 			<string>31</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 	</array>
 	<key>6</key>
@@ -569,6 +1219,10 @@
 			<string>5</string>
 			<key>enddate</key>
 			<string>14</string>
+			<key>startweek</key>
+			<string>三</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -579,6 +1233,10 @@
 			<string>8</string>
 			<key>enddate</key>
 			<string>8</string>
+			<key>startweek</key>
+			<string>六</string>
+			<key>endweek</key>
+			<string>六</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -589,6 +1247,10 @@
 			<string>12</string>
 			<key>enddate</key>
 			<string>12</string>
+			<key>startweek</key>
+			<string>三</string>
+			<key>endweek</key>
+			<string>三</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -599,6 +1261,10 @@
 			<string>14</string>
 			<key>enddate</key>
 			<string>14</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -609,6 +1275,10 @@
 			<string>16</string>
 			<key>enddate</key>
 			<string>22</string>
+			<key>startweek</key>
+			<string>日</string>
+			<key>endweek</key>
+			<string>六</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -619,6 +1289,10 @@
 			<string>17</string>
 			<key>enddate</key>
 			<string>21</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -629,6 +1303,10 @@
 			<string>23</string>
 			<key>enddate</key>
 			<string>23</string>
+			<key>startweek</key>
+			<string>日</string>
+			<key>endweek</key>
+			<string>日</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -639,6 +1317,10 @@
 			<string>28</string>
 			<key>enddate</key>
 			<string>29</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>六</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -649,6 +1331,10 @@
 			<string>29</string>
 			<key>enddate</key>
 			<string>29</string>
+			<key>startweek</key>
+			<string>六</string>
+			<key>endweek</key>
+			<string>六</string>
 		</dict>
 	</array>
 	<key>7</key>
@@ -662,6 +1348,10 @@
 			<string>8</string>
 			<key>enddate</key>
 			<string>8</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>一</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -672,6 +1362,10 @@
 			<string>8</string>
 			<key>enddate</key>
 			<string>12</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -682,6 +1376,10 @@
 			<string>18</string>
 			<key>enddate</key>
 			<string>24</string>
+			<key>startweek</key>
+			<string>四</string>
+			<key>endweek</key>
+			<string>三</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -692,6 +1390,10 @@
 			<string>31</string>
 			<key>enddate</key>
 			<string>31</string>
+			<key>startweek</key>
+			<string>三</string>
+			<key>endweek</key>
+			<string>四</string>
 		</dict>
 	</array>
 </dict>

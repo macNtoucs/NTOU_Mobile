@@ -7,29 +7,30 @@
 //
 
 #import "WOLSwitchViewController.h"
-#import "WOLChilistViewController.h"
+#import "WOLChiListViewController.h"
 #import "WOLEnglistViewController.h"
 
 @interface WOLSwitchViewController ()
 @property (nonatomic) BOOL control;
-
+@property (strong, nonatomic) UISwipeGestureRecognizer *swipeRecognizer;
 @end
 
 @implementation WOLSwitchViewController
 
+@synthesize swipeRecognizer;
 @synthesize chiViewController;
 @synthesize engViewController;
 @synthesize control;
 
 -(void)Chichooseitem
 {
-    if (!self.chiViewController.tableView.editing)
+    if (!self.chiViewController.downLoadEditing)
     {
-        ((UIBarButtonItem *)[self.navigationItem.rightBarButtonItems objectAtIndex:0]).title = @"取消";
+        ((UIBarButtonItem *)[self.navigationItem.rightBarButtonItems objectAtIndex:0]).image = [UIImage imageNamed:@"cancel.png"];
     }
     else
     {
-        ((UIBarButtonItem *)[self.navigationItem.rightBarButtonItems objectAtIndex:0]).title = @"下載";
+        ((UIBarButtonItem *)[self.navigationItem.rightBarButtonItems objectAtIndex:0]).image = [UIImage imageNamed:@"inbox.png"];
     }
     [self.chiViewController chooseitem];
 }
@@ -37,13 +38,13 @@
 -(void)Engchooseitem
 {
     
-    if (!self.engViewController.tableView.editing)
+    if (!self.engViewController.downLoadEditing)
     {
-         ((UIBarButtonItem *)[self.navigationItem.rightBarButtonItems objectAtIndex:0]).title = @"Cancel";
+         ((UIBarButtonItem *)[self.navigationItem.rightBarButtonItems objectAtIndex:0]).image = [UIImage imageNamed:@"cancel.png"];
     }
     else
     {
-        ((UIBarButtonItem *)[self.navigationItem.rightBarButtonItems objectAtIndex:0]).title = @"DownLoad";
+        ((UIBarButtonItem *)[self.navigationItem.rightBarButtonItems objectAtIndex:0]).image = [UIImage imageNamed:@"inbox.png"];
     }
     [self.engViewController chooseitem];
 }
@@ -54,12 +55,15 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    NSInteger screenheight = [[UIScreen mainScreen] bounds].size.height;
+    self.view.frame = CGRectMake(0, 0, 320, screenheight);
+    
     self.engViewController = [[WOLEnglistViewController alloc]initWithStyle:UITableViewStylePlain];
-    self.chiViewController = [[WOLChilistViewController alloc]initWithStyle:UITableViewStylePlain];
+    self.chiViewController = [[WOLChiListViewController alloc]initWithStyle:UITableViewStylePlain];
     [self.view insertSubview:self.chiViewController.view atIndex:0];
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
-                                  initWithTitle:@"下載"
+                                  initWithImage:[UIImage imageNamed:@"inbox.png"]
                                   style:UIBarButtonItemStyleBordered
                                   target:self
                                   action:@selector(Chichooseitem)];
@@ -73,12 +77,25 @@
     NSArray *buttons = [[NSArray alloc] initWithObjects:addButton,EngButton, nil];
     self.navigationItem.rightBarButtonItems = buttons;
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"【NTOU】行事曆 貼心使用提示"
-                                                    message:@"點選右上方-下載-按鈕\n可以選擇想要下載的事件\n載入您手機的 行事曆APP 中"
-                                                   delegate:self
-                                          cancelButtonTitle:@"知道了"
-                                          otherButtonTitles:nil];
-    [alert show];
+    
+    swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(switchViews)];
+    swipeRecognizer.delegate  = self;
+    swipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:swipeRecognizer];
+
+    
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"showNotifyCalendar"] != YES)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"【NTOU】行事曆 貼心使用提示"
+                                                        message:@"點選右上方-下載-按鈕\n可以選擇想要下載的事件\n載入您手機的 行事曆APP 中\n*左右滑動可以切換中英版本*"
+                                                       delegate:self
+                                              cancelButtonTitle:@"知道了"
+                                              otherButtonTitles:nil];
+        [alert show];
+        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"showNotifyCalendar"];
+    }
+    
     self.chiViewController.switchviewcontroller = self;
     self.engViewController.switchviewcontroller = self;
 }
@@ -87,7 +104,7 @@
 - (void)switchViews
 {
     [UIView beginAnimations:@"View Curl" context:nil];      // bold
-    [UIView setAnimationDuration:0.75];                     // bold
+    [UIView setAnimationDuration:0.5];                     // bold
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];   // bold
     if (self.engViewController.view.superview == nil) {
         if (self.engViewController == nil) {
@@ -95,11 +112,11 @@
             [[WOLEnglistViewController alloc]initWithStyle:UITableViewStylePlain];
         }
         [UIView setAnimationTransition:                         // bold
-         UIViewAnimationTransitionCurlUp                 // bold
+         UIViewAnimationTransitionFlipFromLeft                 // bold
                                forView:self.view cache:YES];    // bold
         
         UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
-                                      initWithTitle:@"DownLoad"
+                                      initWithImage:[UIImage imageNamed:@"inbox.png"]
                                       style:UIBarButtonItemStyleBordered
                                       target:self
                                       action:@selector(Engchooseitem)];
@@ -112,22 +129,26 @@
         
         NSArray *buttons = [[NSArray alloc] initWithObjects:addButton,ChiButton, nil];
         self.navigationItem.rightBarButtonItems = buttons;
-         
-        [self.chiViewController.tableView setEditing:YES animated:NO];
+        
+        self.chiViewController.downLoadEditing = YES;
         [self.chiViewController chooseitem];
         [self.chiViewController.view removeFromSuperview];
         [self.view insertSubview:self.engViewController.view atIndex:0];
+        
+        [self.view removeGestureRecognizer:swipeRecognizer];
+        swipeRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+        [self.view addGestureRecognizer:swipeRecognizer];
     } else {
         if (self.chiViewController == nil) {
             self.chiViewController =
-            [[WOLChilistViewController alloc] initWithStyle:UITableViewStylePlain];
+            [[WOLChiListViewController alloc] initWithStyle:UITableViewStylePlain];
         }
         [UIView setAnimationTransition:                         // bold
-         UIViewAnimationTransitionCurlDown                  // bold
+         UIViewAnimationTransitionFlipFromRight                  // bold
                                forView:self.view cache:YES];    // bold
         
         UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
-                                      initWithTitle:@"下載"
+                                      initWithImage:[UIImage imageNamed:@"inbox.png"]
                                       style:UIBarButtonItemStyleBordered
                                       target:self
                                       action:@selector(Chichooseitem)];
@@ -140,10 +161,14 @@
         NSArray *buttons = [[NSArray alloc] initWithObjects:addButton,EngButton, nil];
         self.navigationItem.rightBarButtonItems = buttons;
         
-        [self.engViewController.tableView setEditing:YES animated:NO];
+        self.engViewController.downLoadEditing = YES;
         [self.engViewController chooseitem];
         [self.engViewController.view removeFromSuperview];
         [self.view insertSubview:self.chiViewController.view atIndex:0];
+        
+        [self.view removeGestureRecognizer:swipeRecognizer];
+        swipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+        [self.view addGestureRecognizer:swipeRecognizer];
     }
     [UIView commitAnimations];                                   // bold
 }
