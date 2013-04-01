@@ -70,22 +70,25 @@
     NSData* data = [[NSString stringWithContentsOfURL:dataURL encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
     TFHpple* parser = [[TFHpple alloc] initWithHTMLData:data];
     NSArray *tableData_td  = [parser searchWithXPathQuery:@"//body//form//div//table//tbody//tr//td"];
+    int rowItemCount=10;
+    if([tableData_td count]%rowItemCount !=0) rowItemCount=11;
+    NSLog(@"%lu",(unsigned long)[tableData_td count]);
     for (int i=3 ; i< [tableData_td count] ; ++i){
-        if (i%11==3) {
+        if (i%rowItemCount==3) {
             TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
             NSArray * contextArr = [attributeElement children];
             TFHppleElement * context = [contextArr objectAtIndex:0];
             NSArray * stops = [context children];
             [StartAndTerminalstops addObject: [[stops objectAtIndex:0]content] ];
         }
-        else if (i%11 == 4){
+        else if (i%rowItemCount == 4){
             TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
             NSArray * contextArr = [attributeElement children];
             TFHppleElement * context = [contextArr objectAtIndex:0];
             NSArray * stops = [context children];
             [depatureTimes addObject: [[stops objectAtIndex:0]content] ];
         }
-        else if (i%11 == 5){
+        else if (i%rowItemCount == 5){
             TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
             NSArray * contextArr = [attributeElement children];
             TFHppleElement * context = [contextArr objectAtIndex:0];
