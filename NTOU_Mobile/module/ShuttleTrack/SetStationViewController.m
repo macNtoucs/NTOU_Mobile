@@ -299,8 +299,8 @@
         NSString *StartStationID = [NSString stringWithFormat:@"%@",[stationNum valueForKey:startStaion]];
         NSString *DepatureStationID= [NSString stringWithFormat:@"%@",[stationNum valueForKey:DepatureStation]];
         // NSArray *arr= [stationNum allKeys];
-        NSString * queryURL = @"http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate=";
-        
+        //NSString * queryURL = @"http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate=";
+        NSString * queryURL = @"http://140.121.91.62/Rail_Web_Query.php?searchtype=0&searchdate=";
         [dateFormatter setDateFormat:@"yyyy"];
         queryURL=[queryURL stringByAppendingString:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:calendar.selectedDate]]];
         queryURL= [queryURL stringByAppendingString:@"%2f"];
