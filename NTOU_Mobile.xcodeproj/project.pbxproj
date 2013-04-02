@@ -235,6 +235,7 @@
 		C71A4F18170ABA7F002819AD /* map-03.png in Resources */ = {isa = PBXBuildFile; fileRef = C71A4F13170ABA7F002819AD /* map-03.png */; };
 		C71A4F19170ABA7F002819AD /* map-04.png in Resources */ = {isa = PBXBuildFile; fileRef = C71A4F14170ABA7F002819AD /* map-04.png */; };
 		C71A4F1A170ABA7F002819AD /* map-05.png in Resources */ = {isa = PBXBuildFile; fileRef = C71A4F15170ABA7F002819AD /* map-05.png */; };
+		C71A4F1C170AD1E6002819AD /* Nav_backGround.png in Resources */ = {isa = PBXBuildFile; fileRef = C71A4F1B170AD1E6002819AD /* Nav_backGround.png */; };
 		C74699DD16F21C2D0060F49C /* Announce_API.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699D916F21C2D0060F49C /* Announce_API.m */; };
 		C74699DE16F21C2D0060F49C /* NewsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699DA16F21C2D0060F49C /* NewsModule.m */; };
 		C74699DF16F21C2D0060F49C /* StoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699DB16F21C2D0060F49C /* StoryListViewController.m */; };
@@ -585,6 +586,7 @@
 		C71A4F13170ABA7F002819AD /* map-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-03.png"; sourceTree = "<group>"; };
 		C71A4F14170ABA7F002819AD /* map-04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-04.png"; sourceTree = "<group>"; };
 		C71A4F15170ABA7F002819AD /* map-05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-05.png"; sourceTree = "<group>"; };
+		C71A4F1B170AD1E6002819AD /* Nav_backGround.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Nav_backGround.png; path = global/Nav_backGround.png; sourceTree = "<group>"; };
 		C74699D516F21C2D0060F49C /* Announce_API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Announce_API.h; path = module/NEWS/Announce_API.h; sourceTree = "<group>"; };
 		C74699D616F21C2D0060F49C /* NewsModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsModule.h; path = module/NEWS/NewsModule.h; sourceTree = "<group>"; };
 		C74699D716F21C2D0060F49C /* StoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryListViewController.h; path = module/NEWS/StoryListViewController.h; sourceTree = "<group>"; };
@@ -898,6 +900,7 @@
 		91A9029816E88E0D00ECF2CF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C71A4F1B170AD1E6002819AD /* Nav_backGround.png */,
 				C74699E816F21CF40060F49C /* news */,
 				91A9049A16E8A09A00ECF2CF /* icons */,
 				91A903A016E88E9D00ECF2CF /* global */,
@@ -1298,6 +1301,7 @@
 				C71A4F18170ABA7F002819AD /* map-03.png in Resources */,
 				C71A4F19170ABA7F002819AD /* map-04.png in Resources */,
 				C71A4F1A170ABA7F002819AD /* map-05.png in Resources */,
+				C71A4F1C170AD1E6002819AD /* Nav_backGround.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
