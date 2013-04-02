@@ -22,11 +22,11 @@
                              nil],
                             [NSDictionary dictionaryWithObjectsAndKeys:
                              @"衛生保健組", @"title",
-                             @"0224622192#1071", @"phone",
+                             @"0224622192,1071", @"phone",
                              nil],
                             [NSDictionary dictionaryWithObjectsAndKeys:
                              @"警衛室", @"title",
-                             @"0224622192#1132", @"phone",
+                             @"0224622192,1132", @"phone",
                              nil],
                             [NSDictionary dictionaryWithObjectsAndKeys:
                              @"八斗子派出所", @"title",
