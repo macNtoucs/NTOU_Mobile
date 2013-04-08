@@ -87,7 +87,7 @@
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"showNotifyCalendar"] != YES)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"【NTOU】行事曆 貼心使用提示"
-                                                        message:@"點選右上方-下載-按鈕\n可以選擇想要下載的事件\n載入您手機的 行事曆APP 中\n*左右滑動可以切換中英版本*"
+                                                        message:@"點選右上方-匯入-圖示\n可以選擇想要的事件\n匯入您手機的 行事曆APP 中\n*左右滑動可以切換中英版本*"
                                                        delegate:self
                                               cancelButtonTitle:@"知道了"
                                               otherButtonTitles:nil];
