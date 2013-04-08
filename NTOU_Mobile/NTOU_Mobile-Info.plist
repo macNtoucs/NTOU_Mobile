@@ -17,6 +17,8 @@
 				<string>Icon.png</string>
 				<string>Icon@2x.png</string>
 			</array>
+			<key>UIPrerenderedIcon</key>
+			<true/>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
@@ -54,12 +56,23 @@ FAX:+886-2-2462-0724
 未來我們將傾聽校內外的意見，建立同仁間互信與共識基礎，尊重教師的多元價值，凝聚師生職工的向心力。積極推動有效的招生策略、強化通識教育、培育具有海洋人文素養與競爭力的學生。同時延攬人才，擴大學術能量，推動具有優勢之海洋特色領域之研究，強化產學研發，推動國內外學術合作與結盟，成立「海洋中心」積極爭取研發計畫。擴展學生國際觀，促進校園國際化，並與相關學校及研究機構與重要產業形成策略聯盟，形成「海洋園區」，擦亮我們「海洋特色」的招牌。
 另外，將整合並改善校內各項學術資源，連結校友，並爭取外部資源，妥善運用校務基金以擴大可運用之經費來源，「結合學校、校友與產業」的資源，擴大學校對社會的貢獻與影響力。
 海大未來的發展不是以漸進成長為策略，而是要以躍進的方式來推展海洋特色。持續「培育兼具人文素之基礎與應用能力之人才」與「致力於海洋相關領域之學術與應用發展」，達成「加強海洋特色、提升學校競爭力」、「培養兼具人文關懷、專業創新、國際視野的人才」與「發展世界的海洋教育及研究」的目標，讓海大成為一所具有活力與高度榮譽感之「卓越教學與特色研究兼具的海洋頂尖大學」。</string>
+	<key>NTOUAboutMemberText</key>
+	<string>                 何佳儒            資工大三
+                 李翔昕            資工大三
+                 邱俊崎            資工大三
+                 魏琳鴻            資工大三
+                 陳沐萱            資工大二
+                 蘇庭琍            資工大二</string>
 	<key>NTOUFeedbackAddress</key>
 	<string>po@ntou.edu.tw</string>
+	<key>UIPrerenderedIcon</key>
+	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleBlackOpaque</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -72,7 +85,5 @@ FAX:+886-2-2462-0724
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleBlackOpaque</string>
 </dict>
 </plist>

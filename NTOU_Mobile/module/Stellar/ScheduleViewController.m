@@ -57,12 +57,14 @@
     else
     {
         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-        UIAlertView *loadingAlertView = [[UIAlertView alloc]
-                                         initWithTitle:nil message:@"登入失敗"
-                                         delegate:self cancelButtonTitle:@"確定"
-                                         otherButtonTitles:nil];
-        [loadingAlertView show];
-        [loadingAlertView release];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *loadingAlertView = [[UIAlertView alloc]
+                                             initWithTitle:nil message:@"登入失敗"
+                                             delegate:self cancelButtonTitle:@"確定"
+                                             otherButtonTitles:nil];
+            [loadingAlertView show];
+            [loadingAlertView release];
+        });
 
     }
         

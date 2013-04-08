@@ -1,11 +1,7 @@
 #import "AboutTableViewController.h"
 #import "AppDelegate.h"
-#import "UIKit+NTOUAdditions.h"
 #import "AboutNTOUVC.h"
 #import "AboutCreditsVC.h"
-#import "UIKit+NTOUAdditions.h"
-#import "NTOUUIConstants.h"
-#import  <QuartzCore/CALayer.h>
 
 
 @implementation AboutTableViewController
@@ -119,7 +115,7 @@
     if (indexPath.section == 1) {
         switch (indexPath.row) {
             case 0: {
-                AboutCreditsVC *aboutCreditsVC = [[AboutCreditsVC alloc] init];
+                AboutCreditsVC *aboutCreditsVC = [[AboutCreditsVC alloc] initWithStyle:UITableViewStyleGrouped];
                 [self.navigationController pushViewController:aboutCreditsVC animated:YES];
                 [aboutCreditsVC release];
                 break;
