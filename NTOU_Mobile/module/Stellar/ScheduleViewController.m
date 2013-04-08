@@ -52,6 +52,7 @@
         classInfo.courseId = [courseInfo objectForKey:courseIDKey];
         classInfo.classId = [courseInfo objectForKey:classIDKey];
         [self.navigationController pushViewController:classInfo animated:YES];
+        classInfo.navigationItem.leftBarButtonItem.title=@"back";
     }
     else
     {
@@ -207,7 +208,7 @@
                         initWithFrame:CGRectMake(0.0f, 0.0f, 103.0f, 44.01f)]; // 44.01 shifts it up 1px for some reason
     tools.clearsContextBeforeDrawing = NO;
     tools.clipsToBounds = NO;
-    tools.tintColor = [UIColor colorWithWhite:0.305f alpha:0.0f]; // closest I could get by eye to black, translucent style.
+    //tools.tintColor = [UIColor colorWithWhite:0.305f alpha:0.0f]; // closest I could get by eye to black, translucent style.
     // anyone know how to get it perfect?
     tools.barStyle = -1; // clear background
     NSMutableArray *buttons = [[NSMutableArray alloc] initWithCapacity:3];

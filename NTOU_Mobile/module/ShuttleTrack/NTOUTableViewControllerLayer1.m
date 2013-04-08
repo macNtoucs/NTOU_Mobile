@@ -245,6 +245,7 @@
         NTOUTableViewControllerLayer2 * Layer2 = [[NTOUTableViewControllerLayer2 alloc]initWithStyle:UITableViewStyleGrouped];
         [Layer2 SetRoute:indexPath.row];
         [self.navigationController pushViewController:Layer2 animated:YES];
+        Layer2.navigationItem.leftBarButtonItem.title=@"back";
         [Layer2 release];
     }
     else if (indexPath.section == 1)
@@ -256,9 +257,11 @@
         if (indexPath.row==0) {
             [stops setDirection:true];
             [self.navigationController pushViewController:stops animated:YES];
+            stops.navigationItem.leftBarButtonItem.title=@"back";
         } else {
             [stops setDirection:false];
              [self.navigationController pushViewController:stops animated:YES];
+            stops.navigationItem.leftBarButtonItem.title=@"back";
         }
        
         [stops release];
@@ -268,6 +271,7 @@
         OtherTrafficTrapViewController *other = [[OtherTrafficTrapViewController alloc ]initWithStyle:UITableViewStyleGrouped];
         other.title = @"搭乘工具";
         [self.navigationController pushViewController:other animated:YES];
+        other.navigationItem.leftBarButtonItem.title=@"back";
         [other release];
     }
 }

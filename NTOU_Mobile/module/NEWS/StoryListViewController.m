@@ -416,6 +416,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
         detailViewController.story = story;
         
         [self.navigationController pushViewController:detailViewController animated:YES];
+        detailViewController.navigationItem.leftBarButtonItem.title=@"back";
         [detailViewController release];
     }
 }
