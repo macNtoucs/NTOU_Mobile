@@ -320,7 +320,7 @@
             NSLog(@"%@",indexPath);
         }
         
-        NSLog(@"end a select");
+        //NSLog(@"end a select");
     }
 }
 
@@ -331,7 +331,7 @@
         [selectindexs removeObject:indexPath];
         [[self.tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryNone];
         
-        NSLog(@"end a select");
+        //NSLog(@"end a select");
     }
 }
 #pragma mark -
@@ -404,7 +404,7 @@
 - (IBAction)finishselect:(id)sender
 {
     finishactionsheet = [[UIActionSheet alloc]
-                         initWithTitle:@"確定下載這些項目？"
+                         initWithTitle:@"確定匯入這些項目到您的 行事曆APP 中？"
                          delegate:self
                          cancelButtonTitle:@"取消"
                          destructiveButtonTitle:@"確定"
@@ -423,7 +423,7 @@
             [self showActionToolbar:NO];
 
             UIAlertView *alertfinish = [[UIAlertView alloc] initWithTitle:@"【NTOU】行事曆"
-                                                            message:@"-下載完成-"
+                                                            message:@"-匯入完成-"
                                                            delegate:self
                                                   cancelButtonTitle:@"好"
                                                   otherButtonTitles:nil];
@@ -440,7 +440,7 @@
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 // No need to hod onto (retain)
                                 MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.switchviewcontroller.view animated:YES];
-                                hud.labelText = @"DownLoading";
+                                hud.labelText = @"Importing";
                             });
                             
                             
@@ -459,8 +459,8 @@
                     else
                     {
                         //----- codes here when user NOT allow your app to access the calendar.
-                        UIAlertView *alertfause = [[UIAlertView alloc] initWithTitle:@"【NTOU】行事曆 -存取失敗-"
-                                                                        message:@"無法存取您手機內的行事曆\n請更改您的設定\n(iOS6以上會出現這個問題)"
+                        UIAlertView *alertfause = [[UIAlertView alloc] initWithTitle:@"【NTOU】行事曆"
+                                                                        message:@"-匯入失敗-\n無法存取您的行事曆\n請至 設定->行事曆 中更改設定"
                                                                        delegate:self
                                                               cancelButtonTitle:@"知道了"
                                                               otherButtonTitles:nil];
@@ -477,7 +477,7 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         // No need to hod onto (retain)
                         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                        hud.labelText = @"DownLoading";
+                        hud.labelText = @"Importing";
                     });
                     
                     

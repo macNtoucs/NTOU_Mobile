@@ -26,7 +26,7 @@
 - (void)loadModuleHomeController
 {
     WOLSwitchViewController *viewcontroller = [[WOLSwitchViewController alloc] init];
-    viewcontroller.title = @"行事曆";
+    viewcontroller.title = @"";
     
     self.moduleHomeController = viewcontroller;
 }
