@@ -43,7 +43,6 @@
     NSInteger screenheight = [[UIScreen mainScreen] bounds].size.height;
     NSInteger height = screenheight - 64;
     self.view.frame = CGRectMake(0, 0, 320, height);
-    self.switchviewcontroller.title = @"Calendar";
     return self;
 }
 

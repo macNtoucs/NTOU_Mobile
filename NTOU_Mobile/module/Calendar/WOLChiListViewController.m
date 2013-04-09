@@ -44,7 +44,6 @@
     NSInteger screenheight = [[UIScreen mainScreen] bounds].size.height;
     NSInteger height = screenheight;
     self.view.frame = CGRectMake(0, 0, 320, height);
-   self. switchviewcontroller.title = @"行事曆";
     return self;
 }
 

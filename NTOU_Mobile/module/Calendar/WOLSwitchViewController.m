@@ -82,7 +82,7 @@
     swipeRecognizer.delegate  = self;
     swipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
     [self.view addGestureRecognizer:swipeRecognizer];
-
+    self.title = @"行事曆";
     
    /* if([[NSUserDefaults standardUserDefaults] boolForKey:@"showNotifyCalendar"] != YES)
     {
@@ -104,6 +104,10 @@
 
 - (void)switchViews
 {
+    
+    if ([self.title isEqual: @"行事曆"])
+         self.title = @"Calendar";
+    else self.title = @"行事曆";
     [UIView beginAnimations:@"View Curl" context:nil];      // bold
     [UIView setAnimationDuration:0.5];                     // bold
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];   // bold
