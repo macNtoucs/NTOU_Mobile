@@ -71,8 +71,8 @@
     TFHpple* parser = [[TFHpple alloc] initWithHTMLData:data];
     NSArray *tableData_td  = [parser searchWithXPathQuery:@"//body//form//div//table//tbody//tr//td"];
     int rowItemCount=10;
-    if([tableData_td count]%rowItemCount !=0) rowItemCount=11;
-    NSLog(@"%lu",(unsigned long)[tableData_td count]);
+    if([tableData_td count]%rowItemCount !=0 || [tableData_td count]%11 ==0) rowItemCount=11;
+     NSLog(@"%lu",(unsigned long)[tableData_td count]);
     for (int i=3 ; i< [tableData_td count] ; ++i){
         if (i%rowItemCount==3) {
             TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
