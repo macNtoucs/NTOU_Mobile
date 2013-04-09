@@ -8,7 +8,7 @@
 
 - (void)viewDidLoad {
     [self.tableView applyStandardColors];
-    self.title = @"關於我";
+    self.title = @"關於";
     
     showBuildNumber = NO;
 }

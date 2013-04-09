@@ -74,7 +74,7 @@
                                   target:self
                                   action:@selector(switchViews)];
     
-    NSArray *buttons = [[NSArray alloc] initWithObjects:addButton,EngButton, nil];
+    NSArray *buttons = [[NSArray alloc] initWithObjects:EngButton, nil]; //刪除addButton
     self.navigationItem.rightBarButtonItems = buttons;
     
     
@@ -84,7 +84,7 @@
     [self.view addGestureRecognizer:swipeRecognizer];
 
     
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"showNotifyCalendar"] != YES)
+   /* if([[NSUserDefaults standardUserDefaults] boolForKey:@"showNotifyCalendar"] != YES)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"【NTOU】行事曆 貼心使用提示"
                                                         message:@"點選右上方-匯入-圖示\n可以選擇想要的事件\n匯入您手機的 行事曆APP 中\n*左右滑動可以切換中英版本*"
@@ -94,10 +94,11 @@
         [alert show];
         
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"showNotifyCalendar"];
-    }
+    }*/
     
     self.chiViewController.switchviewcontroller = self;
     self.engViewController.switchviewcontroller = self;
+  
 }
 
 
@@ -127,7 +128,7 @@
                                       target:self
                                       action:@selector(switchViews)];
         
-        NSArray *buttons = [[NSArray alloc] initWithObjects:addButton,ChiButton, nil];
+        NSArray *buttons = [[NSArray alloc] initWithObjects:ChiButton, nil];//刪除addButton
         self.navigationItem.rightBarButtonItems = buttons;
         
         self.chiViewController.downLoadEditing = YES;
@@ -158,8 +159,8 @@
                                       style:UIBarButtonItemStyleBordered
                                       target:self
                                       action:@selector(switchViews)];
-        NSArray *buttons = [[NSArray alloc] initWithObjects:addButton,EngButton, nil];
-        self.navigationItem.rightBarButtonItems = buttons;
+        NSArray *buttons = [[NSArray alloc] initWithObjects:EngButton, nil];
+        self.navigationItem.rightBarButtonItems = buttons;//刪除addButton
         
         self.engViewController.downLoadEditing = YES;
         [self.engViewController chooseitem];
