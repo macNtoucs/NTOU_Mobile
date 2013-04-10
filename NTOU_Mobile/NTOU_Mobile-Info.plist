@@ -84,5 +84,7 @@ FAX:+886-2-2462-0724
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NTOUFeedbackAddress</key>
+	<string>po@ntou.edu.tw</string>
 </dict>
 </plist>

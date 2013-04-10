@@ -588,6 +588,9 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
         pageCount[self.activeCategoryId]++;
         catchData = [[[NSDictionary alloc] initWithDictionary:self.connect.content] autorelease];
         NSArray* temp = [[catchData objectForKey:NewsAPIKeyNtou]objectForKey:NewsAPIKeyNotice];
+        if (self.activeCategoryId == NewsCategoryIdSymposium) {
+            temp = [NSArray arrayWithObject:temp];
+        }
         if (!tableDisplayData[self.activeCategoryId])
             tableDisplayData[self.activeCategoryId] = [[NSMutableArray alloc] init];
         [tableDisplayData[self.activeCategoryId] addObjectsFromArray:temp];
