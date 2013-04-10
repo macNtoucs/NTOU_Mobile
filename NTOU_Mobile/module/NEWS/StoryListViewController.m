@@ -309,7 +309,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                     // Title View
                     titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
                     titleLabel.tag = 1;
-                    titleLabel.font = [UIFont boldSystemFontOfSize:STORY_TITLE_FONT_SIZE];
+                    //titleLabel.font = [UIFont boldSystemFontOfSize:STORY_TITLE_FONT_SIZE];
                     titleLabel.numberOfLines = 0;
                     titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
                     [cell.contentView addSubview:titleLabel];
