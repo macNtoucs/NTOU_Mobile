@@ -343,13 +343,13 @@
         setweek = [SetWeekTimesViewController new];
         [self.navigationController pushViewController:setweek animated:YES];
         setweek.title = @"設定一周天數";
-        setweek.navigationItem.leftBarButtonItem.title=@"back";
+        setweek.navigationItem.leftBarButtonItem.title=@"上一頁";
     }
     else if (indexPath.section==0&&indexPath.row==1){
         NTOU_ClassColorViewController* classColor = [[NTOU_ClassColorViewController alloc] init];
         classColor.title = @"設定課堂顏色";
         [self.navigationController pushViewController:classColor animated:YES];
-        classColor.navigationItem.leftBarButtonItem.title=@"back";
+        classColor.navigationItem.leftBarButtonItem.title=@"上一頁";
     }
     else if (indexPath.section==2&&indexPath.row==0){
         UIAlertView *loadingAlertView = [[UIAlertView alloc]

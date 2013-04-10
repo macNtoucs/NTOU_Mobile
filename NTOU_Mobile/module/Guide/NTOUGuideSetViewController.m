@@ -84,21 +84,21 @@
     [super viewWillAppear:animated];
 }
 -(void)switchMapType{
-    if (switchButton.title==@"切換衛星地圖")
+    if (switchButton.title==@"衛星地圖")
     {
         mapView.mapType = MKMapTypeSatellite;
-        switchButton.title =@"切換混合地圖";
+        switchButton.title =@"混合地圖";
     }
-    else if (switchButton.title==@"切換標準地圖")
+    else if (switchButton.title==@"標準地圖")
     {
         mapView.mapType = MKMapTypeStandard;
-        switchButton.title =@"切換衛星地圖";
+        switchButton.title =@"衛星地圖";
         
     }
-    else if (switchButton.title==@"切換混合地圖")
+    else if (switchButton.title==@"混合地圖")
     {
         mapView.mapType = MKMapTypeHybrid;
-        switchButton.title =@"切換標準地圖";
+        switchButton.title =@"標準地圖";
         
     }
     [self reloadInputViews];

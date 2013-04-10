@@ -49,12 +49,16 @@
     [self.engViewController chooseitem];
 }
 
+- (void)popNav {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewDidLoad
 {
     
     [super viewDidLoad];
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"上一頁" style:UIBarButtonItemStylePlain target:self action:@selector(popNav)] autorelease];
 	// Do any additional setup after loading the view.
-    
     NSInteger screenheight = [[UIScreen mainScreen] bounds].size.height;
     self.view.frame = CGRectMake(0, 0, 320, screenheight);
     
