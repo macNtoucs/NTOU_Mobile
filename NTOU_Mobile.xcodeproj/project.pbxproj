@@ -236,6 +236,8 @@
 		C71A4F1A170ABA7F002819AD /* map-05.png in Resources */ = {isa = PBXBuildFile; fileRef = C71A4F15170ABA7F002819AD /* map-05.png */; };
 		C71A4F1C170AD1E6002819AD /* Nav_backGround.png in Resources */ = {isa = PBXBuildFile; fileRef = C71A4F1B170AD1E6002819AD /* Nav_backGround.png */; };
 		C71A4F1F17128DF5002819AD /* AboutCreditsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C71A4F1E17128DF4002819AD /* AboutCreditsVC.m */; };
+		C71A4F211715205C002819AD /* desktop logo-57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = C71A4F201715205C002819AD /* desktop logo-57x57.png */; };
+		C71A4F23171520E4002819AD /* desktop logo-512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = C71A4F22171520E3002819AD /* desktop logo-512x512.png */; };
 		C74699DD16F21C2D0060F49C /* Announce_API.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699D916F21C2D0060F49C /* Announce_API.m */; };
 		C74699DE16F21C2D0060F49C /* NewsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699DA16F21C2D0060F49C /* NewsModule.m */; };
 		C74699DF16F21C2D0060F49C /* StoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699DB16F21C2D0060F49C /* StoryListViewController.m */; };
@@ -587,6 +589,8 @@
 		C71A4F1B170AD1E6002819AD /* Nav_backGround.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Nav_backGround.png; path = global/Nav_backGround.png; sourceTree = "<group>"; };
 		C71A4F1D17128DF3002819AD /* AboutCreditsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutCreditsVC.h; path = ../../AboutCreditsVC.h; sourceTree = "<group>"; };
 		C71A4F1E17128DF4002819AD /* AboutCreditsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutCreditsVC.m; path = ../../AboutCreditsVC.m; sourceTree = "<group>"; };
+		C71A4F201715205C002819AD /* desktop logo-57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "desktop logo-57x57.png"; sourceTree = "<group>"; };
+		C71A4F22171520E3002819AD /* desktop logo-512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "desktop logo-512x512.png"; sourceTree = "<group>"; };
 		C74699D516F21C2D0060F49C /* Announce_API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Announce_API.h; path = module/NEWS/Announce_API.h; sourceTree = "<group>"; };
 		C74699D616F21C2D0060F49C /* NewsModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsModule.h; path = module/NEWS/NewsModule.h; sourceTree = "<group>"; };
 		C74699D716F21C2D0060F49C /* StoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryListViewController.h; path = module/NEWS/StoryListViewController.h; sourceTree = "<group>"; };
@@ -790,6 +794,8 @@
 		91A9003B16E854E400ECF2CF = {
 			isa = PBXGroup;
 			children = (
+				C71A4F22171520E3002819AD /* desktop logo-512x512.png */,
+				C71A4F201715205C002819AD /* desktop logo-57x57.png */,
 				C71A4F0F170A9949002819AD /* Default-568h@2x.png */,
 				C71A4F01170A93AC002819AD /* Default@2x.png */,
 				C71A4EFF170A9399002819AD /* Default.png */,
@@ -1302,6 +1308,8 @@
 				C71A4F19170ABA7F002819AD /* map-04.png in Resources */,
 				C71A4F1A170ABA7F002819AD /* map-05.png in Resources */,
 				C71A4F1C170AD1E6002819AD /* Nav_backGround.png in Resources */,
+				C71A4F211715205C002819AD /* desktop logo-57x57.png in Resources */,
+				C71A4F23171520E4002819AD /* desktop logo-512x512.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

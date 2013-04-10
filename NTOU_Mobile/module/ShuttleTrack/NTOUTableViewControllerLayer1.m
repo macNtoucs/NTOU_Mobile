@@ -253,7 +253,7 @@
         SecondaryGroupedTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
        
         StopsViewController * stops = [[StopsViewController alloc]initWithStyle:UITableViewStyleGrouped];
-        stops.title = cell.textLabel.text;
+        stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];
         if (indexPath.row==0) {
             [stops setDirection:true];
             [self.navigationController pushViewController:stops animated:YES];
