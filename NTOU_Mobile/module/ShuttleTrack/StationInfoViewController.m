@@ -9,7 +9,7 @@
 #import "StationInfoViewController.h"
 #import <netinet/in.h>
 #import <SystemConfiguration/SystemConfiguration.h>
-
+#import "NTOUUIConstants.h"
 
 @interface StaionInfoTableViewController ()
 
@@ -176,10 +176,30 @@
         cell.textLabel.text = [NSString stringWithFormat:@"無法連線，請檢查網路"];
     }
    else if (indexPath.row == 0 ) {
-        cell.textLabel.text = [NSString stringWithFormat:@"車種                          %@           %@",startStation,depatureStation];
+        cell.textLabel.text = [NSString stringWithFormat:@"車種"];
         cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:10];
         cell.detailTextLabel.textColor = [UIColor brownColor];
         cell.textLabel.textColor = [UIColor brownColor];
+       UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(172, 13, 60, 15)] autorelease];
+       label.backgroundColor = [UIColor clearColor];
+       label.lineBreakMode = UILineBreakModeWordWrap;
+       label.numberOfLines = 0;
+       label.tag=25;
+       label.font = [UIFont fontWithName:BOLD_FONT size:17.0];
+       label.textColor = CELL_STANDARD_FONT_COLOR;
+       label.text = startStation;
+       label.textAlignment = UITextAlignmentCenter;
+       UILabel* detailLabel = [[[UILabel alloc] initWithFrame:CGRectMake(260, 13, 60, 15)] autorelease];
+       detailLabel.font = [UIFont fontWithName:BOLD_FONT size:17.0];
+       detailLabel.backgroundColor = [UIColor clearColor];
+       detailLabel.tag=30;
+       detailLabel.textColor = CELL_DETAIL_FONT_COLOR;
+       detailLabel.highlightedTextColor = [UIColor whiteColor];
+       detailLabel.backgroundColor = [UIColor clearColor];
+       detailLabel.text = depatureStation;
+       detailLabel.textAlignment = UITextAlignmentCenter;
+       [cell.contentView addSubview:label];
+       [cell.contentView addSubview:detailLabel];
     }
    
     
@@ -193,6 +213,7 @@
     }
     else {
         NSString * detailString = [NSString stringWithFormat:@"%@         %@", [depatureTimes objectAtIndex:indexPath.row-1],[arrivalTimes objectAtIndex:indexPath.row-1] ] ;
+        
         cell.textLabel.text=[NSString stringWithFormat:@"%@",[StartAndTerminalstops objectAtIndex:indexPath.row-1]] ;
          
         if ([[trainStyle objectAtIndex:indexPath.row-1] isEqualToString:@"區間車"])
