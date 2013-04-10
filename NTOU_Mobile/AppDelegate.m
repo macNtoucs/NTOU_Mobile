@@ -49,7 +49,6 @@ modules;
     
     // TODO: don't store state like this when we're using a springboard.
 	// set modules state
-	
     [rootController pushViewController:springboard animated:NO];
     self.window.rootViewController = rootController;
     /* @try{
@@ -87,6 +86,8 @@ modules;
     return YES;
     
 }
+
+
 
 // Because we implement -application:didFinishLaunchingWithOptions: this only gets called when an NTOUmobile:// URL is opened from within this app
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
