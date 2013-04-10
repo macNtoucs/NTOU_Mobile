@@ -218,6 +218,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     for (NSString *buttonTitle in buttonTitles)
     {
         UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
+         [aButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         aButton.tag = buttonCategories[i];
         [aButton setTitle:buttonTitle forState:UIControlStateNormal];
         i++;
