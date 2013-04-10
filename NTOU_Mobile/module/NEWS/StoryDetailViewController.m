@@ -28,9 +28,7 @@
     return self;
 }
 
-- (void)popNav {
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 
 - (void)viewDidLoad
 {
@@ -42,7 +40,6 @@
      dataFrame = CGRectMake(0, 0, 320, 45);
      }*/
     
-    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"上一頁" style:UIBarButtonItemStylePlain target:self action:@selector(popNav)] autorelease];
     dataTableView = [[UITableView alloc] initWithFrame:dataFrame style:UITableViewStylePlain];
     dataTableView.dataSource = self;
     dataTableView.delegate = self;

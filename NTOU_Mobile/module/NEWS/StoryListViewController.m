@@ -100,15 +100,12 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     return self;
 }
 
-- (void)popNav {
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 
 - (void)loadView
 {
     [super loadView];
     self.navigationItem.title = @"公告";
-    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"上一頁" style:UIBarButtonItemStylePlain target:self action:@selector(popNav)] autorelease];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)] autorelease];
     
     tempTableSelection = nil;

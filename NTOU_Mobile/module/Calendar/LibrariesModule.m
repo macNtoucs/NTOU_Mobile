@@ -27,7 +27,6 @@
 {
     WOLSwitchViewController *viewcontroller = [[WOLSwitchViewController alloc] init];
     viewcontroller.title = @"行事曆";
-    viewcontroller.navigationItem.leftBarButtonItem.title = @"上一頁";
     self.moduleHomeController = viewcontroller;
 }
 
