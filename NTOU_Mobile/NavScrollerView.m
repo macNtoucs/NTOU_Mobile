@@ -122,7 +122,7 @@ scrollView = _scrollView, navScrollerDelegate, currentXOffset = _currentXOffset;
     CGSize newSize = CGSizeZero;
     
     if ([aButton titleForState:UIControlStateNormal] != nil) {
-        [aButton setTitleColor:[UIColor colorWithHexString:@"#080808"] forState:UIControlStateNormal];
+        [aButton setTitleColor:[UIColor colorWithHexString:@"#565656"] forState:UIControlStateNormal];
         [aButton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
         aButton.titleLabel.font = [UIFont boldSystemFontOfSize:13.0];
         aButton.titleLabel.tag = BUTTON_TITLE_LABEL_TAG;
@@ -169,7 +169,7 @@ scrollView = _scrollView, navScrollerDelegate, currentXOffset = _currentXOffset;
         && [self.buttons containsObject:pressedButton]) {
 
         if (_pressedButton != nil) {
-            [_pressedButton setTitleColor:[UIColor colorWithHexString:@"#080808"] forState:UIControlStateNormal];
+            [_pressedButton setTitleColor:[UIColor colorWithHexString:@"#565656"] forState:UIControlStateNormal];
             [_pressedButton setBackgroundImage:nil forState:UIControlStateNormal];
         }
         

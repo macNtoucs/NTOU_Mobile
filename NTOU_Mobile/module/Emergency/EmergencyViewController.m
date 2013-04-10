@@ -360,7 +360,7 @@
             OutCampusViewController *outCampus = [[OutCampusViewController alloc]initWithStyle:UITableViewStyleGrouped];
             outCampus.title = cell.textLabel.text;
             [self.navigationController pushViewController:outCampus animated:YES];
-            outCampus.navigationItem.leftBarButtonItem.title=@"back";
+            outCampus.navigationItem.leftBarButtonItem.title=@"上一頁";
           /*  anEntry = [numbers objectAtIndex:indexPath.row+3];
             phoneNumber = [[anEntry objectForKey:@"phone"]
                            stringByReplacingOccurrencesOfString:@"."

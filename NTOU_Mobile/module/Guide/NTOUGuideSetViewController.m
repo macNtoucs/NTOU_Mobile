@@ -110,7 +110,7 @@
 {
     [super viewDidLoad];
     
-    switchButton = [[UIBarButtonItem alloc] initWithTitle:@"切換衛星地圖" style:UIBarButtonItemStylePlain target:self action:@selector(switchMapType)];
+    switchButton = [[UIBarButtonItem alloc] initWithTitle:@"衛星地圖" style:UIBarButtonItemStylePlain target:self action:@selector(switchMapType)];
     self.navigationItem.rightBarButtonItem = switchButton;
     
 	// Do any additional setup after loading the view.
