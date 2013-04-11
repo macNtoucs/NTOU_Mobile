@@ -24,6 +24,8 @@
     self = [super initWithStyle:style];
     if (self) {
         self.title = @"設定";
+        self.navigationController.navigationBar.tintColor = [UIColor colorWithHexString:@"#0f3770"];
+        [[UIBarButtonItem appearance] setTintColor: [UIColor colorWithHexString:@"#144893"]];
         self.view.backgroundColor = [UIColor clearColor];
         [ClassDataBase sharedData].EditScheduleDelegate = self;
     }
@@ -32,7 +34,7 @@
 
 -(void) addNavRightButton {
     UIBarButtonItem * right = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishSetting)];
-    right.tintColor = [UIColor colorWithRed:44.0/255 green:66.0/255 blue:114.0/255 alpha:0.5];
+    
     [self.navigationItem setRightBarButtonItem:right animated:YES];
 }
 
