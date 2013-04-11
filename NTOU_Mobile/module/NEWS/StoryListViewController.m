@@ -300,6 +300,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                 
                 UILabel *titleLabel = nil;
                 UILabel *dekLabel = nil;
+                UILabel *dpLabel = nil;
                 
                 if (cell == nil)
                 {
@@ -309,7 +310,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                     // Title View
                     titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
                     titleLabel.tag = 1;
-                    //titleLabel.font = [UIFont boldSystemFontOfSize:STORY_TITLE_FONT_SIZE];
+                    titleLabel.font = [UIFont fontWithName:@"Helvetica" size:14.0];
                     titleLabel.numberOfLines = 0;
                     titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
                     [cell.contentView addSubview:titleLabel];
@@ -326,6 +327,17 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                     [cell.contentView addSubview:dekLabel];
                     [dekLabel release];
 
+                    dpLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+                    dpLabel.tag = 3;
+                    dpLabel.font = [UIFont systemFontOfSize:STORY_DEK_FONT_SIZE];
+                    dpLabel.textColor = [UIColor colorWithHexString:@"#0D0D0D"];
+                    dpLabel.backgroundColor = [UIColor clearColor];
+                    dpLabel.highlightedTextColor = [UIColor whiteColor];
+                    dpLabel.numberOfLines = 0;
+                    dpLabel.lineBreakMode = UILineBreakModeTailTruncation;
+                    [cell.contentView addSubview:dpLabel];
+                    [dpLabel release];
+
                     
                     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
                     cell.selectionStyle = UITableViewCellSelectionStyleGray;
@@ -333,8 +345,10 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                 
                 titleLabel = (UILabel *)[cell viewWithTag:1];
                 dekLabel = (UILabel *)[cell viewWithTag:2];
+                dpLabel = (UILabel *)[cell viewWithTag:3];
                 titleLabel.text = [[[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText] stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
                 dekLabel.text = [[[[story objectForKey:NewsAPIKeyStartdate] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+                dpLabel.text = [[[[story objectForKey:NewsAPIKeyDpname] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
                 
                 titleLabel.textColor = [UIColor blackColor];
                 titleLabel.highlightedTextColor = [UIColor whiteColor];
@@ -347,7 +361,10 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                                             THUMBNAIL_WIDTH-15,
                                             STORY_TEXT_WIDTH,
                                             15);
-                
+                dpLabel.frame = CGRectMake(30+STORY_TEXT_PADDING_LEFT,
+                                            THUMBNAIL_WIDTH-15,
+                                            STORY_TEXT_WIDTH,
+                                            15);
                 
                 result = cell;
             }
