@@ -243,7 +243,7 @@
 -(void)edit{
     editSchedule = [[EditScheduleViewController alloc] initWithStyle:UITableViewStyleGrouped];
     UINavigationController* tempNavCon = [[UINavigationController alloc]    initWithRootViewController:editSchedule];
-    tempNavCon.navigationBar.tintColor = [UIColor blackColor];
+    tempNavCon.navigationBar.tintColor = [UIColor colorWithRed:44.0/255 green:66.0/255 blue:114.0/255 alpha:1];
     [self presentModalViewController:tempNavCon animated:YES];
     [tempNavCon release];
     [editSchedule release];

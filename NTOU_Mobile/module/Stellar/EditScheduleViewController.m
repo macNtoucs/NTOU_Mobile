@@ -32,6 +32,7 @@
 
 -(void) addNavRightButton {
     UIBarButtonItem * right = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishSetting)];
+    right.tintColor = [UIColor colorWithRed:44.0/255 green:66.0/255 blue:114.0/255 alpha:0.5];
     [self.navigationItem setRightBarButtonItem:right animated:YES];
 }
 

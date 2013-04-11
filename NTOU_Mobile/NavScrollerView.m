@@ -176,7 +176,7 @@ scrollView = _scrollView, navScrollerDelegate, currentXOffset = _currentXOffset;
         UIImage *buttonImage = [UIImage imageNamed:NTOUImageNameScrollTabSelectedTab];
         UIImage *stretchableButtonImage = [buttonImage stretchableImageWithLeftCapWidth:15 topCapHeight:0];
         
-        [pressedButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [pressedButton setTitleColor:[UIColor colorWithHexString:@"#565656"] forState:UIControlStateNormal];
         [pressedButton setBackgroundImage:stretchableButtonImage forState:UIControlStateNormal];
 
         _pressedButton = pressedButton;
