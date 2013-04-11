@@ -41,6 +41,7 @@
         [mailView setMessageBody:@"[照片]" isHTML:NO];
         NSData *imageData = UIImagePNGRepresentation(image);
         [mailView addAttachmentData:imageData mimeType:@"image/png" fileName:@"image"];
+        mailView.modalTransitionStyle = UIModalTransitionStylePartialCurl;
         [self presentModalViewController:mailView
                                 animated:YES];
     }
