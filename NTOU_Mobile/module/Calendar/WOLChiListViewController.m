@@ -260,6 +260,30 @@
     return cell;
 }
 
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    NSString *key = [keys objectAtIndex:section];
+    NSString *sectiontitle;
+    if(section < 5)
+    {
+        sectiontitle = [[NSString alloc] initWithFormat:@"  民國101年 %@月",key];
+    }
+    else
+    {
+        sectiontitle = [[NSString alloc] initWithFormat:@"  民國102年 %@月",key];
+    }
+    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 25)] autorelease];
+    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 25)] autorelease];
+    label.text = sectiontitle;
+    label.textColor =[UIColor colorWithHexString:@"#565656"] ;
+    label.font = [UIFont fontWithName:@"Helvetica" size:14.0] ;
+    UIImage *backgroundImage = [UIImage imageNamed:NTOUImageNameScrollTabBackgroundOpaque];
+    label.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
+    [headerView addSubview:label];
+    return headerView;
+}
+/*
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *key = [keys objectAtIndex:section];
@@ -273,7 +297,7 @@
         sectiontitle = [[NSString alloc] initWithFormat:@"民國102年 %@月",key];
     }
     return sectiontitle;
-}
+}*/
 
 //--------------
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
