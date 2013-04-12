@@ -9,7 +9,7 @@
 #import "StationInfoViewController.h"
 #import <netinet/in.h>
 #import <SystemConfiguration/SystemConfiguration.h>
-
+#import "NTOUUIConstants.h"
 
 @interface StaionInfoTableViewController ()
 
@@ -70,22 +70,25 @@
     NSData* data = [[NSString stringWithContentsOfURL:dataURL encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
     TFHpple* parser = [[TFHpple alloc] initWithHTMLData:data];
     NSArray *tableData_td  = [parser searchWithXPathQuery:@"//body//form//div//table//tbody//tr//td"];
+    int rowItemCount=10;
+    if([tableData_td count]%rowItemCount !=0 || [tableData_td count]%11 ==0) rowItemCount=11;
+     NSLog(@"%lu",(unsigned long)[tableData_td count]);
     for (int i=3 ; i< [tableData_td count] ; ++i){
-        if (i%11==3) {
+        if (i%rowItemCount==3) {
             TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
             NSArray * contextArr = [attributeElement children];
             TFHppleElement * context = [contextArr objectAtIndex:0];
             NSArray * stops = [context children];
             [StartAndTerminalstops addObject: [[stops objectAtIndex:0]content] ];
         }
-        else if (i%11 == 4){
+        else if (i%rowItemCount == 4){
             TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
             NSArray * contextArr = [attributeElement children];
             TFHppleElement * context = [contextArr objectAtIndex:0];
             NSArray * stops = [context children];
             [depatureTimes addObject: [[stops objectAtIndex:0]content] ];
         }
-        else if (i%11 == 5){
+        else if (i%rowItemCount == 5){
             TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
             NSArray * contextArr = [attributeElement children];
             TFHppleElement * context = [contextArr objectAtIndex:0];
@@ -156,6 +159,11 @@
     [StartAndTerminalstops count]+2 : [StartAndTerminalstops count]+1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return tableView.rowHeight;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier;
@@ -173,10 +181,30 @@
         cell.textLabel.text = [NSString stringWithFormat:@"無法連線，請檢查網路"];
     }
    else if (indexPath.row == 0 ) {
-        cell.textLabel.text = [NSString stringWithFormat:@"車種                          %@           %@",startStation,depatureStation];
+        cell.textLabel.text = [NSString stringWithFormat:@"車種"];
         cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:10];
         cell.detailTextLabel.textColor = [UIColor brownColor];
         cell.textLabel.textColor = [UIColor brownColor];
+       UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(172, 13, 60, 15)] autorelease];
+       label.backgroundColor = [UIColor clearColor];
+       label.lineBreakMode = UILineBreakModeWordWrap;
+       label.numberOfLines = 0;
+       label.tag=25;
+       label.font = [UIFont fontWithName:BOLD_FONT size:17.0];
+       label.textColor = CELL_STANDARD_FONT_COLOR;
+       label.text = startStation;
+       label.textAlignment = UITextAlignmentCenter;
+       UILabel* detailLabel = [[[UILabel alloc] initWithFrame:CGRectMake(260, 13, 60, 15)] autorelease];
+       detailLabel.font = [UIFont fontWithName:BOLD_FONT size:17.0];
+       detailLabel.backgroundColor = [UIColor clearColor];
+       detailLabel.tag=30;
+       detailLabel.textColor = CELL_DETAIL_FONT_COLOR;
+       detailLabel.highlightedTextColor = [UIColor whiteColor];
+       detailLabel.backgroundColor = [UIColor clearColor];
+       detailLabel.text = depatureStation;
+       detailLabel.textAlignment = UITextAlignmentCenter;
+       [cell.contentView addSubview:label];
+       [cell.contentView addSubview:detailLabel];
     }
    
     
@@ -190,17 +218,18 @@
     }
     else {
         NSString * detailString = [NSString stringWithFormat:@"%@         %@", [depatureTimes objectAtIndex:indexPath.row-1],[arrivalTimes objectAtIndex:indexPath.row-1] ] ;
+        
         cell.textLabel.text=[NSString stringWithFormat:@"%@",[StartAndTerminalstops objectAtIndex:indexPath.row-1]] ;
          
         if ([[trainStyle objectAtIndex:indexPath.row-1] isEqualToString:@"區間車"])
-            //cell.imageView.image = [UIImage imageNamed:@"local_train.png"];
-            cell.textLabel.text= @"區間車";
+            cell.imageView.image = [UIImage imageNamed:@"local_train.png"];
+            //cell.textLabel.text= @"區間車";
         if ([[trainStyle objectAtIndex:indexPath.row-1]isEqualToString: @"自強"])
-            //cell.imageView.image = [UIImage imageNamed:@"speed_train.png"];
-            cell.textLabel.text= @"自強";
+            cell.imageView.image = [UIImage imageNamed:@"speed_train.png"];
+            //cell.textLabel.text= @"自強";
         if ([[trainStyle objectAtIndex:indexPath.row-1]isEqualToString: @"莒光"])
-            //cell.imageView.image = [UIImage imageNamed:@"gigoung_train.png"];
-            cell.textLabel.text= @"莒光";
+            cell.imageView.image = [UIImage imageNamed:@"gigoung_train.png"];
+            //cell.textLabel.text= @"莒光";
        
         cell.detailTextLabel.text = detailString;
         cell.detailTextLabel.textColor = [UIColor blueColor];

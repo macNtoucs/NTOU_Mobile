@@ -52,16 +52,19 @@
         classInfo.courseId = [courseInfo objectForKey:courseIDKey];
         classInfo.classId = [courseInfo objectForKey:classIDKey];
         [self.navigationController pushViewController:classInfo animated:YES];
+        classInfo.navigationItem.leftBarButtonItem.title=@"back";
     }
     else
     {
         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-        UIAlertView *loadingAlertView = [[UIAlertView alloc]
-                                         initWithTitle:nil message:@"登入失敗"
-                                         delegate:self cancelButtonTitle:@"確定"
-                                         otherButtonTitles:nil];
-        [loadingAlertView show];
-        [loadingAlertView release];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *loadingAlertView = [[UIAlertView alloc]
+                                             initWithTitle:nil message:@"登入失敗"
+                                             delegate:self cancelButtonTitle:@"確定"
+                                             otherButtonTitles:nil];
+            [loadingAlertView show];
+            [loadingAlertView release];
+        });
 
     }
         
@@ -207,7 +210,7 @@
                         initWithFrame:CGRectMake(0.0f, 0.0f, 103.0f, 44.01f)]; // 44.01 shifts it up 1px for some reason
     tools.clearsContextBeforeDrawing = NO;
     tools.clipsToBounds = NO;
-    tools.tintColor = [UIColor colorWithWhite:0.305f alpha:0.0f]; // closest I could get by eye to black, translucent style.
+    //tools.tintColor = [UIColor colorWithWhite:0.305f alpha:0.0f]; // closest I could get by eye to black, translucent style.
     // anyone know how to get it perfect?
     tools.barStyle = -1; // clear background
     NSMutableArray *buttons = [[NSMutableArray alloc] initWithCapacity:3];
@@ -240,7 +243,7 @@
 -(void)edit{
     editSchedule = [[EditScheduleViewController alloc] initWithStyle:UITableViewStyleGrouped];
     UINavigationController* tempNavCon = [[UINavigationController alloc]    initWithRootViewController:editSchedule];
-    tempNavCon.navigationBar.tintColor = [UIColor blackColor];
+    tempNavCon.navigationBar.tintColor = [UIColor colorWithRed:44.0/255 green:66.0/255 blue:114.0/255 alpha:1];
     [self presentModalViewController:tempNavCon animated:YES];
     [tempNavCon release];
     [editSchedule release];

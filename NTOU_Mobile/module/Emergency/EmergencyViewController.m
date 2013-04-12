@@ -22,11 +22,11 @@
                              nil],
                             [NSDictionary dictionaryWithObjectsAndKeys:
                              @"衛生保健組", @"title",
-                             @"0224622192#1071", @"phone",
+                             @"0224622192,1071", @"phone",
                              nil],
                             [NSDictionary dictionaryWithObjectsAndKeys:
                              @"警衛室", @"title",
-                             @"0224622192#1132", @"phone",
+                             @"0224622192,1132", @"phone",
                              nil],
                             [NSDictionary dictionaryWithObjectsAndKeys:
                              @"八斗子派出所", @"title",
@@ -311,7 +311,7 @@
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *mailView = [[MFMailComposeViewController alloc] init];
         mailView.mailComposeDelegate = self;
-        [mailView setToRecipients:[NSArray arrayWithObjects:@"mac.ntoucs@gmail.com", nil]];
+        [mailView setToRecipients:[NSArray arrayWithObjects:@"wendylin@mail.ntou.edu.tw", nil]];
         [mailView setSubject:@"緊急事件"];
         
         [mailView setMessageBody:@"[照片]" isHTML:NO];
@@ -360,6 +360,7 @@
             OutCampusViewController *outCampus = [[OutCampusViewController alloc]initWithStyle:UITableViewStyleGrouped];
             outCampus.title = cell.textLabel.text;
             [self.navigationController pushViewController:outCampus animated:YES];
+            outCampus.navigationItem.leftBarButtonItem.title=@"上一頁";
           /*  anEntry = [numbers objectAtIndex:indexPath.row+3];
             phoneNumber = [[anEntry objectForKey:@"phone"]
                            stringByReplacingOccurrencesOfString:@"."

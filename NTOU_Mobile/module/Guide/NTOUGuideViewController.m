@@ -243,6 +243,7 @@
        NTOUGuide2ViewController * Guide2 = [[NTOUGuide2ViewController alloc]initWithStyle:UITableViewStyleGrouped];
         [Guide2 SetRoute:indexPath.row];
         [self.navigationController pushViewController:Guide2 animated:YES];
+        Guide2.navigationItem.leftBarButtonItem.title=@"back";
         [Guide2 release];
     }
     else if (indexPath.section == 1)
@@ -250,6 +251,7 @@
         NTOUGuide3ViewController * Guide3 = [[NTOUGuide3ViewController alloc]initWithStyle:UITableViewStyleGrouped];
         [Guide3 SetRoute:indexPath.row];
         [self.navigationController pushViewController:Guide3 animated:YES];
+        Guide3.navigationItem.leftBarButtonItem.title=@"back";
         [Guide3 release];
     }
     else {
@@ -257,6 +259,7 @@
         NTOUGuide4ViewController * Guide4 = [[NTOUGuide4ViewController alloc]initWithStyle:UITableViewStyleGrouped];
         [Guide4 SetRoute:indexPath.row];
         [self.navigationController pushViewController:Guide4 animated:YES];
+        Guide4.navigationItem.leftBarButtonItem.title=@"back";
         [Guide4 release];
     }
 }

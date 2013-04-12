@@ -28,6 +28,8 @@
     return self;
 }
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -37,6 +39,7 @@
     /* } else {
      dataFrame = CGRectMake(0, 0, 320, 45);
      }*/
+    
     dataTableView = [[UITableView alloc] initWithFrame:dataFrame style:UITableViewStylePlain];
     dataTableView.dataSource = self;
     dataTableView.delegate = self;
@@ -46,7 +49,7 @@
     textView.scrollEnabled = YES;
     
     // 一行大約20個中文字
-    NSInteger lineNum = [[[[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] length] / 20 + 1;
+    NSInteger lineNum = [[[[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] length] / 17 + 1;
     //if (buttonDisplay) {
     textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 181, 320, lineNum*50)];
     /*} else {
@@ -60,12 +63,12 @@
     [dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.navigationItem.title = [[[[story objectForKey:NewsAPIKeyTitle]objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
     
-    NSInteger newLineHeight = lineNum * 50 / 20;
+    NSInteger newLineHeight = lineNum * 50 / 17;
     //NSLog(@"newLineHeight = %i", newLineHeight);
     
     NSString * newLine;
     //if (buttonDisplay) {
-    newLine = [[NSString alloc] initWithString:@"\n\n\n\n\n\n\n\n\n\n"];
+    newLine = [[NSString alloc] initWithString:@"\n\n\n\n\n\n\n\n\n"];
     /*} else {
      newLine = [[NSString alloc] initWithString:@"\n\n\n"];
      }*/

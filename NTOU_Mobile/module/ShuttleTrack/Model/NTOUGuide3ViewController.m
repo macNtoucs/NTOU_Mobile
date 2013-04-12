@@ -331,6 +331,7 @@
     stopsLocation.view.hidden = NO;
     stopsLocation.title = [cell.textLabel.text retain];
     [self.navigationController pushViewController:stopsLocation animated:YES];
+    stopsLocation.navigationItem.leftBarButtonItem.title=@"back";
     [stopsLocation release];
     
 }

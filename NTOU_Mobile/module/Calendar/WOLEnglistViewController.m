@@ -46,10 +46,13 @@
     return self;
 }
 
+- (void)popNav {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     selectindexs = [[NSMutableArray alloc] init];
     
     self.title = @"清單";
@@ -399,7 +402,7 @@
 - (IBAction)finishselect:(id)sender
 {
     finishactionsheet = [[UIActionSheet alloc]
-                         initWithTitle:@"Are you sure to download?"
+                         initWithTitle:@"Are you sure you want to import?"
                          delegate:self
                          cancelButtonTitle:@"Cancel."
                          destructiveButtonTitle:@"Sure."
@@ -418,7 +421,7 @@
             [self showActionToolbar:NO];
             
             UIAlertView *alertfinish = [[UIAlertView alloc] initWithTitle:@"【NTOU】Calendar"
-                                                                  message:@"-Download successfully!-"
+                                                                  message:@"-Import successfully!-"
                                                                  delegate:self
                                                         cancelButtonTitle:@"OK!"
                                                         otherButtonTitles:nil];
@@ -435,7 +438,7 @@
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 // No need to hod onto (retain)
                                 MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.switchviewcontroller.view animated:YES];
-                                hud.labelText = @"DownLoading";
+                                hud.labelText = @"Importing";
                             });
                             
                             
@@ -454,8 +457,8 @@
                     else
                     {
                         //----- codes here when user NOT allow your app to access the calendar.
-                        UIAlertView *alertfause = [[UIAlertView alloc] initWithTitle:@"【NTOU】行事曆 -存取失敗-"
-                                                                             message:@"無法存取您手機內的行事曆\n請更改您的設定\n(iOS6以上會出現這個問題)"
+                        UIAlertView *alertfause = [[UIAlertView alloc] initWithTitle:@"【NTOU】Calendar"
+                                                                             message:@"-Import error-\nWe does not have access to Your Calendar\nPlease allow access for your device\nunder Settings/Calendar"
                                                                             delegate:self
                                                                    cancelButtonTitle:@"知道了"
                                                                    otherButtonTitles:nil];

@@ -122,8 +122,8 @@ scrollView = _scrollView, navScrollerDelegate, currentXOffset = _currentXOffset;
     CGSize newSize = CGSizeZero;
     
     if ([aButton titleForState:UIControlStateNormal] != nil) {
-        [aButton setTitleColor:[UIColor colorWithHexString:@"#E0E0E0"] forState:UIControlStateNormal];
-        [aButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [aButton setTitleColor:[UIColor colorWithHexString:@"#565656"] forState:UIControlStateNormal];
+        [aButton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
         aButton.titleLabel.font = [UIFont boldSystemFontOfSize:13.0];
         aButton.titleLabel.tag = BUTTON_TITLE_LABEL_TAG;
         aButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 1.0, 0); // needed to center text vertically within button
@@ -169,14 +169,14 @@ scrollView = _scrollView, navScrollerDelegate, currentXOffset = _currentXOffset;
         && [self.buttons containsObject:pressedButton]) {
 
         if (_pressedButton != nil) {
-            [_pressedButton setTitleColor:[UIColor colorWithHexString:@"#E0E0E0"] forState:UIControlStateNormal];
+            [_pressedButton setTitleColor:[UIColor colorWithHexString:@"#565656"] forState:UIControlStateNormal];
             [_pressedButton setBackgroundImage:nil forState:UIControlStateNormal];
         }
         
         UIImage *buttonImage = [UIImage imageNamed:NTOUImageNameScrollTabSelectedTab];
         UIImage *stretchableButtonImage = [buttonImage stretchableImageWithLeftCapWidth:15 topCapHeight:0];
         
-        [pressedButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [pressedButton setTitleColor:[UIColor colorWithHexString:@"#565656"] forState:UIControlStateNormal];
         [pressedButton setBackgroundImage:stretchableButtonImage forState:UIControlStateNormal];
 
         _pressedButton = pressedButton;

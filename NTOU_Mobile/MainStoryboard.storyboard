@@ -154,6 +154,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="Rc0-Ph-Bnb"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vjv-pi-Gsk">
                                 <rect key="frame" x="162" y="104" width="82" height="12"/>
@@ -376,6 +379,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="Iag-Y0-qU0"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="18" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="y97-Br-M8P">
                                 <rect key="frame" x="162" y="266" width="82" height="12"/>

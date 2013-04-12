@@ -152,7 +152,7 @@
 
 -(void)rightBarButtonItemOn{
     UIBarButtonItem *done =    [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(leaveEditMode)] autorelease];
-    
+    done.tintColor = [UIColor blueColor];
     self.navigationItem.rightBarButtonItem = done;
     view5.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-280);
 }

@@ -42,13 +42,14 @@ modules;
     
     Rotation *rootController = [[Rotation alloc] init];
     rootController.delegate = springboard;
-    rootController.navigationBar.barStyle = UIBarStyleBlack;
+    rootController.navigationBar.tintColor = [UIColor colorWithRed:12.0/255 green:46.0/255 blue:112.0/255 alpha:1];
+    [[UIBarButtonItem appearance] setTintColor: [UIColor colorWithRed:59.0/255 green:89.0/255 blue:152.0/255 alpha:1]];
+    //rootController.navigationBar.barStyle = UIBarStyleBlack;
     self.springboardController = springboard;
     self.rootNavigationController = rootController;
     
     // TODO: don't store state like this when we're using a springboard.
 	// set modules state
-	
     [rootController pushViewController:springboard animated:NO];
     self.window.rootViewController = rootController;
     /* @try{
@@ -86,6 +87,8 @@ modules;
     return YES;
     
 }
+
+
 
 // Because we implement -application:didFinishLaunchingWithOptions: this only gets called when an NTOUmobile:// URL is opened from within this app
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {

@@ -300,7 +300,7 @@
         NSString *DepatureStationID= [NSString stringWithFormat:@"%@",[stationNum valueForKey:DepatureStation]];
         // NSArray *arr= [stationNum allKeys];
         //NSString * queryURL = @"http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate=";
-        NSString * queryURL = @"http://140.121.91.62/Rail_Web_Query.php?searchtype=0&searchdate=";
+        NSString * queryURL = @"http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate=";
         [dateFormatter setDateFormat:@"yyyy"];
         queryURL=[queryURL stringByAppendingString:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:calendar.selectedDate]]];
         queryURL= [queryURL stringByAppendingString:@"%2f"];
@@ -315,8 +315,8 @@
         
         queryURL= [queryURL stringByAppendingString:[NSString stringWithFormat:@"&fromcity=0&tocity=0&fromstation=%@&tostation=%@&",StartStationID,DepatureStationID]];
         queryURL= [queryURL stringByAppendingString:[NSString stringWithFormat:@"trainclass=%@&fromtime=0000&totime=2359",trainStyle]];
-        //  NSLog( @"%@",queryURL);
-        
+       // NSLog( @"%@",queryURL);
+       // queryURL= @"http://140.121.91.62/Rail_Web_Query.php?searchtype=0&searchdate=2013%2f04%2f02&fromcity=0&tocity=0&fromstation=1001&tostation=1008&trainclass=2&fromtime=0000&totime=2359";
         return [NSURL URLWithString:queryURL];
     }
     

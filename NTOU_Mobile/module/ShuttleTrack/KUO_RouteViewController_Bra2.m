@@ -233,6 +233,7 @@
     
     except = FALSE;
     [self.navigationController pushViewController:tabc animated:YES];
+    tabc.navigationItem.leftBarButtonItem.title=@"back";
     [tabc release];
 }
 

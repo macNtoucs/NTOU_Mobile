@@ -144,6 +144,7 @@
         SetStationViewController *setStationView = [[SetStationViewController alloc]init];
         [setStationView initIsHighSpeedTrain:false];
         [self.navigationController pushViewController:setStationView animated:YES];
+        setStationView.navigationItem.leftBarButtonItem.title=@"back";
         [setStationView release];
     }
     else if(indexPath.row==1)
@@ -153,6 +154,7 @@
         SetStationViewController *setStationView = [[SetStationViewController alloc]init];
         [setStationView initIsHighSpeedTrain:true];
         [self.navigationController pushViewController:setStationView animated:YES];
+        setStationView.navigationItem.leftBarButtonItem.title=@"back";
         [setStationView release];
     }
     else if (indexPath.row==2)
@@ -160,6 +162,7 @@
         KUO_RouteViewController_Bra2* route = [[KUO_RouteViewController_Bra2 alloc] initWithStyle:UITableViewStyleGrouped WithType:Kuo_Data];
         route.title = @"路線";
         [self.navigationController pushViewController:route animated:YES];
+        route.navigationItem.leftBarButtonItem.title=@"back";
         [route release];
     }
     else if (indexPath.row==3)
@@ -167,6 +170,7 @@
         KUO_RouteViewController_Bra2* route = [[KUO_RouteViewController_Bra2 alloc] initWithStyle:UITableViewStyleGrouped WithType:Fuho_Data];
         route.title = @"路線";
         [self.navigationController pushViewController:route animated:YES];
+        route.navigationItem.leftBarButtonItem.title=@"back";
         [route release];
     }
 }

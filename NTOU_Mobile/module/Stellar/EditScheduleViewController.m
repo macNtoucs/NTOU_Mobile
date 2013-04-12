@@ -24,14 +24,17 @@
     self = [super initWithStyle:style];
     if (self) {
         self.title = @"設定";
+        self.navigationController.navigationBar.tintColor = [UIColor colorWithHue:59.0/255 saturation:89.0/255 brightness:182.0/255 alpha:1];
+        [[UIBarButtonItem appearance] setTintColor: [UIColor colorWithHexString:@"#144893"]];
         self.view.backgroundColor = [UIColor clearColor];
-        [ClassDataBase sharedData].EditScheduleDelegate = self;
+        [ClassDataBase sharedData].EditScheduleDelegate = self; 
     }
     return self;
 }
 
 -(void) addNavRightButton {
     UIBarButtonItem * right = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishSetting)];
+    
     [self.navigationItem setRightBarButtonItem:right animated:YES];
 }
 
@@ -83,6 +86,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Table view data source
+
+
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat rowHeight = 0;
@@ -90,12 +96,57 @@
     CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
     NSString *cellText = nil;
     
-    cellText = @" "; // just something to guarantee one line
+    cellText = @"A"; // just something to guarantee one line
     CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
     rowHeight = labelSize.height + 20.0f;
     
     return rowHeight;
 }
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if (section==1) {
+        return @" ";
+    }
+    return nil;
+    
+}
+
+-(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section==1) {
+        return 32;
+    }
+    return 0;
+}
+
+
+
+- (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	NSString *headerTitle = nil;
+    switch (section) {
+        case 1:
+            headerTitle = @"Moodle";
+            break;
+        default:
+            break;
+    }
+    UIFont *font = [UIFont boldSystemFontOfSize:STANDARD_CONTENT_FONT_SIZE];
+	CGSize size = [headerTitle sizeWithFont:font];
+	CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(19.0, 3.0, appFrame.size.width - 19.0, size.height)];
+	
+	label.text = headerTitle;
+	label.textColor = GROUPED_SECTION_FONT_COLOR;
+	label.font = font;
+	label.backgroundColor = [UIColor clearColor];
+	label.textAlignment = UITextAlignmentCenter;
+	UIView *labelContainer = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, appFrame.size.width, GROUPED_SECTION_HEADER_HEIGHT)] autorelease];
+	labelContainer.backgroundColor = [UIColor clearColor];
+	
+	[labelContainer addSubview:label];
+	[label release];
+	return labelContainer;
+}
+
 
 
 #pragma mark - Table view data source
@@ -343,11 +394,13 @@
         setweek = [SetWeekTimesViewController new];
         [self.navigationController pushViewController:setweek animated:YES];
         setweek.title = @"設定一周天數";
+        setweek.navigationItem.leftBarButtonItem.title=@"上一頁";
     }
     else if (indexPath.section==0&&indexPath.row==1){
         NTOU_ClassColorViewController* classColor = [[NTOU_ClassColorViewController alloc] init];
         classColor.title = @"設定課堂顏色";
         [self.navigationController pushViewController:classColor animated:YES];
+        classColor.navigationItem.leftBarButtonItem.title=@"上一頁";
     }
     else if (indexPath.section==2&&indexPath.row==0){
         UIAlertView *loadingAlertView = [[UIAlertView alloc]
