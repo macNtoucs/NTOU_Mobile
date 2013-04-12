@@ -311,7 +311,7 @@
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *mailView = [[MFMailComposeViewController alloc] init];
         mailView.mailComposeDelegate = self;
-        [mailView setToRecipients:[NSArray arrayWithObjects:@"mac.ntoucs@gmail.com", nil]];
+        [mailView setToRecipients:[NSArray arrayWithObjects:@"wendylin@mail.ntou.edu.tw", nil]];
         [mailView setSubject:@"緊急事件"];
         
         [mailView setMessageBody:@"[照片]" isHTML:NO];
