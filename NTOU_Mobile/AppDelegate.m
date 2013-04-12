@@ -42,8 +42,8 @@ modules;
     
     Rotation *rootController = [[Rotation alloc] init];
     rootController.delegate = springboard;
-    rootController.navigationBar.tintColor = [UIColor colorWithHexString:@"#0f3770"];
-    [[UIBarButtonItem appearance] setTintColor: [UIColor colorWithHexString:@"#144893"]];
+    rootController.navigationBar.tintColor = [UIColor colorWithRed:12.0/255 green:46.0/255 blue:112.0/255 alpha:1];
+    [[UIBarButtonItem appearance] setTintColor: [UIColor colorWithRed:59.0/255 green:89.0/255 blue:152.0/255 alpha:1]];
     //rootController.navigationBar.barStyle = UIBarStyleBlack;
     self.springboardController = springboard;
     self.rootNavigationController = rootController;

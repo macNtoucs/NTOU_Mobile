@@ -316,7 +316,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                     [cell.contentView addSubview:titleLabel];
                     [titleLabel release];
                     
-                    // Summary View
+                   /* // Summary View
                     dekLabel = [[UILabel alloc] initWithFrame:CGRectZero];
                     dekLabel.tag = 2;
                     dekLabel.font = [UIFont systemFontOfSize:STORY_DEK_FONT_SIZE];
@@ -325,9 +325,9 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                     dekLabel.numberOfLines = 0;
                     dekLabel.lineBreakMode = UILineBreakModeTailTruncation;
                     [cell.contentView addSubview:dekLabel];
-                    [dekLabel release];
+                    [dekLabel release];*/
 
-                    dpLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+                    /*dpLabel = [[UILabel alloc] initWithFrame:CGRectZero];
                     dpLabel.tag = 3;
                     dpLabel.font = [UIFont systemFontOfSize:STORY_DEK_FONT_SIZE];
                     dpLabel.textColor = [UIColor colorWithHexString:@"#0D0D0D"];
@@ -337,27 +337,35 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                     dpLabel.lineBreakMode = UILineBreakModeTailTruncation;
                     [cell.contentView addSubview:dpLabel];
                     [dpLabel release];
-
+*/
                     
                     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
                     cell.selectionStyle = UITableViewCellSelectionStyleGray;
                 }
                 
-                titleLabel = (UILabel *)[cell viewWithTag:1];
+                NSMutableString * News_Titile = [NSMutableString new];
+                 [News_Titile appendString:[NSString stringWithFormat: @"日期：%@",[[[[story objectForKey:NewsAPIKeyStartdate] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@" " withString:@""] ]];
+        
+                [News_Titile appendString:[NSString stringWithFormat:@"\n來源：%@",[[[[story objectForKey:NewsAPIKeyDpname] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@" " withString:@""] ]];
+                
+                [News_Titile appendString:[NSString stringWithFormat:@"\n主旨：%@",[[[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText] stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@" " withString:@""] ]];
+                
+                
+                  titleLabel = (UILabel *)[cell viewWithTag:1];
                 dekLabel = (UILabel *)[cell viewWithTag:2];
                 dpLabel = (UILabel *)[cell viewWithTag:3];
-                titleLabel.text = [[[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText] stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
-                dekLabel.text = [[[[story objectForKey:NewsAPIKeyStartdate] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+                titleLabel.text =[NSString stringWithString:News_Titile] ;
+               /* dekLabel.text = [[[[story objectForKey:NewsAPIKeyStartdate] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
                 dpLabel.text = [[[[story objectForKey:NewsAPIKeyDpname] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
-                
+                */
                 titleLabel.textColor = [UIColor blackColor];
                 titleLabel.highlightedTextColor = [UIColor whiteColor];
     
                 titleLabel.frame = CGRectMake(STORY_TEXT_PADDING_LEFT,
-                                              STORY_TEXT_PADDING_TOP,
+                                              STORY_TEXT_PADDING_TOP+6,
                                             STORY_TEXT_WIDTH,
                                               THUMBNAIL_WIDTH-15-STORY_TEXT_PADDING_TOP);
-                dekLabel.frame = CGRectMake(180+STORY_TEXT_PADDING_LEFT,
+               /* dekLabel.frame = CGRectMake(180+STORY_TEXT_PADDING_LEFT,
                                             THUMBNAIL_WIDTH-15,
                                             STORY_TEXT_WIDTH,
                                             15);
@@ -365,7 +373,19 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                                             THUMBNAIL_WIDTH-15,
                                             STORY_TEXT_WIDTH,
                                             15);
-                
+               titleLabel.frame = CGRectMake(STORY_TEXT_PADDING_LEFT,
+                                              THUMBNAIL_WIDTH-15,
+                                              STORY_TEXT_WIDTH,
+                                              15);
+                dekLabel.frame =  CGRectMake(STORY_TEXT_PADDING_LEFT,
+                                             STORY_TEXT_PADDING_TOP,
+                                             STORY_TEXT_WIDTH,
+                                             THUMBNAIL_WIDTH-15-STORY_TEXT_PADDING_TOP);
+                dpLabel.frame = CGRectMake(30+STORY_TEXT_PADDING_LEFT,
+                                           THUMBNAIL_WIDTH-15,
+                                           STORY_TEXT_WIDTH,
+                                           15);
+                */
                 result = cell;
             }
             else if (indexPath.row == [self->tableDisplayData[self.activeCategoryId] count])
@@ -486,6 +506,8 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     activityView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     activityView.tag = 9;
     activityView.backgroundColor = [UIColor blackColor];
+    storyTable.separatorColor = [UIColor colorWithHexString:@"E0E0E0"];
+    // [storyTable.backgroundView setBackgroundColor:[UIColor yellowColor]];
     activityView.userInteractionEnabled = NO;
     
     UILabel *loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 0, 0, 0)];

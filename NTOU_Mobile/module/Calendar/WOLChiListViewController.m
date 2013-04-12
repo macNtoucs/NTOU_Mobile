@@ -182,7 +182,7 @@
         event = [[UILabel alloc] init];
         date= [[UILabel alloc] init];
         
-        event.frame = CGRectMake(11,25,45,21);
+        event.frame = CGRectMake(11,27,45,21);
         event.text = @"事件：";
         event.textAlignment = UITextAlignmentRight;
         event.tag=row;
@@ -190,7 +190,7 @@
         event.font = cellFont;
         event.textColor = CELL_STANDARD_FONT_COLOR;
         
-        date.frame = CGRectMake(11,4,45,21);
+        date.frame = CGRectMake(11,4.5,45,21);
         date.text = @"時間：";
         date.textAlignment = UITextAlignmentRight;
         date.tag=row;

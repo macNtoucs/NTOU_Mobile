@@ -24,10 +24,10 @@
     self = [super initWithStyle:style];
     if (self) {
         self.title = @"設定";
-        self.navigationController.navigationBar.tintColor = [UIColor colorWithHexString:@"#0f3770"];
+        self.navigationController.navigationBar.tintColor = [UIColor colorWithHue:59.0/255 saturation:89.0/255 brightness:182.0/255 alpha:1];
         [[UIBarButtonItem appearance] setTintColor: [UIColor colorWithHexString:@"#144893"]];
         self.view.backgroundColor = [UIColor clearColor];
-        [ClassDataBase sharedData].EditScheduleDelegate = self;
+        [ClassDataBase sharedData].EditScheduleDelegate = self; 
     }
     return self;
 }
