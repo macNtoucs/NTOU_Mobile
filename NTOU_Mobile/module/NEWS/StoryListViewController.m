@@ -344,11 +344,23 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                 }
                 
                 NSMutableString * News_Titile = [NSMutableString new];
-                 [News_Titile appendString:[NSString stringWithFormat: @"日期：%@",[[[[story objectForKey:NewsAPIKeyStartdate] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@" " withString:@""] ]];
-        
-                [News_Titile appendString:[NSString stringWithFormat:@"\n來源：%@",[[[[story objectForKey:NewsAPIKeyDpname] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@" " withString:@""] ]];
+            /*   News_Titile appendString: [[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText] ];
+              // News_Titile =@" test";
                 
-                [News_Titile appendString:[NSString stringWithFormat:@"\n主旨：%@",[[[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText] stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@" " withString:@""] ]];
+                for (size_t i = 0; i<News_Titile.length ; ++i){
+                    unichar ch = [News_Titile characterAtIndex: i];
+                    printf("%x:%c\n", ch,ch);
+                }
+                */
+                 [News_Titile appendString:[NSString stringWithFormat: @"日期：%@",[[[[story objectForKey:NewsAPIKeyStartdate] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] ]];
+                 [News_Titile stringByReplacingOccurrencesOfString:@" " withString:@""];
+                
+               
+                [News_Titile appendString:[NSString stringWithFormat:@"\n來源：%@",[[[[story objectForKey:NewsAPIKeyDpname] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] ]];
+                
+                [News_Titile appendString:[NSString stringWithFormat:@"\n主旨：%@",[[[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText] stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] ]];
+                
+                
                 
                 
                   titleLabel = (UILabel *)[cell viewWithTag:1];
