@@ -643,7 +643,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
         /*if ([temp count]>NewsCatchDataCount)
             temp = [NSArray arrayWithObject:temp];
         else*/
-        if ([temp count]==0)
+        if ([temp count]<6)
             endCatchData[self.activeCategoryId]= TRUE;
         if (!tableDisplayData[self.activeCategoryId])
             tableDisplayData[self.activeCategoryId] = [[NSMutableArray alloc] init];
