@@ -165,6 +165,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     [tableDisplayData[self.activeCategoryId] release];
     tableDisplayData[self.activeCategoryId] = nil;
     pageCount[self.activeCategoryId] = 0;
+    endCatchData[self.activeCategoryId] = false;
     [self loadFromCache];
 }
 
@@ -176,7 +177,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     }
     connect = [[Announce_API alloc] init];
     connect.delegate = self;
-    [connect getAnnounceInfo_Count:6 andType:titleForCategoryId(buttonCategories[self.activeCategoryId]) andPage:pageCount[self.activeCategoryId]+1];
+    [connect getAnnounceInfo_Count:NewsCatchDataCount andType:titleForCategoryId(buttonCategories[self.activeCategoryId]) andPage:pageCount[self.activeCategoryId]+1];
 }
 
 - (void)didReceiveMemoryWarning
@@ -262,6 +263,8 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (endCatchData[self.activeCategoryId]==true) 
+        return [self->tableDisplayData[self.activeCategoryId] count];
     return [self->tableDisplayData[self.activeCategoryId] count]+1;
 }
 
@@ -374,7 +377,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                 titleLabel.highlightedTextColor = [UIColor whiteColor];
     
                 titleLabel.frame = CGRectMake(STORY_TEXT_PADDING_LEFT,
-                                              STORY_TEXT_PADDING_TOP+6,
+                                              STORY_TEXT_PADDING_TOP+NewsCatchDataCount,
                                             STORY_TEXT_WIDTH,
                                               THUMBNAIL_WIDTH-15-STORY_TEXT_PADDING_TOP);
                /* dekLabel.frame = CGRectMake(180+STORY_TEXT_PADDING_LEFT,
@@ -636,9 +639,11 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
         pageCount[self.activeCategoryId]++;
         catchData = [[[NSDictionary alloc] initWithDictionary:self.connect.content] autorelease];
         NSArray* temp = [[catchData objectForKey:NewsAPIKeyNtou]objectForKey:NewsAPIKeyNotice];
-        if (self.activeCategoryId == NewsCategoryIdSymposium) {
+        NSLog(@"---%lu",(unsigned long)[temp count]);
+        if ([temp count]>NewsCatchDataCount) 
             temp = [NSArray arrayWithObject:temp];
-        }
+        else if ([temp count]==0)
+            endCatchData[self.activeCategoryId]= TRUE;
         if (!tableDisplayData[self.activeCategoryId])
             tableDisplayData[self.activeCategoryId] = [[NSMutableArray alloc] init];
         [tableDisplayData[self.activeCategoryId] addObjectsFromArray:temp];

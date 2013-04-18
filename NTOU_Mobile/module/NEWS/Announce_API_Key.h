@@ -28,5 +28,5 @@
 #define NewsCategoryDocumentAPI  @"document"
 #define NewsCategoryInformationAPI  @"Information"
 
-
+#define NewsCatchDataCount 6
 #endif
