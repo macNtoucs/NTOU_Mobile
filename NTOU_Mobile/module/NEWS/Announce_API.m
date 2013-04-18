@@ -23,6 +23,8 @@
 
 - (void)getAnnounceInfo_Count:(int)count andType:(NSString *)type andPage:(int) page {
     NSString *url = [NSString stringWithFormat:@"http://dtop.ntou.edu.tw/appAPI.php?page=%d&count=%d&class=%@",page,count,type];
+    //  NSString *url = [NSString stringWithFormat:@"https://dl.dropboxusercontent.com/u/68445784/test.htm"];
+    
     url = [url stringByAddingPercentEscapesUsingEncoding:CFStringConvertEncodingToNSStringEncoding(NSUTF8StringEncoding)];
     updatePackage = [[NSMutableData alloc] init];
  	NSError * error = nil;
@@ -81,6 +83,17 @@
     NSLog(@"%@",output);
 }
 
+-(void)fix_content:(NSDictionary*) _content{
+    NSLog(@"%d",[[[_content valueForKey:@"ntou"]valueForKey:@"notice" ] count]);
+    if ([[[_content valueForKey:@"ntou"]valueForKey:@"notice" ] count]==0) return;
+    if (![[[_content valueForKey:@"ntou"]valueForKey:@"notice" ] isKindOfClass:[NSArray class]]){
+        NSArray * content_array = [NSArray arrayWithObject:[[_content valueForKey:@"ntou"]valueForKey:@"notice" ]];
+        NSMutableDictionary * mutalbe_content = [NSMutableDictionary dictionaryWithDictionary:_content];
+        [[mutalbe_content valueForKey:@"ntou"]removeObjectForKey:@"notice"];
+        [[mutalbe_content valueForKey:@"ntou"]setObject:content_array forKey:@"notice"];
+    }
+}
+
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     isConnected = false;
     content = [NSDictionary new];
@@ -88,7 +101,9 @@
     NSString * XMLResponse = [[NSString alloc] initWithData:updatePackage encoding:NSUTF8StringEncoding];
     XMLResponse = [XMLResponse stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n"];
     content= [XMLReader dictionaryForXMLString:XMLResponse error:&parseError];
+    [self fix_content:content];
     [delegate parserDidFinishParsing:self];
+    
 }
 
 -(void)CancelConnection{
