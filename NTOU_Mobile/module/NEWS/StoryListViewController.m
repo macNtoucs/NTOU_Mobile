@@ -640,9 +640,10 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
         catchData = [[[NSDictionary alloc] initWithDictionary:self.connect.content] autorelease];
         NSArray* temp = [[catchData objectForKey:NewsAPIKeyNtou]objectForKey:NewsAPIKeyNotice];
         NSLog(@"---%lu",(unsigned long)[temp count]);
-        if ([temp count]>NewsCatchDataCount) 
+        /*if ([temp count]>NewsCatchDataCount)
             temp = [NSArray arrayWithObject:temp];
-        else if ([temp count]==0)
+        else*/
+        if ([temp count]==0)
             endCatchData[self.activeCategoryId]= TRUE;
         if (!tableDisplayData[self.activeCategoryId])
             tableDisplayData[self.activeCategoryId] = [[NSMutableArray alloc] init];
