@@ -34,6 +34,7 @@ typedef enum {
     Announce_API* connect;
     NSMutableArray* tableDisplayData[6];
     NSInteger pageCount[6];
+    BOOL endCatchData[6];
 }
 
 @property (nonatomic, assign) NSInteger activeCategoryId;
