@@ -172,6 +172,8 @@ static ClassDataBase *sharedData = nil;
         return;
     [ColorTempDic removeObjectForKey:Key];
     [ColorTempDic setValue:RGB forKey:Key];
+    [ColorDic removeObjectForKey:Key];
+    [ColorDic setValue:RGB forKey:Key];
 }
 
 -(NSString*) FetchProfessorName:(NSNumber*)Key{
