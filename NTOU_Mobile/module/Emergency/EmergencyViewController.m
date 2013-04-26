@@ -325,10 +325,20 @@
 
 }
 
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    switch (buttonIndex) {
+        case 0:
+            break;
+        default:{
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:alertView.message]];
+            break;
+        }
+    }
+    
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-   
-    
     NSDictionary *anEntry;
     NSString *phoneNumber;
     NSURL *aURL;
@@ -351,7 +361,8 @@
                            withString:@""];
             aURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", phoneNumber]];
             if ([[UIApplication sharedApplication] canOpenURL:aURL]) {
-                [[UIApplication sharedApplication] openURL:aURL];
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"即將撥出" delegate:self cancelButtonTitle:@"取消"  otherButtonTitles:@"撥打", nil];
+                [alert show];
             }
             break;
          }

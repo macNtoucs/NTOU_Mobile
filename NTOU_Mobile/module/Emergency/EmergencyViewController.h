@@ -9,7 +9,7 @@
 @end
 
 
-@interface EmergencyViewController : UITableViewController <UIWebViewDelegate,MFMailComposeViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate> {
+@interface EmergencyViewController : UITableViewController <UIWebViewDelegate,MFMailComposeViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate> {
     id<EmergencyViewControllerDelegate> delegate;
     
 	BOOL refreshButtonPressed;

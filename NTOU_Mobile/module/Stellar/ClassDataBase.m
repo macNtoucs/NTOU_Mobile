@@ -107,7 +107,7 @@ static ClassDataBase *sharedData = nil;
             showClassTimes = YES;
             ScheduleInfo = [self VoidSchedule];
             ScheduleTempInfo = (NSDictionary *)CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (CFDictionaryRef)ScheduleInfo, kCFPropertyListMutableContainers);
-            WeekDays=[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES], nil];
+            WeekDays=[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:NO],[NSNumber numberWithBool:NO], nil];
             courseCount = [[NSMutableDictionary alloc] init];
             moodleFrom = [[NSMutableDictionary alloc] init];
             

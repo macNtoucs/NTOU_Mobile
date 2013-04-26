@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SecondaryGroupedTableViewCell.h"
 #import "UIKit+NTOUAdditions.h"
-@interface OutCampusViewController : UITableViewController <UINavigationControllerDelegate>
+@interface OutCampusViewController : UITableViewController <UINavigationControllerDelegate,UIAlertViewDelegate>
 {
     NSArray *emergencyData;
 

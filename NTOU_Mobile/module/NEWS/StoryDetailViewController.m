@@ -28,7 +28,10 @@
     return self;
 }
 
-
+-(NSString *)stringToDeleteLineAndTab:(NSString *)oldString
+{
+    return [[oldString stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+}
 
 - (void)viewDidLoad
 {
@@ -51,24 +54,24 @@
     // 一行大約20個中文字
     NSInteger lineNum = [[[[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] length] / 17 + 1;
     //if (buttonDisplay) {
-    textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 181, 320, lineNum*50)];
+    textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 181, 320, lineNum*35)];
     /*} else {
      textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 46, 320, lineNum*50)];
      }*/
     textSubView.text = [[[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
     textSubView.editable = NO;
     textSubView.userInteractionEnabled = NO;
-    [textSubView setFont:[UIFont boldSystemFontOfSize:20.0]];
+    [textSubView setFont:[UIFont boldSystemFontOfSize:18.0]];
     
     [dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.navigationItem.title = [[[[story objectForKey:NewsAPIKeyTitle]objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
     
-    NSInteger newLineHeight = lineNum * 50 / 17;
+    NSInteger newLineHeight = lineNum*1.5;
     //NSLog(@"newLineHeight = %i", newLineHeight);
     
     NSString * newLine;
     //if (buttonDisplay) {
-    newLine = [[NSString alloc] initWithString:@"\n\n\n\n\n\n\n\n\n"];
+    newLine = [[NSString alloc] initWithString:@"\n\n\n\n\n\n\n\n\n\n\n"];
     /*} else {
      newLine = [[NSString alloc] initWithString:@"\n\n\n"];
      }*/
@@ -78,7 +81,7 @@
     }
     
     textView.font = [UIFont systemFontOfSize:15.0];
-    textView.text = [newLine stringByAppendingString:[[story objectForKey:NewsAPIKeyBody] objectForKey:NewsAPIKeyText]];
+    textView.text = [newLine stringByAppendingString:[self stringToDeleteLineAndTab:[[story objectForKey:NewsAPIKeyBody] objectForKey:NewsAPIKeyText]]];
     
     [textView addSubview:dataTableView];
     [textView addSubview:textSubView];
