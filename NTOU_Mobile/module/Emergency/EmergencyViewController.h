@@ -11,7 +11,7 @@
 
 @interface EmergencyViewController : UITableViewController <UIWebViewDelegate,MFMailComposeViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate> {
     id<EmergencyViewControllerDelegate> delegate;
-    
+    int alertTouchRow;
 	BOOL refreshButtonPressed;
     NSString *htmlString;
 	NSString *htmlFormatString;

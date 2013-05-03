@@ -387,12 +387,10 @@
                 [[ClassDataBase sharedData] ClearAllCourses];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                    if (loginSuccess)
-                        [self finishSetting];
+                    [self finishSetting];
                 });
             });
         }
-        [self dismissModalViewControllerAnimated:YES];
     }
 }
 
