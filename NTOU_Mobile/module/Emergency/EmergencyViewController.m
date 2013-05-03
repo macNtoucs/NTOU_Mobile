@@ -325,12 +325,28 @@
 
 }
 
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    switch (buttonIndex) {
+        case 0:
+            break;
+        default:{
+            NSDictionary *anEntry = [numbers objectAtIndex:alertTouchRow];
+            NSString *phoneNumber = [[anEntry objectForKey:@"phone"]
+                           stringByReplacingOccurrencesOfString:@"."
+                           withString:@""];
+            NSURL *aURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", phoneNumber]];
+            [[UIApplication sharedApplication] openURL:aURL];
+            break;
+        }
+    }
+    
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-   
-    
     NSDictionary *anEntry;
     NSString *phoneNumber;
+    NSString *title;
     NSURL *aURL;
     switch (indexPath.section) {
         case 1:{
@@ -344,14 +360,19 @@
                 [self presentModalViewController:imagePicker animated:YES];
                 break;
 
-            }       
+            }
+            alertTouchRow = indexPath.row;
             anEntry = [numbers objectAtIndex:indexPath.row];
-            phoneNumber = [[anEntry objectForKey:@"phone"]
+            title = [[anEntry objectForKey:@"title"]
                            stringByReplacingOccurrencesOfString:@"."
                            withString:@""];
+            phoneNumber = [[anEntry objectForKey:@"phone"]
+                                     stringByReplacingOccurrencesOfString:@"."
+                                     withString:@""];
             aURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", phoneNumber]];
             if ([[UIApplication sharedApplication] canOpenURL:aURL]) {
-                [[UIApplication sharedApplication] openURL:aURL];
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"警告" message:[NSString stringWithFormat:@"即將撥往%@",title] delegate:self cancelButtonTitle:@"取消"  otherButtonTitles:@"撥打", nil];
+                [alert show];
             }
             break;
          }
