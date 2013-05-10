@@ -44,23 +44,15 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
     NSHTTPURLResponse *urlResponse = nil;
     NSError *error = [[NSError alloc] init];
     NSMutableURLRequest * jsonQuest = [NSMutableURLRequest new];
-    NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.103:2223/iNTOUServer/%@.do",type];
+    NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.103:2223/iNTOU/%@.do",type];
     [jsonQuest setURL:[NSURL URLWithString:queryURL]];
     [jsonQuest setHTTPMethod:@"POST"];
     [jsonQuest addValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
-    
-    
     [jsonQuest setHTTPBody:[finailPost dataUsingEncoding:NSUTF8StringEncoding]];
-    //NSLog(@"Request = %@",finailPost);
-    //NSLog(@"jsonQuest = %@",[jsonQuest HTTPBody]);
-    
-    
     NSData *responseData = [NSURLConnection sendSynchronousRequest:jsonQuest
                                                  returningResponse:&urlResponse
                                                              error:&error
                             ];
-    
-    //NSString *result = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
     
     return dictionary;
@@ -74,17 +66,12 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
     else false;
 }
 
-
-
 +(NSDictionary *)Login:(NSString *)username andPassword:(NSString*)password{
     // NSDictionary *dictionary = [self queryFunctionType:@"login" PostString:finailPost];
     NSDictionary *dictionary;
     bool validString=false;
     NSDictionary *postDic1;
     do{
-        //struct timeval t;
-        //gettimeofday(&t, NULL);
-        //long long unsigned msec = (t.tv_sec * 1000 + t.tv_usec / 1000);
         long long unsigned a = rand()%10000+10000;
         long long unsigned b = rand()%10000+10000;
         long long unsigned msec = ( a * b ) + 1430000000000;
@@ -99,8 +86,6 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
                    encrypt_password,@"password",
                    [NSString stringWithFormat:@"%lld",msec],@"now", nil];
         
-        //NSLog(@"加密username=>%@",encrypt_username );
-        //NSLog(@"加密password=>%@",encrypt_password );
         if ( ![self checkIsStringIncludePulseSymbol:encrypt_username] &&  ![self checkIsStringIncludePulseSymbol:encrypt_password]) validString = true;
         
     }while (!validString);
@@ -110,6 +95,7 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
     if([[dictionary allValues]count]>1) {
         NSLog(@"登入成功");
     }
+    else NSLog(@"登入失敗");
     
     
     return dictionary;
@@ -137,8 +123,15 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
 }
 
 +(NSDictionary* )GetMoodleInfo_AndUseToken:(NSString *)token courseID:(NSString *)cosID classID:(NSString *)clsID{
-    NSDictionary *postDic = [[NSDictionary alloc]initWithObjectsAndKeys:token,@"stid",cosID,@"cosid",clsID,@"clsid",nil];
-    NSString *jsonRequest = [postDic JSONRepresentation];
+    NSDictionary * Jsonlist =[[NSDictionary alloc]initWithObjectsAndKeys:cosID,@"cosid",clsID,@"clsid",nil];
+    NSString * jsonArray = [Jsonlist JSONRepresentation];
+    NSDictionary *postDic = [[NSDictionary alloc]initWithObjectsAndKeys:token,@"stid",Jsonlist,@"list",nil];
+    NSString *const_jsonRequest = [postDic JSONRepresentation];
+    NSMutableString *jsonRequest = [[NSMutableString alloc]initWithString:const_jsonRequest];
+    
+    [jsonRequest insertString:@"[" atIndex:8];
+    [jsonRequest insertString:@"]" atIndex:[jsonRequest rangeOfString:@"stid"].location-2];
+    
     NSString *finailPost = [NSString stringWithFormat:@"json=%@",jsonRequest];
     NSDictionary *dictionary = [self queryFunctionType:@"getMoodleInfo" PostString:finailPost];
     return dictionary;
@@ -159,73 +152,89 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
     NSDictionary *dictionary = [self queryFunctionType:@"getMoodleID" PostString:finailPost];
     return dictionary;
 }
-/*
 
++(NSDictionary* )MoodleID_AndUseToken:(NSString *)token module:(NSString *)module moodleID:(NSString *)mid courseID:(NSString *)cosID classID:(NSString *)clsID{
+    NSDictionary *postDic = [[NSDictionary alloc]initWithObjectsAndKeys:token,@"stid",module,@"module",mid,@"mid",cosID,@"cosid",clsID,@"clsid",nil];
+    NSString *jsonRequest = [postDic JSONRepresentation];
+    NSString *finailPost = [NSString stringWithFormat:@"json=%@",jsonRequest];
+    NSDictionary *dictionary = [self queryFunctionType:@"MoodleInfo" PostString:finailPost];
+    return dictionary;
+    
+}
 
-+(NSDictionary *)Login:(NSString *)username andPassword:(NSString*)password{
- 
-    NSString *path =  [[[NSBundle mainBundle] bundlePath]stringByAppendingPathComponent:@"Login"];
-    NSString*responseString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    NSData *responseData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *e = nil;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData: responseData options: 0 error: &e];
-    return dic;
- }
-
-+(NSDictionary *)GetCourse_AndUseToken:(NSString*)token{
-    NSString *path =  [[[NSBundle mainBundle] bundlePath]stringByAppendingPathComponent:@"Course"];
-    NSString*responseString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    NSData *responseData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *e = nil;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData: responseData options: 0 error: &e];
-    return dic;
++(NSArray* )getFilesFolder_InDir:(NSString *)dir{
+    NSHTTPURLResponse *urlResponse = nil;
+    NSError *error = [[NSError alloc] init];
+    NSMutableURLRequest * query = [NSMutableURLRequest new];
+    NSString * queryURL = [NSString stringWithFormat:@"http://moodle.ntou.edu.tw/m/filestring.php"];
+    [query setURL:[NSURL URLWithString:queryURL]];
+    [query setHTTPMethod:@"POST"];
+    [query addValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+    NSString * quest = [NSString stringWithFormat:@"dir=%@",dir];
+    [query setHTTPBody:[quest dataUsingEncoding:NSUTF8StringEncoding]];
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:query
+                                                 returningResponse:&urlResponse
+                                                             error:&error
+                            ];
+    NSString* responseStr = [[[NSString alloc] initWithData:responseData
+                                                   encoding:NSUTF8StringEncoding] autorelease];
+    NSRange search_HEAD = [responseStr rangeOfString:@"<body>"];
+    NSRange search_END = [responseStr rangeOfString:@"</body>"];
+    NSMutableArray * inventory = [[[NSMutableArray alloc]init]autorelease];
+    if (search_END.location==search_HEAD.location ){
+        NSString * noneItem = @"尚無資料";
+        [inventory addObject:noneItem];
+        return inventory;
+    }
+    else{
+        NSString * content = [responseStr substringWithRange:NSMakeRange(search_HEAD.location+7,search_END.location- search_HEAD.location-7)];
+        NSLog(@"%@",content);
+        inventory =[content componentsSeparatedByString:@";"];
+    }
+    NSMutableArray * result_Inventory = [NSMutableArray new];
+    for (NSString *s in inventory){
+        s = [s stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        /* s = [s stringByReplacingOccurrencesOfString:@"_" withString:@""];
+         if ([s intValue]>=10) s = [s substringFromIndex:2];
+         else if ([s intValue]!=0)s = [s substringFromIndex:1];*/
+        if (![s isEqualToString:@"\n"]&&! [s isEqualToString:@""])
+            [result_Inventory addObject:s];
+    }
+    return result_Inventory;
 }
 
 
-+(NSDictionary* )GetCourseInfo_AndUseToken:(NSString *)token courseID:(NSString *)cosID classID:(NSString *)clsID{
-    NSString *path =  [[[NSBundle mainBundle] bundlePath]stringByAppendingPathComponent:@"CourseInfo"];
-    NSString*responseString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    NSData *responseData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *e = nil;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData: responseData options: 0 error: &e];
-    return dic;
-}
 
-+(NSDictionary* )GetMoodleInfo_AndUseToken:(NSString *)token courseID:(NSString *)cosID classID:(NSString *)clsID{
-    NSString *path =  [[[NSBundle mainBundle] bundlePath]stringByAppendingPathComponent:@"MoodleInfo"];
-    NSString*responseString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    NSData *responseData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *e = nil;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData: responseData options: 0 error: &e];
-    return dic;
-}
-
-+(NSDictionary* )GetGrade_AndUseToken:(NSString *)token courseID:(NSString *)cosID classID:(NSString *)clsID{
-    NSString *path =  [[[NSBundle mainBundle] bundlePath]stringByAppendingPathComponent:@"Grade"];
-    NSString*responseString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    NSData *responseData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *e = nil;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData: responseData options: 0 error: &e];
-    return dic;
-}
-
-+(NSDictionary* )GetMoodleID_AndUseToken:(NSString *)token courseID:(NSString *)cosID classID:(NSString *)clsID{
-    NSString *path =  [[[NSBundle mainBundle] bundlePath]stringByAppendingPathComponent:@"MoodleID"];
-    NSString*responseString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    NSData *responseData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *e = nil;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData: responseData options: 0 error: &e];
-    return dic;
-}
-
-+(NSDictionary*)GetMoodleInfo_AndUseToken:(NSString *)token module:(NSString *)module mid:(NSString *)mid courseID:(NSString *)cosID classID:(NSString *)clsID
++(NSString * ) GetPathOfDownloadFiles_fileName:(NSString *)FileName
+                                       FromDir:(NSString *)dir
 {
-    NSString *path =  [[[NSBundle mainBundle] bundlePath]stringByAppendingPathComponent:@"MoodleInfo2"];
-    NSString*responseString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    NSData *responseData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *e = nil;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData: responseData options: 0 error: &e];
-    return dic; 
+    //moodle.ntou.edu.tw/file.php/19367/課程講義/_10_JavaScript_for_Ajax.pptx
+    NSString *URL = [NSString stringWithFormat:@"http://moodle.ntou.edu.tw/file.php%@/%@",dir,FileName];
+    return URL;
+    URL = [URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL  *url = [NSURL URLWithString:URL];
+    
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+    if ( urlData )
+    {
+        NSArray       *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString  *documentsDirectory = [paths objectAtIndex:0];
+        
+        NSString  *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,FileName];
+        [urlData writeToFile:filePath atomically:YES];
+        return filePath;
+    }
+    else return @"Error_dir_or_FileName";
+    
 }
-*/
+
++(BOOL)CleanUpAllTheFiles{
+    NSArray       *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString  *documentsDirectory = [paths objectAtIndex:0];
+    NSFileManager *manager = [NSFileManager new];
+    NSError *err;
+    return[manager removeItemAtPath:documentsDirectory error:&err];
+    
+}
+
 @end

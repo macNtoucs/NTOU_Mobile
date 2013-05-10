@@ -21,7 +21,7 @@
 @synthesize station;
 
 -(id)initIsHighSpeedTrain:(bool)isHighSpeedTrain{
-    ThroughTap *bg = [[ThroughTap alloc]initWithFrame:CGRectMake(0,0,320,480)];
+    ThroughTap *bg = [[ThroughTap alloc]initWithFrame:CGRectMake(0,0,320,[[UIScreen mainScreen] bounds].size.height)];
     startStaion_origin =0;
     depatureStation_origin=0;
     dateSelected=0;
@@ -31,22 +31,27 @@
     downloadView = [DownloadingView new];
     _isHightSpeedTrain = isHighSpeedTrain;
     if (!isHighSpeedTrain){
-        startStaion = [[NSString alloc]initWithString:@"基隆"];
-        DepatureStation = [[NSString alloc]initWithString:@"臺北"];
+        startStaion = [[ NSUserDefaults standardUserDefaults]objectForKey:@"startStaion"];
+        DepatureStation = [[ NSUserDefaults standardUserDefaults]objectForKey:@"DepatureStaion"];
+        if (!startStaion||!DepatureStation) {
+            startStaion = [[NSString alloc]initWithFormat:@"基隆"];
+            DepatureStation = [[NSString alloc]initWithFormat:@"臺北"];
+            [[NSUserDefaults standardUserDefaults]setObject:startStaion forKey:@"startStaion"];
+            [[NSUserDefaults standardUserDefaults]setObject:DepatureStation forKey:@"DepatureStaion"];
+        }
         view1 = [[SetOriginAndStationViewController alloc] initWithStyle:UITableViewStyleGrouped];
         view1.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
-        [setStartStationController.view addSubview:view1.view];
         [setStartStationController.view addSubview:bg];
+        [setStartStationController.view addSubview:view1.view];
         setStartStationController.tabBarItem.tag=0;
         view1.delegate = self;
         setStartStationController.tabBarItem.image = [UIImage imageNamed:@"bank.png"];
         ///////////////////////////////////////////////////////////
         view2 = [[SetOriginAndStationViewController alloc] initWithStyle:UITableViewStyleGrouped];
         view2.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
-        [setdepatureStationviewController.view addSubview:view2.view];
         [setdepatureStationviewController.view addSubview:bg];
+        [setdepatureStationviewController.view addSubview:view2.view];      setdepatureStationviewController.tabBarItem.tag=1;
         view2.delegate = self;
-        setdepatureStationviewController.tabBarItem.tag=1;
         setdepatureStationviewController.tabBarItem.image = [UIImage imageNamed:@"bank.png"];
         ///////////////////////////////////////////////////////////
     }
@@ -144,17 +149,17 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        setStartStationController = [[UIViewController alloc] init];
+        setStartStationController = [[[UIViewController alloc] init]autorelease];
         setStartStationController.title = @"起站";
-        setdepatureStationviewController = [[UIViewController alloc] init];
+        setdepatureStationviewController = [[[UIViewController alloc] init]autorelease];
         setdepatureStationviewController.title = @"訖站";
-        setTimeviewController = [[UIViewController alloc] init];
+        setTimeviewController = [[[UIViewController alloc] init]autorelease];
         setTimeviewController.title = @"日期";
-        setTrainTypeviewController = [[UIViewController alloc] init];
+        setTrainTypeviewController = [[[UIViewController alloc] init]autorelease];
         setTrainTypeviewController.title = @"車種";
-        resultViewController = [[UIViewController alloc] init];
+        resultViewController = [[[UIViewController alloc] init]autorelease];
         resultViewController.title = @"查詢";
-        setHTTimeviewController = [[UIViewController alloc] init];
+        setHTTimeviewController = [[[UIViewController alloc] init]autorelease];
         setHTTimeviewController.title = @"時間";
     }
     return self;
@@ -163,7 +168,7 @@
 
 
 -(void)navAddRightButton{
-    UIBarButtonItem * swapStation = [[UIBarButtonItem alloc]initWithTitle:@"往返切換" style:UIBarButtonItemStylePlain target:self action:@selector(SwapStation)];
+    UIBarButtonItem * swapStation = [[UIBarButtonItem alloc]initWithTitle:@"往返" style:UIBarButtonItemStylePlain target:self action:@selector(SwapStation)];
     self.navigationItem.rightBarButtonItem = swapStation;
 }
 -(void)SwapStation{
@@ -186,7 +191,6 @@
 - (CGFloat) horizontalLocationFor:(NSUInteger)tabIndex
 {
     CGFloat tabItemWidth = self.tabBar.frame.size.width / [viewControllers count];
-    NSLog(@"%f / %u",self.tabBar.frame.size.width , self.tabBar.items.count);
     CGFloat halfTabItemWidth = (tabItemWidth / 2.0) - (tabBarArrow.frame.size.width / 2.0);
     return (tabIndex * tabItemWidth) + halfTabItemWidth;
 }
@@ -209,7 +213,6 @@
     frame.origin.x = [self horizontalLocationFor:self.selectedIndex];
     tabBarArrow.frame = frame;
     [UIView commitAnimations];
-    NSLog(@"%d", viewController.tabBarItem.tag);
     if (viewController.tabBarItem.tag==4){
        
         dispatch_async( dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -227,9 +230,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor clearColor];
-    if(!_isHightSpeedTrain)
-        self.title = [NSString stringWithFormat: @" 基隆 → 臺北"];
+    if(!_isHightSpeedTrain){
+        self.title = [NSString stringWithFormat: @" %@ → %@",
+                      [[ NSUserDefaults standardUserDefaults]objectForKey:@"startStaion"] ,[[ NSUserDefaults standardUserDefaults]objectForKey:@"DepatureStaion"]];
+    }
     else self.title = [NSString stringWithFormat: @" 台北 → 左營"];
     
     if (((startStaion && DepatureStation) &&![startStaion isEqualToString:@""] ))
@@ -256,21 +262,26 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)SetOriginAndStationViewTableView:(UITableViewController *)tableView nowSelected:(NSString *)_station{
-    if (tableView==view1)
+    if (tableView==view1){
         startStaion = [[NSString alloc]initWithFormat:@"%@", _station ] ;
-    else if (tableView==view2)
+        [[NSUserDefaults standardUserDefaults]setObject:_station forKey:@"startStaion"];
+    }
+    else if (tableView==view2){
         DepatureStation = [[NSString alloc]initWithFormat:@"%@", _station ] ;
+        [[NSUserDefaults standardUserDefaults]setObject:_station forKey:@"DepatureStaion"];
+    }
     [self viewDidLoad];
 }
 
 -(void)setHTOriginAndTerminalTableView:(UITableViewController*) tableView nowSelected:(NSString*) _station{
-    [startStaion release];
-    [DepatureStation release];
-    if (tableView==HTView_origin)
+    if (tableView==HTView_origin){
         startStaion = [[NSString alloc]initWithFormat:@"%@", _station ] ;
-    else if (tableView==HTView_terminal)
+        [[NSUserDefaults standardUserDefaults]setObject:_station forKey:@"HTstartStaion"];
+    }
+    else if (tableView==HTView_terminal){
         DepatureStation = [[NSString alloc]initWithFormat:@"%@", _station ] ;
-    [self viewDidLoad];
+        [[NSUserDefaults standardUserDefaults]setObject:_station forKey:@"HTDepatureStaion"];
+    }[self viewDidLoad];
     
 }
 
@@ -282,16 +293,14 @@
         return [NSURL URLWithString:@""];
     }
     
-    NSLog(@"%@",calendar.selectedDate);
-    
     if (![startStaion isEqualToString:@""] && ![DepatureStation isEqualToString:@""] ){
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
        
         NSString *StartStationID = [NSString stringWithFormat:@"%@",[stationNum valueForKey:startStaion]];
         NSString *DepatureStationID= [NSString stringWithFormat:@"%@",[stationNum valueForKey:DepatureStation]];
         // NSArray *arr= [stationNum allKeys];
+        //NSString * queryURL = @"http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate=";
         NSString * queryURL = @"http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate=";
-        
         [dateFormatter setDateFormat:@"yyyy"];
         queryURL=[queryURL stringByAppendingString:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:calendar.selectedDate]]];
         queryURL= [queryURL stringByAppendingString:@"%2f"];
@@ -306,8 +315,8 @@
         
         queryURL= [queryURL stringByAppendingString:[NSString stringWithFormat:@"&fromcity=0&tocity=0&fromstation=%@&tostation=%@&",StartStationID,DepatureStationID]];
         queryURL= [queryURL stringByAppendingString:[NSString stringWithFormat:@"trainclass=%@&fromtime=0000&totime=2359",trainStyle]];
-        //  NSLog( @"%@",queryURL);
-        
+       // NSLog( @"%@",queryURL);
+       // queryURL= @"http://140.121.91.62/Rail_Web_Query.php?searchtype=0&searchdate=2013%2f04%2f02&fromcity=0&tocity=0&fromstation=1001&tostation=1008&trainclass=2&fromtime=0000&totime=2359";
         return [NSURL URLWithString:queryURL];
     }
     
@@ -329,12 +338,12 @@
 - (NSString *)startStationTitile:(StaionInfoTableViewController *)stationInfoTableView{
     if (![startStaion isEqualToString:@""] && startStaion)
         return startStaion;
-    else return @"基隆";
+    else return [[ NSUserDefaults standardUserDefaults]objectForKey:@"startStaion"];
 }
 - (NSString *)depatureStationTitile:(StaionInfoTableViewController *)stationInfoTableView{
     if (![DepatureStation isEqualToString:@""] && DepatureStation)
         return DepatureStation;
-    else return @"臺北";
+    else return [[ NSUserDefaults standardUserDefaults]objectForKey:@"DepatureStaion"];
 }
 
 
@@ -360,7 +369,6 @@
 
 -(void)HTTime:(SetTimeViewController *) controller nowselectedTime:(NSString *)Time{
     selectedHTTime = Time;
-    NSLog(@"%@",Time);
 }
 
 

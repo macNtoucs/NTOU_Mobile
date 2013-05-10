@@ -14,6 +14,8 @@
 @property (strong, nonatomic) NSArray *keys;
 @property (strong, nonatomic) WOLSwitchViewController *switchviewcontroller;
 @property (nonatomic) BOOL downLoadEditing;
+@property (nonatomic) NSInteger menuHeight;
+@property (nonatomic, strong) UIToolbar *actionToolbar;
 
 - (IBAction)chooseitem;
 

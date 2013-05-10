@@ -28,6 +28,11 @@
     return self;
 }
 
+-(NSString *)stringToDeleteLineAndTab:(NSString *)oldString
+{
+    return [[oldString stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -37,6 +42,7 @@
     /* } else {
      dataFrame = CGRectMake(0, 0, 320, 45);
      }*/
+    
     dataTableView = [[UITableView alloc] initWithFrame:dataFrame style:UITableViewStylePlain];
     dataTableView.dataSource = self;
     dataTableView.delegate = self;
@@ -46,26 +52,26 @@
     textView.scrollEnabled = YES;
     
     // 一行大約20個中文字
-    NSInteger lineNum = [[[[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] length] / 20 + 1;
+    NSInteger lineNum = [[[[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] length] / 17 + 1;
     //if (buttonDisplay) {
-    textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 181, 320, lineNum*50)];
+    textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 181, 320, lineNum*35)];
     /*} else {
      textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 46, 320, lineNum*50)];
      }*/
     textSubView.text = [[[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
     textSubView.editable = NO;
     textSubView.userInteractionEnabled = NO;
-    [textSubView setFont:[UIFont boldSystemFontOfSize:20.0]];
+    [textSubView setFont:[UIFont boldSystemFontOfSize:18.0]];
     
     [dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.navigationItem.title = [[[[story objectForKey:NewsAPIKeyTitle]objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
     
-    NSInteger newLineHeight = lineNum * 50 / 20;
+    NSInteger newLineHeight = lineNum*1.5;
     //NSLog(@"newLineHeight = %i", newLineHeight);
     
     NSString * newLine;
     //if (buttonDisplay) {
-    newLine = [[NSString alloc] initWithString:@"\n\n\n\n\n\n\n\n\n\n"];
+    newLine = [[NSString alloc] initWithString:@"\n\n\n\n\n\n\n\n\n\n\n"];
     /*} else {
      newLine = [[NSString alloc] initWithString:@"\n\n\n"];
      }*/
@@ -75,7 +81,7 @@
     }
     
     textView.font = [UIFont systemFontOfSize:15.0];
-    textView.text = [newLine stringByAppendingString:[[story objectForKey:NewsAPIKeyBody] objectForKey:NewsAPIKeyText]];
+    textView.text = [newLine stringByAppendingString:[self stringToDeleteLineAndTab:[[story objectForKey:NewsAPIKeyBody] objectForKey:NewsAPIKeyText]]];
     
     [textView addSubview:dataTableView];
     [textView addSubview:textSubView];
@@ -149,7 +155,7 @@
         case 3:
             //cell.textLabel.text = tmpAttachment;
             //cell.detailTextLabel.text = [story objectAtIndex:5];
-            cell.textLabel.text = [[[[story objectForKey:NewsAPIKeyEmail] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+            cell.textLabel.text = nil;
             cell.imageView.image = [UIImage imageNamed:@"news/action-pdf"];
             cell.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"news/cell4.png"]];
             cell.detailTextLabel.backgroundColor = [UIColor clearColor];

@@ -8,11 +8,13 @@
 
 #import "EditScheduleViewController.h"
 #import "NTOUUIConstants.h"
-#import "NTOU_ClassColorTableController.h"
+#import "NTOU_ClassColorViewController.h"
 @interface EditScheduleViewController (){
     SetWeekTimesViewController * setweek;
     id accountDelegate;
     id passwordDelegate;
+    UIAlertView *downloadingAlertView;
+    UIAlertView *resetAlertView;
 }
 
 @end
@@ -23,15 +25,19 @@
 {
     self = [super initWithStyle:style];
     if (self) {
+        self.tableView.scrollEnabled = NO;
         self.title = @"設定";
+        self.navigationController.navigationBar.tintColor = [UIColor colorWithHue:59.0/255 saturation:89.0/255 brightness:182.0/255 alpha:1];
+        [[UIBarButtonItem appearance] setTintColor: [UIColor colorWithHexString:@"#144893"]];
         self.view.backgroundColor = [UIColor clearColor];
-        [ClassDataBase sharedData].EditScheduleDelegate = self;
+        [ClassDataBase sharedData].EditScheduleDelegate = self; 
     }
     return self;
 }
 
 -(void) addNavRightButton {
     UIBarButtonItem * right = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishSetting)];
+    
     [self.navigationItem setRightBarButtonItem:right animated:YES];
 }
 
@@ -83,6 +89,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Table view data source
+
+
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat rowHeight = 0;
@@ -90,12 +99,57 @@
     CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
     NSString *cellText = nil;
     
-    cellText = @" "; // just something to guarantee one line
+    cellText = @"A"; // just something to guarantee one line
     CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
     rowHeight = labelSize.height + 20.0f;
     
     return rowHeight;
 }
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if (section==1) {
+        return @" ";
+    }
+    return nil;
+    
+}
+
+-(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section==1) {
+        return 32;
+    }
+    return 0;
+}
+
+
+
+- (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	NSString *headerTitle = nil;
+    switch (section) {
+        case 1:
+            headerTitle = @"Moodle";
+            break;
+        default:
+            break;
+    }
+    UIFont *font = [UIFont boldSystemFontOfSize:STANDARD_CONTENT_FONT_SIZE];
+	CGSize size = [headerTitle sizeWithFont:font];
+	CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(19.0, 0, appFrame.size.width - 19.0, size.height)];
+	
+	label.text = headerTitle;
+	label.textColor = GROUPED_SECTION_FONT_COLOR;
+	label.font = font;
+	label.backgroundColor = [UIColor clearColor];
+	label.textAlignment = UITextAlignmentCenter;
+	UIView *labelContainer = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, appFrame.size.width, GROUPED_SECTION_HEADER_HEIGHT)] autorelease];
+	labelContainer.backgroundColor = [UIColor clearColor];
+	
+	[labelContainer addSubview:label];
+	[label release];
+	return labelContainer;
+}
+
 
 
 #pragma mark - Table view data source
@@ -104,7 +158,7 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -118,6 +172,9 @@
         return 2;
     }
     else if (section==2) {
+        return 1;
+    }
+    else if (section==3) {
         return 1;
     }
     return 0;
@@ -141,7 +198,7 @@
     if (indexPath.section==1&&(indexPath.row==0||indexPath.row==1)) {
         cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
     }
-    else if ((indexPath.section==2&&indexPath.row==0))
+    else if ((indexPath.section==2&&indexPath.row==0)||(indexPath.section==3&&indexPath.row==0))
         cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     else
         cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
@@ -216,7 +273,17 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         switch (indexPath.row) {
             case 0:
-                cell.textLabel.text = @"與當學期同步課表";
+                cell.textLabel.text = @"下載當學期課表";
+                cell.textLabel.textAlignment = UITextAlignmentCenter;
+                break;
+        }
+    }
+    else if (indexPath.section==3)
+    {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        switch (indexPath.row) {
+            case 0:
+                cell.textLabel.text = @"還原初始設定";
                 cell.textLabel.textAlignment = UITextAlignmentCenter;
                 break;
         }
@@ -289,49 +356,41 @@
 */
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    switch (buttonIndex) {
-        case 1:{
+    if (buttonIndex==1) {
+        if (alertView==downloadingAlertView) {
             dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                 // Show the HUD in the main tread
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // No need to hod onto (retain)
                     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-                    hud.labelText = @"Loading";
-                });
-
-                loginSuccess = [[ClassDataBase sharedData] loginAccount:[(UITextField*)accountDelegate text]
-                                            Password:[(UITextField*)passwordDelegate text]
-                                            ClearAllCourses:YES];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                    if (loginSuccess)
-                        [self finishSetting];
-                });
-            });
-        }
-            break;
-        case 2:{
-            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                // Show the HUD in the main tread
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    // No need to hod onto (retain)
-                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-                    hud.labelText = @"Loading";
+                    hud.labelText = @"下載中";
                 });
                 
                 loginSuccess = [[ClassDataBase sharedData] loginAccount:[(UITextField*)accountDelegate text]
-                                                Password:[(UITextField*)passwordDelegate text]
-                                         ClearAllCourses:NO];
+                                                               Password:[(UITextField*)passwordDelegate text]
+                                                        ClearAllCourses:NO];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                     if (loginSuccess)
                         [self finishSetting];
                 });
             });
+        } else {
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                // Show the HUD in the main tread
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // No need to hod onto (retain)
+                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+                    hud.labelText = @"請稍候";
+                });
+                
+                [[ClassDataBase sharedData] ClearAllCourses];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                    [self finishSetting];
+                });
+            });
         }
-            break;
-        default:
-            break;
     }
 }
 
@@ -343,19 +402,29 @@
         setweek = [SetWeekTimesViewController new];
         [self.navigationController pushViewController:setweek animated:YES];
         setweek.title = @"設定一周天數";
+        setweek.navigationItem.leftBarButtonItem.title=@"上一頁";
     }
     else if (indexPath.section==0&&indexPath.row==1){
-        NTOU_ClassColorTableController* classColor = [[NTOU_ClassColorTableController alloc] init];
+        NTOU_ClassColorViewController* classColor = [[NTOU_ClassColorViewController alloc] init];
         classColor.title = @"設定課堂顏色";
         [self.navigationController pushViewController:classColor animated:YES];
+        classColor.navigationItem.leftBarButtonItem.title=@"上一頁";
     }
     else if (indexPath.section==2&&indexPath.row==0){
-        UIAlertView *loadingAlertView = [[UIAlertView alloc]
-                                         initWithTitle:@"警告" message:@"將會覆蓋相同位置課堂"
+        downloadingAlertView = [[UIAlertView alloc]
+                                         initWithTitle:nil message:@"下載當學期課表"
                                          delegate:self cancelButtonTitle:@"取消"
-                                         otherButtonTitles:@"重置",@"僅更新當學期課堂", nil];
-        [loadingAlertView show];
-        [loadingAlertView release];
+                                         otherButtonTitles:@"確定", nil];
+        [downloadingAlertView show];
+        [downloadingAlertView release];
+    }
+    else if (indexPath.section==3&&indexPath.row==0){
+        resetAlertView = [[UIAlertView alloc]
+                                         initWithTitle:nil message:@"還原初始設定"
+                                         delegate:self cancelButtonTitle:@"取消"
+                                         otherButtonTitles:@"確定", nil];
+        [resetAlertView show];
+        [resetAlertView release];
     }
 }
 

@@ -264,6 +264,7 @@
     
     }
     [self.navigationController pushViewController:detail animated:YES];
+    detail.navigationItem.leftBarButtonItem.title=@"back";
 }
 
 @end

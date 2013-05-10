@@ -18,7 +18,7 @@
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
     self = [super initWithStyle:style];
     if (self) {
-        self.title = @"Routes";
+        self.title = @"其他";
     }
     return self;
 }
@@ -63,7 +63,7 @@
     switch (self->WhatRoute) {
 
         case 0:
-            headerTitle = @"Others";
+            headerTitle = @"校門口、警衛室";
             break;
 
         default:
@@ -83,7 +83,7 @@
     switch (self->WhatRoute) {
             
         case 0:
-            return 4;
+            return 5;
             break;
         default:
             return 0;
@@ -115,7 +115,9 @@
                 case 3:
                     cell.textLabel.text = @"祥豐校門";
                     break;
-                    
+                case 4:
+                    cell.textLabel.text = @"郵局";
+                    break;
                 default:
                     break;
             }
@@ -205,6 +207,11 @@
                     location.latitude = 25.150816;
                     [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
                     break;
+                case 4:
+                    location.longitude = 121.775844;
+                    location.latitude = 25.150594;
+                    [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
+                    break;
                 default:
                     break;
             }
@@ -215,6 +222,7 @@
     stopsLocation.view.hidden = NO;
     stopsLocation.title = [cell.textLabel.text retain];
     [self.navigationController pushViewController:stopsLocation animated:YES];
+    stopsLocation.navigationItem.leftBarButtonItem.title=@"back";
     [stopsLocation release];
     
 }

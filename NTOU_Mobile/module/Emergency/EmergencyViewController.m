@@ -22,11 +22,11 @@
                              nil],
                             [NSDictionary dictionaryWithObjectsAndKeys:
                              @"衛生保健組", @"title",
-                             @"0224622192#1071", @"phone",
+                             @"0224622192,1071", @"phone",
                              nil],
                             [NSDictionary dictionaryWithObjectsAndKeys:
                              @"警衛室", @"title",
-                             @"0224622192#1132", @"phone",
+                             @"0224622192,1132", @"phone",
                              nil],
                             [NSDictionary dictionaryWithObjectsAndKeys:
                              @"八斗子派出所", @"title",
@@ -311,7 +311,7 @@
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *mailView = [[MFMailComposeViewController alloc] init];
         mailView.mailComposeDelegate = self;
-        [mailView setToRecipients:[NSArray arrayWithObjects:@"mac.ntoucs@gmail.com", nil]];
+        [mailView setToRecipients:[NSArray arrayWithObjects:@"wendylin@mail.ntou.edu.tw", nil]];
         [mailView setSubject:@"緊急事件"];
         
         [mailView setMessageBody:@"[照片]" isHTML:NO];
@@ -325,12 +325,28 @@
 
 }
 
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    switch (buttonIndex) {
+        case 0:
+            break;
+        default:{
+            NSDictionary *anEntry = [numbers objectAtIndex:alertTouchRow];
+            NSString *phoneNumber = [[anEntry objectForKey:@"phone"]
+                           stringByReplacingOccurrencesOfString:@"."
+                           withString:@""];
+            NSURL *aURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", phoneNumber]];
+            [[UIApplication sharedApplication] openURL:aURL];
+            break;
+        }
+    }
+    
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-   
-    
     NSDictionary *anEntry;
     NSString *phoneNumber;
+    NSString *title;
     NSURL *aURL;
     switch (indexPath.section) {
         case 1:{
@@ -344,14 +360,19 @@
                 [self presentModalViewController:imagePicker animated:YES];
                 break;
 
-            }       
+            }
+            alertTouchRow = indexPath.row;
             anEntry = [numbers objectAtIndex:indexPath.row];
-            phoneNumber = [[anEntry objectForKey:@"phone"]
+            title = [[anEntry objectForKey:@"title"]
                            stringByReplacingOccurrencesOfString:@"."
                            withString:@""];
+            phoneNumber = [[anEntry objectForKey:@"phone"]
+                                     stringByReplacingOccurrencesOfString:@"."
+                                     withString:@""];
             aURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", phoneNumber]];
             if ([[UIApplication sharedApplication] canOpenURL:aURL]) {
-                [[UIApplication sharedApplication] openURL:aURL];
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"警告" message:[NSString stringWithFormat:@"即將撥往%@",title] delegate:self cancelButtonTitle:@"取消"  otherButtonTitles:@"撥打", nil];
+                [alert show];
             }
             break;
          }
@@ -360,6 +381,7 @@
             OutCampusViewController *outCampus = [[OutCampusViewController alloc]initWithStyle:UITableViewStyleGrouped];
             outCampus.title = cell.textLabel.text;
             [self.navigationController pushViewController:outCampus animated:YES];
+            outCampus.navigationItem.leftBarButtonItem.title=@"上一頁";
           /*  anEntry = [numbers objectAtIndex:indexPath.row+3];
             phoneNumber = [[anEntry objectForKey:@"phone"]
                            stringByReplacingOccurrencesOfString:@"."

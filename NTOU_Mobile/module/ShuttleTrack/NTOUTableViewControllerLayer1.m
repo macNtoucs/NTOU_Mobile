@@ -186,7 +186,7 @@
         case 2:
             switch (indexPath.row) {
                 case 0:
-                    cell.textLabel.text= @"台鐵、高鐵、國光";
+                    cell.textLabel.text= @"台鐵、高鐵、國光、福和";
 
                     break;
             }
@@ -245,6 +245,7 @@
         NTOUTableViewControllerLayer2 * Layer2 = [[NTOUTableViewControllerLayer2 alloc]initWithStyle:UITableViewStyleGrouped];
         [Layer2 SetRoute:indexPath.row];
         [self.navigationController pushViewController:Layer2 animated:YES];
+        Layer2.navigationItem.leftBarButtonItem.title=@"back";
         [Layer2 release];
     }
     else if (indexPath.section == 1)
@@ -252,13 +253,15 @@
         SecondaryGroupedTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
        
         StopsViewController * stops = [[StopsViewController alloc]initWithStyle:UITableViewStyleGrouped];
-        stops.title = cell.textLabel.text;
+        stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];
         if (indexPath.row==0) {
             [stops setDirection:true];
             [self.navigationController pushViewController:stops animated:YES];
+            stops.navigationItem.leftBarButtonItem.title=@"back";
         } else {
             [stops setDirection:false];
              [self.navigationController pushViewController:stops animated:YES];
+            stops.navigationItem.leftBarButtonItem.title=@"back";
         }
        
         [stops release];
@@ -268,6 +271,7 @@
         OtherTrafficTrapViewController *other = [[OtherTrafficTrapViewController alloc ]initWithStyle:UITableViewStyleGrouped];
         other.title = @"搭乘工具";
         [self.navigationController pushViewController:other animated:YES];
+        other.navigationItem.leftBarButtonItem.title=@"back";
         [other release];
     }
 }

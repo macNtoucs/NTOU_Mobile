@@ -7,9 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#define InboundJourney @"去程"
-#define OutboundJourney @"回程"
-#define StationInformationCount 5
+#import "ShuttleConstants.h"
 @interface KUO_Data_Bra2 : NSObject{
     NSMutableDictionary* memory;
 }

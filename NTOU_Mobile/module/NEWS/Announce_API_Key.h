@@ -19,6 +19,7 @@
 #define NewsAPIKeyClass @"class"
 #define NewsAPIKeyEmail @"email"
 #define NewsAPIKeyText @"text"
+#define NewsAPIKeyDpname @"dpname"
 
 #define NewsCategoryIdAnnounceAPI  @"announce"
 #define NewsCategorySymposiumAPI  @"symposium"
@@ -27,5 +28,5 @@
 #define NewsCategoryDocumentAPI  @"document"
 #define NewsCategoryInformationAPI  @"Information"
 
-
+#define NewsCatchDataCount 6
 #endif

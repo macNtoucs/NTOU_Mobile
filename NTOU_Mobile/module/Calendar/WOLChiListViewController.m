@@ -12,13 +12,11 @@
 
 @interface WOLChiListViewController ()
 
-@property (nonatomic, strong) UIToolbar *actionToolbar;
 @property (nonatomic, strong) NSMutableArray *selectindexs;
 @property (nonatomic, strong) UIActionSheet *finishactionsheet;
 @property (nonatomic, strong) UIActionSheet *endactionsheet;
-@property (nonatomic, strong) EKEventStore *eventStore;
+@property (copy, nonatomic) EKEventStore *eventStore;
 @property (nonatomic, strong) UIView *mask;
-@property (nonatomic) BOOL allSelecting;
 @property (nonatomic) BOOL showing;
 
 @end
@@ -36,7 +34,7 @@
 @synthesize mask;
 @synthesize downLoadEditing;
 @synthesize showing;
-@synthesize allSelecting;
+@synthesize menuHeight;
 
 -(id)initWithStyle:(UITableViewStyle)style
 {
@@ -51,9 +49,12 @@
 {
     [super viewDidLoad];
     
+    //setup Calendar
+    eventStore = [[EKEventStore alloc] init];
+
     selectindexs = [[NSMutableArray alloc] init];
     
-    self.title = @"清單";
+    //self.title = @"清單";
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"CalenderList" ofType:@"plist"];
     
@@ -94,7 +95,6 @@
     self.actionToolbar.barStyle = UIBarStyleBlack;
     
     downLoadEditing = NO;
-    allSelecting = NO;
 }
 
 -(void)viewDidUnload
@@ -183,7 +183,7 @@
         event = [[UILabel alloc] init];
         date= [[UILabel alloc] init];
         
-        event.frame = CGRectMake(11,25,45,21);
+        event.frame = CGRectMake(11,27,45,21);
         event.text = @"事件：";
         event.textAlignment = UITextAlignmentRight;
         event.tag=row;
@@ -191,7 +191,7 @@
         event.font = cellFont;
         event.textColor = CELL_STANDARD_FONT_COLOR;
         
-        date.frame = CGRectMake(11,4,45,21);
+        date.frame = CGRectMake(11,4.5,45,21);
         date.text = @"時間：";
         date.textAlignment = UITextAlignmentRight;
         date.tag=row;
@@ -261,6 +261,30 @@
     return cell;
 }
 
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    NSString *key = [keys objectAtIndex:section];
+    NSString *sectiontitle;
+    if(section < 5)
+    {
+        sectiontitle = [[NSString alloc] initWithFormat:@"  民國101年 %@月",key];
+    }
+    else
+    {
+        sectiontitle = [[NSString alloc] initWithFormat:@"  民國102年 %@月",key];
+    }
+    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 25)] autorelease];
+    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 25)] autorelease];
+    label.text = sectiontitle;
+    label.textColor =[UIColor colorWithHexString:@"#565656"] ;
+    label.font = [UIFont fontWithName:@"Helvetica" size:14.0] ;
+    UIImage *backgroundImage = [UIImage imageNamed:NTOUImageNameScrollTabBackgroundOpaque];
+    label.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
+    [headerView addSubview:label];
+    return headerView;
+}
+/*
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *key = [keys objectAtIndex:section];
@@ -274,7 +298,7 @@
         sectiontitle = [[NSString alloc] initWithFormat:@"民國102年 %@月",key];
     }
     return sectiontitle;
-}
+}*/
 
 //--------------
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -482,8 +506,6 @@
                     
                     
                     [self addEventData];
-                    //[mask removeFromSuperview];
-                    //[self.tableView setEditing:YES animated:NO];
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -498,7 +520,12 @@
     }
 }
 
-- (EKCalendar *)  getFirstModifiableLocalCalendar{
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [switchviewcontroller showMenuView];
+}
+
+- (EKCalendar *) getFirstModifiableLocalCalendar{
     
     EKCalendar *result = nil;
     
@@ -516,7 +543,8 @@
 
 -(void)addEventData
 {
-    EKEventStore *addeventStore = [[EKEventStore alloc] init];
+    [self setupCalendar];
+    
     for(NSIndexPath *index in selectindexs)
     {
         NSUInteger section = [index section];
@@ -526,7 +554,7 @@
         NSArray *eventsection = [events objectForKey:key];
         NSDictionary *dateevent = [eventsection objectAtIndex:row];
         
-        EKEvent *addEvent = [EKEvent eventWithEventStore:addeventStore];
+        EKEvent *addEvent = [EKEvent eventWithEventStore:eventStore];
         NSString *titlestring = [[NSString alloc] initWithFormat:@"【NTOU】%@",[dateevent objectForKey:@"value"]];
         addEvent.title = titlestring;
         addEvent.allDay = YES;
@@ -578,13 +606,14 @@
         NSDate *endDate = [endcal dateFromComponents:endcomps];
         
         addEvent.endDate = endDate;
-        [addEvent setCalendar:[eventStore defaultCalendarForNewEvents]];
-        //[addEvent setCalendar:[eventStore defaultCalendarForNewEvents]];
-        //活動日期警示窗
-        //addEvent.alarms = [NSArray arrayWithObject:[EKAlarm alarmWithAbsoluteDate:addEvent.startDate]];
-        
+        for (EKCalendar *thisCalendar in eventStore.calendars){
+            if ([thisCalendar.title isEqualToString:@"NTOU"]){
+                [addEvent setCalendar:thisCalendar];
+            }
+        }
+  
         NSError *saveError = nil;
-        if([addeventStore saveEvent:addEvent span:EKSpanThisEvent error:&saveError])
+        if([eventStore saveEvent:addEvent span:EKSpanThisEvent error:&saveError])
         {
             NSLog(@"%@ save success!",index);
         }
@@ -594,5 +623,39 @@
     NSLog(@"包裝完成");
 }
 
+-(void)setupCalendar
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"%@",[eventStore calendarWithIdentifier:[userDefaults objectForKey:@"NTOUCalendarIdentifier"]]);
+    if (![eventStore calendarWithIdentifier:[userDefaults objectForKey:@"NTOUCalendarIdentifier"]])
+    {
+        EKCalendar *localCalendar;
+        if([eventStore respondsToSelector:@selector(requestAccessToEntityType:completion:)])// iOS 6 and later
+            localCalendar = [EKCalendar calendarForEntityType:EKEntityTypeEvent eventStore:eventStore];
+        else
+            localCalendar = [EKCalendar calendarWithEventStore:eventStore];
+        
+        localCalendar.title = @"NTOU";
+        
+        // find local source
+        EKSource *localSource = nil;
+        for (EKSource *source in eventStore.sources){
+            if (source.sourceType == EKSourceTypeLocal)
+            {
+                localSource = source;
+                break;
+            }
+        }
+        localCalendar.source = localSource;
+        [eventStore saveCalendar:localCalendar commit:YES error:nil];
+        
+        if([userDefaults objectForKey:@"NTOUCalendarIdentifier"])
+        {
+            [userDefaults removeObjectForKey:@"NTOUCalendarIdentifier"];
+        }
+        [userDefaults setObject:localCalendar.calendarIdentifier forKey:@"NTOUCalendarIdentifier"];
+        [userDefaults synchronize];
+    }
+}
 
 @end

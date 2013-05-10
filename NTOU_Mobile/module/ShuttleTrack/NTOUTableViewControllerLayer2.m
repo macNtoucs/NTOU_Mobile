@@ -21,7 +21,7 @@
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
     self = [super initWithStyle:style];
     if (self) {
-        self.title = @"Routes";
+        self.title = @"學生專車";
     }
     return self;
 }
@@ -389,6 +389,7 @@
     stopsLocation.view.hidden = NO;
     stopsLocation.title = [cell.textLabel.text retain];
     [self.navigationController pushViewController:stopsLocation animated:YES];
+    stopsLocation.navigationItem.leftBarButtonItem.title=@"back";
     [stopsLocation release];
 
 }

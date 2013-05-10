@@ -21,6 +21,7 @@
 @synthesize delegatetype5;
 @synthesize moodleData;
 @synthesize resource;
+@synthesize moodleid;
 #pragma mark Constants
 
 #define DEMO_VIEW_CONTROLLER_PUSH FALSE
@@ -61,23 +62,23 @@
 {
     [super viewDidLoad];
     [self.tableView applyStandardColors];
-    if (self.title == type1){
+    if ([self.title isEqual: type1]){
         types = 1;
     }
-    else if (self.title == type2)
+    else if ([self.title isEqual: type2])
         types = 2;
-    else if (self.title == type3)
+    else if ([self.title isEqual: type3])
         types = 3;
-    else if (self.title == type4)
+    else if ([self.title isEqual: type4])
         types = 4;
-    else if (self.title == type5){
+    else if ([self.title isEqual: type5]){
         types = 5;
         self.tableView.scrollEnabled = NO;
         dispatch_sync(dispatch_get_main_queue(), ^{
             self.textView.text = [[NSUserDefaults standardUserDefaults] objectForKey:[moodleData objectForKey:courseIDKey]];
         });
     }
-    else if (self.title == type6)
+    else if ([self.title isEqual: type6])
         types = 6;
 }
 
@@ -95,12 +96,14 @@
     if (types == 1)
         return 1;
     else if (types == 2)
-        return 1;
+        return 2;
     else if (types == 3)
         return [resource count];
     else if (types == 4)
         return 1;
     else if (types == 5)
+        return 1;
+    else if (types == 6)
         return 1;
     return 1;
 }
@@ -110,23 +113,32 @@
     // Return the number of rows in the section.
     if (types == 1)
         return [[moodleData objectForKey:moodleListKey] count];
-    else if (types == 2)
-        return [[moodleData objectForKey:moodleListKey] count]+1;
+    else if (types == 2){
+        if (section == 0) {
+            return [[moodleData objectForKey:moodleListKey] count]+1;
+        }
+        else
+            return [resource count]+1;
+    }
     else if (types == 3)
         return 1;
+    else if (types == 4)
+        return [resource count];
     else if (types == 5)
         return 1;
+    else if (types == 6)
+        return [resource count]+1;
     return 1;
 }
 
 
 - (void)handleSingle:(NSString*)filename
 {
-	NSString *phrase = nil; // Document password (for unlocking most encrypted PDF files)
-    NSString *filePath = [[[NSBundle mainBundle] bundlePath]stringByAppendingPathComponent:filename];
+	NSString *phrase = [filename stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+   // NSString *filePath = [[[NSBundle mainBundle] bundlePath]stringByAppendingPathComponent:filename];
 
-    
-	ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:phrase];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phrase]];
+	/*ReaderDocument *document = [ReaderDocument withDocumentFilePath:filename password:phrase];
     
 	if (document != nil) // Must have a valid ReaderDocument object in order to proceed with things
 	{
@@ -147,7 +159,7 @@
 #endif // DEMO_VIEW_CONTROLLER_PUSH
 
         
-	}
+	}*/
 }
 
 #pragma mark ReaderViewControllerDelegate methods
@@ -167,90 +179,19 @@
 
 - (void) myAction: (UITapGestureRecognizer *) gr {
     NSURL *url = nil;
-    
+    //UILabel*label = (UILabel *)[self.tableView viewWithTag:gr.view.tag];
+    //NSLog(@"%@",label.text);
     if (types==4) {
-        if (gr.view.tag == 8) {
-            [self handleSingle:@"Algorithm-Ch9.pdf"];
-        }
-        else if (gr.view.tag == 7){
-            [self handleSingle:@"Algorithm-Ch8.pdf"];
-        }
-        else if (gr.view.tag == 6){
-            [self handleSingle:@"Algorithm-Ch7.pdf"];
-        }
-        else if (gr.view.tag == 5){
-            [self handleSingle:@"Algorithm-Ch6.pdf"];
-        }
-        else if (gr.view.tag == 4){
-            [self handleSingle:@"Algorithm-Ch4.pdf"];
-        }
-        else if (gr.view.tag == 3){
-            [self handleSingle:@"Algorithm-Ch3.pdf"];
-        }
-        else if (gr.view.tag == 2){
-            [self handleSingle:@"Algorithm-Ch2.pdf"];
-        }
-        else if (gr.view.tag == 1){
-            [self handleSingle:@"Algorithm-Ch1.pdf"];
-        }
-        else if (gr.view.tag == 0){
-            [self handleSingle:@"Syllabus.pdf"];
-        }
-        
+        [self handleSingle:[Moodle_API GetPathOfDownloadFiles_fileName:[resource objectAtIndex:gr.view.tag] FromDir:[NSString stringWithFormat:@"/%@/%@",moodleid,moodleFileLetureKey]]];
 
     }
     else if (types==2)
     {
-        switch (gr.view.tag) {
-            case 1:
-                [self handleSingle:@"2012_algorithm_homework_1.pdf"];
-                break;
-            case 2:
-                [self handleSingle:@"2012_algorithm_homework_2.pdf"];
-                break;
-            case 3:
-                [self handleSingle:@"2012_algorithm_homework_3.pdf"];
-                break;
-            case 4:
-                [self handleSingle:@"2012_algorithm_homework_4.pdf"];
-                break;
-            case 5:
-                [self handleSingle:@"2012_algorithm_homework_5.pdf"];
-                break;
-            case 6:
-                [self handleSingle:@"2012_algorithm_homework_6.pdf"];
-                break;
-            case 7:
-                [self handleSingle:@"2012_algorithm_homework_7.pdf"];
-                break;
-            case 8:
-                [self handleSingle:@"2012_algorithm_homework_8.pdf"];
-                break;
-
-            default:
-                break;
-        }
+        [self handleSingle:[Moodle_API GetPathOfDownloadFiles_fileName:[resource objectAtIndex:gr.view.tag] FromDir:[NSString stringWithFormat:@"/%@/%@",moodleid,moodleFileAssignmentKey]]];
     }
     else if (types==6)
     {
-        switch (gr.view.tag) {
-            case 1:
-                [self handleSingle:@"AL-mid-11.pdf"];
-                url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/AL-mid-11.pdf" ] autorelease];
-                break;
-            case 2:
-                [self handleSingle:@"2011_NTOU_CSIE_algorithm_final.pdf"];
-                break;
-            case 3:
-                [self handleSingle:@"AL-mid-10.pdf"];
-                break;
-            case 4:
-                [self handleSingle:@"2010_NTOU_CSIE_algorithm_final.pdf"];
-                break;
-                
-            default:
-                break;
-        }
+        [self handleSingle:[Moodle_API GetPathOfDownloadFiles_fileName:[resource objectAtIndex:gr.view.tag] FromDir:[NSString stringWithFormat:@"/%@/%@",moodleid,moodleFileExamKey]]];
     }
     if (url!=nil) {
         [[UIApplication sharedApplication] openURL:url];
@@ -263,7 +204,7 @@
         NSDictionary* gradeInfo = [[moodleData objectForKey:moodleListKey] objectAtIndex:indexPath.row];
         return [gradeInfo objectForKey:moodleGradeKey];
     }
-    if (types == 2) {
+    if (types == 2&indexPath.section==0) {
         if (indexPath.row==0) {
             return  @"繳交期限   ";
         }
@@ -297,22 +238,38 @@
         return str;
     }
     else if (types == 2){
-        if (indexPath.row == 0&&types == 2)
-            return @"            作業";
-        else{
-            return [[[moodleData objectForKey:moodleListKey] objectAtIndex:indexPath.row-1] objectForKey:moodleGradeNameKey];
+        if (indexPath.section==0) {
+            if (indexPath.row == 0)
+                return @"            作業";
+            else{
+                return [[[moodleData objectForKey:moodleListKey] objectAtIndex:indexPath.row-1] objectForKey:moodleGradeNameKey];
+            }
+
         }
+        else{
+            if (indexPath.row == 0)
+                return @"                      作業資源";
+            else{
+                return [resource objectAtIndex:indexPath.row-1];
+            }
+        }
+            
     }
     else if (types == 4||types == 6){
         if (indexPath.row == 0&&types == 6)
             return @"考試名稱與範圍";
         else if (types == 6)
-            return [[resource objectAtIndex:indexPath.row-1] objectForKey:moodleResourceTitleKey];
+            return [resource objectAtIndex:indexPath.row-1];
         else
-            return [[resource objectAtIndex:indexPath.row] objectForKey:moodleResourceTitleKey];
+            return [resource objectAtIndex:indexPath.row];
     }
     else if (types == 3){
-        return [[resource objectAtIndex:indexPath.row] objectForKey:moodleInfoDescriptionKey];
+        NSString* cellDisplay = [[resource objectAtIndex:indexPath.section] objectForKey:moodleInfoDescriptionKey];
+        if ([cellDisplay isEqualToString:@""]) {
+            return [[resource objectAtIndex:indexPath.section] objectForKey:moodleInfoSummaryKey];
+        }
+        else
+            return cellDisplay;
         
     }
     return nil;
@@ -347,13 +304,15 @@
         }
         cell.backgroundColor = SECONDARY_GROUP_BACKGROUND_COLOR;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        label.tag=indexPath.row;
+        if (types==4)
+            label.tag=indexPath.row;
+        else if((types==2&&indexPath.section==1)||types==6)
+            label.tag=indexPath.row-1;
         label.lineBreakMode = UILineBreakModeWordWrap;
         label.numberOfLines = 0;
         label.font = [UIFont fontWithName:STANDARD_FONT size:CELL_STANDARD_FONT_SIZE];
         label.textColor = CELL_STANDARD_FONT_COLOR;
         label.backgroundColor = [UIColor clearColor];
-        detailLabel.tag=indexPath.row;
         detailLabel.backgroundColor = [UIColor clearColor];
         detailLabel.textAlignment = UITextAlignmentRight;
         [cell.contentView addSubview:label];
@@ -367,7 +326,7 @@
         if (types==6) {
             label.textAlignment = UITextAlignmentCenter;
         }
-        if (types == 4||(types == 2&&indexPath.row>0) ||(types == 6&&indexPath.row>0)) {
+        if (types == 4||(types == 2&&indexPath.section==1&&indexPath.row>0) ||(types == 6&&indexPath.row>0)) {
             label.userInteractionEnabled = YES;
             label.textColor = [UIColor blueColor];
             UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(myAction:)];
@@ -385,7 +344,6 @@
     else
     {
         label = (UILabel *)[cell.contentView viewWithTag:indexPath.row];
-        detailLabel = (UILabel *)[cell.contentView viewWithTag:indexPath.row];
     }
     
     if (types==5) {

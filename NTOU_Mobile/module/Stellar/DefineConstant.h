@@ -34,6 +34,7 @@
 #define moodleInfoCourseNameKey @"course_name"
 #define moodleInfoDescriptionKey @"description"
 #define moodleInfoTitleKey @"title"
+#define moodleInfoSummaryKey @"summary"
 
 #define moodleGradeNameKey @"name"
 #define moodleGradeKey @"grade"
@@ -44,6 +45,12 @@
 #define moodleResourceModuleKey @"module"
 #define moodleResourceTitleKey @"title"
 #define moodleResourceUrlKey @"url"
+
+#define moodleMoodleID @"moodleid"
+
+#define moodleFileLetureKey @"課程講義"
+#define moodleFileAssignmentKey @"作業"
+#define moodleFileExamKey @"考古題"
 
 #define moodleModuleLectureKey @"resource"
 #define moodleModuleAssignmentKey @"assignment"

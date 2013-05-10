@@ -394,20 +394,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kPlainId];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kPlainId];
     
     if (cell == nil) {
-        cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kPlainId] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kPlainId] autorelease];
     }
     
     // Set up the cell
-    
     cell.detailTextLabel.backgroundColor = [UIColor clearColor];
     cell.detailTextLabel.text =[item objectAtIndex:indexPath.row];
-    NSLog(@"%@",cell.detailTextLabel.text);
-   // cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.adjustsFontSizeToFitWidth = YES;
-    cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+    
+    cell.backgroundColor = SECONDARY_GROUP_BACKGROUND_COLOR;
+	
+	cell.textLabel.font = [UIFont fontWithName:BOLD_FONT size:CELL_STANDARD_FONT_SIZE];
+	cell.textLabel.textColor = CELL_STANDARD_FONT_COLOR;
+	cell.textLabel.backgroundColor = [UIColor clearColor];
+
     if (dir){
         switch (indexPath.row) {
             case 0:
