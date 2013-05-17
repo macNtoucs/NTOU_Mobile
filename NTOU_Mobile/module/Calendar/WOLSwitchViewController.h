@@ -18,6 +18,7 @@
 
 -(void)Chichooseitem;
 -(void)Engchooseitem;
+- (void)showMenuView;
 
 @end
 

@@ -12,7 +12,6 @@
 
 @interface WOLEnglistViewController ()
 
-@property (nonatomic, strong) UIToolbar *actionToolbar;
 @property (nonatomic, strong) NSMutableArray *selectindexs;
 @property (nonatomic, strong) UIActionSheet *finishactionsheet;
 @property (nonatomic, strong) UIActionSheet *endactionsheet;
@@ -36,26 +35,25 @@
 @synthesize switchviewcontroller;
 @synthesize downLoadEditing;
 @synthesize mask;
+@synthesize menuHeight;
 
 -(id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     NSInteger screenheight = [[UIScreen mainScreen] bounds].size.height;
-    NSInteger height = screenheight - 64;
+    NSInteger height = screenheight - 64 - 60;
     self.view.frame = CGRectMake(0, 0, 320, height);
     return self;
-}
-
-- (void)popNav {
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    eventStore = [[EKEventStore alloc] init];
     selectindexs = [[NSMutableArray alloc] init];
     
-    self.title = @"清單";
+    //self.title = @"清單";
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"CalenderList_eng" ofType:@"plist"];
     
@@ -89,8 +87,6 @@
     
     UIBarButtonItem *flexiblespace_r = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     flexiblespace_r.width = 12.0;
-    
-    
     
     [self.actionToolbar setItems:[NSArray arrayWithObjects:flexiblespace_l,allselectButton,flexiblespace_m,finishButton,flexiblespace_r, nil]];
     self.actionToolbar.barStyle = UIBarStyleBlack;
@@ -480,8 +476,6 @@
                     
                     
                     [self addEventData];
-                    //[mask removeFromSuperview];
-                    //[self.tableView setEditing:YES animated:NO];
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -494,6 +488,11 @@
             }
         }
     }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [switchviewcontroller showMenuView];
 }
 
 - (EKCalendar *)  getFirstModifiableLocalCalendar{
@@ -514,6 +513,8 @@
 
 -(void)addEventData
 {
+    [self setupCalendar];
+    
     for(NSIndexPath *index in selectindexs)
     {
         NSUInteger section = [index section];
@@ -538,6 +539,7 @@
         
         NSString *startday = [[NSString alloc]initWithString:[dateevent objectForKey:@"startdate"]];
         [startcomps setDay:[startday intValue]];
+        
         NSCalendar *startcal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         NSDate *startDate = [startcal dateFromComponents:startcomps];
         
@@ -574,11 +576,12 @@
         NSDate *endDate = [endcal dateFromComponents:endcomps];
         
         addEvent.endDate = endDate;
-        [addEvent setCalendar:[eventStore defaultCalendarForNewEvents]];
-        //[addEvent setCalendar:[eventStore defaultCalendarForNewEvents]];
-        //活動日期警示窗
-        //addEvent.alarms = [NSArray arrayWithObject:[EKAlarm alarmWithAbsoluteDate:addEvent.startDate]];
-        
+        for (EKCalendar *thisCalendar in eventStore.calendars){
+            if ([thisCalendar.title isEqualToString:@"NTOU"]){
+                [addEvent setCalendar:thisCalendar];
+            }
+        }
+
         NSError *saveError = nil;
         if([eventStore saveEvent:addEvent span:EKSpanThisEvent error:&saveError])
         {
@@ -588,6 +591,41 @@
             NSLog(@"%@ Failed to save the event. Error = %@",index,saveError);
     }
     NSLog(@"包裝完成");
+}
+
+-(void)setupCalendar
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"%@",[eventStore calendarWithIdentifier:[userDefaults objectForKey:@"NTOUCalendarIdentifier"]]);
+    if (![eventStore calendarWithIdentifier:[userDefaults objectForKey:@"NTOUCalendarIdentifier"]])
+    {
+        EKCalendar *localCalendar;
+        if([eventStore respondsToSelector:@selector(requestAccessToEntityType:completion:)])// iOS 6 and later
+            localCalendar = [EKCalendar calendarForEntityType:EKEntityTypeEvent eventStore:eventStore];
+        else
+            localCalendar = [EKCalendar calendarWithEventStore:eventStore];
+        
+        localCalendar.title = @"NTOU";
+        
+        // find local source
+        EKSource *localSource = nil;
+        for (EKSource *source in eventStore.sources){
+            if (source.sourceType == EKSourceTypeLocal)
+            {
+                localSource = source;
+                break;
+            }
+        }
+        localCalendar.source = localSource;
+        [eventStore saveCalendar:localCalendar commit:YES error:nil];
+        
+        if([userDefaults objectForKey:@"NTOUCalendarIdentifier"])
+        {
+            [userDefaults removeObjectForKey:@"NTOUCalendarIdentifier"];
+        }
+        [userDefaults setObject:localCalendar.calendarIdentifier forKey:@"NTOUCalendarIdentifier"];
+        [userDefaults synchronize];
+    }
 }
 
 @end

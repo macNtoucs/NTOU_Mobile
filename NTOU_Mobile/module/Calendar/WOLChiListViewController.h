@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "WOLSwitchViewController.h"
 
-@interface WOLChiListViewController : UITableViewController <UIActionSheetDelegate>
+@interface WOLChiListViewController : UITableViewController <UIActionSheetDelegate,UIAlertViewDelegate>
 @property (strong, nonatomic) NSDictionary *events;
 @property (strong, nonatomic) NSArray *keys;
 @property (strong, nonatomic) WOLSwitchViewController *switchviewcontroller;
 @property (nonatomic) BOOL downLoadEditing;
+@property (nonatomic) NSInteger menuHeight;
+@property (nonatomic, strong) UIToolbar *actionToolbar;
 
 - (IBAction)chooseitem;
 
