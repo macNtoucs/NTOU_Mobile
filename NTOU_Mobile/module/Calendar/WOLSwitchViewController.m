@@ -14,7 +14,7 @@
 @interface WOLSwitchViewController ()
 @property (nonatomic) BOOL control;
 @property (strong, nonatomic) UISwipeGestureRecognizer *swipeRecognizer;
-@property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer_switch;
+@property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
 @property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer_add;
 @property (nonatomic) BOOL chiMenuShowing;
 @property (nonatomic) BOOL EngMenuShowing;
@@ -25,7 +25,7 @@
 @implementation WOLSwitchViewController
 
 @synthesize swipeRecognizer;
-@synthesize tapRecognizer_switch;
+@synthesize tapRecognizer;
 @synthesize tapRecognizer_add;
 @synthesize chiViewController;
 @synthesize engViewController;
@@ -44,7 +44,7 @@
         
         UIButton *addButton =[UIButton buttonWithType:UIButtonTypeCustom];
         addButton.tag = 28052525;
-        addButton.frame= CGRectMake(260, 10, 40, 40);
+        addButton.frame= CGRectMake(190, 5, 40, 40);
         [addButton setImage:[UIImage imageNamed:@"cancel.png"] forState:UIControlStateNormal];
         [addButton addTarget:self action:@selector(Chichooseitem) forControlEvents:UIControlEventTouchUpInside];
         [menuView addSubview:addButton];
@@ -56,7 +56,7 @@
         
         UIButton *addButton =[UIButton buttonWithType:UIButtonTypeCustom];
         addButton.tag = 28052525;
-        addButton.frame= CGRectMake(260, 10, 40, 40);
+        addButton.frame= CGRectMake(190, 5, 40, 40);
         [addButton setImage:[UIImage imageNamed:@"inbox.png"] forState:UIControlStateNormal];
         [addButton addTarget:self action:@selector(Chichooseitem) forControlEvents:UIControlEventTouchUpInside];
         [menuView addSubview:addButton];
@@ -74,7 +74,7 @@
         
         UIButton *addButton =[UIButton buttonWithType:UIButtonTypeCustom];
         addButton.tag = 28052525;
-        addButton.frame= CGRectMake(260, 10, 40, 40);
+        addButton.frame= CGRectMake(190, 5, 40, 40);
         [addButton setImage:[UIImage imageNamed:@"cancel.png"] forState:UIControlStateNormal];
         [addButton addTarget:self action:@selector(Engchooseitem) forControlEvents:UIControlEventTouchUpInside];
         [menuView addSubview:addButton];
@@ -86,7 +86,7 @@
         
         UIButton *addButton =[UIButton buttonWithType:UIButtonTypeCustom];
         addButton.tag = 28052525;
-        addButton.frame= CGRectMake(260, 10, 40, 40);
+        addButton.frame= CGRectMake(190, 5, 40, 40);
         [addButton setImage:[UIImage imageNamed:@"inbox.png"] forState:UIControlStateNormal];
         [addButton addTarget:self action:@selector(Engchooseitem) forControlEvents:UIControlEventTouchUpInside];
         [menuView addSubview:addButton];
@@ -142,14 +142,17 @@
     self.chiViewController.switchviewcontroller = self;
     self.engViewController.switchviewcontroller = self;
     
-    menuView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
+    menuView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
     menuView.backgroundColor = [UIColor colorWithRed:0.3f green:0.3f blue:0.3f alpha:1.0f];
     
+    tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(Chichooseitem)];
+    tapRecognizer.delegate  = self;
+    [self.view.superview addGestureRecognizer:tapRecognizer];
     
     UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [addButton addTarget:self action:@selector(Chichooseitem) forControlEvents:UIControlEventTouchUpInside];
     addButton.tag = 28052525;
-    addButton.frame= CGRectMake(260, 10, 40, 40);
+    addButton.frame= CGRectMake(190, 5, 40, 40);
     [addButton setImage:[UIImage imageNamed:@"inbox.png"] forState:UIControlStateNormal];
     [addButton setImage:[UIImage imageNamed:@"inbox_down_24.png"] forState:UIControlStateHighlighted];
     [menuView addSubview:addButton];
@@ -157,7 +160,7 @@
     UIButton *EngButton =[UIButton buttonWithType:UIButtonTypeCustom];
     [EngButton addTarget:self action:@selector(switchViews) forControlEvents:UIControlEventTouchUpInside];
     EngButton.tag = 22055025;
-    [EngButton setFrame:CGRectMake(180, 10, 60, 40)];
+    [EngButton setFrame:CGRectMake(90, 5, 60, 40)];
     [EngButton setTitle:@"Eng" forState:UIControlStateNormal];
     //EngButton.titleLabel.textColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0f];
     [menuView addSubview:EngButton];
@@ -184,9 +187,11 @@
     menuFrame.origin.y = menuFrame.size.height * (-1);
     chiviewFrame.size.height = screenheight;
     chiviewFrame.origin.y = 0;
+    engviewFrame.size.height = screenheight;
+    engviewFrame.origin.y = 0;
     
     if (self.engViewController.view.superview == nil)   //在中文界面切出
-        engviewFrame.size.height = screenheight - 64 - 60;
+        engviewFrame.size.height = screenheight - 64;
     else    //在英文界面切出
         engviewFrame.size.height = screenheight - 64;
     engviewFrame.origin.y = 0;
@@ -229,7 +234,7 @@
         
         UIButton *addButton =[UIButton buttonWithType:UIButtonTypeCustom];
         addButton.tag = 28052525;
-        addButton.frame= CGRectMake(260, 10, 40, 40);
+        addButton.frame= CGRectMake(190, 5, 40, 40);
         [addButton setImage:[UIImage imageNamed:@"inbox.png"] forState:UIControlStateNormal];
         [addButton addTarget:self action:@selector(Engchooseitem) forControlEvents:UIControlEventTouchUpInside];
         [menuView addSubview:addButton];
@@ -238,7 +243,7 @@
         
         UIButton *ChiButton =[UIButton buttonWithType:UIButtonTypeCustom];
         ChiButton.tag = 22055025;
-        ChiButton.frame= CGRectMake(180, 10, 60, 40);
+        ChiButton.frame= CGRectMake(90, 5, 60, 40);
         [ChiButton setTitle:@"中文" forState:UIControlStateNormal];
         [ChiButton addTarget:self action:@selector(switchViews) forControlEvents:UIControlEventTouchUpInside];
         [menuView addSubview:ChiButton];
@@ -275,7 +280,7 @@
         
         UIButton *addButton =[UIButton buttonWithType:UIButtonTypeCustom];
         addButton.tag = 28052525;
-        addButton.frame= CGRectMake(260, 10, 40, 40);
+        addButton.frame= CGRectMake(190, 5, 40, 40);
         [addButton setImage:[UIImage imageNamed:@"inbox.png"] forState:UIControlStateNormal];
         [addButton addTarget:self action:@selector(Chichooseitem) forControlEvents:UIControlEventTouchUpInside];
         [menuView addSubview:addButton];
@@ -284,7 +289,7 @@
         
         UIButton *EngButton =[UIButton buttonWithType:UIButtonTypeCustom];
         EngButton.tag = 22055025;
-        EngButton.frame= CGRectMake(180, 10, 60, 40);
+        EngButton.frame= CGRectMake(90, 5, 60, 40);
         [EngButton setTitle:@"Eng" forState:UIControlStateNormal];
         [EngButton addTarget:self action:@selector(switchViews) forControlEvents:UIControlEventTouchUpInside];
         [menuView addSubview:EngButton];
@@ -310,9 +315,8 @@
 - (void)showMenuView
 {
 	CGRect menuFrame = menuView.frame;
-    CGRect viewFrame = self.view.frame;
-    CGRect chitoolbarFrame = chiViewController.actionToolbar.frame;
-    CGRect engtoolbarFrame = engViewController.actionToolbar.frame;
+    CGRect chiFrame = chiViewController.view.frame;
+    CGRect engFrame = engViewController.view.frame;
     
     [UIView beginAnimations:nil context:nil];
 	[UIView setAnimationBeginsFromCurrentState:YES];
@@ -320,46 +324,31 @@
 	if (!menushowing)          //顯示
 	{
 		menuFrame.origin.y = 0;
-        viewFrame.size.height -= menuFrame.size.height;
-        viewFrame.origin.y = menuFrame.size.height;
+        chiFrame.size.height -= menuFrame.size.height;
+        chiFrame.origin.y = menuFrame.size.height;
+        engFrame.size.height -= menuFrame.size.height;
+        engFrame.origin.y = menuFrame.size.height;
         
         menuView.frame = menuFrame;
-        self.view.frame = viewFrame;
-        
-        if (self.chiViewController.downLoadEditing)
-        {
-            chitoolbarFrame.origin.y -= menuFrame.size.height;
-            chiViewController.actionToolbar.frame = chitoolbarFrame;
-        }
-        if (self.engViewController.downLoadEditing)
-        {
-            engtoolbarFrame.origin.y -= menuFrame.size.height;
-            engViewController.actionToolbar.frame = engtoolbarFrame;
-        }
-        
+        chiViewController.view.frame = chiFrame;
+        engViewController.view.frame = engFrame;
+
         menushowing = YES;
-        [self.view.superview insertSubview:menuView atIndex:0];
+        [self.view addSubview:menuView];
 	}
 	else if(menushowing)    //隱藏
 	{
-		menuFrame.origin.y = menuFrame.size.height * (-1);
-        viewFrame.size.height += menuFrame.size.height;
-        viewFrame.origin.y = 0;
-        
+
+        engFrame.size.height += menuFrame.size.height;
+        engFrame.origin.y = 0;
+        engViewController.view.frame = engFrame;
+        chiFrame.size.height += menuFrame.size.height;
+        chiFrame.origin.y = 0;
+        chiViewController.view.frame = chiFrame;
+
+        menuFrame.origin.y = 0 - menuFrame.size.height;
         menuView.frame = menuFrame;
-        self.view.frame = viewFrame;
-        
-        if (self.chiViewController.downLoadEditing)
-        {
-            chitoolbarFrame.origin.y += menuFrame.size.height;
-            chiViewController.actionToolbar.frame = chitoolbarFrame;
-        }
-        if (self.engViewController.downLoadEditing)
-        {
-            engtoolbarFrame.origin.y += menuFrame.size.height;
-            engViewController.actionToolbar.frame = engtoolbarFrame;
-        }
-        
+
         menushowing = NO;
         [menuView removeFromSuperview];
 	}
