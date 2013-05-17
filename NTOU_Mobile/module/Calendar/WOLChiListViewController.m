@@ -41,7 +41,7 @@
     self = [super initWithStyle:style];
     NSInteger screenheight = [[UIScreen mainScreen] bounds].size.height;
     NSInteger height = screenheight;
-    self.view.frame = CGRectMake(0, 0, 320, height);
+    self.tableView.frame = CGRectMake(0, 0, 320, height);
     return self;
 }
 
@@ -371,17 +371,18 @@
     
 	if (show && showing == NO)
 	{
-		toolbarFrame.origin.y = self.tableView.frame.size.height - toolbarFrame.size.height;
+		toolbarFrame.origin.y = switchviewcontroller.view.frame.size.height - toolbarFrame.size.height;
 		viewFrame.size.height -= toolbarFrame.size.height;
         showing = YES;
         actionToolbar.frame = toolbarFrame;
         self.tableView.frame = viewFrame;
         
-        [self.view.superview insertSubview:actionToolbar atIndex:0];
+        [switchviewcontroller.view addSubview:actionToolbar];
+        //[self.view.superview insertSubview:actionToolbar atIndex:0];
 	}
 	else if(!show && showing == YES)
 	{
-		toolbarFrame.origin.y = self.tableView.frame.size.height;
+		toolbarFrame.origin.y = switchviewcontroller.view.frame.size.height;
 		viewFrame.size.height += toolbarFrame.size.height;
         showing = NO;
         actionToolbar.frame = toolbarFrame;
