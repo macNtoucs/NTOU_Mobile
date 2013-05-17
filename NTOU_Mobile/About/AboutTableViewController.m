@@ -121,14 +121,13 @@
                 break;
             }
             case 1: {
-                NSString *email = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"NTOUFeedbackAddress"];
                 NSString *subject = [NSString stringWithFormat:@"海大App 回饋 %@ on %@ %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"], [[UIDevice currentDevice] systemName], [[UIDevice currentDevice] systemVersion]];
                 
                 if ([MFMailComposeViewController canSendMail]) {
                     MFMailComposeViewController *mailView = [[MFMailComposeViewController alloc] init];
                     [mailView setMailComposeDelegate:self];
                     [mailView setSubject:subject];
-                    [mailView setToRecipients:[NSArray arrayWithObject:email]];
+                    [mailView setToRecipients:[NSArray arrayWithObjects:@"po@ntou.edu.tw",@"mac.ntoucs@gmail.com", nil]];
                     [self presentModalViewController:mailView
                                             animated:YES]; 
                 }            
