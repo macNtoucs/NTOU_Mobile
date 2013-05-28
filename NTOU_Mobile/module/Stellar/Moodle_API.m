@@ -63,7 +63,7 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
     NSString * plusSymbol = @"%";
     NSRange check = [input rangeOfString:plusSymbol];
     if (check.length) return true;
-    else false;
+    else return false;
 }
 
 +(NSDictionary *)Login:(NSString *)username andPassword:(NSString*)password{
