@@ -16,8 +16,8 @@ typedef enum {
     NewsCategoryIdSymposium = 1,
     NewsCategoryIdArt = 2,
     NewsCategoryIdLecture = 3,
-    NewsCategoryIdDocument = 4,
-    NewsCategoryIdInformation = 5,
+    NewsCategoryIdDocument = 999,
+    NewsCategoryIdInformation = 4,
 } NewsCategoryId;
 
 
@@ -34,6 +34,7 @@ typedef enum {
     Announce_API* connect;
     NSMutableArray* tableDisplayData[6];
     NSInteger pageCount[6];
+    BOOL endCatchData[6];
 }
 
 @property (nonatomic, assign) NSInteger activeCategoryId;

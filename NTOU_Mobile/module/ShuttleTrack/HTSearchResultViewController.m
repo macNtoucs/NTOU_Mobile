@@ -39,7 +39,11 @@
     depatureStation =[[NSString alloc]initWithString:[self.dataSource HTdepatureStationTitile:self]];
 }
 -(void)initialDisplay{
-   
+    if ([startStation isEqualToString: depatureStation]) {
+        [self.tableView reloadData];
+        [downloadView AlertViewEnd];
+        return;
+    }
     trainID = [NSMutableArray new];
     depatureTime= [NSMutableArray new];
     startTime= [NSMutableArray new];

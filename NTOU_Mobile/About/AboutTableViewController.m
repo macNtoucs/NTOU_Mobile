@@ -1,18 +1,14 @@
 #import "AboutTableViewController.h"
 #import "AppDelegate.h"
-#import "UIKit+NTOUAdditions.h"
 #import "AboutNTOUVC.h"
 #import "AboutCreditsVC.h"
-#import "UIKit+NTOUAdditions.h"
-#import "NTOUUIConstants.h"
-#import  <QuartzCore/CALayer.h>
 
 
 @implementation AboutTableViewController
 
 - (void)viewDidLoad {
     [self.tableView applyStandardColors];
-    self.title = @"關於我";
+    self.title = @"關於";
     
     showBuildNumber = NO;
 }
@@ -28,7 +24,7 @@
         case 0:
             return 2;
         case 1:
-            return 3;
+            return 2;
         default:
             return 0;
     }
@@ -100,12 +96,6 @@
                     cell.textLabel.textColor = CELL_STANDARD_FONT_COLOR;
                     break;
                 case 1:
-                    cell.textLabel.text = @"關於海大";
-                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-                    cell.textLabel.textColor = CELL_STANDARD_FONT_COLOR;
-                    break;
-                case 2:
                     cell.textLabel.text = @"意見回饋";
                     cell.accessoryView = [UIImageView accessoryViewWithNTOUType:NTOUAccessoryViewEmail];
                     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
@@ -125,26 +115,19 @@
     if (indexPath.section == 1) {
         switch (indexPath.row) {
             case 0: {
-                AboutCreditsVC *aboutCreditsVC = [[AboutCreditsVC alloc] init];
+                AboutCreditsVC *aboutCreditsVC = [[AboutCreditsVC alloc] initWithStyle:UITableViewStyleGrouped];
                 [self.navigationController pushViewController:aboutCreditsVC animated:YES];
                 [aboutCreditsVC release];
                 break;
             }
             case 1: {
-                AboutNTOUVC *aboutNTOUVC = [[AboutNTOUVC alloc] initWithStyle:UITableViewStyleGrouped];
-                [self.navigationController pushViewController:aboutNTOUVC animated:YES];
-                [aboutNTOUVC release];
-                break;
-            }
-            case 2: {
-                NSString *email = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"NTOUFeedbackAddress"];
-                NSString *subject = [NSString stringWithFormat:@"NTOU Mobile 回饋 %@ on %@ %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"], [[UIDevice currentDevice] systemName], [[UIDevice currentDevice] systemVersion]];
+                NSString *subject = [NSString stringWithFormat:@"海大App 回饋 %@ on %@ %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"], [[UIDevice currentDevice] systemName], [[UIDevice currentDevice] systemVersion]];
                 
                 if ([MFMailComposeViewController canSendMail]) {
                     MFMailComposeViewController *mailView = [[MFMailComposeViewController alloc] init];
                     [mailView setMailComposeDelegate:self];
                     [mailView setSubject:subject];
-                    [mailView setToRecipients:[NSArray arrayWithObject:email]];
+                    [mailView setToRecipients:[NSArray arrayWithObjects:@"po@ntou.edu.tw",@"mac.ntoucs@gmail.com", nil]];
                     [self presentModalViewController:mailView
                                             animated:YES]; 
                 }            

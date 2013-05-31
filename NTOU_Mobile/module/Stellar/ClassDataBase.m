@@ -102,12 +102,12 @@ static ClassDataBase *sharedData = nil;
     if (self) {
         NSUserDefaults *userPrefs = [NSUserDefaults standardUserDefaults];
         if ([userPrefs objectForKey:ClassDataBaseKey]==nil) {
-            WeekTimes = 7;
+            WeekTimes = 5;
             ClassSessionTimes = 14;
-            showClassTimes = false;
+            showClassTimes = YES;
             ScheduleInfo = [self VoidSchedule];
             ScheduleTempInfo = (NSDictionary *)CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (CFDictionaryRef)ScheduleInfo, kCFPropertyListMutableContainers);
-            WeekDays=[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES], nil];
+            WeekDays=[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:NO],[NSNumber numberWithBool:NO], nil];
             courseCount = [[NSMutableDictionary alloc] init];
             moodleFrom = [[NSMutableDictionary alloc] init];
             
@@ -172,6 +172,8 @@ static ClassDataBase *sharedData = nil;
         return;
     [ColorTempDic removeObjectForKey:Key];
     [ColorTempDic setValue:RGB forKey:Key];
+    [ColorDic removeObjectForKey:Key];
+    [ColorDic setValue:RGB forKey:Key];
 }
 
 -(NSString*) FetchProfessorName:(NSNumber*)Key{

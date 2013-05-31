@@ -51,7 +51,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 3;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,10 +68,13 @@
             cell.textLabel.text = @"台鐵";
             break;
         case 1:
-            cell.textLabel.text = @"國光客運";
+            cell.textLabel.text = @"高鐵";
             break;
         case 2:
-            cell.textLabel.text=@"高鐵";
+            cell.textLabel.text=@"國光客運";
+            break;
+        case 3:
+            cell.textLabel.text=@"福和客運";
             break;
         default:
             break;
@@ -141,43 +144,34 @@
         SetStationViewController *setStationView = [[SetStationViewController alloc]init];
         [setStationView initIsHighSpeedTrain:false];
         [self.navigationController pushViewController:setStationView animated:YES];
+        setStationView.navigationItem.leftBarButtonItem.title=@"back";
         [setStationView release];
     }
-    else if (indexPath.row==1)
-    {
-        /*UITabBarController* tab_c = [[UITabBarController alloc] init];
-        K_RouteViewController* kuo_kuang1 = [[K_RouteViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        kuo_kuang1.title = @"北部";
-        kuo_kuang1.region=1;
-        K_RouteViewController* kuo_kuang2 = [[K_RouteViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        kuo_kuang2.title = @"中部";
-        kuo_kuang2.region=2;
-        K_RouteViewController* kuo_kuang3 = [[K_RouteViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        kuo_kuang3.title = @"南部";
-        kuo_kuang3.region=3;
-        K_RouteViewController* kuo_kuang4 = [[K_RouteViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        kuo_kuang4.title = @"東部";
-        kuo_kuang4.region=4;
-        tab_c.viewControllers = [NSArray arrayWithObjects:kuo_kuang1,kuo_kuang2,kuo_kuang3,kuo_kuang4, nil];
-        [kuo_kuang1 release];
-        [kuo_kuang2 release];
-        [kuo_kuang3 release];
-        [kuo_kuang4 release];
-        [self.navigationController pushViewController:tab_c animated:YES];
-        [tab_c release];*/
-        KUO_RouteViewController_Bra2* route = [[KUO_RouteViewController_Bra2 alloc] initWithStyle:UITableViewStyleGrouped];
-        route.title = @"路線";
-        [self.navigationController pushViewController:route animated:YES];
-        [route release];
-    }
-    else if(indexPath.row==2)
+    else if(indexPath.row==1)
     {
         DownloadingView* downloadView = [DownloadingView new];
-       
+        
         SetStationViewController *setStationView = [[SetStationViewController alloc]init];
         [setStationView initIsHighSpeedTrain:true];
-       [self.navigationController pushViewController:setStationView animated:YES];
+        [self.navigationController pushViewController:setStationView animated:YES];
+        setStationView.navigationItem.leftBarButtonItem.title=@"back";
         [setStationView release];
+    }
+    else if (indexPath.row==2)
+    {
+        KUO_RouteViewController_Bra2* route = [[KUO_RouteViewController_Bra2 alloc] initWithStyle:UITableViewStyleGrouped WithType:Kuo_Data];
+        route.title = @"路線";
+        [self.navigationController pushViewController:route animated:YES];
+        route.navigationItem.leftBarButtonItem.title=@"back";
+        [route release];
+    }
+    else if (indexPath.row==3)
+    {
+        KUO_RouteViewController_Bra2* route = [[KUO_RouteViewController_Bra2 alloc] initWithStyle:UITableViewStyleGrouped WithType:Fuho_Data];
+        route.title = @"路線";
+        [self.navigationController pushViewController:route animated:YES];
+        route.navigationItem.leftBarButtonItem.title=@"back";
+        [route release];
     }
 }
 

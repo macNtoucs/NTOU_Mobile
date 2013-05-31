@@ -86,7 +86,7 @@
         classinfo.text = @"上課講義";
     }
     view.view.frame = CGRectMake(0, 40, 320, [[UIScreen mainScreen] bounds].size.height-150);
-
+    view.moodleid = [moodleid retain];
     view.resource = [[NSMutableArray alloc] initWithArray:[Moodle_API getFilesFolder_InDir:[NSString stringWithFormat:@"/%@/%@",moodleid,key]]];
     if (!view.resource) {
         UIAlertView *loadingAlertView = [[UIAlertView alloc]
@@ -152,7 +152,7 @@
 
 -(void)rightBarButtonItemOn{
     UIBarButtonItem *done =    [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(leaveEditMode)] autorelease];
-    
+    done.tintColor = [UIColor blueColor];
     self.navigationItem.rightBarButtonItem = done;
     view5.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-280);
 }
@@ -196,15 +196,22 @@
         NSMutableArray* resource = [[NSMutableArray alloc] init];
         moodleid = [[[Moodle_API GetMoodleID_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]] objectForKey:moodleMoodleID] retain];
         for (NSDictionary* info in data) {
-            [resource addObject:[Moodle_API MoodleID_AndUseToken:token
-                                                               module:[info objectForKey:moodleResourceModuleKey]
-                                                                  moodleID:moodleid
-                                                             courseID:[apiKey objectForKey:courseIDKey]
-                                                              classID:[apiKey objectForKey:classIDKey]]];
+            NSRange range  = [[info objectForKey:moodleResourceUrlKey] rangeOfString:@"php?id="];
+            if (![[info objectForKey:moodleResourceModuleKey] isEqualToString:@"forum"]) {
+                NSDictionary* infoDetail = [Moodle_API MoodleID_AndUseToken:token
+                                                                     module:[info objectForKey:moodleResourceModuleKey]
+                                                                   moodleID:[[info objectForKey:moodleResourceUrlKey] substringFromIndex: range.location+range.length]
+                                                                   courseID:[apiKey objectForKey:courseIDKey]
+                                                                    classID:[apiKey objectForKey:classIDKey]];
+                if ((![[infoDetail objectForKey:moodleInfoDescriptionKey] isEqualToString:@""])||(!([infoDetail objectForKey:moodleInfoSummaryKey]==NULL||[[infoDetail objectForKey:moodleInfoSummaryKey] isEqualToString:@""]))) {
+                    [resource addObject:infoDetail];
+                }
+            }
         }
         
         view1.delegatetype5 = self;
         view1.resource = resource;
+        view1.moodleid = [moodleid retain];
         view1.view.frame = CGRectMake(0, 40, 320, [[UIScreen mainScreen] bounds].size.height-60);
         [viewController1.view addSubview:view1.tableView];
         
@@ -213,7 +220,7 @@
         view2.delegatetype5 = self;
         view2.moodleData = [Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
         view2.resource = [[NSMutableArray alloc] initWithArray:[Moodle_API getFilesFolder_InDir:[NSString stringWithFormat:@"/%@/%@",moodleid,moodleFileLetureKey]]];
-        view2.moodleid = moodleid;
+        view2.moodleid = [moodleid retain];
         view2.view.frame = CGRectMake(0, 40, 320, [[UIScreen mainScreen] bounds].size.height-60);
         [viewController2.view addSubview:view2.tableView];
         
@@ -221,7 +228,7 @@
         view3.title = type2;
         view3.moodleData = [Moodle_API GetGrade_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
         view3.resource = [[NSMutableArray alloc] initWithArray:[Moodle_API getFilesFolder_InDir:[NSString stringWithFormat:@"/%@/%@",moodleid,moodleFileAssignmentKey]]];
-        view3.moodleid = moodleid;
+        view3.moodleid = [moodleid retain];
         view3.delegatetype5 = self;
         view3.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-30);
         [viewController3.view addSubview:view3.tableView];
@@ -229,6 +236,7 @@
         view4 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view4.title = type1;
         view4.delegatetype5 = self;
+        view4.moodleid = [moodleid retain];
         view4.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-30);
         [viewController4.view addSubview:view4.tableView];
         
@@ -236,6 +244,7 @@
         view5.delegatetype5 = self;
         view5.moodleData = apiKey;
         view5.title = type5;
+        view5.moodleid = [moodleid retain];
         view5.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-30);
         [viewController5.view addSubview:view5.tableView];
         

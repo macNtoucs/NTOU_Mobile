@@ -60,7 +60,7 @@ NSString *const NewsCategoryInformation = @"校外訊息";
 NewsCategoryId buttonCategories[] = {
     NewsCategoryIdAnnounce, NewsCategoryIdSymposium,
     NewsCategoryIdArt, NewsCategoryIdLecture,
-    NewsCategoryIdDocument, NewsCategoryIdInformation,
+    /*NewsCategoryIdDocument,*/ NewsCategoryIdInformation,
 };
 
 NSString *titleForCategoryId(NewsCategoryId category_id) {
@@ -100,12 +100,12 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     return self;
 }
 
+
+
 - (void)loadView
 {
     [super loadView];
-    
     self.navigationItem.title = @"公告";
-    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Headlines" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)] autorelease];
     
     tempTableSelection = nil;
@@ -165,6 +165,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     [tableDisplayData[self.activeCategoryId] release];
     tableDisplayData[self.activeCategoryId] = nil;
     pageCount[self.activeCategoryId] = 0;
+    endCatchData[self.activeCategoryId] = false;
     [self loadFromCache];
 }
 
@@ -176,7 +177,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     }
     connect = [[Announce_API alloc] init];
     connect.delegate = self;
-    [connect getAnnounceInfo_Count:6 andType:titleForCategoryId(buttonCategories[self.activeCategoryId]) andPage:pageCount[self.activeCategoryId]+1];
+    [connect getAnnounceInfo_Count:NewsCatchDataCount andType:titleForCategoryId(buttonCategories[self.activeCategoryId]) andPage:pageCount[self.activeCategoryId]+1];
 }
 
 - (void)didReceiveMemoryWarning
@@ -207,8 +208,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     // create buttons for nav scroller view
     NSArray *buttonTitles = [NSArray arrayWithObjects:
                              NewsCategoryAnnounce,NewsCategorySymposium,NewsCategoryArt,NewsCategoryLecture
-                             ,NewsCategoryDocument,NewsCategoryInformation,
-                             nil];
+                             ,NewsCategoryInformation,nil];
     
     //NSMutableArray *buttons = [[NSMutableArray alloc] initWithCapacity:[buttonTitles count]];
     
@@ -216,6 +216,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     for (NSString *buttonTitle in buttonTitles)
     {
         UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
+         [aButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         aButton.tag = buttonCategories[i];
         [aButton setTitle:buttonTitle forState:UIControlStateNormal];
         i++;
@@ -262,6 +263,8 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (endCatchData[self.activeCategoryId]==true) 
+        return [self->tableDisplayData[self.activeCategoryId] count];
     return [self->tableDisplayData[self.activeCategoryId] count]+1;
 }
 
@@ -300,6 +303,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                 
                 UILabel *titleLabel = nil;
                 UILabel *dekLabel = nil;
+                UILabel *dpLabel = nil;
                 
                 if (cell == nil)
                 {
@@ -309,13 +313,13 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                     // Title View
                     titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
                     titleLabel.tag = 1;
-                    titleLabel.font = [UIFont boldSystemFontOfSize:STORY_TITLE_FONT_SIZE];
+                    titleLabel.font = [UIFont fontWithName:@"Helvetica" size:14.0];
                     titleLabel.numberOfLines = 0;
                     titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
                     [cell.contentView addSubview:titleLabel];
                     [titleLabel release];
                     
-                    // Summary View
+                   /* // Summary View
                     dekLabel = [[UILabel alloc] initWithFrame:CGRectZero];
                     dekLabel.tag = 2;
                     dekLabel.font = [UIFont systemFontOfSize:STORY_DEK_FONT_SIZE];
@@ -324,31 +328,79 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                     dekLabel.numberOfLines = 0;
                     dekLabel.lineBreakMode = UILineBreakModeTailTruncation;
                     [cell.contentView addSubview:dekLabel];
-                    [dekLabel release];
+                    [dekLabel release];*/
 
+                    /*dpLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+                    dpLabel.tag = 3;
+                    dpLabel.font = [UIFont systemFontOfSize:STORY_DEK_FONT_SIZE];
+                    dpLabel.textColor = [UIColor colorWithHexString:@"#0D0D0D"];
+                    dpLabel.backgroundColor = [UIColor clearColor];
+                    dpLabel.highlightedTextColor = [UIColor whiteColor];
+                    dpLabel.numberOfLines = 0;
+                    dpLabel.lineBreakMode = UILineBreakModeTailTruncation;
+                    [cell.contentView addSubview:dpLabel];
+                    [dpLabel release];
+*/
                     
                     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
                     cell.selectionStyle = UITableViewCellSelectionStyleGray;
                 }
                 
-                titleLabel = (UILabel *)[cell viewWithTag:1];
-                dekLabel = (UILabel *)[cell viewWithTag:2];
-                titleLabel.text = [[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-                dekLabel.text = [[[story objectForKey:NewsAPIKeyStartdate] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+                NSMutableString * News_Titile = [NSMutableString new];
+            /*   News_Titile appendString: [[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText] ];
+              // News_Titile =@" test";
                 
+                for (size_t i = 0; i<News_Titile.length ; ++i){
+                    unichar ch = [News_Titile characterAtIndex: i];
+                    printf("%x:%c\n", ch,ch);
+                }
+                */
+                 [News_Titile appendString:[NSString stringWithFormat: @"日期：%@",[[[[story objectForKey:NewsAPIKeyStartdate] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] ]];
+                 [News_Titile stringByReplacingOccurrencesOfString:@" " withString:@""];
+                
+               
+                [News_Titile appendString:[NSString stringWithFormat:@"\n來源：%@",[[[[story objectForKey:NewsAPIKeyDpname] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] ]];
+                
+                [News_Titile appendString:[NSString stringWithFormat:@"\n主旨：%@",[[[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText] stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] ]];
+                
+                
+                
+                
+                  titleLabel = (UILabel *)[cell viewWithTag:1];
+                dekLabel = (UILabel *)[cell viewWithTag:2];
+                dpLabel = (UILabel *)[cell viewWithTag:3];
+                titleLabel.text =[NSString stringWithString:News_Titile] ;
+               /* dekLabel.text = [[[[story objectForKey:NewsAPIKeyStartdate] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+                dpLabel.text = [[[[story objectForKey:NewsAPIKeyDpname] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+                */
                 titleLabel.textColor = [UIColor blackColor];
                 titleLabel.highlightedTextColor = [UIColor whiteColor];
     
                 titleLabel.frame = CGRectMake(STORY_TEXT_PADDING_LEFT,
-                                              STORY_TEXT_PADDING_TOP,
+                                              STORY_TEXT_PADDING_TOP+NewsCatchDataCount,
                                             STORY_TEXT_WIDTH,
                                               THUMBNAIL_WIDTH-15-STORY_TEXT_PADDING_TOP);
-                dekLabel.frame = CGRectMake(STORY_TEXT_PADDING_LEFT,
+               /* dekLabel.frame = CGRectMake(180+STORY_TEXT_PADDING_LEFT,
                                             THUMBNAIL_WIDTH-15,
                                             STORY_TEXT_WIDTH,
                                             15);
-                
-                
+                dpLabel.frame = CGRectMake(30+STORY_TEXT_PADDING_LEFT,
+                                            THUMBNAIL_WIDTH-15,
+                                            STORY_TEXT_WIDTH,
+                                            15);
+               titleLabel.frame = CGRectMake(STORY_TEXT_PADDING_LEFT,
+                                              THUMBNAIL_WIDTH-15,
+                                              STORY_TEXT_WIDTH,
+                                              15);
+                dekLabel.frame =  CGRectMake(STORY_TEXT_PADDING_LEFT,
+                                             STORY_TEXT_PADDING_TOP,
+                                             STORY_TEXT_WIDTH,
+                                             THUMBNAIL_WIDTH-15-STORY_TEXT_PADDING_TOP);
+                dpLabel.frame = CGRectMake(30+STORY_TEXT_PADDING_LEFT,
+                                           THUMBNAIL_WIDTH-15,
+                                           STORY_TEXT_WIDTH,
+                                           15);
+                */
                 result = cell;
             }
             else if (indexPath.row == [self->tableDisplayData[self.activeCategoryId] count])
@@ -417,6 +469,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
         detailViewController.story = story;
         
         [self.navigationController pushViewController:detailViewController animated:YES];
+        detailViewController.navigationItem.leftBarButtonItem.title=@"back";
         [detailViewController release];
     }
 }
@@ -468,6 +521,8 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     activityView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     activityView.tag = 9;
     activityView.backgroundColor = [UIColor blackColor];
+    storyTable.separatorColor = [UIColor colorWithHexString:@"E0E0E0"];
+    // [storyTable.backgroundView setBackgroundColor:[UIColor yellowColor]];
     activityView.userInteractionEnabled = NO;
     
     UILabel *loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 0, 0, 0)];
@@ -584,6 +639,12 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
         pageCount[self.activeCategoryId]++;
         catchData = [[[NSDictionary alloc] initWithDictionary:self.connect.content] autorelease];
         NSArray* temp = [[catchData objectForKey:NewsAPIKeyNtou]objectForKey:NewsAPIKeyNotice];
+        NSLog(@"---%lu",(unsigned long)[temp count]);
+        /*if ([temp count]>NewsCatchDataCount)
+            temp = [NSArray arrayWithObject:temp];
+        else*/
+        if ([temp count]<6)
+            endCatchData[self.activeCategoryId]= TRUE;
         if (!tableDisplayData[self.activeCategoryId])
             tableDisplayData[self.activeCategoryId] = [[NSMutableArray alloc] init];
         [tableDisplayData[self.activeCategoryId] addObjectsFromArray:temp];

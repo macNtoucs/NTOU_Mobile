@@ -35,12 +35,13 @@
     UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *mailView = [[MFMailComposeViewController alloc] init];
-        [mailView setToRecipients:[NSArray arrayWithObjects:@"mac.ntoucs@gmail.com", nil]];
+        [mailView setToRecipients:[NSArray arrayWithObjects:@"wendylin@mail.ntou.edu.tw", nil]];
         [mailView setSubject:@"緊急事件"];
         
         [mailView setMessageBody:@"[照片]" isHTML:NO];
         NSData *imageData = UIImagePNGRepresentation(image);
         [mailView addAttachmentData:imageData mimeType:@"image/png" fileName:@"image"];
+        mailView.modalTransitionStyle = UIModalTransitionStylePartialCurl;
         [self presentModalViewController:mailView
                                 animated:YES];
     }

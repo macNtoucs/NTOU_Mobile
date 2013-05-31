@@ -129,10 +129,10 @@
     if (!queue) {
         queue = [[NSOperationQueue alloc] init];
     }
-    self.anotherButton.title = @"Refreshing";
+    self.anotherButton.title = @"更新中";
     updateTimeOnButton = NO;
     loadingAlertView = [[UIAlertView alloc]
-                        initWithTitle:nil message:@"\n\nDownloading\nPlease wait"
+                        initWithTitle:nil message:@"\n\下載資料中\n請稍候"
                         delegate:self cancelButtonTitle:@"取消"
                         otherButtonTitles: nil];
     [self AlertStart:loadingAlertView];
@@ -186,7 +186,7 @@
         {
             int secs = (1+kRefreshInterval+sinceRefresh);
             if (secs < 0) secs = 0;
-            self.anotherButton.title = [NSString stringWithFormat:@"Refresh in %d", secs];
+            self.anotherButton.title = [NSString stringWithFormat:@"%d秒後更新", secs];
             
         }
 	}
@@ -208,12 +208,12 @@
 - (void)viewDidLoad
 {
     loadingAlertView = [[UIAlertView alloc]
-                        initWithTitle:nil message:@"\n\nDownloading\nPlease wait"
+                        initWithTitle:nil message:@"\n\下載資料中\n請稍候"
                         delegate:self cancelButtonTitle:@"取消"
                         otherButtonTitles: nil];
     [self AlertStart:loadingAlertView];
     [super viewDidLoad];
-    anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshPropertyList)];
+    anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"更新" style:UIBarButtonItemStylePlain target:self action:@selector(refreshPropertyList)];
     self.navigationItem.rightBarButtonItem = anotherButton;
     //[anotherButton release];
     
@@ -284,7 +284,7 @@
 	{
 		[self.refreshTimer invalidate];
 		self.refreshTimer = nil;
-		self.anotherButton.title = @"Refresh";
+		self.anotherButton.title = @"更新";
 	}
 }
 
@@ -394,20 +394,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kPlainId];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kPlainId];
     
     if (cell == nil) {
-        cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kPlainId] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kPlainId] autorelease];
     }
     
     // Set up the cell
-    
     cell.detailTextLabel.backgroundColor = [UIColor clearColor];
     cell.detailTextLabel.text =[item objectAtIndex:indexPath.row];
-    NSLog(@"%@",cell.detailTextLabel.text);
-   // cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.adjustsFontSizeToFitWidth = YES;
-    cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+    
+    cell.backgroundColor = SECONDARY_GROUP_BACKGROUND_COLOR;
+	
+	cell.textLabel.font = [UIFont fontWithName:BOLD_FONT size:CELL_STANDARD_FONT_SIZE];
+	cell.textLabel.textColor = CELL_STANDARD_FONT_COLOR;
+	cell.textLabel.backgroundColor = [UIColor clearColor];
+
     if (dir){
         switch (indexPath.row) {
             case 0:
