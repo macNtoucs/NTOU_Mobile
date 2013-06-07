@@ -9,6 +9,7 @@
 #import "WOLChiListViewController.h"
 #import "NTOUUIConstants.h"
 #import "MBProgressHUD.h"
+#define YEAR 2013
 
 @interface WOLChiListViewController ()
 
@@ -267,13 +268,21 @@
     NSString *key = [keys objectAtIndex:section];
     NSString *sectiontitle;
     if(section < 5)
+        sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR - 1911,key];
+    else if(section == 5)
+        sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR - 1910,key];
+    else
+        sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR - 1911,key];
+    /*
+    if(section < 5)
     {
-        sectiontitle = [[NSString alloc] initWithFormat:@"  民國101年 %@月",key];
+        sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR,key];
     }
     else
     {
-        sectiontitle = [[NSString alloc] initWithFormat:@"  民國102年 %@月",key];
+        sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR,key];
     }
+     */
     UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 25)] autorelease];
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 25)] autorelease];
     label.text = sectiontitle;
@@ -562,9 +571,18 @@
         
         NSDateComponents *startcomps = [[NSDateComponents alloc] init];
         if(section < 5)
-            [startcomps setYear:2012];
+            [startcomps setYear:YEAR];
+        else if (section == 5) //一月
+            [startcomps setYear:YEAR+1];
         else
-            [startcomps setYear:2013];
+            [startcomps setYear:YEAR];
+        
+        /*
+         if(section < 5)
+            [startcomps setYear:YEAR];
+         else
+            [startcomps setYear:YEAR+1];
+         */
         
         [startcomps setMonth:[key intValue]];
         
@@ -579,9 +597,18 @@
         
         NSDateComponents *endcomps = [[NSDateComponents alloc] init];
         if(section < 4 || (section == 4 && [[dateevent objectForKey:@"cross"] isEqualToString:@"NO"]) )
-            [endcomps setYear:2012];
+            [endcomps setYear:YEAR];
+        else if(section == 5 || (section == 4 && [[dateevent objectForKey:@"cross"] isEqualToString:@"YES"]))
+            [endcomps setYear:YEAR+1];
         else
-            [endcomps setYear:2013];
+            [endcomps setYear:YEAR];
+        
+        /*
+         if(section < 4 || (section == 4 && [[dateevent objectForKey:@"cross"] isEqualToString:@"NO"]) )
+            [endcomps setYear:YEAR];
+         else if
+            [endcomps setYear:YEAR+1];
+        */
         
         NSString *endkey;
         if([[dateevent objectForKey:@"cross"] isEqualToString:@"yes"])

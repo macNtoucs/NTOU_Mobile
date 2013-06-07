@@ -8,15 +8,15 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>第一學期開始；100暑修第二期開始上課；就學貸款申辦開始日</string>
+			<string>第一學期開始；101暑修第二期開始上課；就學貸款申辦開始日</string>
 			<key>startdate</key>
 			<string>1</string>
 			<key>enddate</key>
 			<string>1</string>
 			<key>startweek</key>
-			<string>三</string>
+			<string>四</string>
 			<key>endweek</key>
-			<string>三</string>
+			<string>四</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -24,9 +24,9 @@
 			<key>value</key>
 			<string>研究所新生住宿電腦抽籤申請</string>
 			<key>startdate</key>
-			<string>6</string>
+			<string>5</string>
 			<key>enddate</key>
-			<string>9</string>
+			<string>8</string>
 			<key>startweek</key>
 			<string>一</string>
 			<key>endweek</key>
@@ -38,9 +38,9 @@
 			<key>value</key>
 			<string>復學生註冊</string>
 			<key>startdate</key>
-			<string>10</string>
+			<string>9</string>
 			<key>enddate</key>
-			<string>10</string>
+			<string>9</string>
 			<key>startweek</key>
 			<string>五</string>
 			<key>endweek</key>
@@ -52,9 +52,9 @@
 			<key>value</key>
 			<string>大學部新生住宿申請</string>
 			<key>startdate</key>
-			<string>16</string>
+			<string>15</string>
 			<key>enddate</key>
-			<string>20</string>
+			<string>19</string>
 			<key>startweek</key>
 			<string>四</string>
 			<key>endweek</key>
@@ -66,9 +66,9 @@
 			<key>value</key>
 			<string>新生入學說明會暨新生家長日</string>
 			<key>startdate</key>
-			<string>18</string>
+			<string>17</string>
 			<key>enddate</key>
-			<string>18</string>
+			<string>17</string>
 			<key>startweek</key>
 			<string>六</string>
 			<key>endweek</key>
@@ -78,29 +78,29 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>祖父母節</string>
-			<key>startdate</key>
-			<string>26</string>
-			<key>enddate</key>
-			<string>26</string>
-			<key>startweek</key>
-			<string>日</string>
-			<key>endweek</key>
-			<string>日</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>yes</string>
-			<key>value</key>
 			<string>申請抵免學分</string>
 			<key>startdate</key>
-			<string>27</string>
+			<string>19</string>
 			<key>enddate</key>
-			<string>7</string>
+			<string>30</string>
 			<key>startweek</key>
 			<string>一</string>
 			<key>endweek</key>
 			<string>五</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>祖父母節</string>
+			<key>startdate</key>
+			<string>25</string>
+			<key>enddate</key>
+			<string>25</string>
+			<key>startweek</key>
+			<string>日</string>
+			<key>endweek</key>
+			<string>日</string>
 		</dict>
 	</array>
 	<key>9</key>
@@ -111,9 +111,9 @@
 			<key>value</key>
 			<string>暑假結束</string>
 			<key>startdate</key>
-			<string>8</string>
+			<string>7</string>
 			<key>enddate</key>
-			<string>8</string>
+			<string>7</string>
 			<key>startweek</key>
 			<string>六</string>
 			<key>endweek</key>
@@ -125,9 +125,9 @@
 			<key>value</key>
 			<string>學生宿舍開放</string>
 			<key>startdate</key>
-			<string>8</string>
+			<string>7</string>
 			<key>enddate</key>
-			<string>9</string>
+			<string>8</string>
 			<key>startweek</key>
 			<string>六</string>
 			<key>endweek</key>
@@ -137,11 +137,11 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>日間學制研究生新生及進修學士班、碩專班新生體檢；進修學士班、碩專班新生註冊及就學貸款申辦截止日；進修學士班、碩專班新生入學教育</string>
+			<string>進修學士班及碩專班新生註冊、新生入學教育、就學貸款申辦截止日、學雜費減免申辦截止日</string>
 			<key>startdate</key>
-			<string>10</string>
+			<string>9</string>
 			<key>enddate</key>
-			<string>10</string>
+			<string>9</string>
 			<key>startweek</key>
 			<string>一</string>
 			<key>endweek</key>
@@ -151,11 +151,11 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>日間學制研究生新生註冊暨選課說明會及就學貸款申辦截止日；日間學制學士班新生體檢</string>
+			<string>日間學制研究所新生開學典禮、註冊、就學貸款申辦截止日、學雜費減免申辦截止日</string>
 			<key>startdate</key>
-			<string>11</string>
+			<string>10</string>
 			<key>enddate</key>
-			<string>11</string>
+			<string>10</string>
 			<key>startweek</key>
 			<string>二</string>
 			<key>endweek</key>
@@ -165,15 +165,29 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>日間學制學士班新生註冊暨選課說明會及就學貸款申辦截止日</string>
+			<string>日間學制學士班新生註冊、選課說明會、就學貸款申辦截止日、學雜費減免申辦截止日</string>
+			<key>startdate</key>
+			<string>11</string>
+			<key>enddate</key>
+			<string>11</string>
+			<key>startweek</key>
+			<string>三</string>
+			<key>endweek</key>
+			<string>三</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>大一新生入學典禮</string>
 			<key>startdate</key>
 			<string>12</string>
 			<key>enddate</key>
 			<string>12</string>
 			<key>startweek</key>
-			<string>三</string>
+			<string>四</string>
 			<key>endweek</key>
-			<string>三</string>
+			<string>四</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -181,39 +195,11 @@
 			<key>value</key>
 			<string>新生安全日</string>
 			<key>startdate</key>
-			<string>14</string>
-			<key>enddate</key>
-			<string>14</string>
-			<key>startweek</key>
-			<string>五</string>
-			<key>endweek</key>
-			<string>五</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>日間學制新生入學教育</string>
-			<key>startdate</key>
 			<string>13</string>
 			<key>enddate</key>
-			<string>14</string>
-			<key>startweek</key>
-			<string>四</string>
-			<key>endweek</key>
-			<string>五</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>1011 舊生第三階段電腦選課作業，新生電腦選課作業</string>
-			<key>startdate</key>
 			<string>13</string>
-			<key>enddate</key>
-			<string>21</string>
 			<key>startweek</key>
-			<string>四</string>
+			<string>五</string>
 			<key>endweek</key>
 			<string>五</string>
 		</dict>
@@ -223,11 +209,11 @@
 			<key>value</key>
 			<string>弱勢助學計畫申請</string>
 			<key>startdate</key>
-			<string>10</string>
+			<string>13</string>
 			<key>enddate</key>
-			<string>10</string>
+			<string>9</string>
 			<key>startweek</key>
-			<string>一</string>
+			<string>五</string>
 			<key>endweek</key>
 			<string>三</string>
 		</dict>
@@ -235,11 +221,25 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
+			<string>補行上班</string>
+			<key>startdate</key>
+			<string>14</string>
+			<key>enddate</key>
+			<string>14</string>
+			<key>startweek</key>
+			<string>六</string>
+			<key>endweek</key>
+			<string>六</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
 			<string>各學制學生開始上課</string>
 			<key>startdate</key>
-			<string>16</string>
+			<string>15</string>
 			<key>enddate</key>
-			<string>16</string>
+			<string>15</string>
 			<key>startweek</key>
 			<string>日</string>
 			<key>endweek</key>
@@ -251,13 +251,27 @@
 			<key>value</key>
 			<string>各學制舊生註冊</string>
 			<key>startdate</key>
-			<string>17</string>
+			<string>16</string>
 			<key>enddate</key>
 			<string>18</string>
 			<key>startweek</key>
 			<string>一</string>
 			<key>endweek</key>
-			<string>二</string>
+			<string>三</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>1021 舊生第三階段電腦選課，新生電腦選課</string>
+			<key>startdate</key>
+			<string>16</string>
+			<key>enddate</key>
+			<string>27</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -269,21 +283,21 @@
 			<key>enddate</key>
 			<string>18</string>
 			<key>startweek</key>
-			<string>二</string>
+			<string>三</string>
 			<key>endweek</key>
-			<string>二</string>
+			<string>三</string>
 		</dict>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>准假學生補註冊</string>
+			<string>中秋節（放假）</string>
 			<key>startdate</key>
 			<string>19</string>
 			<key>enddate</key>
-			<string>20</string>
+			<string>19</string>
 			<key>startweek</key>
-			<string>三</string>
+			<string>四</string>
 			<key>endweek</key>
 			<string>四</string>
 		</dict>
@@ -291,15 +305,29 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>1011人工特殊加選及超修學分申請</string>
+			<string>調整放假</string>
 			<key>startdate</key>
-			<string>22</string>
+			<string>20</string>
 			<key>enddate</key>
-			<string>28</string>
+			<string>20</string>
 			<key>startweek</key>
-			<string>六</string>
+			<string>五</string>
 			<key>endweek</key>
 			<string>五</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>准假學生補註冊</string>
+			<key>startdate</key>
+			<string>23</string>
+			<key>enddate</key>
+			<string>24</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>二</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -307,9 +335,9 @@
 			<key>value</key>
 			<string>校內獎學金申請</string>
 			<key>startdate</key>
-			<string>17</string>
+			<string>23</string>
 			<key>enddate</key>
-			<string>19</string>
+			<string>25</string>
 			<key>startweek</key>
 			<string>一</string>
 			<key>endweek</key>
@@ -319,33 +347,33 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>中秋節（適逢例假日，不補假）</string>
+			<string>1021人工特殊加選及超修學分申請</string>
 			<key>startdate</key>
-			<string>30</string>
+			<string>28</string>
 			<key>enddate</key>
-			<string>30</string>
+			<string>4</string>
 			<key>startweek</key>
-			<string>日</string>
+			<string>六</string>
 			<key>endweek</key>
-			<string>日</string>
+			<string>五</string>
 		</dict>
-	</array>
-	<key>10</key>
-	<array>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>選課上網確認截止日</string>
+			<string>五年一貫申請</string>
 			<key>startdate</key>
-			<string>5</string>
+			<string>30</string>
 			<key>enddate</key>
-			<string>5</string>
+			<string>11</string>
 			<key>startweek</key>
-			<string>五</string>
+			<string>一</string>
 			<key>endweek</key>
 			<string>五</string>
 		</dict>
+	</array>
+	<key>10</key>
+	<array>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
@@ -356,23 +384,65 @@
 			<key>enddate</key>
 			<string>10</string>
 			<key>startweek</key>
-			<string>三</string>
+			<string>四</string>
 			<key>endweek</key>
-			<string>三</string>
+			<string>四</string>
 		</dict>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>本校五十九週年校慶（全校正常上班上課）；陸上運動會</string>
+			<string>選課上網確認截止日</string>
 			<key>startdate</key>
-			<string>20</string>
+			<string>11</string>
 			<key>enddate</key>
-			<string>20</string>
+			<string>11</string>
 			<key>startweek</key>
-			<string>六</string>
+			<string>五</string>
+			<key>endweek</key>
+			<string>五</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>陸上運動會</string>
+			<key>startdate</key>
+			<string>18</string>
+			<key>enddate</key>
+			<string>18</string>
+			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>五</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>本校六十週年校慶（19日全校正常上班上課）</string>
+			<key>startdate</key>
+			<string>18</string>
+			<key>enddate</key>
+			<string>19</string>
+			<key>startweek</key>
+			<string>五</string>
 			<key>endweek</key>
 			<string>六</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>補假一日（校慶）</string>
+			<key>startdate</key>
+			<string>21</string>
+			<key>enddate</key>
+			<string>21</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>一</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -384,9 +454,9 @@
 			<key>enddate</key>
 			<string>31</string>
 			<key>startweek</key>
-			<string>六</string>
+			<string>日</string>
 			<key>endweek</key>
-			<string>三</string>
+			<string>四</string>
 		</dict>
 	</array>
 	<key>11</key>
@@ -397,9 +467,9 @@
 			<key>value</key>
 			<string>期中考試</string>
 			<key>startdate</key>
-			<string>11</string>
+			<string>10</string>
 			<key>enddate</key>
-			<string>17</string>
+			<string>16</string>
 			<key>startweek</key>
 			<string>日</string>
 			<key>endweek</key>
@@ -411,9 +481,9 @@
 			<key>value</key>
 			<string>學分費繳交截止日</string>
 			<key>startdate</key>
-			<string>16</string>
+			<string>15</string>
 			<key>enddate</key>
-			<string>16</string>
+			<string>15</string>
 			<key>startweek</key>
 			<string>五</string>
 			<key>endweek</key>
@@ -425,9 +495,9 @@
 			<key>value</key>
 			<string>期中預警輸入開始日</string>
 			<key>startdate</key>
-			<string>19</string>
+			<string>18</string>
 			<key>enddate</key>
-			<string>19</string>
+			<string>18</string>
 			<key>startweek</key>
 			<string>一</string>
 			<key>endweek</key>
@@ -439,9 +509,23 @@
 			<key>value</key>
 			<string>1011期中退選作業</string>
 			<key>startdate</key>
-			<string>19</string>
+			<string>18</string>
 			<key>enddate</key>
-			<string>30</string>
+			<string>29</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>五</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>轉系申請</string>
+			<key>startdate</key>
+			<string>18</string>
+			<key>enddate</key>
+			<string>22</string>
 			<key>startweek</key>
 			<string>一</string>
 			<key>endweek</key>
@@ -451,15 +535,29 @@
 			<key>cross</key>
 			<string>yes</string>
 			<key>value</key>
-			<string>下學期學雜費減免申請</string>
+			<string>下學期學雜費第一階段先期減免申請</string>
 			<key>startdate</key>
-			<string>21</string>
+			<string>20</string>
 			<key>enddate</key>
-			<string>5</string>
+			<string>4</string>
 			<key>startweek</key>
 			<string>三</string>
 			<key>endweek</key>
 			<string>三</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>變更轉系申請</string>
+			<key>startdate</key>
+			<string>28</string>
+			<key>enddate</key>
+			<string>29</string>
+			<key>startweek</key>
+			<string>四</string>
+			<key>endweek</key>
+			<string>五</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -471,9 +569,9 @@
 			<key>enddate</key>
 			<string>30</string>
 			<key>startweek</key>
-			<string>五</string>
+			<string>六</string>
 			<key>endweek</key>
-			<string>五</string>
+			<string>六</string>
 		</dict>
 	</array>
 	<key>12</key>
@@ -484,9 +582,9 @@
 			<key>value</key>
 			<string>期中預警輸入截止日</string>
 			<key>startdate</key>
-			<string>3</string>
+			<string>2</string>
 			<key>enddate</key>
-			<string>3</string>
+			<string>2</string>
 			<key>startweek</key>
 			<string>一</string>
 			<key>endweek</key>
@@ -496,11 +594,11 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>1012第一階段電腦選課作業</string>
+			<string>1022第一階段電腦選課</string>
 			<key>startdate</key>
-			<string>7</string>
+			<string>6</string>
 			<key>enddate</key>
-			<string>13</string>
+			<string>12</string>
 			<key>startweek</key>
 			<string>五</string>
 			<key>endweek</key>
@@ -512,9 +610,9 @@
 			<key>value</key>
 			<string>輔系、雙主修申請</string>
 			<key>startdate</key>
-			<string>10</string>
+			<string>9</string>
 			<key>enddate</key>
-			<string>14</string>
+			<string>13</string>
 			<key>startweek</key>
 			<string>一</string>
 			<key>endweek</key>
@@ -524,43 +622,15 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>1012電腦選課抽籤作業</string>
+			<string>1022電腦選課抽籤作業</string>
 			<key>startdate</key>
-			<string>19</string>
+			<string>18</string>
 			<key>enddate</key>
-			<string>21</string>
+			<string>20</string>
 			<key>startweek</key>
 			<string>三</string>
 			<key>endweek</key>
 			<string>五</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>補行上班</string>
-			<key>startdate</key>
-			<string>22</string>
-			<key>enddate</key>
-			<string>22</string>
-			<key>startweek</key>
-			<string>六</string>
-			<key>endweek</key>
-			<string>六</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>調整放假日</string>
-			<key>startdate</key>
-			<string>31</string>
-			<key>enddate</key>
-			<string>31</string>
-			<key>startweek</key>
-			<string>一</string>
-			<key>endweek</key>
-			<string>一</string>
 		</dict>
 	</array>
 	<key>1</key>
@@ -569,11 +639,25 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
+			<string>開國紀念日（放假）</string>
+			<key>startdate</key>
+			<string>1</string>
+			<key>enddate</key>
+			<string>1</string>
+			<key>startweek</key>
+			<string>三</string>
+			<key>endweek</key>
+			<string>三</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
 			<string>就學貸款申辦開始日</string>
 			<key>startdate</key>
-			<string>3</string>
+			<string>2</string>
 			<key>enddate</key>
-			<string>3</string>
+			<string>2</string>
 			<key>startweek</key>
 			<string>四</string>
 			<key>endweek</key>
@@ -583,11 +667,11 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>1012第二階段電腦選課作業</string>
+			<string>1022第二階段電腦選課</string>
 			<key>startdate</key>
-			<string>4</string>
+			<string>3</string>
 			<key>enddate</key>
-			<string>11</string>
+			<string>10</string>
 			<key>startweek</key>
 			<string>五</string>
 			<key>endweek</key>
@@ -597,11 +681,11 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>1011學期申請休學截止日</string>
+			<string>1021學期各學制申請休學截止日</string>
 			<key>startdate</key>
-			<string>11</string>
+			<string>10</string>
 			<key>enddate</key>
-			<string>11</string>
+			<string>10</string>
 			<key>startweek</key>
 			<string>五</string>
 			<key>endweek</key>
@@ -613,9 +697,9 @@
 			<key>value</key>
 			<string>學期考試</string>
 			<key>startdate</key>
-			<string>13</string>
+			<string>12</string>
 			<key>enddate</key>
-			<string>19</string>
+			<string>18</string>
 			<key>startweek</key>
 			<string>日</string>
 			<key>endweek</key>
@@ -627,9 +711,9 @@
 			<key>value</key>
 			<string>寒假開始，1月下旬預官考選考試</string>
 			<key>startdate</key>
-			<string>20</string>
+			<string>19</string>
 			<key>enddate</key>
-			<string>20</string>
+			<string>19</string>
 			<key>startweek</key>
 			<string>日</string>
 			<key>endweek</key>
@@ -637,17 +721,45 @@
 		</dict>
 		<dict>
 			<key>cross</key>
+			<string>yes</string>
+			<key>value</key>
+			<string>寒假期間部分宿舍關閉</string>
+			<key>startdate</key>
+			<string>27</string>
+			<key>enddate</key>
+			<string>8</string>
+			<key>startweek</key>
+			<string>一</string>
+			<key>endweek</key>
+			<string>六</string>
+		</dict>
+		<dict>
+			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>第一學期結束；研究生論文繳交截止日</string>
+			<string>第一學期結束</string>
 			<key>startdate</key>
 			<string>31</string>
 			<key>enddate</key>
 			<string>31</string>
 			<key>startweek</key>
+			<string>五</string>
+			<key>endweek</key>
+			<string>五</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>yes</string>
+			<key>value</key>
+			<string>除夕暨春節假期（放假，2/3-4為補假）</string>
+			<key>startdate</key>
+			<string>30</string>
+			<key>enddate</key>
+			<string>4</string>
+			<key>startweek</key>
 			<string>四</string>
 			<key>endweek</key>
-			<string>四</string>
+			<string>二</string>
 		</dict>
 	</array>
 	<key>2</key>
@@ -1087,9 +1199,9 @@
 			<key>value</key>
 			<string>期中預警輸入截止日</string>
 			<key>startdate</key>
-			<string>一</string>
+			<string>6</string>
 			<key>enddate</key>
-			<string>一</string>
+			<string>6</string>
 			<key>startweek</key>
 			<string>四</string>
 			<key>endweek</key>
