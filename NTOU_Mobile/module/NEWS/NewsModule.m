@@ -26,7 +26,6 @@
 }
 
 - (void)dealloc {
-    [storyListChannelController release];
     [super dealloc];
 }
 
