@@ -213,6 +213,8 @@
 		91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049416E89FE300ECF2CF /* QuartzCore.framework */; };
 		91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */; };
 		91A9049B16E8A09A00ECF2CF /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 91A9049A16E8A09A00ECF2CF /* icons */; };
+		91EE2AE8176B0F3D007666E1 /* SettingModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 91EE2AE5176B0F3D007666E1 /* SettingModule.m */; };
+		91EE2AE9176B0F3D007666E1 /* SettingsModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91EE2AE7176B0F3D007666E1 /* SettingsModuleViewController.m */; };
 		BA06A07516F2EE6600212CB9 /* LibrariesModule.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06816F2EE6600212CB9 /* LibrariesModule.m */; };
 		BA06A07616F2EE6600212CB9 /* CalenderList.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06A16F2EE6600212CB9 /* CalenderList.plist */; };
 		BA06A07716F2EE6600212CB9 /* CalenderList_eng.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */; };
@@ -561,6 +563,10 @@
 		91A9049416E89FE300ECF2CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		91A9049A16E8A09A00ECF2CF /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
+		91EE2AE4176B0F3D007666E1 /* SettingModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingModule.h; path = NTOU_Mobile/SettingModule.h; sourceTree = SOURCE_ROOT; };
+		91EE2AE5176B0F3D007666E1 /* SettingModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingModule.m; path = NTOU_Mobile/SettingModule.m; sourceTree = SOURCE_ROOT; };
+		91EE2AE6176B0F3D007666E1 /* SettingsModuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsModuleViewController.h; path = NTOU_Mobile/SettingsModuleViewController.h; sourceTree = SOURCE_ROOT; };
+		91EE2AE7176B0F3D007666E1 /* SettingsModuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsModuleViewController.m; path = NTOU_Mobile/SettingsModuleViewController.m; sourceTree = SOURCE_ROOT; };
 		BA06A06716F2EE6600212CB9 /* LibrariesModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibrariesModule.h; sourceTree = "<group>"; };
 		BA06A06816F2EE6600212CB9 /* LibrariesModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibrariesModule.m; sourceTree = "<group>"; };
 		BA06A06A16F2EE6600212CB9 /* CalenderList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CalenderList.plist; sourceTree = "<group>"; };
@@ -682,6 +688,10 @@
 		91756E7716F206F7001D724D /* Stellar */ = {
 			isa = PBXGroup;
 			children = (
+				91EE2AE4176B0F3D007666E1 /* SettingModule.h */,
+				91EE2AE5176B0F3D007666E1 /* SettingModule.m */,
+				91EE2AE6176B0F3D007666E1 /* SettingsModuleViewController.h */,
+				91EE2AE7176B0F3D007666E1 /* SettingsModuleViewController.m */,
 				91756E9B16F206F7001D724D /* Classes */,
 				C74699EB16F21DF10060F49C /* Reader */,
 				91756FCE16F20C79001D724D /* LessonTimeView.h */,
@@ -1467,6 +1477,8 @@
 				BA06A07A16F2EE6600212CB9 /* WOLSwitchViewController.m in Sources */,
 				C71A4EE51705B106002819AD /* Fuhobus_Data.m in Sources */,
 				C71A4F1F17128DF5002819AD /* AboutCreditsVC.m in Sources */,
+				91EE2AE8176B0F3D007666E1 /* SettingModule.m in Sources */,
+				91EE2AE9176B0F3D007666E1 /* SettingsModuleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
