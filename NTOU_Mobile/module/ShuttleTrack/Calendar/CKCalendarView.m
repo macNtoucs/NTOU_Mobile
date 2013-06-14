@@ -282,6 +282,7 @@
           ((otherComponents.year == todayComponents.year) && otherComponents.month<todayComponents.month) ||
           ((otherComponents.year == todayComponents.year)&& (otherComponents.month == todayComponents.month) && otherComponents.day<todayComponents.day)
         ) return true;
+    else return false;
     }
     else return  false;
 }

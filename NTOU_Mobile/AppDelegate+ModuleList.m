@@ -16,7 +16,7 @@
 #import "LibrariesModule.h"
 #import "NewsModule.h"
 #import "StellarModule.h"
-
+#import "SettingModule.h"
 /*#import "NewsModule.h"
 
 
@@ -64,7 +64,7 @@
     //  [result addObject:[[[FacilitiesModule alloc] init] autorelease]];
     //[result addObject:[[[QRReaderModule alloc] init] autorelease]];
     // [result addObject:[[[LinksModule alloc] init] autorelease]];
-    //[result addObject:[[[SettingsModule alloc] init] autorelease]];
+    [result addObject:[[[SettingModule alloc] init] autorelease]];
     [result addObject:[[[AboutModule alloc] init] autorelease]];
     
     

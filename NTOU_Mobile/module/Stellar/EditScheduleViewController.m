@@ -9,10 +9,11 @@
 #import "EditScheduleViewController.h"
 #import "NTOUUIConstants.h"
 #import "NTOU_ClassColorViewController.h"
+#import "SettingsModuleViewController.h"
+
+
 @interface EditScheduleViewController (){
     SetWeekTimesViewController * setweek;
-    id accountDelegate;
-    id passwordDelegate;
     UIAlertView *downloadingAlertView;
     UIAlertView *resetAlertView;
 }
@@ -40,12 +41,6 @@
     
     [self.navigationItem setRightBarButtonItem:right animated:YES];
 }
-
-- (void) hideKeyboard:(UITapGestureRecognizer*)recognizer {
-    [accountDelegate resignFirstResponder];
-    [passwordDelegate resignFirstResponder];
-}
-
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
@@ -126,9 +121,6 @@
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	NSString *headerTitle = nil;
     switch (section) {
-        case 1:
-            headerTitle = @"Moodle";
-            break;
         default:
             break;
     }
@@ -156,25 +148,20 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 4;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     if (section==0) {
         return 4;
     }
     else if (section==1) {
-        return 2;
-    }
-    else if (section==2) {
         return 1;
     }
-    else if (section==3) {
+    else if (section==2) {
         return 1;
     }
     return 0;
@@ -183,10 +170,6 @@
 -(void) finishSetting {
     [self dismissModalViewControllerAnimated:YES];
     [[ClassDataBase sharedData] storeUserDefaults];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[accountDelegate text] forKey:accountKey];
-    [defaults setObject:[passwordDelegate text] forKey:passwordKey];
-    [defaults synchronize];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -195,10 +178,7 @@
      
     NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
     SecondaryGroupedTableViewCell *cell;
-    if (indexPath.section==1&&(indexPath.row==0||indexPath.row==1)) {
-        cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
-    }
-    else if ((indexPath.section==2&&indexPath.row==0)||(indexPath.section==3&&indexPath.row==0))
+    if ((indexPath.section==1&&indexPath.row==0)||(indexPath.section==2&&indexPath.row==0))
         cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     else
         cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
@@ -240,35 +220,7 @@
                 break;
         }
     }
-    else if (indexPath.section==1) {
-        UITextField* contactNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(93, 10, 200, 20)];
-        contactNameTextField.delegate = self;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        switch (indexPath.row) {
-            case 0:
-                accountDelegate = contactNameTextField;
-                cell.textLabel.text = @"帳號:";
-                contactNameTextField.backgroundColor = [UIColor clearColor];
-                contactNameTextField.font = [UIFont boldSystemFontOfSize:15];
-                contactNameTextField.keyboardType = UIKeyboardTypeDefault;
-                contactNameTextField.text =[[NSUserDefaults standardUserDefaults] objectForKey:accountKey];
-                [cell addSubview:contactNameTextField];
-                break;
-            case 1:
-                passwordDelegate = contactNameTextField;
-                cell.textLabel.text = @"密碼:";
-                contactNameTextField.backgroundColor = [UIColor clearColor];
-                contactNameTextField.font = [UIFont boldSystemFontOfSize:15];
-                contactNameTextField.keyboardType = UIKeyboardTypeDefault;
-                contactNameTextField.text =[[NSUserDefaults standardUserDefaults] objectForKey:passwordKey];
-                contactNameTextField.secureTextEntry = YES;
-                [cell addSubview:contactNameTextField];
-                break;
-        }
-        
-     
-    }
-    else if (indexPath.section==2)
+    else if (indexPath.section==1)
     {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         switch (indexPath.row) {
@@ -278,7 +230,7 @@
                 break;
         }
     }
-    else if (indexPath.section==3)
+    else if (indexPath.section==2)
     {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         switch (indexPath.row) {
@@ -366,8 +318,8 @@
                     hud.labelText = @"下載中";
                 });
                 
-                loginSuccess = [[ClassDataBase sharedData] loginAccount:[(UITextField*)accountDelegate text]
-                                                               Password:[(UITextField*)passwordDelegate text]
+                loginSuccess = [[ClassDataBase sharedData] loginAccount:[SettingsModuleViewController getAccount]
+                                                               Password:[SettingsModuleViewController getPassword]
                                                         ClearAllCourses:NO];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
@@ -410,7 +362,7 @@
         [self.navigationController pushViewController:classColor animated:YES];
         classColor.navigationItem.leftBarButtonItem.title=@"上一頁";
     }
-    else if (indexPath.section==2&&indexPath.row==0){
+    else if (indexPath.section==1&&indexPath.row==0){
         downloadingAlertView = [[UIAlertView alloc]
                                          initWithTitle:nil message:@"下載當學期課表"
                                          delegate:self cancelButtonTitle:@"取消"
@@ -418,7 +370,7 @@
         [downloadingAlertView show];
         [downloadingAlertView release];
     }
-    else if (indexPath.section==3&&indexPath.row==0){
+    else if (indexPath.section==2&&indexPath.row==0){
         resetAlertView = [[UIAlertView alloc]
                                          initWithTitle:nil message:@"還原初始設定"
                                          delegate:self cancelButtonTitle:@"取消"

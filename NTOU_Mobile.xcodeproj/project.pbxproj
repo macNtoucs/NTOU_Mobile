@@ -241,6 +241,8 @@
 		C71A4F1F17128DF5002819AD /* AboutCreditsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C71A4F1E17128DF4002819AD /* AboutCreditsVC.m */; };
 		C71A4F211715205C002819AD /* desktop logo-57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = C71A4F201715205C002819AD /* desktop logo-57x57.png */; };
 		C71A4F23171520E4002819AD /* desktop logo-512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = C71A4F22171520E3002819AD /* desktop logo-512x512.png */; };
+		C72B23F1176AE87200474235 /* SettingsModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C72B23F0176AE87200474235 /* SettingsModuleViewController.m */; };
+		C72B23F4176AE97100474235 /* SettingModule.m in Sources */ = {isa = PBXBuildFile; fileRef = C72B23F3176AE97100474235 /* SettingModule.m */; };
 		C74699DD16F21C2D0060F49C /* Announce_API.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699D916F21C2D0060F49C /* Announce_API.m */; };
 		C74699DE16F21C2D0060F49C /* NewsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699DA16F21C2D0060F49C /* NewsModule.m */; };
 		C74699DF16F21C2D0060F49C /* StoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699DB16F21C2D0060F49C /* StoryListViewController.m */; };
@@ -597,6 +599,10 @@
 		C71A4F1E17128DF4002819AD /* AboutCreditsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutCreditsVC.m; path = ../../AboutCreditsVC.m; sourceTree = "<group>"; };
 		C71A4F201715205C002819AD /* desktop logo-57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "desktop logo-57x57.png"; sourceTree = "<group>"; };
 		C71A4F22171520E3002819AD /* desktop logo-512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "desktop logo-512x512.png"; sourceTree = "<group>"; };
+		C72B23EF176AE87200474235 /* SettingsModuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsModuleViewController.h; sourceTree = "<group>"; };
+		C72B23F0176AE87200474235 /* SettingsModuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsModuleViewController.m; sourceTree = "<group>"; };
+		C72B23F2176AE97100474235 /* SettingModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingModule.h; sourceTree = "<group>"; };
+		C72B23F3176AE97100474235 /* SettingModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingModule.m; sourceTree = "<group>"; };
 		C74699D516F21C2D0060F49C /* Announce_API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Announce_API.h; path = module/NEWS/Announce_API.h; sourceTree = "<group>"; };
 		C74699D616F21C2D0060F49C /* NewsModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsModule.h; path = module/NEWS/NewsModule.h; sourceTree = "<group>"; };
 		C74699D716F21C2D0060F49C /* StoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryListViewController.h; path = module/NEWS/StoryListViewController.h; sourceTree = "<group>"; };
@@ -841,6 +847,7 @@
 		91A9005016E854E500ECF2CF /* NTOU_Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				C72B23EB176AE80800474235 /* Settings */,
 				BA06A06316F2EE6600212CB9 /* Calendar */,
 				C74699D416F21BE20060F49C /* News */,
 				91756E7716F206F7001D724D /* Stellar */,
@@ -1097,6 +1104,17 @@
 				BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */,
 			);
 			path = list;
+			sourceTree = "<group>";
+		};
+		C72B23EB176AE80800474235 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C72B23F2176AE97100474235 /* SettingModule.h */,
+				C72B23F3176AE97100474235 /* SettingModule.m */,
+				C72B23EF176AE87200474235 /* SettingsModuleViewController.h */,
+				C72B23F0176AE87200474235 /* SettingsModuleViewController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		C74699D416F21BE20060F49C /* News */ = {
@@ -1475,6 +1493,8 @@
 				BA06A07A16F2EE6600212CB9 /* WOLSwitchViewController.m in Sources */,
 				C71A4EE51705B106002819AD /* Fuhobus_Data.m in Sources */,
 				C71A4F1F17128DF5002819AD /* AboutCreditsVC.m in Sources */,
+				C72B23F1176AE87200474235 /* SettingsModuleViewController.m in Sources */,
+				C72B23F4176AE97100474235 /* SettingModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1575,8 +1595,8 @@
 		91A9006616E854E500ECF2CF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ching-chi Lin (46873356PM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1586,8 +1606,8 @@
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "CA2C0AFD-230E-42D4-8C62-9E80264AD1ED";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CA2C0AFD-230E-42D4-8C62-9E80264AD1ED";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

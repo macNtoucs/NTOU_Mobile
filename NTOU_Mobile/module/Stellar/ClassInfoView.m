@@ -136,14 +136,18 @@
 {
 	NSString *phrase = [filename stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
    // NSString *filePath = [[[NSBundle mainBundle] bundlePath]stringByAppendingPathComponent:filename];
-
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phrase]];
+    if (![[phrase substringFromIndex:[phrase rangeOfString:@"."].location] isEqualToString:@"pdf"]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phrase]];
+    }
+    else{
+        
+    }
 	/*ReaderDocument *document = [ReaderDocument withDocumentFilePath:filename password:phrase];
     
 	if (document != nil) // Must have a valid ReaderDocument object in order to proceed with things
 	{
 		ReaderViewController *readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
-        
+     
 		readerViewController.delegate = self; // Set the ReaderViewController delegate to self
         
         
