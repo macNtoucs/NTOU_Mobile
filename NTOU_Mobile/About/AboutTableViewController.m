@@ -67,7 +67,7 @@
         			cell.textLabel.textColor = CELL_STANDARD_FONT_COLOR;
                     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
                     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", [infoDict objectForKey:@"CFBundleDisplayName"], [infoDict objectForKey:@"CFBundleVersion"]];
-                
+                    
                 }
                     break;
                 case 1:
@@ -100,13 +100,13 @@
                     cell.accessoryView = [UIImageView accessoryViewWithNTOUType:NTOUAccessoryViewEmail];
                     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
                     break;
-                break;
+                    break;
             }
         default:
             break;
     }
     
-    return cell;    
+    return cell;
 }
 
 #pragma mark - UITableView Delegate
@@ -129,8 +129,8 @@
                     [mailView setSubject:subject];
                     [mailView setToRecipients:[NSArray arrayWithObjects:@"po@ntou.edu.tw",@"mac.ntoucs@gmail.com", nil]];
                     [self presentModalViewController:mailView
-                                            animated:YES]; 
-                }            
+                                            animated:YES];
+                }
             }
         }
     }
@@ -140,7 +140,7 @@
 
 
 #pragma mark - MFMailComposeViewController delegation
-- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error 
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
 	[self dismissModalViewControllerAnimated:YES];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow]
@@ -148,4 +148,3 @@
 }
 
 @end
-
