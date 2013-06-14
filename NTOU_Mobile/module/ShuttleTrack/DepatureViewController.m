@@ -121,9 +121,9 @@
 
 - (void)refreshPropertyList{
     self.lastRefresh = [NSDate date];
-    self.navigationItem.rightBarButtonItem.title = @"Refreshing";
+    self.navigationItem.rightBarButtonItem.title = @"更新中";
     UIAlertView *  loadingAlertView = [[UIAlertView alloc]
-                                          initWithTitle:nil message:@"\n\nDownloading\nPlease wait"
+                                          initWithTitle:nil message:@"\n\n下載中\n請稍候"
                                           delegate:nil cancelButtonTitle:nil
                                           otherButtonTitles: nil];
     NSThread*thread = [[NSThread alloc]initWithTarget:self selector:@selector(AlertStart:) object:loadingAlertView];
@@ -164,7 +164,7 @@
 		if (sinceRefresh <= -kRefreshInterval)
 		{
             [self refreshPropertyList];
-			self.anotherButton.title = @"Refreshing";
+			self.anotherButton.title = @"更新中";
            //updateTimeOnButton = NO;
 		}
         
@@ -172,7 +172,7 @@
         {
             int secs = (1+kRefreshInterval+sinceRefresh);
             if (secs < 0) secs = 0;
-            self.anotherButton.title = [NSString stringWithFormat:@"Refresh in %d", secs];
+            self.anotherButton.title = [NSString stringWithFormat:@"%d 秒後更新", secs];
             
         }
 	}
