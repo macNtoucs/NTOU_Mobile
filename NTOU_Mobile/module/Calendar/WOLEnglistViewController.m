@@ -9,7 +9,7 @@
 #import "WOLEnglistViewController.h"
 #import "NTOUUIConstants.h"
 #import "MBProgressHUD.h"
-#define YEAR 2012
+#define YEAR 2012   //起始學期年份
 @interface WOLEnglistViewController ()
 
 @property (nonatomic, strong) NSMutableArray *selectindexs;
@@ -264,17 +264,20 @@
     NSString *key = [keys objectAtIndex:section];
     NSString *sectiontitle;
     /*
-    if(section < 5)
-        sectiontitle = [[NSString alloc] initWithFormat:@"  %d / %@",YEAR,key];
-    else if(section == 5)
-        sectiontitle = [[NSString alloc] initWithFormat:@"  %d / %@",YEAR+1,key];
-    else
-        sectiontitle = [[NSString alloc] initWithFormat:@"  %d / %@",YEAR,key];
+     //除七月其他皆更新
+     if(section < 5)
+     sectiontitle = [[NSString alloc] initWithFormat:@"  %d / %@",YEAR,key];    //當年
+     else if(section == 11) //七月
+     sectiontitle = [[NSString alloc] initWithFormat:@"  %d / %@",YEAR,key];
+     else
+     sectiontitle = [[NSString alloc] initWithFormat:@"  %d / %@",YEAR+1,key];    //隔年
     */
+    
+    //全更新
     if(section < 5)
-        sectiontitle = [[NSString alloc] initWithFormat:@"%d / %@",YEAR,key];
+        sectiontitle = [[NSString alloc] initWithFormat:@"  %d / %@",YEAR,key];
     else
-        sectiontitle = [[NSString alloc] initWithFormat:@"%d / %@",YEAR+1,key];
+        sectiontitle = [[NSString alloc] initWithFormat:@"  %d / %@",YEAR+1,key];
     
     UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 25)] autorelease];
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 25)] autorelease];
@@ -547,14 +550,16 @@
         
         NSDateComponents *startcomps = [[NSDateComponents alloc] init];
         /*
-        if(section < 5)
-            [startcomps setYear:YEAR];
-        else if (section == 5) //一月
-            [startcomps setYear:YEAR+1];
-        else
-            [startcomps setYear:YEAR];
-        */
+         //除七月其他皆更新版
+         if(section < 5)
+         [startcomps setYear:YEAR];      //當年
+         else if (section == 11)
+         [startcomps setYear:YEAR];      //七月
+         else
+         [startcomps setYear:YEAR+1];    //隔年
+         */
         
+        //全更新
         if(section < 5)
             [startcomps setYear:2012];
         else
@@ -574,14 +579,14 @@
         
         NSDateComponents *endcomps = [[NSDateComponents alloc] init];
         /*
-        if(section < 4 || (section == 4 && [[dateevent objectForKey:@"cross"] isEqualToString:@"NO"]) )
-            [endcomps setYear:YEAR];
-        else if(section == 5 || (section == 4 && [[dateevent objectForKey:@"cross"] isEqualToString:@"YES"]))
-            [endcomps setYear:YEAR+1];
-        else
-            [endcomps setYear:YEAR];
+         //除七月其他皆更新版
+         if(section == 11 || section < 4 || (section == 4 && [[dateevent objectForKey:@"cross"] isEqualToString:@"NO"]) )
+         [endcomps setYear:YEAR];    //當年1~11月 或 12月無跨月份 或 七月
+         else
+         [endcomps setYear:YEAR+1];  //隔年
         */
         
+        //全更新
         if(section < 4 || (section == 4 && [[dateevent objectForKey:@"cross"] isEqualToString:@"NO"]) )
             [endcomps setYear:2012];
         else
