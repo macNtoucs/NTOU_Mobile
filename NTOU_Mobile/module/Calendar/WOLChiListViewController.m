@@ -49,7 +49,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     //setup Calendar
     eventStore = [[EKEventStore alloc] init];
 
@@ -96,6 +96,34 @@
     self.actionToolbar.barStyle = UIBarStyleBlack;
     
     downLoadEditing = NO;
+    
+    [self.tableView reloadData];
+    
+    [self scrolltableview];
+}
+
+-(void)scrolltableview
+{
+    NSCalendar * calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate *today = [NSDate date];
+    NSDateComponents *dateComponents = [calendar components:(NSWeekdayCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSWeekCalendarUnit) fromDate:today];
+    NSInteger month = [dateComponents month];
+    if(month >= 8)
+        month -= 8;
+    else
+        month += 4;
+    
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:month] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (!(self.isMovingToParentViewController || self.isBeingPresented))
+    {
+        [self scrolltableview];
+    }
 }
 
 -(void)viewDidUnload
