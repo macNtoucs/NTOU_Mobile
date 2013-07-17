@@ -208,7 +208,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "79"
          endingLineNumber = "79"
-         landmarkName = "-showModuleForTag:"
+         landmarkName = "-moduleForTag:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -221,8 +221,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "105"
          endingLineNumber = "105"
-         landmarkName = "-loadSavedModuleOrder"
-         landmarkType = "5">
+         landmarkName = "@implementation NTOU_MobileAppDelegate(ModuleListAdditions)"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -479,7 +479,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "285"
          endingLineNumber = "285"
-         landmarkName = "-StationInfoURL:"
+         landmarkName = "-setHTOriginAndTerminalTableView:nowSelected:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -596,8 +596,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "258"
          endingLineNumber = "258"
-         landmarkName = "-SetOriginAndStationViewTableView:nowSelected:"
-         landmarkType = "5">
+         landmarkName = "@implementation SetStationViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -661,7 +661,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "170"
          endingLineNumber = "170"
-         landmarkName = "-SwapStation"
+         landmarkName = "-navAddRightButton"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -674,7 +674,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "259"
          endingLineNumber = "259"
-         landmarkName = "-SetOriginAndStationViewTableView:nowSelected:"
+         landmarkName = "-didReceiveMemoryWarning"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
