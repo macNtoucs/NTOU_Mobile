@@ -223,6 +223,11 @@
 		BAAA1F8D173CEDA1001E06D6 /* inbox_down_24.png in Resources */ = {isa = PBXBuildFile; fileRef = BAAA1F8A173CEDA1001E06D6 /* inbox_down_24.png */; };
 		BAAA1F8E173CEDA1001E06D6 /* tray_full_24.png in Resources */ = {isa = PBXBuildFile; fileRef = BAAA1F8B173CEDA1001E06D6 /* tray_full_24.png */; };
 		BAAA1F8F173CEDA1001E06D6 /* tray_full.png in Resources */ = {isa = PBXBuildFile; fileRef = BAAA1F8C173CEDA1001E06D6 /* tray_full.png */; };
+		BE73DDE917A254EB00F1B499 /* 公告.png in Resources */ = {isa = PBXBuildFile; fileRef = BE73DDE817A254EB00F1B499 /* 公告.png */; };
+		BE73DDEE17A2550000F1B499 /* 成績.png in Resources */ = {isa = PBXBuildFile; fileRef = BE73DDEA17A2550000F1B499 /* 成績.png */; };
+		BE73DDEF17A2550000F1B499 /* 作業.png in Resources */ = {isa = PBXBuildFile; fileRef = BE73DDEB17A2550000F1B499 /* 作業.png */; };
+		BE73DDF017A2550000F1B499 /* 筆記.png in Resources */ = {isa = PBXBuildFile; fileRef = BE73DDEC17A2550000F1B499 /* 筆記.png */; };
+		BE73DDF117A2550000F1B499 /* 講義.png in Resources */ = {isa = PBXBuildFile; fileRef = BE73DDED17A2550000F1B499 /* 講義.png */; };
 		C71A4EE51705B106002819AD /* Fuhobus_Data.m in Sources */ = {isa = PBXBuildFile; fileRef = C71A4EE31705B106002819AD /* Fuhobus_Data.m */; };
 		C71A4EE61705B106002819AD /* Fuho_Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = C71A4EE41705B106002819AD /* Fuho_Data.plist */; };
 		C71A4EEB1705B114002819AD /* cancel_24.png in Resources */ = {isa = PBXBuildFile; fileRef = C71A4EE71705B114002819AD /* cancel_24.png */; };
@@ -579,6 +584,11 @@
 		BAAA1F8A173CEDA1001E06D6 /* inbox_down_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inbox_down_24.png; sourceTree = "<group>"; };
 		BAAA1F8B173CEDA1001E06D6 /* tray_full_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tray_full_24.png; sourceTree = "<group>"; };
 		BAAA1F8C173CEDA1001E06D6 /* tray_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tray_full.png; sourceTree = "<group>"; };
+		BE73DDE817A254EB00F1B499 /* 公告.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公告.png"; sourceTree = "<group>"; };
+		BE73DDEA17A2550000F1B499 /* 成績.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "成績.png"; sourceTree = "<group>"; };
+		BE73DDEB17A2550000F1B499 /* 作業.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "作業.png"; sourceTree = "<group>"; };
+		BE73DDEC17A2550000F1B499 /* 筆記.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "筆記.png"; sourceTree = "<group>"; };
+		BE73DDED17A2550000F1B499 /* 講義.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "講義.png"; sourceTree = "<group>"; };
 		C71A4EE21705B106002819AD /* Fuhobus_Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fuhobus_Data.h; sourceTree = "<group>"; };
 		C71A4EE31705B106002819AD /* Fuhobus_Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fuhobus_Data.m; sourceTree = "<group>"; };
 		C71A4EE41705B106002819AD /* Fuho_Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Fuho_Data.plist; sourceTree = "<group>"; };
@@ -692,6 +702,7 @@
 		91756E7716F206F7001D724D /* Stellar */ = {
 			isa = PBXGroup;
 			children = (
+				BE73DDE717A254C200F1B499 /* Resources */,
 				91756E9B16F206F7001D724D /* Classes */,
 				C74699EB16F21DF10060F49C /* Reader */,
 				91756FCE16F20C79001D724D /* LessonTimeView.h */,
@@ -722,7 +733,6 @@
 				91756EB216F206F7001D724D /* MBProgressHUD.h */,
 				91756EB316F206F7001D724D /* MBProgressHUD.m */,
 				91756ECC16F206F7001D724D /* NTOU_ClassColorTableController.m */,
-				91756EF916F206F7001D724D /* right.png */,
 				91756EFA16F206F7001D724D /* ScheduleViewController.h */,
 				91756EFB16F206F7001D724D /* ScheduleViewController.m */,
 				91756EFC16F206F7001D724D /* SetWeekTimesViewController.h */,
@@ -730,8 +740,6 @@
 				91756ECB16F206F7001D724D /* NTOU_ClassColorTableController.h */,
 				91756F1216F206F7001D724D /* StellarModule.h */,
 				91756F1316F206F7001D724D /* StellarModule.m */,
-				91756F1716F206F7001D724D /* TabBarNipple.png */,
-				91756F1816F206F7001D724D /* TabBarNipple@2x.png */,
 				91756F1916F206F7001D724D /* ThumbsMainToolbar.h */,
 				91756F1A16F206F7001D724D /* ThumbsMainToolbar.m */,
 				91756F1B16F206F7001D724D /* ThumbsViewController.h */,
@@ -742,7 +750,6 @@
 				91756F2016F206F7001D724D /* WeekNameView.m */,
 				91756F2116F206F7001D724D /* WeekScheduleView.h */,
 				91756F2216F206F7001D724D /* WeekScheduleView.m */,
-				91756F2316F206F7001D724D /* wrong.png */,
 			);
 			name = Stellar;
 			path = module/Stellar;
@@ -1106,6 +1113,22 @@
 			path = list;
 			sourceTree = "<group>";
 		};
+		BE73DDE717A254C200F1B499 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				91756EF916F206F7001D724D /* right.png */,
+				91756F1716F206F7001D724D /* TabBarNipple.png */,
+				91756F1816F206F7001D724D /* TabBarNipple@2x.png */,
+				91756F2316F206F7001D724D /* wrong.png */,
+				BE73DDEA17A2550000F1B499 /* 成績.png */,
+				BE73DDEB17A2550000F1B499 /* 作業.png */,
+				BE73DDEC17A2550000F1B499 /* 筆記.png */,
+				BE73DDED17A2550000F1B499 /* 講義.png */,
+				BE73DDE817A254EB00F1B499 /* 公告.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		C72B23EB176AE80800474235 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1340,6 +1363,11 @@
 				BAAA1F8D173CEDA1001E06D6 /* inbox_down_24.png in Resources */,
 				BAAA1F8E173CEDA1001E06D6 /* tray_full_24.png in Resources */,
 				BAAA1F8F173CEDA1001E06D6 /* tray_full.png in Resources */,
+				BE73DDE917A254EB00F1B499 /* 公告.png in Resources */,
+				BE73DDEE17A2550000F1B499 /* 成績.png in Resources */,
+				BE73DDEF17A2550000F1B499 /* 作業.png in Resources */,
+				BE73DDF017A2550000F1B499 /* 筆記.png in Resources */,
+				BE73DDF117A2550000F1B499 /* 講義.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

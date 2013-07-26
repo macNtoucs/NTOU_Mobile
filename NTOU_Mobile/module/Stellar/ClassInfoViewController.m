@@ -67,37 +67,41 @@
 
 -(void)Task
 {
-    NSString* key;
-    UIViewController *viewController = [self.viewControllers objectAtIndex:1];
-    [viewController.view removeAllSubviews];
-    ClassInfoView *view = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
-    if ([self.navigationItem.rightBarButtonItem.title isEqual: type6]) {
-        self.navigationItem.rightBarButtonItem.title = @"上課講義";
-        view.title = type6;
-        viewController.title = type6;
-        classinfo.text = type6;
-        key = moodleFileExamKey;
+    @autoreleasepool {
+        NSString* key;
+        UIViewController *viewController = [self.viewControllers objectAtIndex:1];
+        [viewController.view removeAllSubviews];
+        ClassInfoView *view = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
+        if ([self.navigationItem.rightBarButtonItem.title isEqual: type6]) {
+            self.navigationItem.rightBarButtonItem.title = @"講義";
+            view.title = type6;
+            viewController.title = type6;
+            classinfo.text = type6;
+            key = moodleFileExamKey;
+        }
+        else{
+            self.navigationItem.rightBarButtonItem.title = type6;
+            view.title = type4;
+            viewController.title = type4;
+            key = moodleFileLetureKey;
+            classinfo.text = @"講義";
+        }
+        view.view.frame = CGRectMake(0, 40, 320, [[UIScreen mainScreen] bounds].size.height-150);
+        view.moodleid = [moodleid retain];
+        
+        view.resource = [[NSMutableArray alloc] initWithArray:[Moodle_API getFilesFolder_InDir:[NSString stringWithFormat:@"/%@/%@",moodleid,key]]];
+        
+        if (!view.resource) {
+            UIAlertView *loadingAlertView = [[UIAlertView alloc]
+                                             initWithTitle:nil message:@"網路連線失敗"
+                                             delegate:self cancelButtonTitle:@"確定"
+                                             otherButtonTitles:nil];
+            [loadingAlertView show];
+            [loadingAlertView release];
+        }
+        [view.tableView reloadData];
+        [viewController.view addSubview:view.tableView];
     }
-    else{
-        self.navigationItem.rightBarButtonItem.title = type6;
-        view.title = type4;
-        viewController.title = type4;
-        key = moodleFileLetureKey;
-        classinfo.text = @"上課講義";
-    }
-    view.view.frame = CGRectMake(0, 40, 320, [[UIScreen mainScreen] bounds].size.height-150);
-    view.moodleid = [moodleid retain];
-    view.resource = [[NSMutableArray alloc] initWithArray:[Moodle_API getFilesFolder_InDir:[NSString stringWithFormat:@"/%@/%@",moodleid,key]]];
-    if (!view.resource) {
-        UIAlertView *loadingAlertView = [[UIAlertView alloc]
-                                         initWithTitle:nil message:@"網路連線失敗"
-                                         delegate:self cancelButtonTitle:@"確定"
-                                         otherButtonTitles:nil];
-        [loadingAlertView show];
-        [loadingAlertView release];
-    }
-    [view.tableView reloadData];
-    [viewController.view addSubview:view.tableView];
 }
 
 -(void)changeType{
@@ -119,14 +123,14 @@
     if (self.selectedIndex==1) {
         UIBarButtonItem *rightButton;
         classinfo.font = [UIFont fontWithName:BOLD_FONT size:20];
-        if ([[self.viewControllers objectAtIndex:1] title]==type6) {
+        if ([[[self.viewControllers objectAtIndex:1] title]isEqualToString:type6]) {
             classinfo.text = [NSString stringWithFormat:type6];
-            rightButton= [[UIBarButtonItem alloc] initWithTitle:@"上課講義"
+            rightButton= [[UIBarButtonItem alloc] initWithTitle:@"講義"
                                                style:UIBarButtonItemStyleBordered
                                               target:self
                                                          action:@selector(changeType)];
         } else {
-            classinfo.text = [NSString stringWithFormat:@"上課講義"];
+            classinfo.text = [NSString stringWithFormat:@"講義"];
             rightButton= [[UIBarButtonItem alloc] initWithTitle:type6
                                                           style:UIBarButtonItemStyleBordered
                                                          target:self
@@ -175,14 +179,43 @@
         UIViewController *viewController1, *viewController2, *viewController3, *viewController4, *viewController5;
         viewController1 = [[UIViewController alloc] init];
         viewController1.title = type3;
+        UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:type3 image:[UIImage imageNamed:@"公告.png"] tag:1];
+        [item1 setFinishedSelectedImage:[UIImage imageNamed:@"公告.png"]
+            withFinishedUnselectedImage:[UIImage imageNamed:@"公告.png"]];
+        viewController1.tabBarItem = item1;
+        [item1 release];
+
         viewController2 = [[UIViewController alloc] init];
         viewController2.title = type4;
+        UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:type4 image:[UIImage imageNamed:@"公告.png"] tag:2];
+        [item2 setFinishedSelectedImage:[UIImage imageNamed:@"講義.png"]
+            withFinishedUnselectedImage:[UIImage imageNamed:@"講義.png"]];
+        viewController2.tabBarItem = item2;
+        [item2 release];
+        
         viewController3 = [[UIViewController alloc] init];
         viewController3.title = type2;
+        UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:type2 image:[UIImage imageNamed:@"作業.png"] tag:3];
+        [item3 setFinishedSelectedImage:[UIImage imageNamed:@"作業.png"]
+            withFinishedUnselectedImage:[UIImage imageNamed:@"作業.png"]];
+        viewController3.tabBarItem = item3;
+        [item3 release];
+        
         viewController4 = [[UIViewController alloc] init];
         viewController4.title = type1;
+        UITabBarItem *item4 = [[UITabBarItem alloc] initWithTitle:type1 image:[UIImage imageNamed:@"成績.png"] tag:4];
+        [item4 setFinishedSelectedImage:[UIImage imageNamed:@"成績.png"]
+            withFinishedUnselectedImage:[UIImage imageNamed:@"成績.png"]];
+        viewController4.tabBarItem = item4;
+        [item4 release];
+        
         viewController5 = [[UIViewController alloc] init];
         viewController5.title = type5;
+        UITabBarItem *item5 = [[UITabBarItem alloc] initWithTitle:type5 image:[UIImage imageNamed:@"筆記.png"] tag:5];
+        [item5 setFinishedSelectedImage:[UIImage imageNamed:@"筆記.png"]
+            withFinishedUnselectedImage:[UIImage imageNamed:@"筆記.png"]];
+        viewController5.tabBarItem = item5;
+        [item5 release];
         
         ClassInfoView *view1, *view2, *view3, *view4;
         view1 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
