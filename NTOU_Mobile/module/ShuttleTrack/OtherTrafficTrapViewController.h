@@ -13,6 +13,7 @@
 #import "StopsViewController.h"
 #import "KUO_RouteViewController_Bra2.h"
 #import "DownloadingView.h"
+#import "TPRouteByButtonViewController.h"
 @interface OtherTrafficTrapViewController : UITableViewController
 
 @end

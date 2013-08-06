@@ -186,7 +186,7 @@
         case 2:
             switch (indexPath.row) {
                 case 0:
-                    cell.textLabel.text= @"台鐵、高鐵、國光、福和";
+                    cell.textLabel.text= @"台鐵、高鐵、客運、雙北公車";
 
                     break;
             }

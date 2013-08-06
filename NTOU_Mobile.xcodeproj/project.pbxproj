@@ -212,6 +212,11 @@
 		91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049416E89FE300ECF2CF /* QuartzCore.framework */; };
 		91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */; };
 		91A9049B16E8A09A00ECF2CF /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 91A9049A16E8A09A00ECF2CF /* icons */; };
+		A63D2FD717B0ABBD002C5547 /* TPRouteByButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A63D2FD617B0ABBD002C5547 /* TPRouteByButtonViewController.m */; };
+		A63D2FDB17B0AC1B002C5547 /* TPRouteGoBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A63D2FDA17B0AC1B002C5547 /* TPRouteGoBackViewController.m */; };
+		A63D2FDD17B0AC4E002C5547 /* NTRouteGoBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A63D2FDC17B0AC4E002C5547 /* NTRouteGoBackViewController.m */; };
+		A63D2FE017B0AD19002C5547 /* NTRouteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A63D2FDF17B0AD18002C5547 /* NTRouteDetailViewController.m */; };
+		A63D2FE317B0AD40002C5547 /* TPRouteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A63D2FE217B0AD3F002C5547 /* TPRouteDetailViewController.m */; };
 		BA06A07516F2EE6600212CB9 /* LibrariesModule.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06816F2EE6600212CB9 /* LibrariesModule.m */; };
 		BA06A07616F2EE6600212CB9 /* CalenderList.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06A16F2EE6600212CB9 /* CalenderList.plist */; };
 		BA06A07716F2EE6600212CB9 /* CalenderList_eng.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */; };
@@ -569,6 +574,16 @@
 		91A9049416E89FE300ECF2CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		91A9049A16E8A09A00ECF2CF /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
+		A63D2FD517B0ABBC002C5547 /* TPRouteByButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPRouteByButtonViewController.h; sourceTree = "<group>"; };
+		A63D2FD617B0ABBD002C5547 /* TPRouteByButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPRouteByButtonViewController.m; sourceTree = "<group>"; };
+		A63D2FD817B0AC1A002C5547 /* NTRouteGoBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTRouteGoBackViewController.h; sourceTree = "<group>"; };
+		A63D2FD917B0AC1A002C5547 /* TPRouteGoBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPRouteGoBackViewController.h; sourceTree = "<group>"; };
+		A63D2FDA17B0AC1B002C5547 /* TPRouteGoBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPRouteGoBackViewController.m; sourceTree = "<group>"; };
+		A63D2FDC17B0AC4E002C5547 /* NTRouteGoBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTRouteGoBackViewController.m; sourceTree = "<group>"; };
+		A63D2FDE17B0AD18002C5547 /* NTRouteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTRouteDetailViewController.h; sourceTree = "<group>"; };
+		A63D2FDF17B0AD18002C5547 /* NTRouteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTRouteDetailViewController.m; sourceTree = "<group>"; };
+		A63D2FE117B0AD3F002C5547 /* TPRouteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPRouteDetailViewController.h; sourceTree = "<group>"; };
+		A63D2FE217B0AD3F002C5547 /* TPRouteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPRouteDetailViewController.m; sourceTree = "<group>"; };
 		BA06A06716F2EE6600212CB9 /* LibrariesModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibrariesModule.h; sourceTree = "<group>"; };
 		BA06A06816F2EE6600212CB9 /* LibrariesModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibrariesModule.m; sourceTree = "<group>"; };
 		BA06A06A16F2EE6600212CB9 /* CalenderList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CalenderList.plist; sourceTree = "<group>"; };
@@ -937,6 +952,16 @@
 		91A903A616E899D100ECF2CF /* ShuttleTrack */ = {
 			isa = PBXGroup;
 			children = (
+				A63D2FE117B0AD3F002C5547 /* TPRouteDetailViewController.h */,
+				A63D2FE217B0AD3F002C5547 /* TPRouteDetailViewController.m */,
+				A63D2FDE17B0AD18002C5547 /* NTRouteDetailViewController.h */,
+				A63D2FDF17B0AD18002C5547 /* NTRouteDetailViewController.m */,
+				A63D2FDC17B0AC4E002C5547 /* NTRouteGoBackViewController.m */,
+				A63D2FD817B0AC1A002C5547 /* NTRouteGoBackViewController.h */,
+				A63D2FD917B0AC1A002C5547 /* TPRouteGoBackViewController.h */,
+				A63D2FDA17B0AC1B002C5547 /* TPRouteGoBackViewController.m */,
+				A63D2FD517B0ABBC002C5547 /* TPRouteByButtonViewController.h */,
+				A63D2FD617B0ABBD002C5547 /* TPRouteByButtonViewController.m */,
 				91A9048F16E89E5200ECF2CF /* StationInfoViewController.h */,
 				91A9049016E89E5400ECF2CF /* StationInfoViewController.m */,
 				91A903A716E899D200ECF2CF /* Annotation.h */,
@@ -1523,6 +1548,11 @@
 				C71A4F1F17128DF5002819AD /* AboutCreditsVC.m in Sources */,
 				C72B23F1176AE87200474235 /* SettingsModuleViewController.m in Sources */,
 				C72B23F4176AE97100474235 /* SettingModule.m in Sources */,
+				A63D2FD717B0ABBD002C5547 /* TPRouteByButtonViewController.m in Sources */,
+				A63D2FDB17B0AC1B002C5547 /* TPRouteGoBackViewController.m in Sources */,
+				A63D2FDD17B0AC4E002C5547 /* NTRouteGoBackViewController.m in Sources */,
+				A63D2FE017B0AD19002C5547 /* NTRouteDetailViewController.m in Sources */,
+				A63D2FE317B0AD40002C5547 /* TPRouteDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
