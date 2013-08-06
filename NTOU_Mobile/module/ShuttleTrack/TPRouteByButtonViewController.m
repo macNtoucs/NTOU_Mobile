@@ -631,7 +631,7 @@
     //[compBusName release];
     [partBusName release];
     [buttonSecondView release];
-    [buttonFirstView release];
+    //[buttonFirstView release];
     [super dealloc];
 }
 
