@@ -28,6 +28,13 @@
     NSMutableArray * compDeparName;
     NSMutableArray * compDestiName;
     NSMutableArray * cityName;
+    NSMutableArray * taipeiDeparName;
+    NSMutableArray * taipeiDestiName;
+    NSMutableArray * taipeiBusName;
+    NSMutableArray * nTaipeiDeparName;
+    NSMutableArray * nTaipeiDestiName;
+    NSMutableArray * nTaipeiBusName;
+    NSInteger countT, countN, countAll;
 }
 @property (nonatomic, retain) UIView * buttonFirstView;
 @property (nonatomic, retain) UIView * buttonSecondView;
@@ -38,5 +45,11 @@
 @property (nonatomic, retain) NSMutableArray * compDeparName;
 @property (nonatomic, retain) NSMutableArray * compDestiName;
 @property (nonatomic, retain) NSMutableArray * cityName;
+@property (nonatomic, retain) NSMutableArray * taipeiDeparName;
+@property (nonatomic, retain) NSMutableArray * taipeiDestiName;
+@property (nonatomic, retain) NSMutableArray * taipeiBusName;
+@property (nonatomic, retain) NSMutableArray * nTaipeiDeparName;
+@property (nonatomic, retain) NSMutableArray * nTaipeiDestiName;
+@property (nonatomic, retain) NSMutableArray * nTaipeiBusName;
 
 @end

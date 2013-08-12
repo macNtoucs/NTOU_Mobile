@@ -288,6 +288,11 @@
             cell.detailTextLabel.text = @"尚未發車";
             cell.detailTextLabel.textColor = [UIColor grayColor];
         }
+        else if ([comeTime isEqual:@"-3"])
+        {
+            cell.detailTextLabel.text = @"末班已過";
+            cell.detailTextLabel.textColor = [UIColor grayColor];
+        }
         else if ([comeTime isEqual:@"更新中..."])
         {
             cell.detailTextLabel.text = @"更新中...";

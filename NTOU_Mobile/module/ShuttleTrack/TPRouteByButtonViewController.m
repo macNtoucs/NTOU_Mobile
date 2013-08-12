@@ -22,6 +22,12 @@
 @synthesize compDeparName;
 @synthesize compDestiName;
 @synthesize cityName;
+@synthesize taipeiDeparName;
+@synthesize taipeiDestiName;
+@synthesize taipeiBusName;
+@synthesize nTaipeiDeparName;
+@synthesize nTaipeiDestiName;
+@synthesize nTaipeiBusName;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,6 +49,12 @@
     compDeparName = [[NSMutableArray alloc] init];
     compDestiName = [[NSMutableArray alloc] init];
     cityName = [[NSMutableArray alloc] init];
+    taipeiDeparName = [[NSMutableArray alloc] init];
+    taipeiDestiName = [[NSMutableArray alloc] init];
+    taipeiBusName = [[NSMutableArray alloc] init];
+    nTaipeiDeparName = [[NSMutableArray alloc] init];
+    nTaipeiDestiName = [[NSMutableArray alloc] init];
+    nTaipeiBusName = [[NSMutableArray alloc] init];
     [self showFirstLayerButtons];
 }
 
@@ -320,6 +332,12 @@
     [compDeparName removeAllObjects];
     [compDestiName removeAllObjects];
     [cityName removeAllObjects];
+    [taipeiDeparName removeAllObjects];
+    [taipeiDestiName removeAllObjects];
+    [taipeiBusName removeAllObjects];
+    [nTaipeiDeparName removeAllObjects];
+    [nTaipeiDestiName removeAllObjects];
+    [nTaipeiBusName removeAllObjects];
     
     NSMutableString *encodedStop = (NSMutableString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)partBusName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
     
@@ -349,12 +367,32 @@
     
     NSArray * tmpCityName = [[NSArray alloc] init];
     tmpCityName = [[tmpInfo objectAtIndex:3] componentsSeparatedByString:@"|"];
+    
+    countT = countN = countAll = 0;
     for (NSString * str in tmpCityName)
+    {
+        if ([str isEqual:@"T"])
+        {
+            [taipeiDeparName addObject:[tmpCompDepar objectAtIndex:countAll]];
+            [taipeiDestiName addObject:[tmpCompDesti objectAtIndex:countAll]];
+            [taipeiBusName addObject:[compBusName objectAtIndex:countAll]];
+            countT = countT + 1;
+        }
+        else if ([str isEqual:@"N"])
+        {
+            [nTaipeiDeparName addObject:[tmpCompDepar objectAtIndex:countAll]];
+            [nTaipeiDestiName addObject:[tmpCompDesti objectAtIndex:countAll]];
+            [nTaipeiBusName addObject:[compBusName objectAtIndex:countAll]];
+            countN = countN + 1;
+        }
         [cityName addObject:str];
+        countAll = countAll + 1;
+    }
     [cityName removeLastObject];
     
     NSLog(@"cityName = %@", cityName);
-    
+    NSLog(@"countT:%d", countT);
+    NSLog(@"countN:%d", countN);
     [tableview reloadData];
 }
 
@@ -546,15 +584,35 @@
     }
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionName;
+    switch (section) {
+        case 0:
+            sectionName = @"台北市";
+            break;
+        case 1:
+            sectionName = @"新北市";
+            break;
+        default:
+            sectionName = @"Error";
+            break;
+    }
+    return sectionName;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [compBusName count];
+    if (section == 0)
+        return countT;
+    else
+        return countN;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -565,35 +623,52 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = [compBusName objectAtIndex:indexPath.row];
-    NSString * departDestinInfo = [[NSString alloc] init];
-    departDestinInfo = [[compDeparName objectAtIndex:indexPath.row] stringByAppendingString:@" - "];
-    cell.detailTextLabel.text = [departDestinInfo stringByAppendingString:[compDestiName objectAtIndex:indexPath.row]];
+    if (indexPath.section == 0)
+    {
+        cell.textLabel.text = [taipeiBusName objectAtIndex:indexPath.row];
+        NSString * departDestinInfo = [[NSString alloc] init];
+        departDestinInfo = [[taipeiDeparName objectAtIndex:indexPath.row] stringByAppendingString:@" - "];
+        cell.detailTextLabel.text = [departDestinInfo stringByAppendingString:[taipeiDestiName objectAtIndex:indexPath.row]];
+
+    }
+    else if (indexPath.section == 1)
+    {
+        cell.textLabel.text = [nTaipeiBusName objectAtIndex:indexPath.row];
+        NSString * departDestinInfo = [[NSString alloc] init];
+        departDestinInfo = [[nTaipeiDeparName objectAtIndex:indexPath.row] stringByAppendingString:@" - "];
+        cell.detailTextLabel.text = [departDestinInfo stringByAppendingString:[nTaipeiDestiName objectAtIndex:indexPath.row]];
+
+    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString * selectedBusName = [[NSString alloc] init];
-    selectedBusName = [compBusName objectAtIndex:indexPath.row];
-    if([[cityName objectAtIndex:indexPath.row] isEqual:@"T"])
-    {
-        TPRouteGoBackViewController *TProuteGoBack = [TPRouteGoBackViewController new];
-        TProuteGoBack.title = [selectedBusName stringByAppendingString:@" 公車路線"];
-        [TProuteGoBack setter_departure:[compDeparName objectAtIndex:indexPath.row]];
-        [TProuteGoBack setter_destination:[compDestiName objectAtIndex:indexPath.row]];
-        [TProuteGoBack setter_busName:[compBusName objectAtIndex:indexPath.row]];
+    
         
+    //if((indexPath.section == 0) && [[cityName objectAtIndex:indexPath.row] isEqual:@"T"])
+    if (indexPath.section == 0)
+    {
+        selectedBusName = [taipeiBusName objectAtIndex:indexPath.row];
+        NSLog(@"Taipei: %d, %d", indexPath.section, indexPath.row);
+        TPRouteGoBackViewController *TProuteGoBack = [[TPRouteGoBackViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        TProuteGoBack.title = [selectedBusName stringByAppendingString:@" 公車路線"];
+        [TProuteGoBack setter_departure:[taipeiDeparName objectAtIndex:indexPath.row]];
+        [TProuteGoBack setter_destination:[taipeiDestiName objectAtIndex:indexPath.row]];
+        [TProuteGoBack setter_busName:[taipeiBusName objectAtIndex:indexPath.row]];
         [self.navigationController pushViewController:TProuteGoBack animated:YES];
         //[compBusName release];
     }
-    else if([[cityName objectAtIndex:indexPath.row] isEqual:@"N"])
+    //else if((indexPath.section == 1) && [[cityName objectAtIndex:(indexPath.row + countT)] isEqual:@"N"])
+    else if (indexPath.section == 1)
     {
-        NTRouteGoBackViewController *NTrouteGoBack = [NTRouteGoBackViewController new];
+        selectedBusName = [nTaipeiBusName objectAtIndex:indexPath.row];
+        NTRouteGoBackViewController *NTrouteGoBack = [[NTRouteGoBackViewController alloc] initWithStyle:UITableViewStyleGrouped];
         NTrouteGoBack.title = [selectedBusName stringByAppendingString:@" 公車路線"];
-        [NTrouteGoBack setter_departure:[compDeparName objectAtIndex:indexPath.row]];
-        [NTrouteGoBack setter_destination:[compDestiName objectAtIndex:indexPath.row]];
-        [NTrouteGoBack setter_busName:[compBusName objectAtIndex:indexPath.row]];
+        [NTrouteGoBack setter_departure:[nTaipeiDeparName objectAtIndex:indexPath.row]];
+        [NTrouteGoBack setter_destination:[nTaipeiDestiName objectAtIndex:indexPath.row]];
+        [NTrouteGoBack setter_busName:[nTaipeiBusName objectAtIndex:indexPath.row]];
         
         [self.navigationController pushViewController:NTrouteGoBack animated:YES];
         //[compBusName release];
@@ -616,6 +691,10 @@
     [compDestiName release];
     [compDeparName release];
     [cityName release];
+    [taipeiDeparName release];
+    [taipeiDestiName release];
+    [nTaipeiDeparName release];
+    [nTaipeiDestiName release];
     //[compBusName release];
     [partBusName release];
     [buttonSecondView release];

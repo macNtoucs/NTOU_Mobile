@@ -36,6 +36,8 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        self.tableView.backgroundView = nil;
+        self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:NTOUImageNameBackground]];
     }
     return self;
 }
