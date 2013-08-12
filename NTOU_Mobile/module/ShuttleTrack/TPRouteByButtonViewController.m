@@ -35,6 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.title = @"雙北公車";
     havingTableView = NO;
     partBusName = [[NSMutableString alloc] init];
@@ -43,13 +44,6 @@
     compDestiName = [[NSMutableArray alloc] init];
     cityName = [[NSMutableArray alloc] init];
     [self showFirstLayerButtons];
-    
-    // Do any additional setup after loading the view.
-    
-    //NSLog(@"RouteByButton");
-    
-    
-    
 }
 
 - (void)viewDidUnload
@@ -60,132 +54,131 @@
 
 - (void)showFirstLayerButtons
 {
-    CGRect screenSize = [[UIScreen mainScreen] bounds];
-    NSLog(@"screenSize:%f, %f", screenSize.size.width, screenSize.size.height);
-    buttonFirstView = [[[UIView alloc] initWithFrame:CGRectMake(0, 480, 320, screenSize.size.height-230)] retain];
-    [buttonFirstView setBackgroundColor:[UIColor lightTextColor]];
+    buttonFirstView = [[[UIView alloc] initWithFrame:CGRectMake(0, CURRENT_IPHONE_SIZE, 320, 250)] retain];
+    [buttonFirstView setBackgroundColor:BUTTON_PLATE_COLOR];
     
-    UIButton * buttonRed = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonRed = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonRed setTag:11];
     [buttonRed setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     [buttonRed setTitle:@"紅" forState:UIControlStateNormal];
-    
+    [buttonRed setTintColor:BUTTON_SELECTED_COLOR];
     buttonRed.frame = CGRectMake(5, 5, 58, 40);
     [buttonRed addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonGreen = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonGreen = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonGreen setTitle:@"綠" forState:UIControlStateNormal];
     [buttonGreen setTitleColor:[UIColor colorWithRed:0/255.0 green:128/255.0 blue:64/255.0 alpha:100/100.0] forState:UIControlStateNormal];
     [buttonGreen setTag:12];
+    [buttonGreen setTintColor:BUTTON_SELECTED_COLOR];
     buttonGreen.frame = CGRectMake(5, 50, 58, 40);
     [buttonGreen addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonOrange = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonOrange = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonOrange setTitle:@"橘" forState:UIControlStateNormal];
     [buttonOrange setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
     [buttonOrange setTag:13];
     buttonOrange.frame = CGRectMake(5, 95, 58, 40);
     [buttonOrange addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonMore = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonMore = [UIButton buttonWithType:BUTTON_STYLE];
     buttonMore.frame = CGRectMake(5, 140, 121, 40);
     [buttonMore setTag:14];
     [buttonMore setTitle:@"更多" forState:UIControlStateNormal];
     [buttonMore setTitleColor:[UIColor colorWithRed:116/255.0 green:116/255.0 blue:116/255.0 alpha:100/100.0] forState:UIControlStateNormal];
     [buttonMore addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonBlue = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonBlue = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonBlue setTitle:@"藍" forState:UIControlStateNormal];
     [buttonBlue setTitleColor:[UIColor colorWithRed:10/255.0 green:86/255.0 blue:255/255.0 alpha:100/100.0] forState:UIControlStateNormal];
     [buttonBlue setTag:21];
     buttonBlue.frame = CGRectMake(68, 5, 58, 40);
     [buttonBlue addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonBrown = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonBrown = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonBrown setTitle:@"棕" forState:UIControlStateNormal];
     [buttonBrown setTitleColor:[UIColor colorWithRed:106/255.0 green:53/255.0 blue:0/255.0 alpha:100/100.0] forState:UIControlStateNormal];
     [buttonBrown setTag:22];
     buttonBrown.frame = CGRectMake(68, 50, 58, 40);
     [buttonBrown addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonSmall = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonSmall = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonSmall setTitle:@"小" forState:UIControlStateNormal];
     [buttonSmall setTitleColor:[UIColor colorWithRed:245/255.0 green:30/255.0 blue:242/255.0 alpha:100/100.0] forState:UIControlStateNormal];
     [buttonSmall setTag:23];
     buttonSmall.frame = CGRectMake(68, 95, 58, 40);
     [buttonSmall addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonReset = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonReset = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonReset setTitle:@"重設" forState:UIControlStateNormal];
     [buttonReset setTitleColor:[UIColor colorWithRed:116/255.0 green:116/255.0 blue:116/255.0 alpha:100/100.0] forState:UIControlStateNormal];
     [buttonReset setTag:34];
     buttonReset.frame = CGRectMake(131, 140, 121, 40);
     [buttonReset addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonOne = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonOne = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonOne setTitle:@"1" forState:UIControlStateNormal];
     [buttonOne setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [buttonOne setTag:1];
     buttonOne.frame = CGRectMake(131, 5, 58, 40);
     [buttonOne addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonFour = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonFour = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonFour setTitle:@"4" forState:UIControlStateNormal];
     [buttonFour setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [buttonFour setTag:4];
     buttonFour.frame = CGRectMake(131, 50, 58, 40);
     [buttonFour addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonSeven = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonSeven = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonSeven setTitle:@"7" forState:UIControlStateNormal];
     [buttonSeven setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [buttonSeven setTag:7];
     buttonSeven.frame = CGRectMake(131, 95, 58, 40);
     [buttonSeven addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonTwo = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonTwo = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonTwo setTitle:@"2" forState:UIControlStateNormal];
     [buttonTwo setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [buttonTwo setTag:2];
     buttonTwo.frame = CGRectMake(194, 5, 58, 40);
     [buttonTwo addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonFive = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonFive = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonFive setTitle:@"5" forState:UIControlStateNormal];
     [buttonFive setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [buttonFive setTag:5];
     buttonFive.frame = CGRectMake(194, 50, 58, 40);
     [buttonFive addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonEight = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonEight = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonEight setTitle:@"8" forState:UIControlStateNormal];
     [buttonEight setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [buttonEight setTag:8];
     buttonEight.frame = CGRectMake(194, 95, 58, 40);
     [buttonEight addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonThree = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonThree = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonThree setTitle:@"3" forState:UIControlStateNormal];
     [buttonThree setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [buttonThree setTag:3];
     buttonThree.frame = CGRectMake(257, 5, 58, 40);
     [buttonThree addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonSix = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonSix = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonSix setTitle:@"6" forState:UIControlStateNormal];
     [buttonSix setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [buttonSix setTag:6];
     buttonSix.frame = CGRectMake(257, 50, 58, 40);
     [buttonSix addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonNine = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonNine = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonNine setTitle:@"9" forState:UIControlStateNormal];
     [buttonNine setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [buttonNine setTag:9];
     buttonNine.frame = CGRectMake(257, 95, 58, 40);
     [buttonNine addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonZero = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonZero = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonZero setTitle:@"0" forState:UIControlStateNormal];
     [buttonZero setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [buttonZero setTag:0];
@@ -213,7 +206,7 @@
     
     [self.view addSubview:buttonFirstView];
     
-    CGRect firstTopViewFrame = CGRectMake(0, 230, 320, screenSize.size.height-230);
+    CGRect firstTopViewFrame = CGRectMake(0, CURRENT_IPHONE_SIZE-250, 320, 250);
     [UIView animateWithDuration:0.7
                           delay:0.01
                         options:UIViewAnimationCurveEaseOut
@@ -225,67 +218,65 @@
 
 - (void)showSecondLayerButtons
 {
-    CGRect screenSize = [[UIScreen mainScreen] bounds];
-    NSLog(@"screenSize:%f, %f", screenSize.size.width, screenSize.size.height);
-    buttonSecondView = [[[UIView alloc] initWithFrame:CGRectMake(0, 480, 320, screenSize.size.height-230)] retain];
-    [buttonSecondView setBackgroundColor:[UIColor lightTextColor]];
+    buttonSecondView = [[[UIView alloc] initWithFrame:CGRectMake(0, CURRENT_IPHONE_SIZE, 320, 250)] retain];
+    [buttonSecondView setBackgroundColor:BUTTON_PLATE_COLOR];
     
-    UIButton * buttonNewPei = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonNewPei = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonNewPei setTag:211];
     [buttonNewPei setTitle:@"新北" forState:UIControlStateNormal];
     buttonNewPei.frame = CGRectMake(5, 5, 100, 40);
     [buttonNewPei addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonCitizen = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonCitizen = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonCitizen setTag:212];
     [buttonCitizen setTitle:@"市民" forState:UIControlStateNormal];
     buttonCitizen.frame = CGRectMake(5, 50, 100, 40);
     [buttonCitizen addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonShuttle = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonShuttle = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonShuttle setTag:213];
     [buttonShuttle setTitle:@"接駁" forState:UIControlStateNormal];
     buttonShuttle.frame = CGRectMake(5, 95, 100, 40);
     [buttonShuttle addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonBack = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonBack = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonBack setTag:214];
     [buttonBack setTitle:@"返回" forState:UIControlStateNormal];
     [buttonBack setTitleColor:[UIColor colorWithRed:116/255.0 green:116/255.0 blue:116/255.0 alpha:100/100.0] forState:UIControlStateNormal];
     buttonBack.frame = CGRectMake(5, 140, 310, 40);
     [buttonBack addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonNeiKe = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonNeiKe = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonNeiKe setTag:221];
     [buttonNeiKe setTitle:@"內科" forState:UIControlStateNormal];
     buttonNeiKe.frame = CGRectMake(110, 5, 100, 40);
     [buttonNeiKe addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonMaoKom = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonMaoKom = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonMaoKom setTag:222];
     [buttonMaoKom setTitle:@"貓空" forState:UIControlStateNormal];
     buttonMaoKom.frame = CGRectMake(110, 50, 100, 40);
     [buttonMaoKom addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonMain = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonMain = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonMain setTag:223];
     [buttonMain setTitle:@"幹線" forState:UIControlStateNormal];
     buttonMain.frame = CGRectMake(110, 95, 100, 40);
     [buttonMain addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonNanRan = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonNanRan = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonNanRan setTag:231];
     [buttonNanRan setTitle:@"南軟" forState:UIControlStateNormal];
     buttonNanRan.frame = CGRectMake(215, 5, 100, 40);
     [buttonNanRan addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonFlower = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonFlower = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonFlower setTag:232];
     [buttonFlower setTitle:@"花季" forState:UIControlStateNormal];
     buttonFlower.frame = CGRectMake(215, 50, 100, 40);
     [buttonFlower addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
-    UIButton * buttonOthers = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * buttonOthers = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonOthers setTag:233];
     [buttonOthers setTitle:@"其他" forState:UIControlStateNormal];
     buttonOthers.frame = CGRectMake(215, 95, 100, 40);
@@ -304,7 +295,7 @@
     
     [self.view addSubview:buttonSecondView];
     
-    CGRect secondTopViewFrame = CGRectMake(0, 230, 320, screenSize.size.height-230);
+    CGRect secondTopViewFrame = CGRectMake(0, CURRENT_IPHONE_SIZE-250, 320, 250);
     [UIView animateWithDuration:0.7
                           delay:0.01
                         options:UIViewAnimationCurveEaseOut
@@ -318,7 +309,7 @@
 {
     havingTableView = YES;
     CGRect screenSize = [[UIScreen mainScreen] bounds];
-    tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.size.width, 230) style:UITableViewStylePlain];
+    tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.size.width, CURRENT_IPHONE_SIZE-250) style:UITableViewStylePlain];
     tableview.dataSource = self;
     tableview.delegate = self;
     [self.view addSubview:tableview];
@@ -611,9 +602,6 @@
     {
         NSLog(@"一尺方吉");
     }
-    
-    
-    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

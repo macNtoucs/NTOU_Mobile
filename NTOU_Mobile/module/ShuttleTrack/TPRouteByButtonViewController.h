@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "TPRouteGoBackViewController.h"
 #import "NTRouteGoBackViewController.h"
+#import "UIKit+NTOUAdditions.h"
+
+// Get Current Screen Size
+#define CURRENT_IPHONE_SIZE (unsigned int)[[UIScreen mainScreen] bounds].size.height
+#define BUTTON_STYLE UIButtonTypeRoundedRect
+#define BUTTON_PLATE_COLOR [UIColor colorWithRed:12.0/255 green:46.0/255 blue:112.0/255 alpha:1.0]
+#define BUTTON_SELECTED_COLOR [UIColor colorWithHexString:@"#0257EE"]
 
 @interface TPRouteByButtonViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
