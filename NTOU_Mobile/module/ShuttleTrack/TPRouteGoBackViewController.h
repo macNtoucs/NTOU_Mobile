@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NTOUConstants.h"
+#import "SecondaryGroupedTableViewCell.h"
 
 @interface TPRouteGoBackViewController : UITableViewController
 {

@@ -13,15 +13,13 @@
 
 @synthesize busName;
 @synthesize goBack;
-@synthesize stops, IDs, m_waitTimeResult;
-
+@synthesize stops, m_waitTimeResult;
+//@synthesize IDs;
 //@synthesize toolbar;
 @synthesize anotherButton;
 @synthesize success;
 @synthesize lastRefresh;
 @synthesize refreshTimer;
-@synthesize xpathArray;
-@synthesize xpathParser;    //
 
 - (void) setter_busName:(NSString *)name andGoBack:(NSInteger) goback
 {
@@ -64,133 +62,35 @@
     
     NSLog(@"strResult = %@", strResult);
     
-    // 抓取系統時間
-    NSDateFormatter *formatterB = [[NSDateFormatter alloc] init];
-    NSDate *date = [NSDate date];
-    NSString * dateStringB = [[NSString alloc] init];
+    NSArray * stopsAndTimes = [strResult componentsSeparatedByString:@";"];
     
-    //正規化的格式設定
-    [formatterB setDateStyle:NSDateFormatterMediumStyle];
-    [formatterB setTimeStyle:NSDateFormatterShortStyle];
-    [formatterB setDateFormat:@"mm:ss.SSS"];
-    
-    //正規化取得的系統時間並顯示
-    dateStringB = [formatterB stringFromDate:date];
-    
-    // declare mm, ss, SS
-    NSArray * characterArrayB = [[NSArray alloc] init];
-    NSString * mmB = [[NSString alloc] init];
-    NSString * ssB = [[NSString alloc] init];
-    NSString * SSB = [[NSString alloc] init];
-    
-    //get time token
-    characterArrayB = [dateStringB componentsSeparatedByString:@":"];
-    mmB = [characterArrayB objectAtIndex:0];
-    characterArrayB = [[characterArrayB objectAtIndex:1] componentsSeparatedByString:@"."];
-    ssB = [characterArrayB objectAtIndex:0];
-    SSB = [characterArrayB objectAtIndex:1];
-    NSInteger mmIntegerB = [mmB integerValue];
-    NSInteger ssIntegerB = [ssB integerValue];
-    NSInteger SSIntegerB = [SSB integerValue];
-    [formatterB release];
-    
-    // parsing html
-    NSString * string = [NSString stringWithFormat:@"http://e-bus.ntpc.gov.tw/pda/online.php?rid=%@", strResult];
-    NSURL * nsurl = [[NSURL alloc] initWithString:string];
-     
-    NSData * htmlData = [[NSData alloc] initWithContentsOfURL:nsurl];
-    xpathParser = [[TFHpple alloc] initWithHTMLData:htmlData];
-    NSArray * elements = [xpathParser searchWithXPathQuery:@"//td"];
-    NSInteger arrayLength = [elements count];
-    
-    TFHppleElement * element;
-    NSString * tdContent;
-    
-    //NSLog(@"TEST = %@", [[elements objectAtIndex:80] children]);
-    for (int i = 0; i < arrayLength; i ++)
+    NSArray * tmp_stops = [[NSArray alloc] init];
+    tmp_stops = [[stopsAndTimes objectAtIndex:0] componentsSeparatedByString:@"|"];
+    for (NSString * str in tmp_stops)
     {
-        if ([[[elements objectAtIndex:i] children] count] > 0)
-        {
-            element = [[[elements objectAtIndex:i] children] objectAtIndex:0];
-            tdContent = [element content];
-            if ([goBack isEqual:@"0"])
-            {
-                if (i % 4 == 0)
-                    [stops addObject:tdContent];
-                else if (i % 4 == 1)
-                         [m_waitTimeResult addObject:tdContent];
-            }
-            else
-            {
-                if (i % 4 == 2)
-                    [stops addObject:tdContent];
-                else if (i % 4 == 3)
-                    [m_waitTimeResult addObject:tdContent];
-            }
-        }
+        [stops addObject:str];
     }
-    NSDateFormatter *formatterE = [[NSDateFormatter alloc] init];
-    NSDate *dateE = [NSDate date];
-    NSString * dateStringE = [[NSString alloc] init];
+    [stops removeLastObject];
     
-    [formatterE setDateStyle:NSDateFormatterMediumStyle];
-    [formatterE setTimeStyle:NSDateFormatterShortStyle];
-    [formatterE setDateFormat:@"mm:ss.SSS"];
-    
-    dateStringE = [formatterE stringFromDate:dateE];
-    
-    // declare mm, ss, SS
-    NSArray * characterArrayE = [[NSArray alloc] init];
-    NSString * mmE = [[NSString alloc] init];
-    NSString * ssE = [[NSString alloc] init];
-    NSString * SSE = [[NSString alloc] init];
-    
-    // get time token
-    characterArrayE = [dateStringE componentsSeparatedByString:@":"];
-    mmE = [characterArrayE objectAtIndex:0];
-    characterArrayE = [[characterArrayE objectAtIndex:1] componentsSeparatedByString:@"."];
-    ssE = [characterArrayE objectAtIndex:0];
-    SSE = [characterArrayE objectAtIndex:1];
-    NSInteger mmIntegerE = [mmE integerValue];
-    NSInteger ssIntegerE = [ssE integerValue];
-    NSInteger SSIntegerE = [SSE integerValue];
-    
-    NSInteger timeForCatchI = abs(mmIntegerE-mmIntegerB)*60*1000 + abs(ssIntegerE-ssIntegerB)*1000 + abs(SSIntegerE-SSIntegerB);
-    NSString * timeForCatchS = [[NSString alloc] initWithFormat:@"公車路線:%@ 去回程:%@ 時間:%d(ms)", busName, goBack, timeForCatchI];
-    [formatterE release];
-    
-    // ------------ 寫入plist ------------
-    // 取得檔案路徑
-    /*NSMutableArray * catchTimeArray = [[NSMutableArray alloc] init];
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *filePath = [documentsDirectory stringByAppendingString:@"/Property List.plist"];
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSMutableDictionary *plistDict;
-    if ([fileManager fileExistsAtPath: filePath]) // 檢查檔案是否存在
-        plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
-    else
-        plistDict = [[NSMutableDictionary alloc] init];
-    
-    if ([plistDict objectForKey:@"CatchTime"])
-        catchTimeArray = [plistDict objectForKey:@"CatchTime"];
-    
-    [catchTimeArray addObject:timeForCatchS];
-    [plistDict setValue:catchTimeArray forKey:@"CatchTime"];
-    
-    // 存檔
-    if ([plistDict writeToFile:filePath atomically: YES])
+    /*NSArray * tmp_IDs = [[NSArray alloc] init];
+    tmp_IDs = [[stopsAndTimes objectAtIndex:1] componentsSeparatedByString:@"|"];
+    for (NSString * str in tmp_IDs)
     {
-        NSLog(@"writePlist success");
+        [IDs addObject:str];
     }
-    else
+    [IDs removeLastObject];*/
+    
+    NSArray * tmp_m = [[NSArray alloc] init];
+    tmp_m = [[stopsAndTimes objectAtIndex:1] componentsSeparatedByString:@"|"];
+    for (NSString * str in tmp_m)
     {
-        NSLog(@"writePlist fail");
+        [m_waitTimeResult addObject:str];
     }
-    [plistDict release];*/
-    // ------------ 寫入完成 ------------
+    [m_waitTimeResult removeLastObject];
+    
+    [stops retain];
+    //[IDs retain];
+    [m_waitTimeResult retain];
 }
 
 -(void)AlertStart:(UIAlertView *) loadingAlertView{
@@ -293,7 +193,7 @@
     
     // 手動下拉更新
     if (_refreshHeaderView == nil) {
-        EGORefreshTableHeaderView *view1 = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f,5.0f - self.tableView.bounds.size.height,self.tableView.bounds.size.width,self.tableView.bounds.size.height)];
+        EGORefreshTableHeaderView *view1 = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f,0.0f - self.tableView.bounds.size.height,self.tableView.bounds.size.width,self.tableView.bounds.size.height)];
         view1.delegate = self;
         [self.tableView addSubview:view1];
         _refreshHeaderView = view1;
@@ -382,24 +282,16 @@
     {
         stopName = [stops objectAtIndex:indexPath.row];
         comeTime = [m_waitTimeResult objectAtIndex:indexPath.row];
-        
-        if ([comeTime isEqual:@"尚未發車"])
-        {
-            cell.detailTextLabel.text = @"尚未發車";
-            cell.detailTextLabel.textColor = [UIColor grayColor];
-        }
-        else if ([comeTime isEqual:@"約1分鐘"])
-        {
-            cell.detailTextLabel.text = comeTime;
-            cell.detailTextLabel.textColor = [UIColor redColor];
-        }
-        else
-        {
-            cell.detailTextLabel.text = comeTime;
-            cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:0.0 green:45.0/255.0 blue:153.0/255.0 alpha:100.0];
-        }
     }
-        
+    
+    if ([comeTime isEqualToString:@"尚未發車"])
+        cell.detailTextLabel.textColor = [UIColor grayColor];
+    else if ([comeTime isEqualToString:@"更新中..."])
+        cell.detailTextLabel.textColor = [UIColor colorWithRed:13.0/255.0 green:139.0/255.0 blue:13.0/255.0 alpha:100.0];
+    else if ([comeTime isEqualToString:@"進站中"])
+        cell.detailTextLabel.textColor = [UIColor redColor];
+    else
+        cell.detailTextLabel.textColor = [UIColor colorWithRed:0.0 green:45.0/255.0 blue:153.0/255.0 alpha:100.0];
     
     NSString * number = [[NSString alloc] initWithFormat:@"(%i) ", indexPath.row+1];
     
@@ -407,10 +299,10 @@
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
     cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
-    
+    cell.detailTextLabel.text = comeTime;
     [[cell.contentView viewWithTag:indexPath.row+1]removeFromSuperview];
     //[cell.contentView addSubview:[toolbar CreateButton:indexPath]];
-    NSString * newString = [[busName componentsSeparatedByString:@"("] objectAtIndex:0];
+    //NSString * newString = [[busName componentsSeparatedByString:@"("] objectAtIndex:0];
     //[toolbar isStopAdded:newString andStop:stopName andNo:@"RouteDetail"];
     
     return cell;

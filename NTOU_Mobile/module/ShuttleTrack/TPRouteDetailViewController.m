@@ -193,7 +193,7 @@
     
     // 手動下拉更新
     if (_refreshHeaderView == nil) {
-        EGORefreshTableHeaderView *view1 = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f,5.0f - self.tableView.bounds.size.height,self.tableView.bounds.size.width,self.tableView.bounds.size.height)];
+        EGORefreshTableHeaderView *view1 = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f,0.0f - self.tableView.bounds.size.height,self.tableView.bounds.size.width,self.tableView.bounds.size.height)];
         view1.delegate = self;
         [self.tableView addSubview:view1];
         _refreshHeaderView = view1;
@@ -325,7 +325,7 @@
     
     [[cell.contentView viewWithTag:indexPath.row+1]removeFromSuperview];
     //[cell.contentView addSubview:[toolbar CreateButton:indexPath]];
-    NSString * newString = [[busName componentsSeparatedByString:@"("] objectAtIndex:0];
+    //NSString * newString = [[busName componentsSeparatedByString:@"("] objectAtIndex:0];
     //[toolbar isStopAdded:newString andStop:stopName andNo:@"RouteDetail"];
     
     return cell;

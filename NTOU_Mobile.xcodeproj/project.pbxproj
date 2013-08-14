@@ -217,6 +217,7 @@
 		A63D2FDD17B0AC4E002C5547 /* NTRouteGoBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A63D2FDC17B0AC4E002C5547 /* NTRouteGoBackViewController.m */; };
 		A63D2FE017B0AD19002C5547 /* NTRouteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A63D2FDF17B0AD18002C5547 /* NTRouteDetailViewController.m */; };
 		A63D2FE317B0AD40002C5547 /* TPRouteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A63D2FE217B0AD3F002C5547 /* TPRouteDetailViewController.m */; };
+		A65ACA7B17BB73D700B409FD /* GradientRefViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A65ACA7A17BB73D700B409FD /* GradientRefViewController.m */; };
 		BA06A07516F2EE6600212CB9 /* LibrariesModule.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06816F2EE6600212CB9 /* LibrariesModule.m */; };
 		BA06A07616F2EE6600212CB9 /* CalenderList.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06A16F2EE6600212CB9 /* CalenderList.plist */; };
 		BA06A07716F2EE6600212CB9 /* CalenderList_eng.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */; };
@@ -584,6 +585,8 @@
 		A63D2FDF17B0AD18002C5547 /* NTRouteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTRouteDetailViewController.m; sourceTree = "<group>"; };
 		A63D2FE117B0AD3F002C5547 /* TPRouteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPRouteDetailViewController.h; sourceTree = "<group>"; };
 		A63D2FE217B0AD3F002C5547 /* TPRouteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPRouteDetailViewController.m; sourceTree = "<group>"; };
+		A65ACA7917BB73D700B409FD /* GradientRefViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientRefViewController.h; sourceTree = "<group>"; };
+		A65ACA7A17BB73D700B409FD /* GradientRefViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientRefViewController.m; sourceTree = "<group>"; };
 		BA06A06716F2EE6600212CB9 /* LibrariesModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibrariesModule.h; sourceTree = "<group>"; };
 		BA06A06816F2EE6600212CB9 /* LibrariesModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibrariesModule.m; sourceTree = "<group>"; };
 		BA06A06A16F2EE6600212CB9 /* CalenderList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CalenderList.plist; sourceTree = "<group>"; };
@@ -1038,6 +1041,8 @@
 				91A9043316E899D200ECF2CF /* TrainStyleViewController.m */,
 				91A9043416E899D200ECF2CF /* XPathQuery.h */,
 				91A9043516E899D200ECF2CF /* XPathQuery.m */,
+				A65ACA7917BB73D700B409FD /* GradientRefViewController.h */,
+				A65ACA7A17BB73D700B409FD /* GradientRefViewController.m */,
 			);
 			name = ShuttleTrack;
 			path = module/ShuttleTrack;
@@ -1553,6 +1558,7 @@
 				A63D2FDD17B0AC4E002C5547 /* NTRouteGoBackViewController.m in Sources */,
 				A63D2FE017B0AD19002C5547 /* NTRouteDetailViewController.m in Sources */,
 				A63D2FE317B0AD40002C5547 /* TPRouteDetailViewController.m in Sources */,
+				A65ACA7B17BB73D700B409FD /* GradientRefViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

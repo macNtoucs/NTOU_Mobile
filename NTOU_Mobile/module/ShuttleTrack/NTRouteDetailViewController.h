@@ -26,7 +26,7 @@
     
     NSMutableArray * stops;
     NSMutableArray * m_waitTimeResult;
-    NSMutableArray * IDs;
+    //NSMutableArray * IDs;
     
     //ToolBarController* toolbar;
     UIBarButtonItem *anotherButton;
@@ -45,7 +45,7 @@
 
 @property (nonatomic, retain) NSMutableArray * stops;
 @property (nonatomic, retain) NSMutableArray * m_waitTimeResult;
-@property (nonatomic, retain) NSMutableArray * IDs;
+//@property (nonatomic, retain) NSMutableArray * IDs;
 
 //@property (nonatomic, retain) ToolBarController* toolbar;
 @property (nonatomic, retain) UIBarButtonItem *anotherButton;

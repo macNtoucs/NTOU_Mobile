@@ -19,8 +19,6 @@
 @synthesize havingTableView;
 @synthesize partBusName;
 @synthesize compBusName;
-@synthesize compDeparName;
-@synthesize compDestiName;
 @synthesize cityName;
 @synthesize taipeiDeparName;
 @synthesize taipeiDestiName;
@@ -46,8 +44,6 @@
     havingTableView = NO;
     partBusName = [[NSMutableString alloc] init];
     compBusName = [[NSArray alloc] init];
-    compDeparName = [[NSMutableArray alloc] init];
-    compDestiName = [[NSMutableArray alloc] init];
     cityName = [[NSMutableArray alloc] init];
     taipeiDeparName = [[NSMutableArray alloc] init];
     taipeiDestiName = [[NSMutableArray alloc] init];
@@ -68,12 +64,30 @@
 {
     buttonFirstView = [[[UIView alloc] initWithFrame:CGRectMake(0, CURRENT_IPHONE_SIZE, 320, 250)] retain];
     [buttonFirstView setBackgroundColor:BUTTON_PLATE_COLOR];
+    /*CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
+    CGFloat components[] = {0.0, 0.0, 205/255, 1.0,
+        0.0, 0.0, 238/255, 1.0};
+    CGFloat locations[] = {0.0, 125.0};
+    size_t count = 2;
+    
+    CGGradientRef gradient = CGGradientCreateWithColorComponents(rgb, components, locations, count);
+    CGColorSpaceRelease(rgb);
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320, 250)];
+    UIGraphicsBeginImageContext(imageView.frame.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextDrawLinearGradient(context, gradient, CGPointMake(0.0, 0.0), CGPointMake(320.0, 250.0), 0);
+    CGContextSaveGState(context);
+    imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [buttonFirstView addSubview:imageView];
+    [imageView release];*/
     
     UIButton * buttonRed = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonRed setTag:11];
     [buttonRed setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     [buttonRed setTitle:@"紅" forState:UIControlStateNormal];
     [buttonRed setTintColor:BUTTON_SELECTED_COLOR];
+    //[buttonRed setBackgroundColor:[UIColor colorWithRed:234/255.0 green:234/255.0 blue:234/255.0 alpha:1.0]];
     buttonRed.frame = CGRectMake(5, 5, 58, 40);
     [buttonRed addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
@@ -329,8 +343,6 @@
 
 - (void)showTableViewContent
 {
-    [compDeparName removeAllObjects];
-    [compDestiName removeAllObjects];
     [cityName removeAllObjects];
     [taipeiDeparName removeAllObjects];
     [taipeiDestiName removeAllObjects];
@@ -355,15 +367,8 @@
     NSArray * tmpCompDepar = [[NSArray alloc] init];
     tmpCompDepar = [[tmpInfo objectAtIndex:1] componentsSeparatedByString:@"|"];
     
-    for (NSString * str in tmpCompDepar)
-        [compDeparName addObject:str];
-    [compDeparName removeLastObject];
-    
     NSArray * tmpCompDesti = [[NSArray alloc] init];
     tmpCompDesti = [[tmpInfo objectAtIndex:2] componentsSeparatedByString:@"|"];
-    for (NSString * str in tmpCompDesti)
-        [compDestiName addObject:str];
-    [compDestiName removeLastObject];
     
     NSArray * tmpCityName = [[NSArray alloc] init];
     tmpCityName = [[tmpInfo objectAtIndex:3] componentsSeparatedByString:@"|"];
@@ -648,7 +653,7 @@
     
         
     //if((indexPath.section == 0) && [[cityName objectAtIndex:indexPath.row] isEqual:@"T"])
-    if (indexPath.section == 0)
+    if (indexPath.section == 0)     // 台北市
     {
         selectedBusName = [taipeiBusName objectAtIndex:indexPath.row];
         NSLog(@"Taipei: %d, %d", indexPath.section, indexPath.row);
@@ -661,7 +666,7 @@
         //[compBusName release];
     }
     //else if((indexPath.section == 1) && [[cityName objectAtIndex:(indexPath.row + countT)] isEqual:@"N"])
-    else if (indexPath.section == 1)
+    else if (indexPath.section == 1)    // 新北市
     {
         selectedBusName = [nTaipeiBusName objectAtIndex:indexPath.row];
         NTRouteGoBackViewController *NTrouteGoBack = [[NTRouteGoBackViewController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -673,7 +678,7 @@
         [self.navigationController pushViewController:NTrouteGoBack animated:YES];
         //[compBusName release];
     }
-    else
+    else    // 基隆市
     {
         NSLog(@"一尺方吉");
     }
@@ -688,8 +693,6 @@
 {
     [buttonFirstView release];
     [tableview release];
-    [compDestiName release];
-    [compDeparName release];
     [cityName release];
     [taipeiDeparName release];
     [taipeiDestiName release];

@@ -25,8 +25,6 @@
     BOOL havingTableView;
     NSMutableString * partBusName;
     NSArray * compBusName;
-    NSMutableArray * compDeparName;
-    NSMutableArray * compDestiName;
     NSMutableArray * cityName;
     NSMutableArray * taipeiDeparName;
     NSMutableArray * taipeiDestiName;
@@ -42,8 +40,6 @@
 @property (nonatomic, assign) BOOL havingTableView;
 @property (nonatomic, retain) NSMutableString * partBusName;
 @property (nonatomic, retain) NSArray * compBusName;
-@property (nonatomic, retain) NSMutableArray * compDeparName;
-@property (nonatomic, retain) NSMutableArray * compDestiName;
 @property (nonatomic, retain) NSMutableArray * cityName;
 @property (nonatomic, retain) NSMutableArray * taipeiDeparName;
 @property (nonatomic, retain) NSMutableArray * taipeiDestiName;
