@@ -16,6 +16,7 @@
 #define BUTTON_STYLE UIButtonTypeRoundedRect
 #define BUTTON_PLATE_COLOR [UIColor colorWithRed:12.0/255 green:46.0/255 blue:112.0/255 alpha:1.0]
 #define BUTTON_SELECTED_COLOR [UIColor colorWithHexString:@"#0257EE"]
+#define ANIMATION_DURATION 0.5
 
 @interface TPRouteByButtonViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
@@ -23,6 +24,7 @@
     UIView * buttonSecondView;
     UITableView * tableview;
     BOOL havingTableView;
+    NSInteger sectionNumber;
     NSMutableString * partBusName;
     NSArray * compBusName;
     NSMutableArray * cityName;
@@ -38,6 +40,7 @@
 @property (nonatomic, retain) UIView * buttonSecondView;
 @property (nonatomic, retain) UITableView * tableview;
 @property (nonatomic, assign) BOOL havingTableView;
+@property (nonatomic, assign) NSInteger sectionNumber;
 @property (nonatomic, retain) NSMutableString * partBusName;
 @property (nonatomic, retain) NSArray * compBusName;
 @property (nonatomic, retain) NSMutableArray * cityName;

@@ -26,6 +26,7 @@
 @synthesize nTaipeiDeparName;
 @synthesize nTaipeiDestiName;
 @synthesize nTaipeiBusName;
+@synthesize sectionNumber;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -233,7 +234,7 @@
     [self.view addSubview:buttonFirstView];
     
     CGRect firstTopViewFrame = CGRectMake(0, CURRENT_IPHONE_SIZE-250, 320, 250);
-    [UIView animateWithDuration:0.7
+    [UIView animateWithDuration:ANIMATION_DURATION
                           delay:0.01
                         options:UIViewAnimationCurveEaseOut
                      animations:^{
@@ -322,7 +323,7 @@
     [self.view addSubview:buttonSecondView];
     
     CGRect secondTopViewFrame = CGRectMake(0, CURRENT_IPHONE_SIZE-250, 320, 250);
-    [UIView animateWithDuration:0.7
+    [UIView animateWithDuration:ANIMATION_DURATION
                           delay:0.01
                         options:UIViewAnimationCurveEaseOut
                      animations:^{
@@ -395,7 +396,7 @@
     }
     [cityName removeLastObject];
     
-    NSLog(@"cityName = %@", cityName);
+    /*NSLog(@"cityName = %@", cityName);*/
     NSLog(@"countT:%d", countT);
     NSLog(@"countN:%d", countN);
     [tableview reloadData];
@@ -589,6 +590,33 @@
     }
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 2;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionTitle = [self tableView:tableView titleForHeaderInSection:section];
+    if (sectionTitle == nil) {
+        return nil;
+    }
+    
+    UILabel *label = [[UILabel alloc] init];
+    label.frame = CGRectMake(10, 0, tableView.bounds.size.width, 20);
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor whiteColor];
+    label.font = [UIFont boldSystemFontOfSize:16];
+    label.text = sectionTitle;
+    
+    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)] autorelease];
+        [headerView setBackgroundColor:[UIColor colorWithRed:154/255.0 green:192/255.0 blue:205/255.0 alpha:0.9]];
+    [headerView addSubview:label];
+    
+    return headerView;
+}
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *sectionName;
@@ -604,12 +632,6 @@
             break;
     }
     return sectionName;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -651,8 +673,6 @@
 {
     NSString * selectedBusName = [[NSString alloc] init];
     
-        
-    //if((indexPath.section == 0) && [[cityName objectAtIndex:indexPath.row] isEqual:@"T"])
     if (indexPath.section == 0)     // 台北市
     {
         selectedBusName = [taipeiBusName objectAtIndex:indexPath.row];
@@ -665,7 +685,6 @@
         [self.navigationController pushViewController:TProuteGoBack animated:YES];
         //[compBusName release];
     }
-    //else if((indexPath.section == 1) && [[cityName objectAtIndex:(indexPath.row + countT)] isEqual:@"N"])
     else if (indexPath.section == 1)    // 新北市
     {
         selectedBusName = [nTaipeiBusName objectAtIndex:indexPath.row];

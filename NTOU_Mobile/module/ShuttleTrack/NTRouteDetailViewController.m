@@ -60,7 +60,7 @@
     
     NSString *strResult = [[[NSString alloc] initWithData:dataURL encoding:NSUTF8StringEncoding]autorelease];
     
-    NSLog(@"strResult = %@", strResult);
+    NSLog(@"strResult2 = %@", strResult);
     
     NSArray * stopsAndTimes = [strResult componentsSeparatedByString:@";"];
     
