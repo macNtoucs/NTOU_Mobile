@@ -17,6 +17,7 @@
 @synthesize buttonSecondView;
 @synthesize tableview;
 @synthesize havingTableView;
+@synthesize enteringCounter;
 @synthesize partBusName;
 @synthesize compBusName;
 @synthesize cityName;
@@ -27,6 +28,8 @@
 @synthesize nTaipeiDestiName;
 @synthesize nTaipeiBusName;
 @synthesize sectionNumber;
+@synthesize noDataView;
+@synthesize noDataLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,6 +55,10 @@
     nTaipeiDeparName = [[NSMutableArray alloc] init];
     nTaipeiDestiName = [[NSMutableArray alloc] init];
     nTaipeiBusName = [[NSMutableArray alloc] init];
+    noDataLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, (CURRENT_IPHONE_SIZE-250)/2-NO_DATA_LABEL_HEIGHT/2, NO_DATA_LABEL_WIDTH, NO_DATA_LABEL_HEIGHT)];
+    //enteringCounter = 0;
+    noDataView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, CURRENT_IPHONE_SIZE-250)];
+    noDataView.tag = CHECK_SUBVIEW_TAG;
     [self showFirstLayerButtons];
 }
 
@@ -352,6 +359,8 @@
     [nTaipeiDestiName removeAllObjects];
     [nTaipeiBusName removeAllObjects];
     
+    //enteringCounter  = enteringCounter + 1;
+    
     NSMutableString *encodedStop = (NSMutableString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)partBusName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
     
     NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/RouteByButton.php?partBusName=%@", encodedStop];
@@ -396,9 +405,22 @@
     }
     [cityName removeLastObject];
     
-    /*NSLog(@"cityName = %@", cityName);*/
-    NSLog(@"countT:%d", countT);
-    NSLog(@"countN:%d", countN);
+    /*NSLog(@"countT:%d", countT);
+    NSLog(@"countN:%d", countN);*/
+    
+    // 判斷若無資料，則顯示"無資料"
+    if (countT != 0 || countN != 0)
+    {
+        for (UIView *checkSubview in self.view.subviews)
+        {
+            if (checkSubview.tag == CHECK_SUBVIEW_TAG)
+                [checkSubview removeFromSuperview];
+        }
+    }
+    else
+    {
+        [self noDataCurrently];
+    }
     [tableview reloadData];
 }
 
@@ -513,6 +535,9 @@
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             havingTableView = NO;
+            for (UIView *checkSubview in self.view.subviews)
+                if (checkSubview.tag == CHECK_SUBVIEW_TAG)
+                    [checkSubview removeFromSuperview];
             [tableview removeFromSuperview];
             //NSLog(@"partBusName = %@", partBusName);
             break;
@@ -521,7 +546,8 @@
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"新北"];
-            [self showTableViewContent];
+            //[self showTableViewContent];
+            [self noDataCurrently];
             break;
         case 212:
             if (havingTableView == NO)
@@ -576,14 +602,16 @@
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"花季"];
-            [self showTableViewContent];
+            //[self showTableViewContent];
+            [self noDataCurrently];
             break;
         case 233:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"其他"];
-            [self showTableViewContent];
+            //[self showTableViewContent];
+            [self noDataCurrently];
             break;
         default:
             break;
@@ -598,6 +626,7 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    NSLog(@"viewForSection");
     NSString *sectionTitle = [self tableView:tableView titleForHeaderInSection:section];
     if (sectionTitle == nil) {
         return nil;
@@ -700,6 +729,24 @@
     else    // 基隆市
     {
         NSLog(@"一尺方吉");
+    }
+}
+
+- (void)noDataCurrently
+{
+    if (![self.view isEqual:noDataView])
+    {
+        noDataView.backgroundColor = NO_DATA_COLOR;
+        noDataLabel.backgroundColor = NO_DATA_COLOR;
+        noDataLabel.text = @"暫無資料";
+        noDataLabel.textAlignment = NSTextAlignmentCenter;
+        noDataLabel.textColor = [UIColor whiteColor];
+        [noDataView addSubview:noDataLabel];
+        [self.view addSubview:noDataView];
+    }
+    else
+    {
+        // do nothing;
     }
 }
 
