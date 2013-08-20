@@ -44,6 +44,8 @@
 {
     [super viewDidLoad];
     
+    NSLog(@"Hi");
+    
     self.title = @"雙北公車";
     havingTableView = NO;
     partBusName = [[NSMutableString alloc] init];
@@ -351,6 +353,7 @@
 
 - (void)showTableViewContent
 {
+    NSLog(@"showTableViewContent");
     [cityName removeAllObjects];
     [taipeiDeparName removeAllObjects];
     [taipeiDestiName removeAllObjects];
@@ -404,6 +407,8 @@
         countAll = countAll + 1;
     }
     [cityName removeLastObject];
+    [taipeiBusName retain];
+    [nTaipeiBusName retain];
     
     /*NSLog(@"countT:%d", countT);
     NSLog(@"countN:%d", countN);*/
@@ -673,6 +678,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"cellForRow");
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -681,6 +687,7 @@
     }
     if (indexPath.section == 0)
     {
+        if([taipeiBusName count] == 0) NSLog(@"Nothing");
         cell.textLabel.text = [taipeiBusName objectAtIndex:indexPath.row];
         NSString * departDestinInfo = [[NSString alloc] init];
         departDestinInfo = [[taipeiDeparName objectAtIndex:indexPath.row] stringByAppendingString:@" - "];
@@ -705,7 +712,9 @@
     if (indexPath.section == 0)     // 台北市
     {
         selectedBusName = [taipeiBusName objectAtIndex:indexPath.row];
+        [selectedBusName retain];
         NSLog(@"Taipei: %d, %d", indexPath.section, indexPath.row);
+        NSLog(@"Taipei selectBusName = %@", selectedBusName);
         TPRouteGoBackViewController *TProuteGoBack = [[TPRouteGoBackViewController alloc] initWithStyle:UITableViewStyleGrouped];
         TProuteGoBack.title = [selectedBusName stringByAppendingString:@" 公車路線"];
         [TProuteGoBack setter_departure:[taipeiDeparName objectAtIndex:indexPath.row]];
@@ -717,6 +726,7 @@
     else if (indexPath.section == 1)    // 新北市
     {
         selectedBusName = [nTaipeiBusName objectAtIndex:indexPath.row];
+        [selectedBusName retain];
         NTRouteGoBackViewController *NTrouteGoBack = [[NTRouteGoBackViewController alloc] initWithStyle:UITableViewStyleGrouped];
         NTrouteGoBack.title = [selectedBusName stringByAppendingString:@" 公車路線"];
         [NTrouteGoBack setter_departure:[nTaipeiDeparName objectAtIndex:indexPath.row]];
