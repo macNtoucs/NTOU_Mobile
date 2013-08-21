@@ -100,6 +100,7 @@
              headerTitle = @"其他";
             break;
         default:
+            headerTitle = @"Error Msg";
             break;
     }
     UIFont *font = [UIFont boldSystemFontOfSize:STANDARD_CONTENT_FONT_SIZE];
