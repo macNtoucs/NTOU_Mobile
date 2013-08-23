@@ -9,6 +9,7 @@
 #import "WOLChiListViewController.h"
 #import "NTOUUIConstants.h"
 #import "MBProgressHUD.h"
+#define YEAR 2013   //起始學期年份
 
 @interface WOLChiListViewController ()
 
@@ -48,7 +49,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     //setup Calendar
     eventStore = [[EKEventStore alloc] init];
 
@@ -95,6 +96,34 @@
     self.actionToolbar.barStyle = UIBarStyleBlack;
     
     downLoadEditing = NO;
+    
+    [self.tableView reloadData];
+    
+    [self scrolltableview];
+}
+
+-(void)scrolltableview
+{
+    NSCalendar * calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate *today = [NSDate date];
+    NSDateComponents *dateComponents = [calendar components:(NSWeekdayCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSWeekCalendarUnit) fromDate:today];
+    NSInteger month = [dateComponents month];
+    if(month >= 8)
+        month -= 8;
+    else
+        month += 4;
+    
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:month] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (!(self.isMovingToParentViewController || self.isBeingPresented))
+    {
+        [self scrolltableview];
+    }
 }
 
 -(void)viewDidUnload
@@ -266,14 +295,21 @@
     
     NSString *key = [keys objectAtIndex:section];
     NSString *sectiontitle;
+    
+    //除七月其他皆更新
     if(section < 5)
-    {
-        sectiontitle = [[NSString alloc] initWithFormat:@"  民國101年 %@月",key];
-    }
+        sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR - 1911,key];    //當年
+    else if(section == 11) //七月
+        sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR - 1911,key];
     else
-    {
-        sectiontitle = [[NSString alloc] initWithFormat:@"  民國102年 %@月",key];
-    }
+        sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR - 1910,key];    //隔年
+    /*
+    //全更新
+    if(section < 5)
+        sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR - 1911,key];    //當年
+    else
+        sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR - 1910,key];    //隔年
+     */
     UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 25)] autorelease];
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 25)] autorelease];
     label.text = sectiontitle;
@@ -561,10 +597,21 @@
         addEvent.allDay = YES;
         
         NSDateComponents *startcomps = [[NSDateComponents alloc] init];
+        //除七月其他皆更新版
         if(section < 5)
-            [startcomps setYear:2012];
+            [startcomps setYear:YEAR];      //當年
+        else if (section == 11) 
+            [startcomps setYear:YEAR];      //七月
         else
-            [startcomps setYear:2013];
+            [startcomps setYear:YEAR+1];    //隔年
+        
+        /*
+         //全更新
+         if(section < 5)
+            [startcomps setYear:YEAR];      //當年
+         else
+            [startcomps setYear:YEAR+1];    //隔年
+         */
         
         [startcomps setMonth:[key intValue]];
         
@@ -578,10 +625,20 @@
         
         
         NSDateComponents *endcomps = [[NSDateComponents alloc] init];
-        if(section < 4 || (section == 4 && [[dateevent objectForKey:@"cross"] isEqualToString:@"NO"]) )
-            [endcomps setYear:2012];
+        
+        //除七月其他皆更新版
+        if(section == 11 || section < 4 || (section == 4 && [[dateevent objectForKey:@"cross"] isEqualToString:@"NO"]) )
+            [endcomps setYear:YEAR];    //當年1~11月 或 12月無跨月份 或 七月
         else
-            [endcomps setYear:2013];
+            [endcomps setYear:YEAR+1];  //隔年
+        
+        /*
+         //全更新
+         if(section < 4 || (section == 4 && [[dateevent objectForKey:@"cross"] isEqualToString:@"NO"]) )
+            [endcomps setYear:YEAR];    //當年
+         else if
+            [endcomps setYear:YEAR+1];  //隔年
+        */
         
         NSString *endkey;
         if([[dateevent objectForKey:@"cross"] isEqualToString:@"yes"])

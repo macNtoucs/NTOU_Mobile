@@ -9,7 +9,7 @@
 #import "WOLEnglistViewController.h"
 #import "NTOUUIConstants.h"
 #import "MBProgressHUD.h"
-
+#define YEAR 2012   //起始學期年份
 @interface WOLEnglistViewController ()
 
 @property (nonatomic, strong) NSMutableArray *selectindexs;
@@ -36,6 +36,7 @@
 @synthesize downLoadEditing;
 @synthesize mask;
 @synthesize menuHeight;
+
 
 -(id)initWithStyle:(UITableViewStyle)style
 {
@@ -92,6 +93,34 @@
     self.actionToolbar.barStyle = UIBarStyleBlack;
     
     downLoadEditing = NO;
+    
+    [self.tableView reloadData];
+    
+    [self scrolltableview];
+}
+
+-(void)scrolltableview
+{
+    NSCalendar * calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate *today = [NSDate date];
+    NSDateComponents *dateComponents = [calendar components:(NSWeekdayCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSWeekCalendarUnit) fromDate:today];
+    NSInteger month = [dateComponents month];
+    if(month >= 8)
+        month -= 8;
+    else
+        month += 4;
+    
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:month] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (!(self.isMovingToParentViewController || self.isBeingPresented))
+    {
+        [self scrolltableview];
+    }
 }
 
 -(void)viewDidUnload
@@ -257,19 +286,36 @@
     return cell;
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    
     NSString *key = [keys objectAtIndex:section];
     NSString *sectiontitle;
+    /*
+     //除七月其他皆更新
+     if(section < 5)
+     sectiontitle = [[NSString alloc] initWithFormat:@"  %d / %@",YEAR,key];    //當年
+     else if(section == 11) //七月
+     sectiontitle = [[NSString alloc] initWithFormat:@"  %d / %@",YEAR,key];
+     else
+     sectiontitle = [[NSString alloc] initWithFormat:@"  %d / %@",YEAR+1,key];    //隔年
+    */
+    
+    //全更新
     if(section < 5)
-    {
-        sectiontitle = [[NSString alloc] initWithFormat:@"2012 / %@",key];
-    }
+        sectiontitle = [[NSString alloc] initWithFormat:@"  %d / %@",YEAR,key];
     else
-    {
-        sectiontitle = [[NSString alloc] initWithFormat:@"2013 / %@",key];
-    }
-    return sectiontitle;
+        sectiontitle = [[NSString alloc] initWithFormat:@"  %d / %@",YEAR+1,key];
+    
+    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 25)] autorelease];
+    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 25)] autorelease];
+    label.text = sectiontitle;
+    label.textColor =[UIColor colorWithHexString:@"#565656"] ;
+    label.font = [UIFont fontWithName:@"Helvetica" size:14.0] ;
+    UIImage *backgroundImage = [UIImage imageNamed:NTOUImageNameScrollTabBackgroundOpaque];
+    label.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
+    [headerView addSubview:label];
+    return headerView;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -531,10 +577,22 @@
         addEvent.allDay = YES;
         
         NSDateComponents *startcomps = [[NSDateComponents alloc] init];
+        /*
+         //除七月其他皆更新版
+         if(section < 5)
+         [startcomps setYear:YEAR];      //當年
+         else if (section == 11)
+         [startcomps setYear:YEAR];      //七月
+         else
+         [startcomps setYear:YEAR+1];    //隔年
+         */
+        
+        //全更新
         if(section < 5)
             [startcomps setYear:2012];
         else
             [startcomps setYear:2013];
+        
         
         [startcomps setMonth:[key intValue]];
         
@@ -548,6 +606,15 @@
         
         
         NSDateComponents *endcomps = [[NSDateComponents alloc] init];
+        /*
+         //除七月其他皆更新版
+         if(section == 11 || section < 4 || (section == 4 && [[dateevent objectForKey:@"cross"] isEqualToString:@"NO"]) )
+         [endcomps setYear:YEAR];    //當年1~11月 或 12月無跨月份 或 七月
+         else
+         [endcomps setYear:YEAR+1];  //隔年
+        */
+        
+        //全更新
         if(section < 4 || (section == 4 && [[dateevent objectForKey:@"cross"] isEqualToString:@"NO"]) )
             [endcomps setYear:2012];
         else

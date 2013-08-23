@@ -61,6 +61,8 @@
         [addButton addTarget:self action:@selector(Chichooseitem) forControlEvents:UIControlEventTouchUpInside];
         [menuView addSubview:addButton];
     }
+    menushowing = YES;
+    [self showMenuView];
     [self.chiViewController chooseitem];
 }
 
@@ -91,6 +93,8 @@
         [addButton addTarget:self action:@selector(Engchooseitem) forControlEvents:UIControlEventTouchUpInside];
         [menuView addSubview:addButton];
     }
+    menushowing = YES;
+    [self showMenuView];
     [self.engViewController chooseitem];
 }
 
@@ -191,9 +195,15 @@
     engviewFrame.origin.y = 0;
     
     if (self.engViewController.view.superview == nil)   //在中文界面切出
+    {
         engviewFrame.size.height = screenheight - 64;
+        [chiViewController scrolltableview];
+    }
     else    //在英文界面切出
+    {
         engviewFrame.size.height = screenheight - 64;
+        [engViewController scrolltableview];
+    }
     engviewFrame.origin.y = 0;
     
     menuView.frame = menuFrame;
