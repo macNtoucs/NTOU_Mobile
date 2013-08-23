@@ -44,7 +44,7 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
     NSHTTPURLResponse *urlResponse = nil;
     NSError *error = [[NSError alloc] init];
     NSMutableURLRequest * jsonQuest = [NSMutableURLRequest new];
-    NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.103:2223/iNTOU/%@.do",type];
+    NSString * queryURL = [NSString stringWithFormat:@"http://140.121.100.103:8080/iNTOU/%@.do",type];
     [jsonQuest setURL:[NSURL URLWithString:queryURL]];
     [jsonQuest setHTTPMethod:@"POST"];
     [jsonQuest addValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
