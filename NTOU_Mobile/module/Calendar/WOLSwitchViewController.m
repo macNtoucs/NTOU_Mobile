@@ -267,7 +267,7 @@
         swipeRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
         [self.view addGestureRecognizer:swipeRecognizer];
         
-        [self showMenuView];
+        //[self showMenuView];
     } else {
         if (self.chiViewController == nil) {
             self.chiViewController =
@@ -313,7 +313,7 @@
         swipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
         [self.view addGestureRecognizer:swipeRecognizer];
         
-        [self showMenuView];
+        //[self showMenuView];
     }
     [UIView commitAnimations];                                   // bold
 }
@@ -324,6 +324,8 @@
 
 - (void)showMenuView
 {
+    [self switchViews];
+    /*
 	CGRect menuFrame = menuView.frame;
     CGRect chiFrame = chiViewController.view.frame;
     CGRect engFrame = engViewController.view.frame;
@@ -364,6 +366,7 @@
 	}
 	
 	[UIView commitAnimations];
+     */
 }
 
 @end
