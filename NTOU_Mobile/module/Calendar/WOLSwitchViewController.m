@@ -61,6 +61,8 @@
         [addButton addTarget:self action:@selector(Chichooseitem) forControlEvents:UIControlEventTouchUpInside];
         [menuView addSubview:addButton];
     }
+    menushowing = YES;
+    [self showMenuView];
     [self.chiViewController chooseitem];
 }
 
@@ -91,6 +93,8 @@
         [addButton addTarget:self action:@selector(Engchooseitem) forControlEvents:UIControlEventTouchUpInside];
         [menuView addSubview:addButton];
     }
+    menushowing = YES;
+    [self showMenuView];
     [self.engViewController chooseitem];
 }
 
