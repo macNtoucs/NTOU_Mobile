@@ -132,7 +132,7 @@
     self.anotherButton.title = @"更新中";
     updateTimeOnButton = NO;
     loadingAlertView = [[UIAlertView alloc]
-                        initWithTitle:nil message:@"\n\下載資料中\n請稍候"
+                        initWithTitle:nil message:@"\n\n下載資料中\n請稍候"
                         delegate:self cancelButtonTitle:@"取消"
                         otherButtonTitles: nil];
     [self AlertStart:loadingAlertView];
@@ -208,7 +208,7 @@
 - (void)viewDidLoad
 {
     loadingAlertView = [[UIAlertView alloc]
-                        initWithTitle:nil message:@"\n\下載資料中\n請稍候"
+                        initWithTitle:nil message:@"\n\n下載資料中\n請稍候"
                         delegate:self cancelButtonTitle:@"取消"
                         otherButtonTitles: nil];
     [self AlertStart:loadingAlertView];
