@@ -116,11 +116,7 @@
     chiViewController.switchviewcontroller = self;
     [self.view addSubview:self.chiViewController.view];
     
-    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc]
-                                  initWithImage:[UIImage imageNamed:@"tray_full_24.png"]
-                                  style:UIBarButtonItemStyleBordered
-                                  target:self
-                                  action:@selector(showMenuView)];
+    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle:@"Eng." style:UIBarButtonItemStyleBordered target:self action:@selector(showMenuView)];
     menuButton.style = UIBarButtonItemStylePlain;
     
     self.navigationItem.rightBarButtonItem = menuButton;
@@ -223,6 +219,8 @@
     [UIView setAnimationDuration:0.5];                     // bold
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];   // bold
     if (self.engViewController.view.superview == nil) {
+        
+
         if (self.engViewController == nil) {
             self.engViewController =
             [[WOLEnglistViewController alloc]initWithStyle:UITableViewStylePlain];
@@ -231,11 +229,7 @@
          UIViewAnimationTransitionFlipFromLeft                 // bold
                                forView:self.view cache:YES];    // bold
         
-        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc]
-                                      initWithImage:[UIImage imageNamed:@"tray_full_24.png"]
-                                      style:UIBarButtonItemStyleBordered
-                                      target:self
-                                      action:@selector(showMenuView)];
+        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle:@"中文" style:UIBarButtonItemStyleBordered target:self action:@selector(showMenuView)];
         menuButton.style = UIBarButtonItemStylePlain;
         
         self.navigationItem.rightBarButtonItem = menuButton;
@@ -277,11 +271,7 @@
          UIViewAnimationTransitionFlipFromRight                  // bold
                                forView:self.view cache:YES];    // bold
         
-        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc]
-                                      initWithImage:[UIImage imageNamed:@"tray_full_24.png"]
-                                      style:UIBarButtonItemStyleBordered
-                                      target:self
-                                      action:@selector(showMenuView)];
+        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle:@"Eng." style:UIBarButtonItemStyleBordered target:self action:@selector(showMenuView)];
         menuButton.style = UIBarButtonItemStylePlain;
         
         self.navigationItem.rightBarButtonItem = menuButton;
