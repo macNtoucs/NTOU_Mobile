@@ -10,6 +10,7 @@
 #import "TPRouteGoBackViewController.h"
 #import "NTRouteGoBackViewController.h"
 #import "UIKit+NTOUAdditions.h"
+#import "FMDatabase.h"
 
 // Get Current Screen Size
 #define CURRENT_IPHONE_SIZE (unsigned int)[[UIScreen mainScreen] bounds].size.height
@@ -43,6 +44,14 @@
     NSInteger countT, countN, countAll;
     UIView *noDataView;
     UILabel *noDataLabel;
+    
+    /* FMDB */
+    BOOL success;
+    NSError *error;
+    NSFileManager *fm;
+    NSArray *paths;
+    NSString *documentsDirectory;
+    NSString *writableDBPath;
 }
 
 @property (nonatomic, retain) UIView * buttonFirstView;
@@ -62,5 +71,8 @@
 @property (nonatomic, retain) NSMutableArray * nTaipeiBusName;
 @property (nonatomic, retain) UIView *noDataView;
 @property (nonatomic, retain) UILabel *noDataLabel;
+
+/* FMDB */
+//@property (nonatomic, retain) NSMutableArray *items;
 
 @end

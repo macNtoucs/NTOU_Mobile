@@ -31,6 +31,9 @@
 @synthesize noDataView;
 @synthesize noDataLabel;
 
+/* FMDB */
+//@synthesize items;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -74,23 +77,6 @@
 {
     buttonFirstView = [[[UIView alloc] initWithFrame:CGRectMake(0, CURRENT_IPHONE_SIZE, 320, 250)] retain];
     [buttonFirstView setBackgroundColor:BUTTON_PLATE_COLOR];
-    /*CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
-    CGFloat components[] = {0.0, 0.0, 205/255, 1.0,
-        0.0, 0.0, 238/255, 1.0};
-    CGFloat locations[] = {0.0, 125.0};
-    size_t count = 2;
-    
-    CGGradientRef gradient = CGGradientCreateWithColorComponents(rgb, components, locations, count);
-    CGColorSpaceRelease(rgb);
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320, 250)];
-    UIGraphicsBeginImageContext(imageView.frame.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextDrawLinearGradient(context, gradient, CGPointMake(0.0, 0.0), CGPointMake(320.0, 250.0), 0);
-    CGContextSaveGState(context);
-    imageView.image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    [buttonFirstView addSubview:imageView];
-    [imageView release];*/
     
     UIButton * buttonRed = [UIButton buttonWithType:BUTTON_STYLE];
     [buttonRed setTag:11];
@@ -362,8 +348,10 @@
     [nTaipeiDestiName removeAllObjects];
     [nTaipeiBusName removeAllObjects];
     
-    //enteringCounter  = enteringCounter + 1;
+    countT = countN = 0;
     
+    //enteringCounter  = enteringCounter + 1;
+    /*
     NSMutableString *encodedStop = (NSMutableString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)partBusName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
     
     NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/RouteByButton.php?partBusName=%@", encodedStop];
@@ -406,7 +394,70 @@
         [cityName addObject:str];
         countAll = countAll + 1;
     }
-    [cityName removeLastObject];
+    [cityName removeLastObject];*/
+    
+    /* FMDB */
+    //NSMutableArray *items = [NSMutableArray arrayWithCapacity:0];
+    NSError *error123;
+    fm = [NSFileManager defaultManager];
+    paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    documentsDirectory = [paths objectAtIndex:0];
+    NSLog(@"%@", documentsDirectory);
+    writableDBPath = [documentsDirectory stringByAppendingPathComponent:@"/ntou_mobile.db"];
+    success = [fm fileExistsAtPath:writableDBPath];
+    
+    if (!success)
+    {
+        NSLog(@"!success");
+        NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"/ntou_mobile.db"];
+        success = [fm copyItemAtPath:defaultDBPath toPath:writableDBPath error:&error123];
+        if (!success)
+        {
+            NSLog(@"error");
+        }
+    }
+    FMDatabase *db = [FMDatabase databaseWithPath:writableDBPath];
+    if ([db open])
+    {
+        [db setShouldCacheStatements:YES];
+        //NSString * partName = @"藍";
+        //FMResultSet *rs = [db executeQuery:@"select * from routeinfo"];
+        FMResultSet *rs = [db executeQuery:[[@"select * from routeinfo where nameZh like '%" stringByAppendingString:partBusName]stringByAppendingString:@"%' order by nameZh"]];
+        //NSLog(@"rs = %@", rs);
+        while ([rs next])
+        {
+            //NSLog(@"rs next");
+            //NSLog(@"%@|%@|%@|%@|%@", [rs stringForColumn:@"Id"], [rs stringForColumn:@"nameZh"], [rs stringForColumn:@"departureZh"], [rs stringForColumn:@"destinationZh"], [rs stringForColumn:@"city"]);
+            
+            NSString * str = [rs stringForColumn:@"city"];
+            
+            if ([str isEqual:@"T"])
+            {
+                [taipeiDeparName addObject:[rs stringForColumn:@"departureZh"]];
+                [taipeiDestiName addObject:[rs stringForColumn:@"destinationZh"]];
+                [taipeiBusName addObject:[rs stringForColumn:@"nameZh"]];
+                countT = countT + 1;
+            }
+            else if ([str isEqual:@"N"])
+            {
+                [nTaipeiDeparName addObject:[rs stringForColumn:@"departureZh"]];
+                [nTaipeiDestiName addObject:[rs stringForColumn:@"destinationZh"]];
+                [nTaipeiBusName addObject:[rs stringForColumn:@"nameZh"]];
+                countN = countN + 1;
+            }
+
+        }
+        [rs close];
+        [db close];
+        NSLog(@"db close");
+    }
+    else
+    {
+        NSLog(@"Can't open the database.");
+    }
+
+    
+    /* old code */
     [taipeiBusName retain];
     [nTaipeiBusName retain];
     
@@ -496,18 +547,21 @@
         case 11:
             if (havingTableView == NO)
                 [self createTableView];
+            [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"紅"];
             [self showTableViewContent];
             break;
         case 12:
             if (havingTableView == NO)
                 [self createTableView];
+            [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"綠"];
             [self showTableViewContent];
             break;
         case 13:
             if (havingTableView == NO)
                 [self createTableView];
+            [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"橘"];
             [self showTableViewContent];
             break;
@@ -520,18 +574,21 @@
         case 21:
             if (havingTableView == NO)
                 [self createTableView];
+            [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"藍"];
             [self showTableViewContent];
             break;
         case 22:
             if (havingTableView == NO)
                 [self createTableView];
+            [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"棕"];
             [self showTableViewContent];
             break;
         case 23:
             if (havingTableView == NO)
                 [self createTableView];
+            [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"小"];
             [self showTableViewContent];
             break;
