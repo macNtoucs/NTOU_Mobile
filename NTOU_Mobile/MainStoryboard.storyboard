@@ -54,7 +54,7 @@
                                 <gestureRecognizers/>
                             </imageView>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LyY-Jt-CCc">
-                                <rect key="frame" x="75" y="105" width="73" height="16"/>
+                                <rect key="frame" x="75" y="106" width="73" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -69,7 +69,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sXV-Ja-TIo">
-                                <rect key="frame" x="75" y="181" width="73" height="16"/>
+                                <rect key="frame" x="75" y="182" width="73" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -84,7 +84,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pb7-aC-NRF">
-                                <rect key="frame" x="75" y="195" width="73" height="16"/>
+                                <rect key="frame" x="75" y="196" width="73" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -99,7 +99,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6eo-2D-pVU">
-                                <rect key="frame" x="75" y="213" width="73" height="14"/>
+                                <rect key="frame" x="75" y="214" width="73" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -114,7 +114,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rvm-Qb-2jB">
-                                <rect key="frame" x="75" y="227" width="73" height="15"/>
+                                <rect key="frame" x="75" y="228" width="73" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -129,7 +129,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="msv-gs-xZF">
-                                <rect key="frame" x="75" y="242" width="73" height="15"/>
+                                <rect key="frame" x="75" y="243" width="73" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -144,7 +144,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jLS-Yk-yt0">
-                                <rect key="frame" x="75" y="322" width="73" height="15"/>
+                                <rect key="frame" x="75" y="323" width="73" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -159,7 +159,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aXv-vf-KmA">
-                                <rect key="frame" x="156" y="70" width="73" height="10"/>
+                                <rect key="frame" x="156" y="71" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -170,11 +170,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="yxs-Bv-3G7"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="rUJ-uF-dW9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ghi-cZ-MUX">
-                                <rect key="frame" x="156" y="79" width="73" height="10"/>
+                                <rect key="frame" x="156" y="80" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -185,11 +185,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="m18-fO-BnU"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="EXT-uj-IAm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="m2K-Jq-bVB">
-                                <rect key="frame" x="156" y="88" width="73" height="10"/>
+                                <rect key="frame" x="156" y="89" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -200,11 +200,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="3Sp-wr-diZ"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="0sV-m8-QQT"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="v5F-Xs-Syr">
-                                <rect key="frame" x="156" y="97" width="73" height="10"/>
+                                <rect key="frame" x="156" y="98" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -215,11 +215,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="h4a-zf-Q57"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="kIt-8V-PjI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PNi-MV-PUk">
-                                <rect key="frame" x="156" y="106" width="73" height="10"/>
+                                <rect key="frame" x="156" y="107" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -230,11 +230,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="GD7-CF-d3j"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="yko-jh-e7y"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="OUB-x4-gSW">
-                                <rect key="frame" x="156" y="115" width="73" height="10"/>
+                                <rect key="frame" x="156" y="116" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -245,11 +245,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="N5V-nP-w2D"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="GMb-ik-F7N"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hPm-B5-1ou">
-                                <rect key="frame" x="156" y="124" width="73" height="10"/>
+                                <rect key="frame" x="156" y="125" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -260,11 +260,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="uFV-Mo-kp9"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="DO7-7x-Rvu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MKx-sf-dha">
-                                <rect key="frame" x="156" y="133" width="73" height="10"/>
+                                <rect key="frame" x="156" y="134" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -275,11 +275,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="gLi-p2-MsB"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="zy1-QY-9va"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="UK6-kY-XMY">
-                                <rect key="frame" x="156" y="142" width="73" height="10"/>
+                                <rect key="frame" x="156" y="143" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -290,11 +290,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="ibB-TJ-ZkQ"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="rRo-6E-xKf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="17" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2Os-wt-cXu">
-                                <rect key="frame" x="156" y="151" width="73" height="10"/>
+                                <rect key="frame" x="156" y="152" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -305,11 +305,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="fKv-nU-k94"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="4ku-hh-9RV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="18" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eDr-kz-cez">
-                                <rect key="frame" x="156" y="160" width="73" height="10"/>
+                                <rect key="frame" x="156" y="161" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -320,11 +320,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="bUv-J0-gql"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="sGa-n3-5NN"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="19" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hmr-5d-woz">
-                                <rect key="frame" x="156" y="169" width="73" height="10"/>
+                                <rect key="frame" x="156" y="170" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -335,11 +335,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="Rta-mW-viN"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="Puw-He-cuT"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="azx-EZ-TDw">
-                                <rect key="frame" x="156" y="178" width="73" height="10"/>
+                                <rect key="frame" x="156" y="179" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -350,11 +350,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="wn3-uY-gt2"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="j9H-c8-8Ip"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="21" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YZ9-b0-Frb">
-                                <rect key="frame" x="156" y="187" width="73" height="10"/>
+                                <rect key="frame" x="156" y="188" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -365,11 +365,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="HWq-W1-rDS"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="RWJ-0t-Nay"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="22" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="OzK-IW-Ata">
-                                <rect key="frame" x="156" y="196" width="73" height="10"/>
+                                <rect key="frame" x="156" y="197" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -380,11 +380,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="QrX-M3-skq"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="VBI-i8-IUi"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="23" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eEf-p4-KPk">
-                                <rect key="frame" x="156" y="205" width="73" height="10"/>
+                                <rect key="frame" x="156" y="206" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -395,11 +395,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="WoG-hx-oYD"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="bJK-Qb-ERa"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="24" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="UjR-Y3-Zkh">
-                                <rect key="frame" x="156" y="214" width="73" height="10"/>
+                                <rect key="frame" x="156" y="215" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -410,11 +410,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="26B-XO-YiS"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="bgs-9d-wK8"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="25" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nFv-rT-aMj">
-                                <rect key="frame" x="156" y="223" width="73" height="10"/>
+                                <rect key="frame" x="156" y="224" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -425,11 +425,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="9Es-Dx-3xK"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="cs8-BR-ZT9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="26" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zLM-Uc-CoT">
-                                <rect key="frame" x="156" y="232" width="73" height="10"/>
+                                <rect key="frame" x="156" y="233" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -440,11 +440,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="NSV-tc-GPp"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="2Ak-sO-DZZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="27" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nAJ-CK-71R">
-                                <rect key="frame" x="156" y="241" width="73" height="10"/>
+                                <rect key="frame" x="156" y="242" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -455,11 +455,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="LOx-CT-rwI"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="8xg-LZ-lEc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="28" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kno-WB-lYJ">
-                                <rect key="frame" x="156" y="250" width="73" height="10"/>
+                                <rect key="frame" x="156" y="251" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -470,11 +470,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="Qgo-Eh-yZy"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="y0k-2G-miK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="29" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="B77-k2-aoT">
-                                <rect key="frame" x="156" y="259" width="73" height="10"/>
+                                <rect key="frame" x="156" y="260" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -485,11 +485,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="tUr-9x-Cwh"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="PPw-yO-Nr1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="30" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MZy-pa-aBY">
-                                <rect key="frame" x="156" y="269" width="73" height="10"/>
+                                <rect key="frame" x="156" y="270" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -500,11 +500,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="cG5-4G-k7U"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="sja-P9-uDv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="31" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Eh7-xM-WfL">
-                                <rect key="frame" x="156" y="279" width="73" height="10"/>
+                                <rect key="frame" x="156" y="280" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -515,11 +515,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="ZBI-Sq-rKC"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="3AT-Nc-ycq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="32" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="VNa-lY-15y">
-                                <rect key="frame" x="156" y="288" width="73" height="10"/>
+                                <rect key="frame" x="156" y="289" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -530,11 +530,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="2lw-mo-N6O"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="Ztd-p0-f0A"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="33" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qZ0-a1-jjQ">
-                                <rect key="frame" x="156" y="297" width="73" height="10"/>
+                                <rect key="frame" x="156" y="298" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -545,11 +545,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="GFY-KM-MHG"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="NJx-Yi-rVS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="34" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="W4D-xu-QX9">
-                                <rect key="frame" x="156" y="306" width="73" height="10"/>
+                                <rect key="frame" x="156" y="307" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -560,11 +560,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="ira-0I-aTF"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="Lah-Vt-m1o"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="35" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YQa-lv-NEy">
-                                <rect key="frame" x="156" y="315" width="73" height="10"/>
+                                <rect key="frame" x="156" y="316" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -575,11 +575,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="djO-pl-5DD"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="hEa-NG-lBM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="36" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="se7-0v-4EB">
-                                <rect key="frame" x="156" y="324" width="73" height="10"/>
+                                <rect key="frame" x="156" y="325" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -590,11 +590,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="nwF-BM-daS"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="eHX-Fg-3ok"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="37" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zBk-dg-Clb">
-                                <rect key="frame" x="156" y="333" width="73" height="10"/>
+                                <rect key="frame" x="156" y="334" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -605,11 +605,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="x6D-il-i3p"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="gqG-kz-58e"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="38" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ns0-ON-6Ii">
-                                <rect key="frame" x="156" y="342" width="73" height="10"/>
+                                <rect key="frame" x="156" y="343" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -620,11 +620,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="bu6-Z3-cTs"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="2V4-N1-AeW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="39" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5NE-LN-Xtm">
-                                <rect key="frame" x="156" y="351" width="73" height="10"/>
+                                <rect key="frame" x="156" y="352" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -635,11 +635,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="5Ib-Yo-0Dv"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="Alt-lC-N6e"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="40" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ru6-pb-BOQ">
-                                <rect key="frame" x="156" y="360" width="73" height="10"/>
+                                <rect key="frame" x="156" y="361" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -650,11 +650,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="wFz-zx-feJ"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="nKQ-DS-pnX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="41" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="l50-qr-zoN">
-                                <rect key="frame" x="156" y="369" width="73" height="10"/>
+                                <rect key="frame" x="156" y="370" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -665,11 +665,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="BsM-K4-LaN"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="MKn-el-LIq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="42" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Fdl-sI-1Ac">
-                                <rect key="frame" x="156" y="378" width="73" height="10"/>
+                                <rect key="frame" x="156" y="379" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -680,11 +680,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="o7M-Bv-o4M"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="VXr-7g-NZo"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="43" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="n8H-cX-tui">
-                                <rect key="frame" x="156" y="387" width="73" height="10"/>
+                                <rect key="frame" x="156" y="388" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -695,11 +695,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="1sB-14-Vnp"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="SWV-e6-KYz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="44" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iF6-zN-spg">
-                                <rect key="frame" x="156" y="396" width="73" height="10"/>
+                                <rect key="frame" x="156" y="397" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -710,11 +710,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="fL8-PL-yuf"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="kTx-iD-qeJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="45" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dWr-lu-RaI">
-                                <rect key="frame" x="156" y="405" width="73" height="10"/>
+                                <rect key="frame" x="156" y="406" width="73" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -725,11 +725,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="bbr-Pm-xTP"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="KB6-f1-6Q9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="46" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hjs-NH-y2X">
-                                <rect key="frame" x="176" y="419.5" width="73" height="13"/>
+                                <rect key="frame" x="176" y="420.5" width="73" height="13"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -740,11 +740,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="xDY-n4-PyO"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="H0G-7c-gOk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="47" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KIc-Rf-fhB">
-                                <rect key="frame" x="176" y="441" width="73" height="13"/>
+                                <rect key="frame" x="176" y="442" width="73" height="13"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -755,7 +755,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchDragInside" id="AzZ-cj-RG2"/>
+                                    <action selector="displayInfomation:" destination="FZ4-J5-9Tp" eventType="touchUpInside" id="err-qg-22y"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -790,7 +790,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchDragInside" id="wYH-RZ-nZ6"/>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="Kk5-rF-73G"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="49" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2kB-xu-TAX">
@@ -834,6 +834,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="t3W-0B-QOj"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="52" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FRX-g3-Mon">
                                 <rect key="frame" x="84" y="164" width="73" height="16"/>
@@ -846,6 +849,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="ksI-gv-QPW"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="53" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="64D-L6-YVL">
                                 <rect key="frame" x="58" y="178" width="99" height="16"/>
@@ -858,6 +864,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="mFS-a8-WFL"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="54" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="U2j-A6-6fU">
                                 <rect key="frame" x="76" y="192" width="81" height="16"/>
@@ -870,9 +879,12 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="9Yi-cn-0Rv"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="55" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bvJ-OE-xPA">
-                                <rect key="frame" x="58" y="208" width="99" height="16"/>
+                                <rect key="frame" x="58" y="210" width="99" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -882,6 +894,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="7Li-2U-r0H"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="56" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MZH-Ul-Qr5">
                                 <rect key="frame" x="43" y="222" width="114" height="16"/>
@@ -894,6 +909,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="fMa-nF-mJn"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="57" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nPn-Pv-0pg">
                                 <rect key="frame" x="76" y="238" width="81" height="16"/>
@@ -906,6 +924,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="YCT-tu-KB8"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="58" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="geY-LF-yM3">
                                 <rect key="frame" x="76" y="253" width="81" height="16"/>
@@ -918,6 +939,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="wxH-Hj-Hup"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="59" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1GN-ok-Vhm">
                                 <rect key="frame" x="76" y="267" width="81" height="16"/>
@@ -930,6 +954,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="bb4-Yw-jFp"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="60" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pIk-BZ-sZ1">
                                 <rect key="frame" x="76" y="281" width="81" height="16"/>
@@ -942,6 +969,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="skc-8j-dhC"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="61" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="y2M-vW-I2b">
                                 <rect key="frame" x="76" y="296" width="81" height="16"/>
@@ -954,6 +984,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="QBj-Aa-5Mw"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="62" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Abs-eJ-26j">
                                 <rect key="frame" x="47" y="310" width="110" height="16"/>
@@ -966,6 +999,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="wFa-oH-7IT"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="63" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="01A-hs-M51">
                                 <rect key="frame" x="76" y="325" width="81" height="16"/>
@@ -978,6 +1014,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="faE-u0-PBo"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="64" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ylX-Ih-NOB">
                                 <rect key="frame" x="76" y="339" width="81" height="16"/>
@@ -990,6 +1029,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="nlH-zF-QGy"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="65" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zZT-s5-cTM">
                                 <rect key="frame" x="76" y="353" width="81" height="16"/>
@@ -1002,6 +1044,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="LfN-eV-2hq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="66" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uw5-5E-ze4">
                                 <rect key="frame" x="76" y="367" width="81" height="16"/>
@@ -1014,6 +1059,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="ALi-Kx-l77"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="67" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="i6d-pz-jpX">
                                 <rect key="frame" x="76" y="382" width="81" height="16"/>
@@ -1026,6 +1074,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="JFA-t0-R2P"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="68" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jn9-ei-NkD">
                                 <rect key="frame" x="76" y="397" width="81" height="16"/>
@@ -1038,6 +1089,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="caU-wh-Aa6"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="69" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YQu-pQ-Q4i">
                                 <rect key="frame" x="76" y="412" width="81" height="16"/>
@@ -1050,6 +1104,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="oZy-7M-SX9"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="70" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aKa-tc-Ab5">
                                 <rect key="frame" x="76" y="427" width="81" height="16"/>
@@ -1062,6 +1119,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="displayInfomation:" destination="C2M-71-YKM" eventType="touchUpInside" id="a6p-Cm-LyI"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2789,6 +2849,20 @@
         <image name="map-04.png" width="662" height="1347"/>
         <image name="map-05.png" width="662" height="1586"/>
     </resources>
+    <classes>
+        <class className="CustomPagerViewController" superclassName="PagerViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomPagerViewController.h"/>
+        </class>
+        <class className="PagerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PagerViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="changePage:"/>
+                <relationship kind="action" name="displayInfomation:"/>
+                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
