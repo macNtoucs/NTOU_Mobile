@@ -348,12 +348,10 @@
 
 
 - (NSURL*)HTStationInfoURL:(HTSearchResultViewController *)stationInfoTableView{
-    //http://www.thsrc.com.tw/TC/ticket/tic_time_result.asp
-    //from=1&to=5&sDate=2012%2F12%2F18&TimeTable=13%3A30&FromOrDest=From&x=50&y=14
-    // NSArray *arr= [stationNum allKeys];
+    //http://www.thsrc.com.tw/tw/TimeTable/SearchResult
     stationInfoTableView.selectedDate = calendar.selectedDate;
     stationInfoTableView.selectedHTTime=self->selectedHTTime;
-    NSString * queryURL = @"http://www.thsrc.com.tw/TC/ticket/tic_time_result.asp";
+    NSString * queryURL = @"http://www.thsrc.com.tw/tw/TimeTable/SearchResult";
     return [NSURL URLWithString: queryURL] ;
 }
 - (NSString *)HTstartStationTitile:(HTSearchResultViewController *)stationInfoTableView{
