@@ -232,6 +232,7 @@
     // Add profile button.
     UIBarButtonItem *bi = [[UIBarButtonItem alloc]
           initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit)];
+    
    // [buttons addObject:bi];
    
 
@@ -248,7 +249,7 @@
 -(void)edit{
     editSchedule = [[EditScheduleViewController alloc] initWithStyle:UITableViewStyleGrouped];
     UINavigationController* tempNavCon = [[UINavigationController alloc]    initWithRootViewController:editSchedule];
-    tempNavCon.navigationBar.tintColor = [UIColor colorWithRed:44.0/255 green:66.0/255 blue:114.0/255 alpha:1];
+    tempNavCon.navigationBar.tintColor = [UIColor colorWithRed:12.0/255 green:46.0/255 blue:112.0/255 alpha:1];
     [self presentModalViewController:tempNavCon animated:YES];
     [tempNavCon release];
     [editSchedule release];
