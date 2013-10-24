@@ -1117,28 +1117,28 @@
             return @"Apple203";
             break;
         case 118:
-            return @"密酥雞排";
+            return @"小不點健保藥局";
             break;
         case 119:
-            return @"和蕎屋";
+            return @"密酥雞排";
             break;
         case 120:
-            return @"和春蔘藥行";
+            return @"和蕎屋";
             break;
         case 121:
-            return @"超運西點";
+            return @"和春蔘藥行";
             break;
         case 122:
-            return @"正義國術";
+            return @"超運西點";
             break;
         case 123:
-            return @"中華電信";
+            return @"正義國術";
             break;
         case 124:
-            return @"你來旺熱炒";
+            return @"中華電信";
             break;
         case 125:
-            return @"康是美";
+            return @"你來旺熱炒";
             break;
         case 126:
             return @"同慶堂";
