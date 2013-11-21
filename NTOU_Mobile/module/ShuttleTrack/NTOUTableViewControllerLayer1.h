@@ -11,6 +11,9 @@
 #import "RouteDetailViewController.h"
 #import "StopsViewController.h"
 #import "OtherTrafficTrapViewController.h"
+#import "R66SwitchViewController.h"
+#import "R66Layer1ViewController.h"    // new R66
+#import "R66Layer2ViewController.h"
 @interface NTOUTableViewControllerLayer1 : UITableViewController
 
 @end

@@ -132,7 +132,7 @@
             return 4;
             break;
         case 1:
-            return 2;
+            return 3;   // 新增R66
             break;
         case 2:
             return 1;
@@ -179,6 +179,8 @@
                 case 1:
                     cell.textLabel.text = @"火車站  → 海大  → 八斗子";
                     break;
+                case 2:
+                    cell.textLabel.text = @"R66（海科館／七堵車站）";
                 default:
                     break;
             }
@@ -253,20 +255,31 @@
         SecondaryGroupedTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
        
         StopsViewController * stops = [[StopsViewController alloc]initWithStyle:UITableViewStyleGrouped];
-        stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];
+        // 這行沒mark掉會導致R66公車無法進到下層
+        /*stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];*/
+        R66SwitchViewController *r66Switch = [[R66SwitchViewController alloc] init];
+        
         if (indexPath.row==0) {
-            [stops setDirection:true];
+            stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];            [stops setDirection:true];
             [self.navigationController pushViewController:stops animated:YES];
             stops.navigationItem.leftBarButtonItem.title=@"back";
-        } else {
-            [stops setDirection:false];
+        }
+        else if (indexPath.row == 1) {
+            stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];            [stops setDirection:false];
              [self.navigationController pushViewController:stops animated:YES];
             stops.navigationItem.leftBarButtonItem.title=@"back";
         }
-       
+        else
+        {
+            r66Switch.title = @"R66 時刻表";
+            [self.navigationController pushViewController:r66Switch animated:YES];
+            r66Switch.navigationItem.leftBarButtonItem.title = @"back";
+        }
         [stops release];
+        [r66Switch release];
     }
-    else {
+    else
+    {
 
         OtherTrafficTrapViewController *other = [[OtherTrafficTrapViewController alloc ]initWithStyle:UITableViewStyleGrouped];
         other.title = @"搭乘工具";

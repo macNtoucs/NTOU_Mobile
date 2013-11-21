@@ -228,6 +228,10 @@
 		BE73DDEF17A2550000F1B499 /* 作業.png in Resources */ = {isa = PBXBuildFile; fileRef = BE73DDEB17A2550000F1B499 /* 作業.png */; };
 		BE73DDF017A2550000F1B499 /* 筆記.png in Resources */ = {isa = PBXBuildFile; fileRef = BE73DDEC17A2550000F1B499 /* 筆記.png */; };
 		BE73DDF117A2550000F1B499 /* 講義.png in Resources */ = {isa = PBXBuildFile; fileRef = BE73DDED17A2550000F1B499 /* 講義.png */; };
+		BE98A966183CF79400EF3CDC /* R66Layer2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE98A965183CF79300EF3CDC /* R66Layer2ViewController.m */; };
+		BE98A969183CFA6000EF3CDC /* R66SwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE98A968183CFA6000EF3CDC /* R66SwitchViewController.m */; };
+		BEA9165E183B24E600F12001 /* R66HararioList.plist in Resources */ = {isa = PBXBuildFile; fileRef = BEA9165D183B24E600F12001 /* R66HararioList.plist */; };
+		BEA91661183C5F0400F12001 /* R66Layer1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA91660183C5F0400F12001 /* R66Layer1ViewController.m */; };
 		C71A4EE51705B106002819AD /* Fuhobus_Data.m in Sources */ = {isa = PBXBuildFile; fileRef = C71A4EE31705B106002819AD /* Fuhobus_Data.m */; };
 		C71A4EE61705B106002819AD /* Fuho_Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = C71A4EE41705B106002819AD /* Fuho_Data.plist */; };
 		C71A4EEB1705B114002819AD /* cancel_24.png in Resources */ = {isa = PBXBuildFile; fileRef = C71A4EE71705B114002819AD /* cancel_24.png */; };
@@ -589,6 +593,13 @@
 		BE73DDEB17A2550000F1B499 /* 作業.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "作業.png"; sourceTree = "<group>"; };
 		BE73DDEC17A2550000F1B499 /* 筆記.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "筆記.png"; sourceTree = "<group>"; };
 		BE73DDED17A2550000F1B499 /* 講義.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "講義.png"; sourceTree = "<group>"; };
+		BE98A964183CF79300EF3CDC /* R66Layer2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R66Layer2ViewController.h; sourceTree = "<group>"; };
+		BE98A965183CF79300EF3CDC /* R66Layer2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R66Layer2ViewController.m; sourceTree = "<group>"; };
+		BE98A967183CFA6000EF3CDC /* R66SwitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R66SwitchViewController.h; sourceTree = "<group>"; };
+		BE98A968183CFA6000EF3CDC /* R66SwitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R66SwitchViewController.m; sourceTree = "<group>"; };
+		BEA9165D183B24E600F12001 /* R66HararioList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = R66HararioList.plist; sourceTree = "<group>"; };
+		BEA9165F183C5F0400F12001 /* R66Layer1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R66Layer1ViewController.h; sourceTree = "<group>"; };
+		BEA91660183C5F0400F12001 /* R66Layer1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R66Layer1ViewController.m; sourceTree = "<group>"; };
 		C71A4EE21705B106002819AD /* Fuhobus_Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fuhobus_Data.h; sourceTree = "<group>"; };
 		C71A4EE31705B106002819AD /* Fuhobus_Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fuhobus_Data.m; sourceTree = "<group>"; };
 		C71A4EE41705B106002819AD /* Fuho_Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Fuho_Data.plist; sourceTree = "<group>"; };
@@ -1013,6 +1024,13 @@
 				91A9043316E899D200ECF2CF /* TrainStyleViewController.m */,
 				91A9043416E899D200ECF2CF /* XPathQuery.h */,
 				91A9043516E899D200ECF2CF /* XPathQuery.m */,
+				BEA9165D183B24E600F12001 /* R66HararioList.plist */,
+				BEA9165F183C5F0400F12001 /* R66Layer1ViewController.h */,
+				BEA91660183C5F0400F12001 /* R66Layer1ViewController.m */,
+				BE98A964183CF79300EF3CDC /* R66Layer2ViewController.h */,
+				BE98A965183CF79300EF3CDC /* R66Layer2ViewController.m */,
+				BE98A967183CFA6000EF3CDC /* R66SwitchViewController.h */,
+				BE98A968183CFA6000EF3CDC /* R66SwitchViewController.m */,
 			);
 			name = ShuttleTrack;
 			path = module/ShuttleTrack;
@@ -1368,6 +1386,7 @@
 				BE73DDEF17A2550000F1B499 /* 作業.png in Resources */,
 				BE73DDF017A2550000F1B499 /* 筆記.png in Resources */,
 				BE73DDF117A2550000F1B499 /* 講義.png in Resources */,
+				BEA9165E183B24E600F12001 /* R66HararioList.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1523,6 +1542,9 @@
 				C71A4F1F17128DF5002819AD /* AboutCreditsVC.m in Sources */,
 				C72B23F1176AE87200474235 /* SettingsModuleViewController.m in Sources */,
 				C72B23F4176AE97100474235 /* SettingModule.m in Sources */,
+				BEA91661183C5F0400F12001 /* R66Layer1ViewController.m in Sources */,
+				BE98A966183CF79400EF3CDC /* R66Layer2ViewController.m in Sources */,
+				BE98A969183CFA6000EF3CDC /* R66SwitchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
