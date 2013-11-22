@@ -15,6 +15,8 @@
 {
     BOOL isWeekday; // weekday:true  weekend:false
     UIBarButtonItem *switchButton;
+    CGFloat screenHeight;
+    CGFloat screenWidth;
 }
 @property (strong, nonatomic) R66Layer1ViewController *r66layer1ViewController;
 @property (strong, nonatomic) R66Layer2ViewController *r66layer2ViewController;

@@ -22,8 +22,14 @@
 {
     [self detectCurrentTime];
     
+    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    screenHeight = screenBound.size.height;
+    screenWidth = screenBound.size.width;
+    
     R66Layer1ViewController *layer1ViewController = [[R66Layer1ViewController alloc] initWithStyle:UITableViewStyleGrouped];
     R66Layer2ViewController *layer2ViewController = [[R66Layer2ViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    layer1ViewController.tableView.frame = CGRectMake(0.0, 0.0, screenWidth, screenHeight);
+    layer2ViewController.tableView.frame = CGRectMake(0.0, 0.0, screenWidth, screenHeight);
     
     if (isWeekday)  // 平常日
     {
@@ -66,6 +72,7 @@
         if (self.r66layer2ViewController == nil)
         {
             R66Layer2ViewController *layer2ViewController = [[R66Layer2ViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            layer2ViewController.tableView.frame = CGRectMake(0.0, 0.0, screenWidth, screenHeight);
             self.r66layer2ViewController = layer2ViewController;
             [layer2ViewController release];
         }
@@ -79,6 +86,7 @@
         if (self.r66layer1ViewController == nil)
         {
             R66Layer1ViewController *layer1ViewController = [[R66Layer1ViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            layer1ViewController.tableView.frame = CGRectMake(0.0, 0.0, screenWidth, screenHeight);
             self.r66layer1ViewController = layer1ViewController;
             [layer1ViewController release];
         }

@@ -272,6 +272,9 @@
         else
         {
             r66Switch.title = @"R66 時刻表";
+            
+            //[self.navigationController.toolbar setFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
+            //NSLog(@"toolbar = %f", self.navigationController.toolbar.frame.size.height);
             [self.navigationController pushViewController:r66Switch animated:YES];
             r66Switch.navigationItem.leftBarButtonItem.title = @"back";
         }

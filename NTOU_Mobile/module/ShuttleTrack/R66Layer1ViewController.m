@@ -36,7 +36,6 @@
     [super viewDidLoad];
     [self.tableView applyStandardColors];
     [self initWithData];
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -82,7 +81,7 @@
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"1";
+    return @"平常日發車時間";
 }
 
 -(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

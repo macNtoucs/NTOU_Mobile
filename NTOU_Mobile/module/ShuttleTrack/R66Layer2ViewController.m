@@ -78,9 +78,9 @@
     return rowHeight;
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @"1";
-    
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @" ";
 }
 
 -(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

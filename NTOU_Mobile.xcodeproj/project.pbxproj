@@ -295,7 +295,7 @@
 		91756E3716E9A6DA001D724D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		91756E3816E9A6DA001D724D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		91756E4216E9A6E7001D724D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		91756E4416E9A6EB001D724D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		91756E4416E9A6EB001D724D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		91756E4616E9B5EB001D724D /* CMModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMModule.h; sourceTree = "<group>"; };
 		91756E4716E9B5EB001D724D /* CMModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMModule.m; sourceTree = "<group>"; };
 		91756E8C16F206F7001D724D /* AppIcon-057.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-057.png"; path = "../AppIcon-057.png"; sourceTree = "<group>"; };
@@ -830,7 +830,6 @@
 				C71A4F01170A93AC002819AD /* Default@2x.png */,
 				C71A4EFF170A9399002819AD /* Default.png */,
 				BA06A07C16F2EF5B00212CB9 /* EventKit.framework */,
-				91756E4416E9A6EB001D724D /* Icon@2x.png */,
 				91756E4216E9A6E7001D724D /* Icon.png */,
 				91A9005016E854E500ECF2CF /* NTOU_Mobile */,
 				91A9004916E854E500ECF2CF /* Frameworks */,
@@ -865,6 +864,7 @@
 		91A9005016E854E500ECF2CF /* NTOU_Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				91756E4416E9A6EB001D724D /* Icon@2x.png */,
 				C72B23EB176AE80800474235 /* Settings */,
 				BA06A06316F2EE6600212CB9 /* Calendar */,
 				C74699D416F21BE20060F49C /* News */,
@@ -1631,8 +1631,8 @@
 		91A9006516E854E500ECF2CF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: ching-chi Lin (46873356PM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1642,8 +1642,8 @@
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "71A65A17-4614-4323-B115-BA6F2CCD8132";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5247939A-EB5C-4F8E-B701-EC4BFE15D053";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1651,8 +1651,8 @@
 		91A9006616E854E500ECF2CF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: ching-chi Lin (46873356PM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1662,8 +1662,8 @@
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "71A65A17-4614-4323-B115-BA6F2CCD8132";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "71A65A17-4614-4323-B115-BA6F2CCD8132";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
