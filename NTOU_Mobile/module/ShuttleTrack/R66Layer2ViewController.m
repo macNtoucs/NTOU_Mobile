@@ -80,7 +80,7 @@
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @" ";
+    return @"例假日發車時間";
 }
 
 -(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -88,7 +88,8 @@
     return 32;
 }
 
-- (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+- (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
 	NSString *headerTitle = @"例假日發車時間";
     return [UITableView groupedSectionHeaderWithTitle:headerTitle];
 }

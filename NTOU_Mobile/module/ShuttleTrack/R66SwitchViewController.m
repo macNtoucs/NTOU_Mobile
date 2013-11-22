@@ -17,7 +17,6 @@
 @synthesize r66layer1ViewController, r66layer2ViewController;
 @synthesize switchButton;
 
-
 - (void)viewDidLoad
 {
     [self detectCurrentTime];
@@ -55,7 +54,8 @@
     NSDate *date = [NSDate date];
     [formatter setDateFormat:@"cccc"];
     NSString *currentTime = [formatter stringFromDate:date];
-    if ([currentTime isEqualToString:@"Saturday"] || [currentTime isEqualToString:@"Sunday"])
+    NSLog(@"%@", currentTime);
+    if ([currentTime isEqualToString:@"Saturday"] || [currentTime isEqualToString:@"星期六"] || [currentTime isEqualToString:@"Sunday"] || [currentTime isEqualToString:@"星期日"])
         isWeekday = false;
     else
         isWeekday = true;

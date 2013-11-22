@@ -294,7 +294,7 @@
 		913A0D1D16E98F99007BAD8F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		91756E3716E9A6DA001D724D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		91756E3816E9A6DA001D724D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		91756E4216E9A6E7001D724D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		91756E4216E9A6E7001D724D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		91756E4416E9A6EB001D724D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		91756E4616E9B5EB001D724D /* CMModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMModule.h; sourceTree = "<group>"; };
 		91756E4716E9B5EB001D724D /* CMModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMModule.m; sourceTree = "<group>"; };
@@ -830,7 +830,6 @@
 				C71A4F01170A93AC002819AD /* Default@2x.png */,
 				C71A4EFF170A9399002819AD /* Default.png */,
 				BA06A07C16F2EF5B00212CB9 /* EventKit.framework */,
-				91756E4216E9A6E7001D724D /* Icon.png */,
 				91A9005016E854E500ECF2CF /* NTOU_Mobile */,
 				91A9004916E854E500ECF2CF /* Frameworks */,
 				91A9004716E854E500ECF2CF /* Products */,
@@ -864,6 +863,7 @@
 		91A9005016E854E500ECF2CF /* NTOU_Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				91756E4216E9A6E7001D724D /* Icon.png */,
 				91756E4416E9A6EB001D724D /* Icon@2x.png */,
 				C72B23EB176AE80800474235 /* Settings */,
 				BA06A06316F2EE6600212CB9 /* Calendar */,

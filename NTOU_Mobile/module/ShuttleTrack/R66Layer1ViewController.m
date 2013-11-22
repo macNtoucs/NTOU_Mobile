@@ -89,7 +89,8 @@
     return 32;
 }
 
-- (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+- (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
 	NSString *headerTitle = @"平常日發車時間";
     return [UITableView groupedSectionHeaderWithTitle:headerTitle];
 }
