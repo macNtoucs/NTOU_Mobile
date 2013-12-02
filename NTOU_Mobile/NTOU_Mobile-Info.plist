@@ -22,7 +22,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>APNSTest.test</string>
+	<string>ntoucs.NTOU-Mobile</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleLocalizations</key>
@@ -34,11 +34,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.09</string>
+	<string>1.10</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.09</string>
+	<string>1.10</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>

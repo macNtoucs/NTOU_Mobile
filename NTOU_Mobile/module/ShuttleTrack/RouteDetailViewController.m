@@ -376,7 +376,10 @@
         theConncetionCount=0;
 }
 
-
+- (void)isZhongzheng:(BOOL)is
+{
+    isZhongzheng = is;
+}
 
 #pragma mark - Table view data source
 
@@ -413,13 +416,18 @@
     if (dir){
         switch (indexPath.row) {
             case 0:
-                cell.textLabel.text = @"103八斗子-中正路-總站";
-                break;
-            case 1:
-                if ([waitTime count]>2)
+                if ([waitTime count] <= 2 && !isZhongzheng)
                     cell.textLabel.text = @"103八斗子-祥豐街-總站";
                 else
+                    cell.textLabel.text = @"103八斗子-中正路-總站";
+                break;
+            case 1:
+                if ([waitTime count] <= 2 && isZhongzheng)
                     cell.textLabel.text = @"104新豐街-中正路-總站";
+                else if ([waitTime count] <= 2 && !isZhongzheng)
+                    cell.textLabel.text = @"104新豐街-祥豐街-總站";
+                else
+                    cell.textLabel.text = @"103八斗子-祥豐街-總站";
                 break;
             case 2:
                 cell.textLabel.text = @"104新豐街-中正路-總站";
@@ -434,13 +442,18 @@
     else {
         switch (indexPath.row) {
             case 0:
-                cell.textLabel.text = @"103總站-中正路-八斗子";
+                if ([waitTime count] <= 2 && !isZhongzheng)
+                    cell.textLabel.text = @"103總站-祥豐街-八斗子";
+                else
+                    cell.textLabel.text = @"103總站-中正路-八斗子";
                 break;
             case 1:
-                if ([waitTime count]>2)
-                    cell.textLabel.text = @"103總站-祥豐街-中正路";
-                else
+                if ([waitTime count] <= 2 && isZhongzheng)
                     cell.textLabel.text = @"104總站-中正路-新豐街";
+                else if ([waitTime count] <= 2 && !isZhongzheng)
+                    cell.textLabel.text = @"104總站-祥豐街-新豐街";
+                else
+                    cell.textLabel.text = @"103總站-祥豐街-八斗子";
                 break;
             case 2:
                 cell.textLabel.text = @"104總站-中正路-新豐街";

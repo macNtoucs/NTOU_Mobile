@@ -1570,8 +1570,8 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ching-chi Lin (46873356PM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1591,8 +1591,8 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "71A65A17-4614-4323-B115-BA6F2CCD8132";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "71A65A17-4614-4323-B115-BA6F2CCD8132";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -1606,8 +1606,8 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ching-chi Lin (46873356PM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1620,8 +1620,8 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "71A65A17-4614-4323-B115-BA6F2CCD8132";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "71A65A17-4614-4323-B115-BA6F2CCD8132";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
@@ -1631,8 +1631,8 @@
 		91A9006516E854E500ECF2CF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ching-chi Lin (46873356PM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1642,8 +1642,8 @@
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "71A65A17-4614-4323-B115-BA6F2CCD8132";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "71A65A17-4614-4323-B115-BA6F2CCD8132";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1651,8 +1651,8 @@
 		91A9006616E854E500ECF2CF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ching-chi Lin (46873356PM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1662,8 +1662,8 @@
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "71A65A17-4614-4323-B115-BA6F2CCD8132";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "71A65A17-4614-4323-B115-BA6F2CCD8132";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

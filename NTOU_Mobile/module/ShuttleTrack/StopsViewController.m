@@ -263,6 +263,11 @@
 
     
     }
+    if (indexPath.row == 3)
+        [detail isZhongzheng:TRUE];
+    else
+        [detail isZhongzheng:FALSE];
+    [detail goBackMode:go];
     [self.navigationController pushViewController:detail animated:YES];
     detail.navigationItem.leftBarButtonItem.title=@"back";
 }
