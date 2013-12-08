@@ -240,6 +240,64 @@ NSString* NSStringFromUIImageOrientation(UIImageOrientation orientation)
 	return labelContainer;
 }
 
++ (UIView *)groupedSectionHeaderWithTitle2:(NSString *)beforeBlack andOther:(NSString *)laterGray
+{
+	UIFont *font = [UIFont boldSystemFontOfSize:STANDARD_CONTENT_FONT_SIZE];
+	CGSize size = [beforeBlack sizeWithFont:font];
+	CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
+	UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(15.0, 7.0, appFrame.size.width/2 - 10.0, size.height)];
+	UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(165.0, 7.0, appFrame.size.width/2 - 15.0, size.height)];
+    
+	label1.text = beforeBlack;
+	label1.textColor = GROUPED_SECTION_FONT_COLOR;
+	label1.font = font;
+	label1.backgroundColor = [UIColor clearColor];
+	
+    label2.text = laterGray;
+    label2.textColor = [UIColor grayColor];
+    label2.font = font;
+    label2.backgroundColor = [UIColor clearColor];
+    
+	UIView *labelContainer = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, appFrame.size.width, GROUPED_SECTION_HEADER_HEIGHT)] autorelease];
+	labelContainer.backgroundColor = [UIColor clearColor];
+	
+	[labelContainer addSubview:label1];
+    [labelContainer addSubview:label2];
+	[label1 release];
+	[label2 release];
+    
+	return labelContainer;
+}
+
++ (UIView *)groupedSectionHeaderWithTitle3:(NSString *)beforeGray andOther:(NSString *)laterBlack
+{
+	UIFont *font = [UIFont boldSystemFontOfSize:STANDARD_CONTENT_FONT_SIZE];
+	CGSize size = [beforeGray sizeWithFont:font];
+	CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
+	UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(22.0, 7.0, appFrame.size.width/2 - 22.0, size.height)];
+	UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(155.0, 7.0, appFrame.size.width/2 - 5.0, size.height)];
+    
+	label1.text = beforeGray;
+	label1.textColor = [UIColor grayColor];
+	label1.font = font;
+	label1.backgroundColor = [UIColor clearColor];
+	
+    label2.text = laterBlack;
+    label2.textColor = GROUPED_SECTION_FONT_COLOR;
+    label2.font = font;
+    label2.backgroundColor = [UIColor clearColor];
+    
+	UIView *labelContainer = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, appFrame.size.width, GROUPED_SECTION_HEADER_HEIGHT)] autorelease];
+	labelContainer.backgroundColor = [UIColor clearColor];
+	
+	[labelContainer addSubview:label1];
+    [labelContainer addSubview:label2];
+	[label1 release];
+	[label2 release];
+    
+	return labelContainer;
+}
+
 + (UIView *)ungroupedSectionHeaderWithTitle:(NSString *)title {
 	UIFont *font = [UIFont boldSystemFontOfSize:STANDARD_CONTENT_FONT_SIZE];
 	CGSize size = [title sizeWithFont:font];

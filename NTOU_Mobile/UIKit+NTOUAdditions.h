@@ -55,6 +55,8 @@ NSString* NSStringFromUIImageOrientation(UIImageOrientation orientation);
 - (void)applyStandardColors;
 - (void)applyStandardCellHeight;
 + (UIView *)groupedSectionHeaderWithTitle:(NSString *)title;
++ (UIView *)groupedSectionHeaderWithTitle2:(NSString *)beforeBlack andOther:(NSString *)laterGray;
++ (UIView *)groupedSectionHeaderWithTitle3:(NSString *)beforeGray andOther:(NSString *)laterBlack;
 + (UIView *)ungroupedSectionHeaderWithTitle:(NSString *)title;
 
 @end

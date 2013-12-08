@@ -32,20 +32,20 @@
 }
 
 /*- (void)swipeLeft:(UITapGestureRecognizer *)recongizer
-{
-    if (self.r66layer2ViewController == nil)
-    {
-        //R66Layer2ViewController *layer2ViewController = [[R66Layer2ViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        R66RightLayerViewController *layer2ViewController = [[R66RightLayerViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        layer2ViewController.tableView.frame = CGRectMake(0.0, 0.0, screenWidth, screenHeight);
-        self.r66layer2ViewController = layer2ViewController;
-        [layer2ViewController release];
-    }
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
-    switchButton.title = @"平常日";
-    [r66layer1ViewController.view removeFromSuperview];
-    [self.view insertSubview:r66layer2ViewController.view atIndex:0];
-}*/
+ {
+ if (self.r66layer2ViewController == nil)
+ {
+ //R66Layer2ViewController *layer2ViewController = [[R66Layer2ViewController alloc] initWithStyle:UITableViewStyleGrouped];
+ R66RightLayerViewController *layer2ViewController = [[R66RightLayerViewController alloc] initWithStyle:UITableViewStyleGrouped];
+ layer2ViewController.tableView.frame = CGRectMake(0.0, 0.0, screenWidth, screenHeight);
+ self.r66layer2ViewController = layer2ViewController;
+ [layer2ViewController release];
+ }
+ [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
+ switchButton.title = @"平常日";
+ [r66layer1ViewController.view removeFromSuperview];
+ [self.view insertSubview:r66layer2ViewController.view atIndex:0];
+ }*/
 
 - (void)viewDidLoad
 {
@@ -107,8 +107,9 @@
 
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-	NSString *headerTitle = @"平常日發車時間";
-    return [UITableView groupedSectionHeaderWithTitle:headerTitle];
+	NSString *headerTitle1 = @"● 平常日發車時間  |";
+    NSString *headerTitle2 = @"   例假日發車時間";
+    return [UITableView groupedSectionHeaderWithTitle2:headerTitle1 andOther:headerTitle2];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

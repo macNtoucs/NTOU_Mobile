@@ -90,8 +90,9 @@
 
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-	NSString *headerTitle = @"例假日發車時間";
-    return [UITableView groupedSectionHeaderWithTitle:headerTitle];
+	NSString *headerTitle1 = @"平常日發車時間   ";
+    NSString *headerTitle2 = @"|  ● 例假日發車時間";
+    return [UITableView groupedSectionHeaderWithTitle3:headerTitle1 andOther:headerTitle2];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
