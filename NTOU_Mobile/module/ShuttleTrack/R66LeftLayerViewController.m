@@ -107,8 +107,8 @@
 
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-	NSString *headerTitle1 = @"● 平常日發車時間  |";
-    NSString *headerTitle2 = @"   例假日發車時間";
+	NSString *headerTitle1 = @"平常日發車時間";
+    NSString *headerTitle2 = @"例假日發車時間";
     return [UITableView groupedSectionHeaderWithTitle2:headerTitle1 andOther:headerTitle2];
 }
 
@@ -120,6 +120,7 @@
     {
         cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSString *timeString;
     if (indexPath.row == 0)
         timeString = [[NSString alloc] initWithFormat:@"           %@               %@", [weekday_marine objectAtIndex:indexPath.row], [weekday_qidu objectAtIndex:indexPath.row]];

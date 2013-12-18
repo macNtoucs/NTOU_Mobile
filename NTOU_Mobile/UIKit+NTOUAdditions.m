@@ -245,27 +245,39 @@ NSString* NSStringFromUIImageOrientation(UIImageOrientation orientation)
 	UIFont *font = [UIFont boldSystemFontOfSize:STANDARD_CONTENT_FONT_SIZE];
 	CGSize size = [beforeBlack sizeWithFont:font];
 	CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
-	UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(15.0, 7.0, appFrame.size.width/2 - 10.0, size.height)];
-	UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(165.0, 7.0, appFrame.size.width/2 - 15.0, size.height)];
+	UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(20.0, 7.0, 135, size.height)];
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(155, 7.0, 10, size.height)];
+	UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(165.0, 7.0, 135, size.height)];
+    
     
 	label1.text = beforeBlack;
 	label1.textColor = GROUPED_SECTION_FONT_COLOR;
 	label1.font = font;
 	label1.backgroundColor = [UIColor clearColor];
+    //label1.backgroundColor = [UIColor whiteColor];
+    label1.textAlignment = NSTextAlignmentCenter;
 	
-    label2.text = laterGray;
-    label2.textColor = [UIColor grayColor];
+    label2.text = @"|";
+    label2.textColor = GROUPED_SECTION_FONT_COLOR;
     label2.font = font;
-    label2.backgroundColor = [UIColor clearColor];
+	label2.backgroundColor = [UIColor clearColor];
+    label2.textAlignment = NSTextAlignmentCenter;
+    
+    label3.text = laterGray;
+    label3.textColor = [UIColor grayColor];
+    label3.font = font;
+    label3.backgroundColor = [UIColor clearColor];
+    label3.textAlignment = NSTextAlignmentCenter;
     
 	UIView *labelContainer = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, appFrame.size.width, GROUPED_SECTION_HEADER_HEIGHT)] autorelease];
 	labelContainer.backgroundColor = [UIColor clearColor];
 	
 	[labelContainer addSubview:label1];
     [labelContainer addSubview:label2];
+    [labelContainer addSubview:label3];
 	[label1 release];
 	[label2 release];
-    
+    [label3 release];
 	return labelContainer;
 }
 
@@ -274,27 +286,37 @@ NSString* NSStringFromUIImageOrientation(UIImageOrientation orientation)
 	UIFont *font = [UIFont boldSystemFontOfSize:STANDARD_CONTENT_FONT_SIZE];
 	CGSize size = [beforeGray sizeWithFont:font];
 	CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
-	UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(22.0, 7.0, appFrame.size.width/2 - 22.0, size.height)];
-	UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(155.0, 7.0, appFrame.size.width/2 - 5.0, size.height)];
+	UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(20.0, 7.0, 135, size.height)];
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(155, 7.0, 10, size.height)];
+	UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(165.0, 7.0, 135, size.height)];
     
 	label1.text = beforeGray;
 	label1.textColor = [UIColor grayColor];
 	label1.font = font;
 	label1.backgroundColor = [UIColor clearColor];
+    label1.textAlignment = NSTextAlignmentCenter;
 	
-    label2.text = laterBlack;
+    label2.text = @"|";
     label2.textColor = GROUPED_SECTION_FONT_COLOR;
     label2.font = font;
-    label2.backgroundColor = [UIColor clearColor];
+	label2.backgroundColor = [UIColor clearColor];
+    label2.textAlignment = NSTextAlignmentCenter;
+    
+    label3.text = laterBlack;
+    label3.textColor = GROUPED_SECTION_FONT_COLOR;
+    label3.font = font;
+    label3.backgroundColor = [UIColor clearColor];
+    label3.textAlignment = NSTextAlignmentCenter;
     
 	UIView *labelContainer = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, appFrame.size.width, GROUPED_SECTION_HEADER_HEIGHT)] autorelease];
 	labelContainer.backgroundColor = [UIColor clearColor];
 	
 	[labelContainer addSubview:label1];
     [labelContainer addSubview:label2];
+    [labelContainer addSubview:label3];
 	[label1 release];
 	[label2 release];
-    
+    [label3 release];
 	return labelContainer;
 }
 

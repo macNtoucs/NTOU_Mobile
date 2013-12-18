@@ -235,6 +235,7 @@
 		BECF7C71184F468200ADD115 /* R66LeftLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BECF7C6E184F468200ADD115 /* R66LeftLayerViewController.m */; };
 		BECF7C72184F468200ADD115 /* R66RightLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BECF7C70184F468200ADD115 /* R66RightLayerViewController.m */; };
 		BECF7C74184F48A800ADD115 /* R66Route.png in Resources */ = {isa = PBXBuildFile; fileRef = BECF7C73184F48A800ADD115 /* R66Route.png */; };
+		BECF7C76185598AD00ADD115 /* AlertViewShown.plist in Resources */ = {isa = PBXBuildFile; fileRef = BECF7C75185598AD00ADD115 /* AlertViewShown.plist */; };
 		C71A4EE51705B106002819AD /* Fuhobus_Data.m in Sources */ = {isa = PBXBuildFile; fileRef = C71A4EE31705B106002819AD /* Fuhobus_Data.m */; };
 		C71A4EE61705B106002819AD /* Fuho_Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = C71A4EE41705B106002819AD /* Fuho_Data.plist */; };
 		C71A4EEB1705B114002819AD /* cancel_24.png in Resources */ = {isa = PBXBuildFile; fileRef = C71A4EE71705B114002819AD /* cancel_24.png */; };
@@ -608,6 +609,7 @@
 		BECF7C6F184F468200ADD115 /* R66RightLayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R66RightLayerViewController.h; sourceTree = "<group>"; };
 		BECF7C70184F468200ADD115 /* R66RightLayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R66RightLayerViewController.m; sourceTree = "<group>"; };
 		BECF7C73184F48A800ADD115 /* R66Route.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = R66Route.png; sourceTree = "<group>"; };
+		BECF7C75185598AD00ADD115 /* AlertViewShown.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AlertViewShown.plist; sourceTree = "<group>"; };
 		C71A4EE21705B106002819AD /* Fuhobus_Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fuhobus_Data.h; sourceTree = "<group>"; };
 		C71A4EE31705B106002819AD /* Fuhobus_Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fuhobus_Data.m; sourceTree = "<group>"; };
 		C71A4EE41705B106002819AD /* Fuho_Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Fuho_Data.plist; sourceTree = "<group>"; };
@@ -1044,6 +1046,7 @@
 				BE98A965183CF79300EF3CDC /* R66Layer2ViewController.m */,
 				BE98A967183CFA6000EF3CDC /* R66SwitchViewController.h */,
 				BE98A968183CFA6000EF3CDC /* R66SwitchViewController.m */,
+				BECF7C75185598AD00ADD115 /* AlertViewShown.plist */,
 			);
 			name = ShuttleTrack;
 			path = module/ShuttleTrack;
@@ -1401,6 +1404,7 @@
 				BE73DDF117A2550000F1B499 /* 講義.png in Resources */,
 				BEA9165E183B24E600F12001 /* R66HararioList.plist in Resources */,
 				BECF7C74184F48A800ADD115 /* R66Route.png in Resources */,
+				BECF7C76185598AD00ADD115 /* AlertViewShown.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1607,8 +1611,8 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PROVISIONING_PROFILE = "1CB18BB4-48F6-433E-9492-871A1EE624D3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1CB18BB4-48F6-433E-9492-871A1EE624D3";
+				PROVISIONING_PROFILE = "B65476CA-705C-4B6F-B351-71B749B466B0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B65476CA-705C-4B6F-B351-71B749B466B0";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -1636,8 +1640,8 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PROVISIONING_PROFILE = "1CB18BB4-48F6-433E-9492-871A1EE624D3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1CB18BB4-48F6-433E-9492-871A1EE624D3";
+				PROVISIONING_PROFILE = "B65476CA-705C-4B6F-B351-71B749B466B0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B65476CA-705C-4B6F-B351-71B749B466B0";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
@@ -1658,8 +1662,8 @@
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "1CB18BB4-48F6-433E-9492-871A1EE624D3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1CB18BB4-48F6-433E-9492-871A1EE624D3";
+				PROVISIONING_PROFILE = "B65476CA-705C-4B6F-B351-71B749B466B0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B65476CA-705C-4B6F-B351-71B749B466B0";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1678,8 +1682,8 @@
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "1CB18BB4-48F6-433E-9492-871A1EE624D3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1CB18BB4-48F6-433E-9492-871A1EE624D3";
+				PROVISIONING_PROFILE = "B65476CA-705C-4B6F-B351-71B749B466B0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B65476CA-705C-4B6F-B351-71B749B466B0";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
