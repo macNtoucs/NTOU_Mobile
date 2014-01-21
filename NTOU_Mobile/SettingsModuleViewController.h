@@ -10,10 +10,15 @@
 #import "SecondaryGroupedTableViewCell.h"
 #import "UIKit+NTOUAdditions.h"
 #import "DefineConstant.h"
-@interface SettingsModuleViewController : UITableViewController<UITextFieldDelegate>
+#import "MBProgressHUD.h"
+#import "ClassDataBase.h"
+@interface SettingsModuleViewController : UITableViewController<UITextFieldDelegate,UIAlertViewDelegate,MBProgressHUDDelegate>
 {
     UITextField* accountDelegate;
     UITextField* passwordDelegate;
+    MBProgressHUD *HUD;
+    BOOL loginSuccess;
+    NSMutableString * buttonTitle;
     
 }
 @property (nonatomic, retain) UITextField* accountDelegate;
