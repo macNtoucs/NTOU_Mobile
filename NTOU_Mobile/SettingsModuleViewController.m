@@ -27,7 +27,7 @@
     return self;
 }
 
--(void) addNavRightButton {
+-(void) addNavRightButton{
     UIBarButtonItem * right = [[UIBarButtonItem alloc] initWithTitle:buttonTitle style:UIBarButtonItemStyleDone target:self action:@selector(finishSetting)];
     right.tintColor =[UIColor colorWithRed:115.0/255 green:128.0/255 blue:177.0/255 alpha:1];
     
@@ -72,24 +72,25 @@
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat rowHeight = 0;
-    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
-    CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
-    NSString *cellText = nil;
-    
-    cellText = @"A"; // just something to guarantee one line
-    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
-    rowHeight = labelSize.height + 20.0f;
-    
-    return rowHeight;
+    if(indexPath.section == 0)
+    {
+        CGFloat rowHeight = 0;
+        UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+        CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
+        NSString *cellText = nil;
+        
+        cellText = @"A"; // just something to guarantee one line
+        CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+        rowHeight = labelSize.height + 20.0f;
+        
+        return rowHeight;
+    }
+    return 170;
 }
 
 -(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section==0) {
-        return 50;
-    }
-    return 0;
+    return 50;
 }
 
 
@@ -180,6 +181,9 @@
     [defaults setObject:[passwordDelegate text] forKey:passwordKey];
     [defaults synchronize];
     
+    [accountDelegate resignFirstResponder];
+    [passwordDelegate resignFirstResponder];
+    
     if([buttonTitle isEqualToString:@"登入"])
     {
         logInAlertView = [[UIAlertView alloc]
@@ -207,6 +211,8 @@
         case 0:
             headerTitle = @"Email";
             break;
+        case 1:
+            headerTitle = @"說明";
         default:
             break;
     }
@@ -242,12 +248,14 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
+    if(section == 1)
+        return 1;
     return 2;
 }
 
@@ -262,25 +270,49 @@
     UITextField* contactNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(93, 10, 200, 20)];
     contactNameTextField.delegate = self;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    switch (indexPath.row) {
+    
+    NSString *explanation = @"帳號: 學校信箱之帳號(＠前的文字)；\n         預設為學號。\n密碼: 學校信箱之密碼；\n         預設為含大寫之身分證字號，\n         若是外籍生，則為含大寫之居留證\n         或護照號碼。";
+    CGSize stringSize = [explanation sizeWithFont:[UIFont boldSystemFontOfSize:15]
+                          constrainedToSize:CGSizeMake(320, 9999)
+                              lineBreakMode:UILineBreakModeWordWrap];
+    UITextView *textV=[[UITextView alloc] initWithFrame:CGRectMake(5, 5, 290, stringSize.height+50)];
+    
+    switch (indexPath.section) {
         case 0:
-            accountDelegate = contactNameTextField;
-            cell.textLabel.text = @"帳號:";
-            contactNameTextField.backgroundColor = [UIColor clearColor];
-            contactNameTextField.font = [UIFont boldSystemFontOfSize:15];
-            contactNameTextField.keyboardType = UIKeyboardTypeDefault;
-            contactNameTextField.text =[SettingsModuleViewController getAccount];
-            [cell addSubview:contactNameTextField];
+            switch (indexPath.row) {
+                case 0:
+                    accountDelegate = contactNameTextField;
+                    cell.textLabel.text = @"帳號:";
+                    contactNameTextField.backgroundColor = [UIColor clearColor];
+                    contactNameTextField.font = [UIFont boldSystemFontOfSize:15];
+                    contactNameTextField.keyboardType = UIKeyboardTypeDefault;
+                    contactNameTextField.text =[SettingsModuleViewController getAccount];
+                    [cell addSubview:contactNameTextField];
+                    break;
+                case 1:
+                    passwordDelegate = contactNameTextField;
+                    cell.textLabel.text = @"密碼:";
+                    contactNameTextField.backgroundColor = [UIColor clearColor];
+                    contactNameTextField.font = [UIFont boldSystemFontOfSize:15];
+                    contactNameTextField.keyboardType = UIKeyboardTypeDefault;
+                    contactNameTextField.text =[SettingsModuleViewController getPassword];
+                    contactNameTextField.secureTextEntry = YES;
+                    [cell addSubview:contactNameTextField];
+                    break;
+            }
             break;
+            
         case 1:
-            passwordDelegate = contactNameTextField;
-            cell.textLabel.text = @"密碼:";
-            contactNameTextField.backgroundColor = [UIColor clearColor];
-            contactNameTextField.font = [UIFont boldSystemFontOfSize:15];
-            contactNameTextField.keyboardType = UIKeyboardTypeDefault;
-            contactNameTextField.text =[SettingsModuleViewController getPassword];
-            contactNameTextField.secureTextEntry = YES;
-            [cell addSubview:contactNameTextField];
+            textV.font = [UIFont systemFontOfSize:15.0];
+            textV.text = explanation;
+            textV.textColor = [UIColor blackColor];
+            textV.backgroundColor = [UIColor clearColor];
+            textV.editable = NO;
+            [cell.contentView addSubview:textV];
+            [textV release];
+            break;
+            
+        default:
             break;
     }
     
