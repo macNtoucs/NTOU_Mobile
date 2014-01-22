@@ -143,6 +143,7 @@
                     {
                         [buttonTitle setString:@"登出"];
                         [self addNavRightButton];
+                        [[ClassDataBase sharedData] storeUserDefaults];
                     }
                 });
             });
@@ -162,7 +163,8 @@
                 [[ClassDataBase sharedData] ClearAllCourses];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                    [self finishSetting];
+                    //[self finishSetting];
+                    [[ClassDataBase sharedData] storeUserDefaults];
                 });
             });
         }
@@ -202,7 +204,6 @@
         [logOutAlertView show];
         [logOutAlertView release];
     }
-    [[ClassDataBase sharedData] storeUserDefaults];
 }
 
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
