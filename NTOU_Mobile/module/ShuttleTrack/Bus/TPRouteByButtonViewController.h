@@ -1,0 +1,47 @@
+//
+//  TPRouteByButtonViewController.h
+//  bus
+//
+//  Created by NTOUCS on 12/10/30.
+//
+//
+
+#import <UIKit/UIKit.h>
+#import "TPRouteGoBackViewController.h"
+#import "NTRouteGoBackViewController.h"
+#define LAYER1_BUT_WIDTH    58
+#define LAYER1_BUT_HEIGHT   40
+#define LAYER1_BUT_GAP      5
+#define LAYER2_BUT_WIDTH    148
+#define LAYER2_BUT_HEIGHT   55
+#define LAYER2_BUT_GAP_WIDTH    8
+#define LAYER2_BUT_GAP_HEIGHT   5
+
+@interface TPRouteByButtonViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+{
+    UIView * buttonFirstView;
+    UIView * buttonSecondView;
+    UITableView * tableview;
+    BOOL havingTableView;
+    NSMutableString * partBusName;
+    NSArray * compBusName;
+    NSMutableArray * compDeparName;
+    NSMutableArray * compDestiName;
+    NSMutableArray * cityName;
+    CGFloat screenWidth;
+    CGFloat screenHeight;
+    UIColor *buttonTintColor;
+}
+@property (nonatomic, retain) UIView * buttonFirstView;
+@property (nonatomic, retain) UIView * buttonSecondView;
+@property (nonatomic, retain) UITableView * tableview;
+@property (nonatomic, assign) BOOL havingTableView;
+@property (nonatomic, retain) NSMutableString * partBusName;
+@property (nonatomic, retain) NSArray * compBusName;
+@property (nonatomic, retain) NSMutableArray * compDeparName;
+@property (nonatomic, retain) NSMutableArray * compDestiName;
+@property (nonatomic, retain) NSMutableArray * cityName;
+@property (nonatomic, assign) CGFloat screenWidth;
+@property (nonatomic, assign) CGFloat screenHeight;
+@property (nonatomic, retain) UIColor *buttonTintColor;
+@end

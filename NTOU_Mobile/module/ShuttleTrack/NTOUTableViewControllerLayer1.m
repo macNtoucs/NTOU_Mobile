@@ -40,7 +40,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
+    
 }
 
 - (void)viewDidUnload
@@ -76,12 +76,12 @@
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     return @" ";
-
+    
 }
 
 -(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-
+    
     return 32;
 }
 
@@ -91,14 +91,14 @@
 	NSString *headerTitle;
     switch (section) {
         case 0:
-            headerTitle = @"學生專車";
+            headerTitle = @"搭乘工具";
             break;
         case 1:
             headerTitle = @"市區公車";
             break;
-        case 2:
+            /*case 2:
              headerTitle = @"其他";
-            break;
+             break;*/
         default:
             break;
     }
@@ -122,7 +122,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -134,9 +134,9 @@
         case 1:
             return 3;   // 新增R66
             break;
-        case 2:
-            return 1;
-            break;
+            /*case 2:
+             return 1;
+             break;*/
         default:
             return 0;
             break;
@@ -155,17 +155,17 @@
     switch (indexPath.section)  {
         case 0:
             switch (indexPath.row) {
-                case 3:
-                    cell.textLabel.text = @"忠孝復興站  → 海洋大學";
-                    break;
                 case 0:
-                    cell.textLabel.text = @"海洋大學  → 忠孝復興站";
-                    break;
-                case 2:
-                    cell.textLabel.text = @"捷運劍潭站  → 海洋大學";
+                    cell.textLabel.text = @"公車";
                     break;
                 case 1:
-                    cell.textLabel.text = @"海洋大學  → 捷運劍潭站";
+                    cell.textLabel.text = @"台鐵";
+                    break;
+                case 2:
+                    cell.textLabel.text = @"高鐵";
+                    break;
+                case 3:
+                    cell.textLabel.text = @"客運";
                     break;
                 default:
                     break;
@@ -185,17 +185,16 @@
                     break;
             }
             break;
-        case 2:
-            switch (indexPath.row) {
-                case 0:
-                    cell.textLabel.text= @"台鐵、高鐵、國光、福和";
-
-                    break;
-            }
+            /*case 2:
+             switch (indexPath.row) {
+             case 0:
+             cell.textLabel.text= @"台鐵、高鐵、國光、福和";
+             
+             break;
+             }*/
         default:
-            break; 
+            break;
     }
-
     return cell;
 }
 
@@ -242,18 +241,43 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    if (indexPath.section==0) {
-        NTOUTableViewControllerLayer2 * Layer2 = [[NTOUTableViewControllerLayer2 alloc]initWithStyle:UITableViewStyleGrouped];
-        [Layer2 SetRoute:indexPath.row];
-        [self.navigationController pushViewController:Layer2 animated:YES];
-        Layer2.navigationItem.leftBarButtonItem.title=@"back";
-        [Layer2 release];
+    
+    if (indexPath.section==0)
+    {
+        if (indexPath.row == 0)
+        {
+            TPRouteByButtonViewController *tpRouteByButtonViewController = [[TPRouteByButtonViewController alloc] init];
+            [self.navigationController pushViewController:tpRouteByButtonViewController animated:YES];
+            [tpRouteByButtonViewController release];
+        }
+        else if (indexPath.row == 1)
+        {
+            SetStationViewController *setStationViewController = [[SetStationViewController alloc] init];
+            [setStationViewController initIsHighSpeedTrain:false];
+            [self.navigationController pushViewController:setStationViewController animated:YES];
+            setStationViewController.navigationItem.leftBarButtonItem.title = @"Back";
+            [setStationViewController release];
+        }
+        else if (indexPath.row == 2)
+        {
+            SetStationViewController *setStationViewController = [[SetStationViewController alloc] init];
+            [setStationViewController initIsHighSpeedTrain:true];
+            [self.navigationController pushViewController:setStationViewController animated:YES];
+            setStationViewController.navigationItem.leftBarButtonItem.title = @"Back";
+            [setStationViewController release];
+        }
+        else
+        {
+            KuoFuhoViewController *kuoFuhoViewController = [[KuoFuhoViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            [self.navigationController pushViewController:kuoFuhoViewController animated:YES];
+            kuoFuhoViewController.navigationItem.leftBarButtonItem.title = @"Back";
+            [kuoFuhoViewController release];
+        }
     }
-    else if (indexPath.section == 1)
+    else
     {
         SecondaryGroupedTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-       
+        
         StopsViewController * stops = [[StopsViewController alloc]initWithStyle:UITableViewStyleGrouped];
         // 這行沒mark掉會導致R66公車無法進到下層
         /*stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];*/
@@ -266,7 +290,7 @@
         }
         else if (indexPath.row == 1) {
             stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];            [stops setDirection:false];
-             [self.navigationController pushViewController:stops animated:YES];
+            [self.navigationController pushViewController:stops animated:YES];
             stops.navigationItem.leftBarButtonItem.title=@"back";
         }
         else
@@ -280,15 +304,6 @@
         }
         [stops release];
         [r66Switch release];
-    }
-    else
-    {
-
-        OtherTrafficTrapViewController *other = [[OtherTrafficTrapViewController alloc ]initWithStyle:UITableViewStyleGrouped];
-        other.title = @"搭乘工具";
-        [self.navigationController pushViewController:other animated:YES];
-        other.navigationItem.leftBarButtonItem.title=@"back";
-        [other release];
     }
 }
 
