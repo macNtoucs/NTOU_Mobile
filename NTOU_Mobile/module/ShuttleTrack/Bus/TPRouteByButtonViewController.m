@@ -7,6 +7,8 @@
 //
 
 #import "TPRouteByButtonViewController.h"
+#import "FMDatabase.h"
+#import <sqlite3.h>
 
 @interface TPRouteByButtonViewController ()
 
@@ -24,6 +26,9 @@
 @synthesize cityName;
 @synthesize screenWidth, screenHeight;
 @synthesize buttonTintColor;
+@synthesize arrayTaipeiBus, arrayNewTaipeiBus, arrayKeelungBus;
+@synthesize depArrayTaipeiBus, depArrayNewTaipeiBus, depArrayKeelungBus;
+@synthesize desArrayTaipeiBus, desArrayNewTaipeiBus, desArrayKeelungBus;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,13 +42,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
-
     
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Default.png"]];
     self.title = @"北北基公車";
     havingTableView = NO;
     partBusName = [[NSMutableString alloc] init];
@@ -51,6 +55,15 @@
     compDeparName = [[NSMutableArray alloc] init];
     compDestiName = [[NSMutableArray alloc] init];
     cityName = [[NSMutableArray alloc] init];
+    arrayTaipeiBus = [[NSMutableArray alloc] init];
+    arrayNewTaipeiBus = [[NSMutableArray alloc] init];
+    arrayKeelungBus = [[NSMutableArray alloc] init];
+    depArrayTaipeiBus = [[NSMutableArray alloc] init];
+    depArrayNewTaipeiBus = [[NSMutableArray alloc] init];
+    depArrayKeelungBus = [[NSMutableArray alloc] init];
+    desArrayTaipeiBus = [[NSMutableArray alloc] init];
+    desArrayNewTaipeiBus = [[NSMutableArray alloc] init];
+    desArrayKeelungBus = [[NSMutableArray alloc] init];
     [self showFirstLayerButtons];
     
     // Do any additional setup after loading the view.
@@ -307,65 +320,138 @@
 
 - (void)createTableView:(int)tag
 {
+    NSLog(@"CreateTableView");
     havingTableView = YES;
-    tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight-250) style:UITableViewStylePlain];
+    tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight-250) style:UITableViewStyleGrouped];
     tableview.dataSource = self;
     tableview.delegate = self;
     [self.view addSubview:tableview];
 }
 
+int finderSortWithLocale(id string1, id string2, void *locale)
+{
+    static NSStringCompareOptions comparisonOptions = NSCaseInsensitiveSearch|NSNumericSearch|NSWidthInsensitiveSearch|NSForcedOrderingSearch;
+    NSRange string1Range = NSMakeRange(0, [string1 length]);
+    return [string1 compare:string2 options:comparisonOptions range:string1Range locale:(NSLocale *)locale];
+}
+
 - (void)showTableViewContent
 {
+    //NSMutableString *encodedStop = (NSMutableString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)partBusName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
+    
+    
+    /*[arrayTaipeiBus removeAllObjects];
+     [arrayNewTaipeiBus removeAllObjects];
+     [arrayKeelungBus removeAllObjects];*/
+    //tableview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:NTOUImageNameBackground]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:NTOUImageNameBackground]];
+    [tableview applyStandardColors];
+    [depArrayTaipeiBus removeAllObjects];
+    [depArrayNewTaipeiBus removeAllObjects];
+    [depArrayKeelungBus removeAllObjects];
+    [desArrayTaipeiBus removeAllObjects];
+    [desArrayNewTaipeiBus removeAllObjects];
+    [desArrayKeelungBus removeAllObjects];
+    
+    // start sqlite3
+    
+    NSURL *appUrl = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSString *dbPath = [[appUrl path] stringByAppendingPathComponent:@"ntou_mobile.db"];
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
+    if (![db open])
+        NSLog(@"Could not open db.");
+    else
+        NSLog(@"Open db successly");
+    
+    NSMutableString *query = [NSMutableString stringWithString:@"SELECT * FROM routeinfo where nameZh like '%"];
+    [query appendFormat:@"%@", partBusName];
+    [query appendString:@"%'"];
+    //NSLog(@"query=%@", query);
+    FMResultSet *rs = [db executeQuery:query];
+    NSMutableArray *testT = [[NSMutableArray alloc] init];
+    NSMutableArray *testN = [[NSMutableArray alloc] init];
+    
+    while ([rs next])
+    {
+        if ([[rs stringForColumn:@"city"] isEqualToString:@"T"])
+            [testT addObject:[rs stringForColumn:@"nameZh"]];
+        else if ([[rs stringForColumn:@"city"] isEqualToString:@"N"])
+            [testN addObject:[rs stringForColumn:@"nameZh"]];
+        else
+            NSLog(@"基隆的資料放這裡。");
+    }
+    [rs close];
+    
+    // end sqlite3
+    
+    // start natural sorting
+    
+    arrayTaipeiBus = [testT sortedArrayUsingFunction:finderSortWithLocale context:[NSLocale currentLocale]];
+    for (NSString *str in arrayTaipeiBus)
+        NSLog(@"%@", str);
+    
+    arrayNewTaipeiBus = [testN sortedArrayUsingFunction:finderSortWithLocale context:[NSLocale currentLocale]];
+    for (NSString *str in arrayNewTaipeiBus)
+        NSLog(@"%@", str);
+    
+    // end natural sorting
+    
+    // start sqlite3
+    
+    for (NSString *str in arrayTaipeiBus)
+    {
+        [query setString:@""];
+        [query appendString:@"SELECT * FROM routeinfo where nameZh = '"];
+        [query appendFormat:@"%@", str];
+        [query appendString:@"'"];
+        //NSLog(@"query=%@", query);
+        rs = [db executeQuery:query];
+        while ([rs next])
+        {
+            [depArrayTaipeiBus addObject:[rs stringForColumn:@"departureZh"]];
+            [desArrayTaipeiBus addObject:[rs stringForColumn:@"destinationZh"]];
+            NSLog(@"%@ - %@", [rs stringForColumn:@"departureZh"], [rs stringForColumn:@"destinationZh"]);
+        }
+        [rs close];
+    }
+    
+    for (NSString *str in arrayNewTaipeiBus)
+    {
+        [query setString:@""];
+        [query appendString:@"SELECT * FROM routeinfo where nameZh = '"];
+        [query appendFormat:@"%@", str];
+        [query appendString:@"'"];
+        //NSLog(@"query=%@", query);
+        rs = [db executeQuery:query];
+        while ([rs next])
+        {
+            [depArrayNewTaipeiBus addObject:[rs stringForColumn:@"departureZh"]];
+            [desArrayNewTaipeiBus addObject:[rs stringForColumn:@"destinationZh"]];
+            NSLog(@"%@ - %@", [rs stringForColumn:@"departureZh"], [rs stringForColumn:@"destinationZh"]);
+        }
+        [rs close];
+    }
+    // end sqlite3
+    
+    NSLog(@"showTableViewContent");
     //NSLog(@"partBusName = %@", partBusName);
-    [compDeparName removeAllObjects];
-    [compDestiName removeAllObjects];
-    [cityName removeAllObjects];
     
-    NSMutableString *encodedStop = (NSMutableString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)partBusName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
-    
-    NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/RouteByButton_new.php?partBusName=%@", encodedStop];
-    
-    NSData *dataURL = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
-    
-    NSString *strResult = [[[NSString alloc] initWithData:dataURL encoding:NSUTF8StringEncoding]autorelease];
-    
-    NSArray * tmpInfo = [[NSArray alloc] init];
-    tmpInfo = [strResult componentsSeparatedByString:@";"];
-    
-    compBusName = [[[tmpInfo objectAtIndex:0] componentsSeparatedByString:@"|"] retain];
-    
-    NSArray * tmpCompDepar = [[NSArray alloc] init];
-    tmpCompDepar = [[tmpInfo objectAtIndex:1] componentsSeparatedByString:@"|"];
-    
-    for (NSString * str in tmpCompDepar)
-        [compDeparName addObject:str];
-    [compDeparName removeLastObject];
-    
-    NSArray * tmpCompDesti = [[NSArray alloc] init];
-    tmpCompDesti = [[tmpInfo objectAtIndex:2] componentsSeparatedByString:@"|"];
-    for (NSString * str in tmpCompDesti)
-        [compDestiName addObject:str];
-    [compDestiName removeLastObject];
-    
-    NSArray * tmpCityName = [[NSArray alloc] init];
-    tmpCityName = [[tmpInfo objectAtIndex:3] componentsSeparatedByString:@"|"];
-    for (NSString * str in tmpCityName)
-        [cityName addObject:str];
-    [cityName removeLastObject];
-    
-    NSLog(@"cityName = %@", cityName);
-    
+    [arrayTaipeiBus retain];
+    [arrayNewTaipeiBus retain];
+    [arrayKeelungBus retain];
     [tableview reloadData];
 }
 
 - (void)buttonClicked:(id)sender
 {
+    NSLog(@"buttonClicked");
     switch ([sender tag])
     {
         case 0:
             if (havingTableView == NO)
                 [self createTableView:[sender tag]];
             [partBusName appendString:@"0"];
+            NSLog(@"partBusName=%@", partBusName);
             [self showTableViewContent];
             break;
         case 1:
@@ -478,6 +564,7 @@
             [self showTableViewContent];
             break;
         case 34:
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Default.png"]];
             if (havingTableView == NO)
                 [self createTableView:[sender tag]];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
@@ -560,61 +647,130 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
-    return 1;
+    return 2;   // 加入基隆時請改成3
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0)
+    {
+        if ([arrayTaipeiBus count] != 0)
+            return @"台北市";
+        else
+            return @"";
+    }
+    else if (section == 1)
+    {
+        if ([arrayNewTaipeiBus count] != 0)
+            return @"新北市";
+        else
+            return @"";
+    }
+    else
+    {
+        if ([arrayKeelungBus count] != 0)
+            return @"基隆市";
+        else
+            return @"";
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [compBusName count];
+    if (section == 0)
+    {
+        NSLog(@"section0:%lu", (unsigned long)[arrayTaipeiBus count]);
+        return [arrayTaipeiBus count];
+    }
+    else if (section == 1)
+    {
+        NSLog(@"section1:%lu", (unsigned long)[arrayNewTaipeiBus count]);
+        return [arrayNewTaipeiBus count];
+    }
+    else
+    {
+        NSLog(@"section2:%lu", (unsigned long)[arrayKeelungBus count]);
+        return [arrayKeelungBus count];
+    }
+    //return [compBusName count];
+}
+
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat rowHeight = 0;
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+    CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
+    NSString *cellText = nil;
+    
+    cellText = @"A"; // just something to guarantee one line
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    rowHeight = labelSize.height + 20.0f;
+    
+    return rowHeight;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"indexPath=%@", indexPath);
+    NSLog(@"aTB=%@", arrayTaipeiBus);
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = [compBusName objectAtIndex:indexPath.row];
     NSString * departDestinInfo = [[NSString alloc] init];
-    departDestinInfo = [[compDeparName objectAtIndex:indexPath.row] stringByAppendingString:@" - "];
-    cell.detailTextLabel.text = [departDestinInfo stringByAppendingString:[compDestiName objectAtIndex:indexPath.row]];
+    cell.textLabel.font = [UIFont systemFontOfSize:20.0];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:15.0];
+    if (indexPath.section == 0)
+    {
+        cell.textLabel.text = [arrayTaipeiBus objectAtIndex:indexPath.row];
+        departDestinInfo = [[depArrayTaipeiBus objectAtIndex:indexPath.row] stringByAppendingString:@" - "];
+        cell.detailTextLabel.text = [departDestinInfo stringByAppendingString:[desArrayTaipeiBus objectAtIndex:indexPath.row]];
+    }
+    else if (indexPath.section == 1)
+    {
+        cell.textLabel.text = [arrayNewTaipeiBus objectAtIndex:indexPath.row];
+        departDestinInfo = [[depArrayNewTaipeiBus objectAtIndex:indexPath.row] stringByAppendingString:@" - "];
+        cell.detailTextLabel.text = [departDestinInfo stringByAppendingString:[desArrayNewTaipeiBus objectAtIndex:indexPath.row]];
+    }
+    else
+    {
+        cell.textLabel.text = [arrayKeelungBus objectAtIndex:indexPath.row];
+        departDestinInfo = [[depArrayKeelungBus objectAtIndex:indexPath.row] stringByAppendingString:@" - "];
+        cell.detailTextLabel.text = [departDestinInfo stringByAppendingString:[desArrayKeelungBus objectAtIndex:indexPath.row]];
+    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString * selectedBusName = [[NSString alloc] init];
-    selectedBusName = [compBusName objectAtIndex:indexPath.row];
-    if([[cityName objectAtIndex:indexPath.row] isEqual:@"T"])
+    if (indexPath.section == 0)
     {
+        selectedBusName = [arrayTaipeiBus objectAtIndex:indexPath.row];
         TPRouteGoBackViewController *TProuteGoBack = [[TPRouteGoBackViewController alloc] initWithStyle:UITableViewStyleGrouped];
         TProuteGoBack.title = [selectedBusName stringByAppendingString:@" 公車路線"];
-        [TProuteGoBack setter_departure:[compDeparName objectAtIndex:indexPath.row]];
-        [TProuteGoBack setter_destination:[compDestiName objectAtIndex:indexPath.row]];
-        [TProuteGoBack setter_busName:[compBusName objectAtIndex:indexPath.row]];
-        
+        [TProuteGoBack setter_departure:[depArrayTaipeiBus objectAtIndex:indexPath.row]];
+        [TProuteGoBack setter_destination:[desArrayTaipeiBus objectAtIndex:indexPath.row]];
+        [TProuteGoBack setter_busName:[arrayTaipeiBus objectAtIndex:indexPath.row]];
         [self.navigationController pushViewController:TProuteGoBack animated:YES];
     }
-    else if([[cityName objectAtIndex:indexPath.row] isEqual:@"N"])
+    else if (indexPath.section == 1)
     {
-        NTRouteGoBackViewController *NTrouteGoBack = [[NTRouteGoBackViewController alloc]  initWithStyle:UITableViewStyleGrouped];
+        selectedBusName = [arrayNewTaipeiBus objectAtIndex:indexPath.row];
+        NTRouteGoBackViewController *NTrouteGoBack = [[NTRouteGoBackViewController alloc] initWithStyle:UITableViewStyleGrouped];
         NTrouteGoBack.title = [selectedBusName stringByAppendingString:@" 公車路線"];
-        [NTrouteGoBack setter_departure:[compDeparName objectAtIndex:indexPath.row]];
-        [NTrouteGoBack setter_destination:[compDestiName objectAtIndex:indexPath.row]];
-        [NTrouteGoBack setter_busName:[compBusName objectAtIndex:indexPath.row]];
-        
+        [NTrouteGoBack setter_departure:[depArrayNewTaipeiBus objectAtIndex:indexPath.row]];
+        [NTrouteGoBack setter_destination:[desArrayNewTaipeiBus objectAtIndex:indexPath.row]];
+        [NTrouteGoBack setter_busName:[arrayNewTaipeiBus objectAtIndex:indexPath.row]];
         [self.navigationController pushViewController:NTrouteGoBack animated:YES];
     }
     else
     {
-        NSLog(@"這裡要放基隆市的公車資訊");
+        NSLog(@"基隆市公車資訊");
     }
-    
-    
-    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -627,6 +783,15 @@
     [compDestiName release];
     [compDeparName release];
     [cityName release];
+    [arrayTaipeiBus release];
+    [arrayNewTaipeiBus release];
+    [arrayKeelungBus release];
+    [depArrayTaipeiBus release];
+    [depArrayNewTaipeiBus release];
+    [depArrayKeelungBus release];
+    [desArrayTaipeiBus release];
+    [desArrayNewTaipeiBus release];
+    [desArrayKeelungBus release];
     //[compBusName release];
     [partBusName release];
     [buttonSecondView release];

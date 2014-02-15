@@ -180,7 +180,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self.tableView applyStandardColors];
     IDs = [NSMutableArray new];
     m_waitTimeResult = [NSMutableArray new];
     stops = [NSMutableArray new];
@@ -263,13 +263,28 @@
     return [stops count];   // for can't see cell
 }
 
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat rowHeight = 0;
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+    CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
+    NSString *cellText = nil;
+    
+    cellText = @"A"; // just something to guarantee one line
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    rowHeight = labelSize.height + 20.0f;
+    
+    return rowHeight;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString * CellIdentifier = [NSString stringWithFormat:@"Cell%d%d", [indexPath section], [indexPath row]];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil)
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     
     NSString * stopName = [[NSString alloc] init];
     NSString * comeTime = [[NSString alloc] init];
@@ -288,9 +303,19 @@
             cell.detailTextLabel.text = @"尚未發車";
             cell.detailTextLabel.textColor = [UIColor grayColor];
         }
+        else if ([comeTime isEqual:@"-2"])
+        {
+            cell.detailTextLabel.text = @"交管不停靠";
+            cell.detailTextLabel.textColor = [UIColor grayColor];
+        }
+        else if ([comeTime isEqual:@"-3"])
+        {
+            cell.detailTextLabel.text = @"末班車已過";
+            cell.detailTextLabel.textColor = [UIColor grayColor];
+        }
         else if ([comeTime isEqual:@"更新中..."])
         {
-            cell.detailTextLabel.text = @"更新中...";
+            cell.detailTextLabel.text = @"更新中";
             cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:13.0/255.0 green:139.0/255.0 blue:13.0/255.0 alpha:100.0];
         }
         else if ([comeTime intValue] <= 10)
@@ -305,22 +330,22 @@
         }
         else
         {
-            cell.detailTextLabel.text = [[NSString alloc] initWithFormat:@"%i 分鐘", (int)([comeTime doubleValue]/60 + 0.5)];
+            cell.detailTextLabel.text = [[NSString alloc] initWithFormat:@"%i 分鐘", (int)([comeTime doubleValue]/60 - 0.5)];
             cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:0.0 green:45.0/255.0 blue:153.0/255.0 alpha:100.0];
         }
     }
-        
     
-    NSString * number = [[NSString alloc] initWithFormat:@"(%i) ", indexPath.row+1];
     
-    cell.textLabel.text = [number stringByAppendingString:stopName];
+    //NSString * number = [[NSString alloc] initWithFormat:@"(%i) ", indexPath.row+1];
+    cell.textLabel.text = stopName;
+    //cell.textLabel.text = [number stringByAppendingString:stopName];
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
     cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
-    
+    //cell.detailTextLabel.backgroundColor = [UIColor yellowColor];
     [[cell.contentView viewWithTag:indexPath.row+1]removeFromSuperview];
     //[cell.contentView addSubview:[toolbar CreateButton:indexPath]];
-    NSString * newString = [[busName componentsSeparatedByString:@"("] objectAtIndex:0];
+    //NSString * newString = [[busName componentsSeparatedByString:@"("] objectAtIndex:0];
     //[toolbar isStopAdded:newString andStop:stopName andNo:@"RouteDetail"];
     
     return cell;

@@ -218,6 +218,13 @@
 		91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049416E89FE300ECF2CF /* QuartzCore.framework */; };
 		91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */; };
 		91A9049B16E8A09A00ECF2CF /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 91A9049A16E8A09A00ECF2CF /* icons */; };
+		A64D177E18AF4F47005E2D16 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A64D177D18AF4F47005E2D16 /* libsqlite3.dylib */; };
+		A6FFBDDC18AF4E27007F8B91 /* ntou_mobile.db in Resources */ = {isa = PBXBuildFile; fileRef = A6FFBDDB18AF4E27007F8B91 /* ntou_mobile.db */; };
+		A6FFBDE718AF4E49007F8B91 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FFBDDE18AF4E49007F8B91 /* FMDatabase.m */; };
+		A6FFBDE818AF4E49007F8B91 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FFBDE018AF4E49007F8B91 /* FMDatabaseAdditions.m */; };
+		A6FFBDE918AF4E49007F8B91 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FFBDE218AF4E49007F8B91 /* FMDatabasePool.m */; };
+		A6FFBDEA18AF4E49007F8B91 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FFBDE418AF4E49007F8B91 /* FMDatabaseQueue.m */; };
+		A6FFBDEB18AF4E49007F8B91 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FFBDE618AF4E49007F8B91 /* FMResultSet.m */; };
 		BA06A07516F2EE6600212CB9 /* LibrariesModule.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06816F2EE6600212CB9 /* LibrariesModule.m */; };
 		BA06A07616F2EE6600212CB9 /* CalenderList.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06A16F2EE6600212CB9 /* CalenderList.plist */; };
 		BA06A07716F2EE6600212CB9 /* CalenderList_eng.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */; };
@@ -595,6 +602,18 @@
 		91A9049416E89FE300ECF2CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		91A9049A16E8A09A00ECF2CF /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
+		A64D177D18AF4F47005E2D16 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		A6FFBDDB18AF4E27007F8B91 /* ntou_mobile.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ntou_mobile.db; sourceTree = "<group>"; };
+		A6FFBDDD18AF4E49007F8B91 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		A6FFBDDE18AF4E49007F8B91 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		A6FFBDDF18AF4E49007F8B91 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		A6FFBDE018AF4E49007F8B91 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		A6FFBDE118AF4E49007F8B91 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		A6FFBDE218AF4E49007F8B91 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		A6FFBDE318AF4E49007F8B91 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		A6FFBDE418AF4E49007F8B91 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		A6FFBDE518AF4E49007F8B91 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		A6FFBDE618AF4E49007F8B91 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		BA06A06716F2EE6600212CB9 /* LibrariesModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibrariesModule.h; sourceTree = "<group>"; };
 		BA06A06816F2EE6600212CB9 /* LibrariesModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibrariesModule.m; sourceTree = "<group>"; };
 		BA06A06A16F2EE6600212CB9 /* CalenderList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CalenderList.plist; sourceTree = "<group>"; };
@@ -673,6 +692,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A64D177E18AF4F47005E2D16 /* libsqlite3.dylib in Frameworks */,
 				BA06A07D16F2EF5B00212CB9 /* EventKit.framework in Frameworks */,
 				91756FEE16F21236001D724D /* ImageIO.framework in Frameworks */,
 				91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */,
@@ -871,6 +891,17 @@
 		91A9003B16E854E400ECF2CF = {
 			isa = PBXGroup;
 			children = (
+				A64D177D18AF4F47005E2D16 /* libsqlite3.dylib */,
+				A6FFBDDD18AF4E49007F8B91 /* FMDatabase.h */,
+				A6FFBDDE18AF4E49007F8B91 /* FMDatabase.m */,
+				A6FFBDDF18AF4E49007F8B91 /* FMDatabaseAdditions.h */,
+				A6FFBDE018AF4E49007F8B91 /* FMDatabaseAdditions.m */,
+				A6FFBDE118AF4E49007F8B91 /* FMDatabasePool.h */,
+				A6FFBDE218AF4E49007F8B91 /* FMDatabasePool.m */,
+				A6FFBDE318AF4E49007F8B91 /* FMDatabaseQueue.h */,
+				A6FFBDE418AF4E49007F8B91 /* FMDatabaseQueue.m */,
+				A6FFBDE518AF4E49007F8B91 /* FMResultSet.h */,
+				A6FFBDE618AF4E49007F8B91 /* FMResultSet.m */,
 				C71A4F22171520E3002819AD /* desktop logo-512x512.png */,
 				C71A4F201715205C002819AD /* desktop logo-57x57.png */,
 				C71A4F0F170A9949002819AD /* Default-568h@2x.png */,
@@ -984,6 +1015,7 @@
 		91A9029816E88E0D00ECF2CF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A6FFBDDB18AF4E27007F8B91 /* ntou_mobile.db */,
 				C71A4F1B170AD1E6002819AD /* Nav_backGround.png */,
 				C74699E816F21CF40060F49C /* news */,
 				91A9049A16E8A09A00ECF2CF /* icons */,
@@ -1443,6 +1475,7 @@
 				BEA9165E183B24E600F12001 /* R66HararioList.plist in Resources */,
 				BECF7C74184F48A800ADD115 /* R66Route.png in Resources */,
 				BECF7C76185598AD00ADD115 /* AlertViewShown.plist in Resources */,
+				A6FFBDDC18AF4E27007F8B91 /* ntou_mobile.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1609,6 +1642,11 @@
 				436F4F9618AB44C90069A6BF /* TPRouteByButtonViewController.m in Sources */,
 				436F4F9718AB44C90069A6BF /* TPRouteDetailViewController.m in Sources */,
 				436F4F9818AB44C90069A6BF /* TPRouteGoBackViewController.m in Sources */,
+				A6FFBDE718AF4E49007F8B91 /* FMDatabase.m in Sources */,
+				A6FFBDE818AF4E49007F8B91 /* FMDatabaseAdditions.m in Sources */,
+				A6FFBDE918AF4E49007F8B91 /* FMDatabasePool.m in Sources */,
+				A6FFBDEA18AF4E49007F8B91 /* FMDatabaseQueue.m in Sources */,
+				A6FFBDEB18AF4E49007F8B91 /* FMResultSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

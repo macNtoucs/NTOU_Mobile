@@ -9,13 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "TPRouteGoBackViewController.h"
 #import "NTRouteGoBackViewController.h"
+#import "UIKit+NTOUAdditions.h"
 #define LAYER1_BUT_WIDTH    58
 #define LAYER1_BUT_HEIGHT   40
 #define LAYER1_BUT_GAP      5
 #define LAYER2_BUT_WIDTH    148
 #define LAYER2_BUT_HEIGHT   55
-#define LAYER2_BUT_GAP_WIDTH    8
-#define LAYER2_BUT_GAP_HEIGHT   5
 
 @interface TPRouteByButtonViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
@@ -31,6 +30,23 @@
     CGFloat screenWidth;
     CGFloat screenHeight;
     UIColor *buttonTintColor;
+    int counterT, counterN, counterK, index;
+    NSMutableArray *arrayTaipeiBus;
+    NSMutableArray *arrayNewTaipeiBus;
+    NSMutableArray *arrayKeelungBus;
+    NSMutableArray *depArrayTaipeiBus;
+    NSMutableArray *depArrayNewTaipeiBus;
+    NSMutableArray *depArrayKeelungBus;
+    NSMutableArray *desArrayTaipeiBus;
+    NSMutableArray *desArrayNewTaipeiBus;
+    NSMutableArray *desArrayKeelungBus;
+    //
+    BOOL success;
+    NSError *error;
+    NSFileManager *fm;
+    NSArray *paths;
+    NSString *documentsDirecotry;
+    NSString *writableDBPath;
 }
 @property (nonatomic, retain) UIView * buttonFirstView;
 @property (nonatomic, retain) UIView * buttonSecondView;
@@ -44,4 +60,13 @@
 @property (nonatomic, assign) CGFloat screenWidth;
 @property (nonatomic, assign) CGFloat screenHeight;
 @property (nonatomic, retain) UIColor *buttonTintColor;
+@property (nonatomic, retain) NSMutableArray *arrayTaipeiBus;
+@property (nonatomic, retain) NSMutableArray *arrayNewTaipeiBus;
+@property (nonatomic, retain) NSMutableArray *arrayKeelungBus;
+@property (nonatomic, retain) NSMutableArray *depArrayTaipeiBus;
+@property (nonatomic, retain) NSMutableArray *depArrayNewTaipeiBus;
+@property (nonatomic, retain) NSMutableArray *depArrayKeelungBus;
+@property (nonatomic, retain) NSMutableArray *desArrayTaipeiBus;
+@property (nonatomic, retain) NSMutableArray *desArrayNewTaipeiBus;
+@property (nonatomic, retain) NSMutableArray *desArrayKeelungBus;
 @end

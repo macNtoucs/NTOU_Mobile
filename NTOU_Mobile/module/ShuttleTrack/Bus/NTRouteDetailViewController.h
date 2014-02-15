@@ -18,6 +18,7 @@
 #import "TFHppleElement.h"
 //#import "ToolBarController.h"
 #import "EGORefreshTableHeaderView.h"
+#import "UIKit+NTOUAdditions.h"
 
 @interface NTRouteDetailViewController : UITableViewController<EGORefreshTableHeaderDelegate>
 {

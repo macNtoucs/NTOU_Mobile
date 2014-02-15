@@ -75,12 +75,12 @@
     [stops removeLastObject];
     
     /*NSArray * tmp_IDs = [[NSArray alloc] init];
-    tmp_IDs = [[stopsAndTimes objectAtIndex:1] componentsSeparatedByString:@"|"];
-    for (NSString * str in tmp_IDs)
-    {
-        [IDs addObject:str];
-    }
-    [IDs removeLastObject];*/
+     tmp_IDs = [[stopsAndTimes objectAtIndex:1] componentsSeparatedByString:@"|"];
+     for (NSString * str in tmp_IDs)
+     {
+     [IDs addObject:str];
+     }
+     [IDs removeLastObject];*/
     
     NSArray * tmp_m = [[NSArray alloc] init];
     tmp_m = [[stopsAndTimes objectAtIndex:1] componentsSeparatedByString:@"|"];
@@ -182,7 +182,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self.tableView applyStandardColors];
     //IDs = [NSMutableArray new];
     m_waitTimeResult = [NSMutableArray new];
     stops = [NSMutableArray new];
@@ -265,13 +265,28 @@
     return [stops count];   // for can't see cell
 }
 
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat rowHeight = 0;
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+    CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
+    NSString *cellText = nil;
+    
+    cellText = @"A"; // just something to guarantee one line
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    rowHeight = labelSize.height + 20.0f;
+    
+    return rowHeight;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString * CellIdentifier = [NSString stringWithFormat:@"Cell%d%d", [indexPath section], [indexPath row]];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil)
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     
     NSString * stopName = [[NSString alloc] init];
     NSString * comeTime = [[NSString alloc] init];
@@ -313,9 +328,9 @@
     }
     
     
-    NSString * number = [[NSString alloc] initWithFormat:@"(%i) ", indexPath.row+1];
-    
-    cell.textLabel.text = [number stringByAppendingString:stopName];
+    //NSString * number = [[NSString alloc] initWithFormat:@"(%i) ", indexPath.row+1];
+    cell.textLabel.text = stopName;
+    //cell.textLabel.text = [number stringByAppendingString:stopName];
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
     cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
