@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "TPRouteGoBackViewController.h"
 #import "NTRouteGoBackViewController.h"
+#import "TPRouteDetailViewController.h"
+#import "NTRouteDetailViewController.h"
 #import "UIKit+NTOUAdditions.h"
 #define LAYER1_BUT_WIDTH    58
 #define LAYER1_BUT_HEIGHT   40

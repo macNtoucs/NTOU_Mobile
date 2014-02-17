@@ -341,11 +341,12 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     
     
     /*[arrayTaipeiBus removeAllObjects];
-     [arrayNewTaipeiBus removeAllObjects];
-     [arrayKeelungBus removeAllObjects];*/
+    [arrayNewTaipeiBus removeAllObjects];
+    [arrayKeelungBus removeAllObjects];*/
     //tableview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:NTOUImageNameBackground]];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:NTOUImageNameBackground]];
     [tableview applyStandardColors];
+    
     [depArrayTaipeiBus removeAllObjects];
     [depArrayNewTaipeiBus removeAllObjects];
     [depArrayKeelungBus removeAllObjects];
@@ -362,80 +363,151 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         NSLog(@"Could not open db.");
     else
         NSLog(@"Open db successly");
-    
-    NSMutableString *query = [NSMutableString stringWithString:@"SELECT * FROM routeinfo where nameZh like '%"];
-    [query appendFormat:@"%@", partBusName];
-    [query appendString:@"%'"];
-    //NSLog(@"query=%@", query);
-    FMResultSet *rs = [db executeQuery:query];
-    NSMutableArray *testT = [[NSMutableArray alloc] init];
-    NSMutableArray *testN = [[NSMutableArray alloc] init];
-    
-    while ([rs next])
+    // 按了其他再按別的會壞掉;先按別的再按其他會壞掉
+    if ([partBusName isEqualToString:@"其他"])
     {
-        if ([[rs stringForColumn:@"city"] isEqualToString:@"T"])
-            [testT addObject:[rs stringForColumn:@"nameZh"]];
-        else if ([[rs stringForColumn:@"city"] isEqualToString:@"N"])
-            [testN addObject:[rs stringForColumn:@"nameZh"]];
-        else
-            NSLog(@"基隆的資料放這裡。");
+        NSArray *array = [[NSArray alloc] initWithObjects:@"景美-榮總(快)", @"貓空右線", @"貓空左線(動物園)", @"貓空左線(指南宮)", @"懷恩專車S31(捷運公館)", @"懷恩專車S31(捷運忠孝復興)", @"花季專車126", @"花季專車127", @"花季專車130", @"花季專車130區", @"花季專車131", nil];
+        arrayTaipeiBus = [array mutableCopy];
+        NSArray *array2 = [[NSArray alloc] initWithObjects:@"景美女中", @"貓纜貓空站", @"貓纜貓空站", @"茶推廣中心停車場", @"捷運公館站", @"捷運六張犁站", @"八德市場", @"臺北車站", @"捷運劍潭站", @"第二停車場", @"花鐘", @"陽明山第二停車場", nil];
+        depArrayTaipeiBus = [array2 mutableCopy];
+        NSArray *array3 = [[NSArray alloc] initWithObjects:@"榮總", @"貓纜貓空站", @"捷運動物園", @"貓纜指南宮站", @"青峰活動中心", @"青峰活動中心", @"青峰活動中心", @"陽明山", @"陽明山", @"陽明書屋", @"陽明山站", @"竹子湖", nil];
+        desArrayTaipeiBus = [array3 mutableCopy];
+        [arrayNewTaipeiBus retain];
+        /*[arrayTaipeiBus arrayByAddingObject:@"景美-榮總(快)"];
+        [depArrayTaipeiBus arrayByAddingObject:@"景美女中"];
+        [desArrayTaipeiBus arrayByAddingObject:@"榮總"];
+        [arrayTaipeiBus retain];
+        [depArrayTaipeiBus retain];
+        [desArrayTaipeiBus retain];*/
+        //NSLog(@"%@", arrayTaipeiBus);
+        //NSLog(@"Here");
+        /*[arrayTaipeiBus addObject:@"景美-榮總(快)"];
+        [arrayTaipeiBus addObject:@"貓空右線"];
+        [arrayTaipeiBus addObject:@"貓空左線(動物園)"];
+        [arrayTaipeiBus addObject:@"貓空左線(指南宮)"];
+        [arrayTaipeiBus addObject:@"懷恩專車S31(捷運公館)"];
+        [arrayTaipeiBus addObject:@"懷恩專車S31(捷運六張犁)"];
+        [arrayTaipeiBus addObject:@"懷恩專車S31(捷運忠孝復興)"];
+        [arrayTaipeiBus addObject:@"花季專車126"];
+        [arrayTaipeiBus addObject:@"花季專車127"];
+        [arrayTaipeiBus addObject:@"花季專車130"];
+        [arrayTaipeiBus addObject:@"花季專車130區"];
+        [arrayTaipeiBus addObject:@"花季專車131"];*/
+        
+        /*[arrayNewTaipeiBus addObject:@"三鶯捷運先導公車"];
+        [arrayNewTaipeiBus addObject:@"淡海捷運先導公車"];
+        [arrayNewTaipeiBus addObject:@"萬大樹林先導公車"];*/
+        
+        
+        /*[depArrayTaipeiBus addObject:@"景美女中"];
+        [depArrayTaipeiBus addObject:@"貓纜貓空站"];
+        [depArrayTaipeiBus addObject:@"貓纜貓空站"];
+        [depArrayTaipeiBus addObject:@"茶推廣中心停車場"];
+        [depArrayTaipeiBus addObject:@"捷運公館站"];
+        [depArrayTaipeiBus addObject:@"捷運六張犁站"];
+        [depArrayTaipeiBus addObject:@"八德市場"];
+        [depArrayTaipeiBus addObject:@"臺北車站"];
+        [depArrayTaipeiBus addObject:@"捷運劍潭站"];
+        [depArrayTaipeiBus addObject:@"第二停車場"];
+        [depArrayTaipeiBus addObject:@"花鐘"];
+        [depArrayTaipeiBus addObject:@"陽明山第二停車場"];*/
+        
+        /*[depArrayNewTaipeiBus addObject:@"文昌街口"];
+        [depArrayNewTaipeiBus addObject:@"龍騰區"];
+        [depArrayNewTaipeiBus addObject:@"捷運輔大站"];*/
+        
+        /*[desArrayTaipeiBus addObject:@"榮總"];
+        [desArrayTaipeiBus addObject:@"貓纜貓空站"];
+        [desArrayTaipeiBus addObject:@"捷運動物園"];
+        [desArrayTaipeiBus addObject:@"貓纜指南宮站"];
+        [desArrayTaipeiBus addObject:@"青峰活動中心"];
+        [desArrayTaipeiBus addObject:@"青峰活動中心"];
+        [desArrayTaipeiBus addObject:@"青峰活動中心"];
+        [desArrayTaipeiBus addObject:@"陽明山"];
+        [desArrayTaipeiBus addObject:@"陽明山"];
+        [desArrayTaipeiBus addObject:@"陽明書屋"];
+        [desArrayTaipeiBus addObject:@"陽明山站"];
+        [desArrayTaipeiBus addObject:@"竹子湖"];*/
+        
+        /*[desArrayNewTaipeiBus addObject:@"中鶯"];
+        [desArrayNewTaipeiBus addObject:@"太子廟"];
+        [desArrayNewTaipeiBus addObject:@"捷運龍山寺站"];*/
     }
-    [rs close];
-    
-    // end sqlite3
-    
-    // start natural sorting
-    
-    arrayTaipeiBus = [testT sortedArrayUsingFunction:finderSortWithLocale context:[NSLocale currentLocale]];
-    for (NSString *str in arrayTaipeiBus)
-        NSLog(@"%@", str);
-    
-    arrayNewTaipeiBus = [testN sortedArrayUsingFunction:finderSortWithLocale context:[NSLocale currentLocale]];
-    for (NSString *str in arrayNewTaipeiBus)
-        NSLog(@"%@", str);
-    
-    // end natural sorting
-    
-    // start sqlite3
-    
-    for (NSString *str in arrayTaipeiBus)
+    else
     {
-        [query setString:@""];
-        [query appendString:@"SELECT * FROM routeinfo where nameZh = '"];
-        [query appendFormat:@"%@", str];
-        [query appendString:@"'"];
+        NSMutableString *query = [NSMutableString stringWithString:@"SELECT * FROM routeinfo where nameZh like '%"];
+        [query appendFormat:@"%@", partBusName];
+        [query appendString:@"%'"];
         //NSLog(@"query=%@", query);
-        rs = [db executeQuery:query];
+        FMResultSet *rs = [db executeQuery:query];
+        NSMutableArray *testT = [[NSMutableArray alloc] init];
+        NSMutableArray *testN = [[NSMutableArray alloc] init];
+        
         while ([rs next])
         {
-            [depArrayTaipeiBus addObject:[rs stringForColumn:@"departureZh"]];
-            [desArrayTaipeiBus addObject:[rs stringForColumn:@"destinationZh"]];
-            NSLog(@"%@ - %@", [rs stringForColumn:@"departureZh"], [rs stringForColumn:@"destinationZh"]);
+            if ([[rs stringForColumn:@"city"] isEqualToString:@"T"])
+                [testT addObject:[rs stringForColumn:@"nameZh"]];
+            else if ([[rs stringForColumn:@"city"] isEqualToString:@"N"])
+                [testN addObject:[rs stringForColumn:@"nameZh"]];
+            else
+                NSLog(@"基隆的資料放這裡。");
         }
         [rs close];
-    }
-    
-    for (NSString *str in arrayNewTaipeiBus)
-    {
-        [query setString:@""];
-        [query appendString:@"SELECT * FROM routeinfo where nameZh = '"];
-        [query appendFormat:@"%@", str];
-        [query appendString:@"'"];
-        //NSLog(@"query=%@", query);
-        rs = [db executeQuery:query];
-        while ([rs next])
+        
+        // end sqlite3
+        
+        // start natural sorting
+        
+        arrayTaipeiBus = [testT sortedArrayUsingFunction:finderSortWithLocale context:[NSLocale currentLocale]];
+        for (NSString *str in arrayTaipeiBus)
+            NSLog(@"%@", str);
+        
+        arrayNewTaipeiBus = [testN sortedArrayUsingFunction:finderSortWithLocale context:[NSLocale currentLocale]];
+        for (NSString *str in arrayNewTaipeiBus)
+            NSLog(@"%@", str);
+        
+        // end natural sorting
+        
+        // start sqlite3
+        
+        for (NSString *str in arrayTaipeiBus)
         {
-            [depArrayNewTaipeiBus addObject:[rs stringForColumn:@"departureZh"]];
-            [desArrayNewTaipeiBus addObject:[rs stringForColumn:@"destinationZh"]];
-            NSLog(@"%@ - %@", [rs stringForColumn:@"departureZh"], [rs stringForColumn:@"destinationZh"]);
+            [query setString:@""];
+            [query appendString:@"SELECT * FROM routeinfo where nameZh = '"];
+            [query appendFormat:@"%@", str];
+            [query appendString:@"'"];
+            //NSLog(@"query=%@", query);
+            rs = [db executeQuery:query];
+            while ([rs next])
+            {
+                [depArrayTaipeiBus addObject:[rs stringForColumn:@"departureZh"]];
+                [desArrayTaipeiBus addObject:[rs stringForColumn:@"destinationZh"]];
+                NSLog(@"%@ - %@", [rs stringForColumn:@"departureZh"], [rs stringForColumn:@"destinationZh"]);
+            }
+            [rs close];
         }
-        [rs close];
+        
+        for (NSString *str in arrayNewTaipeiBus)
+        {
+            [query setString:@""];
+            [query appendString:@"SELECT * FROM routeinfo where nameZh = '"];
+            [query appendFormat:@"%@", str];
+            [query appendString:@"'"];
+            //NSLog(@"query=%@", query);
+            rs = [db executeQuery:query];
+            while ([rs next])
+            {
+                [depArrayNewTaipeiBus addObject:[rs stringForColumn:@"departureZh"]];
+                [desArrayNewTaipeiBus addObject:[rs stringForColumn:@"destinationZh"]];
+                NSLog(@"%@ - %@", [rs stringForColumn:@"departureZh"], [rs stringForColumn:@"destinationZh"]);
+            }
+            [rs close];
+        }
+        // end sqlite3
     }
-    // end sqlite3
-    
+    [db close];
     NSLog(@"showTableViewContent");
     //NSLog(@"partBusName = %@", partBusName);
-    
     [arrayTaipeiBus retain];
     [arrayNewTaipeiBus retain];
     [arrayKeelungBus retain];
