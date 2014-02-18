@@ -356,13 +356,17 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     
     // start sqlite3
     
-    NSURL *appUrl = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    /*NSURL *appUrl = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSLog(@"appUrl=%@", appUrl);
     NSString *dbPath = [[appUrl path] stringByAppendingPathComponent:@"ntou_mobile.db"];
-    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
+    NSLog(@"dbPath=%@", dbPath);*/
+    NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ntou_mobile.db"];
+    NSLog(@"defaultDBPath=%@", defaultDBPath);
+    FMDatabase *db = [FMDatabase databaseWithPath:defaultDBPath];
     if (![db open])
         NSLog(@"Could not open db.");
     else
-        NSLog(@"Open db successly");
+        NSLog(@"Open db successly.");
     // 按了其他再按別的會壞掉;先按別的再按其他會壞掉
     if ([partBusName isEqualToString:@"其他"])
     {
