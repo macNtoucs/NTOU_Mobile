@@ -376,7 +376,9 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         depArrayTaipeiBus = [array2 mutableCopy];
         NSArray *array3 = [[NSArray alloc] initWithObjects:@"榮總", @"貓纜貓空站", @"捷運動物園", @"貓纜指南宮站", @"青峰活動中心", @"青峰活動中心", @"青峰活動中心", @"陽明山", @"陽明山", @"陽明書屋", @"陽明山站", @"竹子湖", nil];
         desArrayTaipeiBus = [array3 mutableCopy];
+        NSLog(@"retainCount=%d",[arrayNewTaipeiBus retainCount]);
         [arrayNewTaipeiBus retain];
+        NSLog(@"retainCount=%d",[arrayNewTaipeiBus retainCount]);
         /*[arrayTaipeiBus arrayByAddingObject:@"景美-榮總(快)"];
         [depArrayTaipeiBus arrayByAddingObject:@"景美女中"];
         [desArrayTaipeiBus arrayByAddingObject:@"榮總"];
@@ -514,6 +516,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     //NSLog(@"partBusName = %@", partBusName);
     [arrayTaipeiBus retain];
     [arrayNewTaipeiBus retain];
+    NSLog(@"retainCount=%d",[arrayNewTaipeiBus retainCount]);
     [arrayKeelungBus retain];
     [tableview reloadData];
 }
@@ -827,7 +830,8 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     {
         selectedBusName = [arrayTaipeiBus objectAtIndex:indexPath.row];
         TPRouteGoBackViewController *TProuteGoBack = [[TPRouteGoBackViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        TProuteGoBack.title = [selectedBusName stringByAppendingString:@" 公車路線"];
+        TProuteGoBack.title = selectedBusName;
+        //TProuteGoBack.title = [selectedBusName stringByAppendingString:@" 公車路線"];
         [TProuteGoBack setter_departure:[depArrayTaipeiBus objectAtIndex:indexPath.row]];
         [TProuteGoBack setter_destination:[desArrayTaipeiBus objectAtIndex:indexPath.row]];
         [TProuteGoBack setter_busName:[arrayTaipeiBus objectAtIndex:indexPath.row]];
@@ -837,7 +841,8 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     {
         selectedBusName = [arrayNewTaipeiBus objectAtIndex:indexPath.row];
         NTRouteGoBackViewController *NTrouteGoBack = [[NTRouteGoBackViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        NTrouteGoBack.title = [selectedBusName stringByAppendingString:@" 公車路線"];
+        NTrouteGoBack.title = selectedBusName;
+        //NTrouteGoBack.title = [selectedBusName stringByAppendingString:@" 公車路線"];
         [NTrouteGoBack setter_departure:[depArrayNewTaipeiBus objectAtIndex:indexPath.row]];
         [NTrouteGoBack setter_destination:[desArrayNewTaipeiBus objectAtIndex:indexPath.row]];
         [NTrouteGoBack setter_busName:[arrayNewTaipeiBus objectAtIndex:indexPath.row]];

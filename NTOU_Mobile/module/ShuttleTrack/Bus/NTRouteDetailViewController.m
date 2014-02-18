@@ -227,7 +227,7 @@
         NSLog(@"RouteDetail.m stops is null");
         [self CatchData];
     }
-    [self startTimer];
+    //[self startTimer];
     [super viewDidAppear:animated];
     //[self.tableView reloadData];
 }
