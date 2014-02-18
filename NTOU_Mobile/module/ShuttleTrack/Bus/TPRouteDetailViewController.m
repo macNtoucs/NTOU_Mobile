@@ -13,6 +13,7 @@
 
 @synthesize busName;
 @synthesize goBack;
+@synthesize depature, destination;
 @synthesize stops, IDs, m_waitTimeResult;
 
 //@synthesize toolbar;
@@ -21,11 +22,18 @@
 @synthesize lastRefresh;
 @synthesize refreshTimer;
 
-- (void) setter_busName:(NSString *)name andGoBack:(NSInteger) goback
+- (void) setter_busName:(NSString *)name andGoBack:(NSInteger)goback
 {
     busName = name;
     goBack = [[NSString alloc] initWithFormat:@"%i", goback];
     NSLog(@"busName:%@, goBack:%@", busName, goBack);
+}
+
+- (void) setter_departure:(NSString *)dep andDestination:(NSString *)des
+{
+    depature = [[NSString alloc] initWithString:dep];
+    destination = [[NSString alloc] initWithString:des];
+    NSLog(@"dep:%@ / des:%@", depature, destination);
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -141,7 +149,6 @@
     NSDate *oneSecondFromNow = [NSDate dateWithTimeIntervalSinceNow:0];
     self.refreshTimer = [[[NSTimer alloc] initWithFireDate:oneSecondFromNow interval:1 target:self selector:@selector(countDownAction:) userInfo:nil repeats:YES] autorelease];
     [[NSRunLoop currentRunLoop] addTimer:self.refreshTimer forMode:NSDefaultRunLoopMode];
-	
 }
 
 -(void) countDownAction:(NSTimer *)timer
@@ -175,11 +182,33 @@
     
 }
 
+- (void)changeDetailView
+{
+    NSLog(@"changeDetailView");
+    NSLog(@"changeView.goBack=%@", goBack);
+    if ([goBack isEqualToString:@"0"])
+    {
+        anotherButton.title = destination;
+        self.navigationItem.title = depature;
+        [self setter_busName:busName andGoBack:1];
+        [self CatchData];
+    }
+    else
+    {
+        anotherButton.title = depature;
+        self.navigationItem.title = destination;
+        [self setter_busName:busName andGoBack:0];
+        [self CatchData];
+    }
+    
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"Detail Layer.");
     [self.tableView applyStandardColors];
     IDs = [NSMutableArray new];
     m_waitTimeResult = [NSMutableArray new];
@@ -188,7 +217,7 @@
     // Refresh button & toolbar
     // toolbar = [[ToolBarController alloc]init];
     // [self.navigationController.view addSubview:[toolbar CreatTabBarWithNoFavorite:NO delegate:self] ];
-    anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshPropertyList)];
+    anotherButton = [[UIBarButtonItem alloc] initWithTitle:depature style:UIBarButtonItemStylePlain target:self action:@selector(changeDetailView)];
     self.navigationItem.rightBarButtonItem = anotherButton;
     
     // 手動下拉更新

@@ -791,7 +791,6 @@ int finderSortWithLocale(id string1, id string2, void *locale)
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"indexPath=%@", indexPath);
-    NSLog(@"aTB=%@", arrayTaipeiBus);
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -829,24 +828,38 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     if (indexPath.section == 0)
     {
         selectedBusName = [arrayTaipeiBus objectAtIndex:indexPath.row];
-        TPRouteGoBackViewController *TProuteGoBack = [[TPRouteGoBackViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        /*TPRouteGoBackViewController *TProuteGoBack = [[TPRouteGoBackViewController alloc] initWithStyle:UITableViewStyleGrouped];
         TProuteGoBack.title = selectedBusName;
-        //TProuteGoBack.title = [selectedBusName stringByAppendingString:@" 公車路線"];
+        TProuteGoBack.title = [selectedBusName stringByAppendingString:@" 公車路線"];
         [TProuteGoBack setter_departure:[depArrayTaipeiBus objectAtIndex:indexPath.row]];
         [TProuteGoBack setter_destination:[desArrayTaipeiBus objectAtIndex:indexPath.row]];
         [TProuteGoBack setter_busName:[arrayTaipeiBus objectAtIndex:indexPath.row]];
-        [self.navigationController pushViewController:TProuteGoBack animated:YES];
+        [self.navigationController pushViewController:TProuteGoBack animated:YES];*/
+        TPRouteDetailViewController * secondLevel = [[TPRouteDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        secondLevel.title = [NSString stringWithFormat:@"往 %@", [desArrayTaipeiBus objectAtIndex:indexPath.row]];
+        //secondLevel.title = [depArrayTaipeiBus objectAtIndex:indexPath.row];
+        [secondLevel setter_busName:selectedBusName andGoBack:0];
+        [secondLevel setter_departure:[depArrayTaipeiBus objectAtIndex:indexPath.row] andDestination:[desArrayTaipeiBus objectAtIndex:indexPath.row]];
+        [self.navigationController pushViewController:secondLevel animated:YES];
+        [secondLevel release];
+    
     }
     else if (indexPath.section == 1)
     {
         selectedBusName = [arrayNewTaipeiBus objectAtIndex:indexPath.row];
-        NTRouteGoBackViewController *NTrouteGoBack = [[NTRouteGoBackViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        /*NTRouteGoBackViewController *NTrouteGoBack = [[NTRouteGoBackViewController alloc] initWithStyle:UITableViewStyleGrouped];
         NTrouteGoBack.title = selectedBusName;
-        //NTrouteGoBack.title = [selectedBusName stringByAppendingString:@" 公車路線"];
+        NTrouteGoBack.title = [selectedBusName stringByAppendingString:@" 公車路線"];
         [NTrouteGoBack setter_departure:[depArrayNewTaipeiBus objectAtIndex:indexPath.row]];
         [NTrouteGoBack setter_destination:[desArrayNewTaipeiBus objectAtIndex:indexPath.row]];
         [NTrouteGoBack setter_busName:[arrayNewTaipeiBus objectAtIndex:indexPath.row]];
-        [self.navigationController pushViewController:NTrouteGoBack animated:YES];
+        [self.navigationController pushViewController:NTrouteGoBack animated:YES];*/
+        NTRouteDetailViewController *secondLevel = [[NTRouteDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        secondLevel.title = [NSString stringWithFormat:@"往 %@", [desArrayNewTaipeiBus objectAtIndex:indexPath.row]];
+        [secondLevel setter_busName:selectedBusName andGoBack:0];
+        [secondLevel setter_departure:[depArrayNewTaipeiBus objectAtIndex:indexPath.row] andDestination:[desArrayNewTaipeiBus objectAtIndex:indexPath.row]];
+        [self.navigationController pushViewController:secondLevel animated:YES];
+        [secondLevel release];
     }
     else
     {
@@ -864,8 +877,8 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     [compDestiName release];
     [compDeparName release];
     [cityName release];
-    [arrayTaipeiBus release];
-    [arrayNewTaipeiBus release];
+    //[arrayTaipeiBus release];
+    //[arrayNewTaipeiBus release];
     [arrayKeelungBus release];
     [depArrayTaipeiBus release];
     [depArrayNewTaipeiBus release];

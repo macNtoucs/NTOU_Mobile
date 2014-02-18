@@ -30,6 +30,12 @@
     NSLog(@"busName:%@, goBack:%@", busName, goBack);
 }
 
+- (void) setter_departure:(NSString *)dep andDestination:(NSString *)des
+{
+    departure = [[NSString alloc] initWithString:dep];
+    destination = [[NSString alloc] initWithString:des];
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -177,6 +183,25 @@
     
 }
 
+- (void)changeDetailView
+{
+    if ([goBack isEqualToString:@"0"])
+    {
+        anotherButton.title = destination;
+        self.navigationItem.title = [NSString stringWithFormat:@"往 %@", departure];
+        [self setter_busName:busName andGoBack:1];
+        [self CatchData];
+    }
+    else
+    {
+        anotherButton.title = departure;
+        self.navigationItem.title = [NSString stringWithFormat:@"往 %@", destination];
+        [self setter_busName:busName andGoBack:0];
+        [self CatchData];
+    }
+    
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -190,7 +215,7 @@
     // Refresh button & toolbar
     //toolbar = [[ToolBarController alloc]init];
     //[self.navigationController.view addSubview:[toolbar CreatTabBarWithNoFavorite:NO delegate:self] ];
-    anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshPropertyList)];
+    anotherButton = [[UIBarButtonItem alloc] initWithTitle:departure style:UIBarButtonItemStylePlain target:self action:@selector(changeDetailView)];
     self.navigationItem.rightBarButtonItem = anotherButton;
     
     // 手動下拉更新

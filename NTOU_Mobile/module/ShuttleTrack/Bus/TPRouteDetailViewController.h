@@ -24,6 +24,8 @@
 {
     NSString * busName; // 存取公車名稱
     NSString * goBack;
+    NSString * departure;
+    NSString * destination;
     
     NSMutableArray * stops;
     NSMutableArray * m_waitTimeResult;
@@ -40,6 +42,8 @@
 
 @property (nonatomic, retain) NSString * busName;
 @property (nonatomic, retain) NSString * goBack;
+@property (nonatomic, retain) NSString * depature;
+@property (nonatomic, retain) NSString * destination;
 
 @property (nonatomic, retain) NSMutableArray * stops;
 @property (nonatomic, retain) NSMutableArray * m_waitTimeResult;
@@ -53,6 +57,7 @@
 
 - (void) estimateTime; // 抓取公車進站時間
 - (void) setter_busName:(NSString *) name andGoBack:(NSInteger) goBack; // 取得公車名稱
+- (void) setter_departure:(NSString *)dep andDestination:(NSString *)des;
 
 - (void)reloadTableViewDataSource;
 
