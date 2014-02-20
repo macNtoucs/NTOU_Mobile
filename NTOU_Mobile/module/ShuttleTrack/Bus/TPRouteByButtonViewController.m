@@ -29,6 +29,7 @@
 @synthesize arrayTaipeiBus, arrayNewTaipeiBus, arrayKeelungBus;
 @synthesize depArrayTaipeiBus, depArrayNewTaipeiBus, depArrayKeelungBus;
 @synthesize desArrayTaipeiBus, desArrayNewTaipeiBus, desArrayKeelungBus;
+@synthesize activityIndicator;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,6 +40,10 @@
     return self;
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -46,6 +51,7 @@
     CGSize screenSize = screenBound.size;
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
+    
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Default.png"]];
     self.title = @"北北基公車";
@@ -825,6 +831,12 @@ int finderSortWithLocale(id string1, id string2, void *locale)
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString * selectedBusName = [[NSString alloc] init];
+    /*activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.frame = CGRectMake(0.0, 0.0, 200.0, 200.0);
+    activityIndicator.center = self.tableview.center;
+    [self.tableview addSubview:self.activityIndicator];
+    //[activityIndicator retain];
+    [activityIndicator startAnimating];*/
     if (indexPath.section == 0)
     {
         selectedBusName = [arrayTaipeiBus objectAtIndex:indexPath.row];
@@ -840,9 +852,12 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         //secondLevel.title = [depArrayTaipeiBus objectAtIndex:indexPath.row];
         [secondLevel setter_busName:selectedBusName andGoBack:0];
         [secondLevel setter_departure:[depArrayTaipeiBus objectAtIndex:indexPath.row] andDestination:[desArrayTaipeiBus objectAtIndex:indexPath.row]];
+        NSLog(@"before push view.");
+        
+        
         [self.navigationController pushViewController:secondLevel animated:YES];
         [secondLevel release];
-    
+        NSLog(@"after push view.");
     }
     else if (indexPath.section == 1)
     {

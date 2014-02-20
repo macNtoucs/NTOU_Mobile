@@ -21,12 +21,15 @@
 @synthesize success;
 @synthesize lastRefresh;
 @synthesize refreshTimer;
+@synthesize preArray;
+@synthesize activityIndicator, loadingView;
 
 - (void) setter_busName:(NSString *)name andGoBack:(NSInteger)goback
 {
     busName = name;
     goBack = [[NSString alloc] initWithFormat:@"%i", goback];
     NSLog(@"busName:%@, goBack:%@", busName, goBack);
+    ISREAL = FALSE;
 }
 
 - (void) setter_departure:(NSString *)dep andDestination:(NSString *)des
@@ -47,8 +50,12 @@
 
 -(void)CatchData
 {
+    NSLog(@"[Detail]CatchData");
+    ISREAL = TRUE;
     [self estimateTime];
     [self.tableView reloadData];
+    [loadingView dismissWithClickedButtonIndex:0 animated:YES];
+    [activityIndicator stopAnimating];
 }
 
 - (void)estimateTime
@@ -137,7 +144,7 @@
             break;
         }
     }
-    [self CatchData];
+    
     [loadingAlertView dismissWithClickedButtonIndex:0 animated:NO];
     [loadingAlertView release];
     [thread release];
@@ -205,9 +212,65 @@
 
 #pragma mark - View lifecycle
 
+/*- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+}*/
+
+
 - (void)viewDidLoad
 {
+    NSLog(@"[Detail]viewDidLoad");
     [super viewDidLoad];
+    //preArray = [NSArray arrayWithObjects:@"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", nil];
+    preArray = [[NSArray alloc] initWithObjects:@"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", nil];
+    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    CGSize screenSize = screenBound.size;
+    loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"讀取中..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    //loadingView.frame = CGRectMake(screenSize.width/2-100.0, screenSize.height/2-50.0, 200.0, 100.0);
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityIndicator.frame = CGRectMake(115.0, 40.0, 50.0, 50.0);
+    /*NSLog(@"activityIndicator=%lf", activityIndicator.center.x);
+    NSLog(@"activityIndicator=%lf", activityIndicator.center.y);
+    NSLog(@"loadingView=%lf", loadingView.center.x);
+    NSLog(@"loadingView=%lf", loadingView.center.y);*/
+    [self.loadingView addSubview:self.activityIndicator];
+    [activityIndicator startAnimating];
+    [self.tableView addSubview:self.loadingView];
+    [self.loadingView show];
+    //[activityIndicator retain];
+    /*NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ntou_mobile.db"];
+    NSLog(@"defaultDBPath=%@", defaultDBPath);
+    FMDatabase *db = [FMDatabase databaseWithPath:defaultDBPath];
+    if (![db open])
+        NSLog(@"Could not open db.");
+    else
+        NSLog(@"Open db successly.");
+    NSMutableString *query = [NSMutableString stringWithString:@"SELECT * FROM routeinfo where nameZh like '%"];
+    [query appendFormat:@"%@", busName];
+    [query appendString:@"%'"];
+    //NSLog(@"query=%@", query);
+    FMResultSet *rs = [db executeQuery:query];
+    NSMutableArray *testT = [[NSMutableArray alloc] init];
+    NSMutableArray *testN = [[NSMutableArray alloc] init];
+    
+    while ([rs next])
+    {
+        if ([[rs stringForColumn:@"city"] isEqualToString:@"T"])
+            [testT addObject:[rs stringForColumn:@"nameZh"]];
+        else if ([[rs stringForColumn:@"city"] isEqualToString:@"N"])
+            [testN addObject:[rs stringForColumn:@"nameZh"]];
+        else
+            NSLog(@"基隆的資料放這裡。");
+    }
+    [rs close];*/
+    
+    /*activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.frame = CGRectMake(0.0, 0.0, 50.0, 50.0);
+    activityIndicator.center = self.tableView.center;
+    [self.tableView addSubview:self.activityIndicator];
+    
+    [activityIndicator startAnimating];*/
     NSLog(@"Detail Layer.");
     [self.tableView applyStandardColors];
     IDs = [NSMutableArray new];
@@ -231,7 +294,7 @@
     [_refreshHeaderView refreshLastUpdatedDate];
     success = [[UIImageView alloc] initWithFrame:CGRectMake(75.0, 250.0, 150.0, 150.0)];
     [success setImage:[UIImage imageNamed:@"ok.png"]];
-    [self CatchData];
+    //[self CatchData];
 }
 
 - (void)viewDidUnload
@@ -241,21 +304,19 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    //[self.navigationController.view addSubview:toolbar.toolbarcontroller];
-    //[self.toolbar hideTabBar:self.tabBarController];
-    [super viewWillAppear:animated];
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
-    if (!stops) {
-        NSLog(@"RouteDetail.m stops is null");
+    NSLog(@"[Detail]viewDidAppear");
+    [super viewDidAppear:animated];
+    if (!ISREAL)
+    {
         [self CatchData];
     }
-    //[self startTimer];
-    [super viewDidAppear:animated];
+    else
+    {
+        NSLog(@"[Detail]stopAnimating");
+        [activityIndicator stopAnimating];
+    }
     //[self.tableView reloadData];
 }
 
@@ -288,8 +349,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    
-    return [stops count];   // for can't see cell
+    if (ISREAL)
+        return [stops count];   // for can't see cell
+    else
+        return [preArray count];
 }
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -308,75 +371,82 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"[Detail]cellForRow");
     NSString * CellIdentifier = [NSString stringWithFormat:@"Cell%d%d", [indexPath section], [indexPath row]];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil)
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    
-    NSString * stopName = [[NSString alloc] init];
-    NSString * comeTime = [[NSString alloc] init];
-    
-    if (indexPath.row == [stops count])
+    if (ISREAL)
     {
-        [cell.contentView removeFromSuperview];
-    }
-    else
-    {
-        stopName = [stops objectAtIndex:indexPath.row];
-        comeTime = [m_waitTimeResult objectAtIndex:indexPath.row];
+        NSString * stopName = [[NSString alloc] init];
+        NSString * comeTime = [[NSString alloc] init];
         
-        if ([comeTime isEqual:@"-1"])
+        if (indexPath.row == [stops count])
         {
-            cell.detailTextLabel.text = @"尚未發車";
-            cell.detailTextLabel.textColor = [UIColor grayColor];
-        }
-        else if ([comeTime isEqual:@"-2"])
-        {
-            cell.detailTextLabel.text = @"交管不停靠";
-            cell.detailTextLabel.textColor = [UIColor grayColor];
-        }
-        else if ([comeTime isEqual:@"-3"])
-        {
-            cell.detailTextLabel.text = @"末班車已過";
-            cell.detailTextLabel.textColor = [UIColor grayColor];
-        }
-        else if ([comeTime isEqual:@"更新中..."])
-        {
-            cell.detailTextLabel.text = @"更新中";
-            cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:13.0/255.0 green:139.0/255.0 blue:13.0/255.0 alpha:100.0];
-        }
-        else if ([comeTime intValue] <= 10)
-        {
-            cell.detailTextLabel.text = @"進站中";
-            cell.detailTextLabel.textColor = [UIColor redColor];
-        }
-        else if ([comeTime intValue] > 10 && [comeTime intValue] <= 120)
-        {
-            cell.detailTextLabel.text = @"即將進站";
-            cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:138.0/255.0 blue:25.0/255.0 alpha:100.0];
+            [cell.contentView removeFromSuperview];
         }
         else
         {
-            cell.detailTextLabel.text = [[NSString alloc] initWithFormat:@"%i 分鐘", (int)([comeTime doubleValue]/60 - 0.5)];
-            cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:0.0 green:45.0/255.0 blue:153.0/255.0 alpha:100.0];
+            stopName = [stops objectAtIndex:indexPath.row];
+            comeTime = [m_waitTimeResult objectAtIndex:indexPath.row];
+            
+            if ([comeTime isEqual:@"-1"])
+            {
+                cell.detailTextLabel.text = @"尚未發車";
+                cell.detailTextLabel.textColor = [UIColor grayColor];
+            }
+            else if ([comeTime isEqual:@"-2"])
+            {
+                cell.detailTextLabel.text = @"交管不停靠";
+                cell.detailTextLabel.textColor = [UIColor grayColor];
+            }
+            else if ([comeTime isEqual:@"-3"])
+            {
+                cell.detailTextLabel.text = @"末班車已過";
+                cell.detailTextLabel.textColor = [UIColor grayColor];
+            }
+            else if ([comeTime isEqual:@"更新中..."])
+            {
+                cell.detailTextLabel.text = @"更新中";
+                cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:13.0/255.0 green:139.0/255.0 blue:13.0/255.0 alpha:100.0];
+            }
+            else if ([comeTime intValue] <= 10)
+            {
+                cell.detailTextLabel.text = @"進站中";
+                cell.detailTextLabel.textColor = [UIColor redColor];
+            }
+            else if ([comeTime intValue] > 10 && [comeTime intValue] <= 120)
+            {
+                cell.detailTextLabel.text = @"即將進站";
+                cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:138.0/255.0 blue:25.0/255.0 alpha:100.0];
+            }
+            else
+            {
+                cell.detailTextLabel.text = [[NSString alloc] initWithFormat:@"%i 分鐘", (int)([comeTime doubleValue]/60 - 0.5)];
+                cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:0.0 green:45.0/255.0 blue:153.0/255.0 alpha:100.0];
+            }
         }
+        //NSString * number = [[NSString alloc] initWithFormat:@"(%i) ", indexPath.row+1];
+        cell.textLabel.text = stopName;
+        cell.textLabel.textColor = [UIColor blackColor];
+        //cell.textLabel.text = [number stringByAppendingString:stopName];
+        
+        //cell.detailTextLabel.backgroundColor = [UIColor yellowColor];
+        [[cell.contentView viewWithTag:indexPath.row+1]removeFromSuperview];
     }
-    
-    
-    //NSString * number = [[NSString alloc] initWithFormat:@"(%i) ", indexPath.row+1];
-    cell.textLabel.text = stopName;
-    //cell.textLabel.text = [number stringByAppendingString:stopName];
+    else
+    {
+        cell.textLabel.text = [preArray objectAtIndex:indexPath.row];
+        cell.textLabel.textColor = [UIColor grayColor];
+    }
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
     cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
-    //cell.detailTextLabel.backgroundColor = [UIColor yellowColor];
-    [[cell.contentView viewWithTag:indexPath.row+1]removeFromSuperview];
     //[cell.contentView addSubview:[toolbar CreateButton:indexPath]];
     //NSString * newString = [[busName componentsSeparatedByString:@"("] objectAtIndex:0];
     //[toolbar isStopAdded:newString andStop:stopName andNo:@"RouteDetail"];
-    
     return cell;
 }
 
