@@ -193,6 +193,8 @@
 {
     NSLog(@"changeDetailView");
     NSLog(@"changeView.goBack=%@", goBack);
+    [activityIndicator startAnimating];
+    [self.loadingView show];
     if ([goBack isEqualToString:@"0"])
     {
         anotherButton.title = destination;
@@ -452,6 +454,8 @@
 
 - (void)dealloc
 {
+    [activityIndicator release];
+    [loadingView release];
     [busName release];
     [goBack release];
     [IDs release];

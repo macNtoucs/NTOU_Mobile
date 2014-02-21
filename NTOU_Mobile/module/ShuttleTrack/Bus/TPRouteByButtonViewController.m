@@ -29,7 +29,7 @@
 @synthesize arrayTaipeiBus, arrayNewTaipeiBus, arrayKeelungBus;
 @synthesize depArrayTaipeiBus, depArrayNewTaipeiBus, depArrayKeelungBus;
 @synthesize desArrayTaipeiBus, desArrayNewTaipeiBus, desArrayKeelungBus;
-@synthesize activityIndicator;
+@synthesize activityIndicator, partBusNameLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,10 +40,6 @@
     return self;
 }
 
-- (void) viewWillAppear:(BOOL)animated
-{
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -51,7 +47,12 @@
     CGSize screenSize = screenBound.size;
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
-    
+    partBusNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(230.0, 27.0, 80.0, 30.0)];
+    partBusNameLabel.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];  // 透明背景
+    partBusNameLabel.textColor = [UIColor whiteColor];
+    partBusNameLabel.textAlignment = NSTextAlignmentCenter;
+    partBusNameLabel.text = @"";
+    [self.navigationController.view addSubview:partBusNameLabel];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Default.png"]];
     self.title = @"北北基公車";
@@ -71,13 +72,6 @@
     desArrayNewTaipeiBus = [[NSMutableArray alloc] init];
     desArrayKeelungBus = [[NSMutableArray alloc] init];
     [self showFirstLayerButtons];
-    
-    // Do any additional setup after loading the view.
-    
-    //NSLog(@"RouteByButton");
-    
-    
-    
 }
 
 - (void)viewDidUnload
@@ -89,7 +83,6 @@
 - (void)showFirstLayerButtons
 {
     buttonFirstView = [[[UIView alloc] initWithFrame:CGRectMake(0, 480, 320, 250)] retain];
-    //[buttonFirstView setBackgroundColor:[UIColor colorWithRed:6/255.0 green:227/255.0 blue:251/255.0 alpha:90/100.0]];
     [buttonFirstView setBackgroundColor:[UIColor lightTextColor]];
     
     buttonTintColor = [UIColor blackColor];
@@ -343,13 +336,6 @@ int finderSortWithLocale(id string1, id string2, void *locale)
 
 - (void)showTableViewContent
 {
-    //NSMutableString *encodedStop = (NSMutableString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)partBusName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
-    
-    
-    /*[arrayTaipeiBus removeAllObjects];
-    [arrayNewTaipeiBus removeAllObjects];
-    [arrayKeelungBus removeAllObjects];*/
-    //tableview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:NTOUImageNameBackground]];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:NTOUImageNameBackground]];
     [tableview applyStandardColors];
     
@@ -362,10 +348,6 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     
     // start sqlite3
     
-    /*NSURL *appUrl = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    NSLog(@"appUrl=%@", appUrl);
-    NSString *dbPath = [[appUrl path] stringByAppendingPathComponent:@"ntou_mobile.db"];
-    NSLog(@"dbPath=%@", dbPath);*/
     NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ntou_mobile.db"];
     NSLog(@"defaultDBPath=%@", defaultDBPath);
     FMDatabase *db = [FMDatabase databaseWithPath:defaultDBPath];
@@ -385,65 +367,6 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         NSLog(@"retainCount=%d",[arrayNewTaipeiBus retainCount]);
         [arrayNewTaipeiBus retain];
         NSLog(@"retainCount=%d",[arrayNewTaipeiBus retainCount]);
-        /*[arrayTaipeiBus arrayByAddingObject:@"景美-榮總(快)"];
-        [depArrayTaipeiBus arrayByAddingObject:@"景美女中"];
-        [desArrayTaipeiBus arrayByAddingObject:@"榮總"];
-        [arrayTaipeiBus retain];
-        [depArrayTaipeiBus retain];
-        [desArrayTaipeiBus retain];*/
-        //NSLog(@"%@", arrayTaipeiBus);
-        //NSLog(@"Here");
-        /*[arrayTaipeiBus addObject:@"景美-榮總(快)"];
-        [arrayTaipeiBus addObject:@"貓空右線"];
-        [arrayTaipeiBus addObject:@"貓空左線(動物園)"];
-        [arrayTaipeiBus addObject:@"貓空左線(指南宮)"];
-        [arrayTaipeiBus addObject:@"懷恩專車S31(捷運公館)"];
-        [arrayTaipeiBus addObject:@"懷恩專車S31(捷運六張犁)"];
-        [arrayTaipeiBus addObject:@"懷恩專車S31(捷運忠孝復興)"];
-        [arrayTaipeiBus addObject:@"花季專車126"];
-        [arrayTaipeiBus addObject:@"花季專車127"];
-        [arrayTaipeiBus addObject:@"花季專車130"];
-        [arrayTaipeiBus addObject:@"花季專車130區"];
-        [arrayTaipeiBus addObject:@"花季專車131"];*/
-        
-        /*[arrayNewTaipeiBus addObject:@"三鶯捷運先導公車"];
-        [arrayNewTaipeiBus addObject:@"淡海捷運先導公車"];
-        [arrayNewTaipeiBus addObject:@"萬大樹林先導公車"];*/
-        
-        
-        /*[depArrayTaipeiBus addObject:@"景美女中"];
-        [depArrayTaipeiBus addObject:@"貓纜貓空站"];
-        [depArrayTaipeiBus addObject:@"貓纜貓空站"];
-        [depArrayTaipeiBus addObject:@"茶推廣中心停車場"];
-        [depArrayTaipeiBus addObject:@"捷運公館站"];
-        [depArrayTaipeiBus addObject:@"捷運六張犁站"];
-        [depArrayTaipeiBus addObject:@"八德市場"];
-        [depArrayTaipeiBus addObject:@"臺北車站"];
-        [depArrayTaipeiBus addObject:@"捷運劍潭站"];
-        [depArrayTaipeiBus addObject:@"第二停車場"];
-        [depArrayTaipeiBus addObject:@"花鐘"];
-        [depArrayTaipeiBus addObject:@"陽明山第二停車場"];*/
-        
-        /*[depArrayNewTaipeiBus addObject:@"文昌街口"];
-        [depArrayNewTaipeiBus addObject:@"龍騰區"];
-        [depArrayNewTaipeiBus addObject:@"捷運輔大站"];*/
-        
-        /*[desArrayTaipeiBus addObject:@"榮總"];
-        [desArrayTaipeiBus addObject:@"貓纜貓空站"];
-        [desArrayTaipeiBus addObject:@"捷運動物園"];
-        [desArrayTaipeiBus addObject:@"貓纜指南宮站"];
-        [desArrayTaipeiBus addObject:@"青峰活動中心"];
-        [desArrayTaipeiBus addObject:@"青峰活動中心"];
-        [desArrayTaipeiBus addObject:@"青峰活動中心"];
-        [desArrayTaipeiBus addObject:@"陽明山"];
-        [desArrayTaipeiBus addObject:@"陽明山"];
-        [desArrayTaipeiBus addObject:@"陽明書屋"];
-        [desArrayTaipeiBus addObject:@"陽明山站"];
-        [desArrayTaipeiBus addObject:@"竹子湖"];*/
-        
-        /*[desArrayNewTaipeiBus addObject:@"中鶯"];
-        [desArrayNewTaipeiBus addObject:@"太子廟"];
-        [desArrayNewTaipeiBus addObject:@"捷運龍山寺站"];*/
     }
     else
     {
@@ -728,6 +651,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         default:
             break;
     }
+    partBusNameLabel.text = partBusName;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -777,7 +701,6 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         NSLog(@"section2:%lu", (unsigned long)[arrayKeelungBus count]);
         return [arrayKeelungBus count];
     }
-    //return [compBusName count];
 }
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -802,7 +725,6 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-        //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     NSString * departDestinInfo = [[NSString alloc] init];
     cell.textLabel.font = [UIFont systemFontOfSize:20.0];
@@ -831,30 +753,16 @@ int finderSortWithLocale(id string1, id string2, void *locale)
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString * selectedBusName = [[NSString alloc] init];
-    /*activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    activityIndicator.frame = CGRectMake(0.0, 0.0, 200.0, 200.0);
-    activityIndicator.center = self.tableview.center;
-    [self.tableview addSubview:self.activityIndicator];
-    //[activityIndicator retain];
-    [activityIndicator startAnimating];*/
+    partBusNameLabel.text = @"";
+    [partBusNameLabel release];
     if (indexPath.section == 0)
     {
         selectedBusName = [arrayTaipeiBus objectAtIndex:indexPath.row];
-        /*TPRouteGoBackViewController *TProuteGoBack = [[TPRouteGoBackViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        TProuteGoBack.title = selectedBusName;
-        TProuteGoBack.title = [selectedBusName stringByAppendingString:@" 公車路線"];
-        [TProuteGoBack setter_departure:[depArrayTaipeiBus objectAtIndex:indexPath.row]];
-        [TProuteGoBack setter_destination:[desArrayTaipeiBus objectAtIndex:indexPath.row]];
-        [TProuteGoBack setter_busName:[arrayTaipeiBus objectAtIndex:indexPath.row]];
-        [self.navigationController pushViewController:TProuteGoBack animated:YES];*/
         TPRouteDetailViewController * secondLevel = [[TPRouteDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
         secondLevel.title = [NSString stringWithFormat:@"往 %@", [desArrayTaipeiBus objectAtIndex:indexPath.row]];
-        //secondLevel.title = [depArrayTaipeiBus objectAtIndex:indexPath.row];
         [secondLevel setter_busName:selectedBusName andGoBack:0];
         [secondLevel setter_departure:[depArrayTaipeiBus objectAtIndex:indexPath.row] andDestination:[desArrayTaipeiBus objectAtIndex:indexPath.row]];
         NSLog(@"before push view.");
-        
-        
         [self.navigationController pushViewController:secondLevel animated:YES];
         [secondLevel release];
         NSLog(@"after push view.");
@@ -862,13 +770,6 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     else if (indexPath.section == 1)
     {
         selectedBusName = [arrayNewTaipeiBus objectAtIndex:indexPath.row];
-        /*NTRouteGoBackViewController *NTrouteGoBack = [[NTRouteGoBackViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        NTrouteGoBack.title = selectedBusName;
-        NTrouteGoBack.title = [selectedBusName stringByAppendingString:@" 公車路線"];
-        [NTrouteGoBack setter_departure:[depArrayNewTaipeiBus objectAtIndex:indexPath.row]];
-        [NTrouteGoBack setter_destination:[desArrayNewTaipeiBus objectAtIndex:indexPath.row]];
-        [NTrouteGoBack setter_busName:[arrayNewTaipeiBus objectAtIndex:indexPath.row]];
-        [self.navigationController pushViewController:NTrouteGoBack animated:YES];*/
         NTRouteDetailViewController *secondLevel = [[NTRouteDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
         secondLevel.title = [NSString stringWithFormat:@"往 %@", [desArrayNewTaipeiBus objectAtIndex:indexPath.row]];
         [secondLevel setter_busName:selectedBusName andGoBack:0];
