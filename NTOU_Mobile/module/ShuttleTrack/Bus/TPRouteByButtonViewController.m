@@ -53,6 +53,7 @@
     partBusNameLabel.textAlignment = NSTextAlignmentCenter;
     partBusNameLabel.text = @"";
     [self.navigationController.view addSubview:partBusNameLabel];
+    NSLog(@"navView=%@", self.navigationController.view);
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Default.png"]];
     self.title = @"北北基公車";
@@ -754,7 +755,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
 {
     NSString * selectedBusName = [[NSString alloc] init];
     partBusNameLabel.text = @"";
-    [partBusNameLabel release];
+    //[partBusNameLabel release];  // Releasing makes app crashes.
     if (indexPath.section == 0)
     {
         selectedBusName = [arrayTaipeiBus objectAtIndex:indexPath.row];
@@ -790,6 +791,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
 
 - (void)dealloc
 {
+    [partBusNameLabel release];
     [compDestiName release];
     [compDeparName release];
     [cityName release];

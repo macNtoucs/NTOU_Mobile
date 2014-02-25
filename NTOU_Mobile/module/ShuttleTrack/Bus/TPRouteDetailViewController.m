@@ -36,7 +36,7 @@
 {
     depature = [[NSString alloc] initWithString:dep];
     destination = [[NSString alloc] initWithString:des];
-    NSLog(@"dep:%@ / des:%@", depature, destination);
+    //NSLog(@"dep:%@ / des:%@", depature, destination);
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -75,7 +75,7 @@
     
     NSString *strResult = [[[NSString alloc] initWithData:dataURL encoding:NSUTF8StringEncoding]autorelease];
     
-    NSLog(@"strResult = %@", strResult);
+    //NSLog(@"strResult = %@", strResult);
     
     NSArray * stopsAndTimes = [strResult componentsSeparatedByString:@";"];
     
@@ -191,8 +191,8 @@
 
 - (void)changeDetailView
 {
-    NSLog(@"changeDetailView");
-    NSLog(@"changeView.goBack=%@", goBack);
+    //NSLog(@"changeDetailView");
+    //NSLog(@"changeView.goBack=%@", goBack);
     [activityIndicator startAnimating];
     [self.loadingView show];
     if ([goBack isEqualToString:@"0"])
@@ -273,7 +273,7 @@
     [self.tableView addSubview:self.activityIndicator];
     
     [activityIndicator startAnimating];*/
-    NSLog(@"Detail Layer.");
+    //NSLog(@"Detail Layer.");
     [self.tableView applyStandardColors];
     IDs = [NSMutableArray new];
     m_waitTimeResult = [NSMutableArray new];
@@ -308,7 +308,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@"[Detail]viewDidAppear");
+    //NSLog(@"[Detail]viewDidAppear");
     [super viewDidAppear:animated];
     if (!ISREAL)
     {
@@ -316,7 +316,7 @@
     }
     else
     {
-        NSLog(@"[Detail]stopAnimating");
+        //NSLog(@"[Detail]stopAnimating");
         [activityIndicator stopAnimating];
     }
     //[self.tableView reloadData];
@@ -373,7 +373,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"[Detail]cellForRow");
+    //NSLog(@"[Detail]cellForRow");
     NSString * CellIdentifier = [NSString stringWithFormat:@"Cell%d%d", [indexPath section], [indexPath row]];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
