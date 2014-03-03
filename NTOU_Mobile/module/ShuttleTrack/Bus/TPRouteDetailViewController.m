@@ -198,14 +198,14 @@
     if ([goBack isEqualToString:@"0"])
     {
         anotherButton.title = destination;
-        self.navigationItem.title = depature;
+        self.navigationItem.title = [NSString stringWithFormat:@"往 %@", depature];
         [self setter_busName:busName andGoBack:1];
         [self CatchData];
     }
     else
     {
         anotherButton.title = depature;
-        self.navigationItem.title = destination;
+        self.navigationItem.title = [NSString stringWithFormat:@"往 %@", destination];
         [self setter_busName:busName andGoBack:0];
         [self CatchData];
     }

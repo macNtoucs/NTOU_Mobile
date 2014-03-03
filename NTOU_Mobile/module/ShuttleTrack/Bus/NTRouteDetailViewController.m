@@ -15,7 +15,6 @@
 @synthesize goBack;
 @synthesize stops, IDs, m_waitTimeResult;
 
-//@synthesize toolbar;
 @synthesize anotherButton;
 @synthesize success;
 @synthesize lastRefresh;
@@ -68,12 +67,12 @@
     NSString *encodedBus = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)busName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
     
     NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/NTRouteDetail.php?bus=%@&goBack=%@", encodedBus, goBack];
-    
+    [encodedBus release];   // Analyze MemLeak
     NSData *dataURL = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
     
     NSString *strResult = [[[NSString alloc] initWithData:dataURL encoding:NSUTF8StringEncoding]autorelease];
     
-    NSLog(@"strResult = %@", strResult);
+    //NSLog(@"strResult = %@", strResult);
     
     NSArray * stopsAndTimes = [strResult componentsSeparatedByString:@";"];
     
@@ -85,14 +84,6 @@
     }
     [stops removeLastObject];
     
-    /*NSArray * tmp_IDs = [[NSArray alloc] init];
-     tmp_IDs = [[stopsAndTimes objectAtIndex:1] componentsSeparatedByString:@"|"];
-     for (NSString * str in tmp_IDs)
-     {
-     [IDs addObject:str];
-     }
-     [IDs removeLastObject];*/
-    
     NSArray * tmp_m = [[NSArray alloc] init];
     tmp_m = [[stopsAndTimes objectAtIndex:1] componentsSeparatedByString:@"|"];
     for (NSString * str in tmp_m)
@@ -100,7 +91,7 @@
         [m_waitTimeResult addObject:str];
     }
     [m_waitTimeResult removeLastObject];
-    
+    //[tmp_m release];    // Analyze MemLeak
     [stops retain];
     //[IDs retain];
     [m_waitTimeResult retain];
@@ -224,20 +215,13 @@
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
     loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"讀取中..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-    //loadingView.frame = CGRectMake(screenSize.width/2-100.0, screenSize.height/2-50.0, 200.0, 100.0);
+    
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicator.frame = CGRectMake(115.0, 40.0, 50.0, 50.0);
-    /*NSLog(@"activityIndicator=%lf", activityIndicator.center.x);
-     NSLog(@"activityIndicator=%lf", activityIndicator.center.y);
-     NSLog(@"loadingView=%lf", loadingView.center.x);
-     NSLog(@"loadingView=%lf", loadingView.center.y);*/
     [self.loadingView addSubview:self.activityIndicator];
     [activityIndicator startAnimating];
     [self.tableView addSubview:self.loadingView];
     [self.loadingView show];
-    // Refresh button & toolbar
-    //toolbar = [[ToolBarController alloc]init];
-    //[self.navigationController.view addSubview:[toolbar CreatTabBarWithNoFavorite:NO delegate:self] ];
     anotherButton = [[UIBarButtonItem alloc] initWithTitle:departure style:UIBarButtonItemStylePlain target:self action:@selector(changeDetailView)];
     self.navigationItem.rightBarButtonItem = anotherButton;
     
@@ -252,7 +236,6 @@
     [_refreshHeaderView refreshLastUpdatedDate];
     success = [[UIImageView alloc] initWithFrame:CGRectMake(75.0, 250.0, 150.0, 150.0)];
     [success setImage:[UIImage imageNamed:@"ok.png"]];
-    //[self CatchData];
 }
 
 - (void)viewDidUnload
@@ -265,8 +248,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    //[self.navigationController.view addSubview:toolbar.toolbarcontroller];
-    //[self.toolbar hideTabBar:self.tabBarController];
     NSLog(@"[NTDetail]viewWillAppear");
     [super viewWillAppear:animated];
 }
@@ -289,8 +270,6 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     NSLog(@"viewWillDisappear");
-    //[toolbar.toolbarcontroller removeFromSuperview];
-    //[self.toolbar showTabBar: self.tabBarController];
     [super viewWillDisappear:animated];
 }
 
@@ -384,10 +363,8 @@
                 cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:0.0 green:45.0/255.0 blue:153.0/255.0 alpha:100.0];
             }
         }
-        //NSString * number = [[NSString alloc] initWithFormat:@"(%i) ", indexPath.row+1];
         cell.textLabel.text = stopName;
         cell.textLabel.textColor = [UIColor blackColor];
-        //cell.textLabel.text = [number stringByAppendingString:stopName];
         [[cell.contentView viewWithTag:indexPath.row+1]removeFromSuperview];
     }
     else
@@ -398,9 +375,8 @@
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
     cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
-    //[cell.contentView addSubview:[toolbar CreateButton:indexPath]];
-    //NSString * newString = [[busName componentsSeparatedByString:@"("] objectAtIndex:0];
-    //[toolbar isStopAdded:newString andStop:stopName andNo:@"RouteDetail"];
+    //[comeTime release]; // Analyze MemLeak
+    //[stopName release]; // Analyze MemLeak
     return cell;
 }
 

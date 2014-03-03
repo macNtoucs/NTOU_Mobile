@@ -111,6 +111,7 @@
         
     // Configure the cell...
     cell.textLabel.text = timeString;
+    [timeString release];   // Analyze Mem Leak
     return cell;
 }
 /*
