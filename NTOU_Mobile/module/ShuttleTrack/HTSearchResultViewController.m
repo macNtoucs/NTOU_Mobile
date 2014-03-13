@@ -26,6 +26,7 @@
     if (self) {
         station = [[NSArray alloc]initWithObjects:@"台北",@"板橋",@"桃園",@"新竹",@"台中",@"嘉義",@"台南",@"左營", nil];
         
+        /* change station id */
         //台北 : 977abb69-413a-4ccf-a109-0272c24fd490
         //板橋 : e6e26e66-7dc1-458f-b2f3-71ce65fdc95f
         //桃園 : fbd828d8-b1da-4b06-a3bd-680cdca4d2cd
@@ -35,14 +36,22 @@
         //台南 : 9c5ac6ca-ec89-48f8-aab0-41b738cb1814
         //左營 : f2519629-5973-4d08-913b-479cce78a356
         
-        HTStationNameCode = [[NSArray alloc]initWithObjects:@"977abb69-413a-4ccf-a109-0272c24fd490",
+        /*HTStationNameCode = [[NSArray alloc]initWithObjects:@"977abb69-413a-4ccf-a109-0272c24fd490",
                                                             @"e6e26e66-7dc1-458f-b2f3-71ce65fdc95f",
                                                             @"fbd828d8-b1da-4b06-a3bd-680cdca4d2cd",
                                                             @"a7a04c89-900b-4798-95a3-c01c455622f4",
                                                             @"3301e395-46b8-47aa-aa37-139e15708779",
                                                             @"60831846-f0e4-47f6-9b5b-46323ebdcef7",
                                                             @"9c5ac6ca-ec89-48f8-aab0-41b738cb1814",
-                                                            @"f2519629-5973-4d08-913b-479cce78a356", nil];
+                                                            @"f2519629-5973-4d08-913b-479cce78a356", nil];*/
+        HTStationNameCode = [[NSArray alloc]initWithObjects:@"1000",
+                             @"1010",
+                             @"1020",
+                             @"1030",
+                             @"1040",
+                             @"1050",
+                             @"1060",
+                             @"1070", nil];
         isFirstTimeLoad = true;
     }
     return self;
@@ -71,7 +80,36 @@
     [depatureTime removeAllObjects];
     [startTime removeAllObjects];
     
-    NSData * BIN_resultString = [NSData new];
+    NSString *encodedstart = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)startStation, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
+    NSString *encodedend = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)depatureStation, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyyMMdd"];
+    NSString *strDate = [dateFormatter stringFromDate:selectedDate];
+    
+    NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/HTSearchResult.php?startStation=%@&endStation=%@&date=%@&time=%@", encodedstart, encodedend, strDate, selectedHTTime];
+    
+    NSData *dataURL = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
+    
+    NSString *strResult = [[[NSString alloc] initWithData:dataURL encoding:NSUTF8StringEncoding]autorelease];
+    
+    NSString * postString = [[NSString alloc]init];
+    postString=[postString stringByAppendingFormat:@"StartStation=%@",[self convertStation_NameToCode:[station indexOfObject:startStation]] ];
+    
+    NSLog(@"strResult = %@, postStr = %@", strResult, postString);
+    
+    
+    /*NSArray * stopsAndTimes = [strResult componentsSeparatedByString:@";"];
+    
+    NSArray * tmp_stops = [[NSArray alloc] init];
+    tmp_stops = [[stopsAndTimes objectAtIndex:0] componentsSeparatedByString:@"|"];
+    for (NSString * str in tmp_stops)
+    {
+        [stops addObject:str];
+    }
+    [stops removeLastObject];*/
+    
+    /*NSData * BIN_resultString = [NSData new];
     BIN_resultString = [queryResult dataUsingEncoding:NSUTF8StringEncoding];
     TFHpple* parser = [[TFHpple alloc] initWithHTMLData:BIN_resultString];
     
@@ -94,7 +132,7 @@
         else [startTime addObject:context];
     }
        [self.tableView reloadData];
-    [BIN_resultString release];
+    [BIN_resultString release];*/
     [downloadView AlertViewEnd];
 }
 

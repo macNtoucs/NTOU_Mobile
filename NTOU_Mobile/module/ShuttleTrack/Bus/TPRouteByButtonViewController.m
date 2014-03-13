@@ -373,6 +373,8 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         NSArray *array3 = [[NSArray alloc] initWithObjects:@"榮總", @"貓纜貓空站", @"捷運動物園", @"貓纜指南宮站", @"青峰活動中心", @"青峰活動中心", @"青峰活動中心", @"陽明山", @"陽明山", @"陽明書屋", @"陽明山站", @"竹子湖", nil];
         desArrayTaipeiBus = [array3 mutableCopy];
         [arrayNewTaipeiBus retain];
+        [depArrayNewTaipeiBus retain];
+        [desArrayNewTaipeiBus retain];
         /*[arrayTaipeiBus arrayByAddingObject:@"景美-榮總(快)"];
         [depArrayTaipeiBus arrayByAddingObject:@"景美女中"];
         [desArrayTaipeiBus arrayByAddingObject:@"榮總"];
