@@ -29,6 +29,7 @@
 @synthesize arrayTaipeiBus, arrayNewTaipeiBus, arrayKeelungBus;
 @synthesize depArrayTaipeiBus, depArrayNewTaipeiBus, depArrayKeelungBus;
 @synthesize desArrayTaipeiBus, desArrayNewTaipeiBus, desArrayKeelungBus;
+@synthesize activityIndicator, partBusNameLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,6 +47,13 @@
     CGSize screenSize = screenBound.size;
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
+    partBusNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(230.0, 27.0, 80.0, 30.0)];
+    partBusNameLabel.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];  // 透明背景
+    partBusNameLabel.textColor = [UIColor whiteColor];
+    partBusNameLabel.textAlignment = NSTextAlignmentCenter;
+    partBusNameLabel.text = @"";
+    [self.navigationController.view addSubview:partBusNameLabel];
+    NSLog(@"navView=%@", self.navigationController.view);
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Default.png"]];
     self.title = @"北北基公車";
@@ -65,13 +73,6 @@
     desArrayNewTaipeiBus = [[NSMutableArray alloc] init];
     desArrayKeelungBus = [[NSMutableArray alloc] init];
     [self showFirstLayerButtons];
-    
-    // Do any additional setup after loading the view.
-    
-    //NSLog(@"RouteByButton");
-    
-    
-    
 }
 
 - (void)viewDidUnload
@@ -83,7 +84,6 @@
 - (void)showFirstLayerButtons
 {
     buttonFirstView = [[[UIView alloc] initWithFrame:CGRectMake(0, 480, 320, 250)] retain];
-    //[buttonFirstView setBackgroundColor:[UIColor colorWithRed:6/255.0 green:227/255.0 blue:251/255.0 alpha:90/100.0]];
     [buttonFirstView setBackgroundColor:[UIColor lightTextColor]];
     
     buttonTintColor = [UIColor blackColor];
@@ -337,13 +337,6 @@ int finderSortWithLocale(id string1, id string2, void *locale)
 
 - (void)showTableViewContent
 {
-    //NSMutableString *encodedStop = (NSMutableString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)partBusName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
-    
-    
-    /*[arrayTaipeiBus removeAllObjects];
-    [arrayNewTaipeiBus removeAllObjects];
-    [arrayKeelungBus removeAllObjects];*/
-    //tableview.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:NTOUImageNameBackground]];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:NTOUImageNameBackground]];
     [tableview applyStandardColors];
     
@@ -356,13 +349,13 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     
     // start sqlite3
     
-    NSURL *appUrl = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    NSString *dbPath = [[appUrl path] stringByAppendingPathComponent:@"ntou_mobile.db"];
-    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
+    NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ntou_mobile.db"];
+    NSLog(@"defaultDBPath=%@", defaultDBPath);
+    FMDatabase *db = [FMDatabase databaseWithPath:defaultDBPath];
     if (![db open])
         NSLog(@"Could not open db.");
     else
-        NSLog(@"Open db successly");
+        NSLog(@"Open db successly.");
     // 按了其他再按別的會壞掉;先按別的再按其他會壞掉
     if ([partBusName isEqualToString:@"其他"])
     {
@@ -372,7 +365,9 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         depArrayTaipeiBus = [array2 mutableCopy];
         NSArray *array3 = [[NSArray alloc] initWithObjects:@"榮總", @"貓纜貓空站", @"捷運動物園", @"貓纜指南宮站", @"青峰活動中心", @"青峰活動中心", @"青峰活動中心", @"陽明山", @"陽明山", @"陽明書屋", @"陽明山站", @"竹子湖", nil];
         desArrayTaipeiBus = [array3 mutableCopy];
+        NSLog(@"retainCount=%d",[arrayNewTaipeiBus retainCount]);
         [arrayNewTaipeiBus retain];
+
         [depArrayNewTaipeiBus retain];
         [desArrayNewTaipeiBus retain];
         /*[arrayTaipeiBus arrayByAddingObject:@"景美-榮總(快)"];
@@ -461,12 +456,8 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         // start natural sorting
         
         arrayTaipeiBus = [testT sortedArrayUsingFunction:finderSortWithLocale context:[NSLocale currentLocale]];
-        for (NSString *str in arrayTaipeiBus)
-            NSLog(@"%@", str);
         
         arrayNewTaipeiBus = [testN sortedArrayUsingFunction:finderSortWithLocale context:[NSLocale currentLocale]];
-        for (NSString *str in arrayNewTaipeiBus)
-            NSLog(@"%@", str);
         
         // end natural sorting
         
@@ -512,6 +503,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     //NSLog(@"partBusName = %@", partBusName);
     [arrayTaipeiBus retain];
     [arrayNewTaipeiBus retain];
+    NSLog(@"retainCount=%d",[arrayNewTaipeiBus retainCount]);
     [arrayKeelungBus retain];
     [tableview reloadData];
 }
@@ -717,6 +709,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         default:
             break;
     }
+    partBusNameLabel.text = partBusName;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -766,7 +759,6 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         NSLog(@"section2:%lu", (unsigned long)[arrayKeelungBus count]);
         return [arrayKeelungBus count];
     }
-    //return [compBusName count];
 }
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -786,13 +778,11 @@ int finderSortWithLocale(id string1, id string2, void *locale)
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"indexPath=%@", indexPath);
-    NSLog(@"aTB=%@", arrayTaipeiBus);
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-        //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     NSString * departDestinInfo = [[NSString alloc] init];
     cell.textLabel.font = [UIFont systemFontOfSize:20.0];
@@ -821,25 +811,29 @@ int finderSortWithLocale(id string1, id string2, void *locale)
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString * selectedBusName = [[NSString alloc] init];
+    partBusNameLabel.text = @"";
+    //[partBusNameLabel release];  // Releasing makes app crashes.
     if (indexPath.section == 0)
     {
         selectedBusName = [arrayTaipeiBus objectAtIndex:indexPath.row];
-        TPRouteGoBackViewController *TProuteGoBack = [[TPRouteGoBackViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        TProuteGoBack.title = [selectedBusName stringByAppendingString:@" 公車路線"];
-        [TProuteGoBack setter_departure:[depArrayTaipeiBus objectAtIndex:indexPath.row]];
-        [TProuteGoBack setter_destination:[desArrayTaipeiBus objectAtIndex:indexPath.row]];
-        [TProuteGoBack setter_busName:[arrayTaipeiBus objectAtIndex:indexPath.row]];
-        [self.navigationController pushViewController:TProuteGoBack animated:YES];
+        TPRouteDetailViewController * secondLevel = [[TPRouteDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        secondLevel.title = [NSString stringWithFormat:@"往 %@", [desArrayTaipeiBus objectAtIndex:indexPath.row]];
+        [secondLevel setter_busName:selectedBusName andGoBack:0];
+        [secondLevel setter_departure:[depArrayTaipeiBus objectAtIndex:indexPath.row] andDestination:[desArrayTaipeiBus objectAtIndex:indexPath.row]];
+        NSLog(@"before push view.");
+        [self.navigationController pushViewController:secondLevel animated:YES];
+        [secondLevel release];
+        NSLog(@"after push view.");
     }
     else if (indexPath.section == 1)
     {
         selectedBusName = [arrayNewTaipeiBus objectAtIndex:indexPath.row];
-        NTRouteGoBackViewController *NTrouteGoBack = [[NTRouteGoBackViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        NTrouteGoBack.title = [selectedBusName stringByAppendingString:@" 公車路線"];
-        [NTrouteGoBack setter_departure:[depArrayNewTaipeiBus objectAtIndex:indexPath.row]];
-        [NTrouteGoBack setter_destination:[desArrayNewTaipeiBus objectAtIndex:indexPath.row]];
-        [NTrouteGoBack setter_busName:[arrayNewTaipeiBus objectAtIndex:indexPath.row]];
-        [self.navigationController pushViewController:NTrouteGoBack animated:YES];
+        NTRouteDetailViewController *secondLevel = [[NTRouteDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        secondLevel.title = [NSString stringWithFormat:@"往 %@", [desArrayNewTaipeiBus objectAtIndex:indexPath.row]];
+        [secondLevel setter_busName:selectedBusName andGoBack:0];
+        [secondLevel setter_departure:[depArrayNewTaipeiBus objectAtIndex:indexPath.row] andDestination:[desArrayNewTaipeiBus objectAtIndex:indexPath.row]];
+        [self.navigationController pushViewController:secondLevel animated:YES];
+        [secondLevel release];
     }
     else
     {
@@ -854,11 +848,12 @@ int finderSortWithLocale(id string1, id string2, void *locale)
 
 - (void)dealloc
 {
+    [partBusNameLabel release];
     [compDestiName release];
     [compDeparName release];
     [cityName release];
-    [arrayTaipeiBus release];
-    [arrayNewTaipeiBus release];
+    //[arrayTaipeiBus release];
+    //[arrayNewTaipeiBus release];
     [arrayKeelungBus release];
     [depArrayTaipeiBus release];
     [depArrayNewTaipeiBus release];

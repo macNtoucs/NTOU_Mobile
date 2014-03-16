@@ -49,6 +49,9 @@
     NSArray *paths;
     NSString *documentsDirecotry;
     NSString *writableDBPath;
+    
+    UILabel *partBusNameLabel;
+    UIActivityIndicatorView *activityIndicator;
 }
 @property (nonatomic, retain) UIView * buttonFirstView;
 @property (nonatomic, retain) UIView * buttonSecondView;
@@ -71,4 +74,6 @@
 @property (nonatomic, retain) NSMutableArray *desArrayTaipeiBus;
 @property (nonatomic, retain) NSMutableArray *desArrayNewTaipeiBus;
 @property (nonatomic, retain) NSMutableArray *desArrayKeelungBus;
+@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, retain) UILabel *partBusNameLabel;
 @end

@@ -15,19 +15,26 @@
 @synthesize goBack;
 @synthesize stops, IDs, m_waitTimeResult;
 
-//@synthesize toolbar;
 @synthesize anotherButton;
 @synthesize success;
 @synthesize lastRefresh;
 @synthesize refreshTimer;
 @synthesize xpathArray;
 @synthesize xpathParser;    //
+@synthesize preArray, activityIndicator, loadingView;
 
 - (void) setter_busName:(NSString *)name andGoBack:(NSInteger) goback
 {
     busName = name;
     goBack = [[NSString alloc] initWithFormat:@"%i", goback];
     NSLog(@"busName:%@, goBack:%@", busName, goBack);
+    ISREAL = FALSE;
+}
+
+- (void) setter_departure:(NSString *)dep andDestination:(NSString *)des
+{
+    departure = [[NSString alloc] initWithString:dep];
+    destination = [[NSString alloc] initWithString:des];
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -41,8 +48,11 @@
 
 -(void)CatchData
 {
+    ISREAL = TRUE;
     [self estimateTime];
     [self.tableView reloadData];
+    [loadingView dismissWithClickedButtonIndex:0 animated:YES];
+    [activityIndicator stopAnimating];
 }
 
 - (void)estimateTime
@@ -57,12 +67,12 @@
     NSString *encodedBus = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)busName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
     
     NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/NTRouteDetail.php?bus=%@&goBack=%@", encodedBus, goBack];
-    
+    [encodedBus release];   // Analyze MemLeak
     NSData *dataURL = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
     
     NSString *strResult = [[[NSString alloc] initWithData:dataURL encoding:NSUTF8StringEncoding]autorelease];
     
-    NSLog(@"strResult = %@", strResult);
+    //NSLog(@"strResult = %@", strResult);
     
     NSArray * stopsAndTimes = [strResult componentsSeparatedByString:@";"];
     
@@ -74,14 +84,6 @@
     }
     [stops removeLastObject];
     
-    /*NSArray * tmp_IDs = [[NSArray alloc] init];
-     tmp_IDs = [[stopsAndTimes objectAtIndex:1] componentsSeparatedByString:@"|"];
-     for (NSString * str in tmp_IDs)
-     {
-     [IDs addObject:str];
-     }
-     [IDs removeLastObject];*/
-    
     NSArray * tmp_m = [[NSArray alloc] init];
     tmp_m = [[stopsAndTimes objectAtIndex:1] componentsSeparatedByString:@"|"];
     for (NSString * str in tmp_m)
@@ -89,7 +91,7 @@
         [m_waitTimeResult addObject:str];
     }
     [m_waitTimeResult removeLastObject];
-    
+    //[tmp_m release];    // Analyze MemLeak
     [stops retain];
     //[IDs retain];
     [m_waitTimeResult retain];
@@ -177,20 +179,50 @@
     
 }
 
+- (void)changeDetailView
+{
+    [activityIndicator startAnimating];
+    [self.loadingView show];
+
+    if ([goBack isEqualToString:@"0"])
+    {
+        anotherButton.title = destination;
+        self.navigationItem.title = [NSString stringWithFormat:@"往 %@", departure];
+        [self setter_busName:busName andGoBack:1];
+        [self CatchData];
+    }
+    else
+    {
+        anotherButton.title = departure;
+        self.navigationItem.title = [NSString stringWithFormat:@"往 %@", destination];
+        [self setter_busName:busName andGoBack:0];
+        [self CatchData];
+    }
+    
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
+    NSLog(@"[D=NTDetail]viewDidLoad");
     [super viewDidLoad];
     [self.tableView applyStandardColors];
     //IDs = [NSMutableArray new];
     m_waitTimeResult = [NSMutableArray new];
     stops = [NSMutableArray new];
+    preArray = [[NSArray alloc] initWithObjects:@"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", nil];
+    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    CGSize screenSize = screenBound.size;
+    loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"讀取中..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
     
-    // Refresh button & toolbar
-    //toolbar = [[ToolBarController alloc]init];
-    //[self.navigationController.view addSubview:[toolbar CreatTabBarWithNoFavorite:NO delegate:self] ];
-    anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshPropertyList)];
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityIndicator.frame = CGRectMake(115.0, 40.0, 50.0, 50.0);
+    [self.loadingView addSubview:self.activityIndicator];
+    [activityIndicator startAnimating];
+    [self.tableView addSubview:self.loadingView];
+    [self.loadingView show];
+    anotherButton = [[UIBarButtonItem alloc] initWithTitle:departure style:UIBarButtonItemStylePlain target:self action:@selector(changeDetailView)];
     self.navigationItem.rightBarButtonItem = anotherButton;
     
     // 手動下拉更新
@@ -204,38 +236,40 @@
     [_refreshHeaderView refreshLastUpdatedDate];
     success = [[UIImageView alloc] initWithFrame:CGRectMake(75.0, 250.0, 150.0, 150.0)];
     [success setImage:[UIImage imageNamed:@"ok.png"]];
-    [self CatchData];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    NSLog(@"[NTDetail]viewDidUnload");
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    //[self.navigationController.view addSubview:toolbar.toolbarcontroller];
-    //[self.toolbar hideTabBar:self.tabBarController];
+    NSLog(@"[NTDetail]viewWillAppear");
     [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if (!stops) {
-        NSLog(@"RouteDetail.m stops is null");
+    NSLog(@"[Detail]viewDidAppear");
+    [super viewDidAppear:animated];
+    if (!ISREAL)
+    {
         [self CatchData];
     }
-    [self startTimer];
-    [super viewDidAppear:animated];
-    //[self.tableView reloadData];
+    else
+    {
+        NSLog(@"[Detail]stopAnimating");
+        [activityIndicator stopAnimating];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    //[toolbar.toolbarcontroller removeFromSuperview];
-    //[self.toolbar showTabBar: self.tabBarController];
+    NSLog(@"viewWillDisappear");
     [super viewWillDisappear:animated];
 }
 
@@ -261,8 +295,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    
-    return [stops count];   // for can't see cell
+    if (ISREAL)
+        return [stops count];   // for can't see cell
+    else
+        return [preArray count];
 }
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -290,61 +326,64 @@
     
     NSString * stopName = [[NSString alloc] init];
     NSString * comeTime = [[NSString alloc] init];
-    
-    if (indexPath.row == [stops count])
+    if (ISREAL)
     {
-        [cell.contentView removeFromSuperview];
-    }
-    else
-    {
-        stopName = [stops objectAtIndex:indexPath.row];
-        comeTime = [m_waitTimeResult objectAtIndex:indexPath.row];
-        
-        if ([comeTime isEqual:@"尚未發車"])
+        if (indexPath.row == [stops count])
         {
-            cell.detailTextLabel.text = @"尚未發車";
-            cell.detailTextLabel.textColor = [UIColor grayColor];
-        }
-        else if ([comeTime isEqual:@"更新中..."])
-        {
-            cell.detailTextLabel.text = @"更新中...";
-            cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:13.0/255.0 green:139.0/255.0 blue:13.0/255.0 alpha:100.0];
-        }
-        else if ([comeTime isEqual:@"約1分鐘"] || [comeTime isEqual:@"約0分鐘"])
-        {
-            cell.detailTextLabel.text = @"進站中";
-            cell.detailTextLabel.textColor = [UIColor redColor];
-        }
-        else if ([comeTime isEqual:@"約2分鐘"] || [comeTime isEqual:@"約3分鐘"])
-        {
-            cell.detailTextLabel.text = @"即將進站";
-            cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:138.0/255.0 blue:25.0/255.0 alpha:100.0];
+            [cell.contentView removeFromSuperview];
         }
         else
         {
-            cell.detailTextLabel.text = comeTime;
-            cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:0.0 green:45.0/255.0 blue:153.0/255.0 alpha:100.0];
+            stopName = [stops objectAtIndex:indexPath.row];
+            comeTime = [m_waitTimeResult objectAtIndex:indexPath.row];
+            
+            if ([comeTime isEqual:@"尚未發車"])
+            {
+                cell.detailTextLabel.text = @"尚未發車";
+                cell.detailTextLabel.textColor = [UIColor grayColor];
+            }
+            else if ([comeTime isEqual:@"更新中..."])
+            {
+                cell.detailTextLabel.text = @"更新中...";
+                cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:13.0/255.0 green:139.0/255.0 blue:13.0/255.0 alpha:100.0];
+            }
+            else if ([comeTime isEqual:@"約1分鐘"] || [comeTime isEqual:@"約0分鐘"])
+            {
+                cell.detailTextLabel.text = @"進站中";
+                cell.detailTextLabel.textColor = [UIColor redColor];
+            }
+            else if ([comeTime isEqual:@"約2分鐘"] || [comeTime isEqual:@"約3分鐘"])
+            {
+                cell.detailTextLabel.text = @"即將進站";
+                cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:138.0/255.0 blue:25.0/255.0 alpha:100.0];
+            }
+            else
+            {
+                cell.detailTextLabel.text = comeTime;
+                cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:0.0 green:45.0/255.0 blue:153.0/255.0 alpha:100.0];
+            }
         }
+        cell.textLabel.text = stopName;
+        cell.textLabel.textColor = [UIColor blackColor];
+        [[cell.contentView viewWithTag:indexPath.row+1]removeFromSuperview];
     }
-    
-    
-    //NSString * number = [[NSString alloc] initWithFormat:@"(%i) ", indexPath.row+1];
-    cell.textLabel.text = stopName;
-    //cell.textLabel.text = [number stringByAppendingString:stopName];
+    else
+    {
+        cell.textLabel.text = [preArray objectAtIndex:indexPath.row];
+        cell.textLabel.textColor = [UIColor grayColor];
+    }
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
     cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
-    
-    [[cell.contentView viewWithTag:indexPath.row+1]removeFromSuperview];
-    //[cell.contentView addSubview:[toolbar CreateButton:indexPath]];
-    //NSString * newString = [[busName componentsSeparatedByString:@"("] objectAtIndex:0];
-    //[toolbar isStopAdded:newString andStop:stopName andNo:@"RouteDetail"];
-    
+    //[comeTime release]; // Analyze MemLeak
+    //[stopName release]; // Analyze MemLeak
     return cell;
 }
 
 - (void)dealloc
 {
+    [activityIndicator release];
+    [loadingView release];
     [busName release];
     [goBack release];
     //[IDs release];

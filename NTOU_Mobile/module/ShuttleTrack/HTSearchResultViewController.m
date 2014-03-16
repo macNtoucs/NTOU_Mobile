@@ -80,23 +80,29 @@
     [depatureTime removeAllObjects];
     [startTime removeAllObjects];
     
-    NSString *encodedstart = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)startStation, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
-    NSString *encodedend = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)depatureStation, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
+    /* 處理傳入 server 的資料 */
+    NSString * startId = [[NSString alloc]init];
+    startId = [startId stringByAppendingFormat:@"%@",[self convertStation_NameToCode:[station indexOfObject:startStation]] ];
     
+    NSString * endId = [[NSString alloc]init];
+    endId = [endId stringByAppendingFormat:@"%@",[self convertStation_NameToCode:[station indexOfObject:depatureStation]] ];
+    
+    // NSDate -> NSString
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyyMMdd"];
     NSString *strDate = [dateFormatter stringFromDate:selectedDate];
     
-    NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/HTSearchResult.php?startStation=%@&endStation=%@&date=%@&time=%@", encodedstart, encodedend, strDate, selectedHTTime];
+    NSString * time = [[NSString alloc]init];
+    time = [time stringByAppendingFormat:@"%@",[[selectedHTTime componentsSeparatedByString:@":"] objectAtIndex:0]];
+    time = [time stringByAppendingFormat:@"%@",[[selectedHTTime componentsSeparatedByString:@":"] objectAtIndex:1]];
+    
+    NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/HTSearchResult.php?startId=%@&endId=%@&date=%@&time=%@", startId, endId, strDate, time];
     
     NSData *dataURL = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
     
     NSString *strResult = [[[NSString alloc] initWithData:dataURL encoding:NSUTF8StringEncoding]autorelease];
     
-    NSString * postString = [[NSString alloc]init];
-    postString=[postString stringByAppendingFormat:@"StartStation=%@",[self convertStation_NameToCode:[station indexOfObject:startStation]] ];
-    
-    NSLog(@"strResult = %@, postStr = %@", strResult, postString);
+    NSLog(@"strResult = %@", strResult);
     
     
     /*NSArray * stopsAndTimes = [strResult componentsSeparatedByString:@";"];
@@ -144,7 +150,7 @@
             [downloadView AlertViewStart];
         });
         [self recieveStartAndDepature];
-        [self fetchData];
+        //[self fetchData];
           dispatch_async(dispatch_get_main_queue(), ^{
             [self initialDisplay];
         });
@@ -166,7 +172,7 @@
     return [HTStationNameCode objectAtIndex:index];
 }
 
-
+/*
 -(void)fetchData{
    
     //http://www.thsrc.com.tw/tw/TimeTable/SearchResult
@@ -177,7 +183,7 @@
     [request setHTTPMethod:@"POST"];
     [request addValue:@"http://www.thsrc.com.tw/tw/TimeTable/SearchResult" forHTTPHeaderField:@"Referer"];
     [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [request addValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+    [request addValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*//*;q=0.8" forHTTPHeaderField:@"Accept"];
     [request addValue:@"zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4" forHTTPHeaderField:@"Accept-Language"];
     [request addValue:@"Big5,utf-8;q=0.7,*;q=0.3" forHTTPHeaderField:@"Accept-Charset"];
     [request addValue:@"max-age=0" forHTTPHeaderField:@"Cache-Control"];
@@ -223,7 +229,7 @@
     
     // NSLog(@"Response ==> %@", queryResult);
     
-}
+}*/
 
 -(bool)hasWifi{
     //Create zero addy
