@@ -17,7 +17,13 @@
 {
 	// Do any additional setup after loading the view, typically from a nib.
     [super viewDidLoad];
-
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.navigationController.edgesForExtendedLayout = UIRectEdgeNone;
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+        
+    }
 	[self addChildViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"View1"]];
 	[self addChildViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"View2"]];
 	[self addChildViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"View3"]];
