@@ -32,8 +32,8 @@
 }
 
 -(void) recieveURL{
-    dataURL = [[NSURL alloc]init];
-    dataURL = [self.dataSource StationInfoURL:self];
+    /*dataURL = [[NSURL alloc]init];
+    dataURL = [self.dataSource StationInfoURL:self];*/
    
 }
 -(void) recieveStartAndDepature{
@@ -41,8 +41,10 @@
     depatureStation =[[NSString alloc]initWithString:[self.dataSource depatureStationTitile:self]];
 }
 -(void)recieveData{
-    [self recieveURL];
-    if (![[dataURL absoluteString] isEqualToString:@""]){
+    NSLog(@"recieveData");
+    //[self recieveURL];
+    [self fetchData];
+    /*if (![[dataURL absoluteString] isEqualToString:@""]){
         [self recieveStartAndDepature];
         [self fetchData];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -51,22 +53,96 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [downloadView AlertViewEnd];
         });
-    }
+    }*/
     
 }
 
 
 -(void)fetchData{
-  
-    downloadView = [DownloadingView new];
+    /*downloadView = [DownloadingView new];
     dispatch_async(dispatch_get_main_queue(), ^{
         [downloadView AlertViewStart];
-    });
-    StartAndTerminalstops = [NSMutableArray new];
+    });*/
+    
+    /*StartAndTerminalstops = [NSMutableArray new];
     depatureTimes = [NSMutableArray new];
     arrivalTimes = [NSMutableArray new];
-    trainStyle = [NSMutableArray new];
-    NSError* error;
+    trainStyle = [NSMutableArray new];*/
+    
+    /* 處理傳入 server 的資料 */
+    /*NSString * startId = [[NSString alloc]init];
+    startId = [startId stringByAppendingFormat:@"%@",[self convertStation_NameToCode:[station indexOfObject:startStation]] ];
+    
+    NSString * endId = [[NSString alloc]init];
+    endId = [endId stringByAppendingFormat:@"%@",[self convertStation_NameToCode:[station indexOfObject:depatureStation]] ];*/
+    
+    // NSDate -> NSString
+    /*NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyyMMdd"];
+    NSString *strDate = [dateFormatter stringFromDate:selectedDate];
+    
+    NSString * time = [[NSString alloc]init];
+    time = [time stringByAppendingFormat:@"%@",[[selectedHTTime componentsSeparatedByString:@":"] objectAtIndex:0]];
+    time = [time stringByAppendingFormat:@"%@",[[selectedHTTime componentsSeparatedByString:@":"] objectAtIndex:1]];*/
+    
+    NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/StationInfo.php?startId=%@&endId=%@&date=%@&car=%@", @"1001", @"1008", @"20140319", @"0000"];
+    
+    NSData *twrDataURL = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
+    
+    NSString *strResult = [[[NSString alloc] initWithData:twrDataURL encoding:NSUTF8StringEncoding]autorelease];
+    
+    //NSLog(@"strResult = %@", strResult);
+    
+    /*[StartAndTerminalstops addObject:@"基隆"];
+    [StartAndTerminalstops addObject:@"台北"];*/
+    
+    NSArray * trainsAndTimes = [strResult componentsSeparatedByString:@";"];
+    
+    for(int i=0; i<[trainsAndTimes count]-1; i++)
+    {
+        NSArray * tmp = [[trainsAndTimes objectAtIndex:i] componentsSeparatedByString:@"|"];
+        
+        [StartAndTerminalstops addObject:[tmp objectAtIndex:0]];
+        if(![[tmp objectAtIndex:2] isEqual:@""])
+        {
+            NSArray * time = [[tmp objectAtIndex:2] componentsSeparatedByString:@":"];
+            NSString * depTime = [[[@"" stringByAppendingString:[time objectAtIndex:0]] stringByAppendingString:@":"] stringByAppendingString:[time objectAtIndex:1]];
+            [depatureTimes addObject:depTime];
+        }
+        else
+        {
+            [depatureTimes addObject:[tmp objectAtIndex:2]];
+        }
+        if(![[tmp objectAtIndex:1] isEqual:@""])
+        {
+            NSArray * time = [[tmp objectAtIndex:1] componentsSeparatedByString:@":"];
+            NSString * arrTime = [[[@"" stringByAppendingString:[time objectAtIndex:0]] stringByAppendingString:@":"] stringByAppendingString:[time objectAtIndex:1]];
+            [arrivalTimes addObject:arrTime];
+        }
+        else
+        {
+            [arrivalTimes addObject:[tmp objectAtIndex:1]];
+        }
+        
+        
+        if([tmp objectAtIndex:3] == 1131)
+        {
+            [trainStyle addObject:@"區間車"];
+        }
+        else
+        {
+            [trainStyle addObject:@"自強"];
+        }
+    }
+    //NSLog(@"fetch, depatureTimes = %@, arrivalTimes = %@, trainStyle = %@", depatureTimes, arrivalTimes, trainStyle);
+    
+    /*[depatureTimes retain];
+    [arrivalTimes retain];
+    [trainStyle retain];*/
+    
+    [self.tableView reloadData];
+    
+    /*NSError* error;
     NSData* data = [[NSString stringWithContentsOfURL:dataURL encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
     TFHpple* parser = [[TFHpple alloc] initWithHTMLData:data];
     NSArray *tableData_td  = [parser searchWithXPathQuery:@"//body//form//div//table//tbody//tr//td"];
@@ -103,7 +179,7 @@
         if (!(i%3))
           [trainStyle addObject: [[contextArr objectAtIndex:0]content] ];
         else continue;
-       }
+       }*/
     
 }
 
@@ -111,6 +187,10 @@
 {
     
     [super viewDidLoad];
+    StartAndTerminalstops = [NSMutableArray new];
+    depatureTimes = [NSMutableArray new];
+    arrivalTimes = [NSMutableArray new];
+    trainStyle = [NSMutableArray new];
     [self.tableView reloadData];
   
 }
@@ -146,17 +226,17 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [StartAndTerminalstops count]>=8 || [StartAndTerminalstops count]==0 ?
-    [StartAndTerminalstops count]+2 : [StartAndTerminalstops count]+1;
+    /*return [StartAndTerminalstops count]>=8 || [StartAndTerminalstops count]==0 ?
+    [StartAndTerminalstops count]+2 : [StartAndTerminalstops count]+1;*/
+    NSLog(@"count = %d", [depatureTimes count]);
+    return [depatureTimes count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -166,8 +246,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier;
-    if (!StartAndTerminalstops) 
+    /*NSString *CellIdentifier;
+    if (!StartAndTerminalstops)
         CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
     else 
         CellIdentifier = [NSString stringWithFormat:@"Cell%d%d%@+%@",indexPath.section,indexPath.row,StartAndTerminalstops,depatureTimes];
@@ -176,8 +256,17 @@
     
     if (cell == nil) {
         cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+    }*/
+    
+    static  NSString *CellIdentifier = @"cell";
+    SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
-    if (![self hasWifi]){
+
+    
+    /*if (![self hasWifi]){
         cell.textLabel.text = [NSString stringWithFormat:@"無法連線，請檢查網路"];
     }
    else if (indexPath.row == 0 ) {
@@ -205,18 +294,48 @@
        detailLabel.textAlignment = UITextAlignmentCenter;
        [cell.contentView addSubview:label];
        [cell.contentView addSubview:detailLabel];
-    }
+    }*/
    
     
-    else if ([StartAndTerminalstops count]==0){
+    /*else if ([StartAndTerminalstops count]==0){
         cell.imageView.image=nil;
         cell.textLabel.text = [NSString stringWithFormat:@"無資料"];
         cell.detailTextLabel.text=@"";
     }
     else if (indexPath.row > [StartAndTerminalstops count]){
         cell.textLabel.text=@"";
+    }*/
+    
+    if (indexPath.row == 0 ) {
+        cell.textLabel.text = [NSString stringWithFormat:@"車種"];
+        cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:10];
+        cell.detailTextLabel.textColor = [UIColor brownColor];
+        cell.textLabel.textColor = [UIColor brownColor];
+        UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(172, 13, 60, 15)] autorelease];
+        label.backgroundColor = [UIColor clearColor];
+        label.lineBreakMode = UILineBreakModeWordWrap;
+        label.numberOfLines = 0;
+        label.tag=25;
+        label.font = [UIFont fontWithName:BOLD_FONT size:17.0];
+        label.textColor = CELL_STANDARD_FONT_COLOR;
+        //label.text = startStation;
+        label.text = @"基隆";
+        label.textAlignment = UITextAlignmentCenter;
+        UILabel* detailLabel = [[[UILabel alloc] initWithFrame:CGRectMake(260, 13, 60, 15)] autorelease];
+        detailLabel.font = [UIFont fontWithName:BOLD_FONT size:17.0];
+        detailLabel.backgroundColor = [UIColor clearColor];
+        detailLabel.tag=30;
+        detailLabel.textColor = CELL_DETAIL_FONT_COLOR;
+        detailLabel.highlightedTextColor = [UIColor whiteColor];
+        detailLabel.backgroundColor = [UIColor clearColor];
+        //detailLabel.text = depatureStation;
+        detailLabel.text = @"臺北";
+        detailLabel.textAlignment = UITextAlignmentCenter;
+        [cell.contentView addSubview:label];
+        [cell.contentView addSubview:detailLabel];
     }
     else {
+        
         NSString * detailString = [NSString stringWithFormat:@"%@         %@", [depatureTimes objectAtIndex:indexPath.row-1],[arrivalTimes objectAtIndex:indexPath.row-1] ] ;
         
         cell.textLabel.text=[NSString stringWithFormat:@"%@",[StartAndTerminalstops objectAtIndex:indexPath.row-1]] ;
@@ -231,6 +350,7 @@
             cell.imageView.image = [UIImage imageNamed:@"gigoung_train.png"];
             //cell.textLabel.text= @"莒光";
        
+        //cell.textLabel.text = detailString;
         cell.detailTextLabel.text = detailString;
         cell.detailTextLabel.textColor = [UIColor blueColor];
         

@@ -66,7 +66,7 @@
     
     NSString *encodedBus = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)busName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
     
-    NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/NTRouteDetail.php?bus=%@&goBack=%@", encodedBus, goBack];
+    NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/NTRouteDetail_notJson.php?bus=%@&goBack=%@", encodedBus, goBack];
     [encodedBus release];   // Analyze MemLeak
     NSData *dataURL = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
     

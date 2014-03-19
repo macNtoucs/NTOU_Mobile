@@ -280,7 +280,7 @@
         
         StopsViewController * stops = [[StopsViewController alloc]initWithStyle:UITableViewStyleGrouped];
         // 這行沒mark掉會導致R66公車無法進到下層
-        /*stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];*/
+        //stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];
         R66SwitchViewController *r66Switch = [[R66SwitchViewController alloc] init];
         
         if (indexPath.row==0) {

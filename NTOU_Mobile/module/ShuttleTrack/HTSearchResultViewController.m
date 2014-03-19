@@ -104,6 +104,16 @@
     
     NSLog(@"strResult = %@", strResult);
     
+    NSArray * trainsAndTimes = [strResult componentsSeparatedByString:@";"];
+    
+    for(int i=0; i<[trainsAndTimes count]-1; i++)
+    {
+        
+        NSArray * tmp = [[trainsAndTimes objectAtIndex:i] componentsSeparatedByString:@"|"];
+        [trainID addObject:[tmp objectAtIndex:0]];
+        [startTime addObject:[tmp objectAtIndex:1]];
+        [depatureTime addObject:[tmp objectAtIndex:2]];
+    }
     
     /*NSArray * stopsAndTimes = [strResult componentsSeparatedByString:@";"];
     
