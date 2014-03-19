@@ -61,7 +61,14 @@
 - (void)viewDidLoad
 {
     
-    [self addNavRightButton]; 
+    [self addNavRightButton];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.navigationController.edgesForExtendedLayout = UIRectEdgeNone;
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+        
+    }
     [super viewDidLoad];
     [self.tableView applyStandardColors];
     // Uncomment the following line to preserve selection between presentations.

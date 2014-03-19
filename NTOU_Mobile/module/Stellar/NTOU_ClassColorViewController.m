@@ -33,6 +33,13 @@
     colorTable.tableView.frame = CGRectMake(10, 10, 300, 305);
     colorTable.tableView.layer.cornerRadius = 12;
     colorTable.tableView.layer.masksToBounds = YES;
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.navigationController.edgesForExtendedLayout = UIRectEdgeNone;
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+        
+    }
     [self.view addSubview:colorTable.tableView];
     // Do any additional setup after loading the view from its nib.
 }

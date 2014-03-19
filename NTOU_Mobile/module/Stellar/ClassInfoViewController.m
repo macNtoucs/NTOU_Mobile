@@ -167,6 +167,13 @@
 
 - (void)viewDidLoad
 {
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.navigationController.edgesForExtendedLayout = UIRectEdgeNone;
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+        
+    }
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

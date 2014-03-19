@@ -25,6 +25,13 @@
 
 - (void)viewDidLoad
 {
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.navigationController.edgesForExtendedLayout = UIRectEdgeNone;
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+        
+    }
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
