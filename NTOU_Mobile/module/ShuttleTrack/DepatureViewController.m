@@ -183,6 +183,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
     m_waitTimeResult = [NSMutableArray new];
     m_waitTime = [NSMutableArray new];
     m_RouteResult = [NSMutableArray new];

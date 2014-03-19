@@ -198,8 +198,8 @@
 {
     UIImage* tabBarArrowImage = [UIImage imageNamed:@"TabBarNipple@2x.png"];
     self.tabBarArrow = [[UIImageView alloc] initWithImage:tabBarArrowImage] ;
-    CGFloat verticalLocation = [[UIScreen mainScreen] bounds].size.height-tabBarArrowImage.size.height-self.tabBar.frame.size.height-[[UIApplication sharedApplication] statusBarFrame].size.height-44+5;;
-    tabBarArrow.frame = CGRectMake([self horizontalLocationFor:0], verticalLocation, tabBarArrowImage.size.width, tabBarArrowImage.size.height);
+    CGFloat verticalLocation = [[UIScreen mainScreen] bounds].size.height-tabBarArrowImage.size.height-self.tabBar.frame.size.height-[[UIApplication sharedApplication] statusBarFrame].size.height-44+5;
+    tabBarArrow.frame = CGRectMake([self horizontalLocationFor:0], 460-102, tabBarArrowImage.size.width, tabBarArrowImage.size.height);
     
     [self.view addSubview:tabBarArrow];
 }
@@ -207,6 +207,8 @@
 
 - (void)tabBarController:(UITabBarController *)theTabBarController didSelectViewController:(UIViewController *)viewController
 {
+    
+    
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.2];
     CGRect frame = tabBarArrow.frame;
@@ -231,6 +233,13 @@
 {
     [super viewDidLoad];
     
+    [self.tabBar setFrame:CGRectMake(0, 460-29, 320, 40)];
+   [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
     self.view.backgroundColor = [UIColor clearColor];
     if(!_isHightSpeedTrain){
         self.title = [NSString stringWithFormat: @" %@ → %@",
