@@ -48,6 +48,15 @@ modules;
     self.springboardController = springboard;
     self.rootNavigationController = rootController;
     
+    /*iOS7 UI fix*/
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.rootNavigationController.edgesForExtendedLayout = UIRectEdgeNone;
+        self.springboardController.edgesForExtendedLayout = UIRectEdgeNone;
+        
+        
+    }
+    
     // TODO: don't store state like this when we're using a springboard.
 	// set modules state
     [rootController pushViewController:springboard animated:NO];
@@ -67,6 +76,9 @@ modules;
     for (NTOUModule *aModule in self.modules) {
         [aModule applicationDidFinishLaunching];
     }
+    
+    
+    
     NSError *error;
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
