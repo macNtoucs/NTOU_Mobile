@@ -127,8 +127,13 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     // set up results table
     storyTable.frame = CGRectMake(0, navScrollView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - navScrollView.frame.size.height);
     [self setupActivityIndicator];
-    
-	// Do any additional setup after loading the view.
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.navigationController.edgesForExtendedLayout = UIRectEdgeNone;
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+        
+    }	// Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated
