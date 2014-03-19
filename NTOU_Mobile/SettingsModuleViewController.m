@@ -37,6 +37,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [super viewDidLoad];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.navigationController.edgesForExtendedLayout = UIRectEdgeNone;
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+        
+    }
     [self.tableView applyStandardColors];
     self.title = @"設定";
     buttonTitle = [[NSMutableString alloc] initWithFormat:@"登入"];
@@ -284,6 +292,7 @@
                 case 0:
                     accountDelegate = contactNameTextField;
                     cell.textLabel.text = @"帳號:";
+                    cell.textLabel.textAlignment = UITextAlignmentLeft;
                     contactNameTextField.backgroundColor = [UIColor clearColor];
                     contactNameTextField.font = [UIFont boldSystemFontOfSize:15];
                     contactNameTextField.keyboardType = UIKeyboardTypeDefault;
@@ -293,6 +302,7 @@
                 case 1:
                     passwordDelegate = contactNameTextField;
                     cell.textLabel.text = @"密碼:";
+                    cell.textLabel.textAlignment = UITextAlignmentLeft;
                     contactNameTextField.backgroundColor = [UIColor clearColor];
                     contactNameTextField.font = [UIFont boldSystemFontOfSize:15];
                     contactNameTextField.keyboardType = UIKeyboardTypeDefault;
