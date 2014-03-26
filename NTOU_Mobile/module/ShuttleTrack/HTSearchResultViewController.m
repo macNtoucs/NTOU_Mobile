@@ -63,29 +63,29 @@
     dataURL = [self.dataSource HTStationInfoURL:self];
 }
 -(void) recieveStartAndDepature{
-    startStation =[[NSString alloc]initWithString:[self.dataSource HTstartStationTitile:self]];
-    depatureStation =[[NSString alloc]initWithString:[self.dataSource HTdepatureStationTitile:self]];
+    departureStation =[[NSString alloc]initWithString:[self.dataSource HTstartStationTitile:self]];
+    arrivalStation =[[NSString alloc]initWithString:[self.dataSource HTdepatureStationTitile:self]];
 }
 -(void)initialDisplay{
-    if ([startStation isEqualToString: depatureStation]) {
+    if ([arrivalStation isEqualToString: departureStation]) {
         [self.tableView reloadData];
         [downloadView AlertViewEnd];
         return;
     }
-    trainID = [NSMutableArray new];
-    depatureTime= [NSMutableArray new];
-    startTime= [NSMutableArray new];
     
-    [trainID removeAllObjects];
-    [depatureTime removeAllObjects];
-    [startTime removeAllObjects];
+    if([trainID count] != 0)
+    {
+        [trainID removeAllObjects];
+        [departureTime removeAllObjects];
+        [arrivalTime removeAllObjects];
+    }
     
     /* 處理傳入 server 的資料 */
     NSString * startId = [[NSString alloc]init];
-    startId = [startId stringByAppendingFormat:@"%@",[self convertStation_NameToCode:[station indexOfObject:startStation]] ];
+    startId = [startId stringByAppendingFormat:@"%@",[self convertStation_NameToCode:[station indexOfObject:departureStation]] ];
     
     NSString * endId = [[NSString alloc]init];
-    endId = [endId stringByAppendingFormat:@"%@",[self convertStation_NameToCode:[station indexOfObject:depatureStation]] ];
+    endId = [endId stringByAppendingFormat:@"%@",[self convertStation_NameToCode:[station indexOfObject:arrivalStation]] ];
     
     // NSDate -> NSString
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -96,7 +96,7 @@
     time = [time stringByAppendingFormat:@"%@",[[selectedHTTime componentsSeparatedByString:@":"] objectAtIndex:0]];
     time = [time stringByAppendingFormat:@"%@",[[selectedHTTime componentsSeparatedByString:@":"] objectAtIndex:1]];
     
-    NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/HTSearchResult.php?startId=%@&endId=%@&date=%@&time=%@", startId, endId, strDate, time];
+    /*NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/HTSearchResult.php?startId=%@&endId=%@&date=%@&time=%@", startId, endId, strDate, time];
     
     NSData *dataURL = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
     
@@ -113,7 +113,34 @@
         [trainID addObject:[tmp objectAtIndex:0]];
         [startTime addObject:[tmp objectAtIndex:1]];
         [depatureTime addObject:[tmp objectAtIndex:2]];
+    }*/
+    
+    NSURL * url=[NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/HTSearchResult.php?startId=%@&endId=%@&date=%@&time=%@", startId, endId, strDate, time]];   // pass your URL  Here.
+    
+    NSData *data=[NSData dataWithContentsOfURL:url];
+    
+    NSError *error;
+    
+    NSMutableDictionary  *trainInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
+    
+    NSLog(@"%@",trainInfo);
+    
+    NSArray * responseArr = trainInfo[@"trainInfo"];
+    
+    for(NSDictionary * dict in responseArr)
+    {
+        
+        [arrivalTime addObject:[dict valueForKey:@"arrivalTime"]];
+        [departureTime addObject:[dict valueForKey:@"departureTime"]];
+        [trainID addObject:[dict valueForKey:@"trainNumber"]];
     }
+    
+    
+    NSLog(@"%@", arrivalTime);   // Here you get the Referance data
+    NSLog(@"%@", departureTime);      // Here you get the Period data
+    NSLog(@"%@", trainID);
+    
+    [self.tableView reloadData];
     
     /*NSArray * stopsAndTimes = [strResult componentsSeparatedByString:@";"];
     
@@ -261,8 +288,8 @@
 
 
 -(NSString *)determindir{ //return true 南下
-    NSUInteger index_start = [station indexOfObject:startStation];
-    NSUInteger index_depature = [station indexOfObject:depatureStation];
+    NSUInteger index_start = [station indexOfObject:arrivalStation];
+    NSUInteger index_depature = [station indexOfObject:arrivalStation];
     if(NSNotFound == index_depature) {
         NSLog(@"not found");
     }
@@ -274,6 +301,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    trainID = [NSMutableArray new];
+    departureTime = [NSMutableArray new];
+    arrivalTime = [NSMutableArray new];
     //[self.tableView applyStandardColors];
 }
 
@@ -321,7 +351,7 @@
     }
 
     else if (indexPath.row == 0 ) {
-        cell.textLabel.text = [NSString stringWithFormat:@"      車次                        %@           %@",startStation,depatureStation];
+        cell.textLabel.text = [NSString stringWithFormat:@"      車次                        %@           %@",departureStation, arrivalStation];
         
         cell.textLabel.textColor = [UIColor brownColor];
     }
@@ -333,7 +363,7 @@
         cell.detailTextLabel.text=@"";
     }
     else {
-        NSString * detailString = [NSString stringWithFormat:@"%@         %@", [startTime objectAtIndex:indexPath.row-1],[depatureTime objectAtIndex:indexPath.row-1] ] ;
+        NSString * detailString = [NSString stringWithFormat:@"%@         %@", [departureTime objectAtIndex:indexPath.row-1],[arrivalTime objectAtIndex:indexPath.row-1] ] ;
         cell.textLabel.text=[NSString stringWithFormat:@"       %@",[trainID objectAtIndex:indexPath.row-1]] ;
         cell.detailTextLabel.text = detailString;
         cell.detailTextLabel.backgroundColor = [UIColor clearColor];
@@ -363,8 +393,8 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [trainID removeAllObjects];
-    [depatureTime removeAllObjects];
-    [startTime removeAllObjects];
+    [departureTime removeAllObjects];
+    [arrivalTime removeAllObjects];
     [super viewWillDisappear:animated];
 }
 /*

@@ -69,15 +69,30 @@
     
     NSString *encodedBus = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)busName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
     
-    NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/AllRoutePhpFile.php?bus=%@&goBack=%@", encodedBus, goBack];
+    /*NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/AllRoutePhpFile.php?bus=%@&goBack=%@", encodedBus, goBack];*/
     
-    NSData *dataURL = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/AllRoutePhpFile.php?bus=%@&goBack=%@", encodedBus, goBack]];
     
-    NSString *strResult = [[[NSString alloc] initWithData:dataURL encoding:NSUTF8StringEncoding]autorelease];
+    NSData *data = [NSData dataWithContentsOfURL:url];
     
+    NSError *error;
+    
+    NSMutableDictionary  *trainInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
+    
+    NSLog(@"%@",trainInfo);
+    
+    NSArray * responseArr = trainInfo[@"stationInfo"];
+    
+    for(NSDictionary * dict in responseArr)
+    {
+        [stops addObject:[dict valueForKey:@"name"]];
+        [m_waitTimeResult addObject:[dict valueForKey:@"time"]];
+    }
+    NSLog(@"%@", stops);
+    NSLog(@"%@", m_waitTimeResult);
     //NSLog(@"strResult = %@", strResult);
     
-    NSArray * stopsAndTimes = [strResult componentsSeparatedByString:@";"];
+    /*NSArray * stopsAndTimes = [strResult componentsSeparatedByString:@";"];
     
     NSArray * tmp_stops = [[NSArray alloc] init];
     tmp_stops = [[stopsAndTimes objectAtIndex:0] componentsSeparatedByString:@"|"];
@@ -101,10 +116,10 @@
     {
         [m_waitTimeResult addObject:str];
     }
-    [m_waitTimeResult removeLastObject];
+    [m_waitTimeResult removeLastObject];*/
     
     [stops retain];
-    [IDs retain];
+    //[IDs retain];
     [m_waitTimeResult retain];
 }
 

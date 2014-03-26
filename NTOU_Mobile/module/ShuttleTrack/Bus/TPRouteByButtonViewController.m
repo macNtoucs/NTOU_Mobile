@@ -475,7 +475,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
             {
                 [depArrayTaipeiBus addObject:[rs stringForColumn:@"departureZh"]];
                 [desArrayTaipeiBus addObject:[rs stringForColumn:@"destinationZh"]];
-                NSLog(@"%@ - %@", [rs stringForColumn:@"departureZh"], [rs stringForColumn:@"destinationZh"]);
+                //NSLog(@"%@ - %@", [rs stringForColumn:@"departureZh"], [rs stringForColumn:@"destinationZh"]);
             }
             [rs close];
         }
@@ -492,7 +492,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
             {
                 [depArrayNewTaipeiBus addObject:[rs stringForColumn:@"departureZh"]];
                 [desArrayNewTaipeiBus addObject:[rs stringForColumn:@"destinationZh"]];
-                NSLog(@"%@ - %@", [rs stringForColumn:@"departureZh"], [rs stringForColumn:@"destinationZh"]);
+                //NSLog(@"%@ - %@", [rs stringForColumn:@"departureZh"], [rs stringForColumn:@"destinationZh"]);
             }
             [rs close];
         }

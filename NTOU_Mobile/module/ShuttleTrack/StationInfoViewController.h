@@ -14,18 +14,22 @@
 @interface StaionInfoTableViewController : UITableViewController{
     __unsafe_unretained id <StaionInfoDataSource> dataSource;
     NSURL * dataURL;
-    NSMutableArray * StartAndTerminalstops;
-    NSMutableArray * depatureTimes;
+    NSMutableArray *trainNumber;
+    NSMutableArray *trainStartFroms;
+    NSMutableArray *trainTravelTos;
+    NSMutableArray *departureTimes;
     NSMutableArray *arrivalTimes;
     NSMutableArray *trainStyle;
-    NSString *startStation;
-    NSString *depatureStation;
+    NSString *arrivalStation;
+    NSString *departureStation;
     DownloadingView *downloadView;
    
 }
 @property (nonatomic,retain) NSURL * dataURL;
-@property (nonatomic ,retain )NSMutableArray * StartAndTerminalstops;
-@property (nonatomic, retain) NSMutableArray * depatureTimes;
+@property (nonatomic ,retain )NSMutableArray *trainNumber;
+@property (nonatomic, retain) NSMutableArray *trainStartFroms;
+@property (nonatomic, retain) NSMutableArray *trainTravelTos;
+@property (nonatomic, retain) NSMutableArray *departureTimes;
 @property (nonatomic, retain)NSMutableArray *arrivalTimes;
 @property (nonatomic, unsafe_unretained) id <StaionInfoDataSource> dataSource;
 -(void) recieveData;

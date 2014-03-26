@@ -65,10 +65,31 @@
     }
     
     NSString *encodedBus = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)busName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
+    //[encodedBus release];   // Analyze MemLeak
     
-    NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/NTRouteDetail_notJson.php?bus=%@&goBack=%@", encodedBus, goBack];
-    [encodedBus release];   // Analyze MemLeak
-    NSData *dataURL = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
+    NSURL * url=[NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/NTRouteDetail.php?bus=%@&goBack=%@", encodedBus, goBack]];
+    
+    NSData *data=[NSData dataWithContentsOfURL:url];
+    
+    NSError *error;
+    
+    NSMutableDictionary  *stationInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
+    
+    NSLog(@"%@",stationInfo);
+    
+    NSArray * responseArr = stationInfo[@"stationInfo"];
+    
+    for(NSDictionary * dict in responseArr)
+    {
+        [stops addObject:[dict valueForKey:@"name"]];
+        [m_waitTimeResult addObject:[dict valueForKey:@"time"]];
+    }
+    
+    
+    NSLog(@"%@", stops);
+    NSLog(@"%@", m_waitTimeResult);
+
+    /*NSData *dataURL = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
     
     NSString *strResult = [[[NSString alloc] initWithData:dataURL encoding:NSUTF8StringEncoding]autorelease];
     
@@ -91,7 +112,7 @@
         [m_waitTimeResult addObject:str];
     }
     [m_waitTimeResult removeLastObject];
-    //[tmp_m release];    // Analyze MemLeak
+    //[tmp_m release];    // Analyze MemLeak*/
     [stops retain];
     //[IDs retain];
     [m_waitTimeResult retain];
@@ -352,11 +373,11 @@
                 cell.detailTextLabel.text = @"進站中";
                 cell.detailTextLabel.textColor = [UIColor redColor];
             }
-            else if ([comeTime isEqual:@"約2分鐘"] || [comeTime isEqual:@"約3分鐘"])
+            /*else if ([comeTime isEqual:@"約2分鐘"] || [comeTime isEqual:@"約3分鐘"])
             {
                 cell.detailTextLabel.text = @"即將進站";
                 cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:138.0/255.0 blue:25.0/255.0 alpha:100.0];
-            }
+            }*/
             else
             {
                 cell.detailTextLabel.text = comeTime;

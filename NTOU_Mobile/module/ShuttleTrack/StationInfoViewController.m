@@ -17,8 +17,10 @@
 
 @implementation StaionInfoTableViewController
 @synthesize dataURL;
-@synthesize StartAndTerminalstops;
-@synthesize depatureTimes;
+@synthesize trainNumber;
+@synthesize trainStartFroms;
+@synthesize trainTravelTos;
+@synthesize departureTimes;
 @synthesize arrivalTimes;
 @synthesize dataSource;
 
@@ -37,8 +39,10 @@
    
 }
 -(void) recieveStartAndDepature{
-    startStation =[[NSString alloc]initWithString:[self.dataSource startStationTitile:self]];
-    depatureStation =[[NSString alloc]initWithString:[self.dataSource depatureStationTitile:self]];
+    departureStation =[[NSString alloc]initWithString:[self.dataSource startStationTitile:self]];
+    arrivalStation =[[NSString alloc]initWithString:[self.dataSource depatureStationTitile:self]];
+    [departureStation retain];
+    [arrivalStation retain];
 }
 -(void)recieveData{
     NSLog(@"recieveData");
@@ -59,6 +63,7 @@
 
 
 -(void)fetchData{
+    NSLog(@"fetchData");
     /*downloadView = [DownloadingView new];
     dispatch_async(dispatch_get_main_queue(), ^{
         [downloadView AlertViewStart];
@@ -69,12 +74,15 @@
     arrivalTimes = [NSMutableArray new];
     trainStyle = [NSMutableArray new];*/
     
+    NSLog(@"startStation:%@", departureStation);
+    NSLog(@"departureStation:%@", arrivalStation);
+    
     /* 處理傳入 server 的資料 */
     /*NSString * startId = [[NSString alloc]init];
-    startId = [startId stringByAppendingFormat:@"%@",[self convertStation_NameToCode:[station indexOfObject:startStation]] ];
+    startId = [startId stringByAppendingFormat:@"%@",[self convertStation_NameToCode:[station indexOfObject:startStation]]];*/
     
-    NSString * endId = [[NSString alloc]init];
-    endId = [endId stringByAppendingFormat:@"%@",[self convertStation_NameToCode:[station indexOfObject:depatureStation]] ];*/
+    //NSString * endId = [[NSString alloc]init];
+    //endId = [endId stringByAppendingFormat:@"%@",[self convertStation_NameToCode:[station indexOfObject:depatureStation]] ];
     
     // NSDate -> NSString
     /*NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -85,18 +93,38 @@
     time = [time stringByAppendingFormat:@"%@",[[selectedHTTime componentsSeparatedByString:@":"] objectAtIndex:0]];
     time = [time stringByAppendingFormat:@"%@",[[selectedHTTime componentsSeparatedByString:@":"] objectAtIndex:1]];*/
     
-    NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/StationInfo.php?startId=%@&endId=%@&date=%@&car=%@", @"1001", @"1008", @"20140319", @"0000"];
+    //NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/StationInfo.php?startId=%@&endId=%@&date=%@&car=%@", @"1001", @"1008", @"20140319", @"0000"];
     
-    NSData *twrDataURL = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/StationInfo.php?startId=%@&endId=%@&date=%@&car=%@&lineDir=%@", @"1001", @"1008", @"20140326", @"expressTrain", @"1"]];
     
-    NSString *strResult = [[[NSString alloc] initWithData:twrDataURL encoding:NSUTF8StringEncoding]autorelease];
+    NSData *data = [NSData dataWithContentsOfURL:url];
     
-    //NSLog(@"strResult = %@", strResult);
+    NSError *error;
+    
+    NSMutableDictionary  *trainInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
+    
+    NSLog(@"%@",trainInfo);
+    
+    NSArray * responseArr = trainInfo[@"trainInfo"];
+    
+    for(NSDictionary * dict in responseArr)
+    {
+        [arrivalTimes addObject:[dict valueForKey:@"arriveTime"]];
+        [trainStyle addObject:[dict valueForKey:@"carClass"]];
+        [departureTimes addObject:[dict valueForKey:@"departureTime"]];
+        [trainNumber addObject:[dict valueForKey:@"trainNumber"]];
+        [trainStartFroms addObject:[dict valueForKey:@"trainStartFrom"]];
+        [trainTravelTos addObject:[dict valueForKey:@"trainTravelTo"]];
+    }
+    /*NSLog(@"%@", StartAndTerminalstops);
+    NSLog(@"%@", departureTimes);
+    NSLog(@"%@", arrivalTimes);
+    NSLog(@"%@", trainStyle);*/
     
     /*[StartAndTerminalstops addObject:@"基隆"];
     [StartAndTerminalstops addObject:@"台北"];*/
     
-    NSArray * trainsAndTimes = [strResult componentsSeparatedByString:@";"];
+    /*NSArray * trainsAndTimes = [strResult componentsSeparatedByString:@";"];
     
     for(int i=0; i<[trainsAndTimes count]-1; i++)
     {
@@ -133,14 +161,16 @@
         {
             [trainStyle addObject:@"自強"];
         }
-    }
+    }*/
     //NSLog(@"fetch, depatureTimes = %@, arrivalTimes = %@, trainStyle = %@", depatureTimes, arrivalTimes, trainStyle);
-    
-    /*[depatureTimes retain];
     [arrivalTimes retain];
-    [trainStyle retain];*/
+    [trainStyle retain];
+    [departureTimes retain];
+    [trainNumber retain];
+    [trainStartFroms retain];
+    [trainTravelTos retain];
     
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
     
     /*NSError* error;
     NSData* data = [[NSString stringWithContentsOfURL:dataURL encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
@@ -185,14 +215,14 @@
 
 - (void)viewDidLoad
 {
-    
     [super viewDidLoad];
-    StartAndTerminalstops = [NSMutableArray new];
-    depatureTimes = [NSMutableArray new];
+    trainNumber = [NSMutableArray new];
+    departureTimes = [NSMutableArray new];
     arrivalTimes = [NSMutableArray new];
     trainStyle = [NSMutableArray new];
-    [self.tableView reloadData];
-  
+    trainStartFroms = [NSMutableArray new];
+    trainTravelTos = [NSMutableArray new];
+    //[self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -235,8 +265,8 @@
     // Return the number of rows in the section.
     /*return [StartAndTerminalstops count]>=8 || [StartAndTerminalstops count]==0 ?
     [StartAndTerminalstops count]+2 : [StartAndTerminalstops count]+1;*/
-    NSLog(@"count = %d", [depatureTimes count]);
-    return [depatureTimes count];
+    NSLog(@"count:%d", [departureTimes count]);
+    return [departureTimes count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -307,7 +337,7 @@
     }*/
     
     if (indexPath.row == 0 ) {
-        cell.textLabel.text = [NSString stringWithFormat:@"車種"];
+        cell.textLabel.text = [NSString stringWithFormat:@"       車種         車次"];
         cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:10];
         cell.detailTextLabel.textColor = [UIColor brownColor];
         cell.textLabel.textColor = [UIColor brownColor];
@@ -319,7 +349,7 @@
         label.font = [UIFont fontWithName:BOLD_FONT size:17.0];
         label.textColor = CELL_STANDARD_FONT_COLOR;
         //label.text = startStation;
-        label.text = @"基隆";
+        label.text = @"臺北";
         label.textAlignment = UITextAlignmentCenter;
         UILabel* detailLabel = [[[UILabel alloc] initWithFrame:CGRectMake(260, 13, 60, 15)] autorelease];
         detailLabel.font = [UIFont fontWithName:BOLD_FONT size:17.0];
@@ -329,28 +359,29 @@
         detailLabel.highlightedTextColor = [UIColor whiteColor];
         detailLabel.backgroundColor = [UIColor clearColor];
         //detailLabel.text = depatureStation;
-        detailLabel.text = @"臺北";
+        detailLabel.text = @"基隆";
         detailLabel.textAlignment = UITextAlignmentCenter;
         [cell.contentView addSubview:label];
         [cell.contentView addSubview:detailLabel];
     }
     else {
+        //NSString *textString = [NSString stringWithFormat:@"%@         %@", [trainStartFroms objectAtIndex:indexPath.row-1], [trainTravelTos objectAtIndex:indexPath.row-1]];
+        NSString *textString = [NSString stringWithFormat:@"%@         %@", [trainStyle objectAtIndex:indexPath.row-1], [trainNumber objectAtIndex:indexPath.row-1]];
+        NSString *detailString = [NSString stringWithFormat:@"%@         %@", [departureTimes objectAtIndex:indexPath.row-1],[arrivalTimes objectAtIndex:indexPath.row-1] ] ;
         
-        NSString * detailString = [NSString stringWithFormat:@"%@         %@", [depatureTimes objectAtIndex:indexPath.row-1],[arrivalTimes objectAtIndex:indexPath.row-1] ] ;
-        
-        cell.textLabel.text=[NSString stringWithFormat:@"%@",[StartAndTerminalstops objectAtIndex:indexPath.row-1]] ;
+        //cell.textLabel.text=[NSString stringWithFormat:@"%@",[StartAndTerminalstops objectAtIndex:indexPath.row-1]] ;
          
-        if ([[trainStyle objectAtIndex:indexPath.row-1] isEqualToString:@"區間車"])
+        if ([[trainStyle objectAtIndex:indexPath.row-1] isEqualToString:@"1131"])   //區間車
             cell.imageView.image = [UIImage imageNamed:@"local_train.png"];
             //cell.textLabel.text= @"區間車";
-        if ([[trainStyle objectAtIndex:indexPath.row-1]isEqualToString: @"自強"])
+        if ([[trainStyle objectAtIndex:indexPath.row-1]isEqualToString: @"1100"]||[[trainStyle objectAtIndex:indexPath.row-1]isEqualToString: @"1101"])   //自強號
             cell.imageView.image = [UIImage imageNamed:@"speed_train.png"];
             //cell.textLabel.text= @"自強";
-        if ([[trainStyle objectAtIndex:indexPath.row-1]isEqualToString: @"莒光"])
+        if ([[trainStyle objectAtIndex:indexPath.row-1]isEqualToString: @"1110"])   //莒光號
             cell.imageView.image = [UIImage imageNamed:@"gigoung_train.png"];
             //cell.textLabel.text= @"莒光";
        
-        //cell.textLabel.text = detailString;
+        cell.textLabel.text = textString;
         cell.detailTextLabel.text = detailString;
         cell.detailTextLabel.textColor = [UIColor blueColor];
         
