@@ -112,6 +112,11 @@
     
     [super viewDidLoad];
     [self.tableView reloadData];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
   
 }
 

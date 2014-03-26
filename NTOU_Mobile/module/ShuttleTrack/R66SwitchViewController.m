@@ -22,6 +22,11 @@
 - (void)viewDidLoad
 {
     [self detectCurrentTime];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
     NSLog(@"Left & Right Layers");
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     screenHeight = screenBound.size.height;

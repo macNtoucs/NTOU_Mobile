@@ -27,6 +27,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
     [self.tableView applyStandardColors];
     titleArray = [[NSMutableArray alloc] init];
     data = [Kuo_Data sharedData];

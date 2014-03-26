@@ -132,7 +132,11 @@
     self.anotherButton.title = @"更新中";
     updateTimeOnButton = NO;
     loadingAlertView = [[UIAlertView alloc]
+<<<<<<< HEAD
                         initWithTitle:nil message:@"\n\n下載資料中\n請稍候"
+=======
+                        initWithTitle:nil message:@"\n\n下載中\n請稍候"
+>>>>>>> master
                         delegate:self cancelButtonTitle:@"取消"
                         otherButtonTitles: nil];
     [self AlertStart:loadingAlertView];
@@ -186,7 +190,11 @@
         {
             int secs = (1+kRefreshInterval+sinceRefresh);
             if (secs < 0) secs = 0;
+<<<<<<< HEAD
             self.anotherButton.title = [NSString stringWithFormat:@"%d秒後更新", secs];
+=======
+            self.anotherButton.title = [NSString stringWithFormat:@"%d 秒後更新", secs];
+>>>>>>> master
             
         }
 	}
@@ -208,7 +216,11 @@
 - (void)viewDidLoad
 {
     loadingAlertView = [[UIAlertView alloc]
+<<<<<<< HEAD
                         initWithTitle:nil message:@"\n\n下載資料中\n請稍候"
+=======
+                        initWithTitle:nil message:@"\n\n下載中\n請稍候"
+>>>>>>> master
                         delegate:self cancelButtonTitle:@"取消"
                         otherButtonTitles: nil];
     [self AlertStart:loadingAlertView];
@@ -225,7 +237,11 @@
         [view1 release];
     }
     [_refreshHeaderView refreshLastUpdatedDate];
-    
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
