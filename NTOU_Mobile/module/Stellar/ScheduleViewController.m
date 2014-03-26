@@ -287,7 +287,7 @@
         
         
     }
-   // self.view.backgroundColor = ]
+    self.view.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
     [super viewDidLoad];
 	
 }
