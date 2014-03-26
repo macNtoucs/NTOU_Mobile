@@ -23,6 +23,7 @@
 		913A0D1916E98EBA007BAD8F /* EmergencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 913A0D1316E98EBA007BAD8F /* EmergencyViewController.m */; };
 		913A0D1A16E98EBA007BAD8F /* OutCampusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 913A0D1516E98EBA007BAD8F /* OutCampusViewController.m */; };
 		913A0D1E16E98F99007BAD8F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 913A0D1D16E98F99007BAD8F /* MessageUI.framework */; };
+		913BD8EA17547F1300145B80 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 913BD8E917547F1300145B80 /* Entitlements.plist */; };
 		91756E3C16E9A6DA001D724D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91756E3716E9A6DA001D724D /* Icon.png */; };
 		91756E3D16E9A6DA001D724D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91756E3816E9A6DA001D724D /* Icon@2x.png */; };
 		91756E4316E9A6E7001D724D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91756E4216E9A6E7001D724D /* Icon.png */; };
@@ -212,6 +213,8 @@
 		91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049416E89FE300ECF2CF /* QuartzCore.framework */; };
 		91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */; };
 		91A9049B16E8A09A00ECF2CF /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 91A9049A16E8A09A00ECF2CF /* icons */; };
+		91EE2AE8176B0F3D007666E1 /* SettingModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 91EE2AE5176B0F3D007666E1 /* SettingModule.m */; };
+		91EE2AE9176B0F3D007666E1 /* SettingsModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91EE2AE7176B0F3D007666E1 /* SettingsModuleViewController.m */; };
 		BA06A07516F2EE6600212CB9 /* LibrariesModule.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06816F2EE6600212CB9 /* LibrariesModule.m */; };
 		BA06A07616F2EE6600212CB9 /* CalenderList.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06A16F2EE6600212CB9 /* CalenderList.plist */; };
 		BA06A07716F2EE6600212CB9 /* CalenderList_eng.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */; };
@@ -296,6 +299,7 @@
 		913A0D1516E98EBA007BAD8F /* OutCampusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutCampusViewController.m; sourceTree = "<group>"; };
 		913A0D1C16E98F66007BAD8F /* NTOUModule+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NTOUModule+Protected.h"; sourceTree = "<group>"; };
 		913A0D1D16E98F99007BAD8F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		913BD8E917547F1300145B80 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		91756E3716E9A6DA001D724D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		91756E3816E9A6DA001D724D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		91756E4216E9A6E7001D724D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
@@ -577,6 +581,10 @@
 		91A9049416E89FE300ECF2CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		91A9049A16E8A09A00ECF2CF /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
+		91EE2AE4176B0F3D007666E1 /* SettingModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingModule.h; path = NTOU_Mobile/SettingModule.h; sourceTree = SOURCE_ROOT; };
+		91EE2AE5176B0F3D007666E1 /* SettingModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingModule.m; path = NTOU_Mobile/SettingModule.m; sourceTree = SOURCE_ROOT; };
+		91EE2AE6176B0F3D007666E1 /* SettingsModuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsModuleViewController.h; path = NTOU_Mobile/SettingsModuleViewController.h; sourceTree = SOURCE_ROOT; };
+		91EE2AE7176B0F3D007666E1 /* SettingsModuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsModuleViewController.m; path = NTOU_Mobile/SettingsModuleViewController.m; sourceTree = SOURCE_ROOT; };
 		BA06A06716F2EE6600212CB9 /* LibrariesModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibrariesModule.h; sourceTree = "<group>"; };
 		BA06A06816F2EE6600212CB9 /* LibrariesModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibrariesModule.m; sourceTree = "<group>"; };
 		BA06A06A16F2EE6600212CB9 /* CalenderList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CalenderList.plist; sourceTree = "<group>"; };
@@ -723,7 +731,14 @@
 		91756E7716F206F7001D724D /* Stellar */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				BE73DDE717A254C200F1B499 /* Resources */,
+=======
+				91EE2AE4176B0F3D007666E1 /* SettingModule.h */,
+				91EE2AE5176B0F3D007666E1 /* SettingModule.m */,
+				91EE2AE6176B0F3D007666E1 /* SettingsModuleViewController.h */,
+				91EE2AE7176B0F3D007666E1 /* SettingsModuleViewController.m */,
+>>>>>>> master
 				91756E9B16F206F7001D724D /* Classes */,
 				C74699EB16F21DF10060F49C /* Reader */,
 				91756FCE16F20C79001D724D /* LessonTimeView.h */,
@@ -834,6 +849,7 @@
 		91A9003B16E854E400ECF2CF = {
 			isa = PBXGroup;
 			children = (
+				913BD8E917547F1300145B80 /* Entitlements.plist */,
 				C71A4F22171520E3002819AD /* desktop logo-512x512.png */,
 				C71A4F201715205C002819AD /* desktop logo-57x57.png */,
 				C71A4F0F170A9949002819AD /* Default-568h@2x.png */,
@@ -1394,6 +1410,7 @@
 				C71A4F1C170AD1E6002819AD /* Nav_backGround.png in Resources */,
 				C71A4F211715205C002819AD /* desktop logo-57x57.png in Resources */,
 				C71A4F23171520E4002819AD /* desktop logo-512x512.png in Resources */,
+<<<<<<< HEAD
 				BAAA1F8D173CEDA1001E06D6 /* inbox_down_24.png in Resources */,
 				BAAA1F8E173CEDA1001E06D6 /* tray_full_24.png in Resources */,
 				BAAA1F8F173CEDA1001E06D6 /* tray_full.png in Resources */,
@@ -1405,6 +1422,9 @@
 				BEA9165E183B24E600F12001 /* R66HararioList.plist in Resources */,
 				BECF7C74184F48A800ADD115 /* R66Route.png in Resources */,
 				BECF7C76185598AD00ADD115 /* AlertViewShown.plist in Resources */,
+=======
+				913BD8EA17547F1300145B80 /* Entitlements.plist in Resources */,
+>>>>>>> master
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1558,6 +1578,7 @@
 				BA06A07A16F2EE6600212CB9 /* WOLSwitchViewController.m in Sources */,
 				C71A4EE51705B106002819AD /* Fuhobus_Data.m in Sources */,
 				C71A4F1F17128DF5002819AD /* AboutCreditsVC.m in Sources */,
+<<<<<<< HEAD
 				C72B23F1176AE87200474235 /* SettingsModuleViewController.m in Sources */,
 				C72B23F4176AE97100474235 /* SettingModule.m in Sources */,
 				BEA91661183C5F0400F12001 /* R66Layer1ViewController.m in Sources */,
@@ -1565,6 +1586,10 @@
 				BE98A969183CFA6000EF3CDC /* R66SwitchViewController.m in Sources */,
 				BECF7C71184F468200ADD115 /* R66LeftLayerViewController.m in Sources */,
 				BECF7C72184F468200ADD115 /* R66RightLayerViewController.m in Sources */,
+=======
+				91EE2AE8176B0F3D007666E1 /* SettingModule.m in Sources */,
+				91EE2AE9176B0F3D007666E1 /* SettingsModuleViewController.m in Sources */,
+>>>>>>> master
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1582,6 +1607,57 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		913BD8E717547BCC00145B80 /* Ad-Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ching-chi Lin (46873356PM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PROVISIONING_PROFILE = "B66DA841-1ACA-458C-A110-883FB78FD222";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B66DA841-1ACA-458C-A110-883FB78FD222";
+				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad-Hoc";
+		};
+		913BD8E817547BCC00145B80 /* Ad-Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ching-chi Lin (46873356PM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
+				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "海大App";
+				PROVISIONING_PROFILE = "B66DA841-1ACA-458C-A110-883FB78FD222";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B66DA841-1ACA-458C-A110-883FB78FD222";
+				WRAPPER_EXTENSION = app;
+			};
+			name = "Ad-Hoc";
+		};
 		91A9006216E854E500ECF2CF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1590,8 +1666,14 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+<<<<<<< HEAD
 				CODE_SIGN_IDENTITY = "iPhone Distribution: ching-chi Lin (46873356PM)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
+=======
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+>>>>>>> master
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1611,8 +1693,12 @@
 					"-all_load",
 					"-ObjC",
 				);
+<<<<<<< HEAD
 				PROVISIONING_PROFILE = "B65476CA-705C-4B6F-B351-71B749B466B0";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B65476CA-705C-4B6F-B351-71B749B466B0";
+=======
+				PROVISIONING_PROFILE = "";
+>>>>>>> master
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -1626,6 +1712,10 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+<<<<<<< HEAD
+=======
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+>>>>>>> master
 				CODE_SIGN_IDENTITY = "iPhone Distribution: ching-chi Lin (46873356PM)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
 				COPY_PHASE_STRIP = YES;
@@ -1640,8 +1730,13 @@
 					"-all_load",
 					"-ObjC",
 				);
+<<<<<<< HEAD
 				PROVISIONING_PROFILE = "B65476CA-705C-4B6F-B351-71B749B466B0";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B65476CA-705C-4B6F-B351-71B749B466B0";
+=======
+				PROVISIONING_PROFILE = "CA2C0AFD-230E-42D4-8C62-9E80264AD1ED";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CA2C0AFD-230E-42D4-8C62-9E80264AD1ED";
+>>>>>>> master
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
@@ -1682,8 +1777,13 @@
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "海大App";
+<<<<<<< HEAD
 				PROVISIONING_PROFILE = "B65476CA-705C-4B6F-B351-71B749B466B0";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B65476CA-705C-4B6F-B351-71B749B466B0";
+=======
+				PROVISIONING_PROFILE = "CA2C0AFD-230E-42D4-8C62-9E80264AD1ED";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CA2C0AFD-230E-42D4-8C62-9E80264AD1ED";
+>>>>>>> master
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1696,6 +1796,7 @@
 			buildConfigurations = (
 				91A9006216E854E500ECF2CF /* Debug */,
 				91A9006316E854E500ECF2CF /* Release */,
+				913BD8E717547BCC00145B80 /* Ad-Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1705,6 +1806,7 @@
 			buildConfigurations = (
 				91A9006516E854E500ECF2CF /* Debug */,
 				91A9006616E854E500ECF2CF /* Release */,
+				913BD8E817547BCC00145B80 /* Ad-Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

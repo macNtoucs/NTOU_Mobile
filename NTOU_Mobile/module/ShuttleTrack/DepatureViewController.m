@@ -123,7 +123,11 @@
     self.lastRefresh = [NSDate date];
     self.navigationItem.rightBarButtonItem.title = @"更新中";
     UIAlertView *  loadingAlertView = [[UIAlertView alloc]
+<<<<<<< HEAD
                                           initWithTitle:nil message:@"\n\n下載資料中\n請稍等"
+=======
+                                          initWithTitle:nil message:@"\n\n下載中\n請稍候"
+>>>>>>> master
                                           delegate:nil cancelButtonTitle:nil
                                           otherButtonTitles: nil];
     NSThread*thread = [[NSThread alloc]initWithTarget:self selector:@selector(AlertStart:) object:loadingAlertView];
@@ -172,7 +176,11 @@
         {
             int secs = (1+kRefreshInterval+sinceRefresh);
             if (secs < 0) secs = 0;
+<<<<<<< HEAD
             self.anotherButton.title = [NSString stringWithFormat:@"%d秒後更新", secs];
+=======
+            self.anotherButton.title = [NSString stringWithFormat:@"%d 秒後更新", secs];
+>>>>>>> master
             
         }
 	}
