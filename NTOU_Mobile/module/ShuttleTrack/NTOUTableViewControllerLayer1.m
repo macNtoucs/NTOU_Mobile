@@ -29,7 +29,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tableView applyStandardColors];
+    //[self.tableView applyStandardColors];
+    self.view.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -110,10 +111,10 @@
 	label.text = headerTitle;
 	label.textColor = GROUPED_SECTION_FONT_COLOR;
 	label.font = font;
-	label.backgroundColor = [UIColor clearColor];
+	label.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
 	
 	UIView *labelContainer = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, appFrame.size.width, GROUPED_SECTION_HEADER_HEIGHT)] autorelease];
-	labelContainer.backgroundColor = [UIColor clearColor];
+	labelContainer.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
 	
 	[labelContainer addSubview:label];
 	[label release];
@@ -159,7 +160,7 @@
                     cell.textLabel.text = @"忠孝復興站  → 海洋大學";
                     break;
                 case 0:
-                    cell.textLabel.text = @"海洋大學  → 忠孝復興站";
+                    cell.textLabel.text = @"海洋大學  → ";
                     break;
                 case 2:
                     cell.textLabel.text = @"捷運劍潭站  → 海洋大學";

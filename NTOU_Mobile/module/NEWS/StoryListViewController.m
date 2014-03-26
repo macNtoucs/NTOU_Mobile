@@ -421,7 +421,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                     UILabel *moreArticlesLabel = [[UILabel alloc] initWithFrame:cell.frame];
                     moreArticlesLabel.font = [UIFont boldSystemFontOfSize:16];
                     moreArticlesLabel.numberOfLines = 1;
-                    moreArticlesLabel.textColor = [UIColor colorWithHexString:@"#990000"];
+                    moreArticlesLabel.textColor = [UIColor colorWithHexString:@"m"];
                     moreArticlesLabel.text = @"載入更多..."; // just something to make it place correctly
                     [moreArticlesLabel sizeToFit];
                     moreArticlesLabel.tag = 1234;

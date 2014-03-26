@@ -68,8 +68,8 @@ modules;
      NSLog(@"Exception - %@",[exception description]);
      }
      */
-    
-    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:NTOUImageNameBackground]];
+    //self.window.backgroundColor = [UIColor colorWithHexString:@"#EFEFF4"];
+    self.window.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
     [self.window makeKeyAndVisible];
     
     // Override point for customization after view hierarchy is set

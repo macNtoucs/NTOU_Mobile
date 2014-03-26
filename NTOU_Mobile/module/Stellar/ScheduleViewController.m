@@ -287,6 +287,7 @@
         
         
     }
+   // self.view.backgroundColor = ]
     [super viewDidLoad];
 	
 }
