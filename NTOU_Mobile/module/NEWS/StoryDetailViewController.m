@@ -36,9 +36,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     CGRect dataFrame;
     //if (buttonDisplay) {
-    dataFrame = CGRectMake(0, 0, 320, 180);
+    dataFrame = CGRectMake(0, 0, 320, 240);
     /* } else {
      dataFrame = CGRectMake(0, 0, 320, 45);
      }*/
@@ -47,14 +48,12 @@
     dataTableView.dataSource = self;
     dataTableView.delegate = self;
     dataTableView.scrollEnabled = NO;
-    textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-60)];
-    textView.editable = NO;
-    textView.scrollEnabled = YES;
+    
     
     // 一行大約20個中文字
     NSInteger lineNum = [[[[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] length] / 17 + 1;
     //if (buttonDisplay) {
-    textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 181, 320, lineNum*35)];
+    textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 241, 320, lineNum*35)];
     /*} else {
      textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 46, 320, lineNum*50)];
      }*/
@@ -66,25 +65,30 @@
     [dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.navigationItem.title = [[[[story objectForKey:NewsAPIKeyTitle]objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
     
-    NSInteger newLineHeight = lineNum*1.5;
+    textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 300, 320, [[UIScreen mainScreen] bounds].size.height-(300))];
+    textView.editable = NO;
+    textView.scrollEnabled = YES;
+    
+  //  NSInteger newLineHeight = lineNum*1.5;
     //NSLog(@"newLineHeight = %i", newLineHeight);
     
-    NSString * newLine;
+   // NSString * newLine;
     //if (buttonDisplay) {
-    newLine = [[NSString alloc] initWithString:@"\n\n\n\n\n\n\n\n\n\n\n"];
+   // newLine = [[NSString alloc] initWithString:@"\n\n\n\n\n\n\n\n\n\n\n"];
     /*} else {
      newLine = [[NSString alloc] initWithString:@"\n\n\n"];
      }*/
-    for (NSInteger i = 0; i < newLineHeight; i ++)
+  /*  for (NSInteger i = 0; i < newLineHeight; i ++)
     {
         newLine = [newLine stringByAppendingString:@"\n"];
     }
-    
+    */
     textView.font = [UIFont systemFontOfSize:15.0];
-    textView.text = [newLine stringByAppendingString:[self stringToDeleteLineAndTab:[[story objectForKey:NewsAPIKeyBody] objectForKey:NewsAPIKeyText]]];
+    textView.text = [self stringToDeleteLineAndTab:[[story objectForKey:NewsAPIKeyBody] objectForKey:NewsAPIKeyText]];
+   
     
-    [textView addSubview:dataTableView];
-    [textView addSubview:textSubView];
+    [self.view addSubview:dataTableView];
+    [self.view addSubview:textSubView];
     [self.view addSubview:textView];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];

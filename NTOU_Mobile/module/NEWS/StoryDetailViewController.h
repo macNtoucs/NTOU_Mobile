@@ -10,6 +10,7 @@
 #import <MessageUI/MessageUI.h>
 #import "StoryListViewController.h"
 #import "Announce_API_Key.h"
+
 @interface StoryDetailViewController : UIViewController<UIWebViewDelegate, UITextViewDelegate, UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate>
 
 @property (strong) NSDictionary *story;
