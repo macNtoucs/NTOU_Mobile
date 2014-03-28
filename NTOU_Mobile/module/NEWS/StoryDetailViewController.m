@@ -47,14 +47,21 @@
     dataTableView.dataSource = self;
     dataTableView.delegate = self;
     dataTableView.scrollEnabled = NO;
-    textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-60)];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+        textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height)];
+    else
+        textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-60)];
+    
     textView.editable = NO;
     textView.scrollEnabled = YES;
     
     // 一行大約20個中文字
     NSInteger lineNum = [[[[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] length] / 17 + 1;
     //if (buttonDisplay) {
-    textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 181, 320, lineNum*35)];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+        textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 181, 320, lineNum*35-60)];
+    else
+        textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 181, 320, lineNum*35)];
     /*} else {
      textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 46, 320, lineNum*50)];
      }*/

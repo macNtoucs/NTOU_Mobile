@@ -29,17 +29,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-<<<<<<< HEAD
     //[self.tableView applyStandardColors];
     self.view.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
-=======
     [self.tableView applyStandardColors];
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
         
         self.edgesForExtendedLayout = UIRectEdgeNone;
         
     }
->>>>>>> DEV_Branch
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
