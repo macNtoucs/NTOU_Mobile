@@ -42,7 +42,7 @@
     /* } else {
      dataFrame = CGRectMake(0, 0, 320, 45);
      }*/
-    
+
     dataTableView = [[UITableView alloc] initWithFrame:dataFrame style:UITableViewStylePlain];
     dataTableView.dataSource = self;
     dataTableView.delegate = self;
@@ -58,10 +58,7 @@
     // 一行大約20個中文字
     NSInteger lineNum = [[[[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] length] / 17 + 1;
     //if (buttonDisplay) {
-    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
-        textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 181, 320, lineNum*35-60)];
-    else
-        textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 181, 320, lineNum*35)];
+    textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 181, 320, lineNum*35)];
     /*} else {
      textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 46, 320, lineNum*50)];
      }*/
