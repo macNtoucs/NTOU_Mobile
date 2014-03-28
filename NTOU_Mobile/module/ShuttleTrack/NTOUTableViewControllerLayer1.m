@@ -82,11 +82,10 @@
     return rowHeight;
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @" ";
-
+  return @" ";
 }
 
--(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
 
     return 32;
@@ -95,36 +94,32 @@
 
 
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	NSString *headerTitle;
+    
+    UILabel *label = [[[UILabel alloc] init] autorelease];
+    label.frame = CGRectMake(15, 3, 284, 23);
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont fontWithName:@"Helvetica" size:18];
+    label.backgroundColor = [UIColor clearColor];
     switch (section) {
         case 0:
-            headerTitle = @"學生專車";
+            label.text = @"學生專車";
             break;
+            
         case 1:
-            headerTitle = @"市區公車";
+            label.text =@"市區公車";
             break;
+            
         case 2:
-             headerTitle = @"其他";
+            label.text =@"其他";
             break;
-        default:
-            break;
+            
     }
-    UIFont *font = [UIFont boldSystemFontOfSize:STANDARD_CONTENT_FONT_SIZE];
-	CGSize size = [headerTitle sizeWithFont:font];
-	CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
-	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(19.0, 3.0, appFrame.size.width - 19.0, size.height)];
-	
-	label.text = headerTitle;
-	label.textColor = GROUPED_SECTION_FONT_COLOR;
-	label.font = font;
-	label.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
-	
-	UIView *labelContainer = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, appFrame.size.width, GROUPED_SECTION_HEADER_HEIGHT)] autorelease];
-	labelContainer.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
-	
-	[labelContainer addSubview:label];
-	[label release];
-	return labelContainer;
+    // Create header view and add label as a subview
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+    [view autorelease];
+    [view addSubview:label];
+    
+    return view;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -144,15 +139,12 @@
         case 2:
             return 1;
             break;
-        default:
-            return 0;
-            break;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%ld%ld",(long)indexPath.section,(long)indexPath.row];
     SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
     {

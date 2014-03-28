@@ -37,12 +37,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [super viewDidLoad];
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
         
-        self.navigationController.edgesForExtendedLayout = UIRectEdgeNone;
         self.edgesForExtendedLayout = UIRectEdgeNone;
-        
         
     }
     [self.tableView applyStandardColors];
@@ -78,7 +75,7 @@
 #pragma mark - Table view data source
 
 
--(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section == 0)
     {
@@ -96,9 +93,9 @@
     return 170;
 }
 
--(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 50;
+    return 25;
 }
 
 
@@ -214,33 +211,26 @@
     }
 }
 
-- (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	NSString *headerTitle = nil;
+- (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {    UILabel *label = [[[UILabel alloc] init] autorelease];
+    label.frame = CGRectMake(15, 3, 284, 23);
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont fontWithName:@"Helvetica" size:18];
+    label.backgroundColor = [UIColor clearColor];
     switch (section) {
         case 0:
-            headerTitle = @"Email";
+            label.text = @"Email";
             break;
+            
         case 1:
-            headerTitle = @"說明";
-        default:
+            label.text =@"說明";
             break;
     }
-    UIFont *font = [UIFont boldSystemFontOfSize:STANDARD_CONTENT_FONT_SIZE];
-	CGSize size = [headerTitle sizeWithFont:font];
-	CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
-	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(19.0, 25, appFrame.size.width - 19.0, size.height)];
-	
-	label.text = headerTitle;
-	label.textColor = GROUPED_SECTION_FONT_COLOR;
-	label.font = font;
-	label.backgroundColor = [UIColor clearColor];
-	//label.textAlignment = UITextAlignmentCenter;
-	UIView *labelContainer = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, appFrame.size.width, GROUPED_SECTION_HEADER_HEIGHT)] autorelease];
-	labelContainer.backgroundColor = [UIColor clearColor];
-	
-	[labelContainer addSubview:label];
-	[label release];
-	return labelContainer;
+    // Create header view and add label as a subview
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+    [view autorelease];
+    [view addSubview:label];
+    
+    return view;
 }
 
 +(NSString *) getAccount
