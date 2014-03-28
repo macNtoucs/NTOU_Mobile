@@ -68,6 +68,7 @@
     textSubView.text = [[[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
     textSubView.editable = NO;
     textSubView.userInteractionEnabled = NO;
+    textSubView.backgroundColor = [UIColor clearColor];
     [textSubView setFont:[UIFont boldSystemFontOfSize:18.0]];
     
     [dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
