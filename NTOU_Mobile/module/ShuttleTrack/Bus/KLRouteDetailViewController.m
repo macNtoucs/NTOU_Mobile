@@ -81,28 +81,30 @@
         TFHppleElement* urlAndStopName = [attributes objectAtIndex:1];
         //NSLog(@"url&StopName = %@", urlAndStopName);
         
-        NSMutableString *estimateUrl = [NSMutableString stringWithString:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/"];
+        /*NSMutableString *estimateUrl = [NSMutableString stringWithString:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/"];
         [estimateUrl appendFormat:@"%@", [[urlAndStopName attributes] objectForKey:@"href"]];
         
-        //NSLog(@"attribute: %@, child: %@", [[urlAndStopName attributes] objectForKey:@"href"], [[[urlAndStopName children] objectAtIndex:0] content]);
+        NSLog(@"attribute: %@, child: %@", [[urlAndStopName attributes] objectForKey:@"href"], [[[urlAndStopName children] objectAtIndex:0] content]);*/
         
-        //NSLog(@"estimateUrl = %@", estimateUrl);
+        NSString * estimateURL = [[urlAndStopName attributes] objectForKey:@"href"];
         
-        NSArray * tmp = [estimateUrl componentsSeparatedByString:@"sid="];
-        NSString * sid = [tmp objectAtIndex:1];
+        //NSLog(@"estimateURL = %@", estimateURL);
         
-        NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web.php?url=%@&sid=%@", estimateUrl, sid];
+        NSArray * tmp1 = [estimateURL componentsSeparatedByString:@"sid="];
+        NSString * sid = [tmp1 objectAtIndex:1];
         
-        //strURL = [strURL stringByAddingPercentEscapesUsingEncoding:CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8)];
+        NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web.php?estimateURL=%@&sid=%@", estimateURL, sid];
+        
         
         NSData *dataURL2 = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
         
-        NSString *strResult = [[[NSString alloc] initWithData:dataURL2 encoding:CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingBig5)]autorelease];
+        //NSString *strResult = [[[NSString alloc] initWithData:dataURL2 encoding:CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingBig5)]autorelease];
+        NSString *strResult = [[[NSString alloc] initWithData:dataURL2 encoding:NSUTF8StringEncoding]autorelease];
         
-        NSLog(@"strResult = %@", strResult);
+        //NSLog(@"strResult = %@", strResult);
         
         [stops addObject:[[[urlAndStopName children] objectAtIndex:0] content]];
-        [m_waitTimeResult addObject:@""];
+        [m_waitTimeResult addObject:strResult];
     }
     
     //NSString *encodedBus = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)busName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
@@ -336,7 +338,23 @@
         stopName = [stops objectAtIndex:indexPath.row];
         comeTime = [m_waitTimeResult objectAtIndex:indexPath.row];
         
-        if ([comeTime isEqual:@"-1"])
+        if([comeTime isEqualToString:@"即將進站..."])
+        {
+            cell.detailTextLabel.text = @"即將進站";
+            cell.detailTextLabel.textColor = [UIColor redColor];//
+        }
+        else if([comeTime isEqualToString:@"目前無公車即時資料"])
+        {
+            cell.detailTextLabel.text = @"現在無班車";
+            cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:127.0/255.0 green:127.0/255.0 blue:127.0/255.0 alpha:100.0];
+        }
+        else
+        {
+            cell.detailTextLabel.text = comeTime;
+            cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:0.0 green:45.0/255.0 blue:153.0/255.0 alpha:100.0];
+        }
+        
+        /*if ([comeTime isEqual:@"-1"])
         {
             cell.detailTextLabel.text = @"尚未發車";
             cell.detailTextLabel.textColor = [UIColor grayColor];
@@ -360,7 +378,7 @@
         {
             cell.detailTextLabel.text = [[NSString alloc] initWithFormat:@"%i 分鐘", (int)([comeTime doubleValue]/60 + 0.5)];
             cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:0.0 green:45.0/255.0 blue:153.0/255.0 alpha:100.0];
-        }
+        }*/
     }
     
     
