@@ -11,6 +11,7 @@
 #import "NTRouteGoBackViewController.h"
 #import "TPRouteDetailViewController.h"
 #import "NTRouteDetailViewController.h"
+#import "KLRouteDetailViewController.h"
 #import "UIKit+NTOUAdditions.h"
 #define LAYER1_BUT_WIDTH    58
 #define LAYER1_BUT_HEIGHT   40
@@ -42,6 +43,7 @@
     NSMutableArray *desArrayTaipeiBus;
     NSMutableArray *desArrayNewTaipeiBus;
     NSMutableArray *desArrayKeelungBus;
+    NSMutableArray * urlArrayKeelungBus;
     //
     BOOL success;
     NSError *error;
@@ -74,6 +76,7 @@
 @property (nonatomic, retain) NSMutableArray *desArrayTaipeiBus;
 @property (nonatomic, retain) NSMutableArray *desArrayNewTaipeiBus;
 @property (nonatomic, retain) NSMutableArray *desArrayKeelungBus;
+@property (nonatomic, retain) NSMutableArray * urlArrayKeelungBus;
 @property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) UILabel *partBusNameLabel;
 @end

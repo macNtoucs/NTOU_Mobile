@@ -79,7 +79,7 @@
     
     NSMutableDictionary  *trainInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
     
-    NSLog(@"%@",trainInfo);
+    //NSLog(@"TPtrainInfo: %@",trainInfo);
     
     NSArray * responseArr = trainInfo[@"stationInfo"];
     
@@ -88,8 +88,8 @@
         [stops addObject:[dict valueForKey:@"name"]];
         [m_waitTimeResult addObject:[dict valueForKey:@"time"]];
     }
-    NSLog(@"%@", stops);
-    NSLog(@"%@", m_waitTimeResult);
+    //NSLog(@"TPstops: %@", stops);
+    //NSLog(@"TPtime: %@", m_waitTimeResult);
     //NSLog(@"strResult = %@", strResult);
     
     /*NSArray * stopsAndTimes = [strResult componentsSeparatedByString:@";"];

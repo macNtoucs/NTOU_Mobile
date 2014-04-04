@@ -29,6 +29,7 @@
 @synthesize arrayTaipeiBus, arrayNewTaipeiBus, arrayKeelungBus;
 @synthesize depArrayTaipeiBus, depArrayNewTaipeiBus, depArrayKeelungBus;
 @synthesize desArrayTaipeiBus, desArrayNewTaipeiBus, desArrayKeelungBus;
+@synthesize urlArrayKeelungBus;
 @synthesize activityIndicator, partBusNameLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -53,7 +54,7 @@
     partBusNameLabel.textAlignment = NSTextAlignmentCenter;
     partBusNameLabel.text = @"";
     [self.navigationController.view addSubview:partBusNameLabel];
-    NSLog(@"navView=%@", self.navigationController.view);
+    //NSLog(@"navView=%@", self.navigationController.view);
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Default.png"]];
     self.title = @"北北基公車";
@@ -66,6 +67,7 @@
     arrayTaipeiBus = [[NSMutableArray alloc] init];
     arrayNewTaipeiBus = [[NSMutableArray alloc] init];
     arrayKeelungBus = [[NSMutableArray alloc] init];
+    urlArrayKeelungBus = [[NSMutableArray alloc] init];
     depArrayTaipeiBus = [[NSMutableArray alloc] init];
     depArrayNewTaipeiBus = [[NSMutableArray alloc] init];
     depArrayKeelungBus = [[NSMutableArray alloc] init];
@@ -335,6 +337,37 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     return [string1 compare:string2 options:comparisonOptions range:string1Range locale:(NSLocale *)locale];
 }
 
+- (void)KLFetchRouteWithWeb:(NSString *)routeNo
+{
+    NSString *strURL = [NSString stringWithFormat:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_route.jsp?rid=%@", routeNo];
+    
+    NSData *dataURL = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
+    
+    //NSString *strResult = [[[NSString alloc] initWithData:dataURL encoding:NSUTF8StringEncoding]autorelease];
+    
+    //NSLog(@"strResult = %@", strResult);
+    
+    TFHpple* parser = [[TFHpple alloc] initWithHTMLData:dataURL];
+    NSArray *tmpRoute  = [parser searchWithXPathQuery:@"//body//div//table//tr//td"]; // get the title
+    
+    for(int i=1; i<[tmpRoute count]; i++)
+    {
+        TFHppleElement* routeData = [tmpRoute objectAtIndex:i];
+        NSArray * attributes = [routeData children];
+        TFHppleElement* urlAndRouteName = [attributes objectAtIndex:0];
+        
+        NSMutableString *url = [NSMutableString stringWithString:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/"];
+        [url appendFormat:@"%@", [[urlAndRouteName attributes] objectForKey:@"href"]];
+        
+        //NSLog(@"url = %@", url);
+        
+        [urlArrayKeelungBus addObject:url];
+        [arrayKeelungBus addObject:[[[urlAndRouteName children] objectAtIndex:0] content]];
+        
+        //NSLog(@"attribute: %@, child: %@", [[urlAndRouteName attributes] objectForKey:@"href"], [[[urlAndRouteName children] objectAtIndex:0] content]);
+    }
+}
+
 - (void)showTableViewContent
 {
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:NTOUImageNameBackground]];
@@ -346,6 +379,8 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     [desArrayTaipeiBus removeAllObjects];
     [desArrayNewTaipeiBus removeAllObjects];
     [desArrayKeelungBus removeAllObjects];
+    [urlArrayKeelungBus removeAllObjects];
+    [arrayKeelungBus removeAllObjects];
     
     // start sqlite3
     
@@ -365,8 +400,8 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         depArrayTaipeiBus = [array2 mutableCopy];
         NSArray *array3 = [[NSArray alloc] initWithObjects:@"榮總", @"貓纜貓空站", @"捷運動物園", @"貓纜指南宮站", @"青峰活動中心", @"青峰活動中心", @"青峰活動中心", @"陽明山", @"陽明山", @"陽明書屋", @"陽明山站", @"竹子湖", nil];
         desArrayTaipeiBus = [array3 mutableCopy];
-        NSLog(@"retainCount=%d",[arrayNewTaipeiBus retainCount]);
-        [arrayNewTaipeiBus retain];
+        //NSLog(@"retainCount=%d",[arrayNewTaipeiBus retainCount]);
+        //[arrayNewTaipeiBus retain];
 
         [depArrayNewTaipeiBus retain];
         [desArrayNewTaipeiBus retain];
@@ -432,13 +467,22 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     }
     else
     {
-        NSMutableString *query = [NSMutableString stringWithString:@"SELECT * FROM routeinfo where nameZh like '%"];
+        NSMutableString *query = [NSMutableString stringWithString:@"SELECT * FROM routeinfo WHERE nameZh LIKE '%"];
         [query appendFormat:@"%@", partBusName];
         [query appendString:@"%'"];
         //NSLog(@"query=%@", query);
         FMResultSet *rs = [db executeQuery:query];
+        
+        /*NSMutableString *KLquery = [NSMutableString stringWithString:@"SELECT * FROM routeinfo WHERE city LIKE 'K' AND Id LIKE '"];
+        //NSMutableString *KLquery = [NSMutableString stringWithString:@"SELECT * FROM routeinfo WHERE city LIKE 'K'"];
+        [KLquery appendFormat:@"%@", partBusName];
+        [KLquery appendString:@"%'"];
+        //NSLog(@"KLquery=%@", KLquery);
+        FMResultSet *KLrs = [db executeQuery:KLquery];*/
+        
         NSMutableArray *testT = [[NSMutableArray alloc] init];
         NSMutableArray *testN = [[NSMutableArray alloc] init];
+        //NSMutableArray *testK = [[NSMutableArray alloc] init];
         
         while ([rs next])
         {
@@ -446,10 +490,42 @@ int finderSortWithLocale(id string1, id string2, void *locale)
                 [testT addObject:[rs stringForColumn:@"nameZh"]];
             else if ([[rs stringForColumn:@"city"] isEqualToString:@"N"])
                 [testN addObject:[rs stringForColumn:@"nameZh"]];
-            else
-                NSLog(@"基隆的資料放這裡。");
         }
         [rs close];
+        
+        /*while ([KLrs next])
+         {
+         //NSLog(@"基隆的資料放這裡: %@", [KLrs stringForColumn:@"Id"]);
+         [testK addObject:[KLrs stringForColumn:@"nameZh"]];
+         }
+         [KLrs close];*/
+        
+        NSArray * routeNos = [[NSArray alloc]initWithObjects:@"101", @"103", @"104", @"105", @"107", @"108", @"109", @"201", @"202", @"203", @"204", @"205", @"301", @"302", @"303", @"304", @"305", @"306", @"307", @"308", @"402", @"403", @"406", @"407", @"408", @"409", @"410", @"501", @"502", @"503", @"505", @"508", @"509", @"510", @"601", @"602", @"603", @"605", @"606", @"607", @"608", @"701", @"702", @"703", @"705", @"801", @"802", nil];
+        
+        NSMutableArray *matchRouteNos = [[NSMutableArray alloc] init];
+        
+        for(NSString * routeNo in routeNos)
+        {
+            /*if ([routeNo rangeOfString:partBusName].location == NSNotFound) {
+                NSLog(@"string does not contain %@", partBusName);
+            } else {
+                NSLog(@"string contains %@", partBusName);*/
+            if ([routeNo rangeOfString:partBusName].location != NSNotFound) {
+                [matchRouteNos addObject:routeNo];
+                //NSLog(@"match: %@", matchRouteNos);
+            }
+        }
+        
+        //NSMutableArray *tmp = [[NSMutableArray alloc] init];
+        for(NSString * routeNo in matchRouteNos)
+        {
+            //[testK addObject:[self KLFetchRouteWithWeb:routeNo]];
+            [self KLFetchRouteWithWeb:routeNo];
+            //NSLog(@"tmp = %@", tmp);
+        }
+        [urlArrayKeelungBus retain];
+        
+        //NSLog(@"urlArray = %@", urlArrayKeelungBus);
         
         // end sqlite3
         
@@ -458,6 +534,8 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         arrayTaipeiBus = [testT sortedArrayUsingFunction:finderSortWithLocale context:[NSLocale currentLocale]];
         
         arrayNewTaipeiBus = [testN sortedArrayUsingFunction:finderSortWithLocale context:[NSLocale currentLocale]];
+        
+        //arrayKeelungBus = [testK sortedArrayUsingFunction:finderSortWithLocale context:[NSLocale currentLocale]];
         
         // end natural sorting
         
@@ -496,6 +574,23 @@ int finderSortWithLocale(id string1, id string2, void *locale)
             }
             [rs close];
         }
+        
+        /*for (NSString *str in arrayKeelungBus)
+        {
+            [query setString:@""];
+            [query appendString:@"SELECT * FROM routeinfo where nameZh = '"];
+            [query appendFormat:@"%@", str];
+            [query appendString:@"'"];
+            //NSLog(@"query=%@", query);
+            rs = [db executeQuery:query];
+            while ([rs next])
+            {
+                [depArrayKeelungBus addObject:[rs stringForColumn:@"departureZh"]];
+                [desArrayKeelungBus addObject:[rs stringForColumn:@"destinationZh"]];
+                //NSLog(@"KL: %@ - %@", [rs stringForColumn:@"departureZh"], [rs stringForColumn:@"destinationZh"]);
+            }
+            [rs close];
+        }*/
         // end sqlite3
     }
     [db close];
@@ -503,7 +598,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     //NSLog(@"partBusName = %@", partBusName);
     [arrayTaipeiBus retain];
     [arrayNewTaipeiBus retain];
-    NSLog(@"retainCount=%d",[arrayNewTaipeiBus retainCount]);
+    //NSLog(@"retainCount=%d",[arrayNewTaipeiBus retainCount]);
     [arrayKeelungBus retain];
     [tableview reloadData];
 }
@@ -714,7 +809,8 @@ int finderSortWithLocale(id string1, id string2, void *locale)
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;   // 加入基隆時請改成3
+    //return 2;   // 加入基隆時請改成3
+    return 3;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -746,17 +842,17 @@ int finderSortWithLocale(id string1, id string2, void *locale)
 {
     if (section == 0)
     {
-        NSLog(@"section0:%lu", (unsigned long)[arrayTaipeiBus count]);
+        //NSLog(@"section0:%lu", (unsigned long)[arrayTaipeiBus count]);
         return [arrayTaipeiBus count];
     }
     else if (section == 1)
     {
-        NSLog(@"section1:%lu", (unsigned long)[arrayNewTaipeiBus count]);
+        //NSLog(@"section1:%lu", (unsigned long)[arrayNewTaipeiBus count]);
         return [arrayNewTaipeiBus count];
     }
     else
     {
-        NSLog(@"section2:%lu", (unsigned long)[arrayKeelungBus count]);
+        //NSLog(@"section2:%lu", (unsigned long)[arrayKeelungBus count]);
         return [arrayKeelungBus count];
     }
 }
@@ -777,7 +873,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"indexPath=%@", indexPath);
+    //NSLog(@"indexPath=%@", indexPath);
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -802,8 +898,9 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     else
     {
         cell.textLabel.text = [arrayKeelungBus objectAtIndex:indexPath.row];
-        departDestinInfo = [[depArrayKeelungBus objectAtIndex:indexPath.row] stringByAppendingString:@" - "];
-        cell.detailTextLabel.text = [departDestinInfo stringByAppendingString:[desArrayKeelungBus objectAtIndex:indexPath.row]];
+        /*departDestinInfo = [[depArrayKeelungBus objectAtIndex:indexPath.row] stringByAppendingString:@" - "];
+        cell.detailTextLabel.text = [departDestinInfo stringByAppendingString:[desArrayKeelungBus objectAtIndex:indexPath.row]];*/
+        cell.detailTextLabel.text = @"";
     }
     return cell;
 }
@@ -820,10 +917,10 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         secondLevel.title = [NSString stringWithFormat:@"往 %@", [desArrayTaipeiBus objectAtIndex:indexPath.row]];
         [secondLevel setter_busName:selectedBusName andGoBack:0];
         [secondLevel setter_departure:[depArrayTaipeiBus objectAtIndex:indexPath.row] andDestination:[desArrayTaipeiBus objectAtIndex:indexPath.row]];
-        NSLog(@"before push view.");
+        //NSLog(@"before push view.");
         [self.navigationController pushViewController:secondLevel animated:YES];
         [secondLevel release];
-        NSLog(@"after push view.");
+        //NSLog(@"after push view.");
     }
     else if (indexPath.section == 1)
     {
@@ -837,7 +934,14 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     }
     else
     {
-        NSLog(@"基隆市公車資訊");
+        //NSLog(@"基隆市公車資訊");
+        selectedBusName = [arrayKeelungBus objectAtIndex:indexPath.row];
+        KLRouteDetailViewController *secondLevel = [[KLRouteDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        secondLevel.title = selectedBusName;
+        NSLog(@"select url = %@", [urlArrayKeelungBus objectAtIndex:indexPath.row]);
+        [secondLevel setter_url:[urlArrayKeelungBus objectAtIndex:indexPath.row]];
+        [self.navigationController pushViewController:secondLevel animated:YES];
+        [secondLevel release];
     }
 }
 
