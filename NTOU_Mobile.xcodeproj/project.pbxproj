@@ -15,6 +15,8 @@
 		436F4F9818AB44C90069A6BF /* TPRouteGoBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 436F4F9218AB44C90069A6BF /* TPRouteGoBackViewController.m */; };
 		436F4FAF18B2135D0069A6BF /* ntou_mobile.db in Resources */ = {isa = PBXBuildFile; fileRef = 436F4FAE18B2135D0069A6BF /* ntou_mobile.db */; };
 		43707B7C18E6C4F100A7077F /* KLRouteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43707B7B18E6C4F000A7077F /* KLRouteDetailViewController.m */; };
+		43707B7F18F2608000A7077F /* NTOUShuttleButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43707B7E18F2607F00A7077F /* NTOUShuttleButtonViewController.m */; };
+		43707B8218F26C2700A7077F /* NTOUBusTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43707B8118F26C2600A7077F /* NTOUBusTableViewController.m */; };
 		912A53EF16E99F7900BBC013 /* NTOUGuide2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */; };
 		912A53F016E99F7900BBC013 /* NTOUGuideSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EC16E99F7900BBC013 /* NTOUGuideSetViewController.m */; };
 		912A53F116E99F7900BBC013 /* NTOUGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EE16E99F7900BBC013 /* NTOUGuideViewController.m */; };
@@ -295,6 +297,10 @@
 		436F4FAE18B2135D0069A6BF /* ntou_mobile.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ntou_mobile.db; sourceTree = "<group>"; };
 		43707B7A18E6C4EF00A7077F /* KLRouteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KLRouteDetailViewController.h; path = Bus/KLRouteDetailViewController.h; sourceTree = "<group>"; };
 		43707B7B18E6C4F000A7077F /* KLRouteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KLRouteDetailViewController.m; path = Bus/KLRouteDetailViewController.m; sourceTree = "<group>"; };
+		43707B7D18F2607D00A7077F /* NTOUShuttleButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUShuttleButtonViewController.h; sourceTree = "<group>"; };
+		43707B7E18F2607F00A7077F /* NTOUShuttleButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUShuttleButtonViewController.m; sourceTree = "<group>"; };
+		43707B8018F26C2400A7077F /* NTOUBusTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUBusTableViewController.h; sourceTree = "<group>"; };
+		43707B8118F26C2600A7077F /* NTOUBusTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUBusTableViewController.m; sourceTree = "<group>"; };
 		912A53E916E99F7900BBC013 /* NTOUGuide2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuide2ViewController.h; sourceTree = "<group>"; };
 		912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuide2ViewController.m; sourceTree = "<group>"; };
 		912A53EB16E99F7900BBC013 /* NTOUGuideSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuideSetViewController.h; sourceTree = "<group>"; };
@@ -1038,6 +1044,8 @@
 				BECF7C6E184F468200ADD115 /* R66LeftLayerViewController.m */,
 				BECF7C6F184F468200ADD115 /* R66RightLayerViewController.h */,
 				BECF7C70184F468200ADD115 /* R66RightLayerViewController.m */,
+				43707B8018F26C2400A7077F /* NTOUBusTableViewController.h */,
+				43707B8118F26C2600A7077F /* NTOUBusTableViewController.m */,
 				91A9048F16E89E5200ECF2CF /* StationInfoViewController.h */,
 				91A9049016E89E5400ECF2CF /* StationInfoViewController.m */,
 				91A903A716E899D200ECF2CF /* Annotation.h */,
@@ -1073,6 +1081,8 @@
 				91A903D816E899D200ECF2CF /* money-icon.png */,
 				91A903DF16E899D200ECF2CF /* NTOUTableViewControllerLayer1.h */,
 				91A903E016E899D200ECF2CF /* NTOUTableViewControllerLayer1.m */,
+				43707B7D18F2607D00A7077F /* NTOUShuttleButtonViewController.h */,
+				43707B7E18F2607F00A7077F /* NTOUShuttleButtonViewController.m */,
 				91A903E116E899D200ECF2CF /* NTOUTableViewControllerLayer2.h */,
 				91A903E216E899D200ECF2CF /* NTOUTableViewControllerLayer2.m */,
 				91A903E316E899D200ECF2CF /* OtherTrafficTrapViewController.h */,
@@ -1653,6 +1663,8 @@
 				A6FFBDEA18AF4E49007F8B91 /* FMDatabaseQueue.m in Sources */,
 				A6FFBDEB18AF4E49007F8B91 /* FMResultSet.m in Sources */,
 				43707B7C18E6C4F100A7077F /* KLRouteDetailViewController.m in Sources */,
+				43707B7F18F2608000A7077F /* NTOUShuttleButtonViewController.m in Sources */,
+				43707B8218F26C2700A7077F /* NTOUBusTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
