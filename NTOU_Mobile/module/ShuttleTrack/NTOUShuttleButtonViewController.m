@@ -118,7 +118,10 @@
             break;
         case 4:
             NSLog(@"case 4");
-            
+            NTOUBusTableViewController *ntoubusViewController = [[NTOUBusTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            [self.navigationController pushViewController:ntoubusViewController animated:YES];
+            ntoubusViewController.navigationItem.leftBarButtonItem.title = @"Back";
+            [ntoubusViewController release];
             break;
         default:
             NSLog(@"default");

@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "R66LeftLayerViewController.h"
+#import "R66SwitchViewController.h"
+#import "StopsViewController.h"
 
 @interface NTOUBusTableViewController : UITableViewController
 
