@@ -57,6 +57,8 @@ modules;
         
     }
     
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];   
+    
     // TODO: don't store state like this when we're using a springboard.
 	// set modules state
     [rootController pushViewController:springboard animated:NO];
@@ -171,6 +173,40 @@ modules;
         [aModule applicationWillEnterForeground];
     }
 }
+
+
+#pragma mark -
+#pragma mark Remote notifications
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // You can send here, for example, an asynchronous HTTP request to your web-server to store this deviceToken remotely.
+    NSLog(@"Did register for remote notifications: %@", deviceToken);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"Fail to register for remote notifications: %@", error);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    application.applicationIconBadgeNumber = 0;
+    
+    // We can determine whether an application is launched as a result of the user tapping the action
+    // button or whether the notification was delivered to the already-running application by examining
+    // the application state.
+    
+    if (application.applicationState == UIApplicationStateActive) {
+        // Nothing to do if applicationState is Inactive, the iOS already displayed an alert view.
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Did receive a Remote Notification"
+                                                            message:[NSString stringWithFormat:@"The application received this remote notification while it was running:\n%@",
+                                                                     [[userInfo objectForKey:@"aps"] objectForKey:@"alert"]]
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+        [alertView release];
+    }
+}
+
 
 #pragma mark -
 #pragma mark Memory management

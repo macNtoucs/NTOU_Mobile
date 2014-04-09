@@ -10,7 +10,7 @@
 #import "IconGrid.h"
 #import "AppDelegate.h"
 #import "NTOUModule.h"
-
+#import "BadgeLabel.h"
 @interface NTOUSpringboard ()
 - (void)internalInit;
 - (void)showModuleForIcon:(id)sender;
@@ -112,7 +112,7 @@
             
             [self.navigationController pushViewController:module.moduleHomeController
                                                  animated:YES];
-            
+            [module setBadgeValue:nil];
             if ([self.delegate respondsToSelector:@selector(springboard:didPushModule:)]) {
                 [self.delegate springboard:self
                              didPushModule:module];
@@ -192,6 +192,7 @@
         [buttons addObject:aButton];
         //[self.view addSubview:aButton];
           [aButton setUserInteractionEnabled:YES];
+        [aButton setBadgeValue:@"2"];
     }
     self.grid.icons = buttons;
     [self.view addSubview:self.grid];
@@ -207,7 +208,7 @@
     if (!bannerInfo) {
         bannerInfo = [[NSMutableDictionary alloc] init];
     }
-    
+
     [self displayBannerImage];
 	//[self checkForFeaturedModule];
     
@@ -288,7 +289,7 @@
             badgeLabel.backgroundColor = [UIColor clearColor];
             badgeLabel.textColor = [UIColor whiteColor];
             badgeLabel.font = labelFont;
-            badgeLabel.textAlignment = UITextAlignmentCenter;
+            badgeLabel.textAlignment = NSTextAlignmentCenter;
             badgeLabel.tag = BADGE_LABEL_TAG;
             [badgeView addSubview:badgeLabel];
         }
@@ -311,7 +312,7 @@
         badgeLabel.text = badgeValue;
         
         // place badgeView on top right corner
-        frame.origin = CGPointMake(self.frame.size.width - floor(badgeView.frame.size.width / 2) - 5,
+        frame.origin = CGPointMake(self.frame.size.width - floor(badgeView.frame.size.width / 2) - 20,
                                    - floor(badgeView.frame.size.height / 2) + 5);
         badgeView.frame = frame;
         
