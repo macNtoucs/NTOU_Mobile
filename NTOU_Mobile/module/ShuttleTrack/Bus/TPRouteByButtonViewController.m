@@ -41,6 +41,11 @@
     return self;
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    partBusNameLabel.text = @"";
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -379,12 +384,12 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     [desArrayTaipeiBus removeAllObjects];
     [desArrayNewTaipeiBus removeAllObjects];
     [desArrayKeelungBus removeAllObjects];
-    [urlArrayKeelungBus removeAllObjects];
-    [arrayKeelungBus removeAllObjects];
+    //[urlArrayKeelungBus removeAllObjects];
+    //[arrayKeelungBus removeAllObjects];
     
     // start sqlite3
     
-    NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ntou_mobile.db"];
+    NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ntou_mobile2.db"];
     NSLog(@"defaultDBPath=%@", defaultDBPath);
     FMDatabase *db = [FMDatabase databaseWithPath:defaultDBPath];
     if (![db open])
@@ -482,7 +487,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         
         NSMutableArray *testT = [[NSMutableArray alloc] init];
         NSMutableArray *testN = [[NSMutableArray alloc] init];
-        //NSMutableArray *testK = [[NSMutableArray alloc] init];
+        NSMutableArray *testK = [[NSMutableArray alloc] init];
         
         while ([rs next])
         {
@@ -490,6 +495,8 @@ int finderSortWithLocale(id string1, id string2, void *locale)
                 [testT addObject:[rs stringForColumn:@"nameZh"]];
             else if ([[rs stringForColumn:@"city"] isEqualToString:@"N"])
                 [testN addObject:[rs stringForColumn:@"nameZh"]];
+            else
+                [testK addObject:[rs stringForColumn:@"nameZh"]];
         }
         [rs close];
         
@@ -500,30 +507,30 @@ int finderSortWithLocale(id string1, id string2, void *locale)
          }
          [KLrs close];*/
         
-        NSArray * routeNos = [[NSArray alloc]initWithObjects:@"101", @"103", @"104", @"105", @"107", @"108", @"109", @"201", @"202", @"203", @"204", @"205", @"301", @"302", @"303", @"304", @"305", @"306", @"307", @"308", @"402", @"403", @"406", @"407", @"408", @"409", @"410", @"501", @"502", @"503", @"505", @"508", @"509", @"510", @"601", @"602", @"603", @"605", @"606", @"607", @"608", @"701", @"702", @"703", @"705", @"801", @"802", nil];
+        //NSArray * routeNos = [[NSArray alloc]initWithObjects:@"101", @"103", @"104", @"105", @"107", @"108", @"109", @"201", @"202", @"203", @"204", @"205", @"301", @"302", @"303", @"304", @"305", @"306", @"307", @"308", @"402", @"403", @"406", @"407", @"408", @"409", @"410", @"501", @"502", @"503", @"505", @"508", @"509", @"510", @"601", @"602", @"603", @"605", @"606", @"607", @"608", @"701", @"702", @"703", @"705", @"801", @"802", nil];
         
-        NSMutableArray *matchRouteNos = [[NSMutableArray alloc] init];
+        //NSMutableArray *matchRouteNos = [[NSMutableArray alloc] init];
         
-        for(NSString * routeNo in routeNos)
-        {
+        //for(NSString * routeNo in routeNos)
+        //{
             /*if ([routeNo rangeOfString:partBusName].location == NSNotFound) {
                 NSLog(@"string does not contain %@", partBusName);
             } else {
                 NSLog(@"string contains %@", partBusName);*/
-            if ([routeNo rangeOfString:partBusName].location != NSNotFound) {
-                [matchRouteNos addObject:routeNo];
+            //if ([routeNo rangeOfString:partBusName].location != NSNotFound) {
+                //[matchRouteNos addObject:routeNo];
                 //NSLog(@"match: %@", matchRouteNos);
-            }
-        }
+            //}
+        //}
         
         //NSMutableArray *tmp = [[NSMutableArray alloc] init];
-        for(NSString * routeNo in matchRouteNos)
-        {
+        //for(NSString * routeNo in matchRouteNos)
+        //{
             //[testK addObject:[self KLFetchRouteWithWeb:routeNo]];
-            [self KLFetchRouteWithWeb:routeNo];
+            //[self KLFetchRouteWithWeb:routeNo];
             //NSLog(@"tmp = %@", tmp);
-        }
-        [urlArrayKeelungBus retain];
+        //}
+        //[urlArrayKeelungBus retain];
         
         //NSLog(@"urlArray = %@", urlArrayKeelungBus);
         
@@ -535,7 +542,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         
         arrayNewTaipeiBus = [testN sortedArrayUsingFunction:finderSortWithLocale context:[NSLocale currentLocale]];
         
-        //arrayKeelungBus = [testK sortedArrayUsingFunction:finderSortWithLocale context:[NSLocale currentLocale]];
+        arrayKeelungBus = [testK sortedArrayUsingFunction:finderSortWithLocale context:[NSLocale currentLocale]];
         
         // end natural sorting
         
@@ -575,7 +582,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
             [rs close];
         }
         
-        /*for (NSString *str in arrayKeelungBus)
+        for (NSString *str in arrayKeelungBus)
         {
             [query setString:@""];
             [query appendString:@"SELECT * FROM routeinfo where nameZh = '"];
@@ -590,7 +597,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
                 //NSLog(@"KL: %@ - %@", [rs stringForColumn:@"departureZh"], [rs stringForColumn:@"destinationZh"]);
             }
             [rs close];
-        }*/
+        }
         // end sqlite3
     }
     [db close];
@@ -897,10 +904,11 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     }
     else
     {
+        cell.textLabel.font = [UIFont systemFontOfSize:14.0];
         cell.textLabel.text = [arrayKeelungBus objectAtIndex:indexPath.row];
-        /*departDestinInfo = [[depArrayKeelungBus objectAtIndex:indexPath.row] stringByAppendingString:@" - "];
-        cell.detailTextLabel.text = [departDestinInfo stringByAppendingString:[desArrayKeelungBus objectAtIndex:indexPath.row]];*/
-        cell.detailTextLabel.text = @"";
+        departDestinInfo = [[depArrayKeelungBus objectAtIndex:indexPath.row] stringByAppendingString:@" - "];
+        cell.detailTextLabel.text = [departDestinInfo stringByAppendingString:[desArrayKeelungBus objectAtIndex:indexPath.row]];
+        //cell.detailTextLabel.text = @"";
     }
     return cell;
 }
@@ -937,9 +945,9 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         //NSLog(@"基隆市公車資訊");
         selectedBusName = [arrayKeelungBus objectAtIndex:indexPath.row];
         KLRouteDetailViewController *secondLevel = [[KLRouteDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        secondLevel.title = selectedBusName;
-        NSLog(@"select url = %@", [urlArrayKeelungBus objectAtIndex:indexPath.row]);
-        [secondLevel setter_url:[urlArrayKeelungBus objectAtIndex:indexPath.row]];
+        secondLevel.title = [NSString stringWithFormat:@"往 %@", [desArrayKeelungBus objectAtIndex:indexPath.row]];
+        [secondLevel setter_busName:selectedBusName andGoBack:0];
+        [secondLevel setter_departure:[depArrayKeelungBus objectAtIndex:indexPath.row] andDestination:[desArrayKeelungBus objectAtIndex:indexPath.row]];
         [self.navigationController pushViewController:secondLevel animated:YES];
         [secondLevel release];
     }

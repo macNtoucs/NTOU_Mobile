@@ -14,6 +14,7 @@
 		436F4F9718AB44C90069A6BF /* TPRouteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 436F4F9018AB44C90069A6BF /* TPRouteDetailViewController.m */; };
 		436F4F9818AB44C90069A6BF /* TPRouteGoBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 436F4F9218AB44C90069A6BF /* TPRouteGoBackViewController.m */; };
 		436F4FAF18B2135D0069A6BF /* ntou_mobile.db in Resources */ = {isa = PBXBuildFile; fileRef = 436F4FAE18B2135D0069A6BF /* ntou_mobile.db */; };
+		436FBC7D18F567480099D9F9 /* ntou_mobile2.db in Resources */ = {isa = PBXBuildFile; fileRef = 436FBC7C18F567480099D9F9 /* ntou_mobile2.db */; };
 		43707B7C18E6C4F100A7077F /* KLRouteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43707B7B18E6C4F000A7077F /* KLRouteDetailViewController.m */; };
 		43707B7F18F2608000A7077F /* NTOUShuttleButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43707B7E18F2607F00A7077F /* NTOUShuttleButtonViewController.m */; };
 		43707B8218F26C2700A7077F /* NTOUBusTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43707B8118F26C2600A7077F /* NTOUBusTableViewController.m */; };
@@ -295,6 +296,7 @@
 		436F4F9118AB44C90069A6BF /* TPRouteGoBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPRouteGoBackViewController.h; path = Bus/TPRouteGoBackViewController.h; sourceTree = "<group>"; };
 		436F4F9218AB44C90069A6BF /* TPRouteGoBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPRouteGoBackViewController.m; path = Bus/TPRouteGoBackViewController.m; sourceTree = "<group>"; };
 		436F4FAE18B2135D0069A6BF /* ntou_mobile.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ntou_mobile.db; sourceTree = "<group>"; };
+		436FBC7C18F567480099D9F9 /* ntou_mobile2.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ntou_mobile2.db; sourceTree = "<group>"; };
 		43707B7A18E6C4EF00A7077F /* KLRouteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KLRouteDetailViewController.h; path = Bus/KLRouteDetailViewController.h; sourceTree = "<group>"; };
 		43707B7B18E6C4F000A7077F /* KLRouteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KLRouteDetailViewController.m; path = Bus/KLRouteDetailViewController.m; sourceTree = "<group>"; };
 		43707B7D18F2607D00A7077F /* NTOUShuttleButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUShuttleButtonViewController.h; sourceTree = "<group>"; };
@@ -1026,6 +1028,7 @@
 		91A9029816E88E0D00ECF2CF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				436FBC7C18F567480099D9F9 /* ntou_mobile2.db */,
 				436F4FAE18B2135D0069A6BF /* ntou_mobile.db */,
 				C71A4F1B170AD1E6002819AD /* Nav_backGround.png */,
 				C74699E816F21CF40060F49C /* news */,
@@ -1491,6 +1494,7 @@
 				BECF7C74184F48A800ADD115 /* R66Route.png in Resources */,
 				BECF7C76185598AD00ADD115 /* AlertViewShown.plist in Resources */,
 				436F4FAF18B2135D0069A6BF /* ntou_mobile.db in Resources */,
+				436FBC7D18F567480099D9F9 /* ntou_mobile2.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

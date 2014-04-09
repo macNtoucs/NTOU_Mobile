@@ -11,9 +11,9 @@
 
 @implementation KLRouteDetailViewController
 
-@synthesize busId;
-//@synthesize goBack;
-@synthesize url;
+//@synthesize busId;
+@synthesize busName, goBack, departure, destination;
+//@synthesize url;
 @synthesize stops, IDs, m_waitTimeResult;
 
 //@synthesize toolbar;
@@ -22,21 +22,18 @@
 @synthesize lastRefresh;
 @synthesize refreshTimer;
 
-/*- (void) setter_busName:(NSString *)name andGoBack:(NSInteger) goback
- {
- busName = name;
- goBack = [[NSString alloc] initWithFormat:@"%i", goback];
- NSLog(@"busName:%@, goBack:%@", busName, goBack);
- }*/
-
-- (void) setter_busId:(NSString *)Id
+- (void) setter_busName:(NSString *)name andGoBack:(NSInteger) goback
 {
-    busId = Id;
+    busName = name;
+    goBack = [[NSString alloc] initWithFormat:@"%i", goback];
+    NSLog(@"busName:%@, goBack:%@", busName, goBack);
 }
 
-- (void) setter_url:(NSString *)inputUrl
+- (void) setter_departure:(NSString *)dep andDestination:(NSString *)des
 {
-    url = inputUrl;
+    departure = [[NSString alloc] initWithString:dep];
+    destination = [[NSString alloc] initWithString:des];
+    //NSLog(@"dep:%@ / des:%@", depature, destination);
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -63,11 +60,12 @@
         [m_waitTimeResult removeAllObjects];
     }
     
+    NSString *encodedBus = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)busName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
     //NSLog(@"url = %@", url);
     
-    NSData *dataURL = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+    //NSData *dataURL = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     
-    TFHpple* parser = [[TFHpple alloc] initWithHTMLData:dataURL];
+    /*TFHpple* parser = [[TFHpple alloc] initWithHTMLData:dataURL];
     NSArray *tmpStop  = [parser searchWithXPathQuery:@"//body//div//table//tr//td"]; // get the title
     
     //NSLog(@"tmpStop = %@", tmpStop);
@@ -81,31 +79,32 @@
         TFHppleElement* urlAndStopName = [attributes objectAtIndex:1];
         //NSLog(@"url&StopName = %@", urlAndStopName);
         
-        /*NSMutableString *estimateUrl = [NSMutableString stringWithString:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/"];
-        [estimateUrl appendFormat:@"%@", [[urlAndStopName attributes] objectForKey:@"href"]];
-        
-        NSLog(@"attribute: %@, child: %@", [[urlAndStopName attributes] objectForKey:@"href"], [[[urlAndStopName children] objectAtIndex:0] content]);*/
-        
         NSString * estimateURL = [[urlAndStopName attributes] objectForKey:@"href"];
         
         //NSLog(@"estimateURL = %@", estimateURL);
         
         NSArray * tmp1 = [estimateURL componentsSeparatedByString:@"sid="];
-        NSString * sid = [tmp1 objectAtIndex:1];
+        NSString * sid = [tmp1 objectAtIndex:1];*/
         
-        NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web.php?estimateURL=%@&sid=%@", estimateURL, sid];
-        
-        
-        NSData *dataURL2 = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
+        //NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web.php?url=%@", url];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web.php?bus=%@&goBack=%@", encodedBus, goBack]];
+    
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        NSError *error;
+    NSLog(@"data=%@", data);
+        //NSMutableDictionary  *trainInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
+        //NSData *dataURL2 = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
         
         //NSString *strResult = [[[NSString alloc] initWithData:dataURL2 encoding:CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingBig5)]autorelease];
-        NSString *strResult = [[[NSString alloc] initWithData:dataURL2 encoding:NSUTF8StringEncoding]autorelease];
+        //NSString *strResult = [[[NSString alloc] initWithData:dataURL2 encoding:NSUTF8StringEncoding]autorelease];
         
         //NSLog(@"strResult = %@", strResult);
-        
-        [stops addObject:[[[urlAndStopName children] objectAtIndex:0] content]];
-        [m_waitTimeResult addObject:strResult];
-    }
+    
+        //[stops addObject:@""];
+        //[m_waitTimeResult addObject:@""];
+        //[stops addObject:[[[urlAndStopName children] objectAtIndex:0] content]];
+        //[m_waitTimeResult addObject:strResult];
+    //}
     
     //NSString *encodedBus = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)busName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
     
@@ -144,7 +143,7 @@
     [m_waitTimeResult removeLastObject];*/
     
     [stops retain];
-    [IDs retain];
+    //[IDs retain];
     [m_waitTimeResult retain];
 }
 
@@ -235,6 +234,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.tableView applyStandardColors];
     
     IDs = [NSMutableArray new];
     m_waitTimeResult = [NSMutableArray new];
@@ -402,8 +402,8 @@
 
 - (void)dealloc
 {
-    [busId release];
-    //[goBack release];
+    //[busId release];
+    [goBack release];
     [IDs release];
     [stops release];
     [m_waitTimeResult release];

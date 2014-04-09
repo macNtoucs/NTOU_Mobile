@@ -18,12 +18,14 @@
 #import "TFHppleElement.h"
 //#import "ToolBarController.h"
 #import "EGORefreshTableHeaderView.h"
+#import "UIKit+NTOUAdditions.h"
 
 @interface KLRouteDetailViewController : UITableViewController<EGORefreshTableHeaderDelegate>
 {
-    NSString * busId; // 存取公車名稱
-    //NSString * goBack;
-    NSString * url;
+    NSString *busName;
+    NSString *goBack;
+    NSString *departure;
+    NSString *destination;
     
     NSMutableArray * stops;
     NSMutableArray * m_waitTimeResult;
@@ -37,10 +39,10 @@
     NSTimer * refreshTimer; // 倒數計時
     BOOL _reloading;
 }
-
-@property (nonatomic, retain) NSString * busId;
-//@property (nonatomic, retain) NSString * goBack;
-@property (nonatomic, retain) NSString * url;
+@property (nonatomic, retain) NSString *busName;
+@property (nonatomic, retain) NSString *goBack;
+@property (nonatomic, retain) NSString *departure;
+@property (nonatomic, retain) NSString *destination;
 
 @property (nonatomic, retain) NSMutableArray * stops;
 @property (nonatomic, retain) NSMutableArray * m_waitTimeResult;
@@ -53,9 +55,10 @@
 @property (nonatomic, retain) NSTimer *refreshTimer;
 
 - (void) estimateTime; // 抓取公車進站時間
-//- (void) setter_busName:(NSString *) name andGoBack:(NSInteger) goBack; // 取得公車名稱
-- (void) setter_busId:(NSString *) Id; // 取得公車名稱
-- (void) setter_url:(NSString *) inputUrl;
+- (void) setter_busName:(NSString *) name andGoBack:(NSInteger) goBack; // 取得公車名稱
+- (void) setter_departure:(NSString *)dep andDestination:(NSString *)des;
+//- (void) setter_busId:(NSString *) Id; // 取得公車名稱
+//- (void) setter_url:(NSString *) inputUrl;
 
 - (void)reloadTableViewDataSource;
 

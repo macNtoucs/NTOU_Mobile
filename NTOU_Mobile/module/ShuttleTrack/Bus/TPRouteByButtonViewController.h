@@ -43,7 +43,7 @@
     NSMutableArray *desArrayTaipeiBus;
     NSMutableArray *desArrayNewTaipeiBus;
     NSMutableArray *desArrayKeelungBus;
-    NSMutableArray * urlArrayKeelungBus;
+    NSMutableArray *urlArrayKeelungBus;
     //
     BOOL success;
     NSError *error;
