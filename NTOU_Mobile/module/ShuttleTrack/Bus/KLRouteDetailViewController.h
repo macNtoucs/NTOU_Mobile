@@ -38,6 +38,10 @@
     NSDate * lastRefresh;
     NSTimer * refreshTimer; // 倒數計時
     BOOL _reloading;
+    NSArray *preArray;
+    BOOL ISREAL;
+    UIActivityIndicatorView *activityIndicator;
+    UIAlertView *loadingView;
 }
 @property (nonatomic, retain) NSString *busName;
 @property (nonatomic, retain) NSString *goBack;
@@ -53,6 +57,9 @@
 @property (nonatomic, retain) UIImageView * success;
 @property (nonatomic, retain) NSDate *lastRefresh;
 @property (nonatomic, retain) NSTimer *refreshTimer;
+@property (nonatomic, retain) NSArray *preArray;
+@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, retain) UIAlertView *loadingView;
 
 - (void) estimateTime; // 抓取公車進站時間
 - (void) setter_busName:(NSString *) name andGoBack:(NSInteger) goBack; // 取得公車名稱

@@ -23,14 +23,17 @@
     NSString *arrivalStation;
     NSString *departureStation;
     DownloadingView *downloadView;
-   
+    NSString * selectedDate;
+    NSString * selectedTrainStyle;
 }
 @property (nonatomic,retain) NSURL * dataURL;
 @property (nonatomic ,retain )NSMutableArray *trainNumber;
 @property (nonatomic, retain) NSMutableArray *trainStartFroms;
 @property (nonatomic, retain) NSMutableArray *trainTravelTos;
 @property (nonatomic, retain) NSMutableArray *departureTimes;
-@property (nonatomic, retain)NSMutableArray *arrivalTimes;
+@property (nonatomic, retain) NSMutableArray *arrivalTimes;
+@property (nonatomic, retain) NSString * selectedDate;
+@property (nonatomic, retain) NSString * selectedTrainStyle;
 @property (nonatomic, unsafe_unretained) id <StaionInfoDataSource> dataSource;
 -(void) recieveData;
 

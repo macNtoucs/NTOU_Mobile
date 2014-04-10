@@ -945,7 +945,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         //NSLog(@"基隆市公車資訊");
         selectedBusName = [arrayKeelungBus objectAtIndex:indexPath.row];
         KLRouteDetailViewController *secondLevel = [[KLRouteDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        secondLevel.title = [NSString stringWithFormat:@"往 %@", [desArrayKeelungBus objectAtIndex:indexPath.row]];
+        secondLevel.title = [NSString stringWithFormat:@"%@ - %@", [depArrayKeelungBus objectAtIndex:indexPath.row], [desArrayKeelungBus objectAtIndex:indexPath.row]];
         [secondLevel setter_busName:selectedBusName andGoBack:0];
         [secondLevel setter_departure:[depArrayKeelungBus objectAtIndex:indexPath.row] andDestination:[desArrayKeelungBus objectAtIndex:indexPath.row]];
         [self.navigationController pushViewController:secondLevel animated:YES];

@@ -235,10 +235,10 @@
     preArray = [[NSArray alloc] initWithObjects:@"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", nil];
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
-    loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"讀取中..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
     
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    activityIndicator.frame = CGRectMake(115.0, 40.0, 50.0, 50.0);
+    activityIndicator.frame = CGRectMake(115.0, 60.0, 50.0, 50.0);
     [self.loadingView addSubview:self.activityIndicator];
     [activityIndicator startAnimating];
     [self.tableView addSubview:self.loadingView];

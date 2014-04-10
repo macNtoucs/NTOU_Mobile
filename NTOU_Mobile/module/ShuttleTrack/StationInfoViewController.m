@@ -23,6 +23,8 @@
 @synthesize departureTimes;
 @synthesize arrivalTimes;
 @synthesize dataSource;
+@synthesize selectedDate;
+@synthesize selectedTrainStyle;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -45,10 +47,10 @@
     [arrivalStation retain];
 }
 -(void)recieveData{
-    NSLog(@"recieveData");
+    NSLog(@"stationInfo.m recieveData");
     //[self recieveURL];
-    [self fetchData];
-    /*if (![[dataURL absoluteString] isEqualToString:@""]){
+    //[self fetchData];
+    if (![[dataURL absoluteString] isEqualToString:@""]){
         [self recieveStartAndDepature];
         [self fetchData];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -57,25 +59,46 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [downloadView AlertViewEnd];
         });
-    }*/
+    }
     
 }
 
 
--(void)fetchData{
-    NSLog(@"fetchData");
-    /*downloadView = [DownloadingView new];
+-(void)fetchData
+{
+    NSLog(@"StationInfo.m fetchData");
+    downloadView = [DownloadingView new];
     dispatch_async(dispatch_get_main_queue(), ^{
         [downloadView AlertViewStart];
-    });*/
+    });
     
     /*StartAndTerminalstops = [NSMutableArray new];
     depatureTimes = [NSMutableArray new];
     arrivalTimes = [NSMutableArray new];
     trainStyle = [NSMutableArray new];*/
     
-    NSLog(@"startStation:%@", departureStation);
-    NSLog(@"departureStation:%@", arrivalStation);
+    if(arrivalTimes)
+    {
+        [arrivalTimes removeAllObjects];
+        [trainStyle removeAllObjects];
+        [departureTimes removeAllObjects];
+        [trainNumber removeAllObjects];
+        [trainStartFroms removeAllObjects];
+        [trainTravelTos removeAllObjects];
+    }
+    
+    NSLog(@"departureStation:%@", departureStation);
+    NSLog(@"arrivalStation:%@", arrivalStation);
+    
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"stationNumber" ofType:@"plist"];
+    NSDictionary* rootDictionary = [[NSDictionary alloc] initWithContentsOfFile:path];
+    
+    //NSLog(@"rootDictionary: %@",rootDictionary);
+    
+    NSString * startId = [rootDictionary valueForKey:departureStation];
+    //NSLog(@"startId = %@", startId);
+    NSString * endId = [rootDictionary valueForKey:arrivalStation];
+
     
     /* 處理傳入 server 的資料 */
     /*NSString * startId = [[NSString alloc]init];
@@ -87,15 +110,17 @@
     // NSDate -> NSString
     /*NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyyMMdd"];
-    NSString *strDate = [dateFormatter stringFromDate:selectedDate];
+    NSString *strDate = [dateFormatter stringFromDate:selectedDate];*/
     
-    NSString * time = [[NSString alloc]init];
+    /*NSString * time = [[NSString alloc]init];
     time = [time stringByAppendingFormat:@"%@",[[selectedHTTime componentsSeparatedByString:@":"] objectAtIndex:0]];
     time = [time stringByAppendingFormat:@"%@",[[selectedHTTime componentsSeparatedByString:@":"] objectAtIndex:1]];*/
     
     //NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/StationInfo.php?startId=%@&endId=%@&date=%@&car=%@", @"1001", @"1008", @"20140319", @"0000"];
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/StationInfo.php?startId=%@&endId=%@&date=%@&car=%@&lineDir=%@", @"1001", @"1008", @"20140326", @"expressTrain", @"1"]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/StationInfo.php?startId=%@&endId=%@&date=%@&car=%@&lineDir=%@", startId, endId, selectedDate, selectedTrainStyle, @"1"]];
+    // 逆時針:1
+    NSLog(@"url=%@", url);
     
     NSData *data = [NSData dataWithContentsOfURL:url];
     
@@ -103,7 +128,7 @@
     
     NSMutableDictionary  *trainInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
     
-    NSLog(@"%@",trainInfo);
+    //NSLog(@"trainInfo = %@",trainInfo);
     
     NSArray * responseArr = trainInfo[@"trainInfo"];
     
@@ -116,6 +141,7 @@
         [trainStartFroms addObject:[dict valueForKey:@"trainStartFrom"]];
         [trainTravelTos addObject:[dict valueForKey:@"trainTravelTo"]];
     }
+    
     /*NSLog(@"%@", StartAndTerminalstops);
     NSLog(@"%@", departureTimes);
     NSLog(@"%@", arrivalTimes);
@@ -266,7 +292,7 @@
     /*return [StartAndTerminalstops count]>=8 || [StartAndTerminalstops count]==0 ?
     [StartAndTerminalstops count]+2 : [StartAndTerminalstops count]+1;*/
     NSLog(@"count:%d", [departureTimes count]);
-    return [departureTimes count];
+    return [departureTimes count]+1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -276,24 +302,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*NSString *CellIdentifier;
-    if (!StartAndTerminalstops)
+    NSString *CellIdentifier;
+    if (!departureStation)
         CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
     else 
-        CellIdentifier = [NSString stringWithFormat:@"Cell%d%d%@+%@",indexPath.section,indexPath.row,StartAndTerminalstops,depatureTimes];
+        CellIdentifier = [NSString stringWithFormat:@"Cell%d%d%@+%@",indexPath.section,indexPath.row,departureStation,arrivalTimes];
     
-    SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil) {
-        cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
-    }*/
-    
-    static  NSString *CellIdentifier = @"cell";
     SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
         cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
+    
+    /*static  NSString *CellIdentifier = @"cell";
+    SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+    }*/
 
     
     /*if (![self hasWifi]){
@@ -348,8 +374,8 @@
         label.tag=25;
         label.font = [UIFont fontWithName:BOLD_FONT size:17.0];
         label.textColor = CELL_STANDARD_FONT_COLOR;
-        //label.text = startStation;
-        label.text = @"臺北";
+        label.text = departureStation;
+        //label.text = @"臺北";
         label.textAlignment = UITextAlignmentCenter;
         UILabel* detailLabel = [[[UILabel alloc] initWithFrame:CGRectMake(260, 13, 60, 15)] autorelease];
         detailLabel.font = [UIFont fontWithName:BOLD_FONT size:17.0];
@@ -358,37 +384,50 @@
         detailLabel.textColor = CELL_DETAIL_FONT_COLOR;
         detailLabel.highlightedTextColor = [UIColor whiteColor];
         detailLabel.backgroundColor = [UIColor clearColor];
-        //detailLabel.text = depatureStation;
-        detailLabel.text = @"基隆";
+        detailLabel.text = arrivalStation;
+        //detailLabel.text = @"基隆";
         detailLabel.textAlignment = UITextAlignmentCenter;
+        [cell.contentView removeAllSubviews];
         [cell.contentView addSubview:label];
         [cell.contentView addSubview:detailLabel];
+        //cell.imageView.image = NULL;
     }
     else {
         //NSString *textString = [NSString stringWithFormat:@"%@         %@", [trainStartFroms objectAtIndex:indexPath.row-1], [trainTravelTos objectAtIndex:indexPath.row-1]];
         NSString *textString = [NSString stringWithFormat:@"%@         %@", [trainStyle objectAtIndex:indexPath.row-1], [trainNumber objectAtIndex:indexPath.row-1]];
         NSString *detailString = [NSString stringWithFormat:@"%@         %@", [departureTimes objectAtIndex:indexPath.row-1],[arrivalTimes objectAtIndex:indexPath.row-1] ] ;
-        
-        //cell.textLabel.text=[NSString stringWithFormat:@"%@",[StartAndTerminalstops objectAtIndex:indexPath.row-1]] ;
          
-        if ([[trainStyle objectAtIndex:indexPath.row-1] isEqualToString:@"1131"])   //區間車
+        if ([@"[1131]*[1132]*[1120]*[1130]" rangeOfString:[trainStyle objectAtIndex:indexPath.row-1]].location != NSNotFound)   //區間車、區間快、復興、電車
             cell.imageView.image = [UIImage imageNamed:@"local_train.png"];
-            //cell.textLabel.text= @"區間車";
-        if ([[trainStyle objectAtIndex:indexPath.row-1]isEqualToString: @"1100"]||[[trainStyle objectAtIndex:indexPath.row-1]isEqualToString: @"1101"])   //自強號
+        if ([@"[1100]*[1101]*[1102]*[1107]" rangeOfString:[trainStyle objectAtIndex:indexPath.row-1]].location != NSNotFound)   //自強號
             cell.imageView.image = [UIImage imageNamed:@"speed_train.png"];
-            //cell.textLabel.text= @"自強";
-        if ([[trainStyle objectAtIndex:indexPath.row-1]isEqualToString: @"1110"])   //莒光號
+        if ([@"[1110]" rangeOfString:[trainStyle objectAtIndex:indexPath.row-1]].location != NSNotFound)   //莒光號
             cell.imageView.image = [UIImage imageNamed:@"gigoung_train.png"];
-            //cell.textLabel.text= @"莒光";
        
         cell.textLabel.text = textString;
         cell.detailTextLabel.text = detailString;
         cell.detailTextLabel.textColor = [UIColor blueColor];
+        //NSLog(@"textString: %@, detailString: %@", textString, detailString);
         
     }
     
     return cell;
 }
+
+/*- (void)dealloc
+{
+    [dataURL release];
+    [trainNumber release];
+    [trainStartFroms release];
+    [trainTravelTos release];
+    [departureTimes release];
+    [arrivalTimes release];
+    [trainStyle release];
+    [arrivalStation release];
+    [departureStation release];
+    [downloadView release];
+    [super dealloc];
+}*/
 
 
 /*-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
