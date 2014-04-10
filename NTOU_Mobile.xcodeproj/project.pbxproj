@@ -237,6 +237,7 @@
 		BECF7C74184F48A800ADD115 /* R66Route.png in Resources */ = {isa = PBXBuildFile; fileRef = BECF7C73184F48A800ADD115 /* R66Route.png */; };
 		BECF7C76185598AD00ADD115 /* AlertViewShown.plist in Resources */ = {isa = PBXBuildFile; fileRef = BECF7C75185598AD00ADD115 /* AlertViewShown.plist */; };
 		C4A5C5CB18F56DBE001BAC8B /* BadgeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A5C5CA18F56DBE001BAC8B /* BadgeLabel.m */; };
+		C4A5C5CE18F68A82001BAC8B /* NTOUNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A5C5CD18F68A82001BAC8B /* NTOUNotification.m */; };
 		C71A4EE51705B106002819AD /* Fuhobus_Data.m in Sources */ = {isa = PBXBuildFile; fileRef = C71A4EE31705B106002819AD /* Fuhobus_Data.m */; };
 		C71A4EE61705B106002819AD /* Fuho_Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = C71A4EE41705B106002819AD /* Fuho_Data.plist */; };
 		C71A4EEB1705B114002819AD /* cancel_24.png in Resources */ = {isa = PBXBuildFile; fileRef = C71A4EE71705B114002819AD /* cancel_24.png */; };
@@ -613,6 +614,8 @@
 		BECF7C75185598AD00ADD115 /* AlertViewShown.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AlertViewShown.plist; sourceTree = "<group>"; };
 		C4A5C5C918F56DBE001BAC8B /* BadgeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgeLabel.h; sourceTree = "<group>"; };
 		C4A5C5CA18F56DBE001BAC8B /* BadgeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgeLabel.m; sourceTree = "<group>"; };
+		C4A5C5CC18F68A82001BAC8B /* NTOUNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUNotification.h; sourceTree = "<group>"; };
+		C4A5C5CD18F68A82001BAC8B /* NTOUNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUNotification.m; sourceTree = "<group>"; };
 		C71A4EE21705B106002819AD /* Fuhobus_Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fuhobus_Data.h; sourceTree = "<group>"; };
 		C71A4EE31705B106002819AD /* Fuhobus_Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fuhobus_Data.m; sourceTree = "<group>"; };
 		C71A4EE41705B106002819AD /* Fuho_Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Fuho_Data.plist; sourceTree = "<group>"; };
@@ -945,6 +948,8 @@
 				91A9007E16E85C8400ECF2CF /* AppDelegate+ModuleList.m */,
 				91A9008316E8613800ECF2CF /* NTOU_MobileAppDelegate+Private.h */,
 				91A9008416E8613800ECF2CF /* NTOU_MobileAppDelegate+Private.m */,
+				C4A5C5CC18F68A82001BAC8B /* NTOUNotification.h */,
+				C4A5C5CD18F68A82001BAC8B /* NTOUNotification.m */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -1523,6 +1528,7 @@
 				91756F7016F206F7001D724D /* ReaderDocument.m in Sources */,
 				91756F7116F206F7001D724D /* ReaderMainPagebar.m in Sources */,
 				91756F7216F206F7001D724D /* ReaderMainToolbar.m in Sources */,
+				C4A5C5CE18F68A82001BAC8B /* NTOUNotification.m in Sources */,
 				91756F7316F206F7001D724D /* ReaderThumbCache.m in Sources */,
 				91756F7416F206F7001D724D /* ReaderThumbFetch.m in Sources */,
 				91756F7516F206F7001D724D /* ReaderThumbQueue.m in Sources */,

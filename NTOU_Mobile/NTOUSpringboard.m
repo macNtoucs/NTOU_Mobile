@@ -191,7 +191,7 @@
         [aButton addTarget:self action:@selector(showModuleForIcon:) forControlEvents:UIControlEventTouchUpInside];
         [buttons addObject:aButton];
         //[self.view addSubview:aButton];
-          [aButton setUserInteractionEnabled:YES];
+        [aButton setUserInteractionEnabled:YES];
         [aButton setBadgeValue:@"2"];
     }
     self.grid.icons = buttons;

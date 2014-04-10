@@ -13,6 +13,7 @@
 #import "NTOUSpringboard.h"
 #import "Rotation.h"
 #import "NTOUConstants.h"
+#import "NTOUNotification.h"
 @implementation NTOU_MobileAppDelegate
 @synthesize window=_window,
 rootNavigationController = _rootNavigationController,
@@ -79,8 +80,14 @@ modules;
         [aModule applicationDidFinishLaunching];
     }
     
+    //APNS dictionary generated from the json of a push notificaton
+	NSDictionary *apnsDict = [launchOptions objectForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"];
     
-    
+	// check if application was opened in response to a notofication
+	if(apnsDict) {
+        [NTOUNotificationHandle updateUI:[[Notification alloc] initWithModuleDictionary:apnsDict]];
+	}
+
     NSError *error;
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -169,6 +176,8 @@ modules;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    //send to server payload
+    
     for (NTOUModule *aModule in self.modules) {
         [aModule applicationWillEnterForeground];
     }
@@ -188,7 +197,8 @@ modules;
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    application.applicationIconBadgeNumber = 0;
+    NSLog(@"start didReceiveRemoteNotification");
+    [NTOUNotificationHandle updateUI:[[Notification alloc] initWithModuleDictionary:userInfo]];
     
     // We can determine whether an application is launched as a result of the user tapping the action
     // button or whether the notification was delivered to the already-running application by examining
