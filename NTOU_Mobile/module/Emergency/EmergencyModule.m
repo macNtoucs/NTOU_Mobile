@@ -36,7 +36,6 @@
     return self;
 }
 
-
 - (void)loadModuleHomeController
 {
     EmergencyViewController *controller = [[[EmergencyViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
@@ -44,6 +43,7 @@
     
     self.mainViewController = controller;
     self.moduleHomeController = controller;
+
 }
 
 @end

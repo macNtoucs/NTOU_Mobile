@@ -3,9 +3,9 @@
 #import "SecondaryGroupedTableViewCell.h"
 #import "NTOUUIConstants.h"
 #import "AppDelegate.h"
-
+#import "NTOUNotification.h"
 @implementation EmergencyViewController
-
+#define emergencyUserDefaultsKey @"emergencyUserDefaults"
 @synthesize delegate, htmlString, infoWebView;
 @synthesize imagePicker;
 
@@ -46,6 +46,26 @@
     return self;
 }
 
+-(void)notificationProcess
+{
+    NSString* notifications = [NTOUNotificationHandle getEmergencyNotificationAndDelete];
+    if (notifications) {
+        Notification *notifi = [[Notification alloc] initWithString:notifications];
+        self.htmlString = [NSString stringWithFormat:htmlFormatString, notifi.content];
+        [NTOUNotificationHandle setBadgeValue:nil forModule:EmergencyTag];
+        [[NSUserDefaults standardUserDefaults] setObject:notifi.content forKey:emergencyUserDefaultsKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    else{
+        NSString *notification = [NSString stringWithString:[[NSUserDefaults standardUserDefaults] objectForKey:emergencyUserDefaultsKey]];
+        if (!notification)
+            self.htmlString = [NSString stringWithFormat:htmlFormatString, @"目前無緊急事件"];
+        else
+            self.htmlString = [NSString stringWithFormat:htmlFormatString, notification];
+    }
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     //self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSysteNTOUem:UIBarButtonSysteNTOUemRefresh target:self action:@selector(refreshInfo:)] autorelease];
@@ -65,7 +85,7 @@
 						"</body>"
 						"</html>" retain];
 	
-	self.htmlString = [NSString stringWithFormat:htmlFormatString, @"目前無緊急事件"];
+
     
 	[self.tableView applyStandardColors];
 }
@@ -79,6 +99,8 @@
 	//if ([[[EmergencyData sharedData] lastUpdated] compare:[NSDate distantPast]] == NSOrderedDescending) {
 	//	[self infoDidLoad:nil];
 	//}
+    	[self notificationProcess];
+    [self.tableView reloadData];
 }
 
 

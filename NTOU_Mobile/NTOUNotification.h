@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "AppDelegate.h"
+#import "NTOUModule.h"
+#import "NTOUConstants.h"
+#define notificationsUserDefaultsKey @"notificationsUserDefaults"
 @interface Notification : NSObject
 {
 	NSString *moduleName;
@@ -26,7 +29,10 @@
 
 @interface NTOUNotificationHandle : NSObject
 
-
++ (NSMutableDictionary *) getNotifications;
++ (void)storeNotifications:(NSMutableDictionary *) notifications;
++ (NSString *) getEmergencyNotificationAndDelete;
++ (void) setBadgeValue:(NSString *)badge forModule:(NSString *) module;
 + (void) updateUI:(Notification *) notification;
-
++ (void)setAllBadge;
 @end

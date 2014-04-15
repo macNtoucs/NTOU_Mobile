@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "NTOUModule.h"
 #import "BadgeLabel.h"
+#import "NTOUNotification.h"
 @interface NTOUSpringboard ()
 - (void)internalInit;
 - (void)showModuleForIcon:(id)sender;
@@ -112,7 +113,7 @@
             
             [self.navigationController pushViewController:module.moduleHomeController
                                                  animated:YES];
-            [module setBadgeValue:nil];
+            
             if ([self.delegate respondsToSelector:@selector(springboard:didPushModule:)]) {
                 [self.delegate springboard:self
                              didPushModule:module];
@@ -155,6 +156,9 @@
     //[logoView setImage:[UIImage imageNamed:@"global/navbar_ntou_logo.png"]];
     [self.navigationController.navigationBar insertSubview:Nav_BG atIndex:1];
     //[self.navigationController.navigationBar insertSubview:logoView atIndex:2];
+    
+    [NTOUNotificationHandle setAllBadge];
+    
     [super viewWillAppear:animated];
 }
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -192,7 +196,6 @@
         [buttons addObject:aButton];
         //[self.view addSubview:aButton];
         [aButton setUserInteractionEnabled:YES];
-        [aButton setBadgeValue:@"2"];
     }
     self.grid.icons = buttons;
     [self.view addSubview:self.grid];
