@@ -1,16 +1,16 @@
 //
-//  WOLlistViewController.m
+//  listViewController.m
 //  calandertest
 //
 //  Created by apple on 13/2/15.
 //  Copyright (c) 2013年 apple. All rights reserved.
 //
 #import <EventKit/EventKit.h>
-#import "WOLEnglistViewController.h"
+#import "EnglistViewController.h"
 #import "NTOUUIConstants.h"
 #import "MBProgressHUD.h"
 #define YEAR 2012   //起始學期年份
-@interface WOLEnglistViewController ()
+@interface EnglistViewController ()
 
 @property (nonatomic, strong) NSMutableArray *selectindexs;
 @property (nonatomic, strong) UIActionSheet *finishactionsheet;
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation WOLEnglistViewController
+@implementation EnglistViewController
 
 @synthesize events;
 @synthesize keys;

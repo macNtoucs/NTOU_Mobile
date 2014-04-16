@@ -28,9 +28,7 @@
 		1DD1793118FE7AB300621B67 /* LoginResResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790018FE7AB300621B67 /* LoginResResultViewController.m */; };
 		1DD1793218FE7AB300621B67 /* LoginResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790218FE7AB300621B67 /* LoginResultViewController.m */; };
 		1DD1793318FE7AB300621B67 /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790418FE7AB300621B67 /* loginViewController.m */; };
-		1DD1793418FE7AB300621B67 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790518FE7AB300621B67 /* main.m */; };
 		1DD1793518FE7AB300621B67 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790718FE7AB300621B67 /* MainViewController.m */; };
-		1DD1793618FE7AB300621B67 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790918FE7AB300621B67 /* MBProgressHUD.m */; };
 		1DD1793718FE7AB300621B67 /* NYOULogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1790A18FE7AB300621B67 /* NYOULogo.png */; };
 		1DD1793818FE7AB300621B67 /* RBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790C18FE7AB300621B67 /* RBookViewController.m */; };
 		1DD1793918FE7AB300621B67 /* search_tabbar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1790D18FE7AB300621B67 /* search_tabbar.jpg */; };
@@ -38,12 +36,9 @@
 		1DD1793B18FE7AB300621B67 /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1791118FE7AB300621B67 /* SearchResultViewController.m */; };
 		1DD1793C18FE7AB300621B67 /* switchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1791318FE7AB300621B67 /* switchController.m */; };
 		1DD1793D18FE7AB300621B67 /* tabbar_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1791418FE7AB300621B67 /* tabbar_background.jpg */; };
-		1DD1793E18FE7AB300621B67 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1791618FE7AB300621B67 /* TFHpple.m */; };
-		1DD1793F18FE7AB300621B67 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1791818FE7AB300621B67 /* TFHppleElement.m */; };
 		1DD1794018FE7AB300621B67 /* title_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1791918FE7AB300621B67 /* title_background.jpg */; };
 		1DD1794118FE7AB300621B67 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1791A18FE7AB300621B67 /* View.xib */; };
 		1DD1794218FE7AB300621B67 /* WOLSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1791C18FE7AB300621B67 /* WOLSwitchViewController.m */; };
-		1DD1794318FE7AB300621B67 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1791E18FE7AB300621B67 /* XPathQuery.m */; };
 		912A53EF16E99F7900BBC013 /* NTOUGuide2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */; };
 		912A53F016E99F7900BBC013 /* NTOUGuideSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EC16E99F7900BBC013 /* NTOUGuideSetViewController.m */; };
 		912A53F116E99F7900BBC013 /* NTOUGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EE16E99F7900BBC013 /* NTOUGuideViewController.m */; };
@@ -249,12 +244,12 @@
 		91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049416E89FE300ECF2CF /* QuartzCore.framework */; };
 		91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */; };
 		91A9049B16E8A09A00ECF2CF /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 91A9049A16E8A09A00ECF2CF /* icons */; };
-		BA06A07516F2EE6600212CB9 /* LibrariesModule.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06816F2EE6600212CB9 /* LibrariesModule.m */; };
+		BA06A07516F2EE6600212CB9 /* ScheduleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06816F2EE6600212CB9 /* ScheduleModule.m */; };
 		BA06A07616F2EE6600212CB9 /* CalenderList.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06A16F2EE6600212CB9 /* CalenderList.plist */; };
 		BA06A07716F2EE6600212CB9 /* CalenderList_eng.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */; };
-		BA06A07816F2EE6600212CB9 /* WOLChiListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06D16F2EE6600212CB9 /* WOLChiListViewController.m */; };
-		BA06A07916F2EE6600212CB9 /* WOLEnglistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06F16F2EE6600212CB9 /* WOLEnglistViewController.m */; };
-		BA06A07A16F2EE6600212CB9 /* WOLSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A07116F2EE6600212CB9 /* WOLSwitchViewController.m */; };
+		BA06A07816F2EE6600212CB9 /* ChiListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06D16F2EE6600212CB9 /* ChiListViewController.m */; };
+		BA06A07916F2EE6600212CB9 /* EnglistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06F16F2EE6600212CB9 /* EnglistViewController.m */; };
+		BA06A07A16F2EE6600212CB9 /* SwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A07116F2EE6600212CB9 /* SwitchViewController.m */; };
 		BA06A07B16F2EE6600212CB9 /* WOLSwitchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA06A07216F2EE6600212CB9 /* WOLSwitchViewController.xib */; };
 		BA06A07D16F2EF5B00212CB9 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA06A07C16F2EF5B00212CB9 /* EventKit.framework */; };
 		BAAA1F8D173CEDA1001E06D6 /* inbox_down_24.png in Resources */ = {isa = PBXBuildFile; fileRef = BAAA1F8A173CEDA1001E06D6 /* inbox_down_24.png */; };
@@ -337,11 +332,8 @@
 		1DD1790218FE7AB300621B67 /* LoginResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginResultViewController.m; sourceTree = "<group>"; };
 		1DD1790318FE7AB300621B67 /* loginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loginViewController.h; sourceTree = "<group>"; };
 		1DD1790418FE7AB300621B67 /* loginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginViewController.m; sourceTree = "<group>"; };
-		1DD1790518FE7AB300621B67 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1DD1790618FE7AB300621B67 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		1DD1790718FE7AB300621B67 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		1DD1790818FE7AB300621B67 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		1DD1790918FE7AB300621B67 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		1DD1790A18FE7AB300621B67 /* NYOULogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NYOULogo.png; sourceTree = "<group>"; };
 		1DD1790B18FE7AB300621B67 /* RBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBookViewController.h; sourceTree = "<group>"; };
 		1DD1790C18FE7AB300621B67 /* RBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBookViewController.m; sourceTree = "<group>"; };
@@ -353,16 +345,10 @@
 		1DD1791218FE7AB300621B67 /* switchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = switchController.h; sourceTree = "<group>"; };
 		1DD1791318FE7AB300621B67 /* switchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = switchController.m; sourceTree = "<group>"; };
 		1DD1791418FE7AB300621B67 /* tabbar_background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tabbar_background.jpg; sourceTree = "<group>"; };
-		1DD1791518FE7AB300621B67 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
-		1DD1791618FE7AB300621B67 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
-		1DD1791718FE7AB300621B67 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
-		1DD1791818FE7AB300621B67 /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
 		1DD1791918FE7AB300621B67 /* title_background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = title_background.jpg; sourceTree = "<group>"; };
 		1DD1791A18FE7AB300621B67 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		1DD1791B18FE7AB300621B67 /* WOLSwitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOLSwitchViewController.h; sourceTree = "<group>"; };
 		1DD1791C18FE7AB300621B67 /* WOLSwitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOLSwitchViewController.m; sourceTree = "<group>"; };
-		1DD1791D18FE7AB300621B67 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
-		1DD1791E18FE7AB300621B67 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
 		912A53E916E99F7900BBC013 /* NTOUGuide2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuide2ViewController.h; sourceTree = "<group>"; };
 		912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuide2ViewController.m; sourceTree = "<group>"; };
 		912A53EB16E99F7900BBC013 /* NTOUGuideSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuideSetViewController.h; sourceTree = "<group>"; };
@@ -674,16 +660,16 @@
 		91A9049416E89FE300ECF2CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		91A9049A16E8A09A00ECF2CF /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
-		BA06A06716F2EE6600212CB9 /* LibrariesModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibrariesModule.h; sourceTree = "<group>"; };
-		BA06A06816F2EE6600212CB9 /* LibrariesModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibrariesModule.m; sourceTree = "<group>"; };
+		BA06A06716F2EE6600212CB9 /* ScheduleModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleModule.h; sourceTree = "<group>"; };
+		BA06A06816F2EE6600212CB9 /* ScheduleModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleModule.m; sourceTree = "<group>"; };
 		BA06A06A16F2EE6600212CB9 /* CalenderList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CalenderList.plist; sourceTree = "<group>"; };
 		BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CalenderList_eng.plist; sourceTree = "<group>"; };
-		BA06A06C16F2EE6600212CB9 /* WOLChiListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOLChiListViewController.h; sourceTree = "<group>"; };
-		BA06A06D16F2EE6600212CB9 /* WOLChiListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOLChiListViewController.m; sourceTree = "<group>"; };
-		BA06A06E16F2EE6600212CB9 /* WOLEnglistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOLEnglistViewController.h; sourceTree = "<group>"; };
-		BA06A06F16F2EE6600212CB9 /* WOLEnglistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOLEnglistViewController.m; sourceTree = "<group>"; };
-		BA06A07016F2EE6600212CB9 /* WOLSwitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOLSwitchViewController.h; sourceTree = "<group>"; };
-		BA06A07116F2EE6600212CB9 /* WOLSwitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOLSwitchViewController.m; sourceTree = "<group>"; };
+		BA06A06C16F2EE6600212CB9 /* ChiListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiListViewController.h; sourceTree = "<group>"; };
+		BA06A06D16F2EE6600212CB9 /* ChiListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiListViewController.m; sourceTree = "<group>"; };
+		BA06A06E16F2EE6600212CB9 /* EnglistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnglistViewController.h; sourceTree = "<group>"; };
+		BA06A06F16F2EE6600212CB9 /* EnglistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnglistViewController.m; sourceTree = "<group>"; };
+		BA06A07016F2EE6600212CB9 /* SwitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchViewController.h; sourceTree = "<group>"; };
+		BA06A07116F2EE6600212CB9 /* SwitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchViewController.m; sourceTree = "<group>"; };
 		BA06A07216F2EE6600212CB9 /* WOLSwitchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WOLSwitchViewController.xib; sourceTree = "<group>"; };
 		BA06A07C16F2EF5B00212CB9 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		BAAA1F8A173CEDA1001E06D6 /* inbox_down_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inbox_down_24.png; sourceTree = "<group>"; };
@@ -791,11 +777,8 @@
 				1DD1790218FE7AB300621B67 /* LoginResultViewController.m */,
 				1DD1790318FE7AB300621B67 /* loginViewController.h */,
 				1DD1790418FE7AB300621B67 /* loginViewController.m */,
-				1DD1790518FE7AB300621B67 /* main.m */,
 				1DD1790618FE7AB300621B67 /* MainViewController.h */,
 				1DD1790718FE7AB300621B67 /* MainViewController.m */,
-				1DD1790818FE7AB300621B67 /* MBProgressHUD.h */,
-				1DD1790918FE7AB300621B67 /* MBProgressHUD.m */,
 				1DD1790A18FE7AB300621B67 /* NYOULogo.png */,
 				1DD1790B18FE7AB300621B67 /* RBookViewController.h */,
 				1DD1790C18FE7AB300621B67 /* RBookViewController.m */,
@@ -807,16 +790,10 @@
 				1DD1791218FE7AB300621B67 /* switchController.h */,
 				1DD1791318FE7AB300621B67 /* switchController.m */,
 				1DD1791418FE7AB300621B67 /* tabbar_background.jpg */,
-				1DD1791518FE7AB300621B67 /* TFHpple.h */,
-				1DD1791618FE7AB300621B67 /* TFHpple.m */,
-				1DD1791718FE7AB300621B67 /* TFHppleElement.h */,
-				1DD1791818FE7AB300621B67 /* TFHppleElement.m */,
 				1DD1791918FE7AB300621B67 /* title_background.jpg */,
 				1DD1791A18FE7AB300621B67 /* View.xib */,
 				1DD1791B18FE7AB300621B67 /* WOLSwitchViewController.h */,
 				1DD1791C18FE7AB300621B67 /* WOLSwitchViewController.m */,
-				1DD1791D18FE7AB300621B67 /* XPathQuery.h */,
-				1DD1791E18FE7AB300621B67 /* XPathQuery.m */,
 			);
 			name = library;
 			path = module/library;
@@ -1295,17 +1272,17 @@
 				C71A4EE81705B114002819AD /* cancel.png */,
 				C71A4EE91705B114002819AD /* inbox_24.png */,
 				C71A4EEA1705B114002819AD /* inbox.png */,
-				BA06A06716F2EE6600212CB9 /* LibrariesModule.h */,
-				BA06A06816F2EE6600212CB9 /* LibrariesModule.m */,
+				BA06A06716F2EE6600212CB9 /* ScheduleModule.h */,
+				BA06A06816F2EE6600212CB9 /* ScheduleModule.m */,
 				BAAA1F8A173CEDA1001E06D6 /* inbox_down_24.png */,
 				BAAA1F8B173CEDA1001E06D6 /* tray_full_24.png */,
 				BAAA1F8C173CEDA1001E06D6 /* tray_full.png */,
-				BA06A06C16F2EE6600212CB9 /* WOLChiListViewController.h */,
-				BA06A06D16F2EE6600212CB9 /* WOLChiListViewController.m */,
-				BA06A06E16F2EE6600212CB9 /* WOLEnglistViewController.h */,
-				BA06A06F16F2EE6600212CB9 /* WOLEnglistViewController.m */,
-				BA06A07016F2EE6600212CB9 /* WOLSwitchViewController.h */,
-				BA06A07116F2EE6600212CB9 /* WOLSwitchViewController.m */,
+				BA06A06C16F2EE6600212CB9 /* ChiListViewController.h */,
+				BA06A06D16F2EE6600212CB9 /* ChiListViewController.m */,
+				BA06A06E16F2EE6600212CB9 /* EnglistViewController.h */,
+				BA06A06F16F2EE6600212CB9 /* EnglistViewController.m */,
+				BA06A07016F2EE6600212CB9 /* SwitchViewController.h */,
+				BA06A07116F2EE6600212CB9 /* SwitchViewController.m */,
 				BA06A07216F2EE6600212CB9 /* WOLSwitchViewController.xib */,
 			);
 			name = Calendar;
@@ -1642,13 +1619,11 @@
 				1DD1793318FE7AB300621B67 /* loginViewController.m in Sources */,
 				91A9043B16E899D200ECF2CF /* DepatureViewController.m in Sources */,
 				91A9043C16E899D200ECF2CF /* DownloadingView.m in Sources */,
-				1DD1793618FE7AB300621B67 /* MBProgressHUD.m in Sources */,
 				91A9043D16E899D200ECF2CF /* EGORefreshTableHeaderView.m in Sources */,
 				91A9043E16E899D200ECF2CF /* HTSearchResultViewController.m in Sources */,
 				91A9044116E899D200ECF2CF /* K_RouteViewController.m in Sources */,
 				91A9044216E899D200ECF2CF /* K_TimeView.m in Sources */,
 				91A9044316E899D200ECF2CF /* Kuo_Data.m in Sources */,
-				1DD1793E18FE7AB300621B67 /* TFHpple.m in Sources */,
 				91A9044416E899D200ECF2CF /* KUO_Data_Bra2.m in Sources */,
 				91A9044516E899D200ECF2CF /* KUO_KUANGViewController.m in Sources */,
 				91A9044616E899D200ECF2CF /* KUO_RouteViewController_Bra2.m in Sources */,
@@ -1661,7 +1636,6 @@
 				1DD1792318FE7AB300621B67 /* loadWebViewController.m in Sources */,
 				91A9045516E899D200ECF2CF /* RequestOperation.m in Sources */,
 				91A9045E16E899D200ECF2CF /* RouteDetailViewController.m in Sources */,
-				1DD1793418FE7AB300621B67 /* main.m in Sources */,
 				91A9046316E899D200ECF2CF /* setHTOriginAndTerminalViewController.m in Sources */,
 				1DD1793018FE7AB300621B67 /* LoginOutResultViewController.m in Sources */,
 				91A9046416E899D200ECF2CF /* SetOriginAndStationViewController.m in Sources */,
@@ -1681,7 +1655,6 @@
 				1DD1793C18FE7AB300621B67 /* switchController.m in Sources */,
 				91A9048516E899D200ECF2CF /* TrainStyleViewController.m in Sources */,
 				91A9048616E899D200ECF2CF /* XPathQuery.m in Sources */,
-				1DD1794318FE7AB300621B67 /* XPathQuery.m in Sources */,
 				91A9048B16E89BF200ECF2CF /* SecondaryGroupedTableViewCell.m in Sources */,
 				91A9048E16E89C8B00ECF2CF /* ClassLabelBasis.m in Sources */,
 				91A9049116E89E5500ECF2CF /* StationInfoViewController.m in Sources */,
@@ -1719,7 +1692,6 @@
 				91756F6F16F206F7001D724D /* ReaderContentView.m in Sources */,
 				91756F7016F206F7001D724D /* ReaderDocument.m in Sources */,
 				1DD1793518FE7AB300621B67 /* MainViewController.m in Sources */,
-				1DD1793F18FE7AB300621B67 /* TFHppleElement.m in Sources */,
 				91756F7116F206F7001D724D /* ReaderMainPagebar.m in Sources */,
 				91756F7216F206F7001D724D /* ReaderMainToolbar.m in Sources */,
 				91756F7316F206F7001D724D /* ReaderThumbCache.m in Sources */,
@@ -1763,10 +1735,10 @@
 				C74699E016F21C2D0060F49C /* XMLReader.m in Sources */,
 				C74699E316F21C680060F49C /* NavScrollerView.m in Sources */,
 				C74699E716F21CC90060F49C /* StoryDetailViewController.m in Sources */,
-				BA06A07516F2EE6600212CB9 /* LibrariesModule.m in Sources */,
-				BA06A07816F2EE6600212CB9 /* WOLChiListViewController.m in Sources */,
-				BA06A07916F2EE6600212CB9 /* WOLEnglistViewController.m in Sources */,
-				BA06A07A16F2EE6600212CB9 /* WOLSwitchViewController.m in Sources */,
+				BA06A07516F2EE6600212CB9 /* ScheduleModule.m in Sources */,
+				BA06A07816F2EE6600212CB9 /* ChiListViewController.m in Sources */,
+				BA06A07916F2EE6600212CB9 /* EnglistViewController.m in Sources */,
+				BA06A07A16F2EE6600212CB9 /* SwitchViewController.m in Sources */,
 				C71A4EE51705B106002819AD /* Fuhobus_Data.m in Sources */,
 				C71A4F1F17128DF5002819AD /* AboutCreditsVC.m in Sources */,
 				C72B23F1176AE87200474235 /* SettingsModuleViewController.m in Sources */,

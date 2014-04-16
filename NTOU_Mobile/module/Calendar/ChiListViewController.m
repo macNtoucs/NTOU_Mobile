@@ -6,12 +6,12 @@
 //  Copyright (c) 2013年 apple. All rights reserved.
 //
 #import <EventKit/EventKit.h>
-#import "WOLChiListViewController.h"
+#import "ChiListViewController.h"
 #import "NTOUUIConstants.h"
 #import "MBProgressHUD.h"
 #define YEAR 2013   //起始學期年份
 
-@interface WOLChiListViewController ()
+@interface ChiListViewController ()
 
 @property (nonatomic, strong) NSMutableArray *selectindexs;
 @property (nonatomic, strong) UIActionSheet *finishactionsheet;
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation WOLChiListViewController
+@implementation ChiListViewController
 
 @synthesize events;
 @synthesize keys;

@@ -1,17 +1,17 @@
 //
-//  WOLSwitchViewController.m
+//  SwitchViewController.m
 //  NTOUMobile
 //
 //  Created by NTOUCS on 13/2/20.
 //
 //
 
-#import "WOLSwitchViewController.h"
-#import "WOLChiListViewController.h"
-#import "WOLEnglistViewController.h"
+#import "SwitchViewController.h"
+#import "ChiListViewController.h"
+#import "EnglistViewController.h"
 #import "ThroughTap.h"
 
-@interface WOLSwitchViewController ()
+@interface SwitchViewController ()
 @property (nonatomic) BOOL control;
 @property (strong, nonatomic) UISwipeGestureRecognizer *swipeRecognizer;
 @property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
@@ -22,7 +22,7 @@
 @property (nonatomic) BOOL menushowing;
 @end
 
-@implementation WOLSwitchViewController
+@implementation SwitchViewController
 
 @synthesize swipeRecognizer;
 @synthesize tapRecognizer;
@@ -110,8 +110,8 @@
     
     chiViewController.menuHeight = 0;
     engViewController.menuHeight = 0;
-    self.engViewController = [[WOLEnglistViewController alloc]initWithStyle:UITableViewStylePlain];
-    self.chiViewController = [[WOLChiListViewController alloc]initWithStyle:UITableViewStylePlain];
+    self.engViewController = [[EnglistViewController alloc]initWithStyle:UITableViewStylePlain];
+    self.chiViewController = [[ChiListViewController alloc]initWithStyle:UITableViewStylePlain];
     engViewController.switchviewcontroller = self;
     chiViewController.switchviewcontroller = self;
     [self.view addSubview:self.chiViewController.view];
@@ -223,7 +223,7 @@
 
         if (self.engViewController == nil) {
             self.engViewController =
-            [[WOLEnglistViewController alloc]initWithStyle:UITableViewStylePlain];
+            [[EnglistViewController alloc]initWithStyle:UITableViewStylePlain];
         }
         [UIView setAnimationTransition:                         // bold
          UIViewAnimationTransitionFlipFromLeft                 // bold
@@ -265,7 +265,7 @@
     } else {
         if (self.chiViewController == nil) {
             self.chiViewController =
-            [[WOLChiListViewController alloc] initWithStyle:UITableViewStylePlain];
+            [[ChiListViewController alloc] initWithStyle:UITableViewStylePlain];
         }
         [UIView setAnimationTransition:                         // bold
          UIViewAnimationTransitionFlipFromRight                  // bold
