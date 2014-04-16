@@ -11,7 +11,7 @@
 #import "NewsViewController.h"
 #import "floorInfoViewController.h"
 #import "AccountViewController.h"
-
+#import "UIKit+NTOUAdditions.h"
 @interface AboutViewController ()
 @property (strong, nonatomic) AccountViewController *loginaccount;
 @end
@@ -30,24 +30,16 @@
 
 - (void)viewDidLoad
 {
-    //self.title = @"關於圖書館";
-    UILabel *titleView = (UILabel *)self.navigationItem.titleView;
-    titleView = [[UILabel alloc] initWithFrame:CGRectZero];
-    titleView.backgroundColor = [UIColor clearColor];
-    titleView.font = [UIFont boldSystemFontOfSize:20.0];
-    //titleView.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    titleView.textColor = [UIColor whiteColor]; // Change to desired color
-    titleView.text = @"關於圖書館";
-    [titleView sizeToFit];
-
-    self.navigationItem.titleView = titleView;
-    [titleView release];
-    
+    self.view.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
+    [self.tableView applyStandardColors];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
     loginaccount = [[AccountViewController alloc] init];
     loginaccount.title=@"帳戶登錄";
-    
-    self.view.backgroundColor = [[UIColor alloc]initWithRed:232.0/255.0 green:225.0/255.0 blue:208.0/255.0 alpha:0.5];
-    
+        
     //配合nagitive和tabbar的圖片變動tableview的大小
     //nagitive 52 - 44 = 8 、 tabbar 55 - 49 = 6
     [self.tableView setContentInset:UIEdgeInsetsMake(20,0,6,0)];

@@ -30,19 +30,10 @@
 
 - (void)viewDidLoad
 {
-    //self.title = @"我的圖書館";
-    UILabel *LtitleView = (UILabel *)self.navigationItem.titleView;
-    LtitleView = [[UILabel alloc] initWithFrame:CGRectZero];
-    LtitleView.backgroundColor = [UIColor clearColor];
-    LtitleView.font = [UIFont boldSystemFontOfSize:20.0];
-    //LtitleView.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    LtitleView.textColor = [UIColor whiteColor]; // Change to desired color
-    LtitleView.text = @"我的圖書館";
-    [LtitleView sizeToFit];
-    
-    self.navigationItem.titleView = LtitleView;
-    [LtitleView release];
-
+   
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     
     searchResultArray = [NSMutableArray new];
     NSInteger swidth = [[UIScreen mainScreen] bounds].size.width;
@@ -110,7 +101,6 @@
     [loginView addSubview:LoginAccount];
     [loginView addSubview:titleLabel];
     
-    loginView.backgroundColor = [[UIColor alloc]initWithRed:232.0/255.0 green:225.0/255.0 blue:208.0/255.0 alpha:0.5];
     self.view = loginView;
 	// Do any additional setup after loading the view.
     

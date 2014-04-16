@@ -25,7 +25,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         NSInteger sheight = [[UIScreen mainScreen] bounds].size.height;
-        mainView = [[UIView alloc]initWithFrame:CGRectMake(0, 52 + 50, 320, sheight - 52 - 20 - 49)];
+        mainView = [[UIView alloc]initWithFrame:CGRectMake(0,0 , 320, sheight
+                                                           )];
     }
     return self;
 }
@@ -93,18 +94,6 @@
 - (void)viewDidLoad
 {
     //self.title = @"國立海洋大學圖書館";
-    UILabel *StitleView = (UILabel *)self.navigationItem.titleView;
-    StitleView = [[UILabel alloc] initWithFrame:CGRectZero];
-    StitleView.backgroundColor = [UIColor clearColor];
-    StitleView.font = [UIFont boldSystemFontOfSize:20.0];
-    //StitleView.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    StitleView.textColor = [UIColor whiteColor]; // Change to desired color
-    StitleView.text = @"國立海洋大學圖書館";
-    [StitleView sizeToFit];
-    
-    self.navigationItem.titleView = StitleView;
-    [StitleView release];
-    
     searchResultArray = [NSMutableArray new];
     NSInteger swidth = [[UIScreen mainScreen] bounds].size.width;
     
@@ -131,13 +120,13 @@
     [mainView addSubview:NTU_Library];
     [mainView addSubview:textField];
     [mainView addSubview:button];
-    mainView.backgroundColor = [[UIColor alloc]initWithRed:232.0/255.0 green:225.0/255.0 blue:208.0/255.0 alpha:0.5];
+
     self.view = mainView;
     
     tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTap)];
     tapRecognizer.delegate  = self;
     [self.view addGestureRecognizer:tapRecognizer];
-    
+     self.view.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
     [textField release];
     
 	// Do any additional setup after loading the view.
