@@ -39,19 +39,25 @@ int isSuccess=0;
     self = [super initWithStyle:style];
     if (self) {
         NSInteger screenheight = [[UIScreen mainScreen] bounds].size.height;
-        self.view.frame = CGRectMake(0, 0, 320,screenheight - 49 - 20 - 44*2);
+        self.view.frame = CGRectMake(0, 0, 320,screenheight-44);
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
+
+     
     selectindexs = [[NSMutableArray alloc] init];
     maindata = [[NSMutableArray alloc] init];
     [maindata retain];
     self.tableView.allowsMultipleSelection = YES;
     
-    self.actionToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 137 - 6, 320, 44)];
+    self.actionToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height -88, 320, 44)];
     
     UIBarButtonItem *flexiblespace_l = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     flexiblespace_l.width = 12.0; 
@@ -78,9 +84,11 @@ int isSuccess=0;
     
     [actionToolbar setItems:[NSArray arrayWithObjects:flexiblespace_l,flexiblespace_m,allselectButton,finishButton,flexiblespace_r, nil]];
     //[actionToolbar setItems:[NSArray arrayWithObjects:flexiblespace_l,flexiblespace_m,finishButton,flexiblespace_r, nil]];
+    
+    
     actionToolbar.barStyle = UIBarStyleDefault;
-
-    //配合nagitive和tabbar的圖片變動tableview的大小
+ 
+        //配合nagitive和tabbar的圖片變動tableview的大小
     //nagitive 52 - 44 = 8 、 tabbar 55 - 49 = 6
     [self.tableView setContentInset:UIEdgeInsetsMake(8,0,6,0)];
     

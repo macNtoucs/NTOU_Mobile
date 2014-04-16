@@ -31,6 +31,12 @@
 
 - (void)viewDidLoad
 {
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
+
+    
     self.selectedSnack = NSNotFound;
     data = [[NSMutableArray alloc] init];
 

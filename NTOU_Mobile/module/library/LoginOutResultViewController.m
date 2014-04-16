@@ -35,18 +35,24 @@
     self = [super initWithStyle:style];
     if (self) {
         NSInteger screenheight = [[UIScreen mainScreen] bounds].size.height;
-        self.view.frame = CGRectMake(0, 0, 320,screenheight - 49 - 20 - 44*2);
+        self.view.frame = CGRectMake(0, 0, 320,screenheight-44);
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
+
+    
     selectindexs = [[NSMutableArray alloc] init];
     maindata = [[NSMutableArray alloc] init];
     self.tableView.allowsMultipleSelection = YES;
     
-    self.actionToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 137 - 6, 320, 44)];
+    self.actionToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-88, 320, 44)];
     
     UIBarButtonItem *flexiblespace_l = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     flexiblespace_l.width = 12.0;
@@ -170,9 +176,9 @@
         NSData *responseData = [NSURLConnection sendSynchronousRequest:request
                                                      returningResponse:&urlResponse
                                                                  error:nil];
-        maindata=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+        NSDictionary *renewResponse=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
         [maindata retain];
-        if ([[maindata objectForKey:@"querySuccess"] isEqualToString:@"true"]) ++isSuccess;
+        if ([[renewResponse objectForKey:@"querySuccess"] isEqualToString:@"true"]) ++isSuccess;
     }
     if (isSuccess == [selectindexs count]){
         UIAlertView *alerts = [[UIAlertView alloc] initWithTitle:@"續借成功"

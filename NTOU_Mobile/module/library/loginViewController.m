@@ -37,22 +37,7 @@
     
     searchResultArray = [NSMutableArray new];
     NSInteger swidth = [[UIScreen mainScreen] bounds].size.width;
-        /*
-    accounttextField = [[UITextField alloc] initWithFrame:CGRectMake(swidth/2 - 100,50, 200, 30)];
-    accounttextField.borderStyle = UITextBorderStyleRoundedRect;
-    accounttextField.font = [UIFont systemFontOfSize:15];
-    accounttextField.delegate = self;
-    accounttextField.placeholder = @"學號";
-    accounttextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    
-    passWordtextField = [[UITextField alloc] initWithFrame:CGRectMake(swidth/2 - 100,90, 200, 30)];
-    passWordtextField.borderStyle = UITextBorderStyleRoundedRect;
-    passWordtextField.font = [UIFont systemFontOfSize:15];
-    passWordtextField.delegate = self;
-    passWordtextField.secureTextEntry = YES;
-    passWordtextField.placeholder = @"密碼";
-    passWordtextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    */
+   
     UIButton *Loginbutton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [Loginbutton addTarget:self
                     action:@selector(Login)
@@ -72,7 +57,7 @@
     else
     {
         NSString *name = [account objectForKey:@"userName"];
-        loginText = [NSString stringWithFormat:@"- %@ 登錄中 -",name];
+        loginText = [NSString stringWithFormat:@"- %@ 登入中 -",name];
     }
     UIFont *boldfont = [UIFont boldSystemFontOfSize:18.0];
     CGSize maximumLabelSize = CGSizeMake(320,9999);

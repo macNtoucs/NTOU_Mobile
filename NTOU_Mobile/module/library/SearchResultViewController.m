@@ -49,6 +49,12 @@ int Searchpage =1;
 
 - (void)viewDidLoad
 {
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
+
+    
     book_count = 10;    //一開始先載入10筆資料
     start = NO;
     pageData = [[NSMutableDictionary alloc] init];

@@ -35,6 +35,10 @@ int page =1;
 
 - (void)viewDidLoad
 {
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
     maindata = [[NSMutableArray alloc] init];
     historyData = [NSDictionary new];
     //配合nagitive和tabbar的圖片變動tableview的大小
