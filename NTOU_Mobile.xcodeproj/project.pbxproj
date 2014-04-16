@@ -16,7 +16,6 @@
 		1DD1792518FE7AB300621B67 /* opentime.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178ED18FE7AB300621B67 /* opentime.png */; };
 		1DD1792618FE7AB300621B67 /* OpenTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178EF18FE7AB300621B67 /* OpenTimeViewController.m */; };
 		1DD1792718FE7AB300621B67 /* OpenTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178F018FE7AB300621B67 /* OpenTimeViewController.xib */; };
-		1DD1792818FE7AB300621B67 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178F218FE7AB300621B67 /* AppDelegate.m */; };
 		1DD1792918FE7AB300621B67 /* BookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178F418FE7AB300621B67 /* BookDetailViewController.m */; };
 		1DD1792A18FE7AB300621B67 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178F518FE7AB300621B67 /* Default-568h@2x.png */; };
 		1DD1792B18FE7AB300621B67 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178F618FE7AB300621B67 /* Default.png */; };
@@ -39,6 +38,7 @@
 		1DD1794018FE7AB300621B67 /* title_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1791918FE7AB300621B67 /* title_background.jpg */; };
 		1DD1794118FE7AB300621B67 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1791A18FE7AB300621B67 /* View.xib */; };
 		1DD1794218FE7AB300621B67 /* WOLSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1791C18FE7AB300621B67 /* WOLSwitchViewController.m */; };
+		1DD1794618FE826500621B67 /* LibraryModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1794518FE826500621B67 /* LibraryModule.m */; };
 		912A53EF16E99F7900BBC013 /* NTOUGuide2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */; };
 		912A53F016E99F7900BBC013 /* NTOUGuideSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EC16E99F7900BBC013 /* NTOUGuideSetViewController.m */; };
 		912A53F116E99F7900BBC013 /* NTOUGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EE16E99F7900BBC013 /* NTOUGuideViewController.m */; };
@@ -313,8 +313,6 @@
 		1DD178EE18FE7AB300621B67 /* OpenTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenTimeViewController.h; sourceTree = "<group>"; };
 		1DD178EF18FE7AB300621B67 /* OpenTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenTimeViewController.m; sourceTree = "<group>"; };
 		1DD178F018FE7AB300621B67 /* OpenTimeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenTimeViewController.xib; sourceTree = "<group>"; };
-		1DD178F118FE7AB300621B67 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		1DD178F218FE7AB300621B67 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1DD178F318FE7AB300621B67 /* BookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailViewController.h; sourceTree = "<group>"; };
 		1DD178F418FE7AB300621B67 /* BookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetailViewController.m; sourceTree = "<group>"; };
 		1DD178F518FE7AB300621B67 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -349,6 +347,8 @@
 		1DD1791A18FE7AB300621B67 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		1DD1791B18FE7AB300621B67 /* WOLSwitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOLSwitchViewController.h; sourceTree = "<group>"; };
 		1DD1791C18FE7AB300621B67 /* WOLSwitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOLSwitchViewController.m; sourceTree = "<group>"; };
+		1DD1794418FE826400621B67 /* LibraryModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryModule.h; sourceTree = "<group>"; };
+		1DD1794518FE826500621B67 /* LibraryModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryModule.m; sourceTree = "<group>"; };
 		912A53E916E99F7900BBC013 /* NTOUGuide2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuide2ViewController.h; sourceTree = "<group>"; };
 		912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuide2ViewController.m; sourceTree = "<group>"; };
 		912A53EB16E99F7900BBC013 /* NTOUGuideSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuideSetViewController.h; sourceTree = "<group>"; };
@@ -758,8 +758,6 @@
 			isa = PBXGroup;
 			children = (
 				1DD178E118FE7AB300621B67 /* about */,
-				1DD178F118FE7AB300621B67 /* AppDelegate.h */,
-				1DD178F218FE7AB300621B67 /* AppDelegate.m */,
 				1DD178F318FE7AB300621B67 /* BookDetailViewController.h */,
 				1DD178F418FE7AB300621B67 /* BookDetailViewController.m */,
 				1DD178F518FE7AB300621B67 /* Default-568h@2x.png */,
@@ -794,6 +792,8 @@
 				1DD1791A18FE7AB300621B67 /* View.xib */,
 				1DD1791B18FE7AB300621B67 /* WOLSwitchViewController.h */,
 				1DD1791C18FE7AB300621B67 /* WOLSwitchViewController.m */,
+				1DD1794418FE826400621B67 /* LibraryModule.h */,
+				1DD1794518FE826500621B67 /* LibraryModule.m */,
 			);
 			name = library;
 			path = module/library;
@@ -1641,6 +1641,7 @@
 				91A9046416E899D200ECF2CF /* SetOriginAndStationViewController.m in Sources */,
 				91A9046516E899D200ECF2CF /* SetStationViewController.m in Sources */,
 				91A9046616E899D200ECF2CF /* SetTimeViewController.m in Sources */,
+				1DD1794618FE826500621B67 /* LibraryModule.m in Sources */,
 				1DD1793118FE7AB300621B67 /* LoginResResultViewController.m in Sources */,
 				91A9046916E899D200ECF2CF /* ShuttleModule.m in Sources */,
 				91A9047D16E899D200ECF2CF /* StationView.m in Sources */,
@@ -1729,7 +1730,6 @@
 				91756FCD16F20AD3001D724D /* TabViewControl.m in Sources */,
 				91756FD016F20C7A001D724D /* LessonTimeView.m in Sources */,
 				C74699DD16F21C2D0060F49C /* Announce_API.m in Sources */,
-				1DD1792818FE7AB300621B67 /* AppDelegate.m in Sources */,
 				C74699DE16F21C2D0060F49C /* NewsModule.m in Sources */,
 				C74699DF16F21C2D0060F49C /* StoryListViewController.m in Sources */,
 				C74699E016F21C2D0060F49C /* XMLReader.m in Sources */,

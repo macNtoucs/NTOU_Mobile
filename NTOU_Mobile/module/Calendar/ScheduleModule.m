@@ -10,7 +10,7 @@
 - (id) init {
     self = [super init];
     if (self != nil) {
-        self.tag = LibrariesTag;
+        self.tag = CalendarTag;
         self.shortName = @"行事曆";
         self.longName = @"Calendar";
         self.iconName = @"calendar";
