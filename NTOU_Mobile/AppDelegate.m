@@ -199,7 +199,6 @@ modules;
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSLog(@"start didReceiveRemoteNotification");
     [NTOUNotificationHandle updateUI:[[Notification alloc] initWithModuleDictionary:userInfo]];
-    
     // We can determine whether an application is launched as a result of the user tapping the action
     // button or whether the notification was delivered to the already-running application by examining
     // the application state.

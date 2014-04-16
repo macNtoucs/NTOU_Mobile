@@ -7,7 +7,7 @@
 //
 
 #import "SettingsModuleViewController.h"
-
+#import "Moodle_API.h"
 @interface SettingsModuleViewController (){
     UIAlertView *logInAlertView;
     UIAlertView *logOutAlertView;
@@ -128,6 +128,15 @@
     return YES;
 }
 
+- (BOOL) loginAndRegisterDeviceToken
+{
+    NSDictionary* info = [Moodle_API Login:[SettingsModuleViewController getAccount] andPassword:[SettingsModuleViewController getPassword]];
+    //NSLog(@"%@",[info objectForKey:moodleLoginResultKey]);
+    if([[info objectForKey:moodleLoginResultKey] intValue]==1)
+        return true;
+    return false;
+}
+
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
         if (alertView==logInAlertView) {
@@ -139,9 +148,7 @@
                     hud.labelText = @"登入中";
                 });
                 
-                loginSuccess = [[ClassDataBase sharedData] loginAccount:[SettingsModuleViewController getAccount]
-                                                               Password:[SettingsModuleViewController getPassword]
-                                                        ClearAllCourses:NO];
+                loginSuccess = [self loginAndRegisterDeviceToken];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                     if (loginSuccess)
@@ -149,6 +156,16 @@
                         [buttonTitle setString:@"登出"];
                         [self addNavRightButton];
                         [[ClassDataBase sharedData] storeUserDefaults];
+                    }
+                    else
+                    {
+                        UIAlertView *loadingAlertView = [[UIAlertView alloc]
+                                                             initWithTitle:nil message:@"帳號、密碼錯誤"
+                                                             delegate:self cancelButtonTitle:@"確定"
+                                                             otherButtonTitles:nil];
+                        [loadingAlertView show];
+                        [loadingAlertView release];
+                        passwordDelegate.text = nil;
                     }
                 });
             });

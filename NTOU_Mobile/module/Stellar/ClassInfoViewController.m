@@ -175,7 +175,7 @@
         
         
     }
-    [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
+    //[[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

@@ -49,7 +49,7 @@
 @synthesize activeCategoryId;
 @synthesize catchData;
 @synthesize connect;
-
+@synthesize storyTable;
 NSString *const NewsCategoryAnnounce = @"學校公告";
 NSString *const NewsCategorySymposium = @"研討會";
 NSString *const NewsCategoryArt = @"藝文活動";
@@ -109,7 +109,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)] autorelease];
     
     tempTableSelection = nil;
-    storyTable = [[UITableView alloc] initWithFrame:self.view.bounds];
+    storyTable = [[PullTableView alloc] initWithFrame:self.view.bounds];
     storyTable.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     storyTable.delegate = self;
     storyTable.dataSource = self;
@@ -120,6 +120,8 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
 
 - (void)viewDidLoad
 {
+    self.storyTable.pullArrowImage = [UIImage imageNamed:@"blackArrow"];
+    self.storyTable.pullDelegate = self;
     [super viewDidLoad];
     
     [self setupNavScroller];
@@ -270,7 +272,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
 {
     if (endCatchData[self.activeCategoryId]==true) 
         return [self->tableDisplayData[self.activeCategoryId] count];
-    return [self->tableDisplayData[self.activeCategoryId] count]+1;
+    return [self->tableDisplayData[self.activeCategoryId] count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -293,8 +295,8 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *result = nil;
-    
+    UITableViewCell *result = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"StoryCell"] autorelease];
+    //NSLog(@"%@,%d",indexPath,[self->tableDisplayData[self.activeCategoryId] count]);
     switch (indexPath.section)
     {
         case 0:
@@ -310,8 +312,8 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                 UILabel *dekLabel = nil;
                 UILabel *dpLabel = nil;
                 
-                if (cell == nil)
-                {
+               // if (cell == nil)
+               // {
                     // Set up the cell
                     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:StoryCellIdentifier] autorelease];
                     
@@ -320,7 +322,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                     titleLabel.tag = 1;
                     titleLabel.font = [UIFont fontWithName:@"Helvetica" size:14.0];
                     titleLabel.numberOfLines = 0;
-                    titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
+                    titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
                     [cell.contentView addSubview:titleLabel];
                     [titleLabel release];
                     
@@ -349,7 +351,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                     
                     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
                     cell.selectionStyle = UITableViewCellSelectionStyleGray;
-                }
+                //}
                 
                 NSMutableString * News_Titile = [NSMutableString new];
             /*   News_Titile appendString: [[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText] ];
@@ -542,7 +544,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     loadingLabel.hidden = YES;
     [loadingLabel release];
     
-    CGSize labelSize = [loadingLabel.text sizeWithFont:loadingLabel.font forWidth:self.view.bounds.size.width lineBreakMode:UILineBreakModeTailTruncation];
+    CGSize labelSize = [loadingLabel.text sizeWithFont:loadingLabel.font forWidth:self.view.bounds.size.width lineBreakMode:NSLineBreakByTruncatingTail];
     
     [self.view addSubview:activityView];
     
@@ -566,7 +568,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     updatedLabel.text = @"";
     updatedLabel.textColor = [UIColor colorWithHexString:@"#DDDDDD"];
     updatedLabel.font = [UIFont boldSystemFontOfSize:14.0];
-    updatedLabel.textAlignment = UITextAlignmentRight;
+    updatedLabel.textAlignment = NSTextAlignmentRight;
     updatedLabel.backgroundColor = [UIColor blackColor];
     updatedLabel.opaque = YES;
     [activityView addSubview:updatedLabel];
@@ -687,6 +689,29 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
         [alertView show];
         [alertView release];
     }
+}
+
+#pragma mark - Refresh and load more methods
+- (void) refreshTable
+{
+    [self refresh:nil];
+    self.storyTable.pullLastRefreshDate = [NSDate date];
+    self.storyTable.pullTableIsRefreshing = NO;
+}
+- (void) loadMoreDataToTable
+{
+    [self loadFromCache];
+    self.storyTable.pullTableIsLoadingMore = NO;
+}
+
+#pragma mark - PullTableViewDelegate
+- (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView
+{
+    [self performSelector:@selector(refreshTable) withObject:nil afterDelay:0];
+}
+- (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView
+{
+    [self performSelector:@selector(loadMoreDataToTable) withObject:nil afterDelay:0];
 }
 
 

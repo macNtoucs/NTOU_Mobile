@@ -46,4 +46,13 @@
 
 }
 
+- (BOOL)handleNotification:(Notification *)notification shouldOpen: (BOOL)shouldOpen {
+    if(shouldOpen) {
+        [self.mainViewController setHtmlNotification:[notification content]];
+	}
+    
+	return YES;
+}
+
+
 @end

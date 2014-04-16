@@ -57,13 +57,34 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++ (void)modifyBadge
+{
+    NSMutableDictionary *notifications = [self getNotifications];
+    int count = 0;
+    for ( id notifi in [notifications allValues]) {
+        if ([notifi isKindOfClass:[NSString class]])
+            count++;
+        else if ([notifi isKindOfClass:[NSArray class]])
+        {
+            count += [notifi count];
+        }
+    }
+    [UIApplication sharedApplication].applicationIconBadgeNumber = count;
+}
+
++ (void) deleteUnreadNotificationAndModifyBadge:(NSMutableDictionary *)notifications
+{
+    [notifications removeObjectForKey:EmergencyTag];
+    [self storeNotifications:notifications];
+    [self modifyBadge];
+}
+
 + (NSString *) getEmergencyNotificationAndDelete
 {
     NSMutableDictionary *notifications = [self getNotifications];
     if ([notifications objectForKey:EmergencyTag]) {
         NSString *emergencyNotification = [NSString stringWithString:[notifications objectForKey:EmergencyTag]];
-        [notifications removeObjectForKey:EmergencyTag];
-        [self storeNotifications:notifications];
+        [self deleteUnreadNotificationAndModifyBadge:notifications];
         return emergencyNotification;
     }
     return nil;
@@ -86,10 +107,12 @@
     for (SpringboardIcon *aButton in [appDelegate.springboardController.grid icons])
     {
         unReadNotification = [notifications objectForKey:aButton.moduleTag];
-        if (unReadNotification) {
+        if (unReadNotification && [unReadNotification isKindOfClass:[NSString class]])
+            [aButton setBadgeValue:@"1"];
+        else if (unReadNotification)
             [aButton setBadgeValue:[NSString stringWithFormat:@"%lu",(unsigned long)[unReadNotification count]]];
-        }
     }
+    [self modifyBadge];
 }
 
 + (void) updateUI:(Notification *) notification
@@ -101,6 +124,10 @@
     if ([notification.moduleName isEqualToString:EmergencyTag]){
         [notifications setValue:[notification string] forKey:notification.moduleName];
         [self setBadgeValue:@"1" forModule:EmergencyTag];
+        NTOU_MobileAppDelegate *appDelegate = (NTOU_MobileAppDelegate *)[[UIApplication sharedApplication] delegate];
+        for (NTOUModule *aModule in appDelegate.modules)
+            if ([aModule.tag isEqual:EmergencyTag])
+                [aModule handleNotification:notification shouldOpen:YES];        
     }
     else
     {
@@ -111,5 +138,6 @@
         [self setBadgeValue:[NSString stringWithFormat:@"%lu",(unsigned long)[unReadNotification count]] forModule:notification.moduleName];
     }
     [self storeNotifications:notifications];
+    [self modifyBadge];
 }
 @end

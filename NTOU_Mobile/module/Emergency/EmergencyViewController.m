@@ -3,7 +3,7 @@
 #import "SecondaryGroupedTableViewCell.h"
 #import "NTOUUIConstants.h"
 #import "AppDelegate.h"
-#import "NTOUNotification.h"
+
 @implementation EmergencyViewController
 #define emergencyUserDefaultsKey @"emergencyUserDefaults"
 @synthesize delegate, htmlString, infoWebView;
@@ -41,10 +41,27 @@
                              @"0224248141", @"phone",
                              nil],
                             nil] retain];
+        htmlFormatString = [@"<html>"
+                            "<head>"
+                            "<style type=\"text/css\" media=\"screen\">"
+                            "body { margin: 0; padding: 0; font-family: Helvetica; font-size: 17px; } "
+                            "</style>"
+                            "</head>"
+                            "<body>"
+                            "%@"
+                            "</body>"
+                            "</html>" retain];
         self.title = @"緊急聯絡";
     }
     return self;
 }
+
+- (void)setHtmlNotification:(NSString *)notification
+{
+    self.htmlString = [NSString stringWithFormat:htmlFormatString, notification];
+    [self.tableView reloadData];
+}
+
 
 -(void)notificationProcess
 {
@@ -66,27 +83,16 @@
     
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     //self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSysteNTOUem:UIBarButtonSysteNTOUemRefresh target:self action:@selector(refreshInfo:)] autorelease];
 	self.tableView.scrollEnabled = NO;
-	infoWebView = [[UIWebView alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width - 20 - 20, 90)];
+	infoWebView = [[UIWebView alloc] initWithFrame:CGRectMake(5, 5, self.view.frame.size.width - 30 , 90)];
 	infoWebView.delegate = self;
 	infoWebView.dataDetectorTypes = UIDataDetectorTypeAll;
 	infoWebView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	htmlFormatString = [@"<html>"
-						"<head>"
-						"<style type=\"text/css\" media=\"screen\">"
-						"body { margin: 0; padding: 0; font-family: Helvetica; font-size: 17px; } "
-						"</style>"
-						"</head>"
-						"<body>"
-						"%@"
-						"</body>"
-						"</html>" retain];
-	
-
-    
+	   
 	[self.tableView applyStandardColors];
 }
 
@@ -99,7 +105,7 @@
 	//if ([[[EmergencyData sharedData] lastUpdated] compare:[NSDate distantPast]] == NSOrderedDescending) {
 	//	[self infoDidLoad:nil];
 	//}
-    	[self notificationProcess];
+    [self notificationProcess];
     [self.tableView reloadData];
 }
 
