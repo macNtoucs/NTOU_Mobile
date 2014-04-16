@@ -389,7 +389,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     
     // start sqlite3
     
-    NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ntou_mobile2.db"];
+    NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ntou_mobile3.db"];
     NSLog(@"defaultDBPath=%@", defaultDBPath);
     FMDatabase *db = [FMDatabase databaseWithPath:defaultDBPath];
     if (![db open])

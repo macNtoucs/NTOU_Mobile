@@ -240,6 +240,7 @@
 		BAAA1F8D173CEDA1001E06D6 /* inbox_down_24.png in Resources */ = {isa = PBXBuildFile; fileRef = BAAA1F8A173CEDA1001E06D6 /* inbox_down_24.png */; };
 		BAAA1F8E173CEDA1001E06D6 /* tray_full_24.png in Resources */ = {isa = PBXBuildFile; fileRef = BAAA1F8B173CEDA1001E06D6 /* tray_full_24.png */; };
 		BAAA1F8F173CEDA1001E06D6 /* tray_full.png in Resources */ = {isa = PBXBuildFile; fileRef = BAAA1F8C173CEDA1001E06D6 /* tray_full.png */; };
+		BE02D8C018FEAE7C00A061FC /* ntou_mobile3.db in Resources */ = {isa = PBXBuildFile; fileRef = BE02D8BF18FEAE7C00A061FC /* ntou_mobile3.db */; };
 		BE73DDE917A254EB00F1B499 /* 公告.png in Resources */ = {isa = PBXBuildFile; fileRef = BE73DDE817A254EB00F1B499 /* 公告.png */; };
 		BE73DDEE17A2550000F1B499 /* 成績.png in Resources */ = {isa = PBXBuildFile; fileRef = BE73DDEA17A2550000F1B499 /* 成績.png */; };
 		BE73DDEF17A2550000F1B499 /* 作業.png in Resources */ = {isa = PBXBuildFile; fileRef = BE73DDEB17A2550000F1B499 /* 作業.png */; };
@@ -640,6 +641,7 @@
 		BAAA1F8A173CEDA1001E06D6 /* inbox_down_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inbox_down_24.png; sourceTree = "<group>"; };
 		BAAA1F8B173CEDA1001E06D6 /* tray_full_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tray_full_24.png; sourceTree = "<group>"; };
 		BAAA1F8C173CEDA1001E06D6 /* tray_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tray_full.png; sourceTree = "<group>"; };
+		BE02D8BF18FEAE7C00A061FC /* ntou_mobile3.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ntou_mobile3.db; sourceTree = "<group>"; };
 		BE73DDE817A254EB00F1B499 /* 公告.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公告.png"; sourceTree = "<group>"; };
 		BE73DDEA17A2550000F1B499 /* 成績.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "成績.png"; sourceTree = "<group>"; };
 		BE73DDEB17A2550000F1B499 /* 作業.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "作業.png"; sourceTree = "<group>"; };
@@ -1028,6 +1030,7 @@
 		91A9029816E88E0D00ECF2CF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BE02D8BF18FEAE7C00A061FC /* ntou_mobile3.db */,
 				436FBC7C18F567480099D9F9 /* ntou_mobile2.db */,
 				436F4FAE18B2135D0069A6BF /* ntou_mobile.db */,
 				C71A4F1B170AD1E6002819AD /* Nav_backGround.png */,
@@ -1495,6 +1498,7 @@
 				BECF7C76185598AD00ADD115 /* AlertViewShown.plist in Resources */,
 				436F4FAF18B2135D0069A6BF /* ntou_mobile.db in Resources */,
 				436FBC7D18F567480099D9F9 /* ntou_mobile2.db in Resources */,
+				BE02D8C018FEAE7C00A061FC /* ntou_mobile3.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
