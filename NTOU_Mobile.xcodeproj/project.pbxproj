@@ -7,6 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DD1791F18FE7AB300621B67 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178E318FE7AB300621B67 /* AboutViewController.m */; };
+		1DD1792018FE7AB300621B67 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178E518FE7AB300621B67 /* AccountViewController.m */; };
+		1DD1792118FE7AB300621B67 /* floorInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178E718FE7AB300621B67 /* floorInfoViewController.m */; };
+		1DD1792218FE7AB300621B67 /* LibraryFloor.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178E818FE7AB300621B67 /* LibraryFloor.plist */; };
+		1DD1792318FE7AB300621B67 /* loadWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178EA18FE7AB300621B67 /* loadWebViewController.m */; };
+		1DD1792418FE7AB300621B67 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178EC18FE7AB300621B67 /* NewsViewController.m */; };
+		1DD1792518FE7AB300621B67 /* opentime.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178ED18FE7AB300621B67 /* opentime.png */; };
+		1DD1792618FE7AB300621B67 /* OpenTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178EF18FE7AB300621B67 /* OpenTimeViewController.m */; };
+		1DD1792718FE7AB300621B67 /* OpenTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178F018FE7AB300621B67 /* OpenTimeViewController.xib */; };
+		1DD1792818FE7AB300621B67 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178F218FE7AB300621B67 /* AppDelegate.m */; };
+		1DD1792918FE7AB300621B67 /* BookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178F418FE7AB300621B67 /* BookDetailViewController.m */; };
+		1DD1792A18FE7AB300621B67 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178F518FE7AB300621B67 /* Default-568h@2x.png */; };
+		1DD1792B18FE7AB300621B67 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178F618FE7AB300621B67 /* Default.png */; };
+		1DD1792C18FE7AB300621B67 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178F718FE7AB300621B67 /* Default@2x.png */; };
+		1DD1792D18FE7AB300621B67 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178F818FE7AB300621B67 /* InfoPlist.strings */; };
+		1DD1792E18FE7AB300621B67 /* library-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178FA18FE7AB300621B67 /* library-Info.plist */; };
+		1DD1792F18FE7AB300621B67 /* Library_NTU.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178FC18FE7AB300621B67 /* Library_NTU.png */; };
+		1DD1793018FE7AB300621B67 /* LoginOutResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178FE18FE7AB300621B67 /* LoginOutResultViewController.m */; };
+		1DD1793118FE7AB300621B67 /* LoginResResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790018FE7AB300621B67 /* LoginResResultViewController.m */; };
+		1DD1793218FE7AB300621B67 /* LoginResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790218FE7AB300621B67 /* LoginResultViewController.m */; };
+		1DD1793318FE7AB300621B67 /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790418FE7AB300621B67 /* loginViewController.m */; };
+		1DD1793418FE7AB300621B67 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790518FE7AB300621B67 /* main.m */; };
+		1DD1793518FE7AB300621B67 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790718FE7AB300621B67 /* MainViewController.m */; };
+		1DD1793618FE7AB300621B67 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790918FE7AB300621B67 /* MBProgressHUD.m */; };
+		1DD1793718FE7AB300621B67 /* NYOULogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1790A18FE7AB300621B67 /* NYOULogo.png */; };
+		1DD1793818FE7AB300621B67 /* RBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790C18FE7AB300621B67 /* RBookViewController.m */; };
+		1DD1793918FE7AB300621B67 /* search_tabbar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1790D18FE7AB300621B67 /* search_tabbar.jpg */; };
+		1DD1793A18FE7AB300621B67 /* SearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790F18FE7AB300621B67 /* SearchListViewController.m */; };
+		1DD1793B18FE7AB300621B67 /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1791118FE7AB300621B67 /* SearchResultViewController.m */; };
+		1DD1793C18FE7AB300621B67 /* switchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1791318FE7AB300621B67 /* switchController.m */; };
+		1DD1793D18FE7AB300621B67 /* tabbar_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1791418FE7AB300621B67 /* tabbar_background.jpg */; };
+		1DD1793E18FE7AB300621B67 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1791618FE7AB300621B67 /* TFHpple.m */; };
+		1DD1793F18FE7AB300621B67 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1791818FE7AB300621B67 /* TFHppleElement.m */; };
+		1DD1794018FE7AB300621B67 /* title_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1791918FE7AB300621B67 /* title_background.jpg */; };
+		1DD1794118FE7AB300621B67 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1791A18FE7AB300621B67 /* View.xib */; };
+		1DD1794218FE7AB300621B67 /* WOLSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1791C18FE7AB300621B67 /* WOLSwitchViewController.m */; };
+		1DD1794318FE7AB300621B67 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1791E18FE7AB300621B67 /* XPathQuery.m */; };
 		912A53EF16E99F7900BBC013 /* NTOUGuide2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */; };
 		912A53F016E99F7900BBC013 /* NTOUGuideSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EC16E99F7900BBC013 /* NTOUGuideSetViewController.m */; };
 		912A53F116E99F7900BBC013 /* NTOUGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EE16E99F7900BBC013 /* NTOUGuideViewController.m */; };
@@ -266,6 +303,66 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1DD178E218FE7AB300621B67 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		1DD178E318FE7AB300621B67 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		1DD178E418FE7AB300621B67 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
+		1DD178E518FE7AB300621B67 /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
+		1DD178E618FE7AB300621B67 /* floorInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = floorInfoViewController.h; sourceTree = "<group>"; };
+		1DD178E718FE7AB300621B67 /* floorInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = floorInfoViewController.m; sourceTree = "<group>"; };
+		1DD178E818FE7AB300621B67 /* LibraryFloor.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LibraryFloor.plist; sourceTree = "<group>"; };
+		1DD178E918FE7AB300621B67 /* loadWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loadWebViewController.h; sourceTree = "<group>"; };
+		1DD178EA18FE7AB300621B67 /* loadWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loadWebViewController.m; sourceTree = "<group>"; };
+		1DD178EB18FE7AB300621B67 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		1DD178EC18FE7AB300621B67 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
+		1DD178ED18FE7AB300621B67 /* opentime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = opentime.png; sourceTree = "<group>"; };
+		1DD178EE18FE7AB300621B67 /* OpenTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenTimeViewController.h; sourceTree = "<group>"; };
+		1DD178EF18FE7AB300621B67 /* OpenTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenTimeViewController.m; sourceTree = "<group>"; };
+		1DD178F018FE7AB300621B67 /* OpenTimeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenTimeViewController.xib; sourceTree = "<group>"; };
+		1DD178F118FE7AB300621B67 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1DD178F218FE7AB300621B67 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1DD178F318FE7AB300621B67 /* BookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailViewController.h; sourceTree = "<group>"; };
+		1DD178F418FE7AB300621B67 /* BookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetailViewController.m; sourceTree = "<group>"; };
+		1DD178F518FE7AB300621B67 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		1DD178F618FE7AB300621B67 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		1DD178F718FE7AB300621B67 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		1DD178F918FE7AB300621B67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1DD178FA18FE7AB300621B67 /* library-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "library-Info.plist"; sourceTree = "<group>"; };
+		1DD178FB18FE7AB300621B67 /* library-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "library-Prefix.pch"; sourceTree = "<group>"; };
+		1DD178FC18FE7AB300621B67 /* Library_NTU.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Library_NTU.png; sourceTree = "<group>"; };
+		1DD178FD18FE7AB300621B67 /* LoginOutResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginOutResultViewController.h; sourceTree = "<group>"; };
+		1DD178FE18FE7AB300621B67 /* LoginOutResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginOutResultViewController.m; sourceTree = "<group>"; };
+		1DD178FF18FE7AB300621B67 /* LoginResResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginResResultViewController.h; sourceTree = "<group>"; };
+		1DD1790018FE7AB300621B67 /* LoginResResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginResResultViewController.m; sourceTree = "<group>"; };
+		1DD1790118FE7AB300621B67 /* LoginResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginResultViewController.h; sourceTree = "<group>"; };
+		1DD1790218FE7AB300621B67 /* LoginResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginResultViewController.m; sourceTree = "<group>"; };
+		1DD1790318FE7AB300621B67 /* loginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loginViewController.h; sourceTree = "<group>"; };
+		1DD1790418FE7AB300621B67 /* loginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginViewController.m; sourceTree = "<group>"; };
+		1DD1790518FE7AB300621B67 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1DD1790618FE7AB300621B67 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		1DD1790718FE7AB300621B67 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		1DD1790818FE7AB300621B67 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		1DD1790918FE7AB300621B67 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		1DD1790A18FE7AB300621B67 /* NYOULogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NYOULogo.png; sourceTree = "<group>"; };
+		1DD1790B18FE7AB300621B67 /* RBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBookViewController.h; sourceTree = "<group>"; };
+		1DD1790C18FE7AB300621B67 /* RBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBookViewController.m; sourceTree = "<group>"; };
+		1DD1790D18FE7AB300621B67 /* search_tabbar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = search_tabbar.jpg; sourceTree = "<group>"; };
+		1DD1790E18FE7AB300621B67 /* SearchListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchListViewController.h; sourceTree = "<group>"; };
+		1DD1790F18FE7AB300621B67 /* SearchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchListViewController.m; sourceTree = "<group>"; };
+		1DD1791018FE7AB300621B67 /* SearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
+		1DD1791118FE7AB300621B67 /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
+		1DD1791218FE7AB300621B67 /* switchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = switchController.h; sourceTree = "<group>"; };
+		1DD1791318FE7AB300621B67 /* switchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = switchController.m; sourceTree = "<group>"; };
+		1DD1791418FE7AB300621B67 /* tabbar_background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tabbar_background.jpg; sourceTree = "<group>"; };
+		1DD1791518FE7AB300621B67 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		1DD1791618FE7AB300621B67 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		1DD1791718FE7AB300621B67 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		1DD1791818FE7AB300621B67 /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		1DD1791918FE7AB300621B67 /* title_background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = title_background.jpg; sourceTree = "<group>"; };
+		1DD1791A18FE7AB300621B67 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
+		1DD1791B18FE7AB300621B67 /* WOLSwitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOLSwitchViewController.h; sourceTree = "<group>"; };
+		1DD1791C18FE7AB300621B67 /* WOLSwitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOLSwitchViewController.m; sourceTree = "<group>"; };
+		1DD1791D18FE7AB300621B67 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		1DD1791E18FE7AB300621B67 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
 		912A53E916E99F7900BBC013 /* NTOUGuide2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuide2ViewController.h; sourceTree = "<group>"; };
 		912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuide2ViewController.m; sourceTree = "<group>"; };
 		912A53EB16E99F7900BBC013 /* NTOUGuideSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuideSetViewController.h; sourceTree = "<group>"; };
@@ -671,6 +768,82 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1DD178E018FE7AB300621B67 /* library */ = {
+			isa = PBXGroup;
+			children = (
+				1DD178E118FE7AB300621B67 /* about */,
+				1DD178F118FE7AB300621B67 /* AppDelegate.h */,
+				1DD178F218FE7AB300621B67 /* AppDelegate.m */,
+				1DD178F318FE7AB300621B67 /* BookDetailViewController.h */,
+				1DD178F418FE7AB300621B67 /* BookDetailViewController.m */,
+				1DD178F518FE7AB300621B67 /* Default-568h@2x.png */,
+				1DD178F618FE7AB300621B67 /* Default.png */,
+				1DD178F718FE7AB300621B67 /* Default@2x.png */,
+				1DD178F818FE7AB300621B67 /* InfoPlist.strings */,
+				1DD178FA18FE7AB300621B67 /* library-Info.plist */,
+				1DD178FB18FE7AB300621B67 /* library-Prefix.pch */,
+				1DD178FC18FE7AB300621B67 /* Library_NTU.png */,
+				1DD178FD18FE7AB300621B67 /* LoginOutResultViewController.h */,
+				1DD178FE18FE7AB300621B67 /* LoginOutResultViewController.m */,
+				1DD178FF18FE7AB300621B67 /* LoginResResultViewController.h */,
+				1DD1790018FE7AB300621B67 /* LoginResResultViewController.m */,
+				1DD1790118FE7AB300621B67 /* LoginResultViewController.h */,
+				1DD1790218FE7AB300621B67 /* LoginResultViewController.m */,
+				1DD1790318FE7AB300621B67 /* loginViewController.h */,
+				1DD1790418FE7AB300621B67 /* loginViewController.m */,
+				1DD1790518FE7AB300621B67 /* main.m */,
+				1DD1790618FE7AB300621B67 /* MainViewController.h */,
+				1DD1790718FE7AB300621B67 /* MainViewController.m */,
+				1DD1790818FE7AB300621B67 /* MBProgressHUD.h */,
+				1DD1790918FE7AB300621B67 /* MBProgressHUD.m */,
+				1DD1790A18FE7AB300621B67 /* NYOULogo.png */,
+				1DD1790B18FE7AB300621B67 /* RBookViewController.h */,
+				1DD1790C18FE7AB300621B67 /* RBookViewController.m */,
+				1DD1790D18FE7AB300621B67 /* search_tabbar.jpg */,
+				1DD1790E18FE7AB300621B67 /* SearchListViewController.h */,
+				1DD1790F18FE7AB300621B67 /* SearchListViewController.m */,
+				1DD1791018FE7AB300621B67 /* SearchResultViewController.h */,
+				1DD1791118FE7AB300621B67 /* SearchResultViewController.m */,
+				1DD1791218FE7AB300621B67 /* switchController.h */,
+				1DD1791318FE7AB300621B67 /* switchController.m */,
+				1DD1791418FE7AB300621B67 /* tabbar_background.jpg */,
+				1DD1791518FE7AB300621B67 /* TFHpple.h */,
+				1DD1791618FE7AB300621B67 /* TFHpple.m */,
+				1DD1791718FE7AB300621B67 /* TFHppleElement.h */,
+				1DD1791818FE7AB300621B67 /* TFHppleElement.m */,
+				1DD1791918FE7AB300621B67 /* title_background.jpg */,
+				1DD1791A18FE7AB300621B67 /* View.xib */,
+				1DD1791B18FE7AB300621B67 /* WOLSwitchViewController.h */,
+				1DD1791C18FE7AB300621B67 /* WOLSwitchViewController.m */,
+				1DD1791D18FE7AB300621B67 /* XPathQuery.h */,
+				1DD1791E18FE7AB300621B67 /* XPathQuery.m */,
+			);
+			name = library;
+			path = module/library;
+			sourceTree = "<group>";
+		};
+		1DD178E118FE7AB300621B67 /* about */ = {
+			isa = PBXGroup;
+			children = (
+				1DD178E218FE7AB300621B67 /* AboutViewController.h */,
+				1DD178E318FE7AB300621B67 /* AboutViewController.m */,
+				1DD178E418FE7AB300621B67 /* AccountViewController.h */,
+				1DD178E518FE7AB300621B67 /* AccountViewController.m */,
+				1DD178E618FE7AB300621B67 /* floorInfoViewController.h */,
+				1DD178E718FE7AB300621B67 /* floorInfoViewController.m */,
+				1DD178E818FE7AB300621B67 /* LibraryFloor.plist */,
+				1DD178E918FE7AB300621B67 /* loadWebViewController.h */,
+				1DD178EA18FE7AB300621B67 /* loadWebViewController.m */,
+				1DD178EB18FE7AB300621B67 /* NewsViewController.h */,
+				1DD178EC18FE7AB300621B67 /* NewsViewController.m */,
+				1DD178ED18FE7AB300621B67 /* opentime.png */,
+				1DD178EE18FE7AB300621B67 /* OpenTimeViewController.h */,
+				1DD178EF18FE7AB300621B67 /* OpenTimeViewController.m */,
+				1DD178F018FE7AB300621B67 /* OpenTimeViewController.xib */,
+			);
+			path = about;
+			sourceTree = "<group>";
+		};
 		912A53E816E99F7900BBC013 /* Guide */ = {
 			isa = PBXGroup;
 			children = (
@@ -873,6 +1046,7 @@
 		91A9005016E854E500ECF2CF /* NTOU_Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				1DD178E018FE7AB300621B67 /* library */,
 				91756E4216E9A6E7001D724D /* Icon.png */,
 				91756E4416E9A6EB001D724D /* Icon@2x.png */,
 				C72B23EB176AE80800474235 /* Settings */,
@@ -1322,11 +1496,13 @@
 				91A9045916E899D200ECF2CF /* local_train.png in Resources */,
 				91A9045A16E899D200ECF2CF /* magnify.png in Resources */,
 				91A9045B16E899D200ECF2CF /* speed_train.png in Resources */,
+				1DD1792B18FE7AB300621B67 /* Default.png in Resources */,
 				91A9045C16E899D200ECF2CF /* TimeDrive.png in Resources */,
 				91A9045D16E899D200ECF2CF /* train.png in Resources */,
 				91A9047516E899D200ECF2CF /* stationNum.txt in Resources */,
 				91A9047616E899D200ECF2CF /* stationNumber.plist in Resources */,
 				91A9047716E899D200ECF2CF /* pickerBackground.png in Resources */,
+				1DD1793D18FE7AB300621B67 /* tabbar_background.jpg in Resources */,
 				91A9047816E899D200ECF2CF /* pickerBackground@2x.png in Resources */,
 				91A9047916E899D200ECF2CF /* pickerGlass.png in Resources */,
 				91A9047A16E899D200ECF2CF /* pickerGlass@2x.png in Resources */,
@@ -1347,12 +1523,15 @@
 				91756F3E16F206F7001D724D /* ClassAdd.xib in Resources */,
 				91756F4016F206F7001D724D /* ClassAddRetina3.5.xib in Resources */,
 				91756F4116F206F7001D724D /* ClassAddRetina4.xib in Resources */,
+				1DD1792D18FE7AB300621B67 /* InfoPlist.strings in Resources */,
 				91756F4716F206F7001D724D /* ClassInfoViewController.xib in Resources */,
+				1DD1792218FE7AB300621B67 /* LibraryFloor.plist in Resources */,
 				91756F4916F206F7001D724D /* Course in Resources */,
 				91756F4A16F206F7001D724D /* CourseInfo in Resources */,
 				91756F4D16F206F7001D724D /* Grade in Resources */,
 				91756F4F16F206F7001D724D /* Login in Resources */,
 				91756F5916F206F7001D724D /* MoodleID in Resources */,
+				1DD1794018FE7AB300621B67 /* title_background.jpg in Resources */,
 				91756F5A16F206F7001D724D /* MoodleInfo in Resources */,
 				91756F5B16F206F7001D724D /* MoodleInfo2 in Resources */,
 				91756F5E16F206F7001D724D /* Reader-Button-H.png in Resources */,
@@ -1364,12 +1543,17 @@
 				91756F6416F206F7001D724D /* Reader-Mark-N.png in Resources */,
 				91756F6516F206F7001D724D /* Reader-Mark-N@2x.png in Resources */,
 				91756F6616F206F7001D724D /* Reader-Mark-Y.png in Resources */,
+				1DD1792718FE7AB300621B67 /* OpenTimeViewController.xib in Resources */,
 				91756F6716F206F7001D724D /* Reader-Mark-Y@2x.png in Resources */,
 				91756F6816F206F7001D724D /* Reader-Print.png in Resources */,
+				1DD1792C18FE7AB300621B67 /* Default@2x.png in Resources */,
 				91756F6916F206F7001D724D /* Reader-Print@2x.png in Resources */,
 				91756F6A16F206F7001D724D /* Reader-Thumbs.png in Resources */,
+				1DD1794118FE7AB300621B67 /* View.xib in Resources */,
 				91756F6B16F206F7001D724D /* Reader-Thumbs@2x.png in Resources */,
 				91756F7B16F206F7001D724D /* right.png in Resources */,
+				1DD1792E18FE7AB300621B67 /* library-Info.plist in Resources */,
+				1DD1793918FE7AB300621B67 /* search_tabbar.jpg in Resources */,
 				91756F8B16F206F7001D724D /* TabBarNipple.png in Resources */,
 				91756F8C16F206F7001D724D /* TabBarNipple@2x.png in Resources */,
 				91756F9216F206F7001D724D /* wrong.png in Resources */,
@@ -1380,10 +1564,13 @@
 				BA06A07B16F2EE6600212CB9 /* WOLSwitchViewController.xib in Resources */,
 				C71A4EE61705B106002819AD /* Fuho_Data.plist in Resources */,
 				C71A4EEB1705B114002819AD /* cancel_24.png in Resources */,
+				1DD1792A18FE7AB300621B67 /* Default-568h@2x.png in Resources */,
 				C71A4EEC1705B114002819AD /* cancel.png in Resources */,
 				C71A4EED1705B114002819AD /* inbox_24.png in Resources */,
 				C71A4EEE1705B114002819AD /* inbox.png in Resources */,
 				C71A4F00170A9399002819AD /* Default.png in Resources */,
+				1DD1792518FE7AB300621B67 /* opentime.png in Resources */,
+				1DD1792F18FE7AB300621B67 /* Library_NTU.png in Resources */,
 				C71A4F02170A93AC002819AD /* Default@2x.png in Resources */,
 				C71A4F10170A9949002819AD /* Default-568h@2x.png in Resources */,
 				C71A4F16170ABA7F002819AD /* map-01.png in Resources */,
@@ -1401,6 +1588,7 @@
 				BE73DDEE17A2550000F1B499 /* 成績.png in Resources */,
 				BE73DDEF17A2550000F1B499 /* 作業.png in Resources */,
 				BE73DDF017A2550000F1B499 /* 筆記.png in Resources */,
+				1DD1793718FE7AB300621B67 /* NYOULogo.png in Resources */,
 				BE73DDF117A2550000F1B499 /* 講義.png in Resources */,
 				BEA9165E183B24E600F12001 /* R66HararioList.plist in Resources */,
 				BECF7C74184F48A800ADD115 /* R66Route.png in Resources */,
@@ -1426,13 +1614,16 @@
 				91756FD616F20CC5001D724D /* ReaderMainPagebar.h in Sources */,
 				91756FD716F20CC5001D724D /* ReaderMainToolbar.h in Sources */,
 				91756FD816F20CC5001D724D /* ReaderThumbCache.h in Sources */,
+				1DD1793B18FE7AB300621B67 /* SearchResultViewController.m in Sources */,
 				91756FD916F20CC5001D724D /* ReaderThumbFetch.h in Sources */,
+				1DD1792418FE7AB300621B67 /* NewsViewController.m in Sources */,
 				91756FDA16F20CC5001D724D /* ReaderThumbQueue.h in Sources */,
 				91756FDB16F20CC5001D724D /* ReaderThumbRender.h in Sources */,
 				91756FDC16F20CC5001D724D /* ReaderThumbRequest.h in Sources */,
 				91756FDD16F20CC5001D724D /* ReaderThumbsView.h in Sources */,
 				91756FDE16F20CC5001D724D /* ReaderThumbView.h in Sources */,
 				91756FDF16F20CC5001D724D /* ReaderViewController.h in Sources */,
+				1DD1792618FE7AB300621B67 /* OpenTimeViewController.m in Sources */,
 				91A9005716E854E500ECF2CF /* main.m in Sources */,
 				91A9005B16E854E500ECF2CF /* AppDelegate.m in Sources */,
 				91A9006D16E8555D00ECF2CF /* NTOUSpringboard.m in Sources */,
@@ -1441,18 +1632,23 @@
 				91A9007A16E85B3500ECF2CF /* NTOUModule.m in Sources */,
 				91A9007F16E85C8400ECF2CF /* AppDelegate+ModuleList.m in Sources */,
 				91A9008216E8609200ECF2CF /* Rotation.m in Sources */,
+				1DD1793A18FE7AB300621B67 /* SearchListViewController.m in Sources */,
 				91A9008516E8613800ECF2CF /* NTOU_MobileAppDelegate+Private.m in Sources */,
 				91A9008816E8659E00ECF2CF /* NTOUConstants.m in Sources */,
+				1DD1792918FE7AB300621B67 /* BookDetailViewController.m in Sources */,
 				91A9043616E899D200ECF2CF /* Annotation.m in Sources */,
 				91A9043716E899D200ECF2CF /* CKCalendarView.m in Sources */,
 				91A9043816E899D200ECF2CF /* CKViewController.m in Sources */,
+				1DD1793318FE7AB300621B67 /* loginViewController.m in Sources */,
 				91A9043B16E899D200ECF2CF /* DepatureViewController.m in Sources */,
 				91A9043C16E899D200ECF2CF /* DownloadingView.m in Sources */,
+				1DD1793618FE7AB300621B67 /* MBProgressHUD.m in Sources */,
 				91A9043D16E899D200ECF2CF /* EGORefreshTableHeaderView.m in Sources */,
 				91A9043E16E899D200ECF2CF /* HTSearchResultViewController.m in Sources */,
 				91A9044116E899D200ECF2CF /* K_RouteViewController.m in Sources */,
 				91A9044216E899D200ECF2CF /* K_TimeView.m in Sources */,
 				91A9044316E899D200ECF2CF /* Kuo_Data.m in Sources */,
+				1DD1793E18FE7AB300621B67 /* TFHpple.m in Sources */,
 				91A9044416E899D200ECF2CF /* KUO_Data_Bra2.m in Sources */,
 				91A9044516E899D200ECF2CF /* KUO_KUANGViewController.m in Sources */,
 				91A9044616E899D200ECF2CF /* KUO_RouteViewController_Bra2.m in Sources */,
@@ -1462,26 +1658,35 @@
 				91A9045216E899D200ECF2CF /* NTOUTableViewControllerLayer1.m in Sources */,
 				91A9045316E899D200ECF2CF /* NTOUTableViewControllerLayer2.m in Sources */,
 				91A9045416E899D200ECF2CF /* OtherTrafficTrapViewController.m in Sources */,
+				1DD1792318FE7AB300621B67 /* loadWebViewController.m in Sources */,
 				91A9045516E899D200ECF2CF /* RequestOperation.m in Sources */,
 				91A9045E16E899D200ECF2CF /* RouteDetailViewController.m in Sources */,
+				1DD1793418FE7AB300621B67 /* main.m in Sources */,
 				91A9046316E899D200ECF2CF /* setHTOriginAndTerminalViewController.m in Sources */,
+				1DD1793018FE7AB300621B67 /* LoginOutResultViewController.m in Sources */,
 				91A9046416E899D200ECF2CF /* SetOriginAndStationViewController.m in Sources */,
 				91A9046516E899D200ECF2CF /* SetStationViewController.m in Sources */,
 				91A9046616E899D200ECF2CF /* SetTimeViewController.m in Sources */,
+				1DD1793118FE7AB300621B67 /* LoginResResultViewController.m in Sources */,
 				91A9046916E899D200ECF2CF /* ShuttleModule.m in Sources */,
 				91A9047D16E899D200ECF2CF /* StationView.m in Sources */,
+				1DD1794218FE7AB300621B67 /* WOLSwitchViewController.m in Sources */,
+				1DD1793818FE7AB300621B67 /* RBookViewController.m in Sources */,
 				91A9047E16E899D200ECF2CF /* StopsLocationMapViewController.m in Sources */,
 				91A9047F16E899D200ECF2CF /* StopsLocationViewController.m in Sources */,
 				91A9048016E899D200ECF2CF /* StopsViewController.m in Sources */,
 				91A9048116E899D200ECF2CF /* TFHpple.m in Sources */,
 				91A9048216E899D200ECF2CF /* TFHppleElement.m in Sources */,
 				91A9048316E899D200ECF2CF /* ThroughTap.m in Sources */,
+				1DD1793C18FE7AB300621B67 /* switchController.m in Sources */,
 				91A9048516E899D200ECF2CF /* TrainStyleViewController.m in Sources */,
 				91A9048616E899D200ECF2CF /* XPathQuery.m in Sources */,
+				1DD1794318FE7AB300621B67 /* XPathQuery.m in Sources */,
 				91A9048B16E89BF200ECF2CF /* SecondaryGroupedTableViewCell.m in Sources */,
 				91A9048E16E89C8B00ECF2CF /* ClassLabelBasis.m in Sources */,
 				91A9049116E89E5500ECF2CF /* StationInfoViewController.m in Sources */,
 				913A0D1616E98EBA007BAD8F /* CameraViewController.m in Sources */,
+				1DD1791F18FE7AB300621B67 /* AboutViewController.m in Sources */,
 				913A0D1816E98EBA007BAD8F /* EmergencyModule.m in Sources */,
 				913A0D1916E98EBA007BAD8F /* EmergencyViewController.m in Sources */,
 				913A0D1A16E98EBA007BAD8F /* OutCampusViewController.m in Sources */,
@@ -1500,20 +1705,25 @@
 				91756F3F16F206F7001D724D /* ClassAddBackground.m in Sources */,
 				91756F4216F206F7001D724D /* ClassDataBase.m in Sources */,
 				91756F4416F206F7001D724D /* NSData+DES.m in Sources */,
+				1DD1792018FE7AB300621B67 /* AccountViewController.m in Sources */,
 				91756F4516F206F7001D724D /* ClassInfoView.m in Sources */,
 				91756F4616F206F7001D724D /* ClassInfoViewController.m in Sources */,
 				91756F4C16F206F7001D724D /* EditScheduleViewController.m in Sources */,
 				91756F5016F206F7001D724D /* MBProgressHUD.m in Sources */,
 				91756F5816F206F7001D724D /* Moodle_API.m in Sources */,
 				91756F5D16F206F7001D724D /* NTOU_ClassColorTableController.m in Sources */,
+				1DD1792118FE7AB300621B67 /* floorInfoViewController.m in Sources */,
 				91756F6C16F206F7001D724D /* ReaderConstants.m in Sources */,
 				91756F6D16F206F7001D724D /* ReaderContentPage.m in Sources */,
 				91756F6E16F206F7001D724D /* ReaderContentTile.m in Sources */,
 				91756F6F16F206F7001D724D /* ReaderContentView.m in Sources */,
 				91756F7016F206F7001D724D /* ReaderDocument.m in Sources */,
+				1DD1793518FE7AB300621B67 /* MainViewController.m in Sources */,
+				1DD1793F18FE7AB300621B67 /* TFHppleElement.m in Sources */,
 				91756F7116F206F7001D724D /* ReaderMainPagebar.m in Sources */,
 				91756F7216F206F7001D724D /* ReaderMainToolbar.m in Sources */,
 				91756F7316F206F7001D724D /* ReaderThumbCache.m in Sources */,
+				1DD1793218FE7AB300621B67 /* LoginResultViewController.m in Sources */,
 				91756F7416F206F7001D724D /* ReaderThumbFetch.m in Sources */,
 				91756F7516F206F7001D724D /* ReaderThumbQueue.m in Sources */,
 				91756F7616F206F7001D724D /* ReaderThumbRender.m in Sources */,
@@ -1547,6 +1757,7 @@
 				91756FCD16F20AD3001D724D /* TabViewControl.m in Sources */,
 				91756FD016F20C7A001D724D /* LessonTimeView.m in Sources */,
 				C74699DD16F21C2D0060F49C /* Announce_API.m in Sources */,
+				1DD1792818FE7AB300621B67 /* AppDelegate.m in Sources */,
 				C74699DE16F21C2D0060F49C /* NewsModule.m in Sources */,
 				C74699DF16F21C2D0060F49C /* StoryListViewController.m in Sources */,
 				C74699E016F21C2D0060F49C /* XMLReader.m in Sources */,
@@ -1571,6 +1782,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		1DD178F818FE7AB300621B67 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1DD178F918FE7AB300621B67 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		91A9005316E854E500ECF2CF /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
