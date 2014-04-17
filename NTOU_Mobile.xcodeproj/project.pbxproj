@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43341FAA18FF87C60004B732 /* ExpressBusSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43341FA918FF87C50004B732 /* ExpressBusSearchViewController.m */; };
+		43341FB518FFB1450004B732 /* ExpressBusDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43341FB418FFB1450004B732 /* ExpressBusDetailViewController.m */; };
 		436F4F9318AB44C90069A6BF /* KuoFuhoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 436F4F8818AB44C90069A6BF /* KuoFuhoViewController.m */; };
 		436F4F9418AB44C90069A6BF /* NTRouteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 436F4F8A18AB44C90069A6BF /* NTRouteDetailViewController.m */; };
 		436F4F9518AB44C90069A6BF /* NTRouteGoBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 436F4F8C18AB44C90069A6BF /* NTRouteGoBackViewController.m */; };
@@ -284,6 +286,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43341FA818FF87C50004B732 /* ExpressBusSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExpressBusSearchViewController.h; path = ExpressBusSearch/ExpressBusSearchViewController.h; sourceTree = "<group>"; };
+		43341FA918FF87C50004B732 /* ExpressBusSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExpressBusSearchViewController.m; path = ExpressBusSearch/ExpressBusSearchViewController.m; sourceTree = "<group>"; };
+		43341FB318FFB1450004B732 /* ExpressBusDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExpressBusDetailViewController.h; path = ExpressBusSearch/ExpressBusDetailViewController.h; sourceTree = "<group>"; };
+		43341FB418FFB1450004B732 /* ExpressBusDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExpressBusDetailViewController.m; path = ExpressBusSearch/ExpressBusDetailViewController.m; sourceTree = "<group>"; };
 		436F4F8718AB44C90069A6BF /* KuoFuhoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KuoFuhoViewController.h; path = Bus/KuoFuhoViewController.h; sourceTree = "<group>"; };
 		436F4F8818AB44C90069A6BF /* KuoFuhoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KuoFuhoViewController.m; path = Bus/KuoFuhoViewController.m; sourceTree = "<group>"; };
 		436F4F8918AB44C90069A6BF /* NTRouteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NTRouteDetailViewController.h; path = Bus/NTRouteDetailViewController.h; sourceTree = "<group>"; };
@@ -722,6 +728,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43341FAB18FF88020004B732 /* ExpressBusSearch */ = {
+			isa = PBXGroup;
+			children = (
+				43341FA818FF87C50004B732 /* ExpressBusSearchViewController.h */,
+				43341FA918FF87C50004B732 /* ExpressBusSearchViewController.m */,
+				43341FB318FFB1450004B732 /* ExpressBusDetailViewController.h */,
+				43341FB418FFB1450004B732 /* ExpressBusDetailViewController.m */,
+			);
+			name = ExpressBusSearch;
+			sourceTree = "<group>";
+		};
 		436F4F8618AB44B30069A6BF /* Bus */ = {
 			isa = PBXGroup;
 			children = (
@@ -1045,6 +1062,7 @@
 			isa = PBXGroup;
 			children = (
 				436F4F8618AB44B30069A6BF /* Bus */,
+				43341FAB18FF88020004B732 /* ExpressBusSearch */,
 				BECF7C73184F48A800ADD115 /* R66Route.png */,
 				BECF7C6D184F468200ADD115 /* R66LeftLayerViewController.h */,
 				BECF7C6E184F468200ADD115 /* R66LeftLayerViewController.m */,
@@ -1673,6 +1691,8 @@
 				43707B7C18E6C4F100A7077F /* KLRouteDetailViewController.m in Sources */,
 				43707B7F18F2608000A7077F /* NTOUShuttleButtonViewController.m in Sources */,
 				43707B8218F26C2700A7077F /* NTOUBusTableViewController.m in Sources */,
+				43341FAA18FF87C60004B732 /* ExpressBusSearchViewController.m in Sources */,
+				43341FB518FFB1450004B732 /* ExpressBusDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

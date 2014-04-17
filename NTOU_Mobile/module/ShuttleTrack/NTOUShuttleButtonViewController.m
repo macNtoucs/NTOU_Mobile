@@ -87,13 +87,13 @@
     NSLog(@"buttonClicked");
     switch ([sender tag])
     {
-        case 0:
+        case 0: //公車
             NSLog(@"case 0");
             TPRouteByButtonViewController *tpRouteByButtonViewController = [[TPRouteByButtonViewController alloc] init];
             [self.navigationController pushViewController:tpRouteByButtonViewController animated:YES];
             [tpRouteByButtonViewController release];
             break;
-        case 1:
+        case 1: //台鐵
             NSLog(@"case 1");
             SetStationViewController *setStationViewController = [[SetStationViewController alloc] init];
             [setStationViewController initIsHighSpeedTrain:false];
@@ -101,7 +101,7 @@
             setStationViewController.navigationItem.leftBarButtonItem.title = @"Back";
             [setStationViewController release];
             break;
-        case 2:
+        case 2: //高鐵
             NSLog(@"case 2");
             SetStationViewController *setHSStationViewController = [[SetStationViewController alloc] init];
             [setHSStationViewController initIsHighSpeedTrain:true];
@@ -109,14 +109,19 @@
             setHSStationViewController.navigationItem.leftBarButtonItem.title = @"Back";
             [setHSStationViewController release];
             break;
-        case 3:
+        case 3: //客運
             NSLog(@"case 3");
-            KuoFuhoViewController *kuoFuhoViewController = [[KuoFuhoViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            /*KuoFuhoViewController *kuoFuhoViewController = [[KuoFuhoViewController alloc] initWithStyle:UITableViewStyleGrouped];
             [self.navigationController pushViewController:kuoFuhoViewController animated:YES];
             kuoFuhoViewController.navigationItem.leftBarButtonItem.title = @"Back";
-            [kuoFuhoViewController release];
+            [kuoFuhoViewController release];*/
+            ExpressBusSearchViewController *expressBusViewController = [[ExpressBusSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            //expressBusViewController.tableView.frame = CGRectMake(0, 100, 320, 380);
+            [self.navigationController pushViewController:expressBusViewController animated:YES];
+            expressBusViewController.navigationItem.leftBarButtonItem.title = @"Back";
+            [expressBusViewController release];
             break;
-        case 4:
+        case 4: //海洋專車
             NSLog(@"case 4");
             NTOUBusTableViewController *ntoubusViewController = [[NTOUBusTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
             [self.navigationController pushViewController:ntoubusViewController animated:YES];
