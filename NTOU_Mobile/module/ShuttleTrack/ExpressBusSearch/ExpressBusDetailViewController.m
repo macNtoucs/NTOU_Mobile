@@ -195,10 +195,20 @@
     if([[times objectAtIndex:indexPath.row] rangeOfString:@"未發車"].location != NSNotFound)
     {
         cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(0, 3)];
+        cell.detailTextLabel.textColor = [UIColor grayColor];
     }
-    else
-        cell.detailTextLabel.text = [times objectAtIndex:indexPath.row];
-    
+    else if([[times objectAtIndex:indexPath.row] rangeOfString:@"分"].location != NSNotFound)
+    {
+        NSUInteger len = [[times objectAtIndex:indexPath.row] rangeOfString:@"分"].location+1;
+        cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(0, len)];
+        cell.detailTextLabel.textColor = [UIColor colorWithRed:81.0/255.0 green:102.0/255.0 blue:145.0/255.0 alpha:1.0];;
+    }
+    else if([[times objectAtIndex:indexPath.row] rangeOfString:@"站"].location != NSNotFound)
+    {
+        NSUInteger len = [[times objectAtIndex:indexPath.row] rangeOfString:@"站"].location+1;
+        cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(0, len)];
+        cell.detailTextLabel.textColor = [UIColor redColor];
+    }
     return cell;
 }
 
