@@ -69,7 +69,7 @@
 {
     self.title = @"詳細資訊";
     self.title = @"詳細資訊";
-    //bookurl = [bookurl stringByReplacingOccurrencesOfString:@"&" withString:@"(ANDCHAR)"];
+    bookurl = [bookurl stringByReplacingOccurrencesOfString:@"&" withString:@"(ANDCHAR)"];
     NSString *parameter= [[NSString alloc]initWithFormat:@"URL=%@",bookurl];
     NSHTTPURLResponse *urlResponse = nil;
     NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
@@ -89,166 +89,24 @@
     NSDictionary * bookDetailDic=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
     [bookDetailDic retain];
        bookdetail = [[NSMutableDictionary alloc] init];
-  //   NSArray * bookResult = [bookDetailDic objectForKey:@"bookResult"];
-   // NSDictionary * bookResultDic = [bookResult objectAtIndex:0];
+     NSArray * bookResult = [bookDetailDic objectForKey:@"bookResult"];
+     NSDictionary * bookResultDic = [bookResult objectAtIndex:0];
+     NSArray * realBookDetail =[bookResultDic objectForKey:@"realBookDetail"];
     
-    
-   // [bookdetail setObject:[bookResultDic objectForKey:@"title"] forKey:@"name"];
-   // [bookdetail setObject:[bookResultDic objectForKey:@"pubInform"] forKey:@"press"];
-    book_count = 0;
-    NSError *error;
-
-    // 設定丟出封包，由data來接
-    NSData* data = [[NSString stringWithContentsOfURL:[NSURL URLWithString:bookurl]encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
-    
-    //設定 parser讀取data，並透過Xpath得到想要的資料位置
-    TFHpple* parser = [[TFHpple alloc] initWithHTMLData:data];
-    
-    //取書
-    //書名作者 出版項
-    NSArray *tableData_name  = [parser searchWithXPathQuery:@"//html//body//div//div//table//tr//td//table//tr//td//table//tr//td"];
-    //書本借閱情況
-    NSArray *tableData_book  = [parser searchWithXPathQuery:@"//html//body//div//div//div//div//table//tr//td"];
-    //預約
-    NSArray *tableData_resbook  = [parser searchWithXPathQuery:@"//html//body//div//div//a"];
-    
-    NSString *book_name = NULL;
-    NSString *book_press = NULL;
-    NSString *book_resurl = NULL;
-
-    book_name = [[NSString alloc] init];
-    book_press = [[NSString alloc] init];
-
-    for(size_t s = 0 ; s < [tableData_name count] ; s++)
-    {
-        TFHppleElement* buf_s = [tableData_name objectAtIndex:s];   //取最外層的strong
-        
-        if([buf_s.children count]!= 0)
-        {
-            if(((TFHppleElement*)[buf_s.children objectAtIndex:0]).content != NULL)
-            {
-                if([((TFHppleElement*)[buf_s.children objectAtIndex:0]).content isEqualToString:@"書名"])
-                {   //截取書名
-                    buf_s = [tableData_name objectAtIndex:s+1];
-                    for(size_t sn = 0 ; sn < [buf_s.children count] ; sn++)
-                    {
-                        TFHppleElement* buf_names = [buf_s.children objectAtIndex:sn];
-                        if([buf_names.tagName isEqualToString:@"strong"] || [buf_names.tagName isEqualToString:@"a"])
-                        {
-                            for(size_t n = 0 ; n < [buf_names.children count] ; n++)
-                            {
-                                TFHppleElement* buf_name = [buf_names.children objectAtIndex:n];
-                                
-                                if([buf_name.tagName isEqualToString:@"font"])
-                                {
-                                    book_name = [book_name stringByAppendingString:((TFHppleElement*)[((TFHppleElement*)[buf_name.children objectAtIndex:0]).children objectAtIndex:0]).content];
-                                }
-                                else if ([buf_name.tagName isEqualToString:@"text"])
-                                    book_name = [book_name stringByAppendingString:buf_name.content];
-                            }
-                            break;
-                        }
-                    }
-                }
-                else if([((TFHppleElement*)[buf_s.children objectAtIndex:0]).content isEqualToString:@"出版項"])
-                {//截取出版項
-                    buf_s = [tableData_name objectAtIndex:s+1];
-                    for(size_t sn = 0 ; sn < [buf_s.children count] ; sn++)
-                    {
-                        TFHppleElement* buf_press = [buf_s.children objectAtIndex:sn];
- 
-                        if([buf_press.tagName isEqualToString:@"a"])
-                        {
-                            book_press = [book_press stringByAppendingString:((TFHppleElement*)[buf_press.children objectAtIndex:0]).content];
-                        }
-                        else if ([buf_press.tagName isEqualToString:@"text"])
-                        {
-                            if(![buf_press.content isEqualToString:@"\n"])
-                            {
-                                NSString *buf_p = [buf_press.content stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]]; //濾掉\n
-                                book_press = [book_press stringByAppendingString:buf_p];
-                            }
-                        }
-                        
-                    }
-                    break;
-                }
-            }
-        }
-    }
-    [bookdetail setObject:book_name forKey:@"name"];    
-    [bookdetail setObject:book_press forKey:@"press"];
-    
-    //截取借閱情況
-    for(size_t p = 0 ; p < [tableData_book count] ; p++)
-    {
-        TFHppleElement* buf_book = [tableData_book objectAtIndex:p];
-        if([buf_book.attributes objectForKey:@"width"] != NULL && [buf_book.attributes objectForKey:@"class"] == NULL)
-        {
-            if([[buf_book.attributes objectForKey:@"width"] isEqualToString:@"28%"])
-            {   //館藏地
-                NSString *buf = NULL;
-                if([((TFHppleElement*)[buf_book.children objectAtIndex:2]).tagName isEqualToString:@"a"])
-                {
-                    buf = [[((TFHppleElement*)[buf_book.children objectAtIndex:2]).children objectAtIndex:0] content];
-                }
-                else
-                {
-                    buf = ((TFHppleElement*)[buf_book.children objectAtIndex:1]).content;
-                    buf = [buf substringToIndex:[buf length]-2];    //濾掉/n
-                    buf = [buf substringFromIndex:1];   //濾掉開頭空白
-                }
-                book_part1[book_count] = [[NSString alloc] initWithString:buf];
-            }
-            else if([[buf_book.attributes objectForKey:@"width"] isEqualToString:@"38%"])
-            {   //索書號
-                NSString *numberStr = [[NSString alloc] init];
-                for(size_t a = 0 ; a < [buf_book.children count] ; a++)
-                {
-                    TFHppleElement* buf_a = [buf_book.children objectAtIndex:a];
-                    if([buf_a.tagName isEqualToString:@"a"])
-                    {
-                        numberStr = [numberStr stringByAppendingString:((TFHppleElement*)[buf_a.children objectAtIndex:0]).content];
-                    }
-                    else if([buf_a.tagName isEqualToString:@"text"])
-                    {
-                        numberStr = [numberStr stringByAppendingString:buf_a.content];
-                    }
-                }
-                book_part2[book_count] = [[NSString alloc] initWithString:numberStr];
-            }
-            else if([[buf_book.attributes objectForKey:@"width"] isEqualToString:@"12%"])
-            {   //條碼
-                NSString *buf = ((TFHppleElement*)[buf_book.children objectAtIndex:1]).content;
-                buf = [buf substringFromIndex:1];   //濾掉開頭空白
-                book_part3[book_count] = [[NSString alloc] initWithString:buf];
-            }
-            else if([[buf_book.attributes objectForKey:@"width"] isEqualToString:@"22%"])
-            {   //處理狀態
-                NSString *buf = ((TFHppleElement*)[buf_book.children objectAtIndex:1]).content;
-                buf = [buf substringFromIndex:1];   //濾掉開頭空白
-                book_part4[book_count] = [[NSString alloc] initWithString:buf];
-                book_count++;
-            }
-        }
+    for (size_t realBook_it =0 ; realBook_it < [realBookDetail count] ; ++realBook_it){
+        NSDictionary * realBookDetailDic = [realBookDetail objectAtIndex:realBook_it];
+         book_part1[realBook_it] = [realBookDetailDic objectForKey:@"location"];
+         book_part2[realBook_it] = [realBookDetailDic objectForKey:@"number"];
+         book_part3[realBook_it] = [realBookDetailDic objectForKey:@"barcode"];
+         book_part4[realBook_it] = [realBookDetailDic objectForKey:@"status"];
     }
     
-    //截取ㄋ約連結
-    for(size_t r = 0 ; r < [tableData_resbook count] ; r++)
-    {
-        TFHppleElement* buf_res = [tableData_resbook objectAtIndex:r];
-        
-        if([buf_res.children objectAtIndex:0] != NULL)
-            if([((TFHppleElement*)[buf_res.children objectAtIndex:0]).tagName isEqualToString:@"img"])
-                if([((TFHppleElement*)[buf_res.children objectAtIndex:0]).attributes objectForKey:@"src"] != NULL)
-                    if([[((TFHppleElement*)[buf_res.children objectAtIndex:0]).attributes objectForKey:@"src"] isEqualToString:@"/screens/request_cht.gif"])
-                    {
-                        book_resurl = [[NSString alloc]initWithString:[buf_res.attributes objectForKey:@"href"]];
-                        [bookdetail setObject:book_resurl forKey:@"resurl"];
-                        break;
-                    }
-    }
-
+    
+    [bookdetail setObject:[bookResultDic objectForKey:@"title"] forKey:@"name"];
+    [bookdetail setObject:[bookResultDic objectForKey:@"pubInform"] forKey:@"press"];
+    [bookdetail setObject:[bookResultDic objectForKey:@"reserveURL"] forKey:@"resurl"];
+    
+    book_count = [realBookDetail count];
     
     [super viewDidLoad];
 }
@@ -265,7 +123,7 @@
 {
     if(book_count == 0 && [bookdetail objectForKey:@"resurl"] == NULL)
         return 1;   //只有書籍資料
-    else if([bookdetail objectForKey:@"resurl"] == NULL)
+    else if( [[bookdetail objectForKey:@"resurl"] isEqualToString:@""])
         return 2;   //書籍資料＋借閱資訊
     else
         return 3;   //可預約
@@ -491,22 +349,15 @@
 
         button.frame = CGRectMake(110,6,100,18);
         button.text = @"預        約";
-        button.textColor = [UIColor whiteColor];
+        button.textColor = [UIColor blueColor];
         button.tag = indexPath.row;
         button.backgroundColor = [UIColor clearColor];
         button.font = buttonfont;
         
         [cell.contentView addSubview:button];
-        //cell.backgroundColor = [UIColor brownColor];
-
-        CAGradientLayer *gradient = [CAGradientLayer layer];
-        gradient.cornerRadius = 6; // 圆角的弧度
-        gradient.masksToBounds = YES;
-        gradient.frame = CGRectMake(0,0,300,30);
-        gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor whiteColor] CGColor], (id)[[UIColor brownColor] CGColor], (id)[[UIColor brownColor] CGColor], nil]; // 由上到下由白色渐变为蓝色
-        //阴影
         
-        [cell.contentView.layer insertSublayer:gradient atIndex:0];
+        cell.backgroundColor = [UIColor clearColor];
+
     }
     return cell;
 }
@@ -557,28 +408,43 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger section = indexPath.section;
-
-    if(section == 2)
-    {
-        NSDictionary *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"NTOULibraryAccount"];
-        if(account == NULL)
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"未登陸帳戶"
-                                                            message:@"請至 更多 >> 帳戶登錄 進行登錄"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"好"
-                                                  otherButtonTitles:nil];
+    if (indexPath.section == 2){
+        NSString *reserveURL = [bookdetail objectForKey:@"resurl"];
+       reserveURL= [reserveURL stringByReplacingOccurrencesOfString:@"&" withString:@"(ANDCHAR)"];
+        NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"accountKey"];
+        NSString *pwd =[[NSUserDefaults standardUserDefaults] objectForKey:@"passwordKey"];
+        NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@&reserveURL=%@",account,pwd,reserveURL];
+        NSHTTPURLResponse *urlResponse = nil;
+        NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
+        NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/reserveBook.do"];
+        [request setURL:[NSURL URLWithString:queryURL]];
+        [request setHTTPMethod:@"POST"];
+        [request setHTTPBody:[historyPost dataUsingEncoding:NSUTF8StringEncoding]];
+        NSData *responseData = [NSURLConnection sendSynchronousRequest:request
+                                                     returningResponse:&urlResponse
+                                                                 error:nil];
+        NSDictionary * responseDic = [NSDictionary new];
+        responseDic= [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+        NSString * msg = @"取書地點: "  ;
+       msg = [msg stringByAppendingString:[responseDic objectForKey: @"location"]];
+        msg = [msg stringByAppendingString:@"\n狀態:"];
+       msg = [msg stringByAppendingString:[responseDic objectForKey: @"status"]];
+        if ([[responseDic objectForKey: @"querySuccess"] isEqualToString:@"true"]){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"預約成功" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
+            [alert release];
         }
-        else
-        {
-            NSLog(@"%@ %@",[account objectForKey:@"account"],[account objectForKey:@"passWord"]);
-            RBookViewController * display = [[RBookViewController alloc]initWithStyle:UITableViewStyleGrouped];
-            display.resurl = [bookdetail objectForKey:@"resurl"];
-            [self.navigationController pushViewController:display animated:YES];
+        else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"預約失敗" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            [alert release];
+        
         }
+        
+        
+        
     }
+   
 }
 
 @end

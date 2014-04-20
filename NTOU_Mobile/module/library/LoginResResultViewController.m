@@ -57,7 +57,7 @@ int isSuccess=0;
     [maindata retain];
     self.tableView.allowsMultipleSelection = YES;
     
-    self.actionToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height -88, 320, 44)];
+    self.actionToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height -180, 320, 44)];
     
     UIBarButtonItem *flexiblespace_l = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     flexiblespace_l.width = 12.0; 
@@ -114,8 +114,9 @@ int isSuccess=0;
 
 -(void)fetchresHistory{
      dispatch_barrier_async(dispatch_get_main_queue(), ^{
-         NSDictionary *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"NTOULibraryAccount"];
-         NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@",[account objectForKey:@"account"],[account objectForKey:@"passWord"]];
+         NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"accountKey"];
+         NSString *pwd =[[NSUserDefaults standardUserDefaults] objectForKey:@"passwordKey"];
+         NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@",account,pwd];
          NSHTTPURLResponse *urlResponse = nil;
          NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
          NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/getCurrentHolds.do"];
@@ -190,8 +191,11 @@ int isSuccess=0;
 
         }//end for
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:postVal options:NSJSONWritingPrettyPrinted error:nil];
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]; NSDictionary *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"NTOULibraryAccount"];
-    NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@&radioValue=%@",[account objectForKey:@"account"],[account objectForKey:@"passWord"],jsonString];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+        NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"accountKey"];
+        NSString *pwd =[[NSUserDefaults standardUserDefaults] objectForKey:@"passwordKey"];
+        NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@&radioValue=%@",account,pwd,jsonString];
     NSHTTPURLResponse *urlResponse = nil;
     NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
     NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/cancelReserveBook.do"];
@@ -403,7 +407,7 @@ int isSuccess=0;
                                     constrainedToSize:maximumLabelSize
                                         lineBreakMode:NSLineBreakByWordWrapping];
     
-    return 12 + booknameLabelSize.height + 16*3 + 4*3;
+    return 20 + booknameLabelSize.height + 16*4 + 4*3;
 }
 
 #pragma mark - Table view delegate

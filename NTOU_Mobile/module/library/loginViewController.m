@@ -9,6 +9,7 @@
 #import "loginViewController.h"
 #import "TFHpple.h"
 #import "WOLSwitchViewController.h"
+#import "DefineConstant.h"
 
 @interface loginViewController ()
 @property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
@@ -47,17 +48,17 @@
     [Loginbutton setTitleColor:[UIColor brownColor] forState:UIControlStateNormal];
     [Loginbutton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
     
-    NSDictionary *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"NTOULibraryAccount"];
+    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"accountKey"];
+    NSString *pwd =[[NSUserDefaults standardUserDefaults] objectForKey:@"passwordKey"];
     LoginAccount = [[UILabel alloc] init];
     NSString *loginText = NULL;
-    if(account == NULL)
+    if(account == NULL || pwd==NULL)
     {
         loginText = [NSString stringWithFormat:@"目前沒有登錄的帳戶"];
     }
     else
     {
-        NSString *name = [account objectForKey:@"userName"];
-        loginText = [NSString stringWithFormat:@"- %@ 登入中 -",name];
+        loginText = [NSString stringWithFormat:@"- %@ 登入中 -",account];
     }
     UIFont *boldfont = [UIFont boldSystemFontOfSize:18.0];
     CGSize maximumLabelSize = CGSizeMake(320,9999);
@@ -82,7 +83,7 @@
     
     //[loginView addSubview:accounttextField];
     //[loginView addSubview:passWordtextField];
-    [loginView addSubview:Loginbutton];
+    //[loginView addSubview:Loginbutton];
     [loginView addSubview:LoginAccount];
     [loginView addSubview:titleLabel];
     
@@ -98,16 +99,16 @@
 {
     [super viewWillAppear:animated];
 
-    NSDictionary *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"NTOULibraryAccount"];
-    NSString *loginText = NULL;
-    if(account == NULL)
+    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"accountKey"];
+    NSString *pwd =[[NSUserDefaults standardUserDefaults] objectForKey:@"passwordKey"];    NSString *loginText = NULL;
+    if(account == NULL || pwd == NULL)
     {
         loginText = [NSString stringWithFormat:@"目前沒有登錄的帳戶"];
     }
     else
     {
-        NSString *name = [account objectForKey:@"userName"];
-        loginText = [NSString stringWithFormat:@"- %@ 登錄中 -",name];
+       
+        loginText = [NSString stringWithFormat:@"- %@ 登入中 -",account];
     }
     NSInteger screenwidth = [[UIScreen mainScreen] bounds].size.width;
     UIFont *boldfont = [UIFont boldSystemFontOfSize:18.0];
@@ -129,8 +130,9 @@
 
 -(void)Login{
     /*NSString *finalPost = [[NSString alloc]initWithFormat:@"code=%@&pin=%@&submit.x=37&submit.y=23&submit=submit",accounttextField.text,passWordtextField.text];*/
-    NSDictionary *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"NTOULibraryAccount"];
-    if(account == NULL)
+    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"accountKey"];
+    NSString *pwd =[[NSUserDefaults standardUserDefaults] objectForKey:@"passwordKey"];
+    if(account == NULL || pwd == NULL)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"未登陸帳戶"
                                                         message:@"請至 更多 >> 帳戶登錄 進行登錄"
@@ -141,7 +143,7 @@
         return;
     }
 
-    NSString *finalPost = [[NSString alloc]initWithFormat:@"code=%@&pin=%@&submit.x=37&submit.y=23&submit=submit",[account objectForKey:@"account"],[account objectForKey:@"passWord"]];
+    NSString *finalPost = [[NSString alloc]initWithFormat:@"code=%@&pin=%@&submit.x=37&submit.y=23&submit=submit",account,pwd];
 
     NSHTTPURLResponse *urlResponse = nil;
     NSError *error = [[[NSError alloc] init]autorelease];

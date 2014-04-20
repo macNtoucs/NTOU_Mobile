@@ -73,7 +73,7 @@
             return 1;
             break;
         case 1:
-            return 4;
+            return 3;
             break;
         default:
             return 0;
@@ -125,9 +125,6 @@
                 case 2:
                     cell.textLabel.text = @"聯絡資訊";
                     break;
-                case 3:
-                    cell.textLabel.text = @"帳戶登錄";
-                    break;
                 default:
                     break;
             }
@@ -178,11 +175,6 @@
                     
                     break;
                 }
-                case 3:
-                {
-                    [self.navigationController pushViewController:loginaccount  animated:YES];
-                    break;
-                }                  
                 default:
                     break;
             }

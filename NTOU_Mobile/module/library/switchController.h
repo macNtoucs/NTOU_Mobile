@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface switchController : UITabBarController<UITabBarControllerDelegate>
+@interface switchController : UITabBarController<UITabBarControllerDelegate>{}
+
 
 @end

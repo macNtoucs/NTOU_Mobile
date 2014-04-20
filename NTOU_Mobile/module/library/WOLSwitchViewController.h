@@ -19,6 +19,7 @@
 @property (nonatomic,retain) NSString *outfetchURL;
 @property (nonatomic,retain) NSString *fetchURL;
 @property (nonatomic,retain) NSString *userAccountId;
+@property (nonatomic ,retain) UITabBarItem * item;
 
 @property (strong, nonatomic) LoginResultViewController *loginViewController;
 @property (strong, nonatomic) LoginResResultViewController *loginresViewController;

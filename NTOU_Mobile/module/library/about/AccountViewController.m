@@ -114,17 +114,18 @@
     
     UIFont *boldfont = [UIFont boldSystemFontOfSize:18.0];
     CGSize maximumLabelSize = CGSizeMake(320,9999);
-    NSDictionary *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"NTOULibraryAccount"];
+    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"accountKey"];
+    NSString *pwd =[[NSUserDefaults standardUserDefaults] objectForKey:@"passwordKey"];
+    
     LoginAccount = [[UILabel alloc] init];
     NSString *loginText = NULL;
-    if(account == NULL)
+    if(account == NULL || pwd==NULL)
     {
         loginText = [NSString stringWithFormat:@"目前沒有登錄的帳戶"];
     }
     else
     {
-        NSString *name = [account objectForKey:@"userName"];
-        loginText = [NSString stringWithFormat:@"- %@ 登錄中 -",name];
+        loginText = [NSString stringWithFormat:@"- %@ 登入中 -",account];
     }
     CGSize AccountLabelSize = [loginText sizeWithFont:boldfont
                                     constrainedToSize:maximumLabelSize
@@ -176,7 +177,7 @@
         [Loginbutton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
     }
     
-    [self.view addSubview:Loginbutton];
+   // [self.view addSubview:Loginbutton];
     [self.view addSubview:LoginAccount];
 }
 
@@ -263,70 +264,6 @@
     });
 }
 
--(NSInteger)LoginAccount:(NSString*)account_text passWord:(NSString*)password_text
-{
-    NSString *finalPost = [[NSString alloc]initWithFormat:@"code=%@&pin=%@&submit.x=37&submit.y=23&submit=submit",account_text,password_text];
-    
-    NSHTTPURLResponse *urlResponse = nil;
-    NSError *error = [[[NSError alloc] init]autorelease];
-    NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
-    NSString * queryURL = [NSString stringWithFormat:@"http://ocean.ntou.edu.tw:1083/patroninfo*cht"];
-    [request setURL:[NSURL URLWithString:queryURL]];
-    [request setHTTPMethod:@"POST"];
-    [request addValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
-    [request setHTTPBody:[finalPost dataUsingEncoding:NSUTF8StringEncoding]];
-    NSData *responseData = [NSURLConnection sendSynchronousRequest:request
-                                                 returningResponse:&urlResponse
-                                                             error:&error];
 
-    TFHpple* parser = [[TFHpple alloc] initWithHTMLData:responseData];
-    NSArray *tableData_error  = [parser searchWithXPathQuery:@"//html//body//form//font"];
-    NSArray *tableData_succese  = [parser searchWithXPathQuery:@"//html//body//div//div//div//form//a//img"];
-    NSArray *tableData_name  = [parser searchWithXPathQuery:@"//html//body//table//tr//td//div//strong"];
-    
-    //NSInteger screenwidth = [[UIScreen mainScreen] bounds].size.width;
-    for (size_t i = 0 ; i < [tableData_error count] ; ++i){
-        TFHppleElement* buf = [tableData_error objectAtIndex:i];
-        if([[buf.attributes objectForKey:@"color"] isEqualToString:@"red"] && [[buf.attributes objectForKey:@"size"] isEqualToString:@"+2"])
-        {
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NTOULibraryAccount"];
-            return 0;
-        }
-    }
-
-    for (size_t i = 0 ; i < [tableData_succese count] ; ++i){
-        TFHppleElement* buf = [tableData_succese objectAtIndex:i];
-        if([[buf.attributes objectForKey:@"src"] isEqualToString:@"/screens/logout_cht.gif"])
-        {            
-            TFHppleElement* buf_name = [tableData_name objectAtIndex:0];
-            NSString *name = [((TFHppleElement*)[buf_name.children objectAtIndex:0]) content];
-            /*
-            NSString *loginText = [NSString stringWithFormat:@"- %@ 登錄中 -",name];
-            UIFont *boldfont = [UIFont boldSystemFontOfSize:18.0];
-            CGSize maximumLabelSize = CGSizeMake(320,9999);
-            CGSize AccountLabelSize = [loginText    sizeWithFont:boldfont
-                                                    constrainedToSize:maximumLabelSize
-                                                    lineBreakMode:NSLineBreakByWordWrapping];
-            [LoginAccount removeFromSuperview];
-            LoginAccount.text = loginText;
-            LoginAccount.frame = CGRectMake((screenwidth - AccountLabelSize.width)/2,20,AccountLabelSize.width,20);
-            [self.view addSubview:LoginAccount];
-            */
-            NSMutableDictionary *account = [[NSMutableDictionary alloc]init];
-            [account setObject:accounttextField.text forKey:@"account"];
-            [account setObject:passWordtextField.text forKey:@"passWord"];
-            [account setObject:name forKey:@"userName"];
-            
-            if([[NSUserDefaults standardUserDefaults] objectForKey:@"NTOULibraryAccount"] != NULL)
-            {
-                [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NTOULibraryAccount"];
-            }
-            [[NSUserDefaults standardUserDefaults] setObject:account forKey:@"NTOULibraryAccount"];
-            
-            return 1;
-        }
-    }
-    return 2;
-}
 
 @end

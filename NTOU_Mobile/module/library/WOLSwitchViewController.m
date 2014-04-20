@@ -48,9 +48,9 @@
                                    target:self
                                    action:@selector(showMenuView)];
     menuButton.style = UIBarButtonItemStylePlain;
-    
+   // self.navigationController.navigationItem.rightBarButtonItem = menuButton;
     self.navigationItem.rightBarButtonItem = menuButton;
-    
+  
     self.title = @"借閱歷史紀錄";
     
     menuView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
@@ -116,19 +116,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    NSDictionary *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"NTOULibraryAccount"];
-    NSString *userID = [account objectForKey:@"account"];
-    if(![userID isEqualToString:userAccountId])
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"帳戶已更動"
-                                                        message:@"請重新登入！"
-                                                       delegate:self
-                                              cancelButtonTitle:@"好"
-                                              otherButtonTitles:nil];
-        [alert show];
-        [self.navigationController popViewControllerAnimated:YES];
-    }
 }
 
 -(void)historyswitchViews

@@ -66,8 +66,9 @@ int page =1;
 }
 
 -(void)fetchHistory{
-     NSDictionary *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"NTOULibraryAccount"];
-     NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@&segment=%d",[account objectForKey:@"account"],[account objectForKey:@"passWord"],page];
+    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"accountKey"];
+    NSString *pwd =[[NSUserDefaults standardUserDefaults] objectForKey:@"passwordKey"];
+    NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@&segment=%d",account,pwd,page];
     NSHTTPURLResponse *urlResponse = nil;
     NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
     NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/getReadingHistory.do"];

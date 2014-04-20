@@ -11,12 +11,14 @@
 #import "loginViewController.h"
 #import "AboutViewController.h"
 #import "UIKit+NTOUAdditions.h"
+#import "WOLSwitchViewController.h"
 @interface switchController ()
 
 @end
 
-@implementation switchController
 
+
+@implementation switchController
 -(void)setView
 {
    
@@ -30,10 +32,11 @@
     
     [view1 release];
     
-    loginViewController* view2 = [[loginViewController alloc] initWithNibName:nil bundle:nil];
+    WOLSwitchViewController* view2 = [[WOLSwitchViewController alloc] initWithNibName:nil bundle:nil];
     UITabBarItem *item2 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemHistory tag:2];
     view2.tabBarItem = item2;
     [item2 release];
+    
     UINavigationController * nav2 = [[UINavigationController alloc]initWithRootViewController:view2];
     [view2 release];
     
@@ -50,7 +53,7 @@
         [self.viewControllers release];
     }
    
-    [self setViewControllers:[NSArray arrayWithObjects:view1,view2,view3,nil] animated:NO];
+    [self setViewControllers:[NSArray arrayWithObjects:view1,nav2,view3,nil] animated:NO];
    
     
     [nav1 release];
@@ -90,6 +93,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)tabBarController:(UITabBarController *)tabBarController
+ didSelectViewController:(UIViewController *)viewController
+{
+    
+    [self setView];
+}
+
 
 @end
 

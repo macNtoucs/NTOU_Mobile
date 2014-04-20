@@ -52,7 +52,7 @@
     maindata = [[NSMutableArray alloc] init];
     self.tableView.allowsMultipleSelection = YES;
     
-    self.actionToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-88, 320, 44)];
+    self.actionToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height -180, 320, 44)];
     
     UIBarButtonItem *flexiblespace_l = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     flexiblespace_l.width = 12.0;
@@ -114,8 +114,9 @@
 -(void)fetchout:(NSData*)bookdata
 {
     
-    NSDictionary *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"NTOULibraryAccount"];
-    NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@",[account objectForKey:@"account"],[account objectForKey:@"passWord"]];
+    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"accountKey"];
+    NSString *pwd =[[NSUserDefaults standardUserDefaults] objectForKey:@"passwordKey"];
+    NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@",account,pwd];
     NSHTTPURLResponse *urlResponse = nil;
     NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
     NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/getCurrentBorrowedBooks.do"];
@@ -165,8 +166,10 @@
         NSIndexPath *index = [selectindexs objectAtIndex:i];
         NSDictionary *book = [maindata objectAtIndex:index.row];
         radioVal = [book objectForKey:@"radioValue"];
-        NSDictionary *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"NTOULibraryAccount"];
-        NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@&radioValue=%@",[account objectForKey:@"account"],[account objectForKey:@"passWord"],radioVal];
+        NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"accountKey"];
+        NSString *pwd =[[NSUserDefaults standardUserDefaults] objectForKey:@"passwordKey"];
+        NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@&radioValue=%@",account,pwd,radioVal];
+       
         NSHTTPURLResponse *urlResponse = nil;
         NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
         NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/renewBook.do"];
