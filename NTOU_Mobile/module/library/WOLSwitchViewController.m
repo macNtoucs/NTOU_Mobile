@@ -238,11 +238,11 @@
 	{
 		menuFrame.origin.y = 0;
         historyFrame.size.height -= menuFrame.size.height;
-        historyFrame.origin.y = menuFrame.size.height;
+        historyFrame.origin.y = menuFrame.size.height-44;
         outFrame.size.height -= menuFrame.size.height;
-        outFrame.origin.y = menuFrame.size.height;
+        outFrame.origin.y = menuFrame.size.height-44;
         resFrame.size.height -= menuFrame.size.height;
-        resFrame.origin.y = menuFrame.size.height;
+        resFrame.origin.y = menuFrame.size.height-44;
         
         menuView.frame = menuFrame;
         loginViewController.view.frame = historyFrame;
@@ -256,13 +256,13 @@
 	{
         
         historyFrame.size.height += menuFrame.size.height;
-        historyFrame.origin.y = 0;
+        historyFrame.origin.y = -44;
         loginViewController.view.frame = historyFrame;
         outFrame.size.height += menuFrame.size.height;
-        outFrame.origin.y = 0;
+        outFrame.origin.y =-44;
         loginoutViewController.view.frame = outFrame;
         resFrame.size.height += menuFrame.size.height;
-        resFrame.origin.y = 0;
+        resFrame.origin.y = -44;
         loginresViewController.view.frame = resFrame;
 
         menuFrame.origin.y = 0 - menuFrame.size.height;

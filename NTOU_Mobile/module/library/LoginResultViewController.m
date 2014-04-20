@@ -28,7 +28,7 @@ int page =1;
     self = [super initWithStyle:style];
     if (self) {
         NSInteger screenheight = [[UIScreen mainScreen] bounds].size.height;
-        self.view.frame = CGRectMake(0, 0, 320,screenheight - 100);
+        self.view.frame = CGRectMake(0, -44, 320,screenheight-75);
     }
     return self;
 }
