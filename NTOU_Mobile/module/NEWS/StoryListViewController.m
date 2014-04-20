@@ -503,7 +503,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
-    [self setStatusText:(date) ? [NSString stringWithFormat:@"Last updated %@", [formatter stringFromDate:date]] : nil];
+    [self setStatusText:(date) ? [NSString stringWithFormat:@"最後更新於 %@", [formatter stringFromDate:date]] : nil];
     [formatter release];
 }
 
@@ -535,7 +535,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     UILabel *loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 0, 0, 0)];
     loadingLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     loadingLabel.tag = 10;
-    loadingLabel.text = @"Loading...";
+    loadingLabel.text = @"讀取中...";
     loadingLabel.textColor = [UIColor colorWithHexString:@"#DDDDDD"];
     loadingLabel.font = [UIFont boldSystemFontOfSize:14.0];
     loadingLabel.backgroundColor = [UIColor blackColor];
@@ -617,7 +617,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
 
         [self setStatusText:@"Update failed"];
         
-        [self showError:error header:@"新聞" alertViewDelegate:nil];
+        [self showError:error header:@"讀取失敗" alertViewDelegate:nil];
         if ([self->tableDisplayData[self.activeCategoryId] count] > 0)
         {
             [storyTable deselectRowAtIndexPath:[NSIndexPath indexPathForRow:[self->tableDisplayData[self.activeCategoryId] count] inSection:0] animated:YES];
@@ -631,7 +631,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     {
         // TODO: communicate parse failure to user
         [self setStatusText:@"Update failed"];
-        [self showError:error header:@"新聞" alertViewDelegate:nil];
+        [self showError:error header:@"讀取失敗" alertViewDelegate:nil];
         if ([self->tableDisplayData[self.activeCategoryId] count] > 0)
         {
             [storyTable deselectRowAtIndexPath:[NSIndexPath indexPathForRow:[self->tableDisplayData[self.activeCategoryId] count] inSection:0] animated:YES];
@@ -670,13 +670,13 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     if(![header isEqual:@"Events"])
     {
         // Generic message
-        NSString *message = @"Connection Failure. Please try again later.";
+        NSString *message = @"連線失敗，請稍後再試";
         // if the error can be classifed we will use a more specific error message
         if(error) {
             if ([[error domain] isEqualToString:@"NSURLErrorDomain"] && ([error code] == TIMED_OUT_CODE)) {
-                message = @"Connection Timed Out. Please try again later.";
+                message = @"連線逾時，請稍後再試";
             } else if ([[error domain] isEqualToString:@"MITMobileWebAPI"] && ([error code] == JSON_ERROR_CODE)) {
-                message = @"Server Failure. Please try again later.";
+                message = @"伺服器無回應，請稍後再試";
             }
         }
         
