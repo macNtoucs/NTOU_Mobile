@@ -69,7 +69,7 @@
 {
     self.title = @"詳細資訊";
     self.title = @"詳細資訊";
-   // bookurl = [bookurl stringByReplacingOccurrencesOfString:@"&" withString:@"\\&"];
+    //bookurl = [bookurl stringByReplacingOccurrencesOfString:@"&" withString:@"(ANDCHAR)"];
     NSString *parameter= [[NSString alloc]initWithFormat:@"URL=%@",bookurl];
     NSHTTPURLResponse *urlResponse = nil;
     NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
@@ -88,12 +88,13 @@
     
     NSDictionary * bookDetailDic=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
     [bookDetailDic retain];
+       bookdetail = [[NSMutableDictionary alloc] init];
+  //   NSArray * bookResult = [bookDetailDic objectForKey:@"bookResult"];
+   // NSDictionary * bookResultDic = [bookResult objectAtIndex:0];
     
     
-    
-    
-
-    bookdetail = [[NSMutableDictionary alloc] init];
+   // [bookdetail setObject:[bookResultDic objectForKey:@"title"] forKey:@"name"];
+   // [bookdetail setObject:[bookResultDic objectForKey:@"pubInform"] forKey:@"press"];
     book_count = 0;
     NSError *error;
 

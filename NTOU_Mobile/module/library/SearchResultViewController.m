@@ -47,16 +47,23 @@ int Searchpage =1;
     return self;
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+}
+
 - (void)viewDidLoad
 {
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
         
     }
-
+     [self search];
     
     book_count = 10;    //一開始先載入10筆資料
     start = NO;
+    
+    
+    
+    
     pageData = [[NSMutableDictionary alloc] init];
     tableData_book = [[NSMutableArray alloc] init];
     urlData = [[NSMutableDictionary alloc] init];
@@ -75,7 +82,7 @@ int Searchpage =1;
     //nagitive 52 - 44 = 8 、 tabbar 55 - 49 = 6
     [self.tableView setContentInset:UIEdgeInsetsMake(8,0,6,0)];
     
-    [self search];
+  
     
     [super viewDidLoad];
     
@@ -87,11 +94,11 @@ int Searchpage =1;
 }
 
 -(void)search{
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         // Show the HUD in the main tread
         dispatch_async(dispatch_get_main_queue(), ^{
             // No need to hod onto (retain)
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.superview animated:YES];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow  animated:YES];
             hud.labelText = @"Loading";
         });
 
@@ -111,14 +118,14 @@ int Searchpage =1;
         [newSearchBooks retain];
         [totalBookNumber retain];
         [firstBookNumber retain];
-               dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.view.superview animated:YES];
+         dispatch_async(dispatch_get_main_queue(), ^{
             start = YES;
             [self getContentTotal];
             [self.tableView reloadData];
+             [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
+
             start = NO;
-        });
-    });
+        });    });
     
     // NSLog(@"%@",searchResultArray);
     
