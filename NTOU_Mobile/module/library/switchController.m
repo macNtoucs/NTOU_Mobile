@@ -53,7 +53,7 @@
         [self.viewControllers release];
     }
    
-    [self setViewControllers:[NSArray arrayWithObjects:view1,nav2,view3,nil] animated:NO];
+    [self setViewControllers:[NSArray arrayWithObjects:view1,view2,view3,nil] animated:NO];
    
     
     [nav1 release];

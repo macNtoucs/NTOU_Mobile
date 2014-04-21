@@ -1023,9 +1023,9 @@
 		91A9005016E854E500ECF2CF /* NTOU_Mobile */ = {
 			isa = PBXGroup;
 			children = (
-				91756E4416E9A6EB001D724D /* Icon@2x.png */,
-				91756E4216E9A6E7001D724D /* Icon.png */,
 				1DD178E018FE7AB300621B67 /* library */,
+				91756E4216E9A6E7001D724D /* Icon.png */,
+				91756E4416E9A6EB001D724D /* Icon@2x.png */,
 				C72B23EB176AE80800474235 /* Settings */,
 				BA06A06316F2EE6600212CB9 /* Calendar */,
 				C74699D416F21BE20060F49C /* News */,
@@ -1437,6 +1437,11 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = NTOUcs_MAC;
+				TargetAttributes = {
+					91A9004516E854E500ECF2CF = {
+						DevelopmentTeam = 46873356PM;
+					};
+				};
 			};
 			buildConfigurationList = 91A9004016E854E500ECF2CF /* Build configuration list for PBXProject "NTOU_Mobile" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1842,8 +1847,8 @@
 		91A9006516E854E500ECF2CF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: ching-chi Lin (46873356PM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1851,10 +1856,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "B65476CA-705C-4B6F-B351-71B749B466B0";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B65476CA-705C-4B6F-B351-71B749B466B0";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1862,8 +1867,8 @@
 		91A9006616E854E500ECF2CF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: ching-chi Lin (46873356PM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1871,10 +1876,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "B65476CA-705C-4B6F-B351-71B749B466B0";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B65476CA-705C-4B6F-B351-71B749B466B0";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

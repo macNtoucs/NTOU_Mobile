@@ -39,7 +39,7 @@ int isSuccess=0;
     self = [super initWithStyle:style];
     if (self) {
         NSInteger screenheight = [[UIScreen mainScreen] bounds].size.height;
-        self.view.frame = CGRectMake(0, 0, 320,screenheight-44);
+        self.view.frame = CGRectMake(0, 0, 320,screenheight-110);
     }
     return self;
 }
@@ -90,7 +90,7 @@ int isSuccess=0;
  
         //配合nagitive和tabbar的圖片變動tableview的大小
     //nagitive 52 - 44 = 8 、 tabbar 55 - 49 = 6
-    [self.tableView setContentInset:UIEdgeInsetsMake(8,0,6,0)];
+    [self.tableView setContentInset:UIEdgeInsetsMake(-35,0,-35,0)];
     
     [super viewDidLoad];
 }

@@ -42,15 +42,15 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc]
+ /*   UIBarButtonItem *menuButton = [[UIBarButtonItem alloc]
                                    initWithTitle:@"更多"
                                    style:UIBarButtonItemStyleBordered
                                    target:self
                                    action:@selector(showMenuView)];
     menuButton.style = UIBarButtonItemStylePlain;
    // self.navigationController.navigationItem.rightBarButtonItem = menuButton;
-    self.navigationItem.rightBarButtonItem = menuButton;
-  
+    self.navigationItem.rightBarButtonItem = menuButton;*/
+   
     self.title = @"借閱歷史紀錄";
     
     menuView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
@@ -93,12 +93,13 @@
     loginoutViewController.fetchURL = outfetchURL;
     loginoutViewController.switchviewcontroller = self;
     loginoutViewController.userAccountId = userAccountId;
-    
+   
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         // Show the HUD in the main tread
         dispatch_async(dispatch_get_main_queue(), ^{
             // No need to hod onto (retain)
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.superview animated:YES];
+           // MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.labelText = @"Loading";
         });
         
@@ -107,10 +108,13 @@
         [loginoutViewController fetchoutHistory];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.view.superview animated:YES];
+           // [MBProgressHUD :[UIApplication sharedApplication].keyWindow animated:YES];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self showMenuView];
             [self.view addSubview:self.loginViewController.view];
         });
     });
+  
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -138,12 +142,7 @@
 
 - (void)switchViews
 {
-    if(viewGoingtoshow == showingView)
-    {
-        [self showMenuView];    //收起menu
-        return;
-    }
-    
+   
     [UIView beginAnimations:@"View Curl" context:nil];      // bold
     [UIView setAnimationDuration:0.5];                     // bold
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];   // bold
@@ -169,7 +168,7 @@
             [loginoutViewController.view removeFromSuperview];
         
         showingView = 0;
-        [self showMenuView];    //收起menu
+       // [self showMenuView];    //收起menu
         [self.view insertSubview:loginViewController.view atIndex:0];
     }
     else if(viewGoingtoshow == 1)
@@ -193,7 +192,7 @@
             [loginoutViewController.view removeFromSuperview];
         
         showingView = 1;
-        [self showMenuView];    //收起menu
+       // [self showMenuView];    //收起menu
         [self.view insertSubview:loginresViewController.view atIndex:0];
     }
     else
@@ -217,7 +216,7 @@
             [loginresViewController.view removeFromSuperview];
         
         showingView = 2;
-        [self showMenuView];    //收起menu
+       // [self showMenuView];    //收起menu
         [self.view insertSubview:loginoutViewController.view atIndex:0];
     }
 
@@ -234,26 +233,27 @@
     [UIView beginAnimations:nil context:nil];
 	[UIView setAnimationBeginsFromCurrentState:YES];
     
-	if (!menushowing)          //顯示
-	{
+	//if (!menushowing)          //顯示
+	//{
 		menuFrame.origin.y = 0;
         historyFrame.size.height -= menuFrame.size.height;
-        historyFrame.origin.y = menuFrame.size.height-44;
+        historyFrame.origin.y = menuFrame.size.height;
+   
         outFrame.size.height -= menuFrame.size.height;
-        outFrame.origin.y = menuFrame.size.height-44;
+        outFrame.origin.y = menuFrame.size.height;
         resFrame.size.height -= menuFrame.size.height;
-        resFrame.origin.y = menuFrame.size.height-44;
+        resFrame.origin.y = menuFrame.size.height;
         
         menuView.frame = menuFrame;
         loginViewController.view.frame = historyFrame;
         loginresViewController.view.frame = resFrame;
         loginoutViewController.view.frame = outFrame;
-        
+
         menushowing = YES;
         [self.view addSubview:menuView];
-	}
-	else if(menushowing)    //隱藏
-	{
+//	}
+	//else if(menushowing)    //隱藏
+	/*{
         
         historyFrame.size.height += menuFrame.size.height;
         historyFrame.origin.y = -44;
@@ -270,7 +270,7 @@
         
         menushowing = NO;
         [menuView removeFromSuperview];
-	}
+	}*/
 	
 	[UIView commitAnimations];
 }
