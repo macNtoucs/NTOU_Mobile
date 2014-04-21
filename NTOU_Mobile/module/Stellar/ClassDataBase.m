@@ -150,6 +150,7 @@ static ClassDataBase *sharedData = nil;
             courseTempID = [[NSMutableDictionary dictionaryWithDictionary:courseID] retain];
             classID = obj->classID;
             classTempID = [[NSMutableDictionary dictionaryWithDictionary:classID] retain];
+            NSLog(@"courseTempID:%@,classTempID:%@",courseTempID,classTempID);
         }
         
     }
