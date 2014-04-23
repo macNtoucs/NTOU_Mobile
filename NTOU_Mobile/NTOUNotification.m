@@ -124,10 +124,6 @@
     if ([notification.moduleName isEqualToString:EmergencyTag]){
         [notifications setValue:[notification string] forKey:notification.moduleName];
         [self setBadgeValue:@"1" forModule:EmergencyTag];
-        NTOU_MobileAppDelegate *appDelegate = (NTOU_MobileAppDelegate *)[[UIApplication sharedApplication] delegate];
-        for (NTOUModule *aModule in appDelegate.modules)
-            if ([aModule.tag isEqual:EmergencyTag])
-                [aModule handleNotification:notification shouldOpen:YES];        
     }
     else
     {
@@ -139,5 +135,10 @@
     }
     [self storeNotifications:notifications];
     [self modifyBadge];
+    
+    NTOU_MobileAppDelegate *appDelegate = (NTOU_MobileAppDelegate *)[[UIApplication sharedApplication] delegate];
+    for (NTOUModule *aModule in appDelegate.modules)
+        if ([aModule.tag isEqual:notification.moduleName])
+            [aModule handleNotification:notification shouldOpen:YES];
 }
 @end

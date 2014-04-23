@@ -122,9 +122,10 @@
         ClassLabelBasis* label = [[[ClassLabelBasis alloc] initWithFrame: labelFrame] autorelease];
         label.text = [content objectAtIndex:i];
         label.tag = -((day*100+sameClass)*100+i-sameClass+1); //（第幾週數－１）＊１００００＋（第幾堂數－１）＊１００＋連堂數
-        if (![[content objectAtIndex:i] isEqualToString:@" "]){
+        if (![[content objectAtIndex:i] isEqualToString:@" "]){  //對有課程的label作處理
             label.backgroundColor = [color objectForKey:label.text];
             label.tag = -label.tag;
+            label.topDisplayView = self;
             [course addObject:label];
         }
         else if (i==4&&[[content objectAtIndex:i]isEqualToString:@" "])
@@ -134,7 +135,7 @@
         }
         label.layer.borderColor = [UIColor blackColor].CGColor;
         label.font = [UIFont fontWithName:@"Helvetica" size:15];
-        label.textAlignment = UITextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentCenter;
         label.layer.borderWidth = TextLabelborderWidth;
         label.tempBackground = label.backgroundColor;
         label.userInteractionEnabled = YES;
@@ -143,7 +144,7 @@
         [label addGestureRecognizer:tapGestureRecognizer];
         [tapGestureRecognizer release];
         label.numberOfLines=0;
-        label.lineBreakMode = UILineBreakModeWordWrap;
+        label.lineBreakMode = NSLineBreakByWordWrapping;
         [self addSubview: label];
     }
 }
@@ -172,6 +173,9 @@
         [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Saturday"] WeekDays:Saturday];
     if ([[ClassDataBase sharedData] displayWeekDays:Sunday])
         [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Sunday"] WeekDays:Sunday];
+    for (ClassLabelBasis* courselabel in course) {
+        [courselabel setBadgeValue:@"new"];
+    }
     [super drawRect:rect];
 }
 
