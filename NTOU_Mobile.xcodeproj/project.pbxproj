@@ -31,9 +31,6 @@
 		1DD1792618FE7AB300621B67 /* OpenTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178EF18FE7AB300621B67 /* OpenTimeViewController.m */; };
 		1DD1792718FE7AB300621B67 /* OpenTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178F018FE7AB300621B67 /* OpenTimeViewController.xib */; };
 		1DD1792918FE7AB300621B67 /* BookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178F418FE7AB300621B67 /* BookDetailViewController.m */; };
-		1DD1792A18FE7AB300621B67 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178F518FE7AB300621B67 /* Default-568h@2x.png */; };
-		1DD1792B18FE7AB300621B67 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178F618FE7AB300621B67 /* Default.png */; };
-		1DD1792C18FE7AB300621B67 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178F718FE7AB300621B67 /* Default@2x.png */; };
 		1DD1792D18FE7AB300621B67 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178F818FE7AB300621B67 /* InfoPlist.strings */; };
 		1DD1792E18FE7AB300621B67 /* library-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178FA18FE7AB300621B67 /* library-Info.plist */; };
 		1DD1792F18FE7AB300621B67 /* Library_NTU.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178FC18FE7AB300621B67 /* Library_NTU.png */; };
@@ -1549,7 +1546,6 @@
 				91A9045A16E899D200ECF2CF /* magnify.png in Resources */,
 				1D8A3B241905051200816CCD /* blueArrow.png in Resources */,
 				91A9045B16E899D200ECF2CF /* speed_train.png in Resources */,
-				1DD1792B18FE7AB300621B67 /* Default.png in Resources */,
 				1D8A3B281905051200816CCD /* whiteArrow.png in Resources */,
 				91A9045C16E899D200ECF2CF /* TimeDrive.png in Resources */,
 				1D8A3B291905051300816CCD /* whiteArrow@2x.png in Resources */,
@@ -1604,7 +1600,6 @@
 				1DD1792718FE7AB300621B67 /* OpenTimeViewController.xib in Resources */,
 				91756F6716F206F7001D724D /* Reader-Mark-Y@2x.png in Resources */,
 				91756F6816F206F7001D724D /* Reader-Print.png in Resources */,
-				1DD1792C18FE7AB300621B67 /* Default@2x.png in Resources */,
 				91756F6916F206F7001D724D /* Reader-Print@2x.png in Resources */,
 				91756F6A16F206F7001D724D /* Reader-Thumbs.png in Resources */,
 				1DD1794118FE7AB300621B67 /* View.xib in Resources */,
@@ -1623,7 +1618,6 @@
 				BA06A07B16F2EE6600212CB9 /* WOLSwitchViewController.xib in Resources */,
 				C71A4EE61705B106002819AD /* Fuho_Data.plist in Resources */,
 				C71A4EEB1705B114002819AD /* cancel_24.png in Resources */,
-				1DD1792A18FE7AB300621B67 /* Default-568h@2x.png in Resources */,
 				C71A4EEC1705B114002819AD /* cancel.png in Resources */,
 				C71A4EED1705B114002819AD /* inbox_24.png in Resources */,
 				C71A4EEE1705B114002819AD /* inbox.png in Resources */,
@@ -1930,7 +1924,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1940,8 +1934,8 @@
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
+				PROVISIONING_PROFILE = "04411ABD-D29B-4D35-9CA5-BCFC7341E559";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "04411ABD-D29B-4D35-9CA5-BCFC7341E559";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1950,7 +1944,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1960,8 +1954,8 @@
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
+				PROVISIONING_PROFILE = "04411ABD-D29B-4D35-9CA5-BCFC7341E559";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "04411ABD-D29B-4D35-9CA5-BCFC7341E559";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
