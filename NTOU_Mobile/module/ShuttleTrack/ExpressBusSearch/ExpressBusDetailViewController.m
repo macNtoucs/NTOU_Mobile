@@ -37,10 +37,6 @@
     if ([self.navigationItem.rightBarButtonItem.title isEqualToString:@"發車時間"])
     {
         self.navigationItem.rightBarButtonItem.title = @"動態資訊";
-        /*departureTimeTableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"global/body-background.png"]];
-        departureTimeTableView.scrollEnabled = NO;
-        departureTimeTableView.delegate = self;
-        departureTimeTableView.dataSource = self;*/
         [self.tableView addSubview:departureTimeTableView];
     }
     else
@@ -120,9 +116,9 @@
     [super viewDidLoad];
     [self.tableView applyStandardColors];
     
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"發車時間" style:UIButtonTypeRoundedRect target:self action:@selector(showDepartureTime:)];
+    /*UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"發車時間" style:UIButtonTypeRoundedRect target:self action:@selector(showDepartureTime:)];
     self.navigationItem.rightBarButtonItem = rightButton;
-    [rightButton release];
+    [rightButton release];*/
     
     stops = [[NSMutableArray alloc] init];
     times = [[NSMutableArray alloc] init];

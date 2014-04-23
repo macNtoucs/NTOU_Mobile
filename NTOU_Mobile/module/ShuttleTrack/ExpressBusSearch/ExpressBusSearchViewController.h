@@ -17,6 +17,7 @@
     NSMutableArray * searchResults;
     UISearchBar * searchBar;
     UIView *myKeyboardView;
+    UIView *myKeyboardView2;
     UIColor *buttonTintColor;
     NSMutableString *buttonPartBusName;
 }
@@ -24,6 +25,7 @@
 @property (nonatomic, retain) NSMutableArray * searchResults;
 @property (nonatomic, retain) UISearchBar * searchBar;
 @property (nonatomic, retain) UIView *myKeyboardView;
+@property (nonatomic, retain) UIView *myKeyboardView2;
 @property (nonatomic, retain) UIColor *buttonTintColor;
 @property (nonatomic, retain) NSMutableString *buttonPartBusName;
 
