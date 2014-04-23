@@ -343,9 +343,6 @@
 		1DD178F018FE7AB300621B67 /* OpenTimeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenTimeViewController.xib; sourceTree = "<group>"; };
 		1DD178F318FE7AB300621B67 /* BookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailViewController.h; sourceTree = "<group>"; };
 		1DD178F418FE7AB300621B67 /* BookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetailViewController.m; sourceTree = "<group>"; };
-		1DD178F518FE7AB300621B67 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		1DD178F618FE7AB300621B67 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		1DD178F718FE7AB300621B67 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		1DD178F918FE7AB300621B67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1DD178FA18FE7AB300621B67 /* library-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "library-Info.plist"; sourceTree = "<group>"; };
 		1DD178FB18FE7AB300621B67 /* library-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "library-Prefix.pch"; sourceTree = "<group>"; };
@@ -825,9 +822,6 @@
 				1DD178E118FE7AB300621B67 /* about */,
 				1DD178F318FE7AB300621B67 /* BookDetailViewController.h */,
 				1DD178F418FE7AB300621B67 /* BookDetailViewController.m */,
-				1DD178F518FE7AB300621B67 /* Default-568h@2x.png */,
-				1DD178F618FE7AB300621B67 /* Default.png */,
-				1DD178F718FE7AB300621B67 /* Default@2x.png */,
 				1DD178F818FE7AB300621B67 /* InfoPlist.strings */,
 				1DD178FA18FE7AB300621B67 /* library-Info.plist */,
 				1DD178FB18FE7AB300621B67 /* library-Prefix.pch */,
@@ -1924,7 +1918,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1932,10 +1926,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "04411ABD-D29B-4D35-9CA5-BCFC7341E559";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "04411ABD-D29B-4D35-9CA5-BCFC7341E559";
+				PROVISIONING_PROFILE = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1944,7 +1938,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1952,10 +1946,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "04411ABD-D29B-4D35-9CA5-BCFC7341E559";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "04411ABD-D29B-4D35-9CA5-BCFC7341E559";
+				PROVISIONING_PROFILE = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

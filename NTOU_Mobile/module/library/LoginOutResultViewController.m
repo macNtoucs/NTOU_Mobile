@@ -52,7 +52,7 @@
     maindata = [[NSMutableArray alloc] init];
     self.tableView.allowsMultipleSelection = YES;
     
-    self.actionToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height -180, 320, 44)];
+    self.actionToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height -136, 320, 44)];
     
     UIBarButtonItem *flexiblespace_l = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     flexiblespace_l.width = 12.0;
@@ -160,6 +160,7 @@
                                                cancelButtonTitle:@"好"
                                                otherButtonTitles:nil];
         [alerts show];
+        return;
     }
     int isSuccess=0;
     for (int i = 0 ; i < [selectindexs count] ; i++) {

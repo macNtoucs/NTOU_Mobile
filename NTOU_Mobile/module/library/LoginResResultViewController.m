@@ -57,7 +57,7 @@ int isSuccess=0;
     [maindata retain];
     self.tableView.allowsMultipleSelection = YES;
     
-    self.actionToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height -180, 320, 44)];
+   self.actionToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height -136, 320, 44)];
     
     UIBarButtonItem *flexiblespace_l = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     flexiblespace_l.width = 12.0; 
@@ -158,7 +158,18 @@ int isSuccess=0;
 
 -(void)cancelSelectResBook
 {
+    if([selectindexs count] == 0)
+    {
+        UIAlertView *alerts = [[UIAlertView alloc] initWithTitle:@"請選擇欲取消的預約"
+                                                         message:nil
+                                                        delegate:self
+                                               cancelButtonTitle:@"好"
+                                               otherButtonTitles:nil];
+        [alerts show];
+        return;
+    }
     
+
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         // Show the HUD in the main tread
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -167,17 +178,7 @@ int isSuccess=0;
             hud.labelText = @"Loading";
         });
     NSDictionary * Jsonresponse = [NSDictionary new];
-        if([selectindexs count] == 0)
-        {
-            UIAlertView *alerts = [[UIAlertView alloc] initWithTitle:@"請選擇欲取消的預約"
-                                                             message:nil
-                                                            delegate:self
-                                                   cancelButtonTitle:@"好"
-                                                   otherButtonTitles:nil];
-            [alerts show];
-        }
-    
-    
+        
         NSMutableArray * postVal = [NSMutableArray new];
         for (int i = 0 ; i < [selectindexs count] ; i++) {
                 NSIndexPath *index = [selectindexs objectAtIndex:i];
