@@ -14,11 +14,11 @@
 #import "RequestOperation.h"
 @interface RouteDetailViewController : UITableViewController<UIApplicationDelegate,EGORefreshTableHeaderDelegate,UIAlertViewDelegate,RequestOperationDelegate>
 {
-         NSMutableArray *item;
-         NSURL* waitTime1_103;
-        NSURL* waitTime2_103;
-        NSURL* waitTime1_104;
-        NSURL* waitTime2_104;
+    NSMutableArray *item;
+    NSURL* waitTime1_103;
+    NSURL* waitTime2_103;
+    NSURL* waitTime1_104;
+    NSURL* waitTime2_104;
     NSURL *station_waitTime1_103;
     NSURL *station_waitTime2_103;
     NSURL *station_waitTime1_104;
@@ -35,6 +35,7 @@
     NSOperationQueue *queue;
     int theConncetionCount;
     bool updateTimeOnButton;
+    BOOL isZhongzheng;
 }
 
 - (void) getURL:(NSString* ) inputURL;
@@ -47,6 +48,7 @@
                 and: (NSString *)_104First
                 and: (NSString *)_104Second;
 -(void)goBackMode:(BOOL)go; //true 往市區
+-(void)isZhongzheng:(BOOL)is;
 
 @property (nonatomic, retain) NSURLConnection *theConncetion;
 @property (nonatomic, retain) NSOperationQueue *queue;

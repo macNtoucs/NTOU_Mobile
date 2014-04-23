@@ -28,8 +28,6 @@
     if (self) {
         self.tableView.scrollEnabled = NO;
         self.title = @"設定";
-        self.navigationController.navigationBar.tintColor = [UIColor colorWithHue:59.0/255 saturation:89.0/255 brightness:182.0/255 alpha:1];
-        [[UIBarButtonItem appearance] setTintColor: [UIColor colorWithHexString:@"#144893"]];
         self.view.backgroundColor = [UIColor clearColor];
         [ClassDataBase sharedData].EditScheduleDelegate = self; 
     }
@@ -38,6 +36,7 @@
 
 -(void) addNavRightButton {
     UIBarButtonItem * right = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishSetting)];
+    right.tintColor =[UIColor colorWithRed:115.0/255 green:128.0/255 blue:177.0/255 alpha:1];
     
     [self.navigationItem setRightBarButtonItem:right animated:YES];
 }
@@ -62,7 +61,14 @@
 - (void)viewDidLoad
 {
     
-    [self addNavRightButton]; 
+    [self addNavRightButton];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.navigationController.edgesForExtendedLayout = UIRectEdgeNone;
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+        
+    }
     [super viewDidLoad];
     [self.tableView applyStandardColors];
     // Uncomment the following line to preserve selection between presentations.

@@ -120,51 +120,68 @@
             switch (indexPath.row) { //各科系館
                 case 0:
                     cell.textLabel.text = @"海洋環境資訊系館";
+                    cell.detailTextLabel.text = @"OCE";
                     break;
                 case 1:
                     cell.textLabel.text = @"食品科學系工程館";
+                    cell.detailTextLabel.text = @"MFE";
                     break;
                 case 2:
                     cell.textLabel.text = @"環境生物與漁業科學學系館";
+                    cell.detailTextLabel.text = @"FSH";
                     break;
                 case 3:
                     cell.textLabel.text = @"食品科學系館";
+                    cell.detailTextLabel.text = @"MFS";
                     break;
                 case 4:
                     cell.textLabel.text = @"航運管理學系館";
+                    cell.detailTextLabel.text = @"STM";
                     break;
                 case 5:
                     cell.textLabel.text = @"延平技術大樓";
+                    cell.detailTextLabel.text = @"TEC";
                     break;
                 case 6:
                     cell.textLabel.text = @"生命科學院館";
+                    cell.detailTextLabel.text = @"CLS";
                     break;
                 case 7:
                     cell.textLabel.text = @"河工二館";
+                    cell.detailTextLabel.text = @"HR2、IMB";
                     break;
                 case 8:
                     cell.textLabel.text = @"河工一館";
+                    cell.detailTextLabel.text = @"HR1、HRE";
                      break;
                 case 9:
                     cell.textLabel.text = @"系工系館";
+                    cell.detailTextLabel.text = @"NVA、PFB";
                      break;
                 case 10:
                     cell.textLabel.text = @"工學院館";
+                    cell.detailTextLabel.text = @"CE-";
                      break;
                 case 11:
                     cell.textLabel.text = @"電機一館";
+                    cell.detailTextLabel.text = @"EE1";
                      break;
                 case 12:
                     cell.textLabel.text = @"資工系及電機二館";
+                    cell.detailTextLabel.text = @"INS、ELE";
                      break;
                 case 13:
-                    cell.textLabel.text = @"機械與機電工程一館及電算中心";
+                    cell.textLabel.text = @"機械一館及電算中心";
+                    cell.detailTextLabel.text = @"MEA、CC3、CC4";
+                    cell.detailTextLabel.font = [UIFont  systemFontOfSize:12];
                      break;
                 case 14:
-                    cell.textLabel.text = @"機械與機電工程二館";
+                    cell.textLabel.text = @"機械二館";
+                    cell.detailTextLabel.text = @"MEB";
                     break;
                 case 15:
                     cell.textLabel.text = @"商船系館";
+                    cell.detailTextLabel.text = @"NAV";
                     break;
                 default:
                     break;
@@ -189,12 +206,14 @@
                     break;
                 case 5:
                     cell.textLabel.text = @"綜合研究中心";
+                    cell.detailTextLabel.text = @"GRC";
                     break;
                 case 6:
                     cell.textLabel.text = @"陸生動物實驗中心";
                     break;
                 case 7:
                     cell.textLabel.text = @"水生動物實驗中心";
+                    cell.detailTextLabel.text = @"AAC";
                     break;
                 case 8:
                     cell.textLabel.text = @"大型空蝕水槽試驗館";
@@ -216,9 +235,11 @@
             switch (indexPath.row) { //學生活動領域
                 case 0:
                     cell.textLabel.text = @"育樂館";
+                    cell.detailTextLabel.text = @"STA";
                     break;
                 case 1:
                     cell.textLabel.text = @"第一餐廳";
+                    cell.detailTextLabel.text = @"FRB";
                     break;
                 case 2:
                     cell.textLabel.text = @"海洋廳及展示廳";
@@ -231,12 +252,14 @@
                     break;
                 case 5:
                     cell.textLabel.text = @"圖書館";
+                    cell.detailTextLabel.text = @"LIB";
                      break;
                 case 6:
                     cell.textLabel.text = @"學生活動中心";
                     break;
                 case 7:
                     cell.textLabel.text = @"體育館";
+                    cell.detailTextLabel.text = @"GYM";
                     break;
                 case 8:
                     cell.textLabel.text = @"五楠書局";

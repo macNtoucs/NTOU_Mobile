@@ -29,6 +29,11 @@
 {
     [super viewDidLoad];
     [self.tableView applyStandardColors];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -263,6 +268,11 @@
 
     
     }
+    if (indexPath.row == 3)
+        [detail isZhongzheng:TRUE];
+    else
+        [detail isZhongzheng:FALSE];
+    [detail goBackMode:go];
     [self.navigationController pushViewController:detail animated:YES];
     detail.navigationItem.leftBarButtonItem.title=@"back";
 }

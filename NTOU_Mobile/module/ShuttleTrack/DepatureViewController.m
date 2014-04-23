@@ -123,7 +123,7 @@
     self.lastRefresh = [NSDate date];
     self.navigationItem.rightBarButtonItem.title = @"更新中";
     UIAlertView *  loadingAlertView = [[UIAlertView alloc]
-                                          initWithTitle:nil message:@"\n\n下載中\n請稍候"
+                                          initWithTitle:nil message:@"\n\n下載資料中\n請稍等"
                                           delegate:nil cancelButtonTitle:nil
                                           otherButtonTitles: nil];
     NSThread*thread = [[NSThread alloc]initWithTarget:self selector:@selector(AlertStart:) object:loadingAlertView];
@@ -171,9 +171,7 @@
         else if (updateTimeOnButton)
         {
             int secs = (1+kRefreshInterval+sinceRefresh);
-            if (secs < 0) secs = 0;
-            self.anotherButton.title = [NSString stringWithFormat:@"%d 秒後更新", secs];
-            
+            if (secs < 0) secs = 0;            self.anotherButton.title = [NSString stringWithFormat:@"%d秒後更新", secs];
         }
 	}
     
@@ -183,10 +181,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
     m_waitTimeResult = [NSMutableArray new];
     m_waitTime = [NSMutableArray new];
     m_RouteResult = [NSMutableArray new];
-    anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshPropertyList)];
+    anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"更新" style:UIBarButtonItemStylePlain target:self action:@selector(refreshPropertyList)];
     self.navigationItem.rightBarButtonItem = anotherButton;
     //[anotherButton release];
     

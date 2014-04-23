@@ -13,6 +13,7 @@
 #import "NTOUSpringboard.h"
 #import "Rotation.h"
 #import "NTOUConstants.h"
+#import "NTOUNotification.h"
 @implementation NTOU_MobileAppDelegate
 @synthesize window=_window,
 rootNavigationController = _rootNavigationController,
@@ -48,6 +49,17 @@ modules;
     self.springboardController = springboard;
     self.rootNavigationController = rootController;
     
+    /*iOS7 UI fix*/
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.rootNavigationController.edgesForExtendedLayout = UIRectEdgeNone;
+        self.springboardController.edgesForExtendedLayout = UIRectEdgeNone;
+        
+        
+    }
+    
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];   
+    
     // TODO: don't store state like this when we're using a springboard.
 	// set modules state
     [rootController pushViewController:springboard animated:NO];
@@ -59,14 +71,23 @@ modules;
      NSLog(@"Exception - %@",[exception description]);
      }
      */
-    
-    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:NTOUImageNameBackground]];
+    //self.window.backgroundColor = [UIColor colorWithHexString:@"#EFEFF4"];
+    self.window.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
     [self.window makeKeyAndVisible];
     
     // Override point for customization after view hierarchy is set
     for (NTOUModule *aModule in self.modules) {
         [aModule applicationDidFinishLaunching];
     }
+    
+    //APNS dictionary generated from the json of a push notificaton
+	NSDictionary *apnsDict = [launchOptions objectForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"];
+    
+	// check if application was opened in response to a notofication
+	if(apnsDict) {
+        [NTOUNotificationHandle updateUI:[[Notification alloc] initWithModuleDictionary:apnsDict]];
+	}
+
     NSError *error;
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -155,10 +176,46 @@ modules;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    //send to server payload
+    
     for (NTOUModule *aModule in self.modules) {
         [aModule applicationWillEnterForeground];
     }
 }
+
+
+#pragma mark -
+#pragma mark Remote notifications
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // You can send here, for example, an asynchronous HTTP request to your web-server to store this deviceToken remotely.
+    NSLog(@"Did register for remote notifications: %@", deviceToken);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"Fail to register for remote notifications: %@", error);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    NSLog(@"start didReceiveRemoteNotification");
+    [NTOUNotificationHandle updateUI:[[Notification alloc] initWithModuleDictionary:userInfo]];
+    // We can determine whether an application is launched as a result of the user tapping the action
+    // button or whether the notification was delivered to the already-running application by examining
+    // the application state.
+    
+    if (application.applicationState == UIApplicationStateActive) {
+        // Nothing to do if applicationState is Inactive, the iOS already displayed an alert view.
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Did receive a Remote Notification"
+                                                            message:[NSString stringWithFormat:@"The application received this remote notification while it was running:\n%@",
+                                                                     [[userInfo objectForKey:@"aps"] objectForKey:@"alert"]]
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+        [alertView release];
+    }
+}
+
 
 #pragma mark -
 #pragma mark Memory management

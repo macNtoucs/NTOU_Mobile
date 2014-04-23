@@ -24,12 +24,14 @@
     NSMutableArray * trainID;
     NSMutableArray * depatureTime;
     NSMutableArray * startTime;
+    NSArray * HTStationNameCode;
     bool isFirstTimeLoad;
 }
 
 @property (nonatomic,unsafe_unretained)id dataSource;
 @property (nonatomic,retain) NSDate * selectedDate;
 @property (nonatomic,retain)NSString * selectedHTTime;
+@property (nonatomic,retain)NSArray * HTStationNameCode;
 -(void) recieveData;
 
 @end

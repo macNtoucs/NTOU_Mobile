@@ -19,11 +19,30 @@
 @synthesize dataSource;
 @synthesize selectedDate;
 @synthesize selectedHTTime;
+@synthesize HTStationNameCode;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         station = [[NSArray alloc]initWithObjects:@"台北",@"板橋",@"桃園",@"新竹",@"台中",@"嘉義",@"台南",@"左營", nil];
+        
+        //台北 : 977abb69-413a-4ccf-a109-0272c24fd490
+        //板橋 : e6e26e66-7dc1-458f-b2f3-71ce65fdc95f
+        //桃園 : fbd828d8-b1da-4b06-a3bd-680cdca4d2cd
+        //新竹 : a7a04c89-900b-4798-95a3-c01c455622f4
+        //台中 : 3301e395-46b8-47aa-aa37-139e15708779
+        //嘉義 : 60831846-f0e4-47f6-9b5b-46323ebdcef7
+        //台南 : 9c5ac6ca-ec89-48f8-aab0-41b738cb1814
+        //左營 : f2519629-5973-4d08-913b-479cce78a356
+        
+        HTStationNameCode = [[NSArray alloc]initWithObjects:@"977abb69-413a-4ccf-a109-0272c24fd490",
+                                                            @"e6e26e66-7dc1-458f-b2f3-71ce65fdc95f",
+                                                            @"fbd828d8-b1da-4b06-a3bd-680cdca4d2cd",
+                                                            @"a7a04c89-900b-4798-95a3-c01c455622f4",
+                                                            @"3301e395-46b8-47aa-aa37-139e15708779",
+                                                            @"60831846-f0e4-47f6-9b5b-46323ebdcef7",
+                                                            @"9c5ac6ca-ec89-48f8-aab0-41b738cb1814",
+                                                            @"f2519629-5973-4d08-913b-479cce78a356", nil];
         isFirstTimeLoad = true;
     }
     return self;
@@ -56,7 +75,7 @@
     BIN_resultString = [queryResult dataUsingEncoding:NSUTF8StringEncoding];
     TFHpple* parser = [[TFHpple alloc] initWithHTMLData:BIN_resultString];
     
-    NSArray *tableData_td  = [parser searchWithXPathQuery:@"//body//table//tr//td//table//tr//td//table//tr//td//table//tr//td//table//tr//td//span"];
+    NSArray *tableData_td  = [parser searchWithXPathQuery:@"//body//div//div//section//section//ul//section//table//tr//td//table//tr//td//a"];
     for (int i=0 ; i< [tableData_td count] ; ++i){
        
             TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
@@ -64,31 +83,17 @@
            // NSLog(@"context => %@",context);
             [trainID addObject:context];
     }
-    tableData_td  = [parser searchWithXPathQuery:@"//body//table//tr//td//table//tr//td//table//tr//td//table//tr//td//table//tr//td"];
-    bool isStartTime=true;
-    int start=0,end=0;
-    end = [trainID count]>=10 ? 5*[trainID count] : 7*[trainID count]+4;
-    start = [trainID count]>=10 ?  [trainID count]+2 : 12;
-    if ([trainID count]==1) end = 9*[trainID count]+5;
-    for (int i=start; i<end; ){
+    tableData_td  = [parser searchWithXPathQuery:@"//body//div//div//section//section//ul//section//table//tr//td//table//tr//td"];
+    
+    for (int i=0 ; i< [tableData_td count] ; ++i){
+        if (i%4==0 || i%4==3) continue;
         TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
         NSString * context = [[[attributeElement children]objectAtIndex:0]content];
-        context = [context stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        NSLog(@"context => %@",context);
-        if (isStartTime){
-             [startTime addObject:context];
-               isStartTime = false;
-            ++i;
-            }
-        else {
-            [depatureTime addObject:context];
-            isStartTime=true;
-            i=i+3;
-        }
-        
+       //  NSLog(@"context => %@",context);
+        if (i%4==2)  [depatureTime addObject:context];
+        else [startTime addObject:context];
     }
-   
-    [self.tableView reloadData];
+       [self.tableView reloadData];
     [BIN_resultString release];
     [downloadView AlertViewEnd];
 }
@@ -110,26 +115,41 @@
     isFirstTimeLoad = false;
 }
 
+-(NSString *)convertStation_NameToCode:(int)index{
+    //台北 : 977abb69-413a-4ccf-a109-0272c24fd490
+    //板橋 : e6e26e66-7dc1-458f-b2f3-71ce65fdc95f
+    //桃園 : fbd828d8-b1da-4b06-a3bd-680cdca4d2cd
+    //新竹 : a7a04c89-900b-4798-95a3-c01c455622f4
+    //台中 : 3301e395-46b8-47aa-aa37-139e15708779
+    //嘉義 : 60831846-f0e4-47f6-9b5b-46323ebdcef7
+    //台南 : 9c5ac6ca-ec89-48f8-aab0-41b738cb1814
+    //左營 : f2519629-5973-4d08-913b-479cce78a356
+   // NSLog(@"%@",[HTStationNameCode objectAtIndex:index]);
+    return [HTStationNameCode objectAtIndex:index];
+}
+
 
 -(void)fetchData{
    
-    //from=1&to=5&sDate=2012%2F12%2F18&TimeTable=13%3A30&FromOrDest=From&x=50&y=14
+    //http://www.thsrc.com.tw/tw/TimeTable/SearchResult
+   
+    
     NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
     [request setURL:dataURL];
     [request setHTTPMethod:@"POST"];
-    [request addValue:@"http://www.thsrc.com.tw/TC/ticket/tic_time_result.asp" forHTTPHeaderField:@"Referer"];
+    [request addValue:@"http://www.thsrc.com.tw/tw/TimeTable/SearchResult" forHTTPHeaderField:@"Referer"];
     [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request addValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
     [request addValue:@"zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4" forHTTPHeaderField:@"Accept-Language"];
     [request addValue:@"Big5,utf-8;q=0.7,*;q=0.3" forHTTPHeaderField:@"Accept-Charset"];
     [request addValue:@"max-age=0" forHTTPHeaderField:@"Cache-Control"];
-    [request addValue:@"http://www.thsrc.com.tw" forHTTPHeaderField:@"Origin"];
+    //[request addValue:@"http://www.thsrc.com.tw" forHTTPHeaderField:@"Origin"];
     
     
     NSString * postString = [[NSString alloc]init];
-    postString=[postString stringByAppendingFormat:@"from=%u",[station indexOfObject:startStation]+1];
-    postString=[postString stringByAppendingFormat:@"&to=%u",[station indexOfObject:depatureStation]+1];
-    postString=[postString stringByAppendingString:@"&sDate="];
+    postString=[postString stringByAppendingFormat:@"StartStation=%@",[self convertStation_NameToCode:[station indexOfObject:startStation]] ];
+    postString=[postString stringByAppendingFormat:@"&EndStation=%@", [self convertStation_NameToCode: [station indexOfObject:depatureStation]]];
+    postString=[postString stringByAppendingString:@"&SearchDate="];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy"];
@@ -140,18 +160,18 @@
     postString=[postString stringByAppendingString:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.selectedDate]]];
     postString= [postString stringByAppendingString:@"%2F"];
     
-    [dateFormatter setDateFormat:@"d"];
+    [dateFormatter setDateFormat:@"dd"];
     postString=[postString stringByAppendingString:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.selectedDate]]];
 
     
     NSArray *dateData = [selectedHTTime componentsSeparatedByString:@":"];
-    postString=[postString stringByAppendingString:@"&TimeTable="];
+    postString=[postString stringByAppendingString:@"&SearchTime="];
     postString=[postString stringByAppendingString:[NSString stringWithString:[dateData objectAtIndex:0] ]];
     postString=[postString stringByAppendingString:@"%3A"];
     postString=[postString stringByAppendingString:[NSString stringWithString:[dateData objectAtIndex:1] ]];
     
     
-    postString=[postString stringByAppendingString:@"&FromOrDest=From&x=50&y=14"];
+    postString=[postString stringByAppendingString:@"&SearchWay=DepartureInMandarin&RestTime=&EarlyOrLater="];
     
     
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
@@ -163,8 +183,7 @@
                             ];
     queryResult = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
     
-    
-    //NSLog(@"Response ==> %@", queryResult);
+    // NSLog(@"Response ==> %@", queryResult);
     
 }
 
@@ -201,6 +220,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
     //[self.tableView applyStandardColors];
 }
 

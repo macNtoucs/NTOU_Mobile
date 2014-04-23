@@ -29,7 +29,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //[self.tableView applyStandardColors];
+    self.view.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
     [self.tableView applyStandardColors];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -75,11 +82,10 @@
     return rowHeight;
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @" ";
-
+  return @" ";
 }
 
--(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
 
     return 32;
@@ -88,36 +94,32 @@
 
 
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	NSString *headerTitle;
+    
+    UILabel *label = [[[UILabel alloc] init] autorelease];
+    label.frame = CGRectMake(15, 3, 284, 23);
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont fontWithName:@"Helvetica" size:18];
+    label.backgroundColor = [UIColor clearColor];
     switch (section) {
         case 0:
-            headerTitle = @"學生專車";
+            label.text = @"學生專車";
             break;
+            
         case 1:
-            headerTitle = @"市區公車";
+            label.text =@"市區公車";
             break;
+            
         case 2:
-             headerTitle = @"其他";
+            label.text =@"其他";
             break;
-        default:
-            break;
+            
     }
-    UIFont *font = [UIFont boldSystemFontOfSize:STANDARD_CONTENT_FONT_SIZE];
-	CGSize size = [headerTitle sizeWithFont:font];
-	CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
-	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(19.0, 3.0, appFrame.size.width - 19.0, size.height)];
-	
-	label.text = headerTitle;
-	label.textColor = GROUPED_SECTION_FONT_COLOR;
-	label.font = font;
-	label.backgroundColor = [UIColor clearColor];
-	
-	UIView *labelContainer = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, appFrame.size.width, GROUPED_SECTION_HEADER_HEIGHT)] autorelease];
-	labelContainer.backgroundColor = [UIColor clearColor];
-	
-	[labelContainer addSubview:label];
-	[label release];
-	return labelContainer;
+    // Create header view and add label as a subview
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+    [view autorelease];
+    [view addSubview:label];
+    
+    return view;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -132,20 +134,17 @@
             return 4;
             break;
         case 1:
-            return 2;
+            return 3;   // 新增R66
             break;
         case 2:
             return 1;
-            break;
-        default:
-            return 0;
             break;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%ld%ld",(long)indexPath.section,(long)indexPath.row];
     SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
     {
@@ -159,7 +158,7 @@
                     cell.textLabel.text = @"忠孝復興站  → 海洋大學";
                     break;
                 case 0:
-                    cell.textLabel.text = @"海洋大學  → 忠孝復興站";
+                    cell.textLabel.text = @"海洋大學  → ";
                     break;
                 case 2:
                     cell.textLabel.text = @"捷運劍潭站  → 海洋大學";
@@ -179,6 +178,8 @@
                 case 1:
                     cell.textLabel.text = @"火車站  → 海大  → 八斗子";
                     break;
+                case 2:
+                    cell.textLabel.text = @"R66（海科館／七堵車站）";
                 default:
                     break;
             }
@@ -253,20 +254,34 @@
         SecondaryGroupedTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
        
         StopsViewController * stops = [[StopsViewController alloc]initWithStyle:UITableViewStyleGrouped];
-        stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];
+        // 這行沒mark掉會導致R66公車無法進到下層
+        /*stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];*/
+        R66SwitchViewController *r66Switch = [[R66SwitchViewController alloc] init];
+        
         if (indexPath.row==0) {
-            [stops setDirection:true];
+            stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];            [stops setDirection:true];
             [self.navigationController pushViewController:stops animated:YES];
             stops.navigationItem.leftBarButtonItem.title=@"back";
-        } else {
-            [stops setDirection:false];
+        }
+        else if (indexPath.row == 1) {
+            stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];            [stops setDirection:false];
              [self.navigationController pushViewController:stops animated:YES];
             stops.navigationItem.leftBarButtonItem.title=@"back";
         }
-       
+        else
+        {
+            r66Switch.title = @"R66 時刻表";
+            
+            //[self.navigationController.toolbar setFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
+            //NSLog(@"toolbar = %f", self.navigationController.toolbar.frame.size.height);
+            [self.navigationController pushViewController:r66Switch animated:YES];
+            r66Switch.navigationItem.leftBarButtonItem.title = @"back";
+        }
         [stops release];
+        [r66Switch release];
     }
-    else {
+    else
+    {
 
         OtherTrafficTrapViewController *other = [[OtherTrafficTrapViewController alloc ]initWithStyle:UITableViewStyleGrouped];
         other.title = @"搭乘工具";

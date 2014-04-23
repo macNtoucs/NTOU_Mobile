@@ -36,7 +36,6 @@
     return self;
 }
 
-
 - (void)loadModuleHomeController
 {
     EmergencyViewController *controller = [[[EmergencyViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
@@ -44,6 +43,16 @@
     
     self.mainViewController = controller;
     self.moduleHomeController = controller;
+
 }
+
+- (BOOL)handleNotification:(Notification *)notification shouldOpen: (BOOL)shouldOpen {
+    if(shouldOpen) {
+        [self.mainViewController setHtmlNotification:[notification content]];
+	}
+    
+	return YES;
+}
+
 
 @end

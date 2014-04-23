@@ -167,7 +167,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
     switchButton = [[UIBarButtonItem alloc] initWithTitle:@"衛星地圖" style:UIBarButtonItemStylePlain target:self action:@selector(switchMapType)];
     self.navigationItem.rightBarButtonItem = switchButton;
 

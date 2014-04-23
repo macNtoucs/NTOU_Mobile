@@ -11,7 +11,7 @@
 
 @class NTOU_MobileAppDelegate;
 @class SpringboardIcon;
-
+@class Notification;
 @interface NTOUModule : NSObject {
     
     NSString *tag; // Internal module name. Never displayed to user.
@@ -61,7 +61,7 @@
 - (void)didAppear;
 - (BOOL)handleLocalPath:(NSString *)localPath query:(NSString *)query;
 - (void)resetURL; // reset the URL, (i.e. path and query to empty strings)
-
+- (BOOL)handleNotification:(Notification *)notification shouldOpen:(BOOL)shouldOpen;
 
 // This will push the moduleHomeController onto the
 // navigation stack of it isn't already the top-most

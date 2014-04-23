@@ -132,7 +132,7 @@
     self.anotherButton.title = @"更新中";
     updateTimeOnButton = NO;
     loadingAlertView = [[UIAlertView alloc]
-                        initWithTitle:nil message:@"\n\n下載中\n請稍候"
+                        initWithTitle:nil message:@"\n\n下載資料中\n請稍候"
                         delegate:self cancelButtonTitle:@"取消"
                         otherButtonTitles: nil];
     [self AlertStart:loadingAlertView];
@@ -186,7 +186,7 @@
         {
             int secs = (1+kRefreshInterval+sinceRefresh);
             if (secs < 0) secs = 0;
-            self.anotherButton.title = [NSString stringWithFormat:@"%d 秒後更新", secs];
+            self.anotherButton.title = [NSString stringWithFormat:@"%d秒後更新", secs];
             
         }
 	}
@@ -208,8 +208,7 @@
 - (void)viewDidLoad
 {
     loadingAlertView = [[UIAlertView alloc]
-                        initWithTitle:nil message:@"\n\n下載中\n請稍候"
-                        delegate:self cancelButtonTitle:@"取消"
+                        initWithTitle:nil message:@"\n\n下載資料中\n請稍候"                        delegate:self cancelButtonTitle:@"取消"
                         otherButtonTitles: nil];
     [self AlertStart:loadingAlertView];
     [super viewDidLoad];
@@ -225,7 +224,11 @@
         [view1 release];
     }
     [_refreshHeaderView refreshLastUpdatedDate];
-    
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -376,7 +379,10 @@
         theConncetionCount=0;
 }
 
-
+- (void)isZhongzheng:(BOOL)is
+{
+    isZhongzheng = is;
+}
 
 #pragma mark - Table view data source
 
@@ -413,13 +419,18 @@
     if (dir){
         switch (indexPath.row) {
             case 0:
-                cell.textLabel.text = @"103八斗子-中正路-總站";
-                break;
-            case 1:
-                if ([waitTime count]>2)
+                if ([waitTime count] <= 2 && !isZhongzheng)
                     cell.textLabel.text = @"103八斗子-祥豐街-總站";
                 else
+                    cell.textLabel.text = @"103八斗子-中正路-總站";
+                break;
+            case 1:
+                if ([waitTime count] <= 2 && isZhongzheng)
                     cell.textLabel.text = @"104新豐街-中正路-總站";
+                else if ([waitTime count] <= 2 && !isZhongzheng)
+                    cell.textLabel.text = @"104新豐街-祥豐街-總站";
+                else
+                    cell.textLabel.text = @"103八斗子-祥豐街-總站";
                 break;
             case 2:
                 cell.textLabel.text = @"104新豐街-中正路-總站";
@@ -434,13 +445,18 @@
     else {
         switch (indexPath.row) {
             case 0:
-                cell.textLabel.text = @"103總站-中正路-八斗子";
+                if ([waitTime count] <= 2 && !isZhongzheng)
+                    cell.textLabel.text = @"103總站-祥豐街-八斗子";
+                else
+                    cell.textLabel.text = @"103總站-中正路-八斗子";
                 break;
             case 1:
-                if ([waitTime count]>2)
-                    cell.textLabel.text = @"103總站-祥豐街-中正路";
-                else
+                if ([waitTime count] <= 2 && isZhongzheng)
                     cell.textLabel.text = @"104總站-中正路-新豐街";
+                else if ([waitTime count] <= 2 && !isZhongzheng)
+                    cell.textLabel.text = @"104總站-祥豐街-新豐街";
+                else
+                    cell.textLabel.text = @"103總站-祥豐街-八斗子";
                 break;
             case 2:
                 cell.textLabel.text = @"104總站-中正路-新豐街";

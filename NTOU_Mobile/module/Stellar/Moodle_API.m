@@ -44,7 +44,7 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
     NSHTTPURLResponse *urlResponse = nil;
     NSError *error = [[NSError alloc] init];
     NSMutableURLRequest * jsonQuest = [NSMutableURLRequest new];
-    NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.103:2223/iNTOU/%@.do",type];
+    NSString * queryURL = [NSString stringWithFormat:@"http://140.121.100.103:8080/iNTOU/%@.do",type];
     [jsonQuest setURL:[NSURL URLWithString:queryURL]];
     [jsonQuest setHTTPMethod:@"POST"];
     [jsonQuest addValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
@@ -124,7 +124,6 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
 
 +(NSDictionary* )GetMoodleInfo_AndUseToken:(NSString *)token courseID:(NSString *)cosID classID:(NSString *)clsID{
     NSDictionary * Jsonlist =[[NSDictionary alloc]initWithObjectsAndKeys:cosID,@"cosid",clsID,@"clsid",nil];
-    NSString * jsonArray = [Jsonlist JSONRepresentation];
     NSDictionary *postDic = [[NSDictionary alloc]initWithObjectsAndKeys:token,@"stid",Jsonlist,@"list",nil];
     NSString *const_jsonRequest = [postDic JSONRepresentation];
     NSMutableString *jsonRequest = [[NSMutableString alloc]initWithString:const_jsonRequest];
@@ -163,42 +162,32 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
 }
 
 +(NSArray* )getFilesFolder_InDir:(NSString *)dir{
+   // dir=@"/21464/課程講義";
     NSHTTPURLResponse *urlResponse = nil;
-    NSError *error = [[NSError alloc] init];
-    NSMutableURLRequest * query = [NSMutableURLRequest new];
-    NSString * queryURL = [NSString stringWithFormat:@"http://moodle.ntou.edu.tw/m/filestring.php"];
-    [query setURL:[NSURL URLWithString:queryURL]];
-    [query setHTTPMethod:@"POST"];
-    [query addValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
-    NSString * quest = [NSString stringWithFormat:@"dir=%@",dir];
-    [query setHTTPBody:[quest dataUsingEncoding:NSUTF8StringEncoding]];
+    NSError * error;
+   NSString * queryURL = [NSString stringWithFormat:@"http://moodle.ntou.edu.tw/m/new_filestring.php?dir=%@",dir];
+    NSString *encodeUrl = [queryURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSMutableURLRequest * query = [[NSMutableURLRequest new]autorelease];
+    [query setURL:[NSURL URLWithString:encodeUrl]];
+    [query setHTTPMethod:@"GET"];
     NSData *responseData = [NSURLConnection sendSynchronousRequest:query
                                                  returningResponse:&urlResponse
                                                              error:&error
                             ];
     NSString* responseStr = [[[NSString alloc] initWithData:responseData
                                                    encoding:NSUTF8StringEncoding] autorelease];
-    NSRange search_HEAD = [responseStr rangeOfString:@"<body>"];
-    NSRange search_END = [responseStr rangeOfString:@"</body>"];
-    NSMutableArray * inventory = [[[NSMutableArray alloc]init]autorelease];
-    if (search_END.location==search_HEAD.location ){
-        NSString * noneItem = @"尚無資料";
-        [inventory addObject:noneItem];
-        return inventory;
+    
+    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+    NSMutableArray *result_Inventory = [NSMutableArray new];
+    if ([dictionary count]==0){
+        [result_Inventory addObject:@"尚無資料"];
+        return result_Inventory;
     }
-    else{
-        NSString * content = [responseStr substringWithRange:NSMakeRange(search_HEAD.location+7,search_END.location- search_HEAD.location-7)];
-        NSLog(@"%@",content);
-        inventory =[content componentsSeparatedByString:@";"];
-    }
-    NSMutableArray * result_Inventory = [NSMutableArray new];
-    for (NSString *s in inventory){
-        s = [s stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        /* s = [s stringByReplacingOccurrencesOfString:@"_" withString:@""];
-         if ([s intValue]>=10) s = [s substringFromIndex:2];
-         else if ([s intValue]!=0)s = [s substringFromIndex:1];*/
-        if (![s isEqualToString:@"\n"]&&! [s isEqualToString:@""])
-            [result_Inventory addObject:s];
+    NSArray * dic_val = [dictionary allValues];
+    NSArray * inventory = [dic_val objectAtIndex:0];
+   
+    for (id pair in inventory){
+        [result_Inventory addObject:[pair objectForKey:@"item"]];
     }
     return result_Inventory;
 }
