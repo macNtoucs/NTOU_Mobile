@@ -119,6 +119,7 @@
             //expressBusViewController.tableView.frame = CGRectMake(0, 100, 320, 380);
             [self.navigationController pushViewController:expressBusViewController animated:YES];
             expressBusViewController.navigationItem.leftBarButtonItem.title = @"Back";
+            expressBusViewController.title = @"北北基客運";
             [expressBusViewController release];
             break;
         case 4: //海洋專車

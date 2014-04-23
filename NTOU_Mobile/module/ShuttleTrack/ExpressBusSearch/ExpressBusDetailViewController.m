@@ -20,6 +20,7 @@
 @synthesize times;
 @synthesize label;
 @synthesize labelsize;
+@synthesize departureTimeTableView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -28,6 +29,25 @@
         // Custom initialization
     }
     return self;
+}
+
+// 顯示發車時間
+- (void)showDepartureTime:(NSString *)selectedShortRouteName
+{
+    if ([self.navigationItem.rightBarButtonItem.title isEqualToString:@"發車時間"])
+    {
+        self.navigationItem.rightBarButtonItem.title = @"動態資訊";
+        /*departureTimeTableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"global/body-background.png"]];
+        departureTimeTableView.scrollEnabled = NO;
+        departureTimeTableView.delegate = self;
+        departureTimeTableView.dataSource = self;*/
+        [self.tableView addSubview:departureTimeTableView];
+    }
+    else
+    {
+        self.navigationItem.rightBarButtonItem.title = @"發車時間";
+        [departureTimeTableView removeFromSuperview];
+    }
 }
 
 - (void)setCompleteRouteName:(NSString *)selectedShortRouteName
@@ -99,6 +119,11 @@
 {
     [super viewDidLoad];
     [self.tableView applyStandardColors];
+    
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"發車時間" style:UIButtonTypeRoundedRect target:self action:@selector(showDepartureTime:)];
+    self.navigationItem.rightBarButtonItem = rightButton;
+    [rightButton release];
+    
     stops = [[NSMutableArray alloc] init];
     times = [[NSMutableArray alloc] init];
     
@@ -107,8 +132,11 @@
     CGFloat screenWidth = screenSize.width;
     CGFloat screenHeight = screenSize.height;
     
-    label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,0,0)];
+    departureTimeTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight) style:UITableViewStyleGrouped];
+    //departureTimeTableView.delegate = self;
+    //departureTimeTableView.dataSource = self;
     
+    label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,0,0)];
     label.text = completeRouteName;
     label.textColor = [UIColor blackColor];
     label.textAlignment = NSTextAlignmentCenter;
