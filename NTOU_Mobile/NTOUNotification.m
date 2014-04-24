@@ -111,6 +111,8 @@
             [aButton setBadgeValue:@"1"];
         else if (unReadNotification)
             [aButton setBadgeValue:[NSString stringWithFormat:@"%lu",(unsigned long)[unReadNotification count]]];
+        else
+            [aButton setBadgeValue:nil];
     }
     [self modifyBadge];
 }

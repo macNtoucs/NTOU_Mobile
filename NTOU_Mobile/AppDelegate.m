@@ -205,8 +205,8 @@ modules;
     
     if (application.applicationState == UIApplicationStateActive) {
         // Nothing to do if applicationState is Inactive, the iOS already displayed an alert view.
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Did receive a Remote Notification"
-                                                            message:[NSString stringWithFormat:@"The application received this remote notification while it was running:\n%@",
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收到通知"
+                                                            message:[NSString stringWithFormat:@"%@",
                                                                      [[userInfo objectForKey:@"aps"] objectForKey:@"alert"]]
                                                            delegate:self
                                                   cancelButtonTitle:@"OK"

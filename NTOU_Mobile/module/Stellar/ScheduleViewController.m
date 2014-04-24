@@ -8,7 +8,7 @@
 
 #import "ScheduleViewController.h"
 #import "ClassDataBase.h"
-
+#import "NTOUNotification.h"
 #define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 
 @interface ScheduleViewController ()
@@ -53,6 +53,24 @@
         classInfo.classId = [courseInfo objectForKey:classIDKey];
         [self.navigationController pushViewController:classInfo animated:YES];
         classInfo.navigationItem.leftBarButtonItem.title=@"back";
+        
+        //將未讀課程的推播通知刪除
+        NSMutableDictionary* notif = [NTOUNotificationHandle getNotifications];
+        NSMutableArray* unReadNotifs = [NSMutableArray arrayWithArray:[notif objectForKey:StellarTag]];
+        NSArray* unReadNotifsTemp = [NSArray arrayWithArray:unReadNotifs];
+        for (NSString* unReadNotif in unReadNotifsTemp) {   //尋找label有多少未讀推播
+            if ([unReadNotif rangeOfString:[[ClassDataBase sharedData] searchCourseIDFormCourseName:label.text]].location != NSNotFound) {    //比對課程id
+                [unReadNotifs removeObject:unReadNotif];
+                
+            }
+        }
+        if ([unReadNotifs count])
+            [notif setObject:unReadNotifs forKey:StellarTag];
+        else
+            [notif removeObjectForKey:StellarTag];
+        [NTOUNotificationHandle storeNotifications:notif];
+        [weekschedule drawRect:CGRectZero];
+        [NTOUNotificationHandle setAllBadge];
     }
     else
     {
@@ -79,7 +97,7 @@
     // Regisete for HUD callbacks so we can remove it from the window at the right time
     HUD.delegate = self;
 	
-    HUD.labelText = @"Loading";
+    HUD.labelText = @"讀取中";
 	
     // Show the HUD while the provided method executes in a new thread
     [HUD showWhileExecuting:@selector(Task:) onTarget:self withObject:label animated:YES];

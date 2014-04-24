@@ -524,6 +524,12 @@ static ClassDataBase *sharedData = nil;
     return 0;
 }
 
+- (NSString *)searchCourseIDFormCourseName:(NSString *)courseName
+{
+    return [courseTempID objectForKey:courseName];
+}
+
+
 -(void)classPropertyAdd:(NSDictionary *)course
 {
     [moodleTempFrom setValue:[NSNumber numberWithBool:1] forKey:[course objectForKey:moodleCourseNameKey]];

@@ -26,7 +26,7 @@
     [badgeValue release];
     badgeValue = [newValue retain];
     
-    UIView *badgeView = [self viewWithTag:BADGE_TAG];
+    UIView *badgeView = [self.topDisplayView.superview viewWithTag:BADGE_TAG];
     
     if (badgeValue) {
         UIFont *labelFont = [UIFont boldSystemFontOfSize:13.0f];
@@ -68,11 +68,10 @@
         // place badgeView on top right corner
         //frame.origin = CGPointMake(self.frame.size.width - floor(badgeView.frame.size.width / 2) - 10,
         //                           - floor(badgeView.frame.size.height / 2) + 5);
-        frame.origin = CGPointMake(self.frame.origin.x + 35,self.frame.origin.y -5);
+        frame.origin = CGPointMake(self.frame.origin.x + 37,self.frame.origin.y -7);
         badgeView.frame = frame;
         self.clipsToBounds = NO;
-        [self.topDisplayView addSubview:badgeView];
-        //[self.topDisplayView.superview bringSubviewToFront:badgeView];
+        [self.topDisplayView.superview addSubview:badgeView];
     } else {
         [badgeView removeFromSuperview];
     }

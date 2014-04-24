@@ -98,6 +98,8 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
 -(void)deleteClassroomLocation:(NSNumber*)Key;
 -(void)UpdataClassroomLocationKey:(NSNumber*)Key Classroom:(NSString*)Location;
 
+- (NSString *)searchCourseIDFormCourseName:(NSString *)courseName;
+
 -(void)ClassAddCancel;
 -(void)ClassAddDecide;
 

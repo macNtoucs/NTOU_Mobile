@@ -8,7 +8,7 @@
 
 #import "WeekScheduleView.h"
 #import "ClassDataBase.h"
-
+#import "NTOUNotification.h"
 @implementation WeekScheduleView
 @synthesize WhetherTapped;
 @synthesize TapAddCourse;
@@ -126,11 +126,21 @@
             label.backgroundColor = [color objectForKey:label.text];
             label.tag = -label.tag;
             label.topDisplayView = self;
+            NSMutableDictionary* notif = [NTOUNotificationHandle getNotifications];
+            NSMutableArray* unReadNotifs = [notif objectForKey:StellarTag];
+            int count = 0;
+            for (NSString* unReadNotif in unReadNotifs) {   //尋找label有多少未讀推播
+                if ([unReadNotif rangeOfString:[[ClassDataBase sharedData] searchCourseIDFormCourseName:label.text]].location != NSNotFound) {    //比對課程id
+                    count++;
+                }
+            }
+            if (count)
+                [label setBadgeValue:[NSString stringWithFormat:@"%d",count]]; //設定label推播數
             [course addObject:label];
         }
         else if (i==4&&[[content objectAtIndex:i]isEqualToString:@" "])
             label.backgroundColor = [UIColor colorWithRed:105.0/255 green:105.0/255 blue:105.0/255 alpha:1];
-        else{
+        else{ 
             label.backgroundColor = [UIColor clearColor];
         }
         label.layer.borderColor = [UIColor blackColor].CGColor;
@@ -153,10 +163,14 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    for(UIView *subview in [self subviews])
+    for (ClassLabelBasis* courselabel in course) {  //刪除所有推播通知顯示
+        [courselabel setBadgeValue:nil];
+    }
+    for(UIView *subview in [self subviews])   //刪除所有課程顯示
     {
         [subview removeFromSuperview];
     }
+    [course removeAllObjects];
     NSDictionary * scheduleInfo = [[ClassDataBase sharedData] FetchScheduleInfo];
     int ColumnNumber=0;
     if ([[ClassDataBase sharedData] displayWeekDays:Monday])
@@ -173,9 +187,6 @@
         [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Saturday"] WeekDays:Saturday];
     if ([[ClassDataBase sharedData] displayWeekDays:Sunday])
         [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Sunday"] WeekDays:Sunday];
-    for (ClassLabelBasis* courselabel in course) {
-        [courselabel setBadgeValue:@"new"];
-    }
     [super drawRect:rect];
 }
 
