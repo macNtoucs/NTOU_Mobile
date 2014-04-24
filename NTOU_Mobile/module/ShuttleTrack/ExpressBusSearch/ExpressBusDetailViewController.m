@@ -229,8 +229,9 @@
     }
     else if([[times objectAtIndex:indexPath.row] rangeOfString:@"站"].location != NSNotFound)
     {
-        NSUInteger len = [[times objectAtIndex:indexPath.row] rangeOfString:@"站"].location+1;
-        cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(0, len)];
+        NSUInteger pos1 = [[times objectAtIndex:indexPath.row] rangeOfString:@"將"].location;
+        NSUInteger pos2 = [[times objectAtIndex:indexPath.row] rangeOfString:@"站"].location;
+        cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(pos1, pos2-pos1+1)];
         cell.detailTextLabel.textColor = [UIColor redColor];
     }
     return cell;

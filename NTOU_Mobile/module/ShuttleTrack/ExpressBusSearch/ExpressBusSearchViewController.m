@@ -579,6 +579,10 @@
             break;
     }
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [buttonPartBusName setString:@""];
+}
 
 - (void)viewDidLoad
 {
