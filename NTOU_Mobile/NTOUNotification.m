@@ -7,7 +7,7 @@
 //
 
 #import "NTOUNotification.h"
-
+#import "ClassDataBase.h"
 
 @implementation Notification
 @synthesize moduleName,content;
@@ -123,12 +123,16 @@
     NSMutableDictionary *notifications = [self getNotifications];
     
     NSMutableArray* unReadNotification = nil;
-    if ([notification.moduleName isEqualToString:EmergencyTag]){
+    if ([notification.moduleName isEqualToString:EmergencyTag]){  //緊急聯絡
         [notifications setValue:[notification string] forKey:notification.moduleName];
         [self setBadgeValue:@"1" forModule:EmergencyTag];
     }
-    else
+    else        //功課表
     {
+        ClassDataBase* dataBase = [ClassDataBase sharedData];
+        if (![dataBase searchCourseIDFormCourseName:notification.content]) //若通知不存在抓取下來的功課表，則不放入未讀推播
+            return;
+        
         unReadNotification = [NSMutableArray arrayWithArray:[notifications objectForKey:notification.moduleName]];
         if (!unReadNotification) unReadNotification = [[NSMutableArray alloc] init];
         [unReadNotification addObject:[notification string]];

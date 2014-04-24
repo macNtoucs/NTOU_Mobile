@@ -204,8 +204,16 @@ modules;
     // the application state.
     
     if (application.applicationState == UIApplicationStateActive) {
+        NSString * title = @"收到通知";
+        for (NTOUModule *aModule in self.modules) {
+            if ([aModule.tag isEqualToString:[NSString stringWithFormat:@"%@",[userInfo objectForKey:@"moduleName"]]]) {
+                title = [aModule.shortName mutableCopy];
+                break;
+            }
+        }
+        
         // Nothing to do if applicationState is Inactive, the iOS already displayed an alert view.
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收到通知"
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
                                                             message:[NSString stringWithFormat:@"%@",
                                                                      [[userInfo objectForKey:@"aps"] objectForKey:@"alert"]]
                                                            delegate:self

@@ -20,13 +20,11 @@
     return self;
 }
 
-#define BADGE_TAG 62
-#define BADGE_LABEL_TAG 63
 - (void)setBadgeValue:(NSString *)newValue {
     [badgeValue release];
     badgeValue = [newValue retain];
     
-    UIView *badgeView = [self.topDisplayView.superview viewWithTag:BADGE_TAG];
+    UIView *badgeView = [self.topDisplayView.superview viewWithTag:self.tag*100];
     
     if (badgeValue) {
         UIFont *labelFont = [UIFont boldSystemFontOfSize:13.0f];
@@ -37,17 +35,17 @@
             
             badgeView = [[[UIImageView alloc] initWithImage:stretchableImage] autorelease];
             badgeView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-            badgeView.tag = BADGE_TAG;
+            badgeView.tag = self.tag*100;
             
             UILabel *badgeLabel = [[[UILabel alloc] initWithFrame:badgeView.frame] autorelease];
             badgeLabel.backgroundColor = [UIColor clearColor];
             badgeLabel.textColor = [UIColor whiteColor];
             badgeLabel.font = labelFont;
             badgeLabel.textAlignment = NSTextAlignmentCenter;
-            badgeLabel.tag = BADGE_LABEL_TAG;
+            badgeLabel.tag = self.tag*100+1;
             [badgeView addSubview:badgeLabel];
         }
-        UILabel *badgeLabel = (UILabel *)[badgeView viewWithTag:BADGE_LABEL_TAG];
+        UILabel *badgeLabel = (UILabel *)[badgeView viewWithTag:self.tag*100+1];
         CGSize size = [badgeValue sizeWithFont:labelFont];
         CGFloat padding = 7.0;
         CGRect frame = badgeView.frame;

@@ -74,7 +74,11 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     else{
-        NSString *notification = [NSString stringWithString:[[NSUserDefaults standardUserDefaults] objectForKey:emergencyUserDefaultsKey]];
+        NSString *notification = nil;
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:emergencyUserDefaultsKey] != nil) {
+            notification = [NSString stringWithString:[[NSUserDefaults standardUserDefaults] objectForKey:emergencyUserDefaultsKey]];
+        }
+
         if (!notification)
             self.htmlString = [NSString stringWithFormat:htmlFormatString, @"目前無緊急事件"];
         else
