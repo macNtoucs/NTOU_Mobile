@@ -37,7 +37,8 @@
     
     myKeyboardView = [[[UIView alloc] initWithFrame:CGRectMake(0, screenHeight-140, screenWidth, 140)] retain];
     [myKeyboardView setBackgroundColor:[UIColor lightTextColor]];
-    myKeyboardView2 = [[[UIView alloc] initWithFrame:CGRectMake(0, screenHeight-205, screenWidth, 140)] retain];
+    //myKeyboardView2 = [[[UIView alloc] initWithFrame:CGRectMake(0, screenHeight-205, screenWidth, 140)] retain];
+    myKeyboardView2 = [[[UIView alloc] initWithFrame:CGRectMake(0, screenHeight-140, screenWidth, 140)] retain];
     [myKeyboardView2 setBackgroundColor:[UIColor lightTextColor]];
     buttonTintColor = [UIColor blackColor];
     
@@ -481,11 +482,12 @@
                 [buttonPartBusName deleteCharactersInRange:NSMakeRange([buttonPartBusName length]-1, 1)];
             [self searchFMDatabase:buttonPartBusName];
             break;
-        case 13:
-            [myKeyboardView removeFromSuperview];
+        case 13: //更多
+            //[myKeyboardView removeFromSuperview];
             
-            [self.view addSubview:myKeyboardView2];
-            //[[searchBar.subviews objectAtIndex:1] setInputView:myKeyboardView2];
+            //[self.view addSubview:myKeyboardView2];
+            [[searchBar.subviews objectAtIndex:1] setInputView:myKeyboardView2];
+            [self.searchBar reloadInputViews];
             break;
         case 14:
             [searchBar resignFirstResponder];
@@ -569,6 +571,9 @@
             [buttonPartBusName deleteCharactersInRange:NSMakeRange(0, [buttonPartBusName length])];
             break;
         case 28:
+            //[myKeyboardView2 removeFromSuperview];
+            [[searchBar.subviews objectAtIndex:1] setInputView:myKeyboardView];
+            [self.searchBar reloadInputViews];
             break;
         default:
             break;
@@ -627,7 +632,6 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    //self.tableView.frame = CGRectMake(0, 0, 320, 300);
     self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     [self.searchBar setTintColor:[UIColor lightGrayColor]];
     self.searchBar.placeholder = @"請輸入路線編號或名稱";
@@ -641,7 +645,8 @@
 
 - (void)searchBar:(UISearchBar *)theSearchBar textDidChange:(NSString *)searchText
 {
-    NSLog(@"search bar text = %@", theSearchBar.text);
+    [buttonPartBusName setString:theSearchBar.text];
+    NSLog(@"search bar text = %@", buttonPartBusName);
     if(searchText.length != 0)
     {
         if([searchResults count] > 0)
