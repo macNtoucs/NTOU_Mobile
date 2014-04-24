@@ -10,6 +10,7 @@
 #import "R66LeftLayerViewController.h"
 #import "R66SwitchViewController.h"
 #import "StopsViewController.h"
+#import "NTOUTableViewControllerLayer2.h"
 
 @interface NTOUBusTableViewController : UITableViewController
 

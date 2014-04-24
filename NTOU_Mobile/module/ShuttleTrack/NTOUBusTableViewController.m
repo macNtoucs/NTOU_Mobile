@@ -58,7 +58,19 @@
 
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	NSString *headerTitle;
-    headerTitle = @"市區公車";
+    //headerTitle = @"市區公車";
+    
+    switch (section) {
+        case 0:
+            headerTitle = @"學生專車";
+            break;
+            
+        case 1:
+            headerTitle =@"市區公車";
+            break;
+            
+    }
+
     
     UIFont *font = [UIFont boldSystemFontOfSize:STANDARD_CONTENT_FONT_SIZE];
 	CGSize size = [headerTitle sizeWithFont:font];
@@ -81,13 +93,23 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 3;
+    //return 3;
+    
+    switch (section) {
+        case 0:
+            return 2;
+            break;
+        case 1:
+            return 3;
+            break;
+    }
+    return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -100,16 +122,32 @@
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    switch (indexPath.row) {
+    switch (indexPath.section)  {
         case 0:
-            cell.textLabel.text = @"八斗子  → 海大  → 火車站";
+            switch (indexPath.row) {
+                case 0:
+                    cell.textLabel.text = @"海洋大學  → 捷運劍潭站";
+                    break;
+                case 1:
+                    cell.textLabel.text = @"捷運劍潭站  → 海洋大學";
+                    break;
+                default:
+                    break;
+            }
             break;
         case 1:
-            cell.textLabel.text = @"火車站  → 海大  → 八斗子";
-            break;
-        case 2:
-            cell.textLabel.text = @"R66（海科館／七堵車站）";
-        default:
+            switch (indexPath.row) {
+                case 0:
+                    cell.textLabel.text = @"八斗子  → 海大  → 火車站";
+                    break;
+                case 1:
+                    cell.textLabel.text = @"火車站  → 海大  → 八斗子";
+                    break;
+                case 2:
+                    cell.textLabel.text = @"R66（海科館／七堵車站）";
+                default:
+                    break;
+            }
             break;
     }
     return cell;
@@ -158,34 +196,44 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SecondaryGroupedTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    
-    StopsViewController * stops = [[StopsViewController alloc]initWithStyle:UITableViewStyleGrouped];
-    // 這行沒mark掉會導致R66公車無法進到下層
-    //stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];
-    R66SwitchViewController *r66Switch = [[R66SwitchViewController alloc] init];
-    
-    if (indexPath.row==0) {
-        stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];            [stops setDirection:true];
-        [self.navigationController pushViewController:stops animated:YES];
-        stops.navigationItem.leftBarButtonItem.title=@"back";
+    if (indexPath.section==0) {
+        NTOUTableViewControllerLayer2 * Layer2 = [[NTOUTableViewControllerLayer2 alloc]initWithStyle:UITableViewStyleGrouped];
+        [Layer2 SetRoute:indexPath.row];
+        [self.navigationController pushViewController:Layer2 animated:YES];
+        Layer2.navigationItem.leftBarButtonItem.title=@"back";
+        [Layer2 release];
     }
-    else if (indexPath.row == 1) {
-        stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];            [stops setDirection:false];
-        [self.navigationController pushViewController:stops animated:YES];
-        stops.navigationItem.leftBarButtonItem.title=@"back";
-    }
-    else
+    else if (indexPath.section == 1)
     {
-        r66Switch.title = @"R66 時刻表";
+        SecondaryGroupedTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
-        //[self.navigationController.toolbar setFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
-        //NSLog(@"toolbar = %f", self.navigationController.toolbar.frame.size.height);
-        [self.navigationController pushViewController:r66Switch animated:YES];
-        r66Switch.navigationItem.leftBarButtonItem.title = @"back";
+        StopsViewController * stops = [[StopsViewController alloc]initWithStyle:UITableViewStyleGrouped];
+        // 這行沒mark掉會導致R66公車無法進到下層
+        //stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];
+        R66SwitchViewController *r66Switch = [[R66SwitchViewController alloc] init];
+        
+        if (indexPath.row==0) {
+            stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];            [stops setDirection:true];
+            [self.navigationController pushViewController:stops animated:YES];
+            stops.navigationItem.leftBarButtonItem.title=@"back";
+        }
+        else if (indexPath.row == 1) {
+            stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];            [stops setDirection:false];
+            [self.navigationController pushViewController:stops animated:YES];
+            stops.navigationItem.leftBarButtonItem.title=@"back";
+        }
+        else
+        {
+            r66Switch.title = @"R66 時刻表";
+            
+            //[self.navigationController.toolbar setFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
+            //NSLog(@"toolbar = %f", self.navigationController.toolbar.frame.size.height);
+            [self.navigationController pushViewController:r66Switch animated:YES];
+            r66Switch.navigationItem.leftBarButtonItem.title = @"back";
+        }
+        [stops release];
+        [r66Switch release];
     }
-    [stops release];
-    [r66Switch release];
 }
 
 @end

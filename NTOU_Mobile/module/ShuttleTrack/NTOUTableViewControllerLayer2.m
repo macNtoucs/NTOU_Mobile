@@ -9,6 +9,11 @@
 #import "NTOUTableViewControllerLayer2.h"
 #import "UIKit+NTOUAdditions.h"
 
+//#define NTOU_ZhongxiaFuxing 3
+//#define ZhongxiaFuxing_NTOU 0
+#define NTOU_Jiantan 0
+#define Jiantan_NTOU 1
+
 
 
 @interface NTOUTableViewControllerLayer2 ()
@@ -64,16 +69,16 @@
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	NSString *headerTitle;
     switch (self->WhatRoute) {
-        case 3:
+        /*case NTOU_ZhongxiaFuxing:
             headerTitle = @"忠孝復興站  → 海洋大學";
             break;
-        case 0:
+        case ZhongxiaFuxing_NTOU:
             headerTitle = @"海洋大學  → 忠孝復興站";
-            break;
-        case 2:
+            break;*/
+        case Jiantan_NTOU:
             headerTitle = @"捷運劍潭站  → 海洋大學";
             break;
-        case 1:
+        case NTOU_Jiantan:
             headerTitle = @"海洋大學  → 捷運劍潭站";
             break;
         default:
@@ -91,16 +96,16 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     switch (self->WhatRoute) {
-        case 3:
+        /*case NTOU_ZhongxiaFuxing:
             return 8;
             break;
-        case 0:
+        case ZhongxiaFuxing_NTOU:
             return 4;
-            break;
-        case 2:
+            break;*/
+        case Jiantan_NTOU:
             return 6;
             break;
-        case 1:
+        case NTOU_Jiantan:
             return 4;
             break;
         default:
@@ -119,7 +124,7 @@
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     switch (self->WhatRoute) {
-        case 3:
+        /*case NTOU_ZhongxiaFuxing:
             switch (indexPath.row) {
                 case 0:
                     cell.textLabel.text = @"站牌";
@@ -161,8 +166,8 @@
                     break;
             }
             break;
-        case 0:
-        case 1:
+        case ZhongxiaFuxing_NTOU:*/
+        case NTOU_Jiantan:
             switch (indexPath.row) {
                 case 0:
                     cell.textLabel.text = @"站牌";
@@ -187,7 +192,7 @@
                     break;
             }
             break;
-        case 2:
+        case Jiantan_NTOU:
             switch (indexPath.row) {
                 case 0:
                     cell.textLabel.text = @"站牌";
@@ -285,8 +290,8 @@
     CLLocationCoordinate2D location ;
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     switch (self->WhatRoute) {
-        case 0:
-        case 1:
+        //case ZhongxiaFuxing_NTOU:
+        case NTOU_Jiantan:
             switch (indexPath.row) {
                 case 1:
                     location.longitude = 121.780073;
@@ -308,7 +313,7 @@
             }
 
             break;
-        case 2:
+        case Jiantan_NTOU:
          switch (indexPath.row) {
          case 1:
          location.longitude = 121.513700;
@@ -341,7 +346,7 @@
          break;
             break;
             
-        case 3:
+        /*case NTOU_ZhongxiaFuxing:
             switch (indexPath.row) {
                 case 1:
                     location.longitude = 121.577064;
@@ -381,7 +386,7 @@
                 default:
                     break;
             }
-            break;
+            break;*/
             
         default:
             break;
