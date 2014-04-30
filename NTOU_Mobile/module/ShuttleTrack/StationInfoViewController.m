@@ -118,6 +118,29 @@
     
     //NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/StationInfo.php?startId=%@&endId=%@&date=%@&car=%@", @"1001", @"1008", @"20140319", @"0000"];
     
+    /* 判斷順逆行 */
+    NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ntou_mobile3.db"];
+    NSLog(@"defaultDBPath=%@", defaultDBPath);
+    FMDatabase *db = [FMDatabase databaseWithPath:defaultDBPath];
+    if (![db open])
+        NSLog(@"Could not open db.");
+    else
+        NSLog(@"Open db successly.");
+    
+        //NSLog(@"[%d]:%@", i, [searchArray objectAtIndex:i]);
+        NSMutableString *query = [NSMutableString stringWithString:@"SELECT * FROM trainlinedirinfo WHERE stationId = '"];
+        [query appendString:startId];
+        [query appendString:@"'"];
+        //NSLog(@"query=%@", query);
+        FMResultSet *rs = [db executeQuery:query];
+        while ([rs next])
+        {
+            NSLog(@"%@", [rs stringForColumn:@"westSea"]);
+            // [searchResults addObject:[rs stringForColumn:@"shortRouteName"]];
+        }
+        [rs close];
+    /* 結束判斷順逆行 */ 
+    
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/StationInfo.php?startId=%@&endId=%@&date=%@&car=%@&lineDir=%@", startId, endId, selectedDate, selectedTrainStyle, @"1"]];
     // 逆時針:1
     NSLog(@"url=%@", url);
