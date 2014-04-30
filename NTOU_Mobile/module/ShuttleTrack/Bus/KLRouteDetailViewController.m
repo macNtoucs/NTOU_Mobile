@@ -95,6 +95,7 @@
         //NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web.php?url=%@", url];
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web.php?bus=%@", encodedBus]];
+    //NSLog(@"KLencodebus=%@", encodedBus);
     //NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web.php?url=http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_stop.jsp?rid=104101"]];
     
     NSData *data = [NSData dataWithContentsOfURL:url];

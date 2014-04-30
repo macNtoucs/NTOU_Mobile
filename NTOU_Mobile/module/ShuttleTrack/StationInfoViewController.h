@@ -27,6 +27,7 @@
     DownloadingView *downloadView;
     NSString * selectedDate;
     NSString * selectedTrainStyle;
+    NSString * lineDir;
 }
 @property (nonatomic,retain) NSURL * dataURL;
 @property (nonatomic ,retain )NSMutableArray *trainNumber;
@@ -36,6 +37,7 @@
 @property (nonatomic, retain) NSMutableArray *arrivalTimes;
 @property (nonatomic, retain) NSString * selectedDate;
 @property (nonatomic, retain) NSString * selectedTrainStyle;
+@property (nonatomic, retain) NSString * lineDir;
 @property (nonatomic, unsafe_unretained) id <StaionInfoDataSource> dataSource;
 -(void) recieveData;
 

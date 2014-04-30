@@ -25,6 +25,7 @@
 @synthesize dataSource;
 @synthesize selectedDate;
 @synthesize selectedTrainStyle;
+@synthesize lineDir;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -119,6 +120,8 @@
     //NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/StationInfo.php?startId=%@&endId=%@&date=%@&car=%@", @"1001", @"1008", @"20140319", @"0000"];
     
     /* 判斷順逆行 */
+    NSMutableDictionary * startLineNums = [[NSMutableDictionary alloc] init];
+    NSArray * lineName = [[NSArray alloc] initWithObjects:@"westMountain", @"westSea", @"south", @"east", @"neiwan", @"pingtung", @"ilan", @"taitung", @"pingxi", @"jiji", @"shalun", @"shenao", @"north", nil];
     NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ntou_mobile3.db"];
     NSLog(@"defaultDBPath=%@", defaultDBPath);
     FMDatabase *db = [FMDatabase databaseWithPath:defaultDBPath];
@@ -133,15 +136,44 @@
         [query appendString:@"'"];
         //NSLog(@"query=%@", query);
         FMResultSet *rs = [db executeQuery:query];
-        while ([rs next])
+        for(int i=0; i < [lineName count]; [rs next], ++i)
         {
-            NSLog(@"%@", [rs stringForColumn:@"westSea"]);
-            // [searchResults addObject:[rs stringForColumn:@"shortRouteName"]];
+                [startLineNums setObject:[rs stringForColumn:[lineName objectAtIndex:i]] forKey:[lineName objectAtIndex:i]];
         }
         [rs close];
-    /* 結束判斷順逆行 */ 
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/StationInfo.php?startId=%@&endId=%@&date=%@&car=%@&lineDir=%@", startId, endId, selectedDate, selectedTrainStyle, @"1"]];
+    lineDir = @"1";
+    int check = 0;
+    
+    NSMutableString *query2 = [NSMutableString stringWithString:@"SELECT * FROM trainlinedirinfo WHERE stationId = '"];
+    [query2 appendString:endId];
+    [query2 appendString:@"'"];
+    //NSLog(@"query=%@", query);
+    FMResultSet *rs2 = [db executeQuery:query2];
+    for(int i=0; i < [lineName count]; [rs2 next], ++i)//while ([rs2 next])
+    {
+        {
+            if([rs2 stringForColumn:[lineName objectAtIndex:i]])
+            {
+                if([[startLineNums valueForKey:[lineName objectAtIndex:i]] intValue] > [[rs2 stringForColumn:[lineName objectAtIndex:i]] intValue])
+                {
+                    lineDir = @"0";
+                    check = 1;
+                    break;
+                }
+            }
+            check = 0;
+        }
+        if(check)
+            break;
+        
+    }
+    [rs2 close];
+    /* 結束判斷順逆行 */
+    
+    //NSLog(@"lineDir = %@", lineDir);
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/StationInfo.php?startId=%@&endId=%@&date=%@&car=%@&lineDir=%@", startId, endId, selectedDate, selectedTrainStyle, lineDir]];
     // 逆時針:1
     NSLog(@"url=%@", url);
     
@@ -165,52 +197,6 @@
         [trainTravelTos addObject:[dict valueForKey:@"trainTravelTo"]];
     }
     
-    /*NSLog(@"%@", StartAndTerminalstops);
-    NSLog(@"%@", departureTimes);
-    NSLog(@"%@", arrivalTimes);
-    NSLog(@"%@", trainStyle);*/
-    
-    /*[StartAndTerminalstops addObject:@"基隆"];
-    [StartAndTerminalstops addObject:@"台北"];*/
-    
-    /*NSArray * trainsAndTimes = [strResult componentsSeparatedByString:@";"];
-    
-    for(int i=0; i<[trainsAndTimes count]-1; i++)
-    {
-        NSArray * tmp = [[trainsAndTimes objectAtIndex:i] componentsSeparatedByString:@"|"];
-        
-        [StartAndTerminalstops addObject:[tmp objectAtIndex:0]];
-        if(![[tmp objectAtIndex:2] isEqual:@""])
-        {
-            NSArray * time = [[tmp objectAtIndex:2] componentsSeparatedByString:@":"];
-            NSString * depTime = [[[@"" stringByAppendingString:[time objectAtIndex:0]] stringByAppendingString:@":"] stringByAppendingString:[time objectAtIndex:1]];
-            [depatureTimes addObject:depTime];
-        }
-        else
-        {
-            [depatureTimes addObject:[tmp objectAtIndex:2]];
-        }
-        if(![[tmp objectAtIndex:1] isEqual:@""])
-        {
-            NSArray * time = [[tmp objectAtIndex:1] componentsSeparatedByString:@":"];
-            NSString * arrTime = [[[@"" stringByAppendingString:[time objectAtIndex:0]] stringByAppendingString:@":"] stringByAppendingString:[time objectAtIndex:1]];
-            [arrivalTimes addObject:arrTime];
-        }
-        else
-        {
-            [arrivalTimes addObject:[tmp objectAtIndex:1]];
-        }
-        
-        
-        if([tmp objectAtIndex:3] == 1131)
-        {
-            [trainStyle addObject:@"區間車"];
-        }
-        else
-        {
-            [trainStyle addObject:@"自強"];
-        }
-    }*/
     //NSLog(@"fetch, depatureTimes = %@, arrivalTimes = %@, trainStyle = %@", depatureTimes, arrivalTimes, trainStyle);
     [arrivalTimes retain];
     [trainStyle retain];
@@ -218,48 +204,6 @@
     [trainNumber retain];
     [trainStartFroms retain];
     [trainTravelTos retain];
-    
-    //[self.tableView reloadData];
-    
-    /*NSError* error;
-    NSData* data = [[NSString stringWithContentsOfURL:dataURL encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
-    TFHpple* parser = [[TFHpple alloc] initWithHTMLData:data];
-    NSArray *tableData_td  = [parser searchWithXPathQuery:@"//body//form//div//table//tbody//tr//td"];
-    int rowItemCount=10;
-    if([tableData_td count]%rowItemCount !=0 || [tableData_td count]%11 ==0) rowItemCount=11;
-     NSLog(@"%lu",(unsigned long)[tableData_td count]);
-    for (int i=3 ; i< [tableData_td count] ; ++i){
-        if (i%rowItemCount==3) {
-            TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
-            NSArray * contextArr = [attributeElement children];
-            TFHppleElement * context = [contextArr objectAtIndex:0];
-            NSArray * stops = [context children];
-            [StartAndTerminalstops addObject: [[stops objectAtIndex:0]content] ];
-        }
-        else if (i%rowItemCount == 4){
-            TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
-            NSArray * contextArr = [attributeElement children];
-            TFHppleElement * context = [contextArr objectAtIndex:0];
-            NSArray * stops = [context children];
-            [depatureTimes addObject: [[stops objectAtIndex:0]content] ];
-        }
-        else if (i%rowItemCount == 5){
-            TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
-            NSArray * contextArr = [attributeElement children];
-            TFHppleElement * context = [contextArr objectAtIndex:0];
-            NSArray * stops = [context children];
-            [arrivalTimes addObject: [[stops objectAtIndex:0]content] ];
-        }
-    }
-     NSArray *tableData_trainStyle  = [parser searchWithXPathQuery:@"//body//form//div//table//tbody//tr//td//span"];
-    for (int i=0 ; i< [tableData_trainStyle count] ; ++i){
-        TFHppleElement * attributeElement = [tableData_trainStyle objectAtIndex:i];
-        NSArray * contextArr = [attributeElement children];
-        if (!(i%3))
-          [trainStyle addObject: [[contextArr objectAtIndex:0]content] ];
-        else continue;
-       }*/
-    
 }
 
 - (void)viewDidLoad
