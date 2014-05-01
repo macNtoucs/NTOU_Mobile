@@ -42,12 +42,16 @@
     /* } else {
      dataFrame = CGRectMake(0, 0, 320, 45);
      }*/
-    
+
     dataTableView = [[UITableView alloc] initWithFrame:dataFrame style:UITableViewStylePlain];
     dataTableView.dataSource = self;
     dataTableView.delegate = self;
     dataTableView.scrollEnabled = NO;
-    textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-60)];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+        textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height)];
+    else
+        textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-60)];
+    
     textView.editable = NO;
     textView.scrollEnabled = YES;
     
@@ -61,6 +65,7 @@
     textSubView.text = [[[[story objectForKey:NewsAPIKeyTitle] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
     textSubView.editable = NO;
     textSubView.userInteractionEnabled = NO;
+    textSubView.backgroundColor = [UIColor clearColor];
     [textSubView setFont:[UIFont boldSystemFontOfSize:18.0]];
     
     [dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];

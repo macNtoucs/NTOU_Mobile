@@ -211,7 +211,7 @@ NSString* NSStringFromUIImageOrientation(UIImageOrientation orientation)
 @implementation UITableView (NTOUUIAdditions)
 
 - (void)applyStandardColors {
-	self.backgroundColor = [UIColor clearColor]; // allows background to show through
+	//self.backgroundColor = [UIColor clearColor]; // allows background to show through
     self.backgroundView = nil;
 	self.separatorColor = TABLE_SEPARATOR_COLOR;
 }

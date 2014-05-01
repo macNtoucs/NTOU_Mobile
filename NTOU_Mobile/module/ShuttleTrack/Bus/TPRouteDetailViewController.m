@@ -239,6 +239,8 @@
 {
     NSLog(@"[Detail]viewDidLoad");
     [super viewDidLoad];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+        self.edgesForExtendedLayout = UIRectEdgeNone;
     //preArray = [NSArray arrayWithObjects:@"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", nil];
     preArray = [[NSArray alloc] initWithObjects:@"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", nil];
     CGRect screenBound = [[UIScreen mainScreen] bounds];

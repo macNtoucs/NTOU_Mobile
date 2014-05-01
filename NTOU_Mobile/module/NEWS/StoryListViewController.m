@@ -127,8 +127,13 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     // set up results table
     storyTable.frame = CGRectMake(0, navScrollView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - navScrollView.frame.size.height);
     [self setupActivityIndicator];
-    
-	// Do any additional setup after loading the view.
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.navigationController.edgesForExtendedLayout = UIRectEdgeNone;
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+        
+    }	// Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -416,7 +421,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
                     UILabel *moreArticlesLabel = [[UILabel alloc] initWithFrame:cell.frame];
                     moreArticlesLabel.font = [UIFont boldSystemFontOfSize:16];
                     moreArticlesLabel.numberOfLines = 1;
-                    moreArticlesLabel.textColor = [UIColor colorWithHexString:@"#990000"];
+                    moreArticlesLabel.textColor = [UIColor colorWithHexString:@"m"];
                     moreArticlesLabel.text = @"載入更多..."; // just something to make it place correctly
                     [moreArticlesLabel sizeToFit];
                     moreArticlesLabel.tag = 1234;

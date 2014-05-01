@@ -171,9 +171,7 @@
         else if (updateTimeOnButton)
         {
             int secs = (1+kRefreshInterval+sinceRefresh);
-            if (secs < 0) secs = 0;
-            self.anotherButton.title = [NSString stringWithFormat:@"%d秒後更新", secs];
-            
+            if (secs < 0) secs = 0;            self.anotherButton.title = [NSString stringWithFormat:@"%d秒後更新", secs];
         }
 	}
     
@@ -183,6 +181,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
     m_waitTimeResult = [NSMutableArray new];
     m_waitTime = [NSMutableArray new];
     m_RouteResult = [NSMutableArray new];

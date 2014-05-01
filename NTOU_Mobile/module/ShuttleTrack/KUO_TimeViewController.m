@@ -110,6 +110,11 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
 	// Do any additional setup after loading the view.
 }
 

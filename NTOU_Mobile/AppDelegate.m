@@ -48,6 +48,15 @@ modules;
     self.springboardController = springboard;
     self.rootNavigationController = rootController;
     
+    /*iOS7 UI fix*/
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.rootNavigationController.edgesForExtendedLayout = UIRectEdgeNone;
+        self.springboardController.edgesForExtendedLayout = UIRectEdgeNone;
+        
+        
+    }
+    
     // TODO: don't store state like this when we're using a springboard.
 	// set modules state
     [rootController pushViewController:springboard animated:NO];
@@ -59,14 +68,17 @@ modules;
      NSLog(@"Exception - %@",[exception description]);
      }
      */
-    
-    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:NTOUImageNameBackground]];
+    //self.window.backgroundColor = [UIColor colorWithHexString:@"#EFEFF4"];
+    self.window.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
     [self.window makeKeyAndVisible];
     
     // Override point for customization after view hierarchy is set
     for (NTOUModule *aModule in self.modules) {
         [aModule applicationDidFinishLaunching];
     }
+    
+    
+    
     NSError *error;
     
     NSFileManager *fileManager = [NSFileManager defaultManager];

@@ -87,6 +87,13 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.navigationController.edgesForExtendedLayout = UIRectEdgeNone;
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+        
+    }
 
 	assert(delegate != nil); assert(document != nil);
 

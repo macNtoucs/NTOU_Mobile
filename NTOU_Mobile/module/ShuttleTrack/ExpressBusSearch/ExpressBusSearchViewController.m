@@ -18,6 +18,7 @@
 @synthesize searchResults;
 @synthesize searchBar;
 @synthesize myKeyboardView, myKeyboardView2, buttonTintColor, buttonPartBusName;
+@synthesize searchDisplayController;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -37,7 +38,6 @@
     
     myKeyboardView = [[[UIView alloc] initWithFrame:CGRectMake(0, screenHeight-140, screenWidth, 140)] retain];
     [myKeyboardView setBackgroundColor:[UIColor lightTextColor]];
-    //myKeyboardView2 = [[[UIView alloc] initWithFrame:CGRectMake(0, screenHeight-205, screenWidth, 140)] retain];
     myKeyboardView2 = [[[UIView alloc] initWithFrame:CGRectMake(0, screenHeight-140, screenWidth, 140)] retain];
     [myKeyboardView2 setBackgroundColor:[UIColor lightTextColor]];
     buttonTintColor = [UIColor blackColor];
@@ -423,6 +423,7 @@
 - (void)buttonClicked:(id)sender
 {
     NSLog(@"buttonClicked");
+    NSArray *searchBarSubViews = [[self.searchBar.subviews objectAtIndex:0] subviews];
     switch ([sender tag])
     {
         case 0:
@@ -483,10 +484,22 @@
             [self searchFMDatabase:buttonPartBusName];
             break;
         case 13: //更多
-            //[myKeyboardView removeFromSuperview];
-            
-            //[self.view addSubview:myKeyboardView2];
-            [[searchBar.subviews objectAtIndex:1] setInputView:myKeyboardView2];
+            if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+            {
+                for (UIView *view in searchBarSubViews) {
+                    if([view isKindOfClass:[UITextField class]])
+                    {
+                        UITextField* search=(UITextField*)view;
+                        [search setFont:[UIFont fontWithName:@"MyCustomFont" size:15]];
+                        
+                        [search setInputView:self.myKeyboardView2];
+                    }
+                }
+            }
+            else
+            {
+                [[searchBar.subviews objectAtIndex:1] setInputView:myKeyboardView2];
+            }
             [self.searchBar reloadInputViews];
             break;
         case 14:
@@ -571,8 +584,22 @@
             [buttonPartBusName deleteCharactersInRange:NSMakeRange(0, [buttonPartBusName length])];
             break;
         case 28:
-            //[myKeyboardView2 removeFromSuperview];
-            [[searchBar.subviews objectAtIndex:1] setInputView:myKeyboardView];
+            if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+            {
+                for (UIView *view in searchBarSubViews) {
+                    if([view isKindOfClass:[UITextField class]])
+                    {
+                        UITextField* search=(UITextField*)view;
+                        [search setFont:[UIFont fontWithName:@"MyCustomFont" size:15]];
+                        
+                        [search setInputView:self.myKeyboardView];
+                    }
+                }
+            }
+            else
+            {
+                [[searchBar.subviews objectAtIndex:1] setInputView:myKeyboardView];
+            }
             [self.searchBar reloadInputViews];
             break;
         default:
@@ -584,13 +611,21 @@
     [buttonPartBusName setString:@""];
 }
 
+#pragma mark - UISearDisplayController delegate methods
+-(void)searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView {
+    
+    tableView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0];
+    tableView.frame=CGRectZero;//This must be set to prevent the result tables being shown
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.tableView applyStandardColors];
-    /*UITapGestureRecognizer *myTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
-    [self.view addGestureRecognizer:myTap];
-    [myTap release];*/
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     buttonPartBusName = [[NSMutableString alloc] init];
     self.searchResults =[[NSMutableArray alloc] init];
     NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ntou_mobile3.db"];
@@ -611,28 +646,7 @@
     }
     [rs close];
     
-    //NSLog(@"searchResults: %@", searchResults);
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-
-/*- (void)tapPress:(UIGestureRecognizer *)gestureRecognizer
-{
-    NSLog(@"ViewAttached:%@", gestureRecognizer.view);
-    if ([gestureRecognizer.view isEqual:UITableViewCellStyleSubtitle])
-    {
-        NSLog(@"tapCell");
-    }
-    else
-    {
-        [self.searchBar resignFirstResponder];
-        NSLog(@"tapPress");
-    }
-}*/
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -640,8 +654,25 @@
     [self.searchBar setTintColor:[UIColor lightGrayColor]];
     self.searchBar.placeholder = @"請輸入路線編號或名稱";
     [self initializeMyKeyboardView];
-    [[searchBar.subviews objectAtIndex:1] setInputView:myKeyboardView];
-    //[self.searchBar reloadInputViews];
+    
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        NSArray *searchBarSubViews = [[self.searchBar.subviews objectAtIndex:0] subviews];
+        for (UIView *view in searchBarSubViews) {
+            if([view isKindOfClass:[UITextField class]])
+            {
+                UITextField* search=(UITextField*)view;
+                [search setFont:[UIFont fontWithName:@"MyCustomFont" size:15]];
+                [search setInputView:self.myKeyboardView];
+            }
+        }
+    }
+    else
+    {
+        [[searchBar.subviews objectAtIndex:1] setInputView:myKeyboardView];
+    }
+    
+    [self.searchBar reloadInputViews];
     
     self.tableView.tableHeaderView = searchBar;
     self.searchBar.delegate = (id)self;

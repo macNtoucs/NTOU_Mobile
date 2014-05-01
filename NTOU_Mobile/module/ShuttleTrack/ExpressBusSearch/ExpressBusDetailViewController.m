@@ -115,7 +115,9 @@
 {
     [super viewDidLoad];
     [self.tableView applyStandardColors];
-    
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.parentViewController.view setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     /*UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"發車時間" style:UIButtonTypeRoundedRect target:self action:@selector(showDepartureTime:)];
     self.navigationItem.rightBarButtonItem = rightButton;
     [rightButton release];*/
@@ -169,7 +171,10 @@
     CGFloat screenWidth = screenSize.width;
     CGFloat screenHeight = screenSize.height;
     
-    [self.tableView setFrame:CGRectMake(0,labelsize.height+10, screenWidth, screenHeight-labelsize.height-50)];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+        [self.tableView setFrame:CGRectMake(0,labelsize.height+40, screenWidth, screenHeight-labelsize.height-50)];
+    else
+        [self.tableView setFrame:CGRectMake(0,labelsize.height, screenWidth, screenHeight-labelsize.height-50)];
 }
 
 - (void)didReceiveMemoryWarning

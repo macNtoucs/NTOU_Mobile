@@ -301,9 +301,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
+    
     trainID = [NSMutableArray new];
     departureTime = [NSMutableArray new];
     arrivalTime = [NSMutableArray new];
+    
     //[self.tableView applyStandardColors];
 }
 

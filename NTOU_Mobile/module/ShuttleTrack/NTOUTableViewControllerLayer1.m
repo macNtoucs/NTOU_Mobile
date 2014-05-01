@@ -29,7 +29,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //[self.tableView applyStandardColors];
+    self.view.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
     [self.tableView applyStandardColors];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -74,31 +81,28 @@
     
     return rowHeight;
 }
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
     return @" ";
-    
 }
 
--(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    
     return 32;
 }
 
-
-
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	NSString *headerTitle;
+    
+    NSString * headerTitle;
+    
     switch (section) {
         case 0:
             headerTitle = @"搭乘工具";
             break;
+            
         case 1:
             headerTitle = @"市區公車";
             break;
-            /*case 2:
-             headerTitle = @"其他";
-             break;*/
         default:
             break;
     }
@@ -134,9 +138,6 @@
         case 1:
             return 3;   // 新增R66
             break;
-            /*case 2:
-             return 1;
-             break;*/
         default:
             return 0;
             break;
@@ -145,7 +146,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%ld%ld",(long)indexPath.section,(long)indexPath.row];
     SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
     {

@@ -223,6 +223,9 @@
     [super viewDidLoad];
     [self.tableView applyStandardColors];
     
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     preArray = [[NSArray alloc] initWithObjects:@"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", nil];
     
     //IDs = [NSMutableArray new];

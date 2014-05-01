@@ -88,6 +88,13 @@
         [trainTravelTos removeAllObjects];
     }
     
+    [arrivalTimes addObject:@""];
+    [trainStyle addObject:@""];
+    [departureTimes addObject:@""];
+    [trainNumber addObject:@""];
+    [trainStartFroms addObject:@""];
+    [trainTravelTos addObject:@""];
+    
     NSLog(@"departureStation:%@", departureStation);
     NSLog(@"arrivalStation:%@", arrivalStation);
     
@@ -155,11 +162,14 @@
         {
             if([rs2 stringForColumn:[lineName objectAtIndex:i]])
             {
+                NSLog(@"xxx1:%d", [[startLineNums valueForKey:[lineName objectAtIndex:i]] intValue]);
                 if([[startLineNums valueForKey:[lineName objectAtIndex:i]] intValue] > [[rs2 stringForColumn:[lineName objectAtIndex:i]] intValue])
                 {
+                    NSLog(@"xxx2:%d", [[rs2 stringForColumn:[lineName objectAtIndex:i]] intValue]);
                     lineDir = @"0";
                     check = 1;
                     break;
+                    
                 }
             }
             check = 0;
@@ -187,15 +197,22 @@
     
     NSArray * responseArr = trainInfo[@"trainInfo"];
     
-    for(NSDictionary * dict in responseArr)
+    //NSLog(@"responseArr=%@", responseArr);
+    
+    if (responseArr != [NSNull null])
     {
-        [arrivalTimes addObject:[dict valueForKey:@"arriveTime"]];
-        [trainStyle addObject:[dict valueForKey:@"carClass"]];
-        [departureTimes addObject:[dict valueForKey:@"departureTime"]];
-        [trainNumber addObject:[dict valueForKey:@"trainNumber"]];
-        [trainStartFroms addObject:[dict valueForKey:@"trainStartFrom"]];
-        [trainTravelTos addObject:[dict valueForKey:@"trainTravelTo"]];
+        NSLog(@"In responseArr");
+        for(NSDictionary * dict in responseArr)
+        {
+            [arrivalTimes addObject:[dict valueForKey:@"arriveTime"]];
+            [trainStyle addObject:[dict valueForKey:@"carClass"]];
+            [departureTimes addObject:[dict valueForKey:@"departureTime"]];
+            [trainNumber addObject:[dict valueForKey:@"trainNumber"]];
+            [trainStartFroms addObject:[dict valueForKey:@"trainStartFrom"]];
+            [trainTravelTos addObject:[dict valueForKey:@"trainTravelTo"]];
+        }
     }
+    
     
     //NSLog(@"fetch, depatureTimes = %@, arrivalTimes = %@, trainStyle = %@", depatureTimes, arrivalTimes, trainStyle);
     [arrivalTimes retain];
@@ -209,13 +226,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.tableView reloadData];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
+    
     trainNumber = [NSMutableArray new];
     departureTimes = [NSMutableArray new];
     arrivalTimes = [NSMutableArray new];
     trainStyle = [NSMutableArray new];
     trainStartFroms = [NSMutableArray new];
     trainTravelTos = [NSMutableArray new];
-    //[self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -259,7 +282,7 @@
     /*return [StartAndTerminalstops count]>=8 || [StartAndTerminalstops count]==0 ?
     [StartAndTerminalstops count]+2 : [StartAndTerminalstops count]+1;*/
     NSLog(@"count:%d", [departureTimes count]);
-    return [departureTimes count]+1;
+    return [departureTimes count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -281,101 +304,61 @@
         cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    /*static  NSString *CellIdentifier = @"cell";
-    SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil) {
-        cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
-    }*/
+    if([trainNumber count] == 1)
+    {
+        cell.textLabel.text = @"查無資料！";
+    }
+    else
+    {
+        if (indexPath.row == 0 )
+        {
+            cell.textLabel.text = [NSString stringWithFormat:@"           車種         車次"];
+            cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:10];
+            cell.detailTextLabel.textColor = [UIColor brownColor];
+            cell.textLabel.textColor = [UIColor brownColor];
+            UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(187, 15.5, 60, 15)] autorelease];
+            label.backgroundColor = [UIColor clearColor];
+            label.lineBreakMode = UILineBreakModeWordWrap;
+            label.numberOfLines = 0;
+            label.tag=25;
+            label.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
+            label.textColor = CELL_STANDARD_FONT_COLOR;
+            label.text = departureStation;
+            //label.text = @"臺北";
+            label.textAlignment = UITextAlignmentCenter;
+            UILabel* detailLabel = [[[UILabel alloc] initWithFrame:CGRectMake(255, 15.5, 60, 15)] autorelease];
+            detailLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
+            detailLabel.backgroundColor = [UIColor clearColor];
+            detailLabel.tag=30;
+            detailLabel.textColor = CELL_DETAIL_FONT_COLOR;
+            detailLabel.backgroundColor = [UIColor clearColor];
+            detailLabel.text = arrivalStation;
+            //detailLabel.text = @"基隆";
+            detailLabel.textAlignment = UITextAlignmentCenter;
+            [cell.contentView removeAllSubviews];
+            [cell.contentView addSubview:label];
+            [cell.contentView addSubview:detailLabel];
+            //cell.imageView.image = NULL;
+        }
+        else
+        {
+            //NSString *textString = [NSString stringWithFormat:@"%@         %@", [trainStartFroms objectAtIndex:indexPath.row-1], [trainTravelTos objectAtIndex:indexPath.row-1]];
+            NSString *textString = [NSString stringWithFormat:@"%@         %@", [trainStyle objectAtIndex:indexPath.row], [trainNumber objectAtIndex:indexPath.row]];
+            NSString *detailString = [NSString stringWithFormat:@"%@     %@", [departureTimes objectAtIndex:indexPath.row],[arrivalTimes objectAtIndex:indexPath.row] ] ;
+            
+            if ([@"[1131]*[1132]*[1120]*[1130]" rangeOfString:[trainStyle objectAtIndex:indexPath.row]].location != NSNotFound)   //區間車、區間快、復興、電車
+                cell.imageView.image = [UIImage imageNamed:@"local_train.png"];
+            if ([@"[1100]*[1101]*[1102]*[1107]" rangeOfString:[trainStyle objectAtIndex:indexPath.row]].location != NSNotFound)   //自強號
+                cell.imageView.image = [UIImage imageNamed:@"speed_train.png"];
+            if ([@"[1110]" rangeOfString:[trainStyle objectAtIndex:indexPath.row]].location != NSNotFound)   //莒光號
+                cell.imageView.image = [UIImage imageNamed:@"gigoung_train.png"];
+            
+            cell.textLabel.text = textString;
+            cell.detailTextLabel.text = detailString;
+            cell.detailTextLabel.textColor = [UIColor blueColor];
+            //NSLog(@"textString: %@, detailString: %@", textString, detailString);
+        }
 
-    
-    /*if (![self hasWifi]){
-        cell.textLabel.text = [NSString stringWithFormat:@"無法連線，請檢查網路"];
-    }
-   else if (indexPath.row == 0 ) {
-        cell.textLabel.text = [NSString stringWithFormat:@"車種"];
-        cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:10];
-        cell.detailTextLabel.textColor = [UIColor brownColor];
-        cell.textLabel.textColor = [UIColor brownColor];
-       UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(172, 13, 60, 15)] autorelease];
-       label.backgroundColor = [UIColor clearColor];
-       label.lineBreakMode = UILineBreakModeWordWrap;
-       label.numberOfLines = 0;
-       label.tag=25;
-       label.font = [UIFont fontWithName:BOLD_FONT size:17.0];
-       label.textColor = CELL_STANDARD_FONT_COLOR;
-       label.text = startStation;
-       label.textAlignment = UITextAlignmentCenter;
-       UILabel* detailLabel = [[[UILabel alloc] initWithFrame:CGRectMake(260, 13, 60, 15)] autorelease];
-       detailLabel.font = [UIFont fontWithName:BOLD_FONT size:17.0];
-       detailLabel.backgroundColor = [UIColor clearColor];
-       detailLabel.tag=30;
-       detailLabel.textColor = CELL_DETAIL_FONT_COLOR;
-       detailLabel.highlightedTextColor = [UIColor whiteColor];
-       detailLabel.backgroundColor = [UIColor clearColor];
-       detailLabel.text = depatureStation;
-       detailLabel.textAlignment = UITextAlignmentCenter;
-       [cell.contentView addSubview:label];
-       [cell.contentView addSubview:detailLabel];
-    }*/
-   
-    
-    /*else if ([StartAndTerminalstops count]==0){
-        cell.imageView.image=nil;
-        cell.textLabel.text = [NSString stringWithFormat:@"無資料"];
-        cell.detailTextLabel.text=@"";
-    }
-    else if (indexPath.row > [StartAndTerminalstops count]){
-        cell.textLabel.text=@"";
-    }*/
-    
-    if (indexPath.row == 0 ) {
-        cell.textLabel.text = [NSString stringWithFormat:@"       車種         車次"];
-        cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:10];
-        cell.detailTextLabel.textColor = [UIColor brownColor];
-        cell.textLabel.textColor = [UIColor brownColor];
-        UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(172, 13, 60, 15)] autorelease];
-        label.backgroundColor = [UIColor clearColor];
-        label.lineBreakMode = UILineBreakModeWordWrap;
-        label.numberOfLines = 0;
-        label.tag=25;
-        label.font = [UIFont fontWithName:BOLD_FONT size:17.0];
-        label.textColor = CELL_STANDARD_FONT_COLOR;
-        label.text = departureStation;
-        //label.text = @"臺北";
-        label.textAlignment = UITextAlignmentCenter;
-        UILabel* detailLabel = [[[UILabel alloc] initWithFrame:CGRectMake(260, 13, 60, 15)] autorelease];
-        detailLabel.font = [UIFont fontWithName:BOLD_FONT size:17.0];
-        detailLabel.backgroundColor = [UIColor clearColor];
-        detailLabel.tag=30;
-        detailLabel.textColor = CELL_DETAIL_FONT_COLOR;
-        detailLabel.highlightedTextColor = [UIColor whiteColor];
-        detailLabel.backgroundColor = [UIColor clearColor];
-        detailLabel.text = arrivalStation;
-        //detailLabel.text = @"基隆";
-        detailLabel.textAlignment = UITextAlignmentCenter;
-        [cell.contentView removeAllSubviews];
-        [cell.contentView addSubview:label];
-        [cell.contentView addSubview:detailLabel];
-        //cell.imageView.image = NULL;
-    }
-    else {
-        //NSString *textString = [NSString stringWithFormat:@"%@         %@", [trainStartFroms objectAtIndex:indexPath.row-1], [trainTravelTos objectAtIndex:indexPath.row-1]];
-        NSString *textString = [NSString stringWithFormat:@"%@         %@", [trainStyle objectAtIndex:indexPath.row-1], [trainNumber objectAtIndex:indexPath.row-1]];
-        NSString *detailString = [NSString stringWithFormat:@"%@         %@", [departureTimes objectAtIndex:indexPath.row-1],[arrivalTimes objectAtIndex:indexPath.row-1] ] ;
-         
-        if ([@"[1131]*[1132]*[1120]*[1130]" rangeOfString:[trainStyle objectAtIndex:indexPath.row-1]].location != NSNotFound)   //區間車、區間快、復興、電車
-            cell.imageView.image = [UIImage imageNamed:@"local_train.png"];
-        if ([@"[1100]*[1101]*[1102]*[1107]" rangeOfString:[trainStyle objectAtIndex:indexPath.row-1]].location != NSNotFound)   //自強號
-            cell.imageView.image = [UIImage imageNamed:@"speed_train.png"];
-        if ([@"[1110]" rangeOfString:[trainStyle objectAtIndex:indexPath.row-1]].location != NSNotFound)   //莒光號
-            cell.imageView.image = [UIImage imageNamed:@"gigoung_train.png"];
-       
-        cell.textLabel.text = textString;
-        cell.detailTextLabel.text = detailString;
-        cell.detailTextLabel.textColor = [UIColor blueColor];
-        //NSLog(@"textString: %@, detailString: %@", textString, detailString);
-        
     }
     
     return cell;

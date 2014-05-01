@@ -20,6 +20,7 @@
     if (self) {
         // Custom initialization
         self.title = @"交通資訊";
+        //[self.view setFrame:CGRectMake(0, 50, 320, 480)];
     }
     return self;
 }
@@ -82,6 +83,11 @@
     [self.view addSubview:ntouButton];
 }
 
+/*-(void)viewDidLoad:(BOOL)animated
+{
+    [self.view setFrame:CGRectMake(0, 20, 320, 480)];
+}*/
+
 - (void)buttonClicked:(id)sender
 {
     NSLog(@"buttonClicked");
@@ -137,6 +143,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+        self.edgesForExtendedLayout = UIRectEdgeNone;
 	// Do any additional setup after loading the view.
     [self showButtons];
 }

@@ -208,8 +208,7 @@
 - (void)viewDidLoad
 {
     loadingAlertView = [[UIAlertView alloc]
-                        initWithTitle:nil message:@"\n\n下載資料中\n請稍候"
-                        delegate:self cancelButtonTitle:@"取消"
+                        initWithTitle:nil message:@"\n\n下載資料中\n請稍候"                        delegate:self cancelButtonTitle:@"取消"
                         otherButtonTitles: nil];
     [self AlertStart:loadingAlertView];
     [super viewDidLoad];
@@ -225,7 +224,11 @@
         [view1 release];
     }
     [_refreshHeaderView refreshLastUpdatedDate];
-    
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

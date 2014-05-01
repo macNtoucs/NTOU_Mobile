@@ -20,6 +20,7 @@
     UIView *myKeyboardView2;
     UIColor *buttonTintColor;
     NSMutableString *buttonPartBusName;
+    UISearchDisplayController *searchDisplayController;
 }
 
 @property (nonatomic, retain) NSMutableArray * searchResults;
@@ -28,5 +29,6 @@
 @property (nonatomic, retain) UIView *myKeyboardView2;
 @property (nonatomic, retain) UIColor *buttonTintColor;
 @property (nonatomic, retain) NSMutableString *buttonPartBusName;
+@property (nonatomic, retain) UISearchDisplayController *searchDisplayController;
 
 @end

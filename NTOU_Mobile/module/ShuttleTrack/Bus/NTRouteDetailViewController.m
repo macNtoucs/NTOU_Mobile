@@ -229,6 +229,8 @@
     NSLog(@"[D=NTDetail]viewDidLoad");
     [super viewDidLoad];
     [self.tableView applyStandardColors];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+        self.edgesForExtendedLayout = UIRectEdgeNone;
     //IDs = [NSMutableArray new];
     m_waitTimeResult = [NSMutableArray new];
     stops = [NSMutableArray new];

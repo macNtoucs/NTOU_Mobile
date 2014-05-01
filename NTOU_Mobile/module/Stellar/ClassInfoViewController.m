@@ -114,6 +114,7 @@
 
 - (void)tabBarController:(UITabBarController *)theTabBarController didSelectViewController:(UIViewController *)viewController
 {
+    
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.2];
     CGRect frame = tabBarArrow.frame;
@@ -167,6 +168,14 @@
 
 - (void)viewDidLoad
 {
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.navigationController.edgesForExtendedLayout = UIRectEdgeNone;
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+        
+    }
+    [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

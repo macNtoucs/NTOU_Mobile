@@ -177,12 +177,20 @@
     UIBarButtonItem * swapStation = [[UIBarButtonItem alloc]initWithTitle:@"往返" style:UIBarButtonItemStylePlain target:self action:@selector(SwapStation)];
     self.navigationItem.rightBarButtonItem = swapStation;
 }
+
 -(void)SwapStation{
     NSString * tmpForSwap = [[NSString alloc]initWithString:DepatureStation];
     DepatureStation = [NSString stringWithString:startStaion];
     startStaion = [NSString stringWithString:tmpForSwap];
     
-    [self viewDidLoad];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        CGRect fullScreenBounds = [[UIScreen mainScreen] bounds];
+        [self.tabBar setFrame:CGRectMake(0, fullScreenBounds.size.height-112, 320, 40)];
+        [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
+    }
+    else
+        [self viewDidLoad];
     if (self.selectedIndex==4){
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyyMMdd"];
@@ -211,8 +219,15 @@
 {
     UIImage* tabBarArrowImage = [UIImage imageNamed:@"TabBarNipple@2x.png"];
     self.tabBarArrow = [[UIImageView alloc] initWithImage:tabBarArrowImage] ;
-    CGFloat verticalLocation = [[UIScreen mainScreen] bounds].size.height-tabBarArrowImage.size.height-self.tabBar.frame.size.height-[[UIApplication sharedApplication] statusBarFrame].size.height-44+5;;
-    tabBarArrow.frame = CGRectMake([self horizontalLocationFor:0], verticalLocation, tabBarArrowImage.size.width, tabBarArrowImage.size.height);
+    CGFloat verticalLocation = [[UIScreen mainScreen] bounds].size.height-tabBarArrowImage.size.height-self.tabBar.frame.size.height-[[UIApplication sharedApplication] statusBarFrame].size.height-44+5;
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        tabBarArrow.frame = CGRectMake([self horizontalLocationFor:0], [[UIScreen mainScreen] bounds].size.height-122, tabBarArrowImage.size.width, tabBarArrowImage.size.height);
+    }
+    else
+    {
+        tabBarArrow.frame = CGRectMake([self horizontalLocationFor:0], [[UIScreen mainScreen] bounds].size.height-(self.tabBar.frame.size.height*2)-5, tabBarArrowImage.size.width, tabBarArrowImage.size.height);
+    }
     
     [self.view addSubview:tabBarArrow];
 }
@@ -250,6 +265,14 @@
 {
     [super viewDidLoad];
     
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        CGRect fullScreenBounds = [[UIScreen mainScreen] bounds];
+        [self.tabBar setFrame:CGRectMake(0, fullScreenBounds.size.height-49, 320, 40)];
+        [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
     self.view.backgroundColor = [UIColor clearColor];
     if(!_isHightSpeedTrain){
         self.title = [NSString stringWithFormat: @" %@ → %@",
@@ -269,7 +292,7 @@
     [self.view addGestureRecognizer:swipeRecognizer_left];
     //  [swipeRecognizer release];
     
-    
+    //[self.view addSubview:self.tabBar];
     
     
     // Do any additional setup after loading the view from its nib.
