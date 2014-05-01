@@ -136,7 +136,7 @@
         [query appendString:@"'"];
         //NSLog(@"query=%@", query);
         FMResultSet *rs = [db executeQuery:query];
-        for(int i=0; i < [lineName count]; [rs next], ++i)
+    for(int i=0; i < [lineName count] && [rs next]; ++i)
         {
                 [startLineNums setObject:[rs stringForColumn:[lineName objectAtIndex:i]] forKey:[lineName objectAtIndex:i]];
         }
@@ -150,7 +150,7 @@
     [query2 appendString:@"'"];
     //NSLog(@"query=%@", query);
     FMResultSet *rs2 = [db executeQuery:query2];
-    for(int i=0; i < [lineName count]; [rs2 next], ++i)//while ([rs2 next])
+    for(int i=0; i < [lineName count] && [rs2 next]; ++i)//while ([rs2 next])
     {
         {
             if([rs2 stringForColumn:[lineName objectAtIndex:i]])
