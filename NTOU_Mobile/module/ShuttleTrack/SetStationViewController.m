@@ -40,7 +40,8 @@
             [[NSUserDefaults standardUserDefaults]setObject:DepatureStation forKey:@"DepatureStaion"];
         }
         view1 = [[SetOriginAndStationViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        view1.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
+        //view1.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
+        view1.view.frame = CGRectMake(0, 0, 320, self.view.frame.size.height-self.tabBar.frame.size.height);
         [setStartStationController.view addSubview:bg];
         [setStartStationController.view addSubview:view1.view];
         setStartStationController.tabBarItem.tag=0;
@@ -186,7 +187,8 @@
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
     {
         CGRect fullScreenBounds = [[UIScreen mainScreen] bounds];
-        [self.tabBar setFrame:CGRectMake(0, fullScreenBounds.size.height-112, 320, 40)];
+        //[self.tabBar setFrame:CGRectMake(0, fullScreenBounds.size.height-112, 320, 40)];
+         [self.tabBar setFrame:CGRectMake(0, self.view.frame.size.height-49, 320, 40)];
         [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
     }
     else
@@ -265,12 +267,24 @@
 {
     [super viewDidLoad];
     
+    NSLog(@"viewDidLoad");
+    
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
         
+        NSLog(@"system 7.0");
         CGRect fullScreenBounds = [[UIScreen mainScreen] bounds];
-        [self.tabBar setFrame:CGRectMake(0, fullScreenBounds.size.height-49, 320, 40)];
+        NSLog(@"self.tabBar.frame.origin.y = %f, height = %f, view height = %f", self.tabBar.frame.origin.y, fullScreenBounds.size.height, self.view.frame.size.height);
+        //[self.tabBar setFrame:CGRectMake(0, fullScreenBounds.size.height-49, 320, 40)];
+        [self.tabBar setFrame:CGRectMake(0, self.view.frame.size.height-49, 320, 40)];
+        if(self.tabBar.frame.origin.y == fullScreenBounds.size.height-112)
+        {
+            NSLog(@"Hello");
+        }
+        //[self.tabBar setFrame:CGRectMake(0, fullScreenBounds.size.height-112, 320, 40)];
+        NSLog(@"self.tabBar.frame.origin.y = %f", self.tabBar.frame.origin.y);
         [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
         self.edgesForExtendedLayout = UIRectEdgeNone;
+        
         
     }
     self.view.backgroundColor = [UIColor clearColor];
