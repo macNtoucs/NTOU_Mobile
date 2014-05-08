@@ -471,7 +471,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     }
     else
     {
-        StoryDetailViewController *detailViewController = [[StoryDetailViewController alloc] init];
+        NewsDetailViewController *detailViewController = [[NewsDetailViewController alloc] init];
         NSDictionary *story = [self->tableDisplayData[self.activeCategoryId] objectAtIndex:indexPath.row];
         detailViewController.story = story;
         

@@ -192,7 +192,7 @@
         cell.textLabel.textColor = [UIColor brownColor];
        UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(172, 13, 60, 15)] autorelease];
        label.backgroundColor = [UIColor clearColor];
-       label.lineBreakMode = UILineBreakModeWordWrap;
+       label.lineBreakMode = NSLineBreakByWordWrapping;
        label.numberOfLines = 0;
        label.tag=25;
        label.font = [UIFont fontWithName:BOLD_FONT size:17.0];

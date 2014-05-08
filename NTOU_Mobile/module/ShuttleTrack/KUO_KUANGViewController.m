@@ -95,7 +95,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
-    cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.textLabel.numberOfLines = 0;
     switch (indexPath.section){
         case 0:

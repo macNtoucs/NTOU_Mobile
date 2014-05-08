@@ -241,7 +241,7 @@
             break;
         default:
             cellText = @"A"; // just something to guarantee one line
-            CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+            CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
             rowHeight = labelSize.height + 20.0f;
             break;
     }

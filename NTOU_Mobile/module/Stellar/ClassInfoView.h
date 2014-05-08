@@ -28,13 +28,14 @@
 #define type5 @"筆記"
 #define type6 @"考古題"
 
-@interface ClassInfoView : UITableViewController<UITextViewDelegate,ReaderViewControllerDelegate>
+@interface ClassInfoView : UITableViewController<UITextViewDelegate,ReaderViewControllerDelegate,UIWebViewDelegate>
 {
     UITextView *textView;
     NSDictionary* moodleData;
     id delegatetype5;
     NSMutableArray* resource;
     NSString* moodleid;
+    float getSize;
 }
 
 @property (nonatomic, retain) UITextView *textView;
@@ -42,4 +43,5 @@
 @property (nonatomic, retain) NSString* moodleid;
 @property (nonatomic, retain) NSMutableArray* resource;
 @property (nonatomic,assign) id delegatetype5;
+
 @end

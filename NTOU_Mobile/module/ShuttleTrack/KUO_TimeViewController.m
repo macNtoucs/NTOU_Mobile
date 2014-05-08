@@ -91,7 +91,7 @@
         titleView.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
         
         titleView.textColor = [UIColor whiteColor]; // Change to desired color
-        titleView.lineBreakMode = UILineBreakModeWordWrap;
+        titleView.lineBreakMode = NSLineBreakByWordWrapping;
         titleView.numberOfLines = 1;
         self.navigationItem.titleView = titleView;
         [titleView release];

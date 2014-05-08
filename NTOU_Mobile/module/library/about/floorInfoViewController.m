@@ -136,7 +136,7 @@
 
     CGSize maximumLabelSize = CGSizeMake(200,9999);
     CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
-    CGSize size = [infotext sizeWithFont:[UIFont fontWithName:@"Helvetica" size:13.0] constrainedToSize:maximumLabelSize lineBreakMode:UILineBreakModeWordWrap];
+    CGSize size = [infotext sizeWithFont:[UIFont fontWithName:@"Helvetica" size:13.0] constrainedToSize:maximumLabelSize lineBreakMode:NSLineBreakByWordWrapping];
         
     levellabel.text = floortitle;
     levellabel.font = [UIFont boldSystemFontOfSize:14.0];
@@ -163,7 +163,7 @@
     NSString *text = [[[self.floorInfo objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] objectForKey:@"info"];
     CGSize maximumLabelSize = CGSizeMake(200,9999);
     
-    CGSize size = [text sizeWithFont:[UIFont fontWithName:@"Helvetica" size:13.0] constrainedToSize:maximumLabelSize lineBreakMode:UILineBreakModeWordWrap];
+    CGSize size = [text sizeWithFont:[UIFont fontWithName:@"Helvetica" size:13.0] constrainedToSize:maximumLabelSize lineBreakMode:NSLineBreakByWordWrapping];
     
     CGFloat height = size.height + 30;
     

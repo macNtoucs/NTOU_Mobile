@@ -128,7 +128,7 @@
     NSString *cellText = nil;
     
     cellText = @"A"; // just something to guarantee one line
-    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
     rowHeight = labelSize.height + 20.0f;
     
     return rowHeight;
@@ -176,7 +176,7 @@
     {
         cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
         cell.textLabel.numberOfLines = 0;
     }
     //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

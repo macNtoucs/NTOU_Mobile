@@ -85,7 +85,7 @@
         NSString *cellText = nil;
         
         cellText = @"A"; // just something to guarantee one line
-        CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+        CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
         rowHeight = labelSize.height + 20.0f;
         
         return rowHeight;
@@ -290,7 +290,7 @@
     NSString *explanation = @"帳號: 學校信箱之帳號(＠前的文字)；\n         預設為學號。\n密碼: 學校信箱之密碼；\n         預設為含大寫之身分證字號，\n         若是外籍生，則為含大寫之居留證\n         或護照號碼。";
     CGSize stringSize = [explanation sizeWithFont:[UIFont boldSystemFontOfSize:15]
                           constrainedToSize:CGSizeMake(320, 9999)
-                              lineBreakMode:UILineBreakModeWordWrap];
+                              lineBreakMode:NSLineBreakByWordWrapping];
     UITextView *textV=[[UITextView alloc] initWithFrame:CGRectMake(5, 5, 290, stringSize.height+50)];
     
     switch (indexPath.section) {

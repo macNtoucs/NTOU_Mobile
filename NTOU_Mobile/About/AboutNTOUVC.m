@@ -25,7 +25,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *aboutText = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"NTOUAboutNTOUText"];
     UIFont *aboutFont = [UIFont systemFontOfSize:15.0];
-    CGSize aboutSize = [aboutText sizeWithFont:aboutFont constrainedToSize:CGSizeMake(270, 2000) lineBreakMode:UILineBreakModeWordWrap];
+    CGSize aboutSize = [aboutText sizeWithFont:aboutFont constrainedToSize:CGSizeMake(270, 2000) lineBreakMode:NSLineBreakByWordWrapping];
     return aboutSize.height;
 }
 
@@ -45,7 +45,7 @@
     cell.textLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"NTOUAboutNTOUText"];
     cell.textLabel.font = [UIFont systemFontOfSize:15.0];
     cell.textLabel.textColor = CELL_STANDARD_FONT_COLOR;
-    cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.textLabel.numberOfLines = 0;
 	
     return cell;

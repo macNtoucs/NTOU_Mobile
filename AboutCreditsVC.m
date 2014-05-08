@@ -62,7 +62,7 @@
     if (indexPath.section == 0 && indexPath.row == 1) {
         NSString *aboutText = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"NTOUAboutMemberText"];
         UIFont *aboutFont = [UIFont systemFontOfSize:14.0];
-        CGSize aboutSize = [aboutText sizeWithFont:aboutFont constrainedToSize:CGSizeMake(270, 2000) lineBreakMode:UILineBreakModeWordWrap];
+        CGSize aboutSize = [aboutText sizeWithFont:aboutFont constrainedToSize:CGSizeMake(270, 2000) lineBreakMode:NSLineBreakByWordWrapping];
         return aboutSize.height + 20;
     }
     else {
@@ -101,7 +101,7 @@
         {
             NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
             cell.textLabel.text = [infoDict objectForKey:@"NTOUAboutMemberText"];
-            cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+            cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
             cell.textLabel.numberOfLines = 0;
             cell.textLabel.font = [UIFont systemFontOfSize:15.0];
             cell.textLabel.textColor = CELL_STANDARD_FONT_COLOR;

@@ -301,7 +301,7 @@
         classinfo.backgroundColor = [UIColor clearColor];
         classinfo.textAlignment = UITextAlignmentCenter;
         classinfo.font = [UIFont fontWithName:BOLD_FONT size:15];
-        classinfo.lineBreakMode = UILineBreakModeWordWrap;
+        classinfo.lineBreakMode = NSLineBreakByWordWrapping;
         classinfo.numberOfLines = 0;
         ClassDataBase* ClassData = [ClassDataBase sharedData];
         classinfo.text = [NSString stringWithFormat:@"教授名稱：%@\n 教室地點：%@",[ClassData FetchProfessorName:[NSNumber numberWithInt:self.tag]],[ClassData FetchClassroomLocation:[NSNumber numberWithInt:self.tag]]];

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NavScrollerView.h"
 #import "Announce_API.h"
-#import "StoryDetailViewController.h"
+#import "NewsDetailViewController.h"
 #import "PullTableView.h"
 typedef enum {
     NewsCategoryIdAnnounce = 0,

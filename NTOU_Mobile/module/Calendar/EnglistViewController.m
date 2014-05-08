@@ -198,7 +198,7 @@
     CGSize maximumLabelSize = CGSizeMake(230,9999);
     CGSize expectedLabelSize = [value sizeWithFont:cellFont
                                  constrainedToSize:maximumLabelSize
-                                     lineBreakMode:UILineBreakModeWordWrap];
+                                     lineBreakMode:NSLineBreakByWordWrapping];
     
     if (cell == nil)
     {
@@ -267,7 +267,7 @@
     }
     
     eventlabel.tag=row;
-    eventlabel.lineBreakMode = UILineBreakModeWordWrap;
+    eventlabel.lineBreakMode = NSLineBreakByWordWrapping;
     eventlabel.numberOfLines = 0;
     eventlabel.backgroundColor = [UIColor clearColor];
     eventlabel.font = cellFont;
@@ -331,7 +331,7 @@
     CGSize maximumLabelSize = CGSizeMake(230,9999);
     CGSize size = [value sizeWithFont:[UIFont systemFontOfSize:14.0f]
                         constrainedToSize:maximumLabelSize
-                        lineBreakMode:UILineBreakModeWordWrap];
+                        lineBreakMode:NSLineBreakByWordWrapping];
     
     CGFloat height = 33.0 + size.height;
     return height;
