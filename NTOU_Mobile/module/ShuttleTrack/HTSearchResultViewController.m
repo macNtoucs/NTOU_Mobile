@@ -359,8 +359,14 @@
     }
 
     else if (indexPath.row == 0 ) {
-        cell.textLabel.text = [NSString stringWithFormat:@"      車次                        %@           %@",departureStation, arrivalStation];
-        
+        if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+        {
+            cell.textLabel.text = [NSString stringWithFormat:@"      車次                      %@           %@",departureStation, arrivalStation];
+        }
+        else
+        {
+            cell.textLabel.text = [NSString stringWithFormat:@"      車次                        %@           %@",departureStation, arrivalStation];
+        }
         cell.textLabel.textColor = [UIColor brownColor];
     }
       

@@ -184,15 +184,8 @@
     DepatureStation = [NSString stringWithString:startStaion];
     startStaion = [NSString stringWithString:tmpForSwap];
     
-    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
-    {
-        CGRect fullScreenBounds = [[UIScreen mainScreen] bounds];
-        //[self.tabBar setFrame:CGRectMake(0, fullScreenBounds.size.height-112, 320, 40)];
-         [self.tabBar setFrame:CGRectMake(0, self.view.frame.size.height-49, 320, 40)];
-        [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
-    }
-    else
-        [self viewDidLoad];
+    [self viewDidLoad];
+    
     if (self.selectedIndex==4){
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyyMMdd"];

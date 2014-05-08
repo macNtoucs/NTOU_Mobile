@@ -312,7 +312,14 @@
     {
         if (indexPath.row == 0 )
         {
-            cell.textLabel.text = [NSString stringWithFormat:@"           車種         車次"];
+            if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+            {
+                cell.textLabel.text = [NSString stringWithFormat:@"           車種     車次"];
+            }
+            else
+            {
+                cell.textLabel.text = [NSString stringWithFormat:@"       車種          車次"];
+            }
             cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:10];
             cell.detailTextLabel.textColor = [UIColor brownColor];
             cell.textLabel.textColor = [UIColor brownColor];
@@ -324,27 +331,34 @@
             label.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
             label.textColor = CELL_STANDARD_FONT_COLOR;
             label.text = departureStation;
-            //label.text = @"臺北";
             label.textAlignment = UITextAlignmentCenter;
             UILabel* detailLabel = [[[UILabel alloc] initWithFrame:CGRectMake(255, 15.5, 60, 15)] autorelease];
             detailLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
             detailLabel.backgroundColor = [UIColor clearColor];
             detailLabel.tag=30;
-            detailLabel.textColor = CELL_DETAIL_FONT_COLOR;
+            detailLabel.textColor = CELL_STANDARD_FONT_COLOR;
             detailLabel.backgroundColor = [UIColor clearColor];
             detailLabel.text = arrivalStation;
-            //detailLabel.text = @"基隆";
             detailLabel.textAlignment = UITextAlignmentCenter;
             [cell.contentView removeAllSubviews];
             [cell.contentView addSubview:label];
             [cell.contentView addSubview:detailLabel];
-            //cell.imageView.image = NULL;
         }
         else
         {
-            //NSString *textString = [NSString stringWithFormat:@"%@         %@", [trainStartFroms objectAtIndex:indexPath.row-1], [trainTravelTos objectAtIndex:indexPath.row-1]];
-            NSString *textString = [NSString stringWithFormat:@"%@         %@", [trainStyle objectAtIndex:indexPath.row], [trainNumber objectAtIndex:indexPath.row]];
-            NSString *detailString = [NSString stringWithFormat:@"%@     %@", [departureTimes objectAtIndex:indexPath.row],[arrivalTimes objectAtIndex:indexPath.row] ] ;
+            NSString *textString = [NSString alloc];
+            NSString *detailString = [NSString alloc];
+            
+            if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+            {
+                textString = [NSString stringWithFormat:@"%@     %@", [trainStyle objectAtIndex:indexPath.row], [trainNumber objectAtIndex:indexPath.row]];
+                detailString = [NSString stringWithFormat:@"%@     %@", [departureTimes objectAtIndex:indexPath.row],[arrivalTimes objectAtIndex:indexPath.row] ] ;
+            }
+            else
+            {
+                textString = [NSString stringWithFormat:@"%@         %@", [trainStyle objectAtIndex:indexPath.row], [trainNumber objectAtIndex:indexPath.row]];
+                detailString = [NSString stringWithFormat:@"%@      %@", [departureTimes objectAtIndex:indexPath.row],[arrivalTimes objectAtIndex:indexPath.row] ] ;
+            }
             
             if ([@"[1131]*[1132]*[1120]*[1130]" rangeOfString:[trainStyle objectAtIndex:indexPath.row]].location != NSNotFound)   //區間車、區間快、復興、電車
                 cell.imageView.image = [UIImage imageNamed:@"local_train.png"];
