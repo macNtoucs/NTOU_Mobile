@@ -34,5 +34,10 @@
 + (NSString *) getEmergencyNotificationAndDelete;
 + (void) setBadgeValue:(NSString *)badge forModule:(NSString *) module;
 + (void) updateUI:(Notification *) notification;
-+ (void)setAllBadge;
++ (void) setAllBadge;
+
++ (void) sendDevicePushSetting:(NSMutableArray *) receiveArray;
++(NSMutableArray *) getDevicePushSettingArray;
+
++ (void) sendRegisterDevice:(NSString *) studentID;
 @end

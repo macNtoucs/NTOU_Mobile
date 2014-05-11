@@ -147,4 +147,58 @@
         if ([aModule.tag isEqual:notification.moduleName])
             [aModule handleNotification:notification shouldOpen:YES];
 }
+
+
++ (void) sendDevicePushSetting:(NSMutableArray *) receiveArray
+{
+    NTOU_MobileAppDelegate *appDelegate = (NTOU_MobileAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    //第一步，创建URL
+    NSURL *url = [NSURL URLWithString:@"http://140.121.91.62/NTOUmsgProvider/devicePushSetting.php"];
+    //第二步，创建请求
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    [request setHTTPMethod:@"POST"];//设置请求方式为POST，默认为GET
+    NSString *str = [NSString stringWithFormat:@"deviceToken=%@&moodle=%@&library=%@&emergency=%@",appDelegate.devicePushToken,receiveArray[0],receiveArray[1],receiveArray[2]];
+    
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:data];
+    //第三步，连接服务器
+    
+    [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:receiveArray forKey:receivePushKey];
+    [userDefaults synchronize];
+
+}
+
++(NSMutableArray *) getDevicePushSettingArray
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:receivePushKey];
+}
+
++ (void) sendRegisterDevice:(NSString *) studentID
+{
+    NTOU_MobileAppDelegate *appDelegate = (NTOU_MobileAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    // You can send here, for example, an asynchronous HTTP request to your web-server to store this deviceToken remotely.
+    //第一步，创建URL
+    NSURL *url = [NSURL URLWithString:@"http://140.121.91.62/NTOUmsgProvider/register.php"];
+    //第二步，创建请求
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    [request setHTTPMethod:@"POST"];//设置请求方式为POST，默认为GET
+    NSString *str = nil;
+    if (studentID) {
+        str = [NSString stringWithFormat:@"deviceToken=%@&OS=iOS&studentID=%@",appDelegate.devicePushToken,studentID];
+    }
+    else
+        str = [NSString stringWithFormat:@"deviceToken=%@&OS=iOS",appDelegate.devicePushToken];//设置参数
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:data];
+    //第三步，连接服务器
+    
+    [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+
+}
+
 @end

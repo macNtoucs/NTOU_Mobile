@@ -14,12 +14,13 @@
 #import "Rotation.h"
 #import "NTOUConstants.h"
 #import "NTOUNotification.h"
+#import "SettingsModuleViewController.h"
 @implementation NTOU_MobileAppDelegate
 @synthesize window=_window,
 rootNavigationController = _rootNavigationController,
 modules;
 
-@synthesize deviceToken = devicePushToken;
+@synthesize devicePushToken;
 
 @synthesize springboardController = _springboardController;
 #pragma mark -
@@ -188,7 +189,18 @@ modules;
 #pragma mark Remote notifications
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    // You can send here, for example, an asynchronous HTTP request to your web-server to store this deviceToken remotely.
+    /* Get device token */
+    NSString *strDevToken = [NSString stringWithFormat:@"%@", deviceToken];
+    
+    /* Replace '<', '>' and ' ' */
+    NSCharacterSet *charDummy = [NSCharacterSet characterSetWithCharactersInString:@"<> "];
+    strDevToken = [[strDevToken componentsSeparatedByCharactersInSet: charDummy] componentsJoinedByString: @""];
+    devicePushToken = [strDevToken retain];
+    if ([SettingsModuleViewController getLoginSuccess])
+        [NTOUNotificationHandle sendRegisterDevice:[SettingsModuleViewController getAccount]];
+    else
+        [NTOUNotificationHandle sendRegisterDevice:nil];
+    
     NSLog(@"Did register for remote notifications: %@", deviceToken);
 }
 
@@ -230,7 +242,6 @@ modules;
 
 - (void)dealloc {
     self.springboardController = nil;
-    self.deviceToken = nil;
     self.modules = nil;
 	[window release];
 	[super dealloc];
