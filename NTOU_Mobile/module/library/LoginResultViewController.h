@@ -10,9 +10,6 @@
 
 @class WOLSwitchViewController;
 @interface LoginResultViewController : UITableViewController
-@property (nonatomic,retain) NSString *fetchURL;
-@property (strong, nonatomic) WOLSwitchViewController *switchviewcontroller;
-@property (nonatomic,retain) NSString *userAccountId;
-
+@property int page;
 -(void)fetchHistory;
 @end

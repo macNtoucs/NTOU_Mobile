@@ -200,13 +200,13 @@ int Searchpage =1;
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         UILabel *presslabel = nil;
         UILabel *booklabel = nil;
-        UILabel *autherlabel = nil;
+        UILabel *authorlabel = nil;
         
         if (cell == nil)
         {
             presslabel = [[UILabel alloc] init];
             booklabel = [[UILabel alloc] init];
-            autherlabel = [[UILabel alloc] init];
+            authorlabel = [[UILabel alloc] init];
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
         }
@@ -217,24 +217,37 @@ int Searchpage =1;
         NSDictionary *book = [data objectAtIndex:indexPath.row];
         NSString *bookname = [book objectForKey:@"title"];
         NSString *image_url = [book objectForKey:@"image"];
-        NSString *auther = [book objectForKey:@"auther"];
-        NSString *press = [book objectForKey:@"press"];
+        NSString *author = [book objectForKey:@"author"];
+        NSString *press = [book objectForKey:@"pubInform"];
+        
+        if([image_url isEqualToString:@""])
+            image_url = @"http://static.findbook.tw/image/book/1419879251/large";
+            
         
         CGSize maximumLabelSize = CGSizeMake(200,9999);
-        CGSize booknameLabelSize = [bookname sizeWithFont:nameFont
-                                        constrainedToSize:maximumLabelSize
-                                            lineBreakMode:NSLineBreakByWordWrapping];
-        CGSize autherLabelSize = [auther sizeWithFont:otherFont
-                                    constrainedToSize:maximumLabelSize
-                                        lineBreakMode:NSLineBreakByWordWrapping];
+        CGRect booknameLabelRect = [bookname boundingRectWithSize:maximumLabelSize
+                                                          options:NSStringDrawingUsesLineFragmentOrigin
+                                                       attributes:@{NSFontAttributeName:nameFont}
+                                                          context:nil];
+        CGSize booknameLabelSize = booknameLabelRect.size;
         
-        CGSize pressLabelSize = [press sizeWithFont:otherFont
-                                  constrainedToSize:maximumLabelSize
-                                      lineBreakMode:NSLineBreakByWordWrapping];
-        if([press isEqualToString:@"NULL"])
+        CGRect authorLabelRect = [author boundingRectWithSize:maximumLabelSize
+                                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                                   attributes:@{NSFontAttributeName:otherFont}
+                                                      context:nil];
+        CGSize authorLabelSize = authorLabelRect.size;
+        
+        CGRect pressLabelRect = [press boundingRectWithSize:maximumLabelSize
+                                                    options:NSStringDrawingUsesLineFragmentOrigin
+                                                 attributes:@{NSFontAttributeName:otherFont}
+                                                    context:nil];
+        CGSize pressLabelSize = pressLabelRect.size;
+        if([press isEqualToString:@""])
             pressLabelSize.height = 0;
+        if([author isEqualToString:@""])
+            authorLabelSize.height = 0;
         
-        CGFloat height = 11 + booknameLabelSize.height + autherLabelSize.height + pressLabelSize.height;
+        CGFloat height = 11 + booknameLabelSize.height + authorLabelSize.height + pressLabelSize.height;
         CGFloat imageY = height/2 - 80/2;
         if(imageY < 6)
             imageY = 6;
@@ -253,19 +266,24 @@ int Searchpage =1;
         booklabel.backgroundColor = [UIColor clearColor];
         booklabel.font = nameFont;
         //booklabel.textColor = CELL_STANDARD_FONT_COLOR;
+        [cell.contentView addSubview:booklabel];
         
-        autherlabel.frame = CGRectMake(80,8 + booknameLabelSize.height,200,autherLabelSize.height);
-        autherlabel.tag = indexPath.row;
-        autherlabel.lineBreakMode = NSLineBreakByWordWrapping;
-        autherlabel.numberOfLines = 0;
-        autherlabel.backgroundColor = [UIColor clearColor];
-        autherlabel.font = otherFont;
-        autherlabel.textColor = [UIColor grayColor];
-        autherlabel.text = auther;
-        
-        if(![press isEqualToString:@"NULL"])
+        if(![author isEqualToString:@""])
         {
-            presslabel.frame = CGRectMake(80,10 + booknameLabelSize.height + autherLabelSize.height,200,pressLabelSize.height);
+            authorlabel.frame = CGRectMake(80,8 + booknameLabelSize.height,200,authorLabelSize.height);
+            authorlabel.tag = indexPath.row;
+            authorlabel.lineBreakMode = NSLineBreakByWordWrapping;
+            authorlabel.numberOfLines = 0;
+            authorlabel.backgroundColor = [UIColor clearColor];
+            authorlabel.font = otherFont;
+            authorlabel.textColor = [UIColor grayColor];
+            authorlabel.text = author;
+            [cell.contentView addSubview:authorlabel];
+        }
+        
+        if(![press isEqualToString:@""])
+        {
+            presslabel.frame = CGRectMake(80,10 + booknameLabelSize.height + authorLabelSize.height,200,pressLabelSize.height);
             presslabel.text = press;
             presslabel.lineBreakMode = NSLineBreakByWordWrapping;
             presslabel.numberOfLines = 0;
@@ -275,9 +293,6 @@ int Searchpage =1;
             presslabel.textColor = [UIColor grayColor];
             [cell.contentView addSubview:presslabel];
         }
-        
-        [cell.contentView addSubview:booklabel];
-        [cell.contentView addSubview:autherlabel];
         
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
@@ -319,28 +334,38 @@ int Searchpage =1;
     if(indexPath.row < [data count])
     {
         NSDictionary *book = [data objectAtIndex:indexPath.row];
-        NSString *bookname = [book objectForKey:@"bookname"];
-        NSString *auther = [book objectForKey:@"auther"];
-        NSString *press = [book objectForKey:@"press"];
+        NSString *bookname = [book objectForKey:@"title"];
+        NSString *author = [book objectForKey:@"author"];
+        NSString *press = [book objectForKey:@"pubInform"];
         
         UIFont *nameFont = [UIFont fontWithName:@"Helvetica" size:14.0];
         UIFont *otherFont = [UIFont fontWithName:@"Helvetica" size:12.0];
         
         CGSize maximumLabelSize = CGSizeMake(200,9999);
-        CGSize booknameLabelSize = [bookname sizeWithFont:nameFont
-                                        constrainedToSize:maximumLabelSize
-                                            lineBreakMode:NSLineBreakByWordWrapping];
-        CGSize autherLabelSize = [auther sizeWithFont:otherFont
-                                    constrainedToSize:maximumLabelSize
-                                        lineBreakMode:NSLineBreakByWordWrapping];
+        CGRect booknameLabelRect = [bookname boundingRectWithSize:maximumLabelSize
+                                             options:NSStringDrawingUsesLineFragmentOrigin
+                                             attributes:@{NSFontAttributeName:nameFont}
+                                             context:nil];
+        CGSize booknameLabelSize = booknameLabelRect.size;
         
-        CGSize pressLabelSize = [press sizeWithFont:otherFont
-                                  constrainedToSize:maximumLabelSize
-                                      lineBreakMode:NSLineBreakByWordWrapping];
-        if([press isEqualToString:@"NULL"])
+        CGRect authorLabelRect = [author boundingRectWithSize:maximumLabelSize
+                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                        attributes:@{NSFontAttributeName:otherFont}
+                                        context:nil];
+        CGSize authorLabelSize = authorLabelRect.size;
+        
+        CGRect pressLabelRect = [press boundingRectWithSize:maximumLabelSize
+                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                        attributes:@{NSFontAttributeName:otherFont}
+                                        context:nil];
+        CGSize pressLabelSize = pressLabelRect.size;
+
+        if([press isEqualToString:@""])
             pressLabelSize.height = 0;
+        if([author isEqualToString:@""])
+            authorLabelSize.height = 0;
         
-        CGFloat height = 16 + booknameLabelSize.height + autherLabelSize.height + pressLabelSize.height;
+        CGFloat height = 16 + booknameLabelSize.height + authorLabelSize.height + pressLabelSize.height;
         CGFloat imageheight = 92;
         
         return ( height > imageheight )? height : imageheight;

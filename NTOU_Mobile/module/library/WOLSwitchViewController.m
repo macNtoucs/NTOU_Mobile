@@ -81,18 +81,6 @@
     loginViewController = [[LoginResultViewController alloc]initWithStyle:UITableViewStyleGrouped];
     loginresViewController = [[LoginResResultViewController alloc]initWithStyle:UITableViewStyleGrouped];
     loginoutViewController = [[LoginOutResultViewController alloc]initWithStyle:UITableViewStyleGrouped];
-    
-    loginViewController.fetchURL = fetchURL;
-    loginViewController.switchviewcontroller = self;
-    loginViewController.userAccountId = userAccountId;
-    
-    loginresViewController.fetchURL = resfetchURL;
-    loginresViewController.switchviewcontroller = self;
-    loginresViewController.userAccountId = userAccountId;
-    
-    loginoutViewController.fetchURL = outfetchURL;
-    loginoutViewController.switchviewcontroller = self;
-    loginoutViewController.userAccountId = userAccountId;
    
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         // Show the HUD in the main tread
@@ -102,7 +90,7 @@
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.labelText = @"Loading";
         });
-        
+        loginViewController.page =1;
         [loginViewController fetchHistory];
         [loginresViewController fetchresHistory];
         [loginoutViewController fetchoutHistory];

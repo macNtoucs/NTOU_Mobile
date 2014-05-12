@@ -189,6 +189,7 @@ modules;
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // You can send here, for example, an asynchronous HTTP request to your web-server to store this deviceToken remotely.
+    
     NSLog(@"Did register for remote notifications: %@", deviceToken);
 }
 

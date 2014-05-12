@@ -8,21 +8,19 @@
 
 #import "switchController.h"
 #import "MainViewController.h"
-#import "loginViewController.h"
+#import "HistoryTableViewController.h"
 #import "AboutViewController.h"
 #import "UIKit+NTOUAdditions.h"
-#import "WOLSwitchViewController.h"
+
 @interface switchController ()
 
 @end
-
-
 
 @implementation switchController
 -(void)setView
 {
    
-    MainViewController* view1 = [[MainViewController alloc] initWithNibName:nil bundle:nil];
+    MainViewController* view1 = [[MainViewController alloc] init];
     UITabBarItem *item1 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemSearch tag:1];
     view1.tabBarItem = item1;
     view1.switchviewcontroller = self;
@@ -32,7 +30,7 @@
     
     [view1 release];
     
-    WOLSwitchViewController* view2 = [[WOLSwitchViewController alloc] initWithNibName:nil bundle:nil];
+    HistoryTableViewController* view2 = [[HistoryTableViewController alloc] init];
     UITabBarItem *item2 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemHistory tag:2];
     view2.tabBarItem = item2;
     [item2 release];
@@ -40,8 +38,7 @@
     UINavigationController * nav2 = [[UINavigationController alloc]initWithRootViewController:view2];
     [view2 release];
     
-    AboutViewController* view3;
-    view3 = [[AboutViewController alloc] init];
+    AboutViewController* view3 = [[AboutViewController alloc] init];
     UITabBarItem *item3 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:3];
     view3.tabBarItem = item3;
     [item3 release];

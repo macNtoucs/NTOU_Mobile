@@ -14,22 +14,20 @@
 @interface LoginResResultViewController ()
 @property (nonatomic, strong) NSMutableArray *selectindexs;
 @property (nonatomic,retain) NSMutableArray *maindata;
-@property (nonatomic, strong) UIToolbar *actionToolbar;
 @property (nonatomic, strong) UIActionSheet *acsheet;
 @property (nonatomic) BOOL showing;
-
+@property (nonatomic,retain) UIToolbar *actionToolbar;
 @end
 
 @implementation LoginResResultViewController
 @synthesize selectindexs;
 @synthesize maindata;
 @synthesize fetchURL;
-@synthesize actionToolbar;
 @synthesize showing;
 @synthesize switchviewcontroller;
 @synthesize acsheet;
 @synthesize userAccountId;
-
+@synthesize actionToolbar;
 int isSuccess=0;
 
 
@@ -56,8 +54,13 @@ int isSuccess=0;
     maindata = [[NSMutableArray alloc] init];
     [maindata retain];
     self.tableView.allowsMultipleSelection = YES;
-    
-   self.actionToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height -136, 320, 44)];
+
+    CGFloat toolbarHeight = [actionToolbar frame].size.height;
+    actionToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - toolbarHeight - 20, self.view.bounds.size.width, toolbarHeight)];
+
+    actionToolbar.barStyle = UIBarStyleDefault;
+    //Set the toolbar to fit the width of the app.
+    [actionToolbar sizeToFit];
     
     UIBarButtonItem *flexiblespace_l = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     flexiblespace_l.width = 12.0; 
@@ -82,29 +85,39 @@ int isSuccess=0;
     UIBarButtonItem *flexiblespace_r = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     flexiblespace_r.width = 12.0;
     
-    [actionToolbar setItems:[NSArray arrayWithObjects:flexiblespace_l,flexiblespace_m,allselectButton,finishButton,flexiblespace_r, nil]];
-    //[actionToolbar setItems:[NSArray arrayWithObjects:flexiblespace_l,flexiblespace_m,finishButton,flexiblespace_r, nil]];
+    [actionToolbar setItems:[NSArray arrayWithObjects:flexiblespace_l,allselectButton,flexiblespace_m,finishButton,flexiblespace_r, nil]];
     
-    
-    actionToolbar.barStyle = UIBarStyleDefault;
- 
-        //配合nagitive和tabbar的圖片變動tableview的大小
+    // [self.navigationController.view addSubview:actionToolbar];
+    //配合nagitive和tabbar的圖片變動tableview的大小
     //nagitive 52 - 44 = 8 、 tabbar 55 - 49 = 6
     [self.tableView setContentInset:UIEdgeInsetsMake(-35,0,-35,0)];
     
     [super viewDidLoad];
 }
 
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [[UIApplication sharedApplication].keyWindow addSubview:actionToolbar];
+}
+
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+
     if(!(self.isMovingToParentViewController || self.isBeingPresented))
     {
         if([maindata count] != 0)
             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     }
 }
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [actionToolbar removeFromSuperview];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -248,27 +261,6 @@ int isSuccess=0;
     });
 }
 
-
-
-- (void)showActionToolbar:(BOOL)show
-{
-    [UIView beginAnimations:nil context:nil];
-	[UIView setAnimationBeginsFromCurrentState:YES];
-    
-    if (show && showing == NO)          //顯示
-	{
-        showing = YES;
-        [switchviewcontroller.view addSubview:actionToolbar];
-	}
-	else if(!show && showing == YES)    //隱藏
-	{
-        showing = NO;
-        [actionToolbar removeFromSuperview];
-	}
-	
-	[UIView commitAnimations];
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -286,7 +278,7 @@ int isSuccess=0;
 {
     if([maindata count] == 0)
     {
-        return [NSString stringWithFormat:@"沒有預約記錄"];
+        return [NSString stringWithFormat:@"\n沒有預約記錄"];
     }
     else
         return NULL;
