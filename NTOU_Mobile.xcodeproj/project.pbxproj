@@ -51,6 +51,22 @@
 		1DD1794118FE7AB300621B67 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1791A18FE7AB300621B67 /* View.xib */; };
 		1DD1794218FE7AB300621B67 /* WOLSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1791C18FE7AB300621B67 /* WOLSwitchViewController.m */; };
 		1DD1794618FE826500621B67 /* LibraryModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1794518FE826500621B67 /* LibraryModule.m */; };
+		43BEDBF519236BED0091B024 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDBF419236BED0091B024 /* FMDatabase.m */; };
+		43BEDBF819236C260091B024 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDBF719236C260091B024 /* FMResultSet.m */; };
+		43BEDBFB19236CF90091B024 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDBFA19236CF90091B024 /* FMDatabasePool.m */; };
+		43BEDC0D19236D570091B024 /* KLRouteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDC0019236D570091B024 /* KLRouteDetailViewController.m */; };
+		43BEDC0E19236D570091B024 /* KuoFuhoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDC0219236D570091B024 /* KuoFuhoViewController.m */; };
+		43BEDC0F19236D570091B024 /* NTRouteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDC0419236D570091B024 /* NTRouteDetailViewController.m */; };
+		43BEDC1019236D570091B024 /* NTRouteGoBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDC0619236D570091B024 /* NTRouteGoBackViewController.m */; };
+		43BEDC1119236D570091B024 /* TPRouteByButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDC0819236D570091B024 /* TPRouteByButtonViewController.m */; };
+		43BEDC1219236D570091B024 /* TPRouteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDC0A19236D570091B024 /* TPRouteDetailViewController.m */; };
+		43BEDC1319236D570091B024 /* TPRouteGoBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDC0C19236D570091B024 /* TPRouteGoBackViewController.m */; };
+		43BEDC1919236D6E0091B024 /* ExpressBusDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDC1619236D6E0091B024 /* ExpressBusDetailViewController.m */; };
+		43BEDC1A19236D6E0091B024 /* ExpressBusSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDC1819236D6E0091B024 /* ExpressBusSearchViewController.m */; };
+		43BEDC1C19236DEC0091B024 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BEDC1B19236DEC0091B024 /* libsqlite3.dylib */; };
+		43BEDC1F19236E530091B024 /* NTOUShuttleButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDC1E19236E530091B024 /* NTOUShuttleButtonViewController.m */; };
+		43BEDC2319236E990091B024 /* NTOUBusTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDC2119236E990091B024 /* NTOUBusTableViewController.m */; };
+		43BEDC2519236EF10091B024 /* ntou_mobile3.db in Resources */ = {isa = PBXBuildFile; fileRef = 43BEDC2419236EF10091B024 /* ntou_mobile3.db */; };
 		912A53EF16E99F7900BBC013 /* NTOUGuide2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */; };
 		912A53F016E99F7900BBC013 /* NTOUGuideSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EC16E99F7900BBC013 /* NTOUGuideSetViewController.m */; };
 		912A53F116E99F7900BBC013 /* NTOUGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EE16E99F7900BBC013 /* NTOUGuideViewController.m */; };
@@ -380,6 +396,37 @@
 		1DD1791C18FE7AB300621B67 /* WOLSwitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOLSwitchViewController.m; sourceTree = "<group>"; };
 		1DD1794418FE826400621B67 /* LibraryModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryModule.h; sourceTree = "<group>"; };
 		1DD1794518FE826500621B67 /* LibraryModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryModule.m; sourceTree = "<group>"; };
+		43BEDBF319236BED0091B024 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		43BEDBF419236BED0091B024 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		43BEDBF619236C260091B024 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		43BEDBF719236C260091B024 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		43BEDBF919236CF90091B024 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = SOURCE_ROOT; };
+		43BEDBFA19236CF90091B024 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = SOURCE_ROOT; };
+		43BEDBFF19236D570091B024 /* KLRouteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLRouteDetailViewController.h; sourceTree = "<group>"; };
+		43BEDC0019236D570091B024 /* KLRouteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLRouteDetailViewController.m; sourceTree = "<group>"; };
+		43BEDC0119236D570091B024 /* KuoFuhoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KuoFuhoViewController.h; sourceTree = "<group>"; };
+		43BEDC0219236D570091B024 /* KuoFuhoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KuoFuhoViewController.m; sourceTree = "<group>"; };
+		43BEDC0319236D570091B024 /* NTRouteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTRouteDetailViewController.h; sourceTree = "<group>"; };
+		43BEDC0419236D570091B024 /* NTRouteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTRouteDetailViewController.m; sourceTree = "<group>"; };
+		43BEDC0519236D570091B024 /* NTRouteGoBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTRouteGoBackViewController.h; sourceTree = "<group>"; };
+		43BEDC0619236D570091B024 /* NTRouteGoBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTRouteGoBackViewController.m; sourceTree = "<group>"; };
+		43BEDC0719236D570091B024 /* TPRouteByButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPRouteByButtonViewController.h; sourceTree = "<group>"; };
+		43BEDC0819236D570091B024 /* TPRouteByButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPRouteByButtonViewController.m; sourceTree = "<group>"; };
+		43BEDC0919236D570091B024 /* TPRouteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPRouteDetailViewController.h; sourceTree = "<group>"; };
+		43BEDC0A19236D570091B024 /* TPRouteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPRouteDetailViewController.m; sourceTree = "<group>"; };
+		43BEDC0B19236D570091B024 /* TPRouteGoBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPRouteGoBackViewController.h; sourceTree = "<group>"; };
+		43BEDC0C19236D570091B024 /* TPRouteGoBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPRouteGoBackViewController.m; sourceTree = "<group>"; };
+		43BEDC1519236D6E0091B024 /* ExpressBusDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressBusDetailViewController.h; sourceTree = "<group>"; };
+		43BEDC1619236D6E0091B024 /* ExpressBusDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressBusDetailViewController.m; sourceTree = "<group>"; };
+		43BEDC1719236D6E0091B024 /* ExpressBusSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressBusSearchViewController.h; sourceTree = "<group>"; };
+		43BEDC1819236D6E0091B024 /* ExpressBusSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressBusSearchViewController.m; sourceTree = "<group>"; };
+		43BEDC1B19236DEC0091B024 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		43BEDC1D19236E530091B024 /* NTOUShuttleButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUShuttleButtonViewController.h; sourceTree = "<group>"; };
+		43BEDC1E19236E530091B024 /* NTOUShuttleButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUShuttleButtonViewController.m; sourceTree = "<group>"; };
+		43BEDC2019236E990091B024 /* NTOUBusTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUBusTableViewController.h; sourceTree = "<group>"; };
+		43BEDC2119236E990091B024 /* NTOUBusTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUBusTableViewController.m; sourceTree = "<group>"; };
+		43BEDC2219236E990091B024 /* ShuttleConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuttleConstants.h; sourceTree = "<group>"; };
+		43BEDC2419236EF10091B024 /* ntou_mobile3.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ntou_mobile3.db; sourceTree = "<group>"; };
 		912A53E916E99F7900BBC013 /* NTOUGuide2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuide2ViewController.h; sourceTree = "<group>"; };
 		912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuide2ViewController.m; sourceTree = "<group>"; };
 		912A53EB16E99F7900BBC013 /* NTOUGuideSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuideSetViewController.h; sourceTree = "<group>"; };
@@ -771,6 +818,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43BEDC1C19236DEC0091B024 /* libsqlite3.dylib in Frameworks */,
 				C4CA69B319112894005B272C /* CoreText.framework in Frameworks */,
 				BA06A07D16F2EF5B00212CB9 /* EventKit.framework in Frameworks */,
 				91756FEE16F21236001D724D /* ImageIO.framework in Frameworks */,
@@ -891,6 +939,38 @@
 				1DD178F018FE7AB300621B67 /* OpenTimeViewController.xib */,
 			);
 			path = about;
+			sourceTree = "<group>";
+		};
+		43BEDBFE19236D570091B024 /* Bus */ = {
+			isa = PBXGroup;
+			children = (
+				43BEDBFF19236D570091B024 /* KLRouteDetailViewController.h */,
+				43BEDC0019236D570091B024 /* KLRouteDetailViewController.m */,
+				43BEDC0119236D570091B024 /* KuoFuhoViewController.h */,
+				43BEDC0219236D570091B024 /* KuoFuhoViewController.m */,
+				43BEDC0319236D570091B024 /* NTRouteDetailViewController.h */,
+				43BEDC0419236D570091B024 /* NTRouteDetailViewController.m */,
+				43BEDC0519236D570091B024 /* NTRouteGoBackViewController.h */,
+				43BEDC0619236D570091B024 /* NTRouteGoBackViewController.m */,
+				43BEDC0719236D570091B024 /* TPRouteByButtonViewController.h */,
+				43BEDC0819236D570091B024 /* TPRouteByButtonViewController.m */,
+				43BEDC0919236D570091B024 /* TPRouteDetailViewController.h */,
+				43BEDC0A19236D570091B024 /* TPRouteDetailViewController.m */,
+				43BEDC0B19236D570091B024 /* TPRouteGoBackViewController.h */,
+				43BEDC0C19236D570091B024 /* TPRouteGoBackViewController.m */,
+			);
+			path = Bus;
+			sourceTree = "<group>";
+		};
+		43BEDC1419236D6E0091B024 /* ExpressBusSearch */ = {
+			isa = PBXGroup;
+			children = (
+				43BEDC1519236D6E0091B024 /* ExpressBusDetailViewController.h */,
+				43BEDC1619236D6E0091B024 /* ExpressBusDetailViewController.m */,
+				43BEDC1719236D6E0091B024 /* ExpressBusSearchViewController.h */,
+				43BEDC1819236D6E0091B024 /* ExpressBusSearchViewController.m */,
+			);
+			path = ExpressBusSearch;
 			sourceTree = "<group>";
 		};
 		912A53E816E99F7900BBC013 /* Guide */ = {
@@ -1040,6 +1120,7 @@
 		91A9004916E854E500ECF2CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43BEDC1B19236DEC0091B024 /* libsqlite3.dylib */,
 				C4CA69B219112894005B272C /* CoreText.framework */,
 				91756FED16F21235001D724D /* ImageIO.framework */,
 				913A0D1D16E98F99007BAD8F /* MessageUI.framework */,
@@ -1146,10 +1227,18 @@
 		91A903A616E899D100ECF2CF /* ShuttleTrack */ = {
 			isa = PBXGroup;
 			children = (
+				43BEDBF619236C260091B024 /* FMResultSet.h */,
+				43BEDBF919236CF90091B024 /* FMDatabasePool.h */,
+				43BEDBFA19236CF90091B024 /* FMDatabasePool.m */,
+				43BEDBF719236C260091B024 /* FMResultSet.m */,
+				43BEDBF319236BED0091B024 /* FMDatabase.h */,
+				43BEDBF419236BED0091B024 /* FMDatabase.m */,
 				BECF7C73184F48A800ADD115 /* R66Route.png */,
 				BECF7C6D184F468200ADD115 /* R66LeftLayerViewController.h */,
 				BECF7C6E184F468200ADD115 /* R66LeftLayerViewController.m */,
+				43BEDBFE19236D570091B024 /* Bus */,
 				BECF7C6F184F468200ADD115 /* R66RightLayerViewController.h */,
+				43BEDC1419236D6E0091B024 /* ExpressBusSearch */,
 				BECF7C70184F468200ADD115 /* R66RightLayerViewController.m */,
 				91A9048F16E89E5200ECF2CF /* StationInfoViewController.h */,
 				91A9049016E89E5400ECF2CF /* StationInfoViewController.m */,
@@ -1186,6 +1275,11 @@
 				91A903E016E899D200ECF2CF /* NTOUTableViewControllerLayer1.m */,
 				91A903E116E899D200ECF2CF /* NTOUTableViewControllerLayer2.h */,
 				91A903E216E899D200ECF2CF /* NTOUTableViewControllerLayer2.m */,
+				43BEDC1D19236E530091B024 /* NTOUShuttleButtonViewController.h */,
+				43BEDC1E19236E530091B024 /* NTOUShuttleButtonViewController.m */,
+				43BEDC2019236E990091B024 /* NTOUBusTableViewController.h */,
+				43BEDC2119236E990091B024 /* NTOUBusTableViewController.m */,
+				43BEDC2219236E990091B024 /* ShuttleConstants.h */,
 				91A903E316E899D200ECF2CF /* OtherTrafficTrapViewController.h */,
 				91A903E416E899D200ECF2CF /* OtherTrafficTrapViewController.m */,
 				91A903E516E899D200ECF2CF /* RequestOperation.h */,
@@ -1258,6 +1352,7 @@
 			isa = PBXGroup;
 			children = (
 				91A903E816E899D200ECF2CF /* bank.png */,
+				43BEDC2419236EF10091B024 /* ntou_mobile3.db */,
 				91A903E916E899D200ECF2CF /* gigoung_train.png */,
 				91A903EA16E899D200ECF2CF /* local_speed_train.png */,
 				91A903EB16E899D200ECF2CF /* local_train.png */,
@@ -1668,6 +1763,7 @@
 				BA06A07716F2EE6600212CB9 /* CalenderList_eng.plist in Resources */,
 				1D8A3B261905051200816CCD /* grayArrow.png in Resources */,
 				BA06A07B16F2EE6600212CB9 /* WOLSwitchViewController.xib in Resources */,
+				43BEDC2519236EF10091B024 /* ntou_mobile3.db in Resources */,
 				C71A4EE61705B106002819AD /* Fuho_Data.plist in Resources */,
 				C71A4EEB1705B114002819AD /* cancel_24.png in Resources */,
 				C71A4EEC1705B114002819AD /* cancel.png in Resources */,
@@ -1715,6 +1811,7 @@
 				91756FE916F20E85001D724D /* ThumbsViewController.h in Sources */,
 				91756FEA16F20E85001D724D /* UIXToolbarView.h in Sources */,
 				91756FD116F20CC5001D724D /* ReaderConstants.h in Sources */,
+				43BEDC1919236D6E0091B024 /* ExpressBusDetailViewController.m in Sources */,
 				91756FD216F20CC5001D724D /* ReaderContentPage.h in Sources */,
 				91756FD316F20CC5001D724D /* ReaderContentTile.h in Sources */,
 				91756FD416F20CC5001D724D /* ReaderContentView.h in Sources */,
@@ -1722,6 +1819,7 @@
 				91756FD616F20CC5001D724D /* ReaderMainPagebar.h in Sources */,
 				91756FD716F20CC5001D724D /* ReaderMainToolbar.h in Sources */,
 				91756FD816F20CC5001D724D /* ReaderThumbCache.h in Sources */,
+				43BEDC1219236D570091B024 /* TPRouteDetailViewController.m in Sources */,
 				1DD1793B18FE7AB300621B67 /* SearchResultViewController.m in Sources */,
 				91756FD916F20CC5001D724D /* ReaderThumbFetch.h in Sources */,
 				1DD1792418FE7AB300621B67 /* NewsViewController.m in Sources */,
@@ -1735,11 +1833,15 @@
 				1DD1792618FE7AB300621B67 /* OpenTimeViewController.m in Sources */,
 				91A9005716E854E500ECF2CF /* main.m in Sources */,
 				91A9005B16E854E500ECF2CF /* AppDelegate.m in Sources */,
+				43BEDC0D19236D570091B024 /* KLRouteDetailViewController.m in Sources */,
 				91A9006D16E8555D00ECF2CF /* NTOUSpringboard.m in Sources */,
 				91A9007416E8597400ECF2CF /* UIKit+NTOUAdditions.m in Sources */,
 				91A9007716E85A9A00ECF2CF /* IconGrid.m in Sources */,
+				43BEDC0E19236D570091B024 /* KuoFuhoViewController.m in Sources */,
+				43BEDBFB19236CF90091B024 /* FMDatabasePool.m in Sources */,
 				91A9007A16E85B3500ECF2CF /* NTOUModule.m in Sources */,
 				91A9007F16E85C8400ECF2CF /* AppDelegate+ModuleList.m in Sources */,
+				43BEDBF519236BED0091B024 /* FMDatabase.m in Sources */,
 				91A9008216E8609200ECF2CF /* Rotation.m in Sources */,
 				1DD1793A18FE7AB300621B67 /* SearchListViewController.m in Sources */,
 				91A9008516E8613800ECF2CF /* NTOU_MobileAppDelegate+Private.m in Sources */,
@@ -1765,6 +1867,7 @@
 				91A9045216E899D200ECF2CF /* NTOUTableViewControllerLayer1.m in Sources */,
 				91A9045316E899D200ECF2CF /* NTOUTableViewControllerLayer2.m in Sources */,
 				91A9045416E899D200ECF2CF /* OtherTrafficTrapViewController.m in Sources */,
+				43BEDC1319236D570091B024 /* TPRouteGoBackViewController.m in Sources */,
 				1DD1792318FE7AB300621B67 /* loadWebViewController.m in Sources */,
 				91A9045516E899D200ECF2CF /* RequestOperation.m in Sources */,
 				91A9045E16E899D200ECF2CF /* RouteDetailViewController.m in Sources */,
@@ -1776,6 +1879,7 @@
 				1DD1794618FE826500621B67 /* LibraryModule.m in Sources */,
 				1DD1793118FE7AB300621B67 /* LoginResResultViewController.m in Sources */,
 				91A9046916E899D200ECF2CF /* ShuttleModule.m in Sources */,
+				43BEDC1F19236E530091B024 /* NTOUShuttleButtonViewController.m in Sources */,
 				91A9047D16E899D200ECF2CF /* StationView.m in Sources */,
 				1DD1794218FE7AB300621B67 /* WOLSwitchViewController.m in Sources */,
 				1DD1793818FE7AB300621B67 /* RBookViewController.m in Sources */,
@@ -1792,7 +1896,9 @@
 				91A9048E16E89C8B00ECF2CF /* ClassLabelBasis.m in Sources */,
 				91A9049116E89E5500ECF2CF /* StationInfoViewController.m in Sources */,
 				1D8A3B2A1905051300816CCD /* NTOUNotification.m in Sources */,
+				43BEDBF819236C260091B024 /* FMResultSet.m in Sources */,
 				913A0D1616E98EBA007BAD8F /* CameraViewController.m in Sources */,
+				43BEDC1019236D570091B024 /* NTRouteGoBackViewController.m in Sources */,
 				1DD1791F18FE7AB300621B67 /* AboutViewController.m in Sources */,
 				913A0D1816E98EBA007BAD8F /* EmergencyModule.m in Sources */,
 				913A0D1916E98EBA007BAD8F /* EmergencyViewController.m in Sources */,
@@ -1809,6 +1915,7 @@
 				912A542916E9A26F00BBC013 /* AboutNTOUVC.m in Sources */,
 				91756E4816E9B5EB001D724D /* CMModule.m in Sources */,
 				91756F3C16F206F7001D724D /* CGPDFDocument.m in Sources */,
+				43BEDC0F19236D570091B024 /* NTRouteDetailViewController.m in Sources */,
 				91756F3D16F206F7001D724D /* ClassAdd.m in Sources */,
 				91756F3F16F206F7001D724D /* ClassAddBackground.m in Sources */,
 				91756F4216F206F7001D724D /* ClassDataBase.m in Sources */,
@@ -1828,6 +1935,7 @@
 				91756F6F16F206F7001D724D /* ReaderContentView.m in Sources */,
 				91756F7016F206F7001D724D /* ReaderDocument.m in Sources */,
 				1DD1793518FE7AB300621B67 /* MainViewController.m in Sources */,
+				43BEDC1119236D570091B024 /* TPRouteByButtonViewController.m in Sources */,
 				91756F7116F206F7001D724D /* ReaderMainPagebar.m in Sources */,
 				91756F7216F206F7001D724D /* ReaderMainToolbar.m in Sources */,
 				91756F7316F206F7001D724D /* ReaderThumbCache.m in Sources */,
@@ -1835,6 +1943,7 @@
 				91756F7416F206F7001D724D /* ReaderThumbFetch.m in Sources */,
 				91756F7516F206F7001D724D /* ReaderThumbQueue.m in Sources */,
 				91756F7616F206F7001D724D /* ReaderThumbRender.m in Sources */,
+				43BEDC1A19236D6E0091B024 /* ExpressBusSearchViewController.m in Sources */,
 				91756F7716F206F7001D724D /* ReaderThumbRequest.m in Sources */,
 				91756F7816F206F7001D724D /* ReaderThumbsView.m in Sources */,
 				91756F7916F206F7001D724D /* ReaderThumbView.m in Sources */,
@@ -1872,6 +1981,7 @@
 				C74699E316F21C680060F49C /* NavScrollerView.m in Sources */,
 				C74699E716F21CC90060F49C /* StoryDetailViewController.m in Sources */,
 				BA06A07516F2EE6600212CB9 /* ScheduleModule.m in Sources */,
+				43BEDC2319236E990091B024 /* NTOUBusTableViewController.m in Sources */,
 				BA06A07816F2EE6600212CB9 /* ChiListViewController.m in Sources */,
 				BA06A07916F2EE6600212CB9 /* EnglistViewController.m in Sources */,
 				BA06A07A16F2EE6600212CB9 /* SwitchViewController.m in Sources */,

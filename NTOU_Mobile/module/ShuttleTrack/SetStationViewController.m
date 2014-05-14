@@ -26,7 +26,7 @@
     depatureStation_origin=0;
     dateSelected=0;
     queryDate = [NSString new];
-    trainStyle = [[NSString alloc]initWithString:@"2"];
+    trainStyle = [[NSString alloc]initWithString:@"allKindsTrain"];
     isinitData = true;
     downloadView = [DownloadingView new];
     _isHightSpeedTrain = isHighSpeedTrain;
@@ -40,7 +40,8 @@
             [[NSUserDefaults standardUserDefaults]setObject:DepatureStation forKey:@"DepatureStaion"];
         }
         view1 = [[SetOriginAndStationViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        view1.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
+        //view1.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
+        view1.view.frame = CGRectMake(0, 0, 320, self.view.frame.size.height-self.tabBar.frame.size.height);
         [setStartStationController.view addSubview:bg];
         [setStartStationController.view addSubview:view1.view];
         setStartStationController.tabBarItem.tag=0;
@@ -108,18 +109,24 @@
         view5 = [[StaionInfoTableViewController alloc] init];
         view5.dataSource = self;
         view5.title = type5;
-        view5.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
-        resultViewController.view.frame= CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
+        view5.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
+        resultViewController.view.frame= CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height+25);
         [resultViewController.view addSubview:view5.tableView];
         resultViewController.tabBarItem.tag=4;
         resultViewController.tabBarItem.image = [UIImage imageNamed:@"magnify.png"];
-        [view5 recieveData];
+        //[view5 recieveData];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyyMMdd"];
+        view5.selectedDate = [[NSString alloc] init];
+        view5.selectedDate=[view5.selectedDate stringByAppendingString:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:calendar.selectedDate]]];
+        NSLog(@"selectedDate=%@", [dateFormatter stringFromDate:calendar.selectedDate]);
+        view5.selectedTrainStyle = trainStyle;
     }
     else {
         ht_searchResult = [[HTSearchResultViewController alloc]init];
         ht_searchResult.dataSource = self;
-        ht_searchResult.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
-        resultViewController.view.frame= CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
+        ht_searchResult.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
+        resultViewController.view.frame= CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
         [resultViewController.view addSubview:ht_searchResult.tableView];
         resultViewController.tabBarItem.tag=4;
         resultViewController.tabBarItem.image = [UIImage imageNamed:@"magnify.png"];
@@ -171,12 +178,21 @@
     UIBarButtonItem * swapStation = [[UIBarButtonItem alloc]initWithTitle:@"往返" style:UIBarButtonItemStylePlain target:self action:@selector(SwapStation)];
     self.navigationItem.rightBarButtonItem = swapStation;
 }
+
 -(void)SwapStation{
     NSString * tmpForSwap = [[NSString alloc]initWithString:DepatureStation];
     DepatureStation = [NSString stringWithString:startStaion];
     startStaion = [NSString stringWithString:tmpForSwap];
+    
     [self viewDidLoad];
+    
     if (self.selectedIndex==4){
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyyMMdd"];
+        view5.selectedDate = [[NSString alloc] init];
+        view5.selectedDate=[view5.selectedDate stringByAppendingString:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:calendar.selectedDate]]];
+        NSLog(@"selectedDate=%@", [dateFormatter stringFromDate:calendar.selectedDate]);
+        view5.selectedTrainStyle = trainStyle;
         [view5 recieveData];
        [ht_searchResult recieveData];
     }
@@ -199,7 +215,14 @@
     UIImage* tabBarArrowImage = [UIImage imageNamed:@"TabBarNipple@2x.png"];
     self.tabBarArrow = [[UIImageView alloc] initWithImage:tabBarArrowImage] ;
     CGFloat verticalLocation = [[UIScreen mainScreen] bounds].size.height-tabBarArrowImage.size.height-self.tabBar.frame.size.height-[[UIApplication sharedApplication] statusBarFrame].size.height-44+5;
-    tabBarArrow.frame = CGRectMake([self horizontalLocationFor:0], 460-102, tabBarArrowImage.size.width, tabBarArrowImage.size.height);
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        tabBarArrow.frame = CGRectMake([self horizontalLocationFor:0], [[UIScreen mainScreen] bounds].size.height-122, tabBarArrowImage.size.width, tabBarArrowImage.size.height);
+    }
+    else
+    {
+        tabBarArrow.frame = CGRectMake([self horizontalLocationFor:0], [[UIScreen mainScreen] bounds].size.height-(self.tabBar.frame.size.height*2)-5, tabBarArrowImage.size.width, tabBarArrowImage.size.height);
+    }
     
     [self.view addSubview:tabBarArrow];
 }
@@ -207,8 +230,6 @@
 
 - (void)tabBarController:(UITabBarController *)theTabBarController didSelectViewController:(UIViewController *)viewController
 {
-    
-    
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.2];
     CGRect frame = tabBarArrow.frame;
@@ -218,6 +239,12 @@
     if (viewController.tabBarItem.tag==4){
        
         dispatch_async( dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyyMMdd"];
+            view5.selectedDate = [[NSString alloc] init];
+            view5.selectedDate=[view5.selectedDate stringByAppendingString:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:calendar.selectedDate]]];
+            NSLog(@"selectedDate=%@", [dateFormatter stringFromDate:calendar.selectedDate]);
+            view5.selectedTrainStyle = trainStyle;
             [view5 recieveData];
             [ht_searchResult recieveData];
             dispatch_suspend(dispatch_get_current_queue());
@@ -233,11 +260,24 @@
 {
     [super viewDidLoad];
     
-    [self.tabBar setFrame:CGRectMake(0, 460-29, 320, 40)];
-   [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
+    NSLog(@"viewDidLoad");
+    
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
         
+        NSLog(@"system 7.0");
+        CGRect fullScreenBounds = [[UIScreen mainScreen] bounds];
+        NSLog(@"self.tabBar.frame.origin.y = %f, height = %f, view height = %f", self.tabBar.frame.origin.y, fullScreenBounds.size.height, self.view.frame.size.height);
+        //[self.tabBar setFrame:CGRectMake(0, fullScreenBounds.size.height-49, 320, 40)];
+        [self.tabBar setFrame:CGRectMake(0, self.view.frame.size.height-49, 320, 40)];
+        if(self.tabBar.frame.origin.y == fullScreenBounds.size.height-112)
+        {
+            NSLog(@"Hello");
+        }
+        //[self.tabBar setFrame:CGRectMake(0, fullScreenBounds.size.height-112, 320, 40)];
+        NSLog(@"self.tabBar.frame.origin.y = %f", self.tabBar.frame.origin.y);
+        [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
         self.edgesForExtendedLayout = UIRectEdgeNone;
+        
         
     }
     self.view.backgroundColor = [UIColor clearColor];
@@ -259,7 +299,7 @@
     [self.view addGestureRecognizer:swipeRecognizer_left];
     //  [swipeRecognizer release];
     
-    
+    //[self.view addSubview:self.tabBar];
     
     
     // Do any additional setup after loading the view from its nib.
@@ -304,7 +344,7 @@
     
     if (![startStaion isEqualToString:@""] && ![DepatureStation isEqualToString:@""] ){
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-       
+        
         NSString *StartStationID = [NSString stringWithFormat:@"%@",[stationNum valueForKey:startStaion]];
         NSString *DepatureStationID= [NSString stringWithFormat:@"%@",[stationNum valueForKey:DepatureStation]];
         // NSArray *arr= [stationNum allKeys];
@@ -328,18 +368,19 @@
        // queryURL= @"http://140.121.91.62/Rail_Web_Query.php?searchtype=0&searchdate=2013%2f04%2f02&fromcity=0&tocity=0&fromstation=1001&tostation=1008&trainclass=2&fromtime=0000&totime=2359";
         return [NSURL URLWithString:queryURL];
     }
-    
-    
 }
 
 
 -(void)TrainStyle:(TrainStyleViewController *)tableView nowSelectedRow:(NSInteger)indexPath{
     
     switch(indexPath){
-        case 0 :
+        /*case 0 :
             trainStyle = @"'1100'%2c'1101'%2c'1102'%2c'1110'%2c'1120'"; break;
         case 1 : trainStyle = @"'1131'%2c'1132'%2c'1140'"; break;
-        case 2 : trainStyle = @"2"; break;
+        case 2 : trainStyle = @"2"; break;*/
+        case 0 : trainStyle = @"expressTrain"; break;
+        case 1 : trainStyle = @"noExpressTrain"; break;
+        case 2 : trainStyle = @"allKindsTrain"; break;
             
     }
 }
