@@ -144,7 +144,10 @@
 {
     [super viewDidLoad];
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
         self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.view.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
+    }
 	// Do any additional setup after loading the view.
     [self showButtons];
 }
