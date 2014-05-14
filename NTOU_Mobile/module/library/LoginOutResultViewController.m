@@ -18,6 +18,7 @@
 @property (nonatomic, strong) UIActionSheet *acsheet;
 @property (nonatomic) BOOL showing;
 @property BOOL loginSuccess;
+@property (nonatomic , retain) NSString * errMsg;
 @end
 
 @implementation LoginOutResultViewController
@@ -30,6 +31,7 @@
 @synthesize acsheet;
 @synthesize userAccountId;
 @synthesize loginSuccess;
+@synthesize errMsg;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -202,6 +204,7 @@
         NSDictionary *renewResponse=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
         [maindata retain];
         if ([[renewResponse objectForKey:@"querySuccess"] isEqualToString:@"true"]) ++isSuccess;
+        errMsg =[renewResponse objectForKey:@"errorMsg"];
     }
     if (isSuccess == [selectindexs count]){
         UIAlertView *alerts = [[UIAlertView alloc] initWithTitle:@"續借成功"
@@ -210,16 +213,24 @@
                                                 cancelButtonTitle:@"好"
                                                 otherButtonTitles:nil];
         [alerts show];
+        isSuccess = 0;
+        [self cleanselectindexs];
     }
     else{
         UIAlertView *alerts = [[UIAlertView alloc] initWithTitle:@"續借失敗"
-                                                         message:nil
+                                                         message:errMsg
                                                         delegate:self
                                                cancelButtonTitle:@"好"
                                                otherButtonTitles:nil];
         [alerts show];
+        isSuccess = 0;
+        [self cleanselectindexs];
     }
-    [radioVal release];
+    for (UITableViewCell *cell in [self.tableView visibleCells]) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    [self.tableView reloadData];
+    //[radioVal release];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
