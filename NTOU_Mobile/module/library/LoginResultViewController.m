@@ -15,7 +15,7 @@
 @property (nonatomic, retain) NSMutableArray *maindata;
 @property (nonatomic, retain) NSDictionary *historyData;
 @property (nonatomic, retain) NSMutableArray *newData;
-
+@property BOOL loginSuccess;
 @end
 
 @implementation LoginResultViewController
@@ -23,6 +23,7 @@
 @synthesize historyData;
 @synthesize page;
 @synthesize newData;
+@synthesize loginSuccess;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -82,6 +83,10 @@
                                                  returningResponse:&urlResponse
                                                              error:nil];
     newData =[NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+    NSString* checkLogin = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    if ([checkLogin rangeOfString:@"login failed"].location == NSNotFound)
+        loginSuccess=true;
+    else loginSuccess=false;
     [maindata addObjectsFromArray:newData];
     [maindata retain];
     [self.tableView reloadData];
@@ -102,10 +107,13 @@
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-   if([maindata count] == 0)
+   if([maindata count] == 0 && loginSuccess==true)
     {
         return [NSString stringWithFormat:@"\n沒有借閱歷史紀錄"];
     }
+   else if (loginSuccess==false){
+       return [NSString stringWithFormat:@"\n登入失敗，請檢查帳密設定"];
+   }
     else
         return NULL;
 }

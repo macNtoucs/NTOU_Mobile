@@ -17,6 +17,7 @@
 @property (nonatomic, strong) UIActionSheet *acsheet;
 @property (nonatomic) BOOL showing;
 @property (nonatomic,retain) UIToolbar *actionToolbar;
+@property BOOL loginSuccess;
 @end
 
 @implementation LoginResResultViewController
@@ -28,6 +29,7 @@
 @synthesize acsheet;
 @synthesize userAccountId;
 @synthesize actionToolbar;
+@synthesize loginSuccess;
 int isSuccess=0;
 
 
@@ -139,8 +141,12 @@ int isSuccess=0;
          NSData *responseData = [NSURLConnection sendSynchronousRequest:request
                                                  returningResponse:&urlResponse
                                                              error:nil];
+         NSString* checkLogin = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+         if ([checkLogin rangeOfString:@"login failed"].location == NSNotFound)
+             loginSuccess=true;
+         else loginSuccess=false;
          NSArray * reponseDataArray = [NSArray new];
-        reponseDataArray= [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+         reponseDataArray= [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
          maindata = [NSMutableArray arrayWithArray:reponseDataArray];
          [maindata retain];
             });
@@ -276,10 +282,14 @@ int isSuccess=0;
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if([maindata count] == 0)
+    if([maindata count] == 0 && loginSuccess==true)
     {
         return [NSString stringWithFormat:@"\n沒有預約記錄"];
     }
+    else if (loginSuccess==false){
+        return [NSString stringWithFormat:@"\n登入失敗，請檢查帳密設定"];
+    }
+   
     else
         return NULL;
 }

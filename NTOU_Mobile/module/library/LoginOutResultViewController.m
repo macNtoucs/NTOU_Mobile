@@ -17,7 +17,7 @@
 @property (nonatomic, strong) UIToolbar *actionToolbar;
 @property (nonatomic, strong) UIActionSheet *acsheet;
 @property (nonatomic) BOOL showing;
-
+@property BOOL loginSuccess;
 @end
 
 @implementation LoginOutResultViewController
@@ -29,7 +29,7 @@
 @synthesize switchviewcontroller;
 @synthesize acsheet;
 @synthesize userAccountId;
-
+@synthesize loginSuccess;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -141,6 +141,10 @@
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request
                                                  returningResponse:&urlResponse
                                                              error:nil];
+    NSString* checkLogin = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    if ([checkLogin rangeOfString:@"login failed"].location == NSNotFound)
+        loginSuccess=true;
+    else loginSuccess=false;
     maindata=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
     [maindata retain];
 }
@@ -296,9 +300,12 @@
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if([maindata count] == 0)
+    if([maindata count] == 0 && loginSuccess==true)
     {
         return [NSString stringWithFormat:@"\n沒有借出記錄"];
+    }
+    else if (loginSuccess==false){
+        return [NSString stringWithFormat:@"\n登入失敗，請檢查帳密設定"];
     }
     else
         return NULL;
