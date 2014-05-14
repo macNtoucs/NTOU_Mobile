@@ -14,16 +14,16 @@
 @interface HTSearchResultViewController : UITableViewController{
     __unsafe_unretained id <HTStaionInfoDataSource> dataSource;
     NSArray * station;
-    NSString * startStation;
-    NSString * depatureStation;
+    NSString * arrivalStation;
+    NSString * departureStation;
     NSURL * dataURL;
     DownloadingView *downloadView;
     NSDate * selectedDate;
     NSString * selectedHTTime;
     NSString * queryResult;
     NSMutableArray * trainID;
-    NSMutableArray * depatureTime;
-    NSMutableArray * startTime;
+    NSMutableArray * departureTime;
+    NSMutableArray * arrivalTime;
     NSArray * HTStationNameCode;
     bool isFirstTimeLoad;
 }

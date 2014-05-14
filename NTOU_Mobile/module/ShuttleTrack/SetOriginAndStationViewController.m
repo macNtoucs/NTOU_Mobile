@@ -154,6 +154,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"station = %@", [[station objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]);
     [delegate SetOriginAndStationViewTableView:self nowSelected:[[station objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
 }
 
