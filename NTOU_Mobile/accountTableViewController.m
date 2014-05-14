@@ -187,7 +187,7 @@
             switch (indexPath.row) {
                 case 0:
                     accountDelegate = contactNameTextField;
-                    cell.textLabel.text = @"帳號:";
+                    cell.textLabel.text = @"帳號:   ";
                     cell.textLabel.textAlignment = NSTextAlignmentLeft;
                     contactNameTextField.backgroundColor = [UIColor clearColor];
                     contactNameTextField.keyboardType = UIKeyboardTypeDefault;
@@ -196,7 +196,7 @@
                     break;
                 case 1:
                     passwordDelegate = contactNameTextField;
-                    cell.textLabel.text = @"密碼:";
+                    cell.textLabel.text = @"密碼:   ";
                     cell.textLabel.textAlignment = NSTextAlignmentLeft;
                     contactNameTextField.backgroundColor = [UIColor clearColor];
                     contactNameTextField.keyboardType = UIKeyboardTypeDefault;

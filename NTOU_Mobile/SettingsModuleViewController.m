@@ -198,7 +198,7 @@
         case 0:
             switch (indexPath.row) {
                 case 0:
-                    cell.textLabel.text = @"Moodle";
+                    cell.textLabel.text = @"Moodle   ";
                     break;
                 case 1:
                     cell.textLabel.text = @"圖書館";

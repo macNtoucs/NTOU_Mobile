@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D452FE31923A21D002E28ED /* accountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D452FE21923A21D002E28ED /* accountTableViewController.m */; };
 		1D6645691905087900416722 /* EGORefreshTableHeaderView.h in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B0B1905051200816CCD /* EGORefreshTableHeaderView.h */; };
 		1D66456A1905087900416722 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B0C1905051200816CCD /* EGORefreshTableHeaderView.m */; };
 		1D66456D1909129400416722 /* HistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D66456C1909129400416722 /* HistoryTableViewController.m */; };
@@ -294,7 +295,6 @@
 		BECF7C72184F468200ADD115 /* R66RightLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BECF7C70184F468200ADD115 /* R66RightLayerViewController.m */; };
 		BECF7C74184F48A800ADD115 /* R66Route.png in Resources */ = {isa = PBXBuildFile; fileRef = BECF7C73184F48A800ADD115 /* R66Route.png */; };
 		BECF7C76185598AD00ADD115 /* AlertViewShown.plist in Resources */ = {isa = PBXBuildFile; fileRef = BECF7C75185598AD00ADD115 /* AlertViewShown.plist */; };
-		C442C4E0192351DF00C8449F /* accountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C442C4DF192351DF00C8449F /* accountTableViewController.m */; };
 		C4CA69B11911276C005B272C /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CA69B01911276C005B272C /* RTLabel.m */; };
 		C4CA69B319112894005B272C /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CA69B219112894005B272C /* CoreText.framework */; };
 		C4CA69C1191A399C005B272C /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CA69C0191A399C005B272C /* NewsDetailViewController.m */; };
@@ -328,6 +328,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D452FE11923A21D002E28ED /* accountTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = accountTableViewController.h; sourceTree = "<group>"; };
+		1D452FE21923A21D002E28ED /* accountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = accountTableViewController.m; sourceTree = "<group>"; };
 		1D66456B1909129400416722 /* HistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewController.h; sourceTree = "<group>"; };
 		1D66456C1909129400416722 /* HistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryTableViewController.m; sourceTree = "<group>"; };
 		1D8A3B0B1905051200816CCD /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
@@ -767,8 +769,6 @@
 		BECF7C70184F468200ADD115 /* R66RightLayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = R66RightLayerViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		BECF7C73184F48A800ADD115 /* R66Route.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = R66Route.png; sourceTree = "<group>"; };
 		BECF7C75185598AD00ADD115 /* AlertViewShown.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AlertViewShown.plist; sourceTree = "<group>"; };
-		C442C4DE192351DF00C8449F /* accountTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = accountTableViewController.h; sourceTree = "<group>"; };
-		C442C4DF192351DF00C8449F /* accountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = accountTableViewController.m; sourceTree = "<group>"; };
 		C4CA69AF1911276C005B272C /* RTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLabel.h; sourceTree = "<group>"; };
 		C4CA69B01911276C005B272C /* RTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLabel.m; sourceTree = "<group>"; };
 		C4CA69B219112894005B272C /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -1521,12 +1521,12 @@
 		C72B23EB176AE80800474235 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				1D452FE11923A21D002E28ED /* accountTableViewController.h */,
+				1D452FE21923A21D002E28ED /* accountTableViewController.m */,
 				C72B23F2176AE97100474235 /* SettingModule.h */,
 				C72B23F3176AE97100474235 /* SettingModule.m */,
 				C72B23EF176AE87200474235 /* SettingsModuleViewController.h */,
 				C72B23F0176AE87200474235 /* SettingsModuleViewController.m */,
-				C442C4DE192351DF00C8449F /* accountTableViewController.h */,
-				C442C4DF192351DF00C8449F /* accountTableViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -1541,6 +1541,7 @@
 				C74699DB16F21C2D0060F49C /* StoryListViewController.m */,
 				C4CA69BF191A399C005B272C /* NewsDetailViewController.h */,
 				C4CA69C0191A399C005B272C /* NewsDetailViewController.m */,
+				C74699EA16F21D590060F49C /* Announce_API_Key.h */,
 				C4CA69C2191B57EE005B272C /* icon-person.jpg */,
 			);
 			name = News;
@@ -1549,7 +1550,6 @@
 		C74699E416F21C780060F49C /* Announce_API */ = {
 			isa = PBXGroup;
 			children = (
-				C74699EA16F21D590060F49C /* Announce_API_Key.h */,
 				C74699D516F21C2D0060F49C /* Announce_API.h */,
 				C74699D916F21C2D0060F49C /* Announce_API.m */,
 				C74699D816F21C2D0060F49C /* XMLReader.h */,
@@ -1935,6 +1935,7 @@
 				91756F6E16F206F7001D724D /* ReaderContentTile.m in Sources */,
 				91756F6F16F206F7001D724D /* ReaderContentView.m in Sources */,
 				91756F7016F206F7001D724D /* ReaderDocument.m in Sources */,
+				1D452FE31923A21D002E28ED /* accountTableViewController.m in Sources */,
 				1DD1793518FE7AB300621B67 /* MainViewController.m in Sources */,
 				43BEDC1119236D570091B024 /* TPRouteByButtonViewController.m in Sources */,
 				91756F7116F206F7001D724D /* ReaderMainPagebar.m in Sources */,
@@ -1989,7 +1990,6 @@
 				C72B23F1176AE87200474235 /* SettingsModuleViewController.m in Sources */,
 				C72B23F4176AE97100474235 /* SettingModule.m in Sources */,
 				BEA91661183C5F0400F12001 /* R66Layer1ViewController.m in Sources */,
-				C442C4E0192351DF00C8449F /* accountTableViewController.m in Sources */,
 				BE98A966183CF79400EF3CDC /* R66Layer2ViewController.m in Sources */,
 				BE98A969183CFA6000EF3CDC /* R66SwitchViewController.m in Sources */,
 				BECF7C71184F468200ADD115 /* R66LeftLayerViewController.m in Sources */,
@@ -2088,8 +2088,8 @@
 		91A9006516E854E500ECF2CF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2097,10 +2097,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39884AC2-021A-46E6-ACE9-5B63B479C33B";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2108,8 +2109,8 @@
 		91A9006616E854E500ECF2CF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2117,10 +2118,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39884AC2-021A-46E6-ACE9-5B63B479C33B";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

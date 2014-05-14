@@ -474,7 +474,6 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
         NewsDetailViewController *detailViewController = [[NewsDetailViewController alloc] init];
         NSDictionary *story = [self->tableDisplayData[self.activeCategoryId] objectAtIndex:indexPath.row];
         detailViewController.story = story;
-        
         [self.navigationController pushViewController:detailViewController animated:YES];
         detailViewController.navigationItem.leftBarButtonItem.title=@"back";
         [detailViewController release];
