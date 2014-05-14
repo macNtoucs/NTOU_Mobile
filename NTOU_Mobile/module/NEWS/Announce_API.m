@@ -22,7 +22,8 @@
 
 
 - (void)getAnnounceInfo_Count:(int)count andType:(NSString *)type andPage:(int) page {
-    NSString *url = [NSString stringWithFormat:@"http://dtop.ntou.edu.tw/appAPI.php?page=%d&count=%d&class=%@",page,count,type];
+    NSString *url = [NSString stringWithFormat:@"http://dtop.ntou.edu.tw/app1020402.php?page=%d&count=%d&class=%@",page,count,type];
+    //NSString *url = [NSString stringWithFormat:@"http://dtop.ntou.edu.tw/appAPI.php?page=%d&count=%d&class=%@",page,count,type];
     //  NSString *url = [NSString stringWithFormat:@"https://dl.dropboxusercontent.com/u/68445784/test.htm"];
     
     url = [url stringByAddingPercentEscapesUsingEncoding:CFStringConvertEncodingToNSStringEncoding(NSUTF8StringEncoding)];
@@ -100,6 +101,7 @@
     NSError * parseError;
     NSString * XMLResponse = [[NSString alloc] initWithData:updatePackage encoding:NSUTF8StringEncoding];
     XMLResponse = [XMLResponse stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n"];
+    XMLResponse = [XMLResponse stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"];
     content= [XMLReader dictionaryForXMLString:XMLResponse error:&parseError];
     [self fix_content:content];
     [delegate parserDidFinishParsing:self];

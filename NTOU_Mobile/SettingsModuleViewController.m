@@ -119,12 +119,12 @@
 }
 
 
-+(NSString *) getLibaryPassword
++(NSString *) getLibraryPassword
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:libraryPasswordKey];
 }
 
-+(BOOL) getLibaryLoginSuccess
++(BOOL) getLibraryLoginSuccess
 {
     NSNumber *success = [[NSUserDefaults standardUserDefaults] objectForKey:libraryLoginSuccessKey];
     if (success) {
@@ -145,7 +145,23 @@
     }
     else if ([title isEqual:library])
     {
-        
+        NSString *account = [SettingsModuleViewController getLibraryAccount];
+        NSString *pwd = [SettingsModuleViewController getLibraryPassword];
+        NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@",account,pwd];
+        NSHTTPURLResponse *urlResponse = nil;
+        NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
+        NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/login.do"];
+        [request setURL:[NSURL URLWithString:queryURL]];
+        [request setHTTPMethod:@"POST"];
+        [request setHTTPBody:[historyPost dataUsingEncoding:NSUTF8StringEncoding]];
+        NSData *responseData = [NSURLConnection sendSynchronousRequest:request
+                                                     returningResponse:&urlResponse
+                                                                 error:nil];
+        NSString* checkLogin = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+        if ([checkLogin rangeOfString:@"Login failed"].location == NSNotFound)
+            return true;
+        else
+            return false;
     }
     return false;
 }
@@ -309,7 +325,7 @@
     else if (indexPath.section == 0 && indexPath.row == 1) {
         accountTableViewController *detailViewController = [[accountTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         detailViewController.title = library;
-        detailViewController.explanation = @"帳號: 學校信箱之帳號(＠前的文字)；\n         預設為學號。\n密碼: 學校信箱之密碼；\n         預設為含大寫之身分證字號，\n         若是外籍生，則為含大寫之居留證\n         或護照號碼。";
+        detailViewController.explanation = @"帳號:     請輸入學號,敎職員證號或本館借書證號\n密碼:     您的身份證字號(預設值)\n\n若無法使用，請將您的《姓名》、《讀者證號》、《身份證號》E-mail 至hwa重新設定！\n        若您的證件曾經補發過一次，請在讀者證號後加二位數字01；補發二次，請加02；其餘類推。";
         detailViewController.accountStoreKey = libraryAccountKey;
         detailViewController.passwordStoreKey = libraryPasswordKey;
         detailViewController.loginSuccessStoreKey = libraryLoginSuccessKey;

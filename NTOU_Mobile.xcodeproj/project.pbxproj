@@ -308,7 +308,6 @@
 		C74699DF16F21C2D0060F49C /* StoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699DB16F21C2D0060F49C /* StoryListViewController.m */; };
 		C74699E016F21C2D0060F49C /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699DC16F21C2D0060F49C /* XMLReader.m */; };
 		C74699E316F21C680060F49C /* NavScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699E216F21C680060F49C /* NavScrollerView.m */; };
-		C74699E716F21CC90060F49C /* StoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699E616F21CC90060F49C /* StoryDetailViewController.m */; };
 		C74699E916F21CF40060F49C /* news in Resources */ = {isa = PBXBuildFile; fileRef = C74699E816F21CF40060F49C /* news */; };
 /* End PBXBuildFile section */
 
@@ -763,8 +762,6 @@
 		C74699DC16F21C2D0060F49C /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = module/NEWS/XMLReader.m; sourceTree = "<group>"; };
 		C74699E116F21C680060F49C /* NavScrollerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavScrollerView.h; sourceTree = "<group>"; };
 		C74699E216F21C680060F49C /* NavScrollerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavScrollerView.m; sourceTree = "<group>"; };
-		C74699E516F21CC90060F49C /* StoryDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryDetailViewController.h; path = module/NEWS/StoryDetailViewController.h; sourceTree = "<group>"; };
-		C74699E616F21CC90060F49C /* StoryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoryDetailViewController.m; path = module/NEWS/StoryDetailViewController.m; sourceTree = "<group>"; };
 		C74699E816F21CF40060F49C /* news */ = {isa = PBXFileReference; lastKnownFileType = folder; path = news; sourceTree = "<group>"; };
 		C74699EA16F21D590060F49C /* Announce_API_Key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Announce_API_Key.h; path = module/NEWS/Announce_API_Key.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1449,9 +1446,6 @@
 				C74699DB16F21C2D0060F49C /* StoryListViewController.m */,
 				C4CA69BF191A399C005B272C /* NewsDetailViewController.h */,
 				C4CA69C0191A399C005B272C /* NewsDetailViewController.m */,
-				C74699E516F21CC90060F49C /* StoryDetailViewController.h */,
-				C74699E616F21CC90060F49C /* StoryDetailViewController.m */,
-				C74699EA16F21D590060F49C /* Announce_API_Key.h */,
 				C4CA69C2191B57EE005B272C /* icon-person.jpg */,
 			);
 			name = News;
@@ -1460,6 +1454,7 @@
 		C74699E416F21C780060F49C /* Announce_API */ = {
 			isa = PBXGroup;
 			children = (
+				C74699EA16F21D590060F49C /* Announce_API_Key.h */,
 				C74699D516F21C2D0060F49C /* Announce_API.h */,
 				C74699D916F21C2D0060F49C /* Announce_API.m */,
 				C74699D816F21C2D0060F49C /* XMLReader.h */,
@@ -1875,7 +1870,6 @@
 				1D8A3B201905051200816CCD /* MessageInterceptor.m in Sources */,
 				C74699E016F21C2D0060F49C /* XMLReader.m in Sources */,
 				C74699E316F21C680060F49C /* NavScrollerView.m in Sources */,
-				C74699E716F21CC90060F49C /* StoryDetailViewController.m in Sources */,
 				BA06A07516F2EE6600212CB9 /* ScheduleModule.m in Sources */,
 				BA06A07816F2EE6600212CB9 /* ChiListViewController.m in Sources */,
 				BA06A07916F2EE6600212CB9 /* EnglistViewController.m in Sources */,

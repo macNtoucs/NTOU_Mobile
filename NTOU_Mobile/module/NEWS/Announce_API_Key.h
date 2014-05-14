@@ -20,6 +20,8 @@
 #define NewsAPIKeyEmail @"email"
 #define NewsAPIKeyText @"text"
 #define NewsAPIKeyDpname @"dpname"
+#define NewsAPIKeyAttachment_Title @"Attachment_Title"
+#define NewsAPIKeyAttachment_URL @"Attachment_URL"
 
 #define NewsCategoryIdAnnounceAPI  @"announce"
 #define NewsCategorySymposiumAPI  @"symposium"

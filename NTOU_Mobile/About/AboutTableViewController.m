@@ -62,7 +62,7 @@
                     cell.accessoryType = UITableViewCellAccessoryNone;
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
                     cell.backgroundColor = [UIColor whiteColor];
-                    cell.textLabel.textAlignment = UITextAlignmentCenter;
+                    cell.textLabel.textAlignment = NSTextAlignmentCenter;
                     cell.textLabel.font = [UIFont boldSystemFontOfSize:17.0];
         			cell.textLabel.textColor = CELL_STANDARD_FONT_COLOR;
                     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];

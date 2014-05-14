@@ -158,9 +158,9 @@
 {
     if (indexPath.section == 1) {
         CGSize stringSize = [explanation sizeWithFont:[UIFont boldSystemFontOfSize:15]
-                                    constrainedToSize:CGSizeMake(320, 9999)
+                                    constrainedToSize:CGSizeMake(200, 9999)
                                         lineBreakMode:NSLineBreakByWordWrapping];
-        return stringSize.height+60;
+        return stringSize.height+5;
     }
     return 38;
 }
@@ -178,9 +178,9 @@
     contactNameTextField.delegate = self;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     CGSize stringSize = [explanation sizeWithFont:[UIFont boldSystemFontOfSize:15]
-                                constrainedToSize:CGSizeMake(320, 9999)
+                                constrainedToSize:CGSizeMake(200, 9999)
                                     lineBreakMode:NSLineBreakByWordWrapping];
-    UITextView *textCaption = [[UITextView alloc] initWithFrame:CGRectMake(5, 5, 290, stringSize.height+50)];
+    UITextView *textCaption = [[UITextView alloc] initWithFrame:CGRectMake(5, 5, 290, stringSize.height)];
     
     switch (indexPath.section) {
         case 0:
