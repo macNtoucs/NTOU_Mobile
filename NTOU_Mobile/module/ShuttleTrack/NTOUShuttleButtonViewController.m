@@ -121,7 +121,7 @@
             [self.navigationController pushViewController:kuoFuhoViewController animated:YES];
             kuoFuhoViewController.navigationItem.leftBarButtonItem.title = @"Back";
             [kuoFuhoViewController release];*/
-            ExpressBusSearchViewController *expressBusViewController = [[ExpressBusSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            ExpressBusSearch2ViewController *expressBusViewController = [[ExpressBusSearch2ViewController alloc] initWithStyle:UITableViewStyleGrouped];
             [self.navigationController pushViewController:expressBusViewController animated:YES];
             expressBusViewController.navigationItem.leftBarButtonItem.title = @"Back";
             expressBusViewController.title = @"北北基客運";

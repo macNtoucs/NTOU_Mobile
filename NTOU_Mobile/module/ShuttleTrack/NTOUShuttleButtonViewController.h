@@ -20,7 +20,7 @@
 #import "KuoFuhoViewController.h"
 #import "SetStationViewController.h"
 #import "NTOUBusTableViewController.h"
-#import "ExpressBusSearchViewController.h"
+#import "ExpressBusSearch2ViewController.h"
 
 @interface NTOUShuttleButtonViewController : UIViewController
 
