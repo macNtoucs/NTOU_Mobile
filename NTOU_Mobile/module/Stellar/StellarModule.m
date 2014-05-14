@@ -15,13 +15,14 @@
         self.longName = @"NTOU Stellar";
         self.iconName = @"stellar";
         self.pushNotificationSupported = YES;
+        self.moduleHomeController = [[[ScheduleViewController alloc] init] autorelease];
     }
     return self;
 }
 
 - (void)loadModuleHomeController
 {
-    [self setModuleHomeController:[[[ScheduleViewController alloc] init] autorelease]];
+    [self setModuleHomeController: self.moduleHomeController];
 }
 
 
@@ -39,6 +40,14 @@
 - (void)dealloc
 {
 	[super dealloc];
+}
+
+- (BOOL)handleNotification:(Notification *)notification shouldOpen: (BOOL)shouldOpen {
+    if(shouldOpen) {
+        [(ScheduleViewController *)self.moduleHomeController ChangeDisplayView];
+	}
+    
+	return YES;
 }
 
 @end

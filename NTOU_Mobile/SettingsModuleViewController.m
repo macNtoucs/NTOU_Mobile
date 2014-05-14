@@ -7,6 +7,10 @@
 //
 
 #import "SettingsModuleViewController.h"
+#import "Moodle_API.h"
+#import "NTOUNotification.h"
+#define loginSuccessButtonTittle @"登出"
+#define loginFailButtonTittle @"登入"
 
 @interface SettingsModuleViewController (){
     UIAlertView *logInAlertView;
@@ -18,11 +22,18 @@
 @implementation SettingsModuleViewController
 @synthesize accountDelegate;
 @synthesize passwordDelegate;
+@synthesize receiveArray;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        receiveArray = [[NTOUNotificationHandle getDevicePushSettingArray] mutableCopy];
+        loginSuccess = [SettingsModuleViewController getLoginSuccess];
+        
+        if (!receiveArray) {
+            receiveArray = [[NSMutableArray alloc]initWithObjects:[NSNumber numberWithBool:true],[NSNumber numberWithBool:true],[NSNumber numberWithBool:true], nil];
+        }
     }
     return self;
 }
@@ -44,7 +55,11 @@
     }
     [self.tableView applyStandardColors];
     self.title = @"設定";
-    buttonTitle = [[NSMutableString alloc] initWithFormat:@"登入"];
+    if (loginSuccess) {
+        buttonTitle = [[NSMutableString alloc] initWithFormat:loginSuccessButtonTittle];
+    }
+    else
+        buttonTitle = [[NSMutableString alloc] initWithFormat:loginFailButtonTittle];
     [self addNavRightButton];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -78,19 +93,8 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section == 0)
-    {
-        CGFloat rowHeight = 0;
-        UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
-        CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
-        NSString *cellText = nil;
-        
-        cellText = @"A"; // just something to guarantee one line
-        CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
-        rowHeight = labelSize.height + 20.0f;
-        
-        return rowHeight;
-    }
-    return 170;
+        return 170;
+    return 38;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -128,6 +132,15 @@
     return YES;
 }
 
+- (BOOL) loginAndRegisterDeviceToken
+{
+    NSDictionary* info = [Moodle_API Login:[SettingsModuleViewController getAccount] andPassword:[SettingsModuleViewController getPassword]];
+    //NSLog(@"%@",[info objectForKey:moodleLoginResultKey]);
+    if([[info objectForKey:moodleLoginResultKey] intValue]==1)
+        return true;
+    return false;
+}
+
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
         if (alertView==logInAlertView) {
@@ -139,39 +152,42 @@
                     hud.labelText = @"登入中";
                 });
                 
-                loginSuccess = [[ClassDataBase sharedData] loginAccount:[SettingsModuleViewController getAccount]
-                                                               Password:[SettingsModuleViewController getPassword]
-                                                        ClearAllCourses:NO];
+                loginSuccess = [self loginAndRegisterDeviceToken];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                     if (loginSuccess)
                     {
-                        [buttonTitle setString:@"登出"];
+                        [NTOUNotificationHandle sendRegisterDevice:accountDelegate.text];
+                        [buttonTitle setString:loginSuccessButtonTittle];
                         [self addNavRightButton];
-                        [[ClassDataBase sharedData] storeUserDefaults];
+                        accountDelegate.userInteractionEnabled = NO;
+                        passwordDelegate.userInteractionEnabled = NO;
                     }
+                    else
+                    {
+                        UIAlertView *loadingAlertView = [[UIAlertView alloc]
+                                                             initWithTitle:nil message:@"帳號、密碼錯誤"
+                                                             delegate:self cancelButtonTitle:@"確定"
+                                                             otherButtonTitles:nil];
+                        [loadingAlertView show];
+                        [loadingAlertView release];
+                        passwordDelegate.text = nil;
+                    }
+                    [self storeLoginSuccess];
                 });
             });
         } else if(alertView==logOutAlertView) {
+            [NTOUNotificationHandle sendRegisterDevice:nil];
+            accountDelegate.userInteractionEnabled = YES;
+            passwordDelegate.userInteractionEnabled = YES;
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults removeObjectForKey:passwordKey];
+            [defaults synchronize];
             passwordDelegate.text = nil;
-            [buttonTitle setString:@"登入"];
+            loginSuccess = NO;
+            [self storeLoginSuccess];
+            [buttonTitle setString:loginFailButtonTittle];
             [self addNavRightButton];
-        }else {
-            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                // Show the HUD in the main tread
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    // No need to hod onto (retain)
-                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-                    hud.labelText = @"請稍候";
-                });
-                
-                [[ClassDataBase sharedData] ClearAllCourses];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                    //[self finishSetting];
-                    [[ClassDataBase sharedData] storeUserDefaults];
-                });
-            });
         }
     }
 }
@@ -191,7 +207,7 @@
     [accountDelegate resignFirstResponder];
     [passwordDelegate resignFirstResponder];
     
-    if([buttonTitle isEqualToString:@"登入"])
+    if([buttonTitle isEqualToString:loginFailButtonTittle])
     {
         logInAlertView = [[UIAlertView alloc]
                           initWithTitle:nil message:@"確定登入？"
@@ -218,11 +234,14 @@
     label.backgroundColor = [UIColor clearColor];
     switch (section) {
         case 0:
-            label.text = @"Email";
+            label.text = @"說明";
             break;
             
         case 1:
-            label.text =@"說明";
+            label.text = @"Email";
+            break;
+        case 2:
+            label.text = @"推播通知";
             break;
     }
     // Create header view and add label as a subview
@@ -244,17 +263,37 @@
     return [[NSUserDefaults standardUserDefaults] objectForKey:passwordKey];
 }
 
++(BOOL) getLoginSuccess
+{
+    NSNumber *success = [[NSUserDefaults standardUserDefaults] objectForKey:loginSuccessKey];
+    if (success) {
+        return [success boolValue];
+    }
+    return NO;
+}
+
+-(void) storeLoginSuccess
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSNumber numberWithBool:loginSuccess] forKey:loginSuccessKey];
+    [defaults synchronize];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if(section == 1)
+    if(section == 0)
         return 1;
+    else if (section == 1)
+        return 2;
+    else if (section == 2)
+        return 3;
     return 2;
 }
 
@@ -264,7 +303,7 @@
     
     SecondaryGroupedTableViewCell *cell = (SecondaryGroupedTableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondaryCellIdentifier];
     if (cell == nil) {
-        cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:SecondaryCellIdentifier] autorelease];
+        cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:SecondaryCellIdentifier] autorelease];
     }
     UITextField* contactNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(93, 10, 200, 20)];
     contactNameTextField.delegate = self;
@@ -273,37 +312,11 @@
     NSString *explanation = @"帳號: 學校信箱之帳號(＠前的文字)；\n         預設為學號。\n密碼: 學校信箱之密碼；\n         預設為含大寫之身分證字號，\n         若是外籍生，則為含大寫之居留證\n         或護照號碼。";
     CGSize stringSize = [explanation sizeWithFont:[UIFont boldSystemFontOfSize:15]
                           constrainedToSize:CGSizeMake(320, 9999)
-                              lineBreakMode:UILineBreakModeWordWrap];
+                              lineBreakMode:NSLineBreakByWordWrapping];
     UITextView *textV=[[UITextView alloc] initWithFrame:CGRectMake(5, 5, 290, stringSize.height+50)];
     
     switch (indexPath.section) {
         case 0:
-            switch (indexPath.row) {
-                case 0:
-                    accountDelegate = contactNameTextField;
-                    cell.textLabel.text = @"帳號:";
-                    cell.textLabel.textAlignment = UITextAlignmentLeft;
-                    contactNameTextField.backgroundColor = [UIColor clearColor];
-                    contactNameTextField.font = [UIFont boldSystemFontOfSize:15];
-                    contactNameTextField.keyboardType = UIKeyboardTypeDefault;
-                    contactNameTextField.text =[SettingsModuleViewController getAccount];
-                    [cell addSubview:contactNameTextField];
-                    break;
-                case 1:
-                    passwordDelegate = contactNameTextField;
-                    cell.textLabel.text = @"密碼:";
-                    cell.textLabel.textAlignment = UITextAlignmentLeft;
-                    contactNameTextField.backgroundColor = [UIColor clearColor];
-                    contactNameTextField.font = [UIFont boldSystemFontOfSize:15];
-                    contactNameTextField.keyboardType = UIKeyboardTypeDefault;
-                    contactNameTextField.text =[SettingsModuleViewController getPassword];
-                    contactNameTextField.secureTextEntry = YES;
-                    [cell addSubview:contactNameTextField];
-                    break;
-            }
-            break;
-            
-        case 1:
             textV.font = [UIFont systemFontOfSize:15.0];
             textV.text = explanation;
             textV.textColor = [UIColor blackColor];
@@ -313,11 +326,93 @@
             [textV release];
             break;
             
+        case 1:
+            switch (indexPath.row) {
+                case 0:
+                    accountDelegate = contactNameTextField;
+                    cell.textLabel.text = @"帳號:";
+                    cell.textLabel.textAlignment = NSTextAlignmentLeft;
+                    contactNameTextField.backgroundColor = [UIColor clearColor];
+                    contactNameTextField.font = [UIFont boldSystemFontOfSize:15];
+                    contactNameTextField.keyboardType = UIKeyboardTypeDefault;
+                    contactNameTextField.text =[SettingsModuleViewController getAccount];
+                    [cell addSubview:contactNameTextField];
+                    break;
+                case 1:
+                    passwordDelegate = contactNameTextField;
+                    cell.textLabel.text = @"密碼:";
+                    cell.textLabel.textAlignment = NSTextAlignmentLeft;
+                    contactNameTextField.backgroundColor = [UIColor clearColor];
+                    contactNameTextField.font = [UIFont boldSystemFontOfSize:15];
+                    contactNameTextField.keyboardType = UIKeyboardTypeDefault;
+                    contactNameTextField.text =[SettingsModuleViewController getPassword];
+                    contactNameTextField.secureTextEntry = YES;
+                    [cell addSubview:contactNameTextField];
+                    break;
+            }
+            if (loginSuccess) {
+                contactNameTextField.userInteractionEnabled = NO;
+            }
+            break;
+        case 2:
+            switch (indexPath.row) {
+                UISwitch *switchview = nil;
+                case 0:
+
+                    cell.textLabel.text = @"功課表";
+                    cell.textLabel.textAlignment = NSTextAlignmentLeft;
+                  
+                    switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    switchview.on = [receiveArray[0] boolValue];
+                    [switchview addTarget:self action:@selector(chick_Switch:) forControlEvents:UIControlEventValueChanged];
+
+                    cell.accessoryView = switchview;
+                    [switchview release];
+                    break;
+                case 1:
+
+                    cell.textLabel.text = @"圖書館";
+                    cell.textLabel.textAlignment = NSTextAlignmentLeft;
+                   
+                    switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    switchview.on = [receiveArray[1] boolValue];
+                    [switchview addTarget:self action:@selector(chick_Switch:) forControlEvents:UIControlEventValueChanged];
+                    
+                    cell.accessoryView = switchview;
+                    [switchview release];
+                    break;
+                case 2:
+                    
+                    cell.textLabel.text = @"緊急聯絡";
+                    cell.textLabel.textAlignment = NSTextAlignmentLeft;
+                    [cell.textLabel sizeToFit];
+                    switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    switchview.on = [receiveArray[2] boolValue];
+                    [switchview addTarget:self action:@selector(chick_Switch:) forControlEvents:UIControlEventValueChanged];
+                    
+                    cell.accessoryView = switchview;
+                    [switchview release];
+                    break;
+            }
+
+            break;
+
+            
         default:
             break;
     }
     
     return cell;
+}
+
+-(void)chick_Switch:(id)sender
+{
+    UISwitch *switchView = (UISwitch *)sender;
+    UITableViewCell *cell = (UITableViewCell *)switchView.superview;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    receiveArray[indexPath.row] = [NSNumber numberWithBool:switchView.on];
+    
+    [NTOUNotificationHandle sendDevicePushSetting:receiveArray];
 }
 
 /*

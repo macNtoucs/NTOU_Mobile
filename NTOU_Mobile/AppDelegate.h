@@ -16,7 +16,7 @@
     UINavigationController *rootNavigationController;
     
     NSArray *modules; // all registered modules as defined in NTOUModuleList.m
-    NSData *devicePushToken; // deviceToken returned by Apple's push servers when we register. Will be nil if not available.
+    NSString *devicePushToken; // deviceToken returned by Apple's push servers when we register. Will be nil if not available.
     
     NSInteger networkActivityRefCount; // the number of concurrent network connections the user should know about. If > 0, spinny in status bar is shown
 }
@@ -33,7 +33,7 @@
 @property (nonatomic, retain) UINavigationController *rootNavigationController;
 @property (nonatomic, retain) NTOUSpringboard *springboardController;
 @property (nonatomic, retain) NSArray *modules;
-@property (nonatomic, retain) NSData *deviceToken;
+@property (nonatomic, retain) NSString *devicePushToken;
 
 @end
 

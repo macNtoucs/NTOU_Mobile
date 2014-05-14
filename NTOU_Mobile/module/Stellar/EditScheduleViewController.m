@@ -101,7 +101,7 @@
     NSString *cellText = nil;
     
     cellText = @"A"; // just something to guarantee one line
-    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
     rowHeight = labelSize.height + 20.0f;
     
     return rowHeight;
@@ -139,7 +139,7 @@
 	label.textColor = GROUPED_SECTION_FONT_COLOR;
 	label.font = font;
 	label.backgroundColor = [UIColor clearColor];
-	label.textAlignment = UITextAlignmentCenter;
+	label.textAlignment = NSTextAlignmentCenter;
 	UIView *labelContainer = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, appFrame.size.width, GROUPED_SECTION_HEADER_HEIGHT)] autorelease];
 	labelContainer.backgroundColor = [UIColor clearColor];
 	
@@ -232,7 +232,7 @@
         switch (indexPath.row) {
             case 0:
                 cell.textLabel.text = @"下載當學期課表";
-                cell.textLabel.textAlignment = UITextAlignmentCenter;
+                cell.textLabel.textAlignment = NSTextAlignmentCenter;
                 break;
         }
     }
@@ -242,7 +242,7 @@
         switch (indexPath.row) {
             case 0:
                 cell.textLabel.text = @"還原初始設定";
-                cell.textLabel.textAlignment = UITextAlignmentCenter;
+                cell.textLabel.textAlignment = NSTextAlignmentCenter;
                 break;
         }
     }

@@ -79,7 +79,7 @@
     }
     
     cell.textLabel.textColor = CELL_STANDARD_FONT_COLOR;
-    cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.textLabel.numberOfLines = 0;
     // Configure the cell...
     

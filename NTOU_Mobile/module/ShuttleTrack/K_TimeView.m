@@ -73,7 +73,7 @@
     NSString *cellText = nil;
     
     cellText = @"A"; // just something to guarantee one line
-    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
     rowHeight = labelSize.height + 20.0f;
     
     return rowHeight;
@@ -103,7 +103,7 @@
         cell.backgroundColor = SECONDARY_GROUP_BACKGROUND_COLOR;
         label = [[[UILabel alloc] initWithFrame:CGRectMake(20, 8, 260, 22)] autorelease];
         label.backgroundColor = [UIColor clearColor];
-        label.lineBreakMode = UILineBreakModeWordWrap;
+        label.lineBreakMode = NSLineBreakByWordWrapping;
         label.numberOfLines = 0;
         label.tag=25;
         label.font = [UIFont fontWithName:BOLD_FONT size:17.0];

@@ -29,7 +29,7 @@
     MBProgressHUD *HUD;
 }
 -(void) showClassInfo:(ClassLabelBasis *)label;
-
+-(void)ChangeDisplayView;
 @property(nonatomic, retain) UIView *UpperleftView;
 @property(nonatomic, retain)  WeekNameView *TopWeekcontroller;
 @property (nonatomic, retain)  UIScrollView *scrollView;

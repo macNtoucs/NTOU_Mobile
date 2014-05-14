@@ -126,6 +126,9 @@ moduleHomeController;
 	self.currentQuery = @"";
 }
 
+- (BOOL)handleNotification:(Notification *)notification shouldOpen: (BOOL)shouldOpen {
+	return NO;
+}
 
 
 - (void)handleUnreadNotificationsSync: (NSArray *)unreadNotifications {

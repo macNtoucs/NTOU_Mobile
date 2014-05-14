@@ -150,6 +150,7 @@ static ClassDataBase *sharedData = nil;
             courseTempID = [[NSMutableDictionary dictionaryWithDictionary:courseID] retain];
             classID = obj->classID;
             classTempID = [[NSMutableDictionary dictionaryWithDictionary:classID] retain];
+            NSLog(@"courseTempID:%@,classTempID:%@",courseTempID,classTempID);
         }
         
     }
@@ -522,6 +523,12 @@ static ClassDataBase *sharedData = nil;
     }
     return 0;
 }
+
+- (NSString *)searchCourseIDFormCourseName:(NSString *)courseName
+{
+    return [courseTempID objectForKey:courseName];
+}
+
 
 -(void)classPropertyAdd:(NSDictionary *)course
 {

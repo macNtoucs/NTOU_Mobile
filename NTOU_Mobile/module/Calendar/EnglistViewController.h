@@ -1,18 +1,18 @@
 //
-//  WOLChiListViewController.h
-//  NTOUMobile
+//  WOLlistViewController.h
+//  calandertest
 //
-//  Created by NTOUCS on 13/2/18.
-//
+//  Created by apple on 13/2/15.
+//  Copyright (c) 2013年 apple. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "WOLSwitchViewController.h"
+#import "SwitchViewController.h"
 
-@interface WOLChiListViewController : UITableViewController <UIActionSheetDelegate,UIAlertViewDelegate>
+@interface EnglistViewController : UITableViewController <UIActionSheetDelegate>
 @property (strong, nonatomic) NSDictionary *events;
 @property (strong, nonatomic) NSArray *keys;
-@property (strong, nonatomic) WOLSwitchViewController *switchviewcontroller;
+@property (strong, nonatomic) SwitchViewController *switchviewcontroller;
 @property (nonatomic) BOOL downLoadEditing;
 @property (nonatomic) NSInteger menuHeight;
 @property (nonatomic, strong) UIToolbar *actionToolbar;

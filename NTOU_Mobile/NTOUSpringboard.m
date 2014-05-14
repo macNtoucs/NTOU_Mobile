@@ -10,7 +10,8 @@
 #import "IconGrid.h"
 #import "AppDelegate.h"
 #import "NTOUModule.h"
-
+#import "BadgeLabel.h"
+#import "NTOUNotification.h"
 @interface NTOUSpringboard ()
 - (void)internalInit;
 - (void)showModuleForIcon:(id)sender;
@@ -155,6 +156,9 @@
     //[logoView setImage:[UIImage imageNamed:@"global/navbar_ntou_logo.png"]];
     [self.navigationController.navigationBar insertSubview:Nav_BG atIndex:1];
     //[self.navigationController.navigationBar insertSubview:logoView atIndex:2];
+    
+    [NTOUNotificationHandle setAllBadge];
+    
     [super viewWillAppear:animated];
 }
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -191,7 +195,7 @@
         [aButton addTarget:self action:@selector(showModuleForIcon:) forControlEvents:UIControlEventTouchUpInside];
         [buttons addObject:aButton];
         //[self.view addSubview:aButton];
-          [aButton setUserInteractionEnabled:YES];
+        [aButton setUserInteractionEnabled:YES];
     }
     self.grid.icons = buttons;
     [self.view addSubview:self.grid];
@@ -207,7 +211,7 @@
     if (!bannerInfo) {
         bannerInfo = [[NSMutableDictionary alloc] init];
     }
-    
+
     [self displayBannerImage];
 	//[self checkForFeaturedModule];
     
@@ -288,7 +292,7 @@
             badgeLabel.backgroundColor = [UIColor clearColor];
             badgeLabel.textColor = [UIColor whiteColor];
             badgeLabel.font = labelFont;
-            badgeLabel.textAlignment = UITextAlignmentCenter;
+            badgeLabel.textAlignment = NSTextAlignmentCenter;
             badgeLabel.tag = BADGE_LABEL_TAG;
             [badgeView addSubview:badgeLabel];
         }
@@ -311,7 +315,7 @@
         badgeLabel.text = badgeValue;
         
         // place badgeView on top right corner
-        frame.origin = CGPointMake(self.frame.size.width - floor(badgeView.frame.size.width / 2) - 5,
+        frame.origin = CGPointMake(self.frame.size.width - floor(badgeView.frame.size.width / 2) - 20,
                                    - floor(badgeView.frame.size.height / 2) + 5);
         badgeView.frame = frame;
         

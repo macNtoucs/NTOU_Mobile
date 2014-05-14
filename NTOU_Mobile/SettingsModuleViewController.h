@@ -19,13 +19,14 @@
     MBProgressHUD *HUD;
     BOOL loginSuccess;
     NSMutableString * buttonTitle;
-    
+    NSMutableArray * receiveArray;
 }
 @property (nonatomic, retain) UITextField* accountDelegate;
 @property (nonatomic, retain) UITextField* passwordDelegate;
+@property (nonatomic, retain) NSMutableArray * receiveArray;
 
 +(NSString *) getAccount;
 +(NSString *) getPassword;
-
++(BOOL) getLoginSuccess;
 
 @end

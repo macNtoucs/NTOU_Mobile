@@ -1,10 +1,10 @@
 #import <Foundation/Foundation.h>
 #import "NTOUModule.h"
 
-@class WOLCalendarViewController;
-@interface LibrariesModule : NTOUModule {
+@class CalendarViewController;
+@interface ScheduleModule : NTOUModule {
     NSOperationQueue *_requestQueue;
-    WOLCalendarViewController *TimeviewController;
+    CalendarViewController *TimeviewController;
 }
 
 @property (nonatomic, retain) NSOperationQueue *requestQueue;

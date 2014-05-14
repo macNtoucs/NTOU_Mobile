@@ -8,7 +8,7 @@
 
 #import "WeekScheduleView.h"
 #import "ClassDataBase.h"
-
+#import "NTOUNotification.h"
 @implementation WeekScheduleView
 @synthesize WhetherTapped;
 @synthesize TapAddCourse;
@@ -122,19 +122,30 @@
         ClassLabelBasis* label = [[[ClassLabelBasis alloc] initWithFrame: labelFrame] autorelease];
         label.text = [content objectAtIndex:i];
         label.tag = -((day*100+sameClass)*100+i-sameClass+1); //（第幾週數－１）＊１００００＋（第幾堂數－１）＊１００＋連堂數
-        if (![[content objectAtIndex:i] isEqualToString:@" "]){
+        if (![[content objectAtIndex:i] isEqualToString:@" "]){  //對有課程的label作處理
             label.backgroundColor = [color objectForKey:label.text];
             label.tag = -label.tag;
+            label.topDisplayView = self;
+            NSMutableDictionary* notif = [NTOUNotificationHandle getNotifications];
+            NSMutableArray* unReadNotifs = [notif objectForKey:StellarTag];
+            int count = 0;
+            for (NSString* unReadNotif in unReadNotifs) {   //尋找label有多少未讀推播
+                if ([unReadNotif rangeOfString:[[ClassDataBase sharedData] searchCourseIDFormCourseName:label.text]].location != NSNotFound) {    //比對課程id
+                    count++;
+                }
+            }
+            if (count)
+                [label setBadgeValue:[NSString stringWithFormat:@"%d",count]]; //設定label推播數
             [course addObject:label];
         }
         else if (i==4&&[[content objectAtIndex:i]isEqualToString:@" "])
             label.backgroundColor = [UIColor colorWithRed:105.0/255 green:105.0/255 blue:105.0/255 alpha:1];
-        else{
+        else{ 
             label.backgroundColor = [UIColor clearColor];
         }
         label.layer.borderColor = [UIColor blackColor].CGColor;
         label.font = [UIFont fontWithName:@"Helvetica" size:15];
-        label.textAlignment = UITextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentCenter;
         label.layer.borderWidth = TextLabelborderWidth;
         label.tempBackground = label.backgroundColor;
         label.userInteractionEnabled = YES;
@@ -143,7 +154,7 @@
         [label addGestureRecognizer:tapGestureRecognizer];
         [tapGestureRecognizer release];
         label.numberOfLines=0;
-        label.lineBreakMode = UILineBreakModeWordWrap;
+        label.lineBreakMode = NSLineBreakByWordWrapping;
         [self addSubview: label];
     }
 }
@@ -152,10 +163,14 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    for(UIView *subview in [self subviews])
+    for (ClassLabelBasis* courselabel in course) {  //刪除所有推播通知顯示
+        [courselabel setBadgeValue:nil];
+    }
+    for(UIView *subview in [self subviews])   //刪除所有課程顯示
     {
         [subview removeFromSuperview];
     }
+    [course removeAllObjects];
     NSDictionary * scheduleInfo = [[ClassDataBase sharedData] FetchScheduleInfo];
     int ColumnNumber=0;
     if ([[ClassDataBase sharedData] displayWeekDays:Monday])

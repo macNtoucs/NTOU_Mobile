@@ -247,7 +247,7 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = [data.Route objectAtIndex:[[data.IndexBase objectAtIndex:[self sectionChangeIndex:indexPath.section]] intValue]+indexPath.row ];
     // Configure the cell...
-    cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.textLabel.numberOfLines = 0;
     return cell;
 }

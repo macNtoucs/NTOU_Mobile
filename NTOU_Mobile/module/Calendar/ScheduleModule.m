@@ -1,14 +1,16 @@
-#import "LibrariesModule.h"
-#import "WOLSwitchViewController.h"
+#import "ScheduleModule.h"
+#import "SwitchViewController.h"
 #import "NTOUModule+Protected.h"
 #import "NTOUConstants.h"
-@implementation LibrariesModule
+
+
+@implementation ScheduleModule
 @synthesize requestQueue = _requestQueue;
 
 - (id) init {
     self = [super init];
     if (self != nil) {
-        self.tag = LibrariesTag;
+        self.tag = CalendarTag;
         self.shortName = @"行事曆";
         self.longName = @"Calendar";
         self.iconName = @"calendar";
@@ -25,7 +27,7 @@
 
 - (void)loadModuleHomeController
 {
-    WOLSwitchViewController *viewcontroller = [[WOLSwitchViewController alloc] init];
+    SwitchViewController *viewcontroller = [[SwitchViewController alloc] init];
     viewcontroller.title = @"行事曆";
     self.moduleHomeController = viewcontroller;
 }

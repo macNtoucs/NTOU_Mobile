@@ -52,7 +52,7 @@
         }
         label.layer.borderWidth = TextLabelborderWidth;
         label.numberOfLines=0;
-        label.lineBreakMode = UILineBreakModeWordWrap;
+        label.lineBreakMode = NSLineBreakByWordWrapping;
         [self addSubview: label];
     }
 }

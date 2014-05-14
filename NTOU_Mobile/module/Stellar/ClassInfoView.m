@@ -269,6 +269,7 @@
     }
     else if (types == 3){
         NSString* cellDisplay = [[resource objectAtIndex:indexPath.section] objectForKey:moodleInfoDescriptionKey];
+       // NSLog(@"----------------\n%@",cellDisplay);
         if ([cellDisplay isEqualToString:@""]) {
             return [[resource objectAtIndex:indexPath.section] objectForKey:moodleInfoSummaryKey];
         }
@@ -289,7 +290,7 @@
     {
         CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
         UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:CELL_STANDARD_FONT_SIZE];
-        CGSize labelSize = [[self textLabeltext:indexPath] sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+        CGSize labelSize = [[self textLabeltext:indexPath] sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
         CGFloat rowHeight = labelSize.height + 20.0f;
         label = [[UILabel alloc] init];
         detailLabel = [[UILabel alloc] init];
@@ -305,6 +306,23 @@
         else{
             label.frame = CGRectMake(5, 0,295, rowHeight);
             detailLabel.frame = CGRectMake(280, 0,20, rowHeight);
+            
+            if (types==3){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(5, 5,290, rowHeight-10)];
+                    [webView loadHTMLString:[self textLabeltext:indexPath] baseURL:nil];
+                    webView.backgroundColor = [UIColor clearColor];
+                    [webView setOpaque:NO];
+                    webView.scrollView.scrollEnabled = NO;
+                    webView.scrollView.bounces = NO;
+                    webView.delegate = self;
+                    webView.tag = indexPath.section*100+50;
+                    [cell.contentView addSubview:webView];
+                    
+                });
+                
+            }
+           
         }
         cell.backgroundColor = SECONDARY_GROUP_BACKGROUND_COLOR;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -312,23 +330,26 @@
             label.tag=indexPath.row;
         else if((types==2&&indexPath.section==1)||types==6)
             label.tag=indexPath.row-1;
-        label.lineBreakMode = UILineBreakModeWordWrap;
+        
+        label.lineBreakMode = NSLineBreakByWordWrapping;
         label.numberOfLines = 0;
         label.font = [UIFont fontWithName:STANDARD_FONT size:CELL_STANDARD_FONT_SIZE];
         label.textColor = CELL_STANDARD_FONT_COLOR;
         label.backgroundColor = [UIColor clearColor];
         detailLabel.backgroundColor = [UIColor clearColor];
-        detailLabel.textAlignment = UITextAlignmentRight;
+        detailLabel.textAlignment = NSTextAlignmentRight;
         [cell.contentView addSubview:label];
         [cell.contentView addSubview:detailLabel];
-        label.text = [self textLabeltext:indexPath];
-        detailLabel.text = [self subLabeltext:indexPath];
+        if ( types != 3) {
+            label.text = [self textLabeltext:indexPath];
+            detailLabel.text = [self subLabeltext:indexPath];
+        }
         
         if (types==1&&[detailLabel.text floatValue]<60) {
             detailLabel.textColor = [UIColor redColor];
         }
         if (types==6) {
-            label.textAlignment = UITextAlignmentCenter;
+            label.textAlignment = NSTextAlignmentCenter;
         }
         if (types == 4||(types == 2&&indexPath.section==1&&indexPath.row>0) ||(types == 6&&indexPath.row>0)) {
             label.userInteractionEnabled = YES;
@@ -359,6 +380,16 @@
         [cell.contentView addSubview:self.textView];
     }
     return cell;
+}
+
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    
+    [webView sizeToFit];
+    NSIndexPath* rowToReload = [NSIndexPath indexPathForRow:0 inSection:(webView.tag-50)/100];
+    NSArray* rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
+    [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
+
 }
 
 /*
@@ -454,7 +485,7 @@
         NSString *cellText = nil;
         
         cellText = [self titleForHeaderInSection:section];
-        CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+        CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
         rowHeight = labelSize.height + 20.0f;
         
         return rowHeight;
@@ -500,12 +531,33 @@
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
+    if (types==3) {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            UIWebView* webView = [[UIWebView alloc] initWithFrame:CGRectMake(5, 5,290, 0)];
+            [webView loadHTMLString:[self textLabeltext:indexPath] baseURL:nil];
+            CGSize size = [webView sizeThatFits:CGSizeZero];
+            getSize = size.height;
+            NSLog(@"getSize1:%f",getSize);
+        });
+        NSLog(@"getSize2:%f",getSize);
+        return getSize;
+    }
+*/
+    
+    UIWebView* webView = (UIWebView*)[self.tableView viewWithTag:indexPath.section*100+50];
+    if (webView) {
+        NSString *yourHTMLSourceCodeString = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+        NSLog(@"======\n%@\n--------%f\n",yourHTMLSourceCodeString,webView.scrollView.contentSize.height+5);
+        return webView.scrollView.contentSize.height+5;
+    }
+    
     CGFloat rowHeight = 0;
     UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:CELL_STANDARD_FONT_SIZE];
     CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
     NSString *cellText = @" ";
     cellText = [self textLabeltext:indexPath]; // just something to guarantee one line
-    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
     rowHeight = labelSize.height + 20.0f;
     if (edit) {
         return [[UIScreen mainScreen] bounds].size.height-320;
@@ -514,8 +566,10 @@
         return [[UIScreen mainScreen] bounds].size.height-155;
     }
     else
-    return rowHeight;
+        return rowHeight;
 }
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.

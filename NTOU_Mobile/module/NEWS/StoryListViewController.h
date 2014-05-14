@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "NavScrollerView.h"
 #import "Announce_API.h"
-#import "StoryDetailViewController.h"
-
+#import "NewsDetailViewController.h"
+#import "PullTableView.h"
 typedef enum {
     NewsCategoryIdAnnounce = 0,
     NewsCategoryIdSymposium = 1,
@@ -21,10 +21,10 @@ typedef enum {
 } NewsCategoryId;
 
 
-@interface StoryListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, NavScrollerDelegate,Announce_API_Delegate>
+@interface StoryListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, NavScrollerDelegate,Announce_API_Delegate,PullTableViewDelegate>
 {
     NSArray *navButtons;
-    UITableView *storyTable;
+    PullTableView *storyTable;
     NavScrollerView *navScrollView;
     UIView *activityView;
     NSIndexPath *tempTableSelection;
@@ -37,6 +37,7 @@ typedef enum {
     BOOL endCatchData[6];
 }
 
+@property (nonatomic, assign) PullTableView *storyTable;
 @property (nonatomic, assign) NSInteger activeCategoryId;
 @property (nonatomic, retain) NSDictionary *catchData;
 @property (nonatomic, retain) Announce_API* connect;

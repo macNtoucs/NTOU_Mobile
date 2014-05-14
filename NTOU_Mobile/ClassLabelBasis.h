@@ -11,9 +11,13 @@
 @interface ClassLabelBasis : UILabel
 {
     UIColor* tempBackground;
+    NSString *badgeValue;
+    UIView *topDisplayView;
 }
-
-@property(nonatomic,retain) UIColor* tempBackground;
+- (void)setBadgeValue:(NSString *)newValue;
+@property (nonatomic,retain) UIColor* tempBackground;
+@property (nonatomic, retain) NSString *badgeValue;
+@property (nonatomic, retain) UIView *topDisplayView;
 @property BOOL changeColor;
 
 @end

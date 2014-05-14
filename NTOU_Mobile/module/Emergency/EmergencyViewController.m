@@ -5,7 +5,7 @@
 #import "AppDelegate.h"
 
 @implementation EmergencyViewController
-
+#define emergencyUserDefaultsKey @"emergencyUserDefaults"
 @synthesize delegate, htmlString, infoWebView;
 @synthesize imagePicker;
 
@@ -41,32 +41,62 @@
                              @"0224248141", @"phone",
                              nil],
                             nil] retain];
+        htmlFormatString = [@"<html>"
+                            "<head>"
+                            "<style type=\"text/css\" media=\"screen\">"
+                            "body { margin: 0; padding: 0; font-family: Helvetica; font-size: 17px; } "
+                            "</style>"
+                            "</head>"
+                            "<body>"
+                            "%@"
+                            "</body>"
+                            "</html>" retain];
         self.title = @"緊急聯絡";
     }
     return self;
 }
 
+- (void)setHtmlNotification:(NSString *)notification
+{
+    self.htmlString = [NSString stringWithFormat:htmlFormatString, notification];
+    [self.tableView reloadData];
+}
+
+
+-(void)notificationProcess
+{
+    NSString* notifications = [NTOUNotificationHandle getEmergencyNotificationAndDelete];
+    if (notifications) {
+        Notification *notifi = [[Notification alloc] initWithString:notifications];
+        self.htmlString = [NSString stringWithFormat:htmlFormatString, notifi.content];
+        [NTOUNotificationHandle setBadgeValue:nil forModule:EmergencyTag];
+        [[NSUserDefaults standardUserDefaults] setObject:notifi.content forKey:emergencyUserDefaultsKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    else{
+        NSString *notification = nil;
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:emergencyUserDefaultsKey] != nil) {
+            notification = [NSString stringWithString:[[NSUserDefaults standardUserDefaults] objectForKey:emergencyUserDefaultsKey]];
+        }
+
+        if (!notification)
+            self.htmlString = [NSString stringWithFormat:htmlFormatString, @"目前無緊急事件"];
+        else
+            self.htmlString = [NSString stringWithFormat:htmlFormatString, notification];
+    }
+    
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     //self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSysteNTOUem:UIBarButtonSysteNTOUemRefresh target:self action:@selector(refreshInfo:)] autorelease];
 	self.tableView.scrollEnabled = NO;
-	infoWebView = [[UIWebView alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width - 20 - 20, 90)];
+	infoWebView = [[UIWebView alloc] initWithFrame:CGRectMake(5, 5, self.view.frame.size.width - 30 , 90)];
 	infoWebView.delegate = self;
 	infoWebView.dataDetectorTypes = UIDataDetectorTypeAll;
 	infoWebView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	htmlFormatString = [@"<html>"
-						"<head>"
-						"<style type=\"text/css\" media=\"screen\">"
-						"body { margin: 0; padding: 0; font-family: Helvetica; font-size: 17px; } "
-						"</style>"
-						"</head>"
-						"<body>"
-						"%@"
-						"</body>"
-						"</html>" retain];
-	
-	self.htmlString = [NSString stringWithFormat:htmlFormatString, @"目前無緊急事件"];
-    
+	   
 	[self.tableView applyStandardColors];
 }
 
@@ -79,6 +109,8 @@
 	//if ([[[EmergencyData sharedData] lastUpdated] compare:[NSDate distantPast]] == NSOrderedDescending) {
 	//	[self infoDidLoad:nil];
 	//}
+    [self notificationProcess];
+    [self.tableView reloadData];
 }
 
 
@@ -209,7 +241,7 @@
             break;
         default:
             cellText = @"A"; // just something to guarantee one line
-            CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+            CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
             rowHeight = labelSize.height + 20.0f;
             break;
     }

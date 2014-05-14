@@ -6,23 +6,23 @@
 //  Copyright (c) 2013年 apple. All rights reserved.
 //
 #import <EventKit/EventKit.h>
-#import "WOLEnglistViewController.h"
+#import "ChiListViewController.h"
 #import "NTOUUIConstants.h"
 #import "MBProgressHUD.h"
-#define YEAR 2012   //起始學期年份
-@interface WOLEnglistViewController ()
+#define YEAR 2013   //起始學期年份
+
+@interface ChiListViewController ()
 
 @property (nonatomic, strong) NSMutableArray *selectindexs;
 @property (nonatomic, strong) UIActionSheet *finishactionsheet;
 @property (nonatomic, strong) UIActionSheet *endactionsheet;
-@property (nonatomic, strong) EKEventStore *eventStore;
+@property (copy, nonatomic) EKEventStore *eventStore;
 @property (nonatomic, strong) UIView *mask;
 @property (nonatomic) BOOL showing;
-//@property (nonatomic, strong) EKEventStore *eventStore;
 
 @end
 
-@implementation WOLEnglistViewController
+@implementation ChiListViewController
 
 @synthesize events;
 @synthesize keys;
@@ -30,19 +30,18 @@
 @synthesize selectindexs;
 @synthesize finishactionsheet;
 @synthesize endactionsheet;
-@synthesize showing;
-@synthesize eventStore;
 @synthesize switchviewcontroller;
-@synthesize downLoadEditing;
+@synthesize eventStore;
 @synthesize mask;
+@synthesize downLoadEditing;
+@synthesize showing;
 @synthesize menuHeight;
-
 
 -(id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     NSInteger screenheight = [[UIScreen mainScreen] bounds].size.height;
-    NSInteger height = screenheight - 64;
+    NSInteger height = screenheight;
     self.tableView.frame = CGRectMake(0, 0, 320, height);
     return self;
 }
@@ -51,12 +50,14 @@
 {
     [super viewDidLoad];
 
+    //setup Calendar
     eventStore = [[EKEventStore alloc] init];
+
     selectindexs = [[NSMutableArray alloc] init];
     
     //self.title = @"清單";
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"CalenderList_eng" ofType:@"plist"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"CalenderList" ofType:@"plist"];
     
     NSDictionary *list = [[NSDictionary alloc] initWithContentsOfFile:path];
     self.events = list;
@@ -65,12 +66,12 @@
     self.keys = array;
     
     self.actionToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 416, 320, 44)];
-
+    
     UIBarButtonItem *flexiblespace_l = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     flexiblespace_l.width = 12.0;
     
     UIBarButtonItem *allselectButton =[[UIBarButtonItem alloc]
-                                       initWithTitle:@"All  select"
+                                       initWithTitle:@"全   選"
                                        style:UIBarButtonItemStyleBordered
                                        target:self
                                        action:@selector(allselect:)];
@@ -80,7 +81,7 @@
     flexiblespace_m.width = 12.0;
     
     UIBarButtonItem *finishButton =[[UIBarButtonItem alloc]
-                                    initWithTitle:@"Finish"
+                                    initWithTitle:@"完   成"
                                     style:UIBarButtonItemStyleBordered
                                     target:self
                                     action:@selector(finishselect:)];
@@ -88,6 +89,8 @@
     
     UIBarButtonItem *flexiblespace_r = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     flexiblespace_r.width = 12.0;
+    
+    
     
     [self.actionToolbar setItems:[NSArray arrayWithObjects:flexiblespace_l,allselectButton,flexiblespace_m,finishButton,flexiblespace_r, nil]];
     self.actionToolbar.barStyle = UIBarStyleBlack;
@@ -152,15 +155,15 @@
     NSArray *eventsection = [events objectForKey:key];
     return [eventsection count];
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger section = [indexPath section];
     NSUInteger row = [indexPath row];
-    
+
     NSString *key = [keys objectAtIndex:section];
     NSArray *monthevent = [events objectForKey:key];
     NSDictionary *dateevent = [monthevent objectAtIndex:row];
-    
     UITableViewCell *cell = [self mackCell:tableView sectionForCell:section rowForCell:row eventForRow:dateevent monthForEvent:key];
     
     BOOL selet = NO;
@@ -198,7 +201,7 @@
     CGSize maximumLabelSize = CGSizeMake(230,9999);
     CGSize expectedLabelSize = [value sizeWithFont:cellFont
                                  constrainedToSize:maximumLabelSize
-                                     lineBreakMode:UILineBreakModeWordWrap];
+                                     lineBreakMode:NSLineBreakByWordWrapping];
     
     if (cell == nil)
     {
@@ -209,16 +212,16 @@
         event = [[UILabel alloc] init];
         date= [[UILabel alloc] init];
         
-        event.frame = CGRectMake(11,25,45,21);
-        event.text = @"Event:";
+        event.frame = CGRectMake(11,27,45,21);
+        event.text = @"事件：";
         event.textAlignment = UITextAlignmentRight;
         event.tag=row;
         event.backgroundColor = [UIColor clearColor];
         event.font = cellFont;
         event.textColor = CELL_STANDARD_FONT_COLOR;
         
-        date.frame = CGRectMake(11,4,45,21);
-        date.text = @"Date:";
+        date.frame = CGRectMake(11,4.5,45,21);
+        date.text = @"時間：";
         date.textAlignment = UITextAlignmentRight;
         date.tag=row;
         date.backgroundColor = [UIColor clearColor];
@@ -267,7 +270,7 @@
     }
     
     eventlabel.tag=row;
-    eventlabel.lineBreakMode = UILineBreakModeWordWrap;
+    eventlabel.lineBreakMode = NSLineBreakByWordWrapping;
     eventlabel.numberOfLines = 0;
     eventlabel.backgroundColor = [UIColor clearColor];
     eventlabel.font = cellFont;
@@ -282,6 +285,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell setAccessoryType:UITableViewCellAccessoryNone];
     }
+
     
     return cell;
 }
@@ -291,22 +295,21 @@
     
     NSString *key = [keys objectAtIndex:section];
     NSString *sectiontitle;
-    /*
-     //除七月其他皆更新
-     if(section < 5)
-     sectiontitle = [[NSString alloc] initWithFormat:@"  %d / %@",YEAR,key];    //當年
-     else if(section == 11) //七月
-     sectiontitle = [[NSString alloc] initWithFormat:@"  %d / %@",YEAR,key];
-     else
-     sectiontitle = [[NSString alloc] initWithFormat:@"  %d / %@",YEAR+1,key];    //隔年
-    */
     
+    //除七月其他皆更新
+    if(section < 5)
+        sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR - 1911,key];    //當年
+    else if(section == 11) //七月
+        sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR - 1911,key];
+    else
+        sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR - 1910,key];    //隔年
+    /*
     //全更新
     if(section < 5)
-        sectiontitle = [[NSString alloc] initWithFormat:@"  %d / %@",YEAR,key];
+        sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR - 1911,key];    //當年
     else
-        sectiontitle = [[NSString alloc] initWithFormat:@"  %d / %@",YEAR+1,key];
-    
+        sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR - 1910,key];    //隔年
+     */
     UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 25)] autorelease];
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 25)] autorelease];
     label.text = sectiontitle;
@@ -317,7 +320,23 @@
     [headerView addSubview:label];
     return headerView;
 }
+/*
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *key = [keys objectAtIndex:section];
+    NSString *sectiontitle;
+    if(section < 5)
+    {
+        sectiontitle = [[NSString alloc] initWithFormat:@"民國101年 %@月",key];
+    }
+    else
+    {
+        sectiontitle = [[NSString alloc] initWithFormat:@"民國102年 %@月",key];
+    }
+    return sectiontitle;
+}*/
 
+//--------------
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger section = [indexPath section];
@@ -327,11 +346,11 @@
     NSDictionary *dateevent = [eventsection objectAtIndex:row];
     
     NSString *value = [dateevent objectForKey:@"value"];
-
+    
     CGSize maximumLabelSize = CGSizeMake(230,9999);
     CGSize size = [value sizeWithFont:[UIFont systemFontOfSize:14.0f]
-                        constrainedToSize:maximumLabelSize
-                        lineBreakMode:UILineBreakModeWordWrap];
+                    constrainedToSize:maximumLabelSize
+                        lineBreakMode:NSLineBreakByWordWrapping];
     
     CGFloat height = 33.0 + size.height;
     return height;
@@ -341,6 +360,7 @@
 {
     return keys;
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -359,8 +379,8 @@
             [selectindexs addObject:indexPath];
             NSLog(@"%@",indexPath);
         }
-            
-        NSLog(@"end a select");
+        
+        //NSLog(@"end a select");
     }
 }
 
@@ -369,12 +389,11 @@
     if (downLoadEditing)//編輯中
     {
         [selectindexs removeObject:indexPath];
-        [[tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryNone];
+        [[self.tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryNone];
         
-        NSLog(@"end a select");
+        //NSLog(@"end a select");
     }
 }
-
 #pragma mark -
 #pragma mark Toolbar
 
@@ -414,18 +433,19 @@
 #pragma mark -
 #pragma mark Select
 
+
 - (IBAction)chooseitem
 {
     downLoadEditing = !downLoadEditing;
-    //[self.tableView setEditing:!self.tableView.editing animated:YES];
-    if (downLoadEditing) //編輯中
+   // [self.tableView setEditing:!self.tableView.editing animated:YES];
+    if (downLoadEditing)//編輯中
         [self showActionToolbar:YES];
     else
     {
-        [self showActionToolbar:NO];
         [selectindexs removeAllObjects];
+        [self showActionToolbar:NO];
     }
-    
+
     [self.tableView reloadData];
 }
 
@@ -445,10 +465,10 @@
 - (IBAction)finishselect:(id)sender
 {
     finishactionsheet = [[UIActionSheet alloc]
-                         initWithTitle:@"Are you sure you want to import?"
+                         initWithTitle:@"確定匯入這些項目到您的 行事曆APP 中？"
                          delegate:self
-                         cancelButtonTitle:@"Cancel."
-                         destructiveButtonTitle:@"Sure."
+                         cancelButtonTitle:@"取消"
+                         destructiveButtonTitle:@"確定"
                          otherButtonTitles:nil];
     [finishactionsheet showFromToolbar:actionToolbar];
 }
@@ -458,16 +478,16 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if([actionSheet isEqual:finishactionsheet])
-    {
+    {        
         if(buttonIndex == [finishactionsheet destructiveButtonIndex])
         {
             [self showActionToolbar:NO];
-            
-            UIAlertView *alertfinish = [[UIAlertView alloc] initWithTitle:@"【NTOU】Calendar"
-                                                                  message:@"-Import successfully!-"
-                                                                 delegate:self
-                                                        cancelButtonTitle:@"OK!"
-                                                        otherButtonTitles:nil];
+
+            UIAlertView *alertfinish = [[UIAlertView alloc] initWithTitle:@"【NTOU】行事曆"
+                                                            message:@"-匯入完成-"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"好"
+                                                  otherButtonTitles:nil];
             
             eventStore = [[EKEventStore alloc] init];
             
@@ -492,7 +512,7 @@
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 [MBProgressHUD hideHUDForView:self.switchviewcontroller.view animated:YES];
                                 [alertfinish show];
-                                [self.switchviewcontroller Engchooseitem];
+                                [self.switchviewcontroller Chichooseitem];
                                 [eventStore release];
                             });
                         });
@@ -500,11 +520,11 @@
                     else
                     {
                         //----- codes here when user NOT allow your app to access the calendar.
-                        UIAlertView *alertfause = [[UIAlertView alloc] initWithTitle:@"【NTOU】Calendar"
-                                                                             message:@"-Import error-\nWe does not have access to Your Calendar\nPlease allow access for your device\nunder Settings/Calendar"
-                                                                            delegate:self
-                                                                   cancelButtonTitle:@"知道了"
-                                                                   otherButtonTitles:nil];
+                        UIAlertView *alertfause = [[UIAlertView alloc] initWithTitle:@"【NTOU】行事曆"
+                                                                        message:@"-匯入失敗-\n無法存取您的行事曆\n請至 設定->行事曆 中更改設定"
+                                                                       delegate:self
+                                                              cancelButtonTitle:@"知道了"
+                                                              otherButtonTitles:nil];
                         [alertfause show];
                         //[mask removeFromSuperview];
                     }
@@ -518,7 +538,7 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         // No need to hod onto (retain)
                         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                        hud.labelText = @"DownLoading";
+                        hud.labelText = @"Importing";
                     });
                     
                     
@@ -527,11 +547,11 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
                         [alertfinish show];
-                        [self.switchviewcontroller Engchooseitem];
+                        [self.switchviewcontroller Chichooseitem];
                         [eventStore release];
                     });
                 });
-                
+
             }
         }
     }
@@ -542,7 +562,7 @@
     [switchviewcontroller showMenuView];
 }
 
-- (EKCalendar *)  getFirstModifiableLocalCalendar{
+- (EKCalendar *) getFirstModifiableLocalCalendar{
     
     EKCalendar *result = nil;
     
@@ -577,22 +597,21 @@
         addEvent.allDay = YES;
         
         NSDateComponents *startcomps = [[NSDateComponents alloc] init];
-        /*
-         //除七月其他皆更新版
-         if(section < 5)
-         [startcomps setYear:YEAR];      //當年
-         else if (section == 11)
-         [startcomps setYear:YEAR];      //七月
-         else
-         [startcomps setYear:YEAR+1];    //隔年
-         */
-        
-        //全更新
+        //除七月其他皆更新版
         if(section < 5)
-            [startcomps setYear:2012];
+            [startcomps setYear:YEAR];      //當年
+        else if (section == 11) 
+            [startcomps setYear:YEAR];      //七月
         else
-            [startcomps setYear:2013];
+            [startcomps setYear:YEAR+1];    //隔年
         
+        /*
+         //全更新
+         if(section < 5)
+            [startcomps setYear:YEAR];      //當年
+         else
+            [startcomps setYear:YEAR+1];    //隔年
+         */
         
         [startcomps setMonth:[key intValue]];
         
@@ -606,19 +625,20 @@
         
         
         NSDateComponents *endcomps = [[NSDateComponents alloc] init];
-        /*
-         //除七月其他皆更新版
-         if(section == 11 || section < 4 || (section == 4 && [[dateevent objectForKey:@"cross"] isEqualToString:@"NO"]) )
-         [endcomps setYear:YEAR];    //當年1~11月 或 12月無跨月份 或 七月
-         else
-         [endcomps setYear:YEAR+1];  //隔年
-        */
         
-        //全更新
-        if(section < 4 || (section == 4 && [[dateevent objectForKey:@"cross"] isEqualToString:@"NO"]) )
-            [endcomps setYear:2012];
+        //除七月其他皆更新版
+        if(section == 11 || section < 4 || (section == 4 && [[dateevent objectForKey:@"cross"] isEqualToString:@"NO"]) )
+            [endcomps setYear:YEAR];    //當年1~11月 或 12月無跨月份 或 七月
         else
-            [endcomps setYear:2013];
+            [endcomps setYear:YEAR+1];  //隔年
+        
+        /*
+         //全更新
+         if(section < 4 || (section == 4 && [[dateevent objectForKey:@"cross"] isEqualToString:@"NO"]) )
+            [endcomps setYear:YEAR];    //當年
+         else if
+            [endcomps setYear:YEAR+1];  //隔年
+        */
         
         NSString *endkey;
         if([[dateevent objectForKey:@"cross"] isEqualToString:@"yes"])
@@ -649,7 +669,7 @@
                 [addEvent setCalendar:thisCalendar];
             }
         }
-
+  
         NSError *saveError = nil;
         if([eventStore saveEvent:addEvent span:EKSpanThisEvent error:&saveError])
         {

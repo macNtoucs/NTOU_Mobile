@@ -303,7 +303,6 @@
     if (cell == nil) {
         cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
-    
     if([trainNumber count] == 1)
     {
         cell.textLabel.text = @"查無資料！";

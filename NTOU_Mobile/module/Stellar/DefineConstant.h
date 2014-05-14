@@ -14,6 +14,8 @@
 //------moodleApiKey---------------------------------
 #define accountKey @"accountKey"
 #define passwordKey @"passwordKey"
+#define receivePushKey @"receivePushKey"
+#define loginSuccessKey @"loginSuccessKey"
 
 #define moodleLoginTokenKey @"token"
 #define moodleLoginResultKey @"result"

@@ -13,12 +13,14 @@
 #import "NTOUSpringboard.h"
 #import "Rotation.h"
 #import "NTOUConstants.h"
+#import "NTOUNotification.h"
+#import "SettingsModuleViewController.h"
 @implementation NTOU_MobileAppDelegate
 @synthesize window=_window,
 rootNavigationController = _rootNavigationController,
 modules;
 
-@synthesize deviceToken = devicePushToken;
+@synthesize devicePushToken;
 
 @synthesize springboardController = _springboardController;
 #pragma mark -
@@ -57,6 +59,8 @@ modules;
         
     }
     
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];   
+    
     // TODO: don't store state like this when we're using a springboard.
 	// set modules state
     [rootController pushViewController:springboard animated:NO];
@@ -77,8 +81,14 @@ modules;
         [aModule applicationDidFinishLaunching];
     }
     
+    //APNS dictionary generated from the json of a push notificaton
+	NSDictionary *apnsDict = [launchOptions objectForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"];
     
-    
+	// check if application was opened in response to a notofication
+	if(apnsDict) {
+        [NTOUNotificationHandle updateUI:[[Notification alloc] initWithModuleDictionary:apnsDict]];
+	}
+
     NSError *error;
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -167,17 +177,72 @@ modules;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    //send to server payload
+    
     for (NTOUModule *aModule in self.modules) {
         [aModule applicationWillEnterForeground];
     }
 }
+
+
+#pragma mark -
+#pragma mark Remote notifications
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+
+    /* Get device token */
+    NSString *strDevToken = [NSString stringWithFormat:@"%@", deviceToken];
+    
+    /* Replace '<', '>' and ' ' */
+    NSCharacterSet *charDummy = [NSCharacterSet characterSetWithCharactersInString:@"<> "];
+    strDevToken = [[strDevToken componentsSeparatedByCharactersInSet: charDummy] componentsJoinedByString: @""];
+    devicePushToken = [strDevToken retain];
+    if ([SettingsModuleViewController getLoginSuccess])
+        [NTOUNotificationHandle sendRegisterDevice:[SettingsModuleViewController getAccount]];
+    else
+        [NTOUNotificationHandle sendRegisterDevice:nil];
+
+    NSLog(@"Did register for remote notifications: %@", deviceToken);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"Fail to register for remote notifications: %@", error);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    NSLog(@"start didReceiveRemoteNotification");
+    [NTOUNotificationHandle updateUI:[[Notification alloc] initWithModuleDictionary:userInfo]];
+    // We can determine whether an application is launched as a result of the user tapping the action
+    // button or whether the notification was delivered to the already-running application by examining
+    // the application state.
+    
+    if (application.applicationState == UIApplicationStateActive) {
+        NSString * title = @"收到通知";
+        for (NTOUModule *aModule in self.modules) {
+            if ([aModule.tag isEqualToString:[NSString stringWithFormat:@"%@",[userInfo objectForKey:@"moduleName"]]]) {
+                title = [aModule.shortName mutableCopy];
+                break;
+            }
+        }
+        
+        // Nothing to do if applicationState is Inactive, the iOS already displayed an alert view.
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
+                                                            message:[NSString stringWithFormat:@"%@",
+                                                                     [[userInfo objectForKey:@"aps"] objectForKey:@"alert"]]
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+        [alertView release];
+    }
+}
+
 
 #pragma mark -
 #pragma mark Memory management
 
 - (void)dealloc {
     self.springboardController = nil;
-    self.deviceToken = nil;
     self.modules = nil;
 	[window release];
 	[super dealloc];
