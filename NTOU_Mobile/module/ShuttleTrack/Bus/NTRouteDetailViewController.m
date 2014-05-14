@@ -67,7 +67,7 @@
     NSString *encodedBus = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)busName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
     //[encodedBus release];   // Analyze MemLeak
     
-    NSURL * url=[NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/NTRouteDetail.php?bus=%@&goBack=%@", encodedBus, goBack]];
+    NSURL * url=[NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/NTRouteDetail_5284.php?bus=%@&goBack=%@", encodedBus, goBack]];
     
     NSData *data=[NSData dataWithContentsOfURL:url];
     
@@ -88,31 +88,31 @@
     
     //NSLog(@"NTstops: %@", stops);
     //NSLog(@"NTtime: %@", m_waitTimeResult);
-
+    
     /*NSData *dataURL = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
-    
-    NSString *strResult = [[[NSString alloc] initWithData:dataURL encoding:NSUTF8StringEncoding]autorelease];
-    
-    //NSLog(@"strResult = %@", strResult);
-    
-    NSArray * stopsAndTimes = [strResult componentsSeparatedByString:@";"];
-    
-    NSArray * tmp_stops = [[NSArray alloc] init];
-    tmp_stops = [[stopsAndTimes objectAtIndex:0] componentsSeparatedByString:@"|"];
-    for (NSString * str in tmp_stops)
-    {
-        [stops addObject:str];
-    }
-    [stops removeLastObject];
-    
-    NSArray * tmp_m = [[NSArray alloc] init];
-    tmp_m = [[stopsAndTimes objectAtIndex:1] componentsSeparatedByString:@"|"];
-    for (NSString * str in tmp_m)
-    {
-        [m_waitTimeResult addObject:str];
-    }
-    [m_waitTimeResult removeLastObject];
-    //[tmp_m release];    // Analyze MemLeak*/
+     
+     NSString *strResult = [[[NSString alloc] initWithData:dataURL encoding:NSUTF8StringEncoding]autorelease];
+     
+     //NSLog(@"strResult = %@", strResult);
+     
+     NSArray * stopsAndTimes = [strResult componentsSeparatedByString:@";"];
+     
+     NSArray * tmp_stops = [[NSArray alloc] init];
+     tmp_stops = [[stopsAndTimes objectAtIndex:0] componentsSeparatedByString:@"|"];
+     for (NSString * str in tmp_stops)
+     {
+     [stops addObject:str];
+     }
+     [stops removeLastObject];
+     
+     NSArray * tmp_m = [[NSArray alloc] init];
+     tmp_m = [[stopsAndTimes objectAtIndex:1] componentsSeparatedByString:@"|"];
+     for (NSString * str in tmp_m)
+     {
+     [m_waitTimeResult addObject:str];
+     }
+     [m_waitTimeResult removeLastObject];
+     //[tmp_m release];    // Analyze MemLeak*/
     [stops retain];
     //[IDs retain];
     [m_waitTimeResult retain];
@@ -204,7 +204,7 @@
 {
     [activityIndicator startAnimating];
     [self.loadingView show];
-
+    
     if ([goBack isEqualToString:@"0"])
     {
         anotherButton.title = destination;
@@ -360,34 +360,31 @@
             stopName = [stops objectAtIndex:indexPath.row];
             comeTime = [m_waitTimeResult objectAtIndex:indexPath.row];
             
-            if ([comeTime isEqual:@"尚未發車"])
+            if ([comeTime isEqual:@"未發車"])
             {
-                cell.detailTextLabel.text = @"尚未發車";
                 cell.detailTextLabel.textColor = [UIColor grayColor];
             }
-            else if ([comeTime isEqual:@"更新中..."])
+            /*else if ([comeTime isEqual:@"更新中..."])
+             {
+             cell.detailTextLabel.text = @"更新中...";
+             cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:13.0/255.0 green:139.0/255.0 blue:13.0/255.0 alpha:100.0];
+             }*/
+            else if ([comeTime isEqual:@"進站中"])
             {
-                cell.detailTextLabel.text = @"更新中...";
-                cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:13.0/255.0 green:139.0/255.0 blue:13.0/255.0 alpha:100.0];
+                cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:188.0/255.0 green:2.0/255.0 blue:9.0/255.0 alpha:100.0];
             }
-            else if ([comeTime isEqual:@"約1分鐘"] || [comeTime isEqual:@"約0分鐘"])
-            {
-                cell.detailTextLabel.text = @"進站中";
-                cell.detailTextLabel.textColor = [UIColor redColor];
-            }
-            /*else if ([comeTime isEqual:@"約2分鐘"] || [comeTime isEqual:@"約3分鐘"])
-            {
-                cell.detailTextLabel.text = @"即將進站";
-                cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:138.0/255.0 blue:25.0/255.0 alpha:100.0];
-            }*/
+            /*else if ([comeTime isEqual:@"將到站"])
+             {
+             cell.detailTextLabel.textColor = [UIColor orangeColor];
+             }*/
             else
             {
-                cell.detailTextLabel.text = comeTime;
                 cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:0.0 green:45.0/255.0 blue:153.0/255.0 alpha:100.0];
             }
         }
         cell.textLabel.text = stopName;
         cell.textLabel.textColor = [UIColor blackColor];
+        cell.detailTextLabel.text = comeTime;
         [[cell.contentView viewWithTag:indexPath.row+1]removeFromSuperview];
     }
     else
