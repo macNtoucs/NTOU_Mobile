@@ -53,7 +53,7 @@
 {
     [super viewDidLoad];
     self.navigationItem.title = @"公告";
-    
+    self.view.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
     UIScrollView * background = [[UIScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];;
     if ([[[UIDevice currentDevice]systemVersion]floatValue]<7.0)
     {
