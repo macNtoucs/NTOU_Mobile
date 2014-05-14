@@ -1,5 +1,6 @@
 #import "ShuttleModule.h"
-#import "NTOUTableViewControllerLayer1.h"
+//#import "NTOUTableViewControllerLayer1.h"
+#import "NTOUShuttleButtonViewController.h"
 
 @implementation ShuttleModule
 
@@ -17,7 +18,8 @@
 
 - (void)loadModuleHomeController
 {
-    [self setModuleHomeController:[[[NTOUTableViewControllerLayer1 alloc] initWithStyle:UITableViewStyleGrouped] autorelease]];
+    //[self setModuleHomeController:[[[NTOUTableViewControllerLayer1 alloc] initWithStyle:UITableViewStyleGrouped] autorelease]];
+    [self setModuleHomeController:[[[NTOUShuttleButtonViewController alloc] init] autorelease]];
 }
 
 

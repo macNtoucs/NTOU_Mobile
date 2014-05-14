@@ -16,6 +16,8 @@
 #import "R66Layer2ViewController.h"
 #import "R66LeftLayerViewController.h"
 #import "R66RightLayerViewController.h"
+#import "TPRouteByButtonViewController.h"
+#import "KuoFuhoViewController.h"
 @interface NTOUTableViewControllerLayer1 : UITableViewController
 
 @end
