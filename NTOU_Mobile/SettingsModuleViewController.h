@@ -7,26 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SecondaryGroupedTableViewCell.h"
-#import "UIKit+NTOUAdditions.h"
-#import "DefineConstant.h"
-#import "MBProgressHUD.h"
-#import "ClassDataBase.h"
-@interface SettingsModuleViewController : UITableViewController<UITextFieldDelegate,UIAlertViewDelegate,MBProgressHUDDelegate>
+#import "accountTableViewController.h"
+@interface SettingsModuleViewController : UITableViewController<loginAndRegisterDelegate>
 {
-    UITextField* accountDelegate;
-    UITextField* passwordDelegate;
-    MBProgressHUD *HUD;
-    BOOL loginSuccess;
-    NSMutableString * buttonTitle;
     NSMutableArray * receiveArray;
 }
-@property (nonatomic, retain) UITextField* accountDelegate;
-@property (nonatomic, retain) UITextField* passwordDelegate;
+
 @property (nonatomic, retain) NSMutableArray * receiveArray;
 
-+(NSString *) getAccount;
-+(NSString *) getPassword;
-+(BOOL) getLoginSuccess;
+//API
+
+//取得moodle帳號、密碼、是否已登入成功
++(NSString *) getMoodleAccount;
++(NSString *) getMoodlePassword;
++(BOOL) getMoodleLoginSuccess;
+
+//取得圖書館帳號、密碼、是否已登入成功
++(NSString *) getLibraryAccount;
++(NSString *) getLibraryPassword;
++(BOOL) getLibraryLoginSuccess;
 
 @end

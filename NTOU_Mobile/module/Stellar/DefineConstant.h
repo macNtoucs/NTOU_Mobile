@@ -11,11 +11,16 @@
 #define NavigationHight 44
 
 #define TextLabelborderWidth 2
+//------libraryKey---------------------------------
+#define libraryAccountKey @"libraryAccountKey"
+#define libraryPasswordKey @"libraryPasswordKey"
+#define libraryLoginSuccessKey @"libraryLoginSuccessKey"
+
 //------moodleApiKey---------------------------------
-#define accountKey @"accountKey"
-#define passwordKey @"passwordKey"
+#define moodleAccountKey @"moodleAccountKey"
+#define moodlePasswordKey @"moodlePasswordKey"
 #define receivePushKey @"receivePushKey"
-#define loginSuccessKey @"loginSuccessKey"
+#define moodleLoginSuccessKey @"moodleLoginSuccessKey"
 
 #define moodleLoginTokenKey @"token"
 #define moodleLoginResultKey @"result"

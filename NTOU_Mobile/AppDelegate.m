@@ -197,8 +197,8 @@ modules;
     NSCharacterSet *charDummy = [NSCharacterSet characterSetWithCharactersInString:@"<> "];
     strDevToken = [[strDevToken componentsSeparatedByCharactersInSet: charDummy] componentsJoinedByString: @""];
     devicePushToken = [strDevToken retain];
-    if ([SettingsModuleViewController getLoginSuccess])
-        [NTOUNotificationHandle sendRegisterDevice:[SettingsModuleViewController getAccount]];
+    if ([SettingsModuleViewController getMoodleLoginSuccess])
+        [NTOUNotificationHandle sendRegisterDevice:[SettingsModuleViewController getMoodleAccount]];
     else
         [NTOUNotificationHandle sendRegisterDevice:nil];
 

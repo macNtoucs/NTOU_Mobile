@@ -174,7 +174,7 @@
 }
 
 -(void) finishSetting {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     [[ClassDataBase sharedData] storeUserDefaults];
 }
 
@@ -324,8 +324,8 @@
                     hud.labelText = @"下載中";
                 });
                 
-                loginSuccess = [[ClassDataBase sharedData] loginAccount:[SettingsModuleViewController getAccount]
-                                                               Password:[SettingsModuleViewController getPassword]
+                loginSuccess = [[ClassDataBase sharedData] loginAccount:[SettingsModuleViewController getMoodleAccount]
+                                                               Password:[SettingsModuleViewController getMoodlePassword]
                                                         ClearAllCourses:NO];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];

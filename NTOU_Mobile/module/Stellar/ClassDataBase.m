@@ -670,7 +670,7 @@ static ClassDataBase *sharedData = nil;
 
 -(NSString *)loginTokenWhenAccountFromUserDefault
 {
-    return [[Moodle_API Login:[[NSUserDefaults standardUserDefaults] objectForKey:accountKey] andPassword:[[NSUserDefaults standardUserDefaults] objectForKey:passwordKey]] objectForKey:moodleLoginTokenKey];
+    return [[Moodle_API Login:[[NSUserDefaults standardUserDefaults] objectForKey:moodleAccountKey] andPassword:[[NSUserDefaults standardUserDefaults] objectForKey:moodlePasswordKey]] objectForKey:moodleLoginTokenKey];
 }
 
 -(NSDictionary *)loginCourseToGetCourseidAndClassid:(NSString *)courseName

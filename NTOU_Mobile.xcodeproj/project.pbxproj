@@ -278,6 +278,7 @@
 		BECF7C72184F468200ADD115 /* R66RightLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BECF7C70184F468200ADD115 /* R66RightLayerViewController.m */; };
 		BECF7C74184F48A800ADD115 /* R66Route.png in Resources */ = {isa = PBXBuildFile; fileRef = BECF7C73184F48A800ADD115 /* R66Route.png */; };
 		BECF7C76185598AD00ADD115 /* AlertViewShown.plist in Resources */ = {isa = PBXBuildFile; fileRef = BECF7C75185598AD00ADD115 /* AlertViewShown.plist */; };
+		C442C4E0192351DF00C8449F /* accountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C442C4DF192351DF00C8449F /* accountTableViewController.m */; };
 		C4CA69B11911276C005B272C /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CA69B01911276C005B272C /* RTLabel.m */; };
 		C4CA69B319112894005B272C /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CA69B219112894005B272C /* CoreText.framework */; };
 		C4CA69C1191A399C005B272C /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CA69C0191A399C005B272C /* NewsDetailViewController.m */; };
@@ -720,6 +721,8 @@
 		BECF7C70184F468200ADD115 /* R66RightLayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = R66RightLayerViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		BECF7C73184F48A800ADD115 /* R66Route.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = R66Route.png; sourceTree = "<group>"; };
 		BECF7C75185598AD00ADD115 /* AlertViewShown.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AlertViewShown.plist; sourceTree = "<group>"; };
+		C442C4DE192351DF00C8449F /* accountTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = accountTableViewController.h; sourceTree = "<group>"; };
+		C442C4DF192351DF00C8449F /* accountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = accountTableViewController.m; sourceTree = "<group>"; };
 		C4CA69AF1911276C005B272C /* RTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLabel.h; sourceTree = "<group>"; };
 		C4CA69B01911276C005B272C /* RTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLabel.m; sourceTree = "<group>"; };
 		C4CA69B219112894005B272C /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -1430,6 +1433,8 @@
 				C72B23F3176AE97100474235 /* SettingModule.m */,
 				C72B23EF176AE87200474235 /* SettingsModuleViewController.h */,
 				C72B23F0176AE87200474235 /* SettingsModuleViewController.m */,
+				C442C4DE192351DF00C8449F /* accountTableViewController.h */,
+				C442C4DF192351DF00C8449F /* accountTableViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -1880,6 +1885,7 @@
 				C72B23F1176AE87200474235 /* SettingsModuleViewController.m in Sources */,
 				C72B23F4176AE97100474235 /* SettingModule.m in Sources */,
 				BEA91661183C5F0400F12001 /* R66Layer1ViewController.m in Sources */,
+				C442C4E0192351DF00C8449F /* accountTableViewController.m in Sources */,
 				BE98A966183CF79400EF3CDC /* R66Layer2ViewController.m in Sources */,
 				BE98A969183CFA6000EF3CDC /* R66SwitchViewController.m in Sources */,
 				BECF7C71184F468200ADD115 /* R66LeftLayerViewController.m in Sources */,
@@ -1987,7 +1993,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "海大App";
 				PROVISIONING_PROFILE = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
@@ -2007,7 +2013,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "海大App";
 				PROVISIONING_PROFILE = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
