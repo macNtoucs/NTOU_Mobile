@@ -50,9 +50,15 @@
     
     selectindexs = [[NSMutableArray alloc] init];
     maindata = [[NSMutableArray alloc] init];
+    [maindata retain];
     self.tableView.allowsMultipleSelection = YES;
     
-    self.actionToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height -180, 320, 44)];
+    CGFloat toolbarHeight = [actionToolbar frame].size.height;
+    actionToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - toolbarHeight - 20, self.view.bounds.size.width, toolbarHeight)];
+    
+    actionToolbar.barStyle = UIBarStyleDefault;
+    //Set the toolbar to fit the width of the app.
+    [actionToolbar sizeToFit];
     
     UIBarButtonItem *flexiblespace_l = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     flexiblespace_l.width = 12.0;
@@ -78,7 +84,6 @@
     flexiblespace_r.width = 12.0;
     
     [actionToolbar setItems:[NSArray arrayWithObjects:flexiblespace_l,allselectButton,flexiblespace_m,finishButton,flexiblespace_r, nil]];
-    actionToolbar.barStyle = UIBarStyleDefault;
     
     //配合nagitive和tabbar的圖片變動tableview的大小
     //nagitive 52 - 44 = 8 、 tabbar 55 - 49 = 6
@@ -87,15 +92,25 @@
     [super viewDidLoad];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+  [[UIApplication sharedApplication].keyWindow addSubview:actionToolbar];
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+  
     if (!(self.isMovingToParentViewController || self.isBeingPresented))
     {
         if([maindata count] != 0)
             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     }
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [actionToolbar removeFromSuperview];
 }
 
 - (void)didReceiveMemoryWarning
@@ -160,6 +175,7 @@
                                                cancelButtonTitle:@"好"
                                                otherButtonTitles:nil];
         [alerts show];
+        return;
     }
     int isSuccess=0;
     for (int i = 0 ; i < [selectindexs count] ; i++) {
@@ -266,25 +282,6 @@
     });
 }
 
-- (void)showActionToolbar:(BOOL)show
-{
-    [UIView beginAnimations:nil context:nil];
-	[UIView setAnimationBeginsFromCurrentState:YES];
-    
-    if (show && showing == NO)          //顯示
-	{
-        showing = YES;
-        [switchviewcontroller.view addSubview:actionToolbar];
-	}
-	else if(!show && showing == YES)    //隱藏
-	{
-        showing = NO;
-        [actionToolbar removeFromSuperview];
-	}
-	
-	[UIView commitAnimations];
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -301,7 +298,7 @@
 {
     if([maindata count] == 0)
     {
-        return [NSString stringWithFormat:@"沒有借出記錄"];
+        return [NSString stringWithFormat:@"\n沒有借出記錄"];
     }
     else
         return NULL;

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1D6645691905087900416722 /* EGORefreshTableHeaderView.h in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B0B1905051200816CCD /* EGORefreshTableHeaderView.h */; };
 		1D66456A1905087900416722 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B0C1905051200816CCD /* EGORefreshTableHeaderView.m */; };
+		1D66456D1909129400416722 /* HistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D66456C1909129400416722 /* HistoryTableViewController.m */; };
 		1D8A3B1F1905051200816CCD /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B0E1905051200816CCD /* LoadMoreTableFooterView.m */; };
 		1D8A3B201905051200816CCD /* MessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B101905051200816CCD /* MessageInterceptor.m */; };
 		1D8A3B211905051200816CCD /* PullTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B121905051200816CCD /* PullTableView.m */; };
@@ -311,6 +312,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D66456B1909129400416722 /* HistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewController.h; sourceTree = "<group>"; };
+		1D66456C1909129400416722 /* HistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryTableViewController.m; sourceTree = "<group>"; };
 		1D8A3B0B1905051200816CCD /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		1D8A3B0C1905051200816CCD /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		1D8A3B0D1905051200816CCD /* LoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableFooterView.h; sourceTree = "<group>"; };
@@ -840,6 +843,8 @@
 				1DD1790018FE7AB300621B67 /* LoginResResultViewController.m */,
 				1DD1790118FE7AB300621B67 /* LoginResultViewController.h */,
 				1DD1790218FE7AB300621B67 /* LoginResultViewController.m */,
+				1D66456B1909129400416722 /* HistoryTableViewController.h */,
+				1D66456C1909129400416722 /* HistoryTableViewController.m */,
 				1DD1790318FE7AB300621B67 /* loginViewController.h */,
 				1DD1790418FE7AB300621B67 /* loginViewController.m */,
 				1DD1790618FE7AB300621B67 /* MainViewController.h */,
@@ -1722,6 +1727,7 @@
 				1DD1792418FE7AB300621B67 /* NewsViewController.m in Sources */,
 				91756FDA16F20CC5001D724D /* ReaderThumbQueue.h in Sources */,
 				91756FDB16F20CC5001D724D /* ReaderThumbRender.h in Sources */,
+				1D66456D1909129400416722 /* HistoryTableViewController.m in Sources */,
 				91756FDC16F20CC5001D724D /* ReaderThumbRequest.h in Sources */,
 				91756FDD16F20CC5001D724D /* ReaderThumbsView.h in Sources */,
 				91756FDE16F20CC5001D724D /* ReaderThumbView.h in Sources */,
@@ -1973,7 +1979,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1981,7 +1987,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "海大App";
 				PROVISIONING_PROFILE = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
@@ -1993,7 +1999,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2001,7 +2007,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "海大App";
 				PROVISIONING_PROFILE = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";

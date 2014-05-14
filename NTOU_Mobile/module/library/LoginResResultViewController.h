@@ -14,7 +14,6 @@
 @property (strong, nonatomic) WOLSwitchViewController *switchviewcontroller;
 @property (nonatomic,retain) NSString *userAccountId;
 
-- (void)showActionToolbar:(BOOL)show;
 -(void)fetchresHistory;
 -(void)cleanselectindexs;
 - (void)allcancel;

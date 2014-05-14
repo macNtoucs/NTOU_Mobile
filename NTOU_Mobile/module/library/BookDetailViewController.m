@@ -103,6 +103,7 @@
     
     
     [bookdetail setObject:[bookResultDic objectForKey:@"title"] forKey:@"name"];
+    [bookdetail setObject:[bookResultDic objectForKey:@"author"] forKey:@"author"];
     [bookdetail setObject:[bookResultDic objectForKey:@"pubInform"] forKey:@"press"];
     [bookdetail setObject:[bookResultDic objectForKey:@"reserveURL"] forKey:@"resurl"];
     
@@ -147,7 +148,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section == 0)
-        return 2;
+        return 3;
     else if (section == 1)
         return book_count;
     else if (section == 2)
@@ -163,26 +164,37 @@
 
     NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",row,section];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
     UILabel *presslabel = nil;
     UILabel *press = nil;
+    UILabel *authorlabel = nil;
+    UILabel *author = nil;
     UILabel *namelabel = nil;
     UILabel *name = nil;
+    //館藏地
     UILabel *part1label = nil;
     UILabel *part1 = nil;
+    //索書號／卷期
     UILabel *part2label = nil;
     UILabel *part2 = nil;
+    //條碼
     UILabel *part3label = nil;
     UILabel *part3 = nil;
+    //處理狀態
     UILabel *part4label = nil;
     UILabel *part4 = nil;
+    
     UILabel *button = nil;
     
     if (cell == nil)
     {
         presslabel = [[UILabel alloc] init];
         press = [[UILabel alloc] init];
+        authorlabel = [[UILabel alloc] init];
+        author = [[UILabel alloc] init];
         namelabel = [[UILabel alloc] init];
         name = [[UILabel alloc] init];
+        
         part1 = [[UILabel alloc] init];
         part2 = [[UILabel alloc] init];
         part3 = [[UILabel alloc] init];
@@ -191,6 +203,7 @@
         part2label = [[UILabel alloc] init];
         part3label = [[UILabel alloc] init];
         part4label = [[UILabel alloc] init];
+        
         button = [[UILabel alloc] init];
         
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
@@ -200,21 +213,34 @@
     UIFont *boldfont = [UIFont boldSystemFontOfSize:14.0];
     if(section == 0)
     {
+        
         NSString *book_name = [bookdetail objectForKey:@"name"];
+        NSString *book_author = [bookdetail objectForKey:@"author"];
         NSString *book_press = [bookdetail objectForKey:@"press"];
-       
+        
         CGSize maximumLabelSize = CGSizeMake(200,9999);
-        CGSize nameLabelSize = [book_name sizeWithFont:font
-                                     constrainedToSize:maximumLabelSize
-                                         lineBreakMode:NSLineBreakByWordWrapping];
-        CGSize pressLabelSize = [book_press sizeWithFont:font
-                                     constrainedToSize:maximumLabelSize
-                                         lineBreakMode:NSLineBreakByWordWrapping];
-
+        CGRect booknameLabelRect = [book_name boundingRectWithSize:maximumLabelSize
+                                                          options:NSStringDrawingUsesLineFragmentOrigin
+                                                       attributes:@{NSFontAttributeName:font}
+                                                          context:nil];
+        CGSize booknameLabelSize = booknameLabelRect.size;
+        
+        CGRect authorLabelRect = [book_author boundingRectWithSize:maximumLabelSize
+                                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                                   attributes:@{NSFontAttributeName:font}
+                                                      context:nil];
+        CGSize authorLabelSize = authorLabelRect.size;
+        
+        CGRect pressLabelRect = [book_press boundingRectWithSize:maximumLabelSize
+                                                    options:NSStringDrawingUsesLineFragmentOrigin
+                                                 attributes:@{NSFontAttributeName:font}
+                                                    context:nil];
+        CGSize pressLabelSize = pressLabelRect.size;
+        
         switch (row) {
             case 0:
                 namelabel.frame = CGRectMake(0,6,80,16);
-                namelabel.text = @"書名/作者：";
+                namelabel.text = @"書名：";
                 namelabel.lineBreakMode = NSLineBreakByWordWrapping;
                 namelabel.numberOfLines = 0;
                 namelabel.textAlignment = NSTextAlignmentRight;
@@ -222,7 +248,7 @@
                 namelabel.backgroundColor = [UIColor clearColor];
                 namelabel.font = boldfont;
 
-                name.frame = CGRectMake(85,6,200,nameLabelSize.height);
+                name.frame = CGRectMake(85,6,200,booknameLabelSize.height);
                 name.text = book_name;
                 name.lineBreakMode = NSLineBreakByWordWrapping;
                 name.numberOfLines = 0;
@@ -234,6 +260,27 @@
                 [cell.contentView addSubview:name];
                 break;
             case 1:
+                authorlabel.frame = CGRectMake(0,6,80,16);
+                authorlabel.text = @"作者：";
+                authorlabel.lineBreakMode = NSLineBreakByWordWrapping;
+                authorlabel.numberOfLines = 0;
+                authorlabel.textAlignment = NSTextAlignmentRight;
+                authorlabel.tag = indexPath.row;
+                authorlabel.backgroundColor = [UIColor clearColor];
+                authorlabel.font = boldfont;
+                
+                author.frame = CGRectMake(85,6,200,authorLabelSize.height);
+                author.text = book_author;
+                author.lineBreakMode = NSLineBreakByWordWrapping;
+                author.numberOfLines = 0;
+                author.tag = indexPath.row;
+                author.backgroundColor = [UIColor clearColor];
+                author.font = font;
+                
+                [cell.contentView addSubview:authorlabel];
+                [cell.contentView addSubview:author];
+                break;
+            case 2:
                 presslabel.frame = CGRectMake(0,6,80,16);
                 presslabel.text = @"出版項：";
                 presslabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -372,28 +419,36 @@
         
         UIFont *font = [UIFont fontWithName:@"Helvetica" size:14.0];
         NSString *name = [bookdetail objectForKey:@"name"];
+        NSString *author = [bookdetail objectForKey:@"author"];
         NSString *press = [bookdetail objectForKey:@"press"];
         CGSize maximumLabelSize = CGSizeMake(200,9999);
-        CGSize nameLabelSize = [name sizeWithFont:font
-                                     constrainedToSize:maximumLabelSize
-                                         lineBreakMode:NSLineBreakByWordWrapping];
+        CGRect booknameLabelRect = [name boundingRectWithSize:maximumLabelSize
+                                                           options:NSStringDrawingUsesLineFragmentOrigin
+                                                        attributes:@{NSFontAttributeName:font}
+                                                           context:nil];
+        CGSize booknameLabelSize = booknameLabelRect.size;
         
-        CGSize pressLabelSize = [press sizeWithFont:font
-                                       constrainedToSize:maximumLabelSize
-                                           lineBreakMode:NSLineBreakByWordWrapping];
+        CGRect authorLabelRect = [author boundingRectWithSize:maximumLabelSize
+                                                           options:NSStringDrawingUsesLineFragmentOrigin
+                                                        attributes:@{NSFontAttributeName:font}
+                                                           context:nil];
+        CGSize authorLabelSize = authorLabelRect.size;
+        
+        CGRect pressLabelRect = [press boundingRectWithSize:maximumLabelSize
+                                                         options:NSStringDrawingUsesLineFragmentOrigin
+                                                      attributes:@{NSFontAttributeName:font}
+                                                         context:nil];
+        CGSize pressLabelSize = pressLabelRect.size;
         
         switch (row) {
             case 0:
-                return 12 + nameLabelSize.height;
-                return 50;
-                break;
+                return 12 + booknameLabelSize.height;
             case 1:
+                return 12 + authorLabelSize.height;
+            case 2:
                 return 12 + pressLabelSize.height;
-                return 50;
-                break;                
             default:
                 return 0;
-                break;
         }
     }
     else if(section == 1)

@@ -189,6 +189,7 @@ modules;
 #pragma mark Remote notifications
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+
     /* Get device token */
     NSString *strDevToken = [NSString stringWithFormat:@"%@", deviceToken];
     
@@ -200,7 +201,7 @@ modules;
         [NTOUNotificationHandle sendRegisterDevice:[SettingsModuleViewController getAccount]];
     else
         [NTOUNotificationHandle sendRegisterDevice:nil];
-    
+
     NSLog(@"Did register for remote notifications: %@", deviceToken);
 }
 

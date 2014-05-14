@@ -8,21 +8,22 @@
 
 #import "LoginResultViewController.h"
 #import "TFHpple.h"
-#import "WOLSwitchViewController.h"
 #import "BookDetailViewController.h"
+#import "MBProgressHUD.h"
+
 @interface LoginResultViewController ()
-@property (nonatomic,retain) NSMutableArray *maindata;
+@property (nonatomic, retain) NSMutableArray *maindata;
 @property (nonatomic, retain) NSDictionary *historyData;
+@property (nonatomic, retain) NSMutableArray *newData;
 
 @end
 
 @implementation LoginResultViewController
-@synthesize fetchURL;
-@synthesize switchviewcontroller;
 @synthesize maindata;
-@synthesize userAccountId;
 @synthesize historyData;
-int page =1;
+@synthesize page;
+@synthesize newData;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -40,6 +41,7 @@ int page =1;
         
     }
     maindata = [[NSMutableArray alloc] init];
+   
     historyData = [NSDictionary new];
     //配合nagitive和tabbar的圖片變動tableview的大小
     //nagitive 52 - 44 = 8 、 tabbar 55 - 49 = 6
@@ -66,6 +68,7 @@ int page =1;
 }
 
 -(void)fetchHistory{
+     newData = [NSMutableArray new];
     NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"accountKey"];
     NSString *pwd =[[NSUserDefaults standardUserDefaults] objectForKey:@"passwordKey"];
     NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@&segment=%d",account,pwd,page];
@@ -78,7 +81,7 @@ int page =1;
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request
                                                  returningResponse:&urlResponse
                                                              error:nil];
-    NSArray * newData =[NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+    newData =[NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
     [maindata addObjectsFromArray:newData];
     [maindata retain];
     [self.tableView reloadData];
@@ -93,14 +96,15 @@ int page =1;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return[maindata count]+1;
+    if([newData count] == 0)return[maindata count];
+    else return[maindata count]+1;
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
    if([maindata count] == 0)
     {
-        return [NSString stringWithFormat:@"沒有借閱歷史紀錄"];
+        return [NSString stringWithFormat:@"\n沒有借閱歷史紀錄"];
     }
     else
         return NULL;
@@ -205,12 +209,11 @@ int page =1;
     [cell.contentView addSubview:detailsleabel];
     [cell.contentView addSubview:details];*/
     
-   //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
     }
     else {
-        
-        NSString *MyIdentifier = @"moreArticles";
+         NSString *MyIdentifier = [NSString stringWithFormat:@"moreArticlesCell"];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
         UILabel *morelabel = nil;
         if (cell == nil)
@@ -259,11 +262,33 @@ int page =1;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger row = [indexPath row];
-    if ([maindata count]==row)
+    if ([maindata count] == row)
     {
         ++page;
-        [self fetchHistory];
+        [self.tableView setHidden:YES];
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+              
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+                hud.labelText = @"Loading";
         
+            });
+            
+            [self fetchHistory];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
+            });
+        });
+        [self.tableView reloadData];
+        [self.tableView setHidden:NO];
+    }else{
+        NSDictionary *book = [maindata objectAtIndex:indexPath.row];
+        BookDetailViewController *detailView = [[BookDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        detailView.bookurl = [book objectForKey:@"bookDetailURL"];
+        
+        [self.navigationController pushViewController:detailView animated:YES];
     }
 }
 
