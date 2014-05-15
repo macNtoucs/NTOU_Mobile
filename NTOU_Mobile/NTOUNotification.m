@@ -159,7 +159,6 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     [request setHTTPMethod:@"POST"];//设置请求方式为POST，默认为GET
     NSString *str = [NSString stringWithFormat:@"deviceToken=%@&moodle=%@&library=%@&emergency=%@",appDelegate.devicePushToken,receiveArray[0],receiveArray[1],receiveArray[2]];
-    NSLog(@"%@",str);
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:data];
     //第三步，连接服务器

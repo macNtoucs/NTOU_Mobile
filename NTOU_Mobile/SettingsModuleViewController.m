@@ -261,7 +261,12 @@
 -(void)check_Switch:(id)sender
 {
     UISwitch *switchView = (UISwitch *)sender;
-    UITableViewCell *cell = (UITableViewCell *)switchView.superview;
+    
+    UITableViewCell *cell = nil;
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+        cell = (UITableViewCell *)switchView.superview.superview;
+    else
+        cell = (UITableViewCell *)switchView.superview;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     receiveArray[indexPath.row] = [NSNumber numberWithBool:switchView.on];
     
