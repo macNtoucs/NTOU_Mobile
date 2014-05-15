@@ -75,44 +75,21 @@
     
     NSMutableDictionary  *stationInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
     
-    //NSLog(@"NTstationInfo: %@",stationInfo);
-    
-    NSArray * responseArr = stationInfo[@"stationInfo"];
-    
-    for(NSDictionary * dict in responseArr)
+    if([stationInfo[@"stationInfo"]  isKindOfClass:[NSNull class]])
     {
-        [stops addObject:[dict valueForKey:@"name"]];
-        [m_waitTimeResult addObject:[dict valueForKey:@"time"]];
+        [stops addObject:@"更新中，暫無資料"];
+        [m_waitTimeResult addObject:@"請稍候再試"];
+    }
+    else
+    {
+        NSArray * responseArr = stationInfo[@"stationInfo"];
+        for(NSDictionary * dict in responseArr)
+        {
+            [stops addObject:[dict valueForKey:@"name"]];
+            [m_waitTimeResult addObject:[dict valueForKey:@"time"]];
+        }
     }
     
-    
-    //NSLog(@"NTstops: %@", stops);
-    //NSLog(@"NTtime: %@", m_waitTimeResult);
-    
-    /*NSData *dataURL = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
-     
-     NSString *strResult = [[[NSString alloc] initWithData:dataURL encoding:NSUTF8StringEncoding]autorelease];
-     
-     //NSLog(@"strResult = %@", strResult);
-     
-     NSArray * stopsAndTimes = [strResult componentsSeparatedByString:@";"];
-     
-     NSArray * tmp_stops = [[NSArray alloc] init];
-     tmp_stops = [[stopsAndTimes objectAtIndex:0] componentsSeparatedByString:@"|"];
-     for (NSString * str in tmp_stops)
-     {
-     [stops addObject:str];
-     }
-     [stops removeLastObject];
-     
-     NSArray * tmp_m = [[NSArray alloc] init];
-     tmp_m = [[stopsAndTimes objectAtIndex:1] componentsSeparatedByString:@"|"];
-     for (NSString * str in tmp_m)
-     {
-     [m_waitTimeResult addObject:str];
-     }
-     [m_waitTimeResult removeLastObject];
-     //[tmp_m release];    // Analyze MemLeak*/
     [stops retain];
     //[IDs retain];
     [m_waitTimeResult retain];

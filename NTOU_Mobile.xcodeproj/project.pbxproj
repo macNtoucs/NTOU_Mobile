@@ -965,10 +965,10 @@
 		43BEDC1419236D6E0091B024 /* ExpressBusSearch */ = {
 			isa = PBXGroup;
 			children = (
-				437D52611923976E0054AD8E /* ExpressBusDetailViewController.m */,
-				437D52631923977E0054AD8E /* ExpressBusSearchViewController.m */,
 				437D5265192397FC0054AD8E /* ExpressBusDetail2ViewController.h */,
+				437D52611923976E0054AD8E /* ExpressBusDetailViewController.m */,
 				437D5268192398530054AD8E /* ExpressBusSearch2ViewController.h */,
+				437D52631923977E0054AD8E /* ExpressBusSearchViewController.m */,
 			);
 			path = ExpressBusSearch;
 			sourceTree = "<group>";
@@ -2097,7 +2097,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "海大App";
 				PROVISIONING_PROFILE = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
@@ -2117,7 +2117,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "海大App";
 				PROVISIONING_PROFILE = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "81F2EAC0-8D8C-406C-BFF1-D66AB5A12ABB";

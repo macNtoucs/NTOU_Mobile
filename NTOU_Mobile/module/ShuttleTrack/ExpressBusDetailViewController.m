@@ -94,17 +94,20 @@
     NSError *error;
     
     NSMutableDictionary  *stationInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
-    
-    //NSLog(@"ExpressBus stationInfo: %@",stationInfo);
-    
-    NSArray * responseArr = stationInfo[@"stationInfo"];
-    for(NSDictionary * dict in responseArr)
+    if([stationInfo[@"stationInfo"]  isKindOfClass:[NSNull class]])
     {
-        [stops addObject:[dict valueForKey:@"name"]];
-        [times addObject:[dict valueForKey:@"time"]];
+        [stops addObject:@"更新中，暫無資料"];
+        [times addObject:@"請稍候再試"];
     }
-    
-    //NSLog(@"stops = %@", stops);
+    else
+    {
+        NSArray * responseArr = stationInfo[@"stationInfo"];
+        for(NSDictionary * dict in responseArr)
+        {
+            [stops addObject:[dict valueForKey:@"name"]];
+            [times addObject:[dict valueForKey:@"time"]];
+        }
+    }
     
     [stops retain];
     [times retain];
@@ -184,6 +187,29 @@
 
 #pragma mark - Table view data source
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    CGSize screenSize = screenBound.size;
+    CGFloat screenWidth = screenSize.width;
+    CGFloat screenHeight = screenSize.height;
+    
+    if (scrollView.contentOffset.y == 0)
+    {
+        if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+            [self.tableView setFrame:CGRectMake(0,labelsize.height+40, screenWidth, screenHeight-labelsize.height-50)];
+        else
+            [self.tableView setFrame:CGRectMake(0,labelsize.height, screenWidth, screenHeight-labelsize.height-50)];
+    }
+    else
+    {
+        if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+            [self.tableView setFrame:CGRectMake(0,labelsize.height+75, screenWidth, screenHeight-labelsize.height-50)];
+        else
+            [self.tableView setFrame:CGRectMake(0,labelsize.height+12, screenWidth, screenHeight-labelsize.height-50)];
+    }
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
@@ -220,24 +246,34 @@
     
     // Configure the cell...
     cell.textLabel.text = [stops objectAtIndex:indexPath.row];
-    if([[times objectAtIndex:indexPath.row] rangeOfString:@"未發車"].location != NSNotFound)
+    if([stops count] == 1)
     {
-        cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(0, 3)];
+        cell.textLabel.textColor = [UIColor colorWithRed:81.0/255.0 green:102.0/255.0 blue:145.0/255.0 alpha:1.0];
+        cell.detailTextLabel.text = [times objectAtIndex:indexPath.row];
         cell.detailTextLabel.textColor = [UIColor grayColor];
     }
-    else if([[times objectAtIndex:indexPath.row] rangeOfString:@"分"].location != NSNotFound)
+    else
     {
-        NSUInteger len = [[times objectAtIndex:indexPath.row] rangeOfString:@"分"].location+1;
-        cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(0, len)];
-        cell.detailTextLabel.textColor = [UIColor colorWithRed:81.0/255.0 green:102.0/255.0 blue:145.0/255.0 alpha:1.0];;
+        if([[times objectAtIndex:indexPath.row] rangeOfString:@"未發車"].location != NSNotFound)
+        {
+            cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(0, 3)];
+            cell.detailTextLabel.textColor = [UIColor grayColor];
+        }
+        else if([[times objectAtIndex:indexPath.row] rangeOfString:@"分"].location != NSNotFound)
+        {
+            NSUInteger len = [[times objectAtIndex:indexPath.row] rangeOfString:@"分"].location+1;
+            cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(0, len)];
+            cell.detailTextLabel.textColor = [UIColor colorWithRed:81.0/255.0 green:102.0/255.0 blue:145.0/255.0 alpha:1.0];
+        }
+        else if([[times objectAtIndex:indexPath.row] rangeOfString:@"站"].location != NSNotFound)
+        {
+            NSUInteger pos1 = [[times objectAtIndex:indexPath.row] rangeOfString:@"將"].location;
+            NSUInteger pos2 = [[times objectAtIndex:indexPath.row] rangeOfString:@"站"].location;
+            cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(pos1, pos2-pos1+1)];
+            cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:188.0/255.0 green:2.0/255.0 blue:9.0/255.0 alpha:100.0];
+        }
     }
-    else if([[times objectAtIndex:indexPath.row] rangeOfString:@"站"].location != NSNotFound)
-    {
-        NSUInteger pos1 = [[times objectAtIndex:indexPath.row] rangeOfString:@"將"].location;
-        NSUInteger pos2 = [[times objectAtIndex:indexPath.row] rangeOfString:@"站"].location;
-        cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(pos1, pos2-pos1+1)];
-        cell.detailTextLabel.textColor = [UIColor redColor];
-    }
+    
     return cell;
 }
 

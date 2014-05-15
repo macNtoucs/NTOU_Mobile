@@ -650,11 +650,6 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    [self.searchBar setTintColor:[UIColor lightGrayColor]];
-    self.searchBar.placeholder = @"請輸入路線編號或名稱";
-    [self initializeMyKeyboardView];
-    
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
     {
         NSArray *searchBarSubViews = [[self.searchBar.subviews objectAtIndex:0] subviews];
@@ -666,15 +661,24 @@
                 [search setInputView:self.myKeyboardView];
             }
         }
+        self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 38)];
     }
     else
     {
         [[searchBar.subviews objectAtIndex:1] setInputView:myKeyboardView];
+        self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     }
+    
+    [self.searchBar setTintColor:[UIColor lightGrayColor]];
+    self.searchBar.placeholder = @"請輸入路線編號或名稱";
+    [self initializeMyKeyboardView];
     
     [self.searchBar reloadInputViews];
     
-    self.tableView.tableHeaderView = searchBar;
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+        [self.tableView addSubview:searchBar];
+    else
+        self.tableView.tableHeaderView = searchBar;
     self.searchBar.delegate = (id)self;
 }
 
