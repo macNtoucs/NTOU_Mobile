@@ -10,6 +10,7 @@
 #import "TFHpple.h"
 #import "WOLSwitchViewController.h"
 #import "DefineConstant.h"
+#import "SettingsModuleViewController.h"
 
 @interface loginViewController ()
 @property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
@@ -47,9 +48,8 @@
     Loginbutton.frame = CGRectMake(swidth/2 - 80, 100.0, 160.0, 30.0);
     [Loginbutton setTitleColor:[UIColor brownColor] forState:UIControlStateNormal];
     [Loginbutton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
-    
-    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"accountKey"];
-    NSString *pwd =[[NSUserDefaults standardUserDefaults] objectForKey:@"passwordKey"];
+    NSString *account = [SettingsModuleViewController getLibraryAccount];
+    NSString *pwd = [SettingsModuleViewController getLibraryPassword];
     LoginAccount = [[UILabel alloc] init];
     NSString *loginText = NULL;
     if(account == NULL || pwd==NULL)

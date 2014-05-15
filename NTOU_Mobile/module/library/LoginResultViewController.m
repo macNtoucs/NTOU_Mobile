@@ -10,6 +10,8 @@
 #import "TFHpple.h"
 #import "BookDetailViewController.h"
 #import "MBProgressHUD.h"
+#import "SettingsModuleViewController.h"
+
 
 @interface LoginResultViewController ()
 @property (nonatomic, retain) NSMutableArray *maindata;
@@ -70,8 +72,8 @@
 
 -(void)fetchHistory{
      newData = [NSMutableArray new];
-    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"accountKey"];
-    NSString *pwd =[[NSUserDefaults standardUserDefaults] objectForKey:@"passwordKey"];
+    NSString *account = [SettingsModuleViewController getLibraryAccount];
+    NSString *pwd = [SettingsModuleViewController getLibraryPassword];
     NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@&segment=%d",account,pwd,page];
     NSHTTPURLResponse *urlResponse = nil;
     NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];

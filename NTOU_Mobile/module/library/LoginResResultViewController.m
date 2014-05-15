@@ -10,6 +10,7 @@
 #import "TFHpple.h"
 #import "WOLSwitchViewController.h"
 #import "MBProgressHUD.h"
+#import "SettingsModuleViewController.h"
 
 @interface LoginResResultViewController ()
 @property (nonatomic, strong) NSMutableArray *selectindexs;
@@ -129,8 +130,8 @@ int isSuccess=0;
 
 -(void)fetchresHistory{
      dispatch_barrier_async(dispatch_get_main_queue(), ^{
-         NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"accountKey"];
-         NSString *pwd =[[NSUserDefaults standardUserDefaults] objectForKey:@"passwordKey"];
+         NSString *account = [SettingsModuleViewController getLibraryAccount];
+         NSString *pwd = [SettingsModuleViewController getLibraryPassword];
          NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@",account,pwd];
          NSHTTPURLResponse *urlResponse = nil;
          NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
@@ -212,9 +213,8 @@ int isSuccess=0;
         }//end for
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:postVal options:NSJSONWritingPrettyPrinted error:nil];
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        
-        NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"accountKey"];
-        NSString *pwd =[[NSUserDefaults standardUserDefaults] objectForKey:@"passwordKey"];
+        NSString *account = [SettingsModuleViewController getLibraryAccount];
+        NSString *pwd = [SettingsModuleViewController getLibraryPassword];
         NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@&radioValue=%@",account,pwd,jsonString];
     NSHTTPURLResponse *urlResponse = nil;
     NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];

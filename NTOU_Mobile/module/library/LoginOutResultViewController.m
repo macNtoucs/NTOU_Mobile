@@ -10,6 +10,8 @@
 #import "TFHpple.h"
 #import "WOLSwitchViewController.h"
 #import "MBProgressHUD.h"
+#import "SettingsModuleViewController.h"
+
 
 @interface LoginOutResultViewController ()
 @property (nonatomic, strong) NSMutableArray *selectindexs;
@@ -131,8 +133,8 @@
 -(void)fetchout:(NSData*)bookdata
 {
     
-    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"accountKey"];
-    NSString *pwd =[[NSUserDefaults standardUserDefaults] objectForKey:@"passwordKey"];
+    NSString *account = [SettingsModuleViewController getLibraryAccount];
+    NSString *pwd = [SettingsModuleViewController getLibraryPassword];
     NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@",account,pwd];
     NSHTTPURLResponse *urlResponse = nil;
     NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
@@ -188,8 +190,8 @@
         NSIndexPath *index = [selectindexs objectAtIndex:i];
         NSDictionary *book = [maindata objectAtIndex:index.row];
         radioVal = [book objectForKey:@"radioValue"];
-        NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"accountKey"];
-        NSString *pwd =[[NSUserDefaults standardUserDefaults] objectForKey:@"passwordKey"];
+        NSString *account = [SettingsModuleViewController getLibraryAccount];
+        NSString *pwd = [SettingsModuleViewController getLibraryPassword];
         NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@&radioValue=%@",account,pwd,radioVal];
        
         NSHTTPURLResponse *urlResponse = nil;

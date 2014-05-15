@@ -9,6 +9,7 @@
 #import "BookDetailViewController.h"
 #import "TFHpple.h"
 #import "RBookViewController.h"
+#import "SettingsModuleViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface BookDetailViewController ()
@@ -466,8 +467,8 @@
     if (indexPath.section == 2){
         NSString *reserveURL = [bookdetail objectForKey:@"resurl"];
        reserveURL= [reserveURL stringByReplacingOccurrencesOfString:@"&" withString:@"(ANDCHAR)"];
-        NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"accountKey"];
-        NSString *pwd =[[NSUserDefaults standardUserDefaults] objectForKey:@"passwordKey"];
+        NSString *account = [SettingsModuleViewController getLibraryAccount];
+        NSString *pwd = [SettingsModuleViewController getLibraryPassword];
         NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@&reserveURL=%@",account,pwd,reserveURL];
         NSHTTPURLResponse *urlResponse = nil;
         NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
