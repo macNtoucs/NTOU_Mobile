@@ -305,7 +305,7 @@
         NSMutableString *query = [NSMutableString stringWithString:@"SELECT shortRouteName FROM expressinfo WHERE shortRouteName LIKE '%"];
         [query appendString:[searchArray objectAtIndex:i]];
         [query appendString:@"%'"];
-            //NSLog(@"query=%@", query);
+        //NSLog(@"query=%@", query);
         FMResultSet *rs = [db executeQuery:query];
         while ([rs next])
         {
@@ -651,6 +651,15 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+        self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 38)];
+    else
+        self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    
+    [self.searchBar setTintColor:[UIColor lightGrayColor]];
+    self.searchBar.placeholder = @"請輸入路線編號或名稱";
+    [self initializeMyKeyboardView];
+    
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
     {
         NSArray *searchBarSubViews = [[self.searchBar.subviews objectAtIndex:0] subviews];
         for (UIView *view in searchBarSubViews) {
@@ -661,18 +670,11 @@
                 [search setInputView:self.myKeyboardView];
             }
         }
-        self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 38)];
     }
     else
     {
         [[searchBar.subviews objectAtIndex:1] setInputView:myKeyboardView];
-        self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     }
-    
-    [self.searchBar setTintColor:[UIColor lightGrayColor]];
-    self.searchBar.placeholder = @"請輸入路線編號或名稱";
-    [self initializeMyKeyboardView];
-    
     [self.searchBar reloadInputViews];
     
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
@@ -755,45 +757,6 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -805,5 +768,6 @@
     [self.navigationController pushViewController:secondLevel animated:YES];
     [secondLevel release];
 }
+
 
 @end

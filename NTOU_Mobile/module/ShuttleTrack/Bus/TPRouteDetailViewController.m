@@ -258,11 +258,10 @@
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
     {
         activityIndicator.frame = CGRectMake(135.0, 260.0, 50.0, 50.0);
-        //NSLog(@"alert");
+        activityIndicator.color = [UIColor blackColor];
     }
     else
         activityIndicator.frame = CGRectMake(115.0, 60.0, 50.0, 50.0);
-    activityIndicator.color = [UIColor blackColor];
     
     [self.loadingView addSubview:self.activityIndicator];
     [self.tableView addSubview:self.loadingView];
