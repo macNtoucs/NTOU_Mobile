@@ -73,7 +73,7 @@
             return 1;
             break;
         case 1:
-            return 3;
+            return 2;
             break;
         default:
             return 0;
@@ -121,9 +121,6 @@
                     break;
                 case 1:
                     cell.textLabel.text = @"樓層簡介";
-                    break;
-                case 2:
-                    cell.textLabel.text = @"聯絡資訊";
                     break;
                 default:
                     break;

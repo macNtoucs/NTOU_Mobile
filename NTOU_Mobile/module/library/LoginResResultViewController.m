@@ -143,7 +143,7 @@ int isSuccess=0;
                                                  returningResponse:&urlResponse
                                                              error:nil];
          NSString* checkLogin = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-         if ([checkLogin rangeOfString:@"login failed"].location == NSNotFound)
+         if ([checkLogin rangeOfString:@"Login failed"].location == NSNotFound)
              loginSuccess=true;
          else loginSuccess=false;
          NSArray * reponseDataArray = [NSArray new];
