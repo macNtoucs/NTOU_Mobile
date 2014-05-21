@@ -108,10 +108,12 @@
     [button addTarget:self
                action:@selector(search)
      forControlEvents:UIControlEventTouchDown];
-    [button setTitle:@"搜尋" forState:UIControlStateNormal];
-    button.frame = CGRectMake(swidth/2 - 80, 100.0, 160.0, 30.0);
-    [button setTitleColor:[UIColor brownColor] forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+    [button setImage:[UIImage imageNamed:@"LibrarySearch.png"] forState:UIControlStateNormal];
+     button.frame = CGRectMake(textField.frame.origin.x + 270 ,
+                               textField.frame.origin.y ,
+                               28,
+                               28);
+  
     
     UIImage *Library = [UIImage imageNamed:@"NYOULogo.png"];
     UIImageView *NTU_Library = [[UIImageView alloc] initWithFrame:CGRectMake(swidth/2 - Library.size.width/4,180, Library.size.width/2, Library.size.height/2)];

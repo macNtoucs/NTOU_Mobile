@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D0ED730192CC665008EDC7E /* LibrarySearch.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D0ED72F192CC665008EDC7E /* LibrarySearch.png */; };
 		1D452FE31923A21D002E28ED /* accountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D452FE21923A21D002E28ED /* accountTableViewController.m */; };
 		1D6645691905087900416722 /* EGORefreshTableHeaderView.h in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B0B1905051200816CCD /* EGORefreshTableHeaderView.h */; };
 		1D66456A1905087900416722 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B0C1905051200816CCD /* EGORefreshTableHeaderView.m */; };
@@ -328,6 +329,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D0ED72F192CC665008EDC7E /* LibrarySearch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LibrarySearch.png; path = about/LibrarySearch.png; sourceTree = "<group>"; };
 		1D452FE11923A21D002E28ED /* accountTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = accountTableViewController.h; sourceTree = "<group>"; };
 		1D452FE21923A21D002E28ED /* accountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = accountTableViewController.m; sourceTree = "<group>"; };
 		1D66456B1909129400416722 /* HistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewController.h; sourceTree = "<group>"; };
@@ -897,6 +899,7 @@
 				1DD1790418FE7AB300621B67 /* loginViewController.m */,
 				1DD1790618FE7AB300621B67 /* MainViewController.h */,
 				1DD1790718FE7AB300621B67 /* MainViewController.m */,
+				1D0ED72F192CC665008EDC7E /* LibrarySearch.png */,
 				1DD1790A18FE7AB300621B67 /* NYOULogo.png */,
 				1DD1790B18FE7AB300621B67 /* RBookViewController.h */,
 				1DD1790C18FE7AB300621B67 /* RBookViewController.m */,
@@ -1767,6 +1770,7 @@
 				C71A4EE61705B106002819AD /* Fuho_Data.plist in Resources */,
 				C71A4EEB1705B114002819AD /* cancel_24.png in Resources */,
 				C71A4EEC1705B114002819AD /* cancel.png in Resources */,
+				1D0ED730192CC665008EDC7E /* LibrarySearch.png in Resources */,
 				C71A4EED1705B114002819AD /* inbox_24.png in Resources */,
 				C71A4EEE1705B114002819AD /* inbox.png in Resources */,
 				C71A4F00170A9399002819AD /* Default.png in Resources */,
