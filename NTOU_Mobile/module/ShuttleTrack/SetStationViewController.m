@@ -119,7 +119,7 @@
         [dateFormatter setDateFormat:@"yyyyMMdd"];
         view5.selectedDate = [[NSString alloc] init];
         view5.selectedDate=[view5.selectedDate stringByAppendingString:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:calendar.selectedDate]]];
-        NSLog(@"selectedDate=%@", [dateFormatter stringFromDate:calendar.selectedDate]);
+        NSLog(@"%@, selectedDate=%@", calendar.selectedDate, [dateFormatter stringFromDate:calendar.selectedDate]);
         view5.selectedTrainStyle = trainStyle;
     }
     else {
@@ -260,25 +260,19 @@
 {
     [super viewDidLoad];
     
-    NSLog(@"viewDidLoad");
+    //NSLog(@"setStation.m viewDidLoad");
     
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
         
-        NSLog(@"system 7.0");
+        //NSLog(@"system 7.0");
         CGRect fullScreenBounds = [[UIScreen mainScreen] bounds];
-        NSLog(@"self.tabBar.frame.origin.y = %f, height = %f, view height = %f", self.tabBar.frame.origin.y, fullScreenBounds.size.height, self.view.frame.size.height);
-        //[self.tabBar setFrame:CGRectMake(0, fullScreenBounds.size.height-49, 320, 40)];
+       //NSLog(@"self.tabBar.frame.origin.y = %f, height = %f, view height = %f", self.tabBar.frame.origin.y, fullScreenBounds.size.height, self.view.frame.size.height);
         [self.tabBar setFrame:CGRectMake(0, self.view.frame.size.height-49, 320, 40)];
-        if(self.tabBar.frame.origin.y == fullScreenBounds.size.height-112)
-        {
-            NSLog(@"Hello");
-        }
-        //[self.tabBar setFrame:CGRectMake(0, fullScreenBounds.size.height-112, 320, 40)];
-        NSLog(@"self.tabBar.frame.origin.y = %f", self.tabBar.frame.origin.y);
+        if(fullScreenBounds.size.height != self.view.frame.size.height)
+            [self.tabBar setFrame:CGRectMake(0, fullScreenBounds.size.height-113, 320, 49)];
+        //NSLog(@"self.tabBar.frame.origin.y = %f", self.tabBar.frame.origin.y);
         [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
         self.edgesForExtendedLayout = UIRectEdgeNone;
-        
-        
     }
     self.view.backgroundColor = [UIColor clearColor];
     if(!_isHightSpeedTrain){
