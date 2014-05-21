@@ -481,17 +481,20 @@
                                                                  error:nil];
         NSDictionary * responseDic = [NSDictionary new];
         responseDic= [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
-        NSString * msg = @"取書地點: "  ;
-       msg = [msg stringByAppendingString:[responseDic objectForKey: @"location"]];
-        msg = [msg stringByAppendingString:@"\n狀態:"];
-       msg = [msg stringByAppendingString:[responseDic objectForKey: @"status"]];
+    
         if ([[responseDic objectForKey: @"querySuccess"] isEqualToString:@"true"]){
+            NSString * msg = @"取書地點: "  ;
+            msg = [msg stringByAppendingString:[responseDic objectForKey: @"location"]];
+            msg = [msg stringByAppendingString:@"\n狀態:"];
+            msg = [msg stringByAppendingString:[responseDic objectForKey: @"status"]];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"預約成功" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
+            
             [alert release];
         }
         else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"預約失敗" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            NSString * errorMsg = [responseDic objectForKey:@"errorMsg"];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"預約失敗" message:errorMsg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
             [alert release];
         
