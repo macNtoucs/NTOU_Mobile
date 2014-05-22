@@ -22,6 +22,11 @@
 @synthesize labelsize;
 @synthesize departureTimeTableView;
 
+@synthesize success;
+@synthesize refreshTimer;
+@synthesize activityIndicator;
+@synthesize loadingView;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -124,6 +129,24 @@
     self.navigationItem.rightBarButtonItem = rightButton;
     [rightButton release];*/
     
+    loadingView = [[UIAlertView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+    loadingView.delegate = self;
+    loadingView.message = @"下載資料中\n請稍候\n";
+    
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        activityIndicator.frame = CGRectMake(135.0, 260.0, 50.0, 50.0);
+        activityIndicator.color = [UIColor blackColor];
+    }
+    else
+        activityIndicator.frame = CGRectMake(115.0, 60.0, 50.0, 50.0);
+    
+    [self.loadingView addSubview:self.activityIndicator];
+    [self.tableView addSubview:self.loadingView];
+    [activityIndicator startAnimating];
+    [self.loadingView show];
+    
     stops = [[NSMutableArray alloc] init];
     times = [[NSMutableArray alloc] init];
     
@@ -156,7 +179,17 @@
     
     [self.parentViewController.view addSubview:label];
     
-    //NSLog(@"labelsize.height = %f", labelsize.height);
+    // 手動下拉更新
+    if (_refreshHeaderView == nil) {
+        EGORefreshTableHeaderView *view1 = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height,self.tableView.bounds.size.width,self.tableView.bounds.size.height)];
+        view1.delegate = self;
+        [self.tableView addSubview:view1];
+        _refreshHeaderView = view1;
+        [view1 release];
+    }
+    [_refreshHeaderView refreshLastUpdatedDate];
+    success = [[UIImageView alloc] initWithFrame:CGRectMake(75.0, 250.0, 150.0, 150.0)];
+    [success setImage:[UIImage imageNamed:@"ok.png"]];
     
     [self estimateTime];
 }
@@ -168,6 +201,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [activityIndicator stopAnimating];
+    [loadingView dismissWithClickedButtonIndex:0 animated:YES];
+    
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
     CGFloat screenWidth = screenSize.width;
@@ -177,6 +213,8 @@
         [self.tableView setFrame:CGRectMake(0,labelsize.height+40, screenWidth, screenHeight-labelsize.height-50)];
     else
         [self.tableView setFrame:CGRectMake(0,labelsize.height, screenWidth, screenHeight-labelsize.height-50)];
+    
+    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning

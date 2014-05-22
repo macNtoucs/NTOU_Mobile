@@ -220,7 +220,7 @@
         else if (indexPath.row == 1) {
             stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];            [stops setDirection:false];
             [self.navigationController pushViewController:stops animated:YES];
-            stops.navigationItem.leftBarButtonItem.title=@"back";
+            stops.navigationItem.leftBarButtonItem.title=@"Hi";
         }
         else
         {

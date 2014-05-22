@@ -246,8 +246,8 @@
     /*preArray = [[NSArray alloc] initWithObjects:@"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", nil];*/
     
     preArray = [[NSArray alloc] initWithObjects:nil];
-    CGRect screenBound = [[UIScreen mainScreen] bounds];
-    CGSize screenSize = screenBound.size;
+    //CGRect screenBound = [[UIScreen mainScreen] bounds];
+    //CGSize screenSize = screenBound.size;
     //loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
     loadingView = [[UIAlertView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
     loadingView.delegate = self;
@@ -326,7 +326,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [self stopTimer];
+    //[self stopTimer];
     [super viewDidDisappear:animated];
 }
 
