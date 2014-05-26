@@ -201,18 +201,21 @@ int Searchpage =1;
         UILabel *presslabel = nil;
         UILabel *booklabel = nil;
         UILabel *authorlabel = nil;
+        UILabel *imgLoadinglabel = nil;
         
         if (cell == nil)
         {
             presslabel = [[UILabel alloc] init];
             booklabel = [[UILabel alloc] init];
             authorlabel = [[UILabel alloc] init];
+            imgLoadinglabel = [[UILabel alloc]init];
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
         }
         
         UIFont *nameFont = [UIFont fontWithName:@"Helvetica" size:14.0];
         UIFont *otherFont = [UIFont fontWithName:@"Helvetica" size:12.0];
+        UIFont *loadingFont = [UIFont fontWithName:@"Helvetica" size:8.0];
         
         NSDictionary *book = [data objectAtIndex:indexPath.row];
         NSString *bookname = [book objectForKey:@"title"];
@@ -251,12 +254,22 @@ int Searchpage =1;
         CGFloat imageY = height/2 - 80/2;
         if(imageY < 6)
             imageY = 6;
-       
-        NSData * imageData = [[NSData alloc] initWithContentsOfURL:[ NSURL URLWithString: image_url ]];
-        UIImageView *imageview = [[UIImageView alloc] initWithImage: [UIImage imageWithData: imageData]];
-        //[imageData release];
-        imageview.frame = CGRectMake(10,imageY,60,80);
-        [cell.contentView addSubview:imageview];
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+             dispatch_async(dispatch_get_main_queue(), ^{
+            NSData * imageData = [[NSData alloc] initWithContentsOfURL:[ NSURL URLWithString: image_url ]];
+            UIImageView *imageview = [[UIImageView alloc] initWithImage: [UIImage imageWithData: imageData]];
+            //[imageData release];
+            imageview.frame = CGRectMake(10,imageY,60,80);
+            [imgLoadinglabel removeFromSuperview];
+            [cell.contentView addSubview:imageview];
+             });
+        });
+        
+        imgLoadinglabel.frame = CGRectMake(10,imageY,60,80);
+        imgLoadinglabel.text = @"圖片載入中...";
+        imgLoadinglabel.lineBreakMode = NSLineBreakByWordWrapping;
+        imgLoadinglabel.font= loadingFont;
+         [cell.contentView addSubview:imgLoadinglabel];
         
         booklabel.frame = CGRectMake(80,6,200,booknameLabelSize.height);
         booklabel.text = bookname;
@@ -340,6 +353,7 @@ int Searchpage =1;
         
         UIFont *nameFont = [UIFont fontWithName:@"Helvetica" size:14.0];
         UIFont *otherFont = [UIFont fontWithName:@"Helvetica" size:12.0];
+        UIFont *loadingFont = [UIFont fontWithName:@"Helvetica" size:8.0];
         
         CGSize maximumLabelSize = CGSizeMake(200,9999);
         CGRect booknameLabelRect = [bookname boundingRectWithSize:maximumLabelSize
