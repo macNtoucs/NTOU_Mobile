@@ -60,7 +60,7 @@ int Searchpage =1;
     
     book_count = 10;    //一開始先載入10筆資料
     start = NO;
-    
+    Searchpage=1;
     
     
     
@@ -196,7 +196,7 @@ int Searchpage =1;
     }
     else if(indexPath.row < [data count])
     {
-        NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d",indexPath.row];
+        NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%ld",(long)indexPath.row];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         UILabel *presslabel = nil;
         UILabel *booklabel = nil;
