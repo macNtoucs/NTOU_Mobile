@@ -62,41 +62,15 @@
     if(stops)
     {
         [stops removeAllObjects];
-        [IDs removeAllObjects];
+        //[IDs removeAllObjects];
         [m_waitTimeResult removeAllObjects];
     }
     
     NSString *encodedBus = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)busName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
     //NSLog(@"url = %@", url);
     
-    //NSData *dataURL = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
-    
-    /*TFHpple* parser = [[TFHpple alloc] initWithHTMLData:dataURL];
-    NSArray *tmpStop  = [parser searchWithXPathQuery:@"//body//div//table//tr//td"]; // get the title
-    
-    //NSLog(@"tmpStop = %@", tmpStop);
-    
-    for(int i=1; i<[tmpStop count]; i++)
-    {
-        TFHppleElement* stopData = [tmpStop objectAtIndex:i];
-        //NSLog(@"stopData = %@", stopData);
-        NSArray * attributes = [stopData children];
-        //NSLog(@"attributes = %@", attributes);
-        TFHppleElement* urlAndStopName = [attributes objectAtIndex:1];
-        //NSLog(@"url&StopName = %@", urlAndStopName);
-        
-        NSString * estimateURL = [[urlAndStopName attributes] objectForKey:@"href"];
-        
-        //NSLog(@"estimateURL = %@", estimateURL);
-        
-        NSArray * tmp1 = [estimateURL componentsSeparatedByString:@"sid="];
-        NSString * sid = [tmp1 objectAtIndex:1];*/
-        
-        //NSString *strURL = [NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web.php?url=%@", url];
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web.php?bus=%@", encodedBus]];
-    //NSLog(@"KLencodebus=%@", encodedBus);
-    //NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web.php?url=http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_stop.jsp?rid=104101"]];
     
     NSData *data = [NSData dataWithContentsOfURL:url];
     //NSLog(@"data=%@", data);
@@ -106,28 +80,20 @@
     
     //NSLog(@"NTstationInfo: %@",stationInfo);
     
-    NSArray * responseArr = stationInfo[@"stationInfo"];
-    
-    for(NSDictionary * dict in responseArr)
+    if([stationInfo[@"stationInfo"]  isKindOfClass:[NSNull class]])
     {
-        [stops addObject:[dict valueForKey:@"name"]];
-        [m_waitTimeResult addObject:[dict valueForKey:@"time"]];
+        [stops addObject:@"更新中，暫無資料"];
+        [m_waitTimeResult addObject:@"請稍候再試"];
     }
-    
-        
-    
-        /*NSData *dataURL2 = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
-        
-        //NSString *strResult = [[[NSString alloc] initWithData:dataURL2 encoding:CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingBig5)]autorelease];
-        //NSString *strResult = [[[NSString alloc] initWithData:dataURL2 encoding:NSUTF8StringEncoding]autorelease];
-        
-        NSLog(@"strResult = %@", strResult);*/
-    
-        //[stops addObject:@""];
-        //[m_waitTimeResult addObject:@""];
-        //[stops addObject:[[[urlAndStopName children] objectAtIndex:0] content]];
-        //[m_waitTimeResult addObject:strResult];
-    //}
+    else
+    {
+        NSArray * responseArr = stationInfo[@"stationInfo"];
+        for(NSDictionary * dict in responseArr)
+        {
+            [stops addObject:[dict valueForKey:@"name"]];
+            [m_waitTimeResult addObject:[dict valueForKey:@"time"]];
+        }
+    }
     
     [stops retain];
     //[IDs retain];
@@ -176,46 +142,6 @@
     [thread release];
 }
 
-/*- (void)startTimer
-{
-    self.lastRefresh = [NSDate date];
-    NSDate *oneSecondFromNow = [NSDate dateWithTimeIntervalSinceNow:0];
-    self.refreshTimer = [[[NSTimer alloc] initWithFireDate:oneSecondFromNow interval:1 target:self selector:@selector(countDownAction:) userInfo:nil repeats:YES] autorelease];
-    [[NSRunLoop currentRunLoop] addTimer:self.refreshTimer forMode:NSDefaultRunLoopMode];
-	
-}*/
-
-/*-(void) countDownAction:(NSTimer *)timer
-{
-    
-    if (self.refreshTimer !=nil && self.refreshTimer)
-	{
-		NSTimeInterval sinceRefresh = [self.lastRefresh timeIntervalSinceNow];
-        
-        // If we detect that the app was backgrounded while this timer
-        // was expiring we go around one more time - this is to enable a commuter
-        // bookmark time to be processed.
-        
-        bool updateTimeOnButton = YES;
-        
-		if (sinceRefresh <= -kRefreshInterval)
-		{
-            [self refreshPropertyList];
-			self.anotherButton.title = @"Refreshing";
-            //updateTimeOnButton = NO;
-		}
-        
-        else if (updateTimeOnButton)
-        {
-            int secs = (1+kRefreshInterval+sinceRefresh);
-            if (secs < 0) secs = 0;
-            self.anotherButton.title = [NSString stringWithFormat:@"Refresh in %d", secs];
-            
-        }
-	}
-    
-}*/
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -226,7 +152,7 @@
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
         self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    preArray = [[NSArray alloc] initWithObjects:@"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", nil];
+    preArray = [[NSArray alloc] initWithObjects:nil];
     
     //IDs = [NSMutableArray new];
     m_waitTimeResult = [NSMutableArray new];
@@ -237,21 +163,18 @@
     loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
     //loadingView.frame = CGRectMake(screenSize.width/2-100.0, screenSize.height/2-50.0, 200.0, 100.0);
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    activityIndicator.frame = CGRectMake(115.0, 60.0, 50.0, 50.0);
-    /*NSLog(@"activityIndicator=%lf", activityIndicator.center.x);
-     NSLog(@"activityIndicator=%lf", activityIndicator.center.y);
-     NSLog(@"loadingView=%lf", loadingView.center.x);
-     NSLog(@"loadingView=%lf", loadingView.center.y);*/
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        activityIndicator.frame = CGRectMake(135.0, 260.0, 50.0, 50.0);
+        activityIndicator.color = [UIColor blackColor];
+    }
+    else
+        activityIndicator.frame = CGRectMake(115.0, 60.0, 50.0, 50.0);
+    
     [self.loadingView addSubview:self.activityIndicator];
-    NSLog(@"startAnimating");
-    [activityIndicator startAnimating];
     [self.tableView addSubview:self.loadingView];
+    [activityIndicator startAnimating];
     [self.loadingView show];
-    // Refresh button & toolbar
-    /*toolbar = [[ToolBarController alloc]init];
-    [self.navigationController.view addSubview:[toolbar CreatTabBarWithNoFavorite:NO delegate:self] ];*/
-    /*anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshPropertyList)];
-    self.navigationItem.rightBarButtonItem = anotherButton;*/
     m_waitTimeResult = [NSMutableArray new];
     stops = [NSMutableArray new];
     
@@ -359,7 +282,7 @@
             if([comeTime isEqualToString:@"即將進站..."])
             {
                 cell.detailTextLabel.text = @"即將進站";
-                cell.detailTextLabel.textColor = [UIColor redColor];//
+                cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:188.0/255.0 green:2.0/255.0 blue:9.0/255.0 alpha:100.0];
             }
             else if([comeTime isEqualToString:@"目前無公車即時資料"])
             {

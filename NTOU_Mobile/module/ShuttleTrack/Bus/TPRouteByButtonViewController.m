@@ -49,15 +49,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    partBusNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(230.0, 27.0, 80.0, 30.0)];
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
         self.edgesForExtendedLayout = UIRectEdgeNone;
+        partBusNameLabel.textColor = [[UIColor alloc] initWithRed:0.0 green:45.0/255.0 blue:153.0/255.0 alpha:100.0];
+    }
+    else
+        partBusNameLabel.textColor = [UIColor whiteColor];
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
-    partBusNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(230.0, 27.0, 80.0, 30.0)];
     partBusNameLabel.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];  // 透明背景
-    partBusNameLabel.textColor = [UIColor whiteColor];
     partBusNameLabel.textAlignment = NSTextAlignmentCenter;
     partBusNameLabel.text = @"";
     [self.navigationController.view addSubview:partBusNameLabel];

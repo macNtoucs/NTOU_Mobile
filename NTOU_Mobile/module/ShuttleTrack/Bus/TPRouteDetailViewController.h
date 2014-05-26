@@ -21,7 +21,7 @@
 #import "UIKit+NTOUAdditions.h"
 #import "FMDatabase.h"
 
-@interface TPRouteDetailViewController : UITableViewController<EGORefreshTableHeaderDelegate>
+@interface TPRouteDetailViewController : UITableViewController<EGORefreshTableHeaderDelegate, UIAlertViewDelegate>
 {
     NSString * busName; // 存取公車名稱
     NSString * goBack;

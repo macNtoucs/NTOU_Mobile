@@ -305,7 +305,7 @@
         NSMutableString *query = [NSMutableString stringWithString:@"SELECT shortRouteName FROM expressinfo WHERE shortRouteName LIKE '%"];
         [query appendString:[searchArray objectAtIndex:i]];
         [query appendString:@"%'"];
-            //NSLog(@"query=%@", query);
+        //NSLog(@"query=%@", query);
         FMResultSet *rs = [db executeQuery:query];
         while ([rs next])
         {
@@ -606,10 +606,6 @@
             break;
     }
 }
-- (void)viewWillAppear:(BOOL)animated
-{
-    [buttonPartBusName setString:@""];
-}
 
 #pragma mark - UISearDisplayController delegate methods
 -(void)searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView {
@@ -617,6 +613,11 @@
     tableView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0];
     tableView.frame=CGRectZero;//This must be set to prevent the result tables being shown
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [buttonPartBusName setString:@""];
 }
 
 - (void)viewDidLoad
@@ -645,12 +646,15 @@
         [searchResults addObject:[rs stringForColumn:@"shortRouteName"]];
     }
     [rs close];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+        self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 38)];
+    else
+        self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    
     [self.searchBar setTintColor:[UIColor lightGrayColor]];
     self.searchBar.placeholder = @"請輸入路線編號或名稱";
     [self initializeMyKeyboardView];
@@ -671,10 +675,12 @@
     {
         [[searchBar.subviews objectAtIndex:1] setInputView:myKeyboardView];
     }
-    
     [self.searchBar reloadInputViews];
     
-    self.tableView.tableHeaderView = searchBar;
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+        [self.tableView addSubview:searchBar];
+    else
+        self.tableView.tableHeaderView = searchBar;
     self.searchBar.delegate = (id)self;
 }
 
@@ -706,7 +712,6 @@
             [searchResults addObject:[rs stringForColumn:@"shortRouteName"]];
         }
         [rs close];
-        
         [self.tableView reloadData];
     }
 }
@@ -751,49 +756,11 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     ExpressBusDetail2ViewController * secondLevel = [[ExpressBusDetail2ViewController alloc] initWithStyle:UITableViewStyleGrouped];
     NSString * selectedShortRouteName = [[NSString alloc] initWithString:[searchResults objectAtIndex:indexPath.row]];
     secondLevel.title = [[NSString alloc] initWithString:[selectedShortRouteName substringWithRange:NSMakeRange(0, 4)]];
@@ -801,5 +768,6 @@
     [self.navigationController pushViewController:secondLevel animated:YES];
     [secondLevel release];
 }
+
 
 @end
