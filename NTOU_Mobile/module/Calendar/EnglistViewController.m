@@ -53,7 +53,11 @@
 
     eventStore = [[EKEventStore alloc] init];
     selectindexs = [[NSMutableArray alloc] init];
-    
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
     //self.title = @"清單";
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"CalenderList_eng" ofType:@"plist"];
