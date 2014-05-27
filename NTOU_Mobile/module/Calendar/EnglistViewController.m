@@ -42,7 +42,7 @@
 {
     self = [super initWithStyle:style];
     NSInteger screenheight = [[UIScreen mainScreen] bounds].size.height;
-    NSInteger height = screenheight - 64;
+    NSInteger height = screenheight;
     self.tableView.frame = CGRectMake(0, 0, 320, height);
     return self;
 }
