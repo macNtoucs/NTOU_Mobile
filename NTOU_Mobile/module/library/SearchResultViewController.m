@@ -20,7 +20,7 @@
 @property (nonatomic, strong) NSArray * newSearchBooks;
 @property (nonatomic) NSNumber* totalBookNumber;
 @property (nonatomic) NSNumber* firstBookNumber;
-
+@property int Searchpage;
 @end
 
 @implementation SearchResultViewController
@@ -36,8 +36,7 @@
 @synthesize newSearchBooks;
 @synthesize totalBookNumber;
 @synthesize firstBookNumber;
-
-int Searchpage =1;
+@synthesize Searchpage;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

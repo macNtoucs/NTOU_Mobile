@@ -82,6 +82,7 @@
     }
     else{
         SearchResultViewController * display = [[SearchResultViewController alloc]initWithStyle:UITableViewStylePlain];
+        
         display.data = [[NSMutableArray alloc] init];
         display.mainview = self;
         display.inputtext = textField.text;
