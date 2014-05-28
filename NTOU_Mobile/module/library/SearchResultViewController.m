@@ -254,14 +254,14 @@
         if(imageY < 6)
             imageY = 6;
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-             dispatch_async(dispatch_get_main_queue(), ^{
+            // dispatch_async(dispatch_get_main_queue(), ^{
             NSData * imageData = [[NSData alloc] initWithContentsOfURL:[ NSURL URLWithString: image_url ]];
             UIImageView *imageview = [[UIImageView alloc] initWithImage: [UIImage imageWithData: imageData]];
             //[imageData release];
             imageview.frame = CGRectMake(10,imageY,60,80);
             [imgLoadinglabel removeFromSuperview];
             [cell.contentView addSubview:imageview];
-             });
+           //  });
         });
         
         imgLoadinglabel.frame = CGRectMake(10,imageY,60,80);
