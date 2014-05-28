@@ -227,21 +227,27 @@
             
         
         CGSize maximumLabelSize = CGSizeMake(200,9999);
-        CGRect booknameLabelRect = [bookname boundingRectWithSize:maximumLabelSize
-                                                          options:NSStringDrawingUsesLineFragmentOrigin
-                                                       attributes:@{NSFontAttributeName:nameFont}
-                                                          context:nil];
+        NSMutableAttributedString *booknameAttrString=[[NSMutableAttributedString alloc]
+                                                       initWithString:bookname
+                                                       attributes:nil];
+        CGRect booknameLabelRect = [booknameAttrString boundingRectWithSize:maximumLabelSize
+                                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                                       context:nil];
         CGSize booknameLabelSize = booknameLabelRect.size;
         
-        CGRect authorLabelRect = [author boundingRectWithSize:maximumLabelSize
+        NSMutableAttributedString *authorAttrString=[[NSMutableAttributedString alloc]
+                                                      initWithString:author
+                                                      attributes:nil];
+        CGRect authorLabelRect = [authorAttrString boundingRectWithSize:maximumLabelSize
                                                       options:NSStringDrawingUsesLineFragmentOrigin
-                                                   attributes:@{NSFontAttributeName:otherFont}
                                                       context:nil];
         CGSize authorLabelSize = authorLabelRect.size;
         
-        CGRect pressLabelRect = [press boundingRectWithSize:maximumLabelSize
+        NSMutableAttributedString *pressAttrString=[[NSMutableAttributedString alloc]
+                                                     initWithString:press
+                                                     attributes:nil];
+        CGRect pressLabelRect = [pressAttrString boundingRectWithSize:maximumLabelSize
                                                     options:NSStringDrawingUsesLineFragmentOrigin
-                                                 attributes:@{NSFontAttributeName:otherFont}
                                                     context:nil];
         CGSize pressLabelSize = pressLabelRect.size;
         if([press isEqualToString:@""])
@@ -355,22 +361,28 @@
         UIFont *loadingFont = [UIFont fontWithName:@"Helvetica" size:8.0];
         
         CGSize maximumLabelSize = CGSizeMake(200,9999);
-        CGRect booknameLabelRect = [bookname boundingRectWithSize:maximumLabelSize
-                                             options:NSStringDrawingUsesLineFragmentOrigin
-                                             attributes:@{NSFontAttributeName:nameFont}
-                                             context:nil];
+        NSMutableAttributedString *booknameAttrString=[[NSMutableAttributedString alloc]
+                                                       initWithString:bookname
+                                                       attributes:nil];
+        CGRect booknameLabelRect = [booknameAttrString boundingRectWithSize:maximumLabelSize
+                                                                    options:NSStringDrawingUsesLineFragmentOrigin
+                                                                    context:nil];
         CGSize booknameLabelSize = booknameLabelRect.size;
         
-        CGRect authorLabelRect = [author boundingRectWithSize:maximumLabelSize
-                                        options:NSStringDrawingUsesLineFragmentOrigin
-                                        attributes:@{NSFontAttributeName:otherFont}
-                                        context:nil];
+        NSMutableAttributedString *authorAttrString=[[NSMutableAttributedString alloc]
+                                                     initWithString:author
+                                                     attributes:nil];
+        CGRect authorLabelRect = [authorAttrString boundingRectWithSize:maximumLabelSize
+                                                                options:NSStringDrawingUsesLineFragmentOrigin
+                                                                context:nil];
         CGSize authorLabelSize = authorLabelRect.size;
         
-        CGRect pressLabelRect = [press boundingRectWithSize:maximumLabelSize
-                                        options:NSStringDrawingUsesLineFragmentOrigin
-                                        attributes:@{NSFontAttributeName:otherFont}
-                                        context:nil];
+        NSMutableAttributedString *pressAttrString=[[NSMutableAttributedString alloc]
+                                                    initWithString:press
+                                                    attributes:nil];
+        CGRect pressLabelRect = [pressAttrString boundingRectWithSize:maximumLabelSize
+                                                              options:NSStringDrawingUsesLineFragmentOrigin
+                                                              context:nil];
         CGSize pressLabelSize = pressLabelRect.size;
 
         if([press isEqualToString:@""])

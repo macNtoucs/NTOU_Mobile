@@ -105,7 +105,7 @@
     textField.placeholder = @"書籍關鍵字";
     textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button addTarget:self
                action:@selector(search)
      forControlEvents:UIControlEventTouchDown];
@@ -114,7 +114,6 @@
                                textField.frame.origin.y ,
                                28,
                                28);
-  
     
     UIImage *Library = [UIImage imageNamed:@"NYOULogo.png"];
     UIImageView *NTU_Library = [[UIImageView alloc] initWithFrame:CGRectMake(swidth/2 - Library.size.width/4,180, Library.size.width/2, Library.size.height/2)];
