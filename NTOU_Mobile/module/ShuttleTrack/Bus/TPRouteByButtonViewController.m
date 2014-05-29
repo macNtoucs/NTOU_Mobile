@@ -822,7 +822,6 @@ int finderSortWithLocale(id string1, id string2, void *locale)
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //return 2;   // 加入基隆時請改成3
     return 3;
 }
 
