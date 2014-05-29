@@ -224,26 +224,45 @@
         
         if([image_url isEqualToString:@""])
             image_url = @"http://static.findbook.tw/image/book/1419879251/large";
-        
-        
-        CGSize maximumLabelSize = CGSizeMake(200,9999);
-        CGRect booknameLabelRect = [bookname boundingRectWithSize:maximumLabelSize
+         CGSize booknameLabelSize,authorLabelSize,pressLabelSize;
+         CGRect booknameLabelRect, authorLabelRect,pressLabelRect;
+         CGSize maximumLabelSize = CGSizeMake(200,9999);
+         if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+   
+              booknameLabelRect = [bookname boundingRectWithSize:maximumLabelSize
                                                           options:NSStringDrawingUsesLineFragmentOrigin
                                                        attributes:@{NSFontAttributeName:nameFont}
                                                           context:nil];
-        CGSize booknameLabelSize = booknameLabelRect.size;
+           
         
-        CGRect authorLabelRect = [author boundingRectWithSize:maximumLabelSize
+              authorLabelRect = [author boundingRectWithSize:maximumLabelSize
                                                       options:NSStringDrawingUsesLineFragmentOrigin
                                                    attributes:@{NSFontAttributeName:otherFont}
-                                                      context:nil];
-        CGSize authorLabelSize = authorLabelRect.size;
-        
-        CGRect pressLabelRect = [press boundingRectWithSize:maximumLabelSize
+                                                        context:nil];
+             
+              pressLabelRect = [press boundingRectWithSize:maximumLabelSize
                                                     options:NSStringDrawingUsesLineFragmentOrigin
                                                  attributes:@{NSFontAttributeName:otherFont}
                                                     context:nil];
-        CGSize pressLabelSize = pressLabelRect.size;
+             booknameLabelSize = booknameLabelRect.size;
+             authorLabelSize = authorLabelRect.size;
+             pressLabelSize = pressLabelRect.size;
+             
+         }
+         else {
+              booknameLabelSize = [bookname sizeWithFont:nameFont
+                                             constrainedToSize:maximumLabelSize
+                                                 lineBreakMode:NSLineBreakByWordWrapping];
+              authorLabelSize = [author sizeWithFont:otherFont
+                                         constrainedToSize:maximumLabelSize
+                                             lineBreakMode:NSLineBreakByWordWrapping];
+             
+              pressLabelSize = [press sizeWithFont:otherFont
+                                       constrainedToSize:maximumLabelSize
+                                           lineBreakMode:NSLineBreakByWordWrapping];
+         }
+     
+        
         if([press isEqualToString:@""])
             pressLabelSize.height = 0;
         if([author isEqualToString:@""])
@@ -354,24 +373,46 @@
         UIFont *otherFont = [UIFont fontWithName:@"Helvetica" size:12.0];
         UIFont *loadingFont = [UIFont fontWithName:@"Helvetica" size:8.0];
         
-        CGSize maximumLabelSize = CGSizeMake(200,9999);
-        CGRect booknameLabelRect = [bookname boundingRectWithSize:maximumLabelSize
-                                                          options:NSStringDrawingUsesLineFragmentOrigin
-                                                       attributes:@{NSFontAttributeName:nameFont}
-                                                          context:nil];
-        CGSize booknameLabelSize = booknameLabelRect.size;
         
-        CGRect authorLabelRect = [author boundingRectWithSize:maximumLabelSize
+        CGSize booknameLabelSize,authorLabelSize,pressLabelSize;
+        CGRect booknameLabelRect, authorLabelRect,pressLabelRect;
+        CGSize maximumLabelSize = CGSizeMake(200,9999);
+        if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+            
+            booknameLabelRect = [bookname boundingRectWithSize:maximumLabelSize
+                                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                                     attributes:@{NSFontAttributeName:nameFont}
+                                                        context:nil];
+            
+            
+            authorLabelRect = [author boundingRectWithSize:maximumLabelSize
+                                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                                     attributes:@{NSFontAttributeName:otherFont}
+                                                        context:nil];
+            
+            pressLabelRect = [press boundingRectWithSize:maximumLabelSize
                                                       options:NSStringDrawingUsesLineFragmentOrigin
                                                    attributes:@{NSFontAttributeName:otherFont}
                                                       context:nil];
-        CGSize authorLabelSize = authorLabelRect.size;
+            booknameLabelSize = booknameLabelRect.size;
+            authorLabelSize = authorLabelRect.size;
+            pressLabelSize = pressLabelRect.size;
+            
+        }
+        else {
+            booknameLabelSize = [bookname sizeWithFont:nameFont
+                                      constrainedToSize:maximumLabelSize
+                                          lineBreakMode:NSLineBreakByWordWrapping];
+            authorLabelSize = [author sizeWithFont:otherFont
+                                      constrainedToSize:maximumLabelSize
+                                          lineBreakMode:NSLineBreakByWordWrapping];
+            
+            pressLabelSize = [press sizeWithFont:otherFont
+                                    constrainedToSize:maximumLabelSize
+                                        lineBreakMode:NSLineBreakByWordWrapping];
+        }
         
-        CGRect pressLabelRect = [press boundingRectWithSize:maximumLabelSize
-                                                    options:NSStringDrawingUsesLineFragmentOrigin
-                                                 attributes:@{NSFontAttributeName:otherFont}
-                                                    context:nil];
-        CGSize pressLabelSize = pressLabelRect.size;
+
         
         if([press isEqualToString:@""])
             pressLabelSize.height = 0;
