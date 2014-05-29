@@ -55,7 +55,7 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
         
     }
-     [self search];
+    [self search];
     
     book_count = 10;    //一開始先載入10筆資料
     start = NO;
@@ -81,7 +81,7 @@
     //nagitive 52 - 44 = 8 、 tabbar 55 - 49 = 6
     [self.tableView setContentInset:UIEdgeInsetsMake(8,0,6,0)];
     
-  
+    
     
     [super viewDidLoad];
     
@@ -100,7 +100,7 @@
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow  animated:YES];
             hud.labelText = @"Loading";
         });
-
+        
         NSError *error;
         //  設定url
         NSString *url = [NSString stringWithFormat:@"http://140.121.197.135:11114/NTOULibrarySearchAPI/Search.do?searcharg=%@&searchtype=X&segment=%d",inputtext,Searchpage];
@@ -117,12 +117,12 @@
         [newSearchBooks retain];
         [totalBookNumber retain];
         [firstBookNumber retain];
-         dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
             start = YES;
             [self getContentTotal];
             [self.tableView reloadData];
-             [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
-
+            [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
+            
             start = NO;
         });    });
     
@@ -133,8 +133,8 @@
 
 //截取書的資料(書名、作者、圖片...etc)
 -(void)getContentTotal{
-   //分析 newSearchBooks 內容 並串接到 data 達到載入更多的效果
-   [data addObjectsFromArray:newSearchBooks];
+    //分析 newSearchBooks 內容 並串接到 data 達到載入更多的效果
+    [data addObjectsFromArray:newSearchBooks];
 }
 
 - (void)didReceiveMemoryWarning
@@ -224,30 +224,24 @@
         
         if([image_url isEqualToString:@""])
             image_url = @"http://static.findbook.tw/image/book/1419879251/large";
-            
+        
         
         CGSize maximumLabelSize = CGSizeMake(200,9999);
-        NSMutableAttributedString *booknameAttrString=[[NSMutableAttributedString alloc]
-                                                       initWithString:bookname
-                                                       attributes:nil];
-        CGRect booknameLabelRect = [booknameAttrString boundingRectWithSize:maximumLabelSize
-                                                       options:NSStringDrawingUsesLineFragmentOrigin
-                                                       context:nil];
+        CGRect booknameLabelRect = [bookname boundingRectWithSize:maximumLabelSize
+                                                          options:NSStringDrawingUsesLineFragmentOrigin
+                                                       attributes:@{NSFontAttributeName:nameFont}
+                                                          context:nil];
         CGSize booknameLabelSize = booknameLabelRect.size;
         
-        NSMutableAttributedString *authorAttrString=[[NSMutableAttributedString alloc]
-                                                      initWithString:author
-                                                      attributes:nil];
-        CGRect authorLabelRect = [authorAttrString boundingRectWithSize:maximumLabelSize
+        CGRect authorLabelRect = [author boundingRectWithSize:maximumLabelSize
                                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                                   attributes:@{NSFontAttributeName:otherFont}
                                                       context:nil];
         CGSize authorLabelSize = authorLabelRect.size;
         
-        NSMutableAttributedString *pressAttrString=[[NSMutableAttributedString alloc]
-                                                     initWithString:press
-                                                     attributes:nil];
-        CGRect pressLabelRect = [pressAttrString boundingRectWithSize:maximumLabelSize
+        CGRect pressLabelRect = [press boundingRectWithSize:maximumLabelSize
                                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                                 attributes:@{NSFontAttributeName:otherFont}
                                                     context:nil];
         CGSize pressLabelSize = pressLabelRect.size;
         if([press isEqualToString:@""])
@@ -267,14 +261,14 @@
             imageview.frame = CGRectMake(10,imageY,60,80);
             [imgLoadinglabel removeFromSuperview];
             [cell.contentView addSubview:imageview];
-           //  });
+            //  });
         });
         
         imgLoadinglabel.frame = CGRectMake(10,imageY,60,80);
         imgLoadinglabel.text = @"圖片載入中...";
         imgLoadinglabel.lineBreakMode = NSLineBreakByWordWrapping;
         imgLoadinglabel.font= loadingFont;
-         [cell.contentView addSubview:imgLoadinglabel];
+        [cell.contentView addSubview:imgLoadinglabel];
         
         booklabel.frame = CGRectMake(80,6,200,booknameLabelSize.height);
         booklabel.text = bookname;
@@ -361,30 +355,24 @@
         UIFont *loadingFont = [UIFont fontWithName:@"Helvetica" size:8.0];
         
         CGSize maximumLabelSize = CGSizeMake(200,9999);
-        NSMutableAttributedString *booknameAttrString=[[NSMutableAttributedString alloc]
-                                                       initWithString:bookname
-                                                       attributes:nil];
-        CGRect booknameLabelRect = [booknameAttrString boundingRectWithSize:maximumLabelSize
-                                                                    options:NSStringDrawingUsesLineFragmentOrigin
-                                                                    context:nil];
+        CGRect booknameLabelRect = [bookname boundingRectWithSize:maximumLabelSize
+                                                          options:NSStringDrawingUsesLineFragmentOrigin
+                                                       attributes:@{NSFontAttributeName:nameFont}
+                                                          context:nil];
         CGSize booknameLabelSize = booknameLabelRect.size;
         
-        NSMutableAttributedString *authorAttrString=[[NSMutableAttributedString alloc]
-                                                     initWithString:author
-                                                     attributes:nil];
-        CGRect authorLabelRect = [authorAttrString boundingRectWithSize:maximumLabelSize
-                                                                options:NSStringDrawingUsesLineFragmentOrigin
-                                                                context:nil];
+        CGRect authorLabelRect = [author boundingRectWithSize:maximumLabelSize
+                                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                                   attributes:@{NSFontAttributeName:otherFont}
+                                                      context:nil];
         CGSize authorLabelSize = authorLabelRect.size;
         
-        NSMutableAttributedString *pressAttrString=[[NSMutableAttributedString alloc]
-                                                    initWithString:press
-                                                    attributes:nil];
-        CGRect pressLabelRect = [pressAttrString boundingRectWithSize:maximumLabelSize
-                                                              options:NSStringDrawingUsesLineFragmentOrigin
-                                                              context:nil];
+        CGRect pressLabelRect = [press boundingRectWithSize:maximumLabelSize
+                                                    options:NSStringDrawingUsesLineFragmentOrigin
+                                                 attributes:@{NSFontAttributeName:otherFont}
+                                                    context:nil];
         CGSize pressLabelSize = pressLabelRect.size;
-
+        
         if([press isEqualToString:@""])
             pressLabelSize.height = 0;
         if([author isEqualToString:@""])

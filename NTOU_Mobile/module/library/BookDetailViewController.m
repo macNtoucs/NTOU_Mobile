@@ -78,28 +78,28 @@
     [request setURL:[NSURL URLWithString:queryURL]];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[parameter dataUsingEncoding:NSUTF8StringEncoding]];
-   // NSLog(@"%@",  [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding]);
+    // NSLog(@"%@",  [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding]);
     // NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request
                                                  returningResponse:&urlResponse
                                                              error:nil];
-   
+    
     
     
     
     NSDictionary * bookDetailDic=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
     [bookDetailDic retain];
-       bookdetail = [[NSMutableDictionary alloc] init];
-     NSArray * bookResult = [bookDetailDic objectForKey:@"bookResult"];
-     NSDictionary * bookResultDic = [bookResult objectAtIndex:0];
-     NSArray * realBookDetail =[bookResultDic objectForKey:@"realBookDetail"];
+    bookdetail = [[NSMutableDictionary alloc] init];
+    NSArray * bookResult = [bookDetailDic objectForKey:@"bookResult"];
+    NSDictionary * bookResultDic = [bookResult objectAtIndex:0];
+    NSArray * realBookDetail =[bookResultDic objectForKey:@"realBookDetail"];
     
     for (size_t realBook_it =0 ; realBook_it < [realBookDetail count] ; ++realBook_it){
         NSDictionary * realBookDetailDic = [realBookDetail objectAtIndex:realBook_it];
-         book_part1[realBook_it] = [realBookDetailDic objectForKey:@"location"];
-         book_part2[realBook_it] = [realBookDetailDic objectForKey:@"number"];
-         book_part3[realBook_it] = [realBookDetailDic objectForKey:@"barcode"];
-         book_part4[realBook_it] = [realBookDetailDic objectForKey:@"status"];
+        book_part1[realBook_it] = [realBookDetailDic objectForKey:@"location"];
+        book_part2[realBook_it] = [realBookDetailDic objectForKey:@"number"];
+        book_part3[realBook_it] = [realBookDetailDic objectForKey:@"barcode"];
+        book_part4[realBook_it] = [realBookDetailDic objectForKey:@"status"];
     }
     
     
@@ -162,7 +162,7 @@
 {
     NSUInteger section = indexPath.section;
     NSUInteger row = indexPath.row;
-
+    
     NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",row,section];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -220,28 +220,22 @@
         NSString *book_press = [bookdetail objectForKey:@"press"];
         
         CGSize maximumLabelSize = CGSizeMake(200,9999);
-        NSMutableAttributedString *booknameAttrString=[[NSMutableAttributedString alloc]
-                                                       initWithString:book_name
-                                                       attributes:nil];
-        CGRect booknameLabelRect = [booknameAttrString boundingRectWithSize:maximumLabelSize
-                                                                    options:NSStringDrawingUsesLineFragmentOrigin
-                                                                    context:nil];
+        CGRect booknameLabelRect = [book_name boundingRectWithSize:maximumLabelSize
+                                                           options:NSStringDrawingUsesLineFragmentOrigin
+                                                        attributes:@{NSFontAttributeName:font}
+                                                           context:nil];
         CGSize booknameLabelSize = booknameLabelRect.size;
         
-        NSMutableAttributedString *authorAttrString=[[NSMutableAttributedString alloc]
-                                                     initWithString:book_author
-                                                     attributes:nil];
-        CGRect authorLabelRect = [authorAttrString boundingRectWithSize:maximumLabelSize
-                                                                options:NSStringDrawingUsesLineFragmentOrigin
-                                                                context:nil];
+        CGRect authorLabelRect = [book_author boundingRectWithSize:maximumLabelSize
+                                                           options:NSStringDrawingUsesLineFragmentOrigin
+                                                        attributes:@{NSFontAttributeName:font}
+                                                           context:nil];
         CGSize authorLabelSize = authorLabelRect.size;
         
-        NSMutableAttributedString *pressAttrString=[[NSMutableAttributedString alloc]
-                                                    initWithString:book_press
-                                                    attributes:nil];
-        CGRect pressLabelRect = [pressAttrString boundingRectWithSize:maximumLabelSize
-                                                              options:NSStringDrawingUsesLineFragmentOrigin
-                                                              context:nil];
+        CGRect pressLabelRect = [book_press boundingRectWithSize:maximumLabelSize
+                                                         options:NSStringDrawingUsesLineFragmentOrigin
+                                                      attributes:@{NSFontAttributeName:font}
+                                                         context:nil];
         CGSize pressLabelSize = pressLabelRect.size;
         
         switch (row) {
@@ -254,7 +248,7 @@
                 namelabel.tag = indexPath.row;
                 namelabel.backgroundColor = [UIColor clearColor];
                 namelabel.font = boldfont;
-
+                
                 name.frame = CGRectMake(85,6,200,booknameLabelSize.height);
                 name.text = book_name;
                 name.lineBreakMode = NSLineBreakByWordWrapping;
@@ -296,7 +290,7 @@
                 presslabel.tag = indexPath.row;
                 presslabel.backgroundColor = [UIColor clearColor];
                 presslabel.font = boldfont;
-
+                
                 press.frame = CGRectMake(85,6,200,pressLabelSize.height);
                 press.text = book_press;
                 press.lineBreakMode = NSLineBreakByWordWrapping;
@@ -332,7 +326,7 @@
         part1.tag = indexPath.row;
         part1.backgroundColor = [UIColor clearColor];
         part1.font = font;
-
+        
         part2label.frame = CGRectMake(0,26,100,16);
         part2label.text = @"索書號/卷期：";
         part2label.lineBreakMode = NSLineBreakByWordWrapping;
@@ -349,7 +343,7 @@
         part2.tag = indexPath.row;
         part2.backgroundColor = [UIColor clearColor];
         part2.font = font;
-
+        
         part3label.frame = CGRectMake(0,46,100,16);
         part3label.text = @"條碼：";
         part3label.lineBreakMode = NSLineBreakByWordWrapping;
@@ -366,7 +360,7 @@
         part3.tag = indexPath.row;
         part3.backgroundColor = [UIColor clearColor];
         part3.font = font;
-
+        
         part4label.frame = CGRectMake(0,66,100,16);
         part4label.text = @"處理狀態：";
         part4label.lineBreakMode = NSLineBreakByWordWrapping;
@@ -383,16 +377,16 @@
         part4.tag = indexPath.row;
         part4.backgroundColor = [UIColor clearColor];
         part4.font = font;
-
+        
         [cell.contentView addSubview:part1label];
         [cell.contentView addSubview:part1];
-
+        
         [cell.contentView addSubview:part2label];
         [cell.contentView addSubview:part2];
-
+        
         [cell.contentView addSubview:part3label];
         [cell.contentView addSubview:part3];
-
+        
         [cell.contentView addSubview:part4label];
         [cell.contentView addSubview:part4];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -400,7 +394,7 @@
     else if (section == 2)
     {
         UIFont *buttonfont = [UIFont boldSystemFontOfSize:18.0];
-
+        
         button.frame = CGRectMake(110,6,100,18);
         button.text = @"預        約";
         button.textColor = [UIColor blueColor];
@@ -411,7 +405,7 @@
         [cell.contentView addSubview:button];
         
         cell.backgroundColor = [UIColor clearColor];
-
+        
     }
     return cell;
 }
@@ -420,7 +414,7 @@
 {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-
+    
     if(section == 0)
     {
         
@@ -429,28 +423,22 @@
         NSString *author = [bookdetail objectForKey:@"author"];
         NSString *press = [bookdetail objectForKey:@"press"];
         CGSize maximumLabelSize = CGSizeMake(200,9999);
-        NSMutableAttributedString *booknameAttrString=[[NSMutableAttributedString alloc]
-                                                       initWithString:name
-                                                       attributes:nil];
-        CGRect booknameLabelRect = [booknameAttrString boundingRectWithSize:maximumLabelSize
-                                                                    options:NSStringDrawingUsesLineFragmentOrigin
-                                                                    context:nil];
+        CGRect booknameLabelRect = [name boundingRectWithSize:maximumLabelSize
+                                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                                   attributes:@{NSFontAttributeName:font}
+                                                      context:nil];
         CGSize booknameLabelSize = booknameLabelRect.size;
         
-        NSMutableAttributedString *authorAttrString=[[NSMutableAttributedString alloc]
-                                                     initWithString:author
-                                                     attributes:nil];
-        CGRect authorLabelRect = [authorAttrString boundingRectWithSize:maximumLabelSize
-                                                                options:NSStringDrawingUsesLineFragmentOrigin
-                                                                context:nil];
+        CGRect authorLabelRect = [author boundingRectWithSize:maximumLabelSize
+                                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                                   attributes:@{NSFontAttributeName:font}
+                                                      context:nil];
         CGSize authorLabelSize = authorLabelRect.size;
         
-        NSMutableAttributedString *pressAttrString=[[NSMutableAttributedString alloc]
-                                                    initWithString:press
-                                                    attributes:nil];
-        CGRect pressLabelRect = [pressAttrString boundingRectWithSize:maximumLabelSize
-                                                              options:NSStringDrawingUsesLineFragmentOrigin
-                                                              context:nil];
+        CGRect pressLabelRect = [press boundingRectWithSize:maximumLabelSize
+                                                    options:NSStringDrawingUsesLineFragmentOrigin
+                                                 attributes:@{NSFontAttributeName:font}
+                                                    context:nil];
         CGSize pressLabelSize = pressLabelRect.size;
         
         switch (row) {
@@ -478,7 +466,7 @@
 {
     if (indexPath.section == 2){
         NSString *reserveURL = [bookdetail objectForKey:@"resurl"];
-       reserveURL= [reserveURL stringByReplacingOccurrencesOfString:@"&" withString:@"(ANDCHAR)"];
+        reserveURL= [reserveURL stringByReplacingOccurrencesOfString:@"&" withString:@"(ANDCHAR)"];
         NSString *account = [SettingsModuleViewController getLibraryAccount];
         NSString *pwd = [SettingsModuleViewController getLibraryPassword];
         NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@&reserveURL=%@",account,pwd,reserveURL];
@@ -493,7 +481,7 @@
                                                                  error:nil];
         NSDictionary * responseDic = [NSDictionary new];
         responseDic= [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
-    
+        
         if ([[responseDic objectForKey: @"querySuccess"] isEqualToString:@"true"]){
             NSString * msg = @"取書地點: "  ;
             msg = [msg stringByAppendingString:[responseDic objectForKey: @"location"]];
@@ -509,13 +497,13 @@
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"預約失敗" message:errorMsg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
             [alert release];
-        
+            
         }
         
         
         
     }
-   
+    
 }
 
 @end
