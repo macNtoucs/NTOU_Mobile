@@ -215,7 +215,7 @@
     UIImage* tabBarArrowImage = [UIImage imageNamed:@"TabBarNipple@2x.png"];
     self.tabBarArrow = [[UIImageView alloc] initWithImage:tabBarArrowImage] ;
     CGFloat verticalLocation = [[UIScreen mainScreen] bounds].size.height-tabBarArrowImage.size.height-self.tabBar.frame.size.height-[[UIApplication sharedApplication] statusBarFrame].size.height-44+5;
-    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>7.0)
     {
         tabBarArrow.frame = CGRectMake([self horizontalLocationFor:0], [[UIScreen mainScreen] bounds].size.height-122, tabBarArrowImage.size.width, tabBarArrowImage.size.height);
     }
@@ -264,13 +264,14 @@
     
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
         
-        //NSLog(@"system 7.0");
-        CGRect fullScreenBounds = [[UIScreen mainScreen] bounds];
-       //NSLog(@"self.tabBar.frame.origin.y = %f, height = %f, view height = %f", self.tabBar.frame.origin.y, fullScreenBounds.size.height, self.view.frame.size.height);
-        [self.tabBar setFrame:CGRectMake(0, self.view.frame.size.height-49, 320, 40)];
-        if(fullScreenBounds.size.height != self.view.frame.size.height)
-            [self.tabBar setFrame:CGRectMake(0, fullScreenBounds.size.height-113, 320, 49)];
-        //NSLog(@"self.tabBar.frame.origin.y = %f", self.tabBar.frame.origin.y);
+        if([[[UIDevice currentDevice]systemVersion]floatValue]>7.0)
+        {
+            CGRect fullScreenBounds = [[UIScreen mainScreen] bounds];
+            [self.tabBar setFrame:CGRectMake(0, self.view.frame.size.height-49, 320, 40)];
+            if(fullScreenBounds.size.height != self.view.frame.size.height)
+                [self.tabBar setFrame:CGRectMake(0, fullScreenBounds.size.height-113, 320, 49)];
+        }
+        
         [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }

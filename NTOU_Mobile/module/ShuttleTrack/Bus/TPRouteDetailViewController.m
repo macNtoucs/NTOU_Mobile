@@ -208,20 +208,24 @@
     /*preArray = [[NSArray alloc] initWithObjects:@"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", nil];*/
     
     preArray = [[NSArray alloc] initWithObjects:nil];
-    CGRect screenBound = [[UIScreen mainScreen] bounds];
-    CGSize screenSize = screenBound.size;
-    loadingView = [[UIAlertView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+
+    //CGRect screenBound = [[UIScreen mainScreen] bounds];
+    //CGSize screenSize = screenBound.size;
+    loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+    loadingView.frame = CGRectMake(0, 0, 200, 200);
+    /*loadingView = [[UIAlertView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
     loadingView.delegate = self;
-    loadingView.message = @"下載資料中\n請稍候\n";
+    loadingView.message = @"下載資料中\n請稍候\n";*/
+    //loadingView.cancelButtonIndex = 0;
     
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
     {
-        activityIndicator.frame = CGRectMake(135.0, 260.0, 50.0, 50.0);
+        activityIndicator.frame = CGRectMake(135.0, 280.0, 50.0, 50.0);
         activityIndicator.color = [UIColor blackColor];
     }
     else
-        activityIndicator.frame = CGRectMake(115.0, 60.0, 50.0, 50.0);
+        activityIndicator.frame = CGRectMake(115.0, 80.0, 50.0, 50.0);
     
     [self.loadingView addSubview:self.activityIndicator];
     [self.tableView addSubview:self.loadingView];
@@ -277,7 +281,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [self stopTimer];
+    //[self stopTimer];
     [super viewDidDisappear:animated];
 }
 

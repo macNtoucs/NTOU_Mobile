@@ -22,6 +22,12 @@
 @synthesize labelsize;
 @synthesize departureTimeTableView;
 
+@synthesize success;
+@synthesize refreshTimer;
+@synthesize activityIndicator;
+@synthesize loadingView;
+@synthesize preArray;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -72,25 +78,24 @@
     
     routeId = [completeRouteName substringWithRange:NSMakeRange(0, 4)];
     completeRouteName = [completeRouteName substringFromIndex:4];
-    
+    [routeId retain];
+    [completeRouteName retain];
     NSLog(@"completeRouteName = %@", completeRouteName);
+    ISREAL = FALSE;
 }
 
-- (void) estimateTime
+- (void)estimateTime
 {
+    ISREAL = TRUE;
     if(stops)
     {
         [stops removeAllObjects];
         [times removeAllObjects];
     }
-    
     NSString *encodedBus = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)[routeId stringByAppendingString: completeRouteName], NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
-    //NSLog(@"url = %@", url);
-    
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/ExpressBusTime_web.php?bus=%@", encodedBus]];
     
     NSData *data = [NSData dataWithContentsOfURL:url];
-    //NSLog(@"data=%@", data);
     NSError *error;
     
     NSMutableDictionary  *stationInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
@@ -108,21 +113,64 @@
             [times addObject:[dict valueForKey:@"time"]];
         }
     }
-    
     [stops retain];
     [times retain];
+    [self.tableView reloadData];
+    [loadingView dismissWithClickedButtonIndex:0 animated:YES];
+    [activityIndicator stopAnimating];
+}
+
+/*- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"alertClicked");
+    if (buttonIndex == 0)
+    {
+        [loadingView dismissWithClickedButtonIndex:0 animated:YES];
+        NSLog(@"cancel");
+    }
+}*/
+
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+        NSLog(@"OK");
+    else
+        NSLog(@"Cancel");
 }
 
 - (void)viewDidLoad
 {
+    NSLog(@"viewDidLoad");
     [super viewDidLoad];
     [self.tableView applyStandardColors];
-    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    if ([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0)
         self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.parentViewController.view setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     /*UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"發車時間" style:UIButtonTypeRoundedRect target:self action:@selector(showDepartureTime:)];
     self.navigationItem.rightBarButtonItem = rightButton;
     [rightButton release];*/
+    
+    /*loadingView = [[UIAlertView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+    loadingView.delegate = self;
+    loadingView.message = @"下載資料中\n請稍候\n";*/
+    preArray = [[NSArray alloc] initWithObjects:nil];
+    loadingView = [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候\n" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+    loadingView.frame = CGRectMake(0, 0, 200, 200);
+    //[loadingView setCancelButtonIndex:0];
+    
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        activityIndicator.frame = CGRectMake(135.0, 260.0, 50.0, 50.0);
+        activityIndicator.color = [UIColor blackColor];
+    }
+    else
+        activityIndicator.frame = CGRectMake(115.0, 60.0, 50.0, 50.0);
+    
+    [self.loadingView addSubview:self.activityIndicator];
+    [self.tableView addSubview:self.loadingView];
+    [activityIndicator startAnimating];
+    [self.loadingView show];
     
     stops = [[NSMutableArray alloc] init];
     times = [[NSMutableArray alloc] init];
@@ -156,9 +204,19 @@
     
     [self.parentViewController.view addSubview:label];
     
-    //NSLog(@"labelsize.height = %f", labelsize.height);
+    // 手動下拉更新
+    if (_refreshHeaderView == nil) {
+        EGORefreshTableHeaderView *view1 = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height,self.tableView.bounds.size.width,self.tableView.bounds.size.height)];
+        view1.delegate = self;
+        [self.tableView addSubview:view1];
+        _refreshHeaderView = view1;
+        [view1 release];
+    }
+    [_refreshHeaderView refreshLastUpdatedDate];
+    success = [[UIImageView alloc] initWithFrame:CGRectMake(75.0, 250.0, 150.0, 150.0)];
+    [success setImage:[UIImage imageNamed:@"ok.png"]];
     
-    [self estimateTime];
+    //[self estimateTime];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -168,15 +226,30 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    /*[activityIndicator stopAnimating];
+    [loadingView dismissWithClickedButtonIndex:0 animated:YES];*/
+    NSLog(@"viewDidAppear");
+    [super viewDidAppear:animated];
+    
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
     CGFloat screenWidth = screenSize.width;
     CGFloat screenHeight = screenSize.height;
     
-    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
         [self.tableView setFrame:CGRectMake(0,labelsize.height+40, screenWidth, screenHeight-labelsize.height-50)];
     else
         [self.tableView setFrame:CGRectMake(0,labelsize.height, screenWidth, screenHeight-labelsize.height-50)];
+    
+    if (!ISREAL)
+    {
+        NSLog(@"!ISREAL");
+        [self estimateTime];
+    }
+    else
+    {
+        [activityIndicator stopAnimating];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -219,7 +292,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [stops count];
+    if (ISREAL)
+        return [stops count];
+    else
+        return [preArray count];
 }
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -243,37 +319,41 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
-    
-    // Configure the cell...
-    cell.textLabel.text = [stops objectAtIndex:indexPath.row];
-    if([stops count] == 1)
+    if (ISREAL)
     {
-        cell.textLabel.textColor = [UIColor colorWithRed:81.0/255.0 green:102.0/255.0 blue:145.0/255.0 alpha:1.0];
-        cell.detailTextLabel.text = [times objectAtIndex:indexPath.row];
-        cell.detailTextLabel.textColor = [UIColor grayColor];
+        cell.textLabel.text = [stops objectAtIndex:indexPath.row];
+        if([stops count] == 1)
+        {
+            cell.textLabel.textColor = [UIColor colorWithRed:81.0/255.0 green:102.0/255.0 blue:145.0/255.0 alpha:1.0];
+            cell.detailTextLabel.text = [times objectAtIndex:indexPath.row];
+            cell.detailTextLabel.textColor = [UIColor grayColor];
+        }
+        else
+        {
+            if([[times objectAtIndex:indexPath.row] rangeOfString:@"未發車"].location != NSNotFound)
+            {
+                cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(0, 3)];
+                cell.detailTextLabel.textColor = [UIColor grayColor];
+            }
+            else if([[times objectAtIndex:indexPath.row] rangeOfString:@"分"].location != NSNotFound)
+            {
+                NSUInteger len = [[times objectAtIndex:indexPath.row] rangeOfString:@"分"].location+1;
+                cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(0, len)];
+                cell.detailTextLabel.textColor = [UIColor colorWithRed:81.0/255.0 green:102.0/255.0 blue:145.0/255.0 alpha:1.0];
+            }
+            else if([[times objectAtIndex:indexPath.row] rangeOfString:@"站"].location != NSNotFound)
+            {
+                NSUInteger pos1 = [[times objectAtIndex:indexPath.row] rangeOfString:@"將"].location;
+                NSUInteger pos2 = [[times objectAtIndex:indexPath.row] rangeOfString:@"站"].location;
+                cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(pos1, pos2-pos1+1)];
+                cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:188.0/255.0 green:2.0/255.0 blue:9.0/255.0 alpha:100.0];
+            }
+        }
     }
     else
     {
-        if([[times objectAtIndex:indexPath.row] rangeOfString:@"未發車"].location != NSNotFound)
-        {
-            cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(0, 3)];
-            cell.detailTextLabel.textColor = [UIColor grayColor];
-        }
-        else if([[times objectAtIndex:indexPath.row] rangeOfString:@"分"].location != NSNotFound)
-        {
-            NSUInteger len = [[times objectAtIndex:indexPath.row] rangeOfString:@"分"].location+1;
-            cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(0, len)];
-            cell.detailTextLabel.textColor = [UIColor colorWithRed:81.0/255.0 green:102.0/255.0 blue:145.0/255.0 alpha:1.0];
-        }
-        else if([[times objectAtIndex:indexPath.row] rangeOfString:@"站"].location != NSNotFound)
-        {
-            NSUInteger pos1 = [[times objectAtIndex:indexPath.row] rangeOfString:@"將"].location;
-            NSUInteger pos2 = [[times objectAtIndex:indexPath.row] rangeOfString:@"站"].location;
-            cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(pos1, pos2-pos1+1)];
-            cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:188.0/255.0 green:2.0/255.0 blue:9.0/255.0 alpha:100.0];
-        }
+        cell.textLabel.text = [preArray objectAtIndex:indexPath.row];
     }
-    
     return cell;
 }
 

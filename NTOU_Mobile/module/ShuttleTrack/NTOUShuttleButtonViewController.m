@@ -19,7 +19,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:[NSBundle mainBundle]];
     if (self) {
         // Custom initialization
-        self.title = @"交通資訊";
+        //self.title = @"交通資訊";
         //[self.view setFrame:CGRectMake(0, 50, 320, 480)];
     }
     return self;
@@ -104,7 +104,7 @@
             SetStationViewController *setStationViewController = [[SetStationViewController alloc] init];
             [setStationViewController initIsHighSpeedTrain:false];
             [self.navigationController pushViewController:setStationViewController animated:YES];
-            setStationViewController.navigationItem.leftBarButtonItem.title = @"Back";
+            setStationViewController.navigationItem.leftBarButtonItem.title = @"back";
             [setStationViewController release];
             break;
         case 2: //高鐵
@@ -112,7 +112,14 @@
             SetStationViewController *setHSStationViewController = [[SetStationViewController alloc] init];
             [setHSStationViewController initIsHighSpeedTrain:true];
             [self.navigationController pushViewController:setHSStationViewController animated:YES];
-            setHSStationViewController.navigationItem.leftBarButtonItem.title = @"Back";
+            setHSStationViewController.navigationItem.leftBarButtonItem.title = @"back";
+            /*UIBarButtonItem *newBackButton =
+            [[UIBarButtonItem alloc] initWithTitle:@"Hi"
+                                             style:UIBarButtonItemStyleBordered
+                                            target:nil
+                                            action:nil];
+            [[self navigationItem] setBackBarButtonItem:newBackButton];
+            [newBackButton release];*/
             [setHSStationViewController release];
             break;
         case 3: //客運
@@ -123,7 +130,7 @@
             [kuoFuhoViewController release];*/
             ExpressBusSearch2ViewController *expressBusViewController = [[ExpressBusSearch2ViewController alloc] initWithStyle:UITableViewStyleGrouped];
             [self.navigationController pushViewController:expressBusViewController animated:YES];
-            expressBusViewController.navigationItem.leftBarButtonItem.title = @"Back";
+            expressBusViewController.navigationItem.leftBarButtonItem.title = @"back";
             expressBusViewController.title = @"北北基客運";
             [expressBusViewController release];
             break;
@@ -131,7 +138,7 @@
             NSLog(@"case 4");
             NTOUBusTableViewController *ntoubusViewController = [[NTOUBusTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
             [self.navigationController pushViewController:ntoubusViewController animated:YES];
-            ntoubusViewController.navigationItem.leftBarButtonItem.title = @"Back";
+            ntoubusViewController.navigationItem.leftBarButtonItem.title = @"back";
             [ntoubusViewController release];
             break;
         default:

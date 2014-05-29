@@ -606,10 +606,6 @@
             break;
     }
 }
-- (void)viewWillAppear:(BOOL)animated
-{
-    [buttonPartBusName setString:@""];
-}
 
 #pragma mark - UISearDisplayController delegate methods
 -(void)searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView {
@@ -617,6 +613,11 @@
     tableView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0];
     tableView.frame=CGRectZero;//This must be set to prevent the result tables being shown
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [buttonPartBusName setString:@""];
 }
 
 - (void)viewDidLoad
@@ -645,7 +646,6 @@
         [searchResults addObject:[rs stringForColumn:@"shortRouteName"]];
     }
     [rs close];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -677,7 +677,7 @@
     }
     [self.searchBar reloadInputViews];
     
-    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    if ([[[UIDevice currentDevice]systemVersion]floatValue] >= 7.0)
         [self.tableView addSubview:searchBar];
     else
         self.tableView.tableHeaderView = searchBar;
@@ -712,7 +712,6 @@
             [searchResults addObject:[rs stringForColumn:@"shortRouteName"]];
         }
         [rs close];
-        
         [self.tableView reloadData];
     }
 }
@@ -761,6 +760,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     ExpressBusDetail2ViewController * secondLevel = [[ExpressBusDetail2ViewController alloc] initWithStyle:UITableViewStyleGrouped];
     NSString * selectedShortRouteName = [[NSString alloc] initWithString:[searchResults objectAtIndex:indexPath.row]];
     secondLevel.title = [[NSString alloc] initWithString:[selectedShortRouteName substringWithRange:NSMakeRange(0, 4)]];

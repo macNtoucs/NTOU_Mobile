@@ -160,16 +160,16 @@
     
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
-    loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
     //loadingView.frame = CGRectMake(screenSize.width/2-100.0, screenSize.height/2-50.0, 200.0, 100.0);
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
     {
-        activityIndicator.frame = CGRectMake(135.0, 260.0, 50.0, 50.0);
+        activityIndicator.frame = CGRectMake(135.0, 280.0, 50.0, 50.0);
         activityIndicator.color = [UIColor blackColor];
     }
     else
-        activityIndicator.frame = CGRectMake(115.0, 60.0, 50.0, 50.0);
+        activityIndicator.frame = CGRectMake(115.0, 80.0, 50.0, 50.0);
     
     [self.loadingView addSubview:self.activityIndicator];
     [self.tableView addSubview:self.loadingView];
