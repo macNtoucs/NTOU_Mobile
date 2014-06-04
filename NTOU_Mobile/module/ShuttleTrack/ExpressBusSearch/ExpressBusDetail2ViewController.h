@@ -27,6 +27,8 @@
     BOOL _reloading;
     UIActivityIndicatorView *activityIndicator;
     UIAlertView *loadingView;
+    BOOL ISREAL;
+    NSArray *preArray;
 }
 
 @property (nonatomic, retain) NSString * completeRouteName;
@@ -40,6 +42,7 @@
 @property (nonatomic, retain) NSTimer *refreshTimer;
 @property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) UIAlertView *loadingView;
+@property (nonatomic, retain) NSArray *preArray;
 
 - (void)setCompleteRouteName:(NSString *)selectedShortRouteName;
 - (void)showDepartureTime:(NSString *)selectedShortRouteName;

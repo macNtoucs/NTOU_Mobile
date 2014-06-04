@@ -105,123 +105,125 @@
     [buttonSeven setTitle:@"7" forState:UIControlStateNormal];
     [buttonSeven setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonSeven setTag:7];
-    buttonSeven.frame = CGRectMake(5, 5, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
+    buttonSeven.frame = CGRectMake(131, 5, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonSeven addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonEight = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [buttonEight setTitle:@"8" forState:UIControlStateNormal];
     [buttonEight setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonEight setTag:8];
-    buttonEight.frame = CGRectMake(68, 5, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
+    buttonEight.frame = CGRectMake(194, 5, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonEight addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonNine = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [buttonNine setTitle:@"9" forState:UIControlStateNormal];
     [buttonNine setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonNine setTag:9];
-    buttonNine.frame = CGRectMake(131, 5, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
+    buttonNine.frame = CGRectMake(257, 5, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonNine addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonRed = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [buttonRed setTitle:@"紅" forState:UIControlStateNormal];
     [buttonRed setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     [buttonRed setTag:11];
-    buttonRed.frame = CGRectMake(194, 5, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
+    buttonRed.frame = CGRectMake(68, 5, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonRed addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
+    
+    
     
     UIButton * buttonBlue= [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [buttonBlue setTitle:@"藍" forState:UIControlStateNormal];
     [buttonBlue setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [buttonBlue setTag:21];
-    buttonBlue.frame = CGRectMake(257, 5, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
+    buttonBlue.frame = CGRectMake(5, 5, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonBlue addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonFour = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [buttonFour setTitle:@"4" forState:UIControlStateNormal];
     [buttonFour setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonFour setTag:4];
-    buttonFour.frame = CGRectMake(5, 50, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
+    buttonFour.frame = CGRectMake(131, 50, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonFour addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonFive = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [buttonFive setTitle:@"5" forState:UIControlStateNormal];
     [buttonFive setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonFive setTag:5];
-    buttonFive.frame = CGRectMake(68, 50, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
+    buttonFive.frame = CGRectMake(194, 50, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonFive addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonSix = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [buttonSix setTitle:@"6" forState:UIControlStateNormal];
     [buttonSix setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonSix setTag:6];
-    buttonSix.frame = CGRectMake(131, 50, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
+    buttonSix.frame = CGRectMake(257, 50, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonSix addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonBrown = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [buttonBrown setTitle:@"棕" forState:UIControlStateNormal];
     [buttonBrown setTitleColor:[UIColor brownColor] forState:UIControlStateNormal];
     [buttonBrown setTag:22];
-    buttonBrown.frame = CGRectMake(194, 50, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
+    buttonBrown.frame = CGRectMake(68, 50, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonBrown addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonGreen = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [buttonGreen setTitle:@"綠" forState:UIControlStateNormal];
     [buttonGreen setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
     [buttonGreen setTag:12];
-    buttonGreen.frame = CGRectMake(257, 50, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
+    buttonGreen.frame = CGRectMake(5, 50, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonGreen addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonOne = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [buttonOne setTag:1];
     [buttonOne setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonOne setTitle:@"1" forState:UIControlStateNormal];
-    buttonOne.frame = CGRectMake(5, 95, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
+    buttonOne.frame = CGRectMake(131, 95, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonOne addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonTwo = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [buttonTwo setTitle:@"2" forState:UIControlStateNormal];
     [buttonTwo setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonTwo setTag:2];
-    buttonTwo.frame = CGRectMake(68, 95, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
+    buttonTwo.frame = CGRectMake(194, 95, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonTwo addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonThree = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [buttonThree setTitle:@"3" forState:UIControlStateNormal];
     [buttonThree setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonThree setTag:3];
-    buttonThree.frame = CGRectMake(131, 95, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
+    buttonThree.frame = CGRectMake(257, 95, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonThree addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonOrange = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [buttonOrange setTitle:@"橘" forState:UIControlStateNormal];
     [buttonOrange setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
     [buttonOrange setTag:13];
-    buttonOrange.frame = CGRectMake(194, 95, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
+    buttonOrange.frame = CGRectMake(68, 95, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonOrange addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonF= [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [buttonF setTitle:@"F" forState:UIControlStateNormal];
     [buttonF setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonF setTag:24];
-    buttonF.frame = CGRectMake(257, 95, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
+    buttonF.frame = CGRectMake(5, 140, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonF addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonZero = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [buttonZero setTitle:@"0" forState:UIControlStateNormal];
     [buttonZero setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonZero setTag:0];
-    buttonZero.frame = CGRectMake(5, 140, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
+    buttonZero.frame = CGRectMake(257, 140, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonZero addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonSmall = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [buttonSmall setTitle:@"小" forState:UIControlStateNormal];
     [buttonSmall setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonSmall setTag:23];
-    buttonSmall.frame = CGRectMake(194, 140, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
+    buttonSmall.frame = CGRectMake(5, 95, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonSmall addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonMore = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    buttonMore.frame = CGRectMake(60, 140, 89, LAYER1_BUT_HEIGHT);
+    buttonMore.frame = CGRectMake(68, 140, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonMore setTag:14];
     [buttonMore setTitle:@"更多" forState:UIControlStateNormal];
     [buttonMore setTitleColor:[UIColor colorWithRed:116/255.0 green:116/255.0 blue:116/255.0 alpha:100/100.0] forState:UIControlStateNormal];
@@ -231,8 +233,15 @@
     [buttonReset setTitle:@"重設" forState:UIControlStateNormal];
     [buttonReset setTitleColor:[UIColor colorWithRed:116/255.0 green:116/255.0 blue:116/255.0 alpha:100/100.0] forState:UIControlStateNormal];
     [buttonReset setTag:34];
-    buttonReset.frame = CGRectMake(123, 140, 89, LAYER1_BUT_HEIGHT);
+    buttonReset.frame = CGRectMake(131, 140, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonReset addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
+    
+    UIButton * buttonDEL = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [buttonDEL setTitle:@"DEL" forState:UIControlStateNormal];
+    [buttonDEL setTitleColor:[UIColor colorWithRed:116/255.0 green:116/255.0 blue:116/255.0 alpha:100/100.0] forState:UIControlStateNormal];
+    [buttonDEL setTag:35];
+    buttonDEL.frame = CGRectMake(194, 140, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
+    [buttonDEL addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     [buttonFirstView addSubview:buttonRed];
     [buttonFirstView addSubview:buttonGreen];
@@ -253,6 +262,7 @@
     [buttonFirstView addSubview:buttonNine];
     [buttonFirstView addSubview:buttonZero];
     [buttonFirstView addSubview:buttonF];
+    [buttonFirstView addSubview:buttonDEL];
     
     [self.view addSubview:buttonFirstView];
     
@@ -745,6 +755,12 @@ int finderSortWithLocale(id string1, id string2, void *locale)
             havingTableView = NO;
             [tableview removeFromSuperview];
             break;
+        case 35:    // Delete
+            if (havingTableView == NO)
+                [self createTableView:[sender tag]];
+            [partBusName deleteCharactersInRange:NSMakeRange([partBusName length]-1, 1)];
+            [self showTableViewContent];
+            break;
         case 211:
             if (havingTableView == NO)
                 [self createTableView:[sender tag]];
@@ -822,7 +838,6 @@ int finderSortWithLocale(id string1, id string2, void *locale)
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //return 2;   // 加入基隆時請改成3
     return 3;
 }
 
