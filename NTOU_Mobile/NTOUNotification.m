@@ -57,7 +57,7 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+ (void)modifyBadge
++ (void)modifyBadge //Icon 的bedgets
 {
     NSMutableDictionary *notifications = [self getNotifications];
     int count = 0;
@@ -99,7 +99,7 @@
         }
 }
 
-+ (void)setAllBadge
++ (void)setAllBadge     //主選單的bedgets
 {
     NTOU_MobileAppDelegate *appDelegate = (NTOU_MobileAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableDictionary *notifications = [self getNotifications];

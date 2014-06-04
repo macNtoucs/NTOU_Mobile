@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface switchController : UITabBarController<UITabBarControllerDelegate>{}
+@interface switchController : UITabBarController<UITabBarControllerDelegate>
 
-
+-(void)ChangeDisplayView;
 @end

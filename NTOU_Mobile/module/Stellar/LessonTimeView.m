@@ -44,7 +44,7 @@
             label.textColor = [UIColor whiteColor];
         }
         label.layer.borderColor = [UIColor blackColor].CGColor;
-        label.textAlignment = UITextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentCenter;
         if ([[ClassDataBase sharedData]FetchshowClassTimes]) {
             label.font = [UIFont fontWithName:@"AppleGothic" size:9];
         } else {

@@ -37,6 +37,12 @@
     self.moduleHomeController = viewcontroller;
 }
 
-
+- (BOOL)handleNotification:(Notification *)notification shouldOpen:(BOOL)shouldOpen{
+    if(shouldOpen) {
+        [(switchController *)self.moduleHomeController ChangeDisplayView];
+	}
+    
+	return YES;
+}
 
 @end

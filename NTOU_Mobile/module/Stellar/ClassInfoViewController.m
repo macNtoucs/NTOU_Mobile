@@ -31,16 +31,17 @@
     return self;
 }
 
--(void)presentOn:(ReaderViewController*)ViewController
+-(void)presentOn:(UIViewController*)ViewController
 {
-    ViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    ViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    //ViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    //ViewController.modalPresentationStyle = UIModalPresentationFullScreen;
     
-    [self presentViewController:ViewController animated:YES completion:nil];
+    
+    [self.navigationController pushViewController:ViewController animated:YES];
 }
 -(void)presentOff
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (CGFloat) horizontalLocationFor:(NSUInteger)tabIndex

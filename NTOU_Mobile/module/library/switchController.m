@@ -11,7 +11,7 @@
 #import "HistoryTableViewController.h"
 #import "AboutViewController.h"
 #import "UIKit+NTOUAdditions.h"
-
+#import "NTOUNotification.h"
 @interface switchController ()
 
 @end
@@ -96,6 +96,17 @@
 {
     
     [self setView];
+}
+
+-(void)ChangeDisplayView
+{
+    NSArray *notifs = [[NTOUNotificationHandle getNotifications] objectForKey:LibrariesTag];
+    UITabBarItem *tbi = (UITabBarItem *)[self.tabBar.items objectAtIndex:1];
+    if ([notifs count])
+        tbi.badgeValue = [NSString stringWithFormat:@"%d",[notifs count]];
+    else
+        tbi.badgeValue = nil;
+    
 }
 
 

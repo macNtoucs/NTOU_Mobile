@@ -12,7 +12,7 @@
 @required
 -(void)rightBarButtonItemOn;
 -(void)rightBarButtonItemOff;
--(void)presentOn:(ReaderViewController*)ViewController;
+-(void)presentOn:(UIViewController*)ViewController;
 -(void)presentOff;
 @end
 

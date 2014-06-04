@@ -9,7 +9,8 @@
 @protocol loginAndRegisterDelegate <NSObject>
 
 @required
-- (BOOL) loginAndRegisterDeviceToken:(NSString *)title;
+- (BOOL) login:(NSString *)title;
+- (void) registerDeviceToken:(NSString *)title;
 @end
 
 #import <UIKit/UIKit.h>

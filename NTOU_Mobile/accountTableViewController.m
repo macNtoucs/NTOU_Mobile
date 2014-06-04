@@ -252,11 +252,6 @@
 
 #pragma mark - delegate
 
-- (BOOL) loginAndRegisterDeviceToken
-{
-    return [self.delegate loginAndRegisterDeviceToken:self.title];
-}
-
 -(void) storeLoginSuccess
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -276,12 +271,13 @@
                     hud.labelText = @"登入中";
                 });
                 
-                loginSuccess = [self loginAndRegisterDeviceToken];
+                loginSuccess = [self.delegate login:self.title];
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                     if (loginSuccess)
                     {
-                        [NTOUNotificationHandle sendRegisterDevice:accountDelegate.text];
+                        [self.delegate registerDeviceToken:self.title];
                         [buttonTitle setString:loginSuccessButtonTittle];
                         [self addNavRightButton];
                         accountDelegate.userInteractionEnabled = NO;

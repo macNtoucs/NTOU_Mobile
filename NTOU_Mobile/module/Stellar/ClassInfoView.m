@@ -132,8 +132,26 @@
 }
 
 
-- (void)handleSingle:(NSString*)filename
+- (void)handleSingle:(NSString*)filename path:(NSString*) path
 {
+    NSString *phrase = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    UIViewController *webViewController = [[[UIViewController alloc]init] autorelease];
+    UIWebView *webView = [[[UIWebView alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
+    webView.scalesPageToFit = YES;
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:phrase]]];
+    [webViewController.view addSubview: webView];
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
+                                   initWithTitle: @"返回"
+                                   style: UIBarButtonItemStylePlain
+                                   target: delegatetype5  action: @selector(presentOff)];
+    
+    webViewController.navigationItem.leftBarButtonItem = backButton;
+    webViewController.title = filename;
+    [delegatetype5 presentOn:webViewController];
+    /*
+    
 	NSString *phrase = [filename stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
    // NSString *filePath = [[[NSBundle mainBundle] bundlePath]stringByAppendingPathComponent:filename];
     if (![[phrase substringFromIndex:[phrase rangeOfString:@"."].location] isEqualToString:@"pdf"]) {
@@ -142,7 +160,7 @@
     else{
         
     }
-	/*ReaderDocument *document = [ReaderDocument withDocumentFilePath:filename password:phrase];
+	ReaderDocument *document = [ReaderDocument withDocumentFilePath:filename password:phrase];
     
 	if (document != nil) // Must have a valid ReaderDocument object in order to proceed with things
 	{
@@ -186,16 +204,17 @@
     //UILabel*label = (UILabel *)[self.tableView viewWithTag:gr.view.tag];
     //NSLog(@"%@",label.text);
     if (types==4) {
-        [self handleSingle:[Moodle_API GetPathOfDownloadFiles_fileName:[resource objectAtIndex:gr.view.tag] FromDir:[NSString stringWithFormat:@"/%@/%@",moodleid,moodleFileLetureKey]]];
+        [self handleSingle:[resource objectAtIndex:gr.view.tag] path:[Moodle_API GetPathOfDownloadFiles_fileName:[resource objectAtIndex:gr.view.tag] FromDir:[NSString stringWithFormat:@"/%@/%@",moodleid,moodleFileLetureKey]]];
+        
 
     }
     else if (types==2)
     {
-        [self handleSingle:[Moodle_API GetPathOfDownloadFiles_fileName:[resource objectAtIndex:gr.view.tag] FromDir:[NSString stringWithFormat:@"/%@/%@",moodleid,moodleFileAssignmentKey]]];
+        [self handleSingle:[resource objectAtIndex:gr.view.tag] path:[Moodle_API GetPathOfDownloadFiles_fileName:[resource objectAtIndex:gr.view.tag] FromDir:[NSString stringWithFormat:@"/%@/%@",moodleid,moodleFileAssignmentKey]]];
     }
     else if (types==6)
     {
-        [self handleSingle:[Moodle_API GetPathOfDownloadFiles_fileName:[resource objectAtIndex:gr.view.tag] FromDir:[NSString stringWithFormat:@"/%@/%@",moodleid,moodleFileExamKey]]];
+        [self handleSingle:[resource objectAtIndex:gr.view.tag] path:[Moodle_API GetPathOfDownloadFiles_fileName:[resource objectAtIndex:gr.view.tag] FromDir:[NSString stringWithFormat:@"/%@/%@",moodleid,moodleFileExamKey]]];
     }
     if (url!=nil) {
         [[UIApplication sharedApplication] openURL:url];

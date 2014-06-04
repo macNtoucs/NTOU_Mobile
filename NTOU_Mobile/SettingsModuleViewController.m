@@ -135,7 +135,7 @@
 
 #pragma mark - delegate
 
--(BOOL)loginAndRegisterDeviceToken:(NSString *)title
+-(BOOL)login:(NSString *)title
 {
     if ([title isEqual:moodle]) {
         NSDictionary* info = [Moodle_API Login:[SettingsModuleViewController getMoodleAccount] andPassword:[SettingsModuleViewController getMoodlePassword]];
@@ -164,6 +164,12 @@
             return false;
     }
     return false;
+}
+
+- (void) registerDeviceToken:(NSString *)title
+{
+    if ([title isEqual:moodle])
+        [NTOUNotificationHandle sendRegisterDevice:title];
 }
 
 #pragma mark - tableView setting
