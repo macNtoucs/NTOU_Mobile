@@ -22,6 +22,11 @@
 @synthesize labelsize;
 @synthesize departureTimeTableView;
 
+@synthesize success;
+@synthesize refreshTimer;
+@synthesize activityIndicator;
+@synthesize loadingView;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -94,17 +99,20 @@
     NSError *error;
     
     NSMutableDictionary  *stationInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
-    
-    //NSLog(@"ExpressBus stationInfo: %@",stationInfo);
-    
-    NSArray * responseArr = stationInfo[@"stationInfo"];
-    for(NSDictionary * dict in responseArr)
+    if([stationInfo[@"stationInfo"]  isKindOfClass:[NSNull class]])
     {
-        [stops addObject:[dict valueForKey:@"name"]];
-        [times addObject:[dict valueForKey:@"time"]];
+        [stops addObject:@"更新中，暫無資料"];
+        [times addObject:@"請稍候再試"];
     }
-    
-    //NSLog(@"stops = %@", stops);
+    else
+    {
+        NSArray * responseArr = stationInfo[@"stationInfo"];
+        for(NSDictionary * dict in responseArr)
+        {
+            [stops addObject:[dict valueForKey:@"name"]];
+            [times addObject:[dict valueForKey:@"time"]];
+        }
+    }
     
     [stops retain];
     [times retain];
@@ -120,6 +128,24 @@
     /*UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"發車時間" style:UIButtonTypeRoundedRect target:self action:@selector(showDepartureTime:)];
     self.navigationItem.rightBarButtonItem = rightButton;
     [rightButton release];*/
+    
+    loadingView = [[UIAlertView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+    loadingView.delegate = self;
+    loadingView.message = @"下載資料中\n請稍候\n";
+    
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        activityIndicator.frame = CGRectMake(135.0, 260.0, 50.0, 50.0);
+        activityIndicator.color = [UIColor blackColor];
+    }
+    else
+        activityIndicator.frame = CGRectMake(115.0, 60.0, 50.0, 50.0);
+    
+    [self.loadingView addSubview:self.activityIndicator];
+    [self.tableView addSubview:self.loadingView];
+    [activityIndicator startAnimating];
+    [self.loadingView show];
     
     stops = [[NSMutableArray alloc] init];
     times = [[NSMutableArray alloc] init];
@@ -153,7 +179,17 @@
     
     [self.parentViewController.view addSubview:label];
     
-    //NSLog(@"labelsize.height = %f", labelsize.height);
+    // 手動下拉更新
+    if (_refreshHeaderView == nil) {
+        EGORefreshTableHeaderView *view1 = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height,self.tableView.bounds.size.width,self.tableView.bounds.size.height)];
+        view1.delegate = self;
+        [self.tableView addSubview:view1];
+        _refreshHeaderView = view1;
+        [view1 release];
+    }
+    [_refreshHeaderView refreshLastUpdatedDate];
+    success = [[UIImageView alloc] initWithFrame:CGRectMake(75.0, 250.0, 150.0, 150.0)];
+    [success setImage:[UIImage imageNamed:@"ok.png"]];
     
     [self estimateTime];
 }
@@ -165,6 +201,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [activityIndicator stopAnimating];
+    [loadingView dismissWithClickedButtonIndex:0 animated:YES];
+    
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
     CGFloat screenWidth = screenSize.width;
@@ -174,6 +213,8 @@
         [self.tableView setFrame:CGRectMake(0,labelsize.height+40, screenWidth, screenHeight-labelsize.height-50)];
     else
         [self.tableView setFrame:CGRectMake(0,labelsize.height, screenWidth, screenHeight-labelsize.height-50)];
+    
+    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -183,6 +224,29 @@
 }
 
 #pragma mark - Table view data source
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    CGSize screenSize = screenBound.size;
+    CGFloat screenWidth = screenSize.width;
+    CGFloat screenHeight = screenSize.height;
+    
+    if (scrollView.contentOffset.y == 0)
+    {
+        if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+            [self.tableView setFrame:CGRectMake(0,labelsize.height+40, screenWidth, screenHeight-labelsize.height-50)];
+        else
+            [self.tableView setFrame:CGRectMake(0,labelsize.height, screenWidth, screenHeight-labelsize.height-50)];
+    }
+    else
+    {
+        if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+            [self.tableView setFrame:CGRectMake(0,labelsize.height+75, screenWidth, screenHeight-labelsize.height-50)];
+        else
+            [self.tableView setFrame:CGRectMake(0,labelsize.height+12, screenWidth, screenHeight-labelsize.height-50)];
+    }
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -220,24 +284,34 @@
     
     // Configure the cell...
     cell.textLabel.text = [stops objectAtIndex:indexPath.row];
-    if([[times objectAtIndex:indexPath.row] rangeOfString:@"未發車"].location != NSNotFound)
+    if([stops count] == 1)
     {
-        cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(0, 3)];
+        cell.textLabel.textColor = [UIColor colorWithRed:81.0/255.0 green:102.0/255.0 blue:145.0/255.0 alpha:1.0];
+        cell.detailTextLabel.text = [times objectAtIndex:indexPath.row];
         cell.detailTextLabel.textColor = [UIColor grayColor];
     }
-    else if([[times objectAtIndex:indexPath.row] rangeOfString:@"分"].location != NSNotFound)
+    else
     {
-        NSUInteger len = [[times objectAtIndex:indexPath.row] rangeOfString:@"分"].location+1;
-        cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(0, len)];
-        cell.detailTextLabel.textColor = [UIColor colorWithRed:81.0/255.0 green:102.0/255.0 blue:145.0/255.0 alpha:1.0];;
+        if([[times objectAtIndex:indexPath.row] rangeOfString:@"未發車"].location != NSNotFound)
+        {
+            cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(0, 3)];
+            cell.detailTextLabel.textColor = [UIColor grayColor];
+        }
+        else if([[times objectAtIndex:indexPath.row] rangeOfString:@"分"].location != NSNotFound)
+        {
+            NSUInteger len = [[times objectAtIndex:indexPath.row] rangeOfString:@"分"].location+1;
+            cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(0, len)];
+            cell.detailTextLabel.textColor = [UIColor colorWithRed:81.0/255.0 green:102.0/255.0 blue:145.0/255.0 alpha:1.0];
+        }
+        else if([[times objectAtIndex:indexPath.row] rangeOfString:@"站"].location != NSNotFound)
+        {
+            NSUInteger pos1 = [[times objectAtIndex:indexPath.row] rangeOfString:@"將"].location;
+            NSUInteger pos2 = [[times objectAtIndex:indexPath.row] rangeOfString:@"站"].location;
+            cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(pos1, pos2-pos1+1)];
+            cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:188.0/255.0 green:2.0/255.0 blue:9.0/255.0 alpha:100.0];
+        }
     }
-    else if([[times objectAtIndex:indexPath.row] rangeOfString:@"站"].location != NSNotFound)
-    {
-        NSUInteger pos1 = [[times objectAtIndex:indexPath.row] rangeOfString:@"將"].location;
-        NSUInteger pos2 = [[times objectAtIndex:indexPath.row] rangeOfString:@"站"].location;
-        cell.detailTextLabel.text = [[times objectAtIndex:indexPath.row] substringWithRange:NSMakeRange(pos1, pos2-pos1+1)];
-        cell.detailTextLabel.textColor = [UIColor redColor];
-    }
+    
     return cell;
 }
 

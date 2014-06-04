@@ -188,14 +188,12 @@
     */
     UIViewController *load = [[UIViewController alloc] init];
     NSString *weburl = [[NEWSdata objectAtIndex:indexPath.row] objectForKeyedSubscript:@"url"];
-    NSURL *url = [NSURL URLWithString: weburl];
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:[self.view frame]];
     
-    //讓 UIWebView 連上NSURLRequest 物件所設定好的網址
-    [webView loadRequest:requestObj];
-
-    [load.view addSubview:webView];
+    
+    UIWebView *webView = [[[UIWebView alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
+    webView.scalesPageToFit = YES;
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: weburl ] ]];
+    [load.view addSubview: webView];
     load.title = weburl;
 
     [self.navigationController pushViewController:load animated:YES];

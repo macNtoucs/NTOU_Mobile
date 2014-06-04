@@ -125,7 +125,15 @@
 
 -(void)AlertStart:(UIAlertView *) loadingAlertView{
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    CGRect frame = CGRectMake(120, 10, 40, 40);
+    //CGRect frame = CGRectMake(120, 10, 40, 40);
+    CGRect frame;
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        frame = CGRectMake(140, 80, 40, 40);
+        NSLog(@"alert");
+    }
+    else
+        frame = CGRectMake(120, 10, 40, 40);
     UIActivityIndicatorView* progressInd = [[UIActivityIndicatorView alloc] initWithFrame:frame];
     progressInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
     [progressInd startAnimating];
@@ -229,67 +237,37 @@
 
 #pragma mark - View lifecycle
 
-/*- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-}*/
-
-
 - (void)viewDidLoad
 {
     NSLog(@"[Detail]viewDidLoad");
     [super viewDidLoad];
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
         self.edgesForExtendedLayout = UIRectEdgeNone;
-    //preArray = [NSArray arrayWithObjects:@"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", nil];
-    preArray = [[NSArray alloc] initWithObjects:@"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", nil];
-    CGRect screenBound = [[UIScreen mainScreen] bounds];
-    CGSize screenSize = screenBound.size;
-    loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-    //loadingView.frame = CGRectMake(screenSize.width/2-100.0, screenSize.height/2-50.0, 200.0, 100.0);
+    /*preArray = [[NSArray alloc] initWithObjects:@"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", nil];*/
+    
+    preArray = [[NSArray alloc] initWithObjects:nil];
+    //CGRect screenBound = [[UIScreen mainScreen] bounds];
+    //CGSize screenSize = screenBound.size;
+    //loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    loadingView = [[UIAlertView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+    loadingView.delegate = self;
+    loadingView.message = @"下載資料中\n請稍候\n";
+    
+    //[loadingView setFrame:CGRectMake(screenSize.width/2-100.0, screenSize.height/2-50.0, 200.0, 200.0)];
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    activityIndicator.frame = CGRectMake(115.0, 60.0, 50.0, 50.0);
-    /*NSLog(@"activityIndicator=%lf", activityIndicator.center.x);
-    NSLog(@"activityIndicator=%lf", activityIndicator.center.y);
-    NSLog(@"loadingView=%lf", loadingView.center.x);
-    NSLog(@"loadingView=%lf", loadingView.center.y);*/
-    [self.loadingView addSubview:self.activityIndicator];
-    [activityIndicator startAnimating];
-    [self.tableView addSubview:self.loadingView];
-    [self.loadingView show];
-    //[activityIndicator retain];
-    /*NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ntou_mobile.db"];
-    NSLog(@"defaultDBPath=%@", defaultDBPath);
-    FMDatabase *db = [FMDatabase databaseWithPath:defaultDBPath];
-    if (![db open])
-        NSLog(@"Could not open db.");
-    else
-        NSLog(@"Open db successly.");
-    NSMutableString *query = [NSMutableString stringWithString:@"SELECT * FROM routeinfo where nameZh like '%"];
-    [query appendFormat:@"%@", busName];
-    [query appendString:@"%'"];
-    //NSLog(@"query=%@", query);
-    FMResultSet *rs = [db executeQuery:query];
-    NSMutableArray *testT = [[NSMutableArray alloc] init];
-    NSMutableArray *testN = [[NSMutableArray alloc] init];
-    
-    while ([rs next])
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
     {
-        if ([[rs stringForColumn:@"city"] isEqualToString:@"T"])
-            [testT addObject:[rs stringForColumn:@"nameZh"]];
-        else if ([[rs stringForColumn:@"city"] isEqualToString:@"N"])
-            [testN addObject:[rs stringForColumn:@"nameZh"]];
-        else
-            NSLog(@"基隆的資料放這裡。");
+        activityIndicator.frame = CGRectMake(135.0, 260.0, 50.0, 50.0);
+        activityIndicator.color = [UIColor blackColor];
     }
-    [rs close];*/
+    else
+        activityIndicator.frame = CGRectMake(115.0, 60.0, 50.0, 50.0);
     
-    /*activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    activityIndicator.frame = CGRectMake(0.0, 0.0, 50.0, 50.0);
-    activityIndicator.center = self.tableView.center;
-    [self.tableView addSubview:self.activityIndicator];
+    [self.loadingView addSubview:self.activityIndicator];
+    [self.tableView addSubview:self.loadingView];
+    [activityIndicator startAnimating];
+    [self.loadingView show];
     
-    [activityIndicator startAnimating];*/
     //NSLog(@"Detail Layer.");
     [self.tableView applyStandardColors];
     IDs = [NSMutableArray new];
@@ -304,7 +282,7 @@
     
     // 手動下拉更新
     if (_refreshHeaderView == nil) {
-        EGORefreshTableHeaderView *view1 = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f,0.0f - self.tableView.bounds.size.height,self.tableView.bounds.size.width,self.tableView.bounds.size.height)];
+        EGORefreshTableHeaderView *view1 = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height,self.tableView.bounds.size.width,self.tableView.bounds.size.height)];
         view1.delegate = self;
         [self.tableView addSubview:view1];
         _refreshHeaderView = view1;
@@ -348,7 +326,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [self stopTimer];
+    //[self stopTimer];
     [super viewDidDisappear:animated];
 }
 
@@ -413,7 +391,7 @@
             
             if ([comeTime isEqual:@"-1"])
             {
-                cell.detailTextLabel.text = @"尚未發車";
+                cell.detailTextLabel.text = @"未發車";
                 cell.detailTextLabel.textColor = [UIColor grayColor];
             }
             else if ([comeTime isEqual:@"-2"])
@@ -434,12 +412,12 @@
             else if ([comeTime intValue] <= 10)
             {
                 cell.detailTextLabel.text = @"進站中";
-                cell.detailTextLabel.textColor = [UIColor redColor];
+                cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:188.0/255.0 green:2.0/255.0 blue:9.0/255.0 alpha:100.0];
             }
             else if ([comeTime intValue] > 10 && [comeTime intValue] <= 120)
             {
                 cell.detailTextLabel.text = @"即將進站";
-                cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:138.0/255.0 blue:25.0/255.0 alpha:100.0];
+                cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:0.0 green:45.0/255.0 blue:153.0/255.0 alpha:100.0];
             }
             else
             {

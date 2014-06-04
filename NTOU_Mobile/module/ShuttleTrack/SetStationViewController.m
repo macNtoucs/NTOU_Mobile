@@ -119,7 +119,7 @@
         [dateFormatter setDateFormat:@"yyyyMMdd"];
         view5.selectedDate = [[NSString alloc] init];
         view5.selectedDate=[view5.selectedDate stringByAppendingString:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:calendar.selectedDate]]];
-        NSLog(@"selectedDate=%@", [dateFormatter stringFromDate:calendar.selectedDate]);
+        NSLog(@"%@, selectedDate=%@", calendar.selectedDate, [dateFormatter stringFromDate:calendar.selectedDate]);
         view5.selectedTrainStyle = trainStyle;
     }
     else {
@@ -215,7 +215,7 @@
     UIImage* tabBarArrowImage = [UIImage imageNamed:@"TabBarNipple@2x.png"];
     self.tabBarArrow = [[UIImageView alloc] initWithImage:tabBarArrowImage] ;
     CGFloat verticalLocation = [[UIScreen mainScreen] bounds].size.height-tabBarArrowImage.size.height-self.tabBar.frame.size.height-[[UIApplication sharedApplication] statusBarFrame].size.height-44+5;
-    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>7.0)
     {
         tabBarArrow.frame = CGRectMake([self horizontalLocationFor:0], [[UIScreen mainScreen] bounds].size.height-122, tabBarArrowImage.size.width, tabBarArrowImage.size.height);
     }
@@ -260,25 +260,20 @@
 {
     [super viewDidLoad];
     
-    NSLog(@"viewDidLoad");
+    //NSLog(@"setStation.m viewDidLoad");
     
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
         
-        NSLog(@"system 7.0");
-        CGRect fullScreenBounds = [[UIScreen mainScreen] bounds];
-        NSLog(@"self.tabBar.frame.origin.y = %f, height = %f, view height = %f", self.tabBar.frame.origin.y, fullScreenBounds.size.height, self.view.frame.size.height);
-        //[self.tabBar setFrame:CGRectMake(0, fullScreenBounds.size.height-49, 320, 40)];
-        [self.tabBar setFrame:CGRectMake(0, self.view.frame.size.height-49, 320, 40)];
-        if(self.tabBar.frame.origin.y == fullScreenBounds.size.height-112)
+        if([[[UIDevice currentDevice]systemVersion]floatValue]>7.0)
         {
-            NSLog(@"Hello");
+            CGRect fullScreenBounds = [[UIScreen mainScreen] bounds];
+            [self.tabBar setFrame:CGRectMake(0, self.view.frame.size.height-49, 320, 40)];
+            if(fullScreenBounds.size.height != self.view.frame.size.height)
+                [self.tabBar setFrame:CGRectMake(0, fullScreenBounds.size.height-113, 320, 49)];
         }
-        //[self.tabBar setFrame:CGRectMake(0, fullScreenBounds.size.height-112, 320, 40)];
-        NSLog(@"self.tabBar.frame.origin.y = %f", self.tabBar.frame.origin.y);
+        
         [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
         self.edgesForExtendedLayout = UIRectEdgeNone;
-        
-        
     }
     self.view.backgroundColor = [UIColor clearColor];
     if(!_isHightSpeedTrain){

@@ -63,38 +63,17 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    switch (section) {
-        case 0:
-            return 1;
-            break;
-        case 1:
-            return 3;
-            break;
-        default:
-            return 0;
-            break;
-    }
-    
+    return 3;
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    switch (section) {
-        case 0:
-            return NULL;
-            break;
-        case 1:
-            return NULL;
-            break;
-        default:
-            return NULL;
-            break;
-    }
+    return NULL;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -106,32 +85,20 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    switch (indexPath.section)  {
-        case 0:
-            switch (indexPath.row) {
+               switch (indexPath.row) {
                 case 0:
                     cell.textLabel.text = @"最新消息";
-                    break;
-            }
-            break;
-        case 1:
-            switch (indexPath.row) {
-                case 0:
+                       break;
+                case 1:
                     cell.textLabel.text = @"開館時間";
                     break;
-                case 1:
-                    cell.textLabel.text = @"樓層簡介";
-                    break;
                 case 2:
-                    cell.textLabel.text = @"聯絡資訊";
+                    cell.textLabel.text = @"樓層簡介";
                     break;
                 default:
                     break;
-            }
-            break;
-        default:
-            break;
-    }
+               }
+    
     
     return cell;
 
@@ -141,19 +108,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {    
-    switch (indexPath.section) {
-        case 0:
-        {
-            NewsViewController *news = [[NewsViewController alloc]init];
-            news.title= @"最新消息";
-            [self.navigationController pushViewController:news  animated:YES];
-            [news release];
-            break;
-        }
-        case 1:
-            switch (indexPath.row)
-            {
+    switch (indexPath.row)
+    {
+       
                 case 0:
+                {
+                    NewsViewController *news = [[NewsViewController alloc]init];
+                    news.title= @"最新消息";
+                    [self.navigationController pushViewController:news  animated:YES];
+                    [news release];
+                }
+
+                case 1:
                 {
                     OpenTimeViewController *opentime = [[OpenTimeViewController alloc] init];
                     opentime.title=@"開館時間";
@@ -162,7 +128,7 @@
                   
                     break;
                 }
-                case 1:
+                case 2:
                 {
                     floorInfoViewController *floorinfo = [[floorInfoViewController alloc] init];
                     floorinfo.title=@"樓層簡介";
@@ -170,18 +136,11 @@
                     [floorinfo release];
                     break;
                 }
-                case 2:
-                {
-                    
-                    break;
-                }
+            
                 default:
                     break;
-            }
-            break;
-        default:
-            break;
+             }
     }
-}
+
 
 @end

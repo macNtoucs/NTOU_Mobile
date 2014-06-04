@@ -86,7 +86,7 @@
                                                              error:nil];
     newData =[NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
     NSString* checkLogin = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-    if ([checkLogin rangeOfString:@"login failed"].location == NSNotFound)
+    if ([checkLogin rangeOfString:@"Login failed"].location == NSNotFound)
         loginSuccess=true;
     else loginSuccess=false;
     [maindata addObjectsFromArray:newData];
@@ -148,7 +148,7 @@
     if (indexPath.row < [maindata count]){
         
     NSDictionary *book = [maindata objectAtIndex:indexPath.row];
-    NSString *bookname = [book objectForKey:@"tittle"];
+    NSString *bookname = [book objectForKey:@"title"];
     NSString *bookdate = [book objectForKey:@"borrowDate"];
    // NSString *bookdetails = [book objectForKey:@"details"];
 
@@ -158,6 +158,9 @@
     CGSize booknameLabelSize = [bookname sizeWithFont:font
                                     constrainedToSize:maximumLabelSize
                                         lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize bookStatusLabelSize = [bookdate sizeWithFont:font
+                                        constrainedToSize:maximumLabelSize
+                                            lineBreakMode:NSLineBreakByWordWrapping];
     
     namelabel.frame = CGRectMake(5,7,80,15);
     namelabel.text = @"書名/作者：";
@@ -176,7 +179,7 @@
     name.backgroundColor = [UIColor clearColor];
     name.font = font;
     
-    datelabel.frame = CGRectMake(5,10 + booknameLabelSize.height,80,15);
+    datelabel.frame = CGRectMake(5,10 + booknameLabelSize.height + bookStatusLabelSize.height,80,15);
     datelabel.text = @"借書：";
     datelabel.lineBreakMode = NSLineBreakByWordWrapping;
     datelabel.numberOfLines = 0;
@@ -185,7 +188,7 @@
     datelabel.backgroundColor = [UIColor clearColor];
     datelabel.font = boldfont;
     
-    date.frame = CGRectMake(90,10 + booknameLabelSize.height,180,14);
+    date.frame = CGRectMake(90,10 + booknameLabelSize.height + bookStatusLabelSize.height,180,14);
     date.text = bookdate;
     date.lineBreakMode = NSLineBreakByWordWrapping;
     date.numberOfLines = 0;
@@ -253,15 +256,17 @@
 {
     if (indexPath.row< [maindata count]){
     NSDictionary *book = [maindata objectAtIndex:indexPath.row];
-    NSString *bookname = [book objectForKey:@"tittle"];
-    
-    UIFont *nameFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+    NSString *bookname = [book objectForKey:@"title"];
+     NSString *bookdate = [book objectForKey:@"status"];
+    UIFont *font = [UIFont fontWithName:@"Helvetica" size:14.0];
     CGSize maximumLabelSize = CGSizeMake(200,9999);
-    CGSize booknameLabelSize = [bookname sizeWithFont:nameFont
+    CGSize booknameLabelSize = [bookname sizeWithFont:font
                                     constrainedToSize:maximumLabelSize
                                         lineBreakMode:NSLineBreakByWordWrapping];
-
-    return 12 + booknameLabelSize.height + 16 + 4 + 19;
+    CGSize bookStatusLabelSize = [bookdate sizeWithFont:font
+                                          constrainedToSize:maximumLabelSize
+                                              lineBreakMode:NSLineBreakByWordWrapping];
+    return 12 + booknameLabelSize.height +bookStatusLabelSize.height +16 + 4 + 19;
     }
     else
         return 32.0;

@@ -20,7 +20,7 @@
 @property (nonatomic, strong) NSArray * newSearchBooks;
 @property (nonatomic) NSNumber* totalBookNumber;
 @property (nonatomic) NSNumber* firstBookNumber;
-
+@property int Searchpage;
 @end
 
 @implementation SearchResultViewController
@@ -36,8 +36,7 @@
 @synthesize newSearchBooks;
 @synthesize totalBookNumber;
 @synthesize firstBookNumber;
-
-int Searchpage =1;
+@synthesize Searchpage;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -56,11 +55,11 @@ int Searchpage =1;
         self.edgesForExtendedLayout = UIRectEdgeNone;
         
     }
-     [self search];
+    [self search];
     
     book_count = 10;    //一開始先載入10筆資料
     start = NO;
-    
+    Searchpage=1;
     
     
     
@@ -82,7 +81,7 @@ int Searchpage =1;
     //nagitive 52 - 44 = 8 、 tabbar 55 - 49 = 6
     [self.tableView setContentInset:UIEdgeInsetsMake(8,0,6,0)];
     
-  
+    
     
     [super viewDidLoad];
     
@@ -101,7 +100,7 @@ int Searchpage =1;
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow  animated:YES];
             hud.labelText = @"Loading";
         });
-
+        
         NSError *error;
         //  設定url
         NSString *url = [NSString stringWithFormat:@"http://140.121.197.135:11114/NTOULibrarySearchAPI/Search.do?searcharg=%@&searchtype=X&segment=%d",inputtext,Searchpage];
@@ -118,12 +117,12 @@ int Searchpage =1;
         [newSearchBooks retain];
         [totalBookNumber retain];
         [firstBookNumber retain];
-         dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
             start = YES;
             [self getContentTotal];
             [self.tableView reloadData];
-             [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
-
+            [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
+            
             start = NO;
         });    });
     
@@ -134,8 +133,8 @@ int Searchpage =1;
 
 //截取書的資料(書名、作者、圖片...etc)
 -(void)getContentTotal{
-   //分析 newSearchBooks 內容 並串接到 data 達到載入更多的效果
-   [data addObjectsFromArray:newSearchBooks];
+    //分析 newSearchBooks 內容 並串接到 data 達到載入更多的效果
+    [data addObjectsFromArray:newSearchBooks];
 }
 
 - (void)didReceiveMemoryWarning
@@ -196,23 +195,26 @@ int Searchpage =1;
     }
     else if(indexPath.row < [data count])
     {
-        NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d",indexPath.row];
+        NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%ld",(long)indexPath.row];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         UILabel *presslabel = nil;
         UILabel *booklabel = nil;
         UILabel *authorlabel = nil;
+        UILabel *imgLoadinglabel = nil;
         
         if (cell == nil)
         {
             presslabel = [[UILabel alloc] init];
             booklabel = [[UILabel alloc] init];
             authorlabel = [[UILabel alloc] init];
+            imgLoadinglabel = [[UILabel alloc]init];
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
         }
         
         UIFont *nameFont = [UIFont fontWithName:@"Helvetica" size:14.0];
         UIFont *otherFont = [UIFont fontWithName:@"Helvetica" size:12.0];
+        UIFont *loadingFont = [UIFont fontWithName:@"Helvetica" size:8.0];
         
         NSDictionary *book = [data objectAtIndex:indexPath.row];
         NSString *bookname = [book objectForKey:@"title"];
@@ -222,26 +224,45 @@ int Searchpage =1;
         
         if([image_url isEqualToString:@""])
             image_url = @"http://static.findbook.tw/image/book/1419879251/large";
-            
-        
-        CGSize maximumLabelSize = CGSizeMake(200,9999);
-        CGRect booknameLabelRect = [bookname boundingRectWithSize:maximumLabelSize
+         CGSize booknameLabelSize,authorLabelSize,pressLabelSize;
+         CGRect booknameLabelRect, authorLabelRect,pressLabelRect;
+         CGSize maximumLabelSize = CGSizeMake(200,9999);
+         if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+   
+              booknameLabelRect = [bookname boundingRectWithSize:maximumLabelSize
                                                           options:NSStringDrawingUsesLineFragmentOrigin
                                                        attributes:@{NSFontAttributeName:nameFont}
                                                           context:nil];
-        CGSize booknameLabelSize = booknameLabelRect.size;
+           
         
-        CGRect authorLabelRect = [author boundingRectWithSize:maximumLabelSize
+              authorLabelRect = [author boundingRectWithSize:maximumLabelSize
                                                       options:NSStringDrawingUsesLineFragmentOrigin
                                                    attributes:@{NSFontAttributeName:otherFont}
-                                                      context:nil];
-        CGSize authorLabelSize = authorLabelRect.size;
-        
-        CGRect pressLabelRect = [press boundingRectWithSize:maximumLabelSize
+                                                        context:nil];
+             
+              pressLabelRect = [press boundingRectWithSize:maximumLabelSize
                                                     options:NSStringDrawingUsesLineFragmentOrigin
                                                  attributes:@{NSFontAttributeName:otherFont}
                                                     context:nil];
-        CGSize pressLabelSize = pressLabelRect.size;
+             booknameLabelSize = booknameLabelRect.size;
+             authorLabelSize = authorLabelRect.size;
+             pressLabelSize = pressLabelRect.size;
+             
+         }
+         else {
+              booknameLabelSize = [bookname sizeWithFont:nameFont
+                                             constrainedToSize:maximumLabelSize
+                                                 lineBreakMode:NSLineBreakByWordWrapping];
+              authorLabelSize = [author sizeWithFont:otherFont
+                                         constrainedToSize:maximumLabelSize
+                                             lineBreakMode:NSLineBreakByWordWrapping];
+             
+              pressLabelSize = [press sizeWithFont:otherFont
+                                       constrainedToSize:maximumLabelSize
+                                           lineBreakMode:NSLineBreakByWordWrapping];
+         }
+     
+        
         if([press isEqualToString:@""])
             pressLabelSize.height = 0;
         if([author isEqualToString:@""])
@@ -251,12 +272,22 @@ int Searchpage =1;
         CGFloat imageY = height/2 - 80/2;
         if(imageY < 6)
             imageY = 6;
-       
-        NSData * imageData = [[NSData alloc] initWithContentsOfURL:[ NSURL URLWithString: image_url ]];
-        UIImageView *imageview = [[UIImageView alloc] initWithImage: [UIImage imageWithData: imageData]];
-        //[imageData release];
-        imageview.frame = CGRectMake(10,imageY,60,80);
-        [cell.contentView addSubview:imageview];
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            // dispatch_async(dispatch_get_main_queue(), ^{
+            NSData * imageData = [[NSData alloc] initWithContentsOfURL:[ NSURL URLWithString: image_url ]];
+            UIImageView *imageview = [[UIImageView alloc] initWithImage: [UIImage imageWithData: imageData]];
+            //[imageData release];
+            imageview.frame = CGRectMake(10,imageY,60,80);
+            [imgLoadinglabel removeFromSuperview];
+            [cell.contentView addSubview:imageview];
+            //  });
+        });
+        
+        imgLoadinglabel.frame = CGRectMake(10,imageY,60,80);
+        imgLoadinglabel.text = @"圖片載入中...";
+        imgLoadinglabel.lineBreakMode = NSLineBreakByWordWrapping;
+        imgLoadinglabel.font= loadingFont;
+        [cell.contentView addSubview:imgLoadinglabel];
         
         booklabel.frame = CGRectMake(80,6,200,booknameLabelSize.height);
         booklabel.text = bookname;
@@ -340,26 +371,49 @@ int Searchpage =1;
         
         UIFont *nameFont = [UIFont fontWithName:@"Helvetica" size:14.0];
         UIFont *otherFont = [UIFont fontWithName:@"Helvetica" size:12.0];
+        UIFont *loadingFont = [UIFont fontWithName:@"Helvetica" size:8.0];
         
+        
+        CGSize booknameLabelSize,authorLabelSize,pressLabelSize;
+        CGRect booknameLabelRect, authorLabelRect,pressLabelRect;
         CGSize maximumLabelSize = CGSizeMake(200,9999);
-        CGRect booknameLabelRect = [bookname boundingRectWithSize:maximumLabelSize
-                                             options:NSStringDrawingUsesLineFragmentOrigin
-                                             attributes:@{NSFontAttributeName:nameFont}
-                                             context:nil];
-        CGSize booknameLabelSize = booknameLabelRect.size;
+        if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+            
+            booknameLabelRect = [bookname boundingRectWithSize:maximumLabelSize
+                                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                                     attributes:@{NSFontAttributeName:nameFont}
+                                                        context:nil];
+            
+            
+            authorLabelRect = [author boundingRectWithSize:maximumLabelSize
+                                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                                     attributes:@{NSFontAttributeName:otherFont}
+                                                        context:nil];
+            
+            pressLabelRect = [press boundingRectWithSize:maximumLabelSize
+                                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                                   attributes:@{NSFontAttributeName:otherFont}
+                                                      context:nil];
+            booknameLabelSize = booknameLabelRect.size;
+            authorLabelSize = authorLabelRect.size;
+            pressLabelSize = pressLabelRect.size;
+            
+        }
+        else {
+            booknameLabelSize = [bookname sizeWithFont:nameFont
+                                      constrainedToSize:maximumLabelSize
+                                          lineBreakMode:NSLineBreakByWordWrapping];
+            authorLabelSize = [author sizeWithFont:otherFont
+                                      constrainedToSize:maximumLabelSize
+                                          lineBreakMode:NSLineBreakByWordWrapping];
+            
+            pressLabelSize = [press sizeWithFont:otherFont
+                                    constrainedToSize:maximumLabelSize
+                                        lineBreakMode:NSLineBreakByWordWrapping];
+        }
         
-        CGRect authorLabelRect = [author boundingRectWithSize:maximumLabelSize
-                                        options:NSStringDrawingUsesLineFragmentOrigin
-                                        attributes:@{NSFontAttributeName:otherFont}
-                                        context:nil];
-        CGSize authorLabelSize = authorLabelRect.size;
-        
-        CGRect pressLabelRect = [press boundingRectWithSize:maximumLabelSize
-                                        options:NSStringDrawingUsesLineFragmentOrigin
-                                        attributes:@{NSFontAttributeName:otherFont}
-                                        context:nil];
-        CGSize pressLabelSize = pressLabelRect.size;
 
+        
         if([press isEqualToString:@""])
             pressLabelSize.height = 0;
         if([author isEqualToString:@""])

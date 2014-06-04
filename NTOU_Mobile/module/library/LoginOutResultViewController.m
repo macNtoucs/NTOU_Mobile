@@ -146,7 +146,7 @@
                                                  returningResponse:&urlResponse
                                                              error:nil];
     NSString* checkLogin = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-    if ([checkLogin rangeOfString:@"login failed"].location == NSNotFound)
+    if ([checkLogin rangeOfString:@"Login failed"].location == NSNotFound)
         loginSuccess=true;
     else loginSuccess=false;
     maindata=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
@@ -327,7 +327,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *book = [maindata objectAtIndex:indexPath.row];
-    NSString *bookname = [book objectForKey:@"tittle"];
+    NSString *bookname = [book objectForKey:@"title"];
     NSString *bookdate = [book objectForKey:@"status"];
    // NSString *bookbarcode = [book objectForKey:@"barcode"];
     //NSString *bookcallno = [book objectForKey:@"radioValue"];
@@ -366,6 +366,9 @@
     CGSize booknameLabelSize = [bookname sizeWithFont:font
                                     constrainedToSize:maximumLabelSize
                                         lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize bookStatusLabelSize = [bookdate sizeWithFont:font
+                                    constrainedToSize:maximumLabelSize
+                                        lineBreakMode:NSLineBreakByWordWrapping];
     
     namelabel.frame = CGRectMake(5,7,90,15);
     namelabel.text = @"書名/作者：";
@@ -384,7 +387,7 @@
     name.backgroundColor = [UIColor clearColor];
     name.font = font;
 
-    datelabel.frame = CGRectMake(5,29 + booknameLabelSize.height,90,15);
+    datelabel.frame = CGRectMake(5,10 + booknameLabelSize.height,90,15);
     datelabel.text = @"狀態：";
     datelabel.lineBreakMode = NSLineBreakByWordWrapping;
     datelabel.numberOfLines = 0;
@@ -393,7 +396,7 @@
     datelabel.backgroundColor = [UIColor clearColor];
     datelabel.font = boldfont;
     
-    date.frame = CGRectMake(100,29 + booknameLabelSize.height,180,14);
+    date.frame = CGRectMake(100,10 + booknameLabelSize.height,180,bookStatusLabelSize.height);
     date.text = bookdate;
     date.lineBreakMode = NSLineBreakByWordWrapping;
     date.numberOfLines = 0;
@@ -401,7 +404,7 @@
     date.backgroundColor = [UIColor clearColor];
     date.font = font;
     
-       [cell.contentView addSubview:namelabel];
+    [cell.contentView addSubview:namelabel];
     [cell.contentView addSubview:name];
     
     [cell.contentView addSubview:datelabel];
@@ -416,19 +419,18 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *book = [maindata objectAtIndex:indexPath.row];
-    NSString *bookname = [book objectForKey:@"tittle"];
-    NSString *bookkeep = [book objectForKey:@"keep"];
-    
+    NSString *bookname = [book objectForKey:@"title"];
+    NSString *bookStatus = [book objectForKey:@"status"];
     UIFont *nameFont = [UIFont fontWithName:@"Helvetica" size:14.0];
     CGSize maximumLabelSize = CGSizeMake(200,9999);
     CGSize booknameLabelSize = [bookname sizeWithFont:nameFont
                                     constrainedToSize:maximumLabelSize
+                                    lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize bookStatusLabelSize = [bookStatus sizeWithFont:nameFont
+                                    constrainedToSize:maximumLabelSize
                                         lineBreakMode:NSLineBreakByWordWrapping];
     
-    if([bookkeep isEqualToString:@"NULL"])
-        return 12 + booknameLabelSize.height + 16*3 + 4*3;
-    else
-        return 12 + booknameLabelSize.height + 16*3 + 4*3 + 18;
+    return 6 + booknameLabelSize.height +bookStatusLabelSize.height + 22;
 }
 
 #pragma mark - Table view delegate

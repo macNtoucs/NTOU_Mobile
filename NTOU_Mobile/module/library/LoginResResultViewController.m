@@ -143,7 +143,7 @@ int isSuccess=0;
                                                  returningResponse:&urlResponse
                                                              error:nil];
          NSString* checkLogin = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-         if ([checkLogin rangeOfString:@"login failed"].location == NSNotFound)
+         if ([checkLogin rangeOfString:@"Login failed"].location == NSNotFound)
              loginSuccess=true;
          else loginSuccess=false;
          NSArray * reponseDataArray = [NSArray new];
@@ -294,10 +294,20 @@ int isSuccess=0;
         return NULL;
 }
 
+- (void) alignLabelWithTop:(UILabel *)label {
+    CGSize maxSize = CGSizeMake(label.frame.size.width, 999);
+    label.adjustsFontSizeToFitWidth = NO;
+    // get actual height
+    CGSize actualSize = [label.text sizeWithFont:label.font constrainedToSize:maxSize lineBreakMode:label.lineBreakMode];
+    CGRect rect = label.frame;
+    rect.size.height = actualSize.height;
+    label.frame = rect;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *book = [maindata objectAtIndex:indexPath.row];
-    NSString *bookname = [book objectForKey:@"tittle"];
+    NSString *bookname = [book objectForKey:@"title"];
     NSString *bookdate = [book objectForKey:@"status"];
     NSString *bookplace = [book objectForKey:@"location"];
     //NSString *bookcancel = [book objectForKey:@"cancel"];
@@ -334,6 +344,9 @@ int isSuccess=0;
     CGSize booknameLabelSize = [bookname sizeWithFont:font
                                     constrainedToSize:maximumLabelSize
                                         lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize bookStatusLabelSize = [bookdate sizeWithFont:font
+                                      constrainedToSize:maximumLabelSize
+                                          lineBreakMode:NSLineBreakByWordWrapping];
     
     namelabel.frame = CGRectMake(5,7,90,15);
     namelabel.text = @"書名/作者：";
@@ -352,7 +365,7 @@ int isSuccess=0;
     name.backgroundColor = [UIColor clearColor];
     name.font = font;
     
-    datelabel.frame = CGRectMake(5,10 + booknameLabelSize.height,90,15);
+    datelabel.frame = CGRectMake(5,10 + booknameLabelSize.height , 90,15);
     datelabel.text = @"狀態：";
     datelabel.lineBreakMode = NSLineBreakByWordWrapping;
     datelabel.numberOfLines = 0;
@@ -361,15 +374,16 @@ int isSuccess=0;
     datelabel.backgroundColor = [UIColor clearColor];
     datelabel.font = boldfont;
     
-    date.frame = CGRectMake(100,10 + booknameLabelSize.height,180,14);
+    date.frame = CGRectMake(100,10 + booknameLabelSize.height ,180,bookStatusLabelSize.height);
     date.text = bookdate;
     date.lineBreakMode = NSLineBreakByWordWrapping;
     date.numberOfLines = 0;
     date.tag = indexPath.row;
+    //[self alignLabelWithTop:date];
     date.backgroundColor = [UIColor clearColor];
     date.font = font;
     
-    placelabel.frame = CGRectMake(5,29 + booknameLabelSize.height,90,15);
+    placelabel.frame = CGRectMake(5,33 + booknameLabelSize.height + bookStatusLabelSize.height/2,90,15);
     placelabel.text = @"取書館藏地：";
     placelabel.lineBreakMode = NSLineBreakByWordWrapping;
     placelabel.numberOfLines = 0;
@@ -378,7 +392,7 @@ int isSuccess=0;
     placelabel.backgroundColor = [UIColor clearColor];
     placelabel.font = boldfont;
     
-    place.frame = CGRectMake(100,29 + booknameLabelSize.height,180,14);
+    place.frame = CGRectMake(100,33 + booknameLabelSize.height + bookStatusLabelSize.height/2,180,14);
     place.text = bookplace;
     place.lineBreakMode = NSLineBreakByWordWrapping;
     place.numberOfLines = 0;
@@ -403,14 +417,17 @@ int isSuccess=0;
 {
     NSDictionary *book = [maindata objectAtIndex:indexPath.row];
     NSString *bookname = [book objectForKey:@"bookname"];
-    
-    UIFont *nameFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+    NSString *bookdate = [book objectForKey:@"status"];
+    UIFont *font = [UIFont fontWithName:@"Helvetica" size:14.0];
     CGSize maximumLabelSize = CGSizeMake(200,9999);
-    CGSize booknameLabelSize = [bookname sizeWithFont:nameFont
+    CGSize booknameLabelSize = [bookname sizeWithFont:font
                                     constrainedToSize:maximumLabelSize
                                         lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize bookStatusLabelSize = [bookdate sizeWithFont:font
+                                      constrainedToSize:maximumLabelSize
+                                          lineBreakMode:NSLineBreakByWordWrapping];
     
-    return 20 + booknameLabelSize.height + 16*4 + 4*3;
+    return  booknameLabelSize.height + bookStatusLabelSize.height + 16*4 + 4*3;
 }
 
 #pragma mark - Table view delegate

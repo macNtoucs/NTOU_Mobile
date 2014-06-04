@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D0ED730192CC665008EDC7E /* LibrarySearch.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D0ED72F192CC665008EDC7E /* LibrarySearch.png */; };
 		1D452FE31923A21D002E28ED /* accountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D452FE21923A21D002E28ED /* accountTableViewController.m */; };
 		1D6645691905087900416722 /* EGORefreshTableHeaderView.h in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B0B1905051200816CCD /* EGORefreshTableHeaderView.h */; };
 		1D66456A1905087900416722 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B0C1905051200816CCD /* EGORefreshTableHeaderView.m */; };
@@ -328,6 +329,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D0ED72F192CC665008EDC7E /* LibrarySearch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LibrarySearch.png; path = about/LibrarySearch.png; sourceTree = "<group>"; };
 		1D452FE11923A21D002E28ED /* accountTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = accountTableViewController.h; sourceTree = "<group>"; };
 		1D452FE21923A21D002E28ED /* accountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = accountTableViewController.m; sourceTree = "<group>"; };
 		1D66456B1909129400416722 /* HistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewController.h; sourceTree = "<group>"; };
@@ -897,6 +899,7 @@
 				1DD1790418FE7AB300621B67 /* loginViewController.m */,
 				1DD1790618FE7AB300621B67 /* MainViewController.h */,
 				1DD1790718FE7AB300621B67 /* MainViewController.m */,
+				1D0ED72F192CC665008EDC7E /* LibrarySearch.png */,
 				1DD1790A18FE7AB300621B67 /* NYOULogo.png */,
 				1DD1790B18FE7AB300621B67 /* RBookViewController.h */,
 				1DD1790C18FE7AB300621B67 /* RBookViewController.m */,
@@ -1767,6 +1770,7 @@
 				C71A4EE61705B106002819AD /* Fuho_Data.plist in Resources */,
 				C71A4EEB1705B114002819AD /* cancel_24.png in Resources */,
 				C71A4EEC1705B114002819AD /* cancel.png in Resources */,
+				1D0ED730192CC665008EDC7E /* LibrarySearch.png in Resources */,
 				C71A4EED1705B114002819AD /* inbox_24.png in Resources */,
 				C71A4EEE1705B114002819AD /* inbox.png in Resources */,
 				C71A4F00170A9399002819AD /* Default.png in Resources */,
@@ -2027,8 +2031,8 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: ching-chi Lin (46873356PM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2048,8 +2052,8 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PROVISIONING_PROFILE = "B65476CA-705C-4B6F-B351-71B749B466B0";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B65476CA-705C-4B6F-B351-71B749B466B0";
+				PROVISIONING_PROFILE = "21F38FDE-A6CC-4AE5-9CD5-9BD76A715C1B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21F38FDE-A6CC-4AE5-9CD5-9BD76A715C1B";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -2063,8 +2067,8 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: ching-chi Lin (46873356PM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2077,19 +2081,19 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PROVISIONING_PROFILE = "B65476CA-705C-4B6F-B351-71B749B466B0";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B65476CA-705C-4B6F-B351-71B749B466B0";
+				PROVISIONING_PROFILE = "21F38FDE-A6CC-4AE5-9CD5-9BD76A715C1B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21F38FDE-A6CC-4AE5-9CD5-9BD76A715C1B";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_PRODUCT = YES;
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Release;
 		};
 		91A9006516E854E500ECF2CF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2099,8 +2103,8 @@
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AF42BA75-65E6-432C-80C5-54DD410A915B";
+				PROVISIONING_PROFILE = "21F38FDE-A6CC-4AE5-9CD5-9BD76A715C1B";
+				"PROVISIONING_PROFILE[sdk=*]" = "21F38FDE-A6CC-4AE5-9CD5-9BD76A715C1B";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2109,8 +2113,8 @@
 		91A9006616E854E500ECF2CF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2120,8 +2124,8 @@
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AF42BA75-65E6-432C-80C5-54DD410A915B";
+				PROVISIONING_PROFILE = "21F38FDE-A6CC-4AE5-9CD5-9BD76A715C1B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21F38FDE-A6CC-4AE5-9CD5-9BD76A715C1B";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

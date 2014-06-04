@@ -49,14 +49,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     //setup Calendar
     eventStore = [[EKEventStore alloc] init];
 
     selectindexs = [[NSMutableArray alloc] init];
     
     //self.title = @"清單";
-    
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
     NSString *path = [[NSBundle mainBundle] pathForResource:@"CalenderList" ofType:@"plist"];
     
     NSDictionary *list = [[NSDictionary alloc] initWithContentsOfFile:path];

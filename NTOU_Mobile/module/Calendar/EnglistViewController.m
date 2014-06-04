@@ -42,7 +42,7 @@
 {
     self = [super initWithStyle:style];
     NSInteger screenheight = [[UIScreen mainScreen] bounds].size.height;
-    NSInteger height = screenheight - 64;
+    NSInteger height = screenheight;
     self.tableView.frame = CGRectMake(0, 0, 320, height);
     return self;
 }
@@ -53,7 +53,11 @@
 
     eventStore = [[EKEventStore alloc] init];
     selectindexs = [[NSMutableArray alloc] init];
-    
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+    }
     //self.title = @"清單";
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"CalenderList_eng" ofType:@"plist"];
