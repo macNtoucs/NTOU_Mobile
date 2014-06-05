@@ -117,6 +117,7 @@
                     news.title= @"最新消息";
                     [self.navigationController pushViewController:news  animated:YES];
                     [news release];
+                    break;
                 }
 
                 case 1:
