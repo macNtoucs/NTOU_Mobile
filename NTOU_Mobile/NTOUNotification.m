@@ -72,9 +72,13 @@
     [UIApplication sharedApplication].applicationIconBadgeNumber = count;
 }
 
-+ (void) deleteUnreadNotificationAndModifyBadge:(NSMutableDictionary *)notifications
+#pragma mark -
+#pragma mark delete
+
+
++ (void) deleteUnreadNotificationAndModifyBadge:(NSMutableDictionary *)notifications modules:(NSString *)tag
 {
-    [notifications removeObjectForKey:EmergencyTag];
+    [notifications removeObjectForKey:tag];
     [self storeNotifications:notifications];
     [self modifyBadge];
 }
@@ -84,11 +88,13 @@
     NSMutableDictionary *notifications = [self getNotifications];
     if ([notifications objectForKey:EmergencyTag]) {
         NSString *emergencyNotification = [NSString stringWithString:[notifications objectForKey:EmergencyTag]];
-        [self deleteUnreadNotificationAndModifyBadge:notifications];
+        [self deleteUnreadNotificationAndModifyBadge:notifications modules:EmergencyTag];
         return emergencyNotification;
     }
     return nil;
 }
+
+
 
 + (void) setBadgeValue:(NSString *)badge forModule:(NSString *) module
 {
@@ -127,11 +133,14 @@
         [notifications setValue:[notification string] forKey:notification.moduleName];
         [self setBadgeValue:@"1" forModule:EmergencyTag];
     }
-    else        //功課表
+    else
     {
-        ClassDataBase* dataBase = [ClassDataBase sharedData];
-        if (![dataBase searchCourseIDFormCourseName:notification.content]) //若通知不存在抓取下來的功課表，則不放入未讀推播
-            return;
+        if([notification.moduleName isEqualToString:StellarTag])  //功課表
+        {
+            ClassDataBase* dataBase = [ClassDataBase sharedData];
+            if (![dataBase searchCourseIDFormCourseName:notification.content]) //若通知不存在抓取下來的功課表，則不放入未讀推播
+                return;
+        }
         
         unReadNotification = [NSMutableArray arrayWithArray:[notifications objectForKey:notification.moduleName]];
         if (!unReadNotification) unReadNotification = [[NSMutableArray alloc] init];

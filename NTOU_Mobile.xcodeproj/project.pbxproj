@@ -296,6 +296,7 @@
 		BECF7C72184F468200ADD115 /* R66RightLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BECF7C70184F468200ADD115 /* R66RightLayerViewController.m */; };
 		BECF7C74184F48A800ADD115 /* R66Route.png in Resources */ = {isa = PBXBuildFile; fileRef = BECF7C73184F48A800ADD115 /* R66Route.png */; };
 		BECF7C76185598AD00ADD115 /* AlertViewShown.plist in Resources */ = {isa = PBXBuildFile; fileRef = BECF7C75185598AD00ADD115 /* AlertViewShown.plist */; };
+		C442C4E61946E5BD00C8449F /* TDBadgedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C442C4E51946E5BD00C8449F /* TDBadgedCell.m */; };
 		C4CA69B11911276C005B272C /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CA69B01911276C005B272C /* RTLabel.m */; };
 		C4CA69B319112894005B272C /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CA69B219112894005B272C /* CoreText.framework */; };
 		C4CA69C1191A399C005B272C /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CA69C0191A399C005B272C /* NewsDetailViewController.m */; };
@@ -771,6 +772,8 @@
 		BECF7C70184F468200ADD115 /* R66RightLayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = R66RightLayerViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		BECF7C73184F48A800ADD115 /* R66Route.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = R66Route.png; sourceTree = "<group>"; };
 		BECF7C75185598AD00ADD115 /* AlertViewShown.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AlertViewShown.plist; sourceTree = "<group>"; };
+		C442C4E41946E5BD00C8449F /* TDBadgedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBadgedCell.h; sourceTree = "<group>"; };
+		C442C4E51946E5BD00C8449F /* TDBadgedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBadgedCell.m; sourceTree = "<group>"; };
 		C4CA69AF1911276C005B272C /* RTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLabel.h; sourceTree = "<group>"; };
 		C4CA69B01911276C005B272C /* RTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLabel.m; sourceTree = "<group>"; };
 		C4CA69B219112894005B272C /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -1190,6 +1193,8 @@
 		91A9007116E858A400ECF2CF /* common */ = {
 			isa = PBXGroup;
 			children = (
+				C442C4E41946E5BD00C8449F /* TDBadgedCell.h */,
+				C442C4E51946E5BD00C8449F /* TDBadgedCell.m */,
 				1D8A3B091905051200816CCD /* EGOTableViewPullRefresh */,
 				1D8A3B1C1905051200816CCD /* NTOUNotification.h */,
 				1D8A3B1D1905051200816CCD /* NTOUNotification.m */,
@@ -1917,6 +1922,7 @@
 				912A542516E9A22300BBC013 /* AboutModule.m in Sources */,
 				912A542616E9A22300BBC013 /* AboutTableViewController.m in Sources */,
 				912A542916E9A26F00BBC013 /* AboutNTOUVC.m in Sources */,
+				C442C4E61946E5BD00C8449F /* TDBadgedCell.m in Sources */,
 				91756E4816E9B5EB001D724D /* CMModule.m in Sources */,
 				91756F3C16F206F7001D724D /* CGPDFDocument.m in Sources */,
 				43BEDC0F19236D570091B024 /* NTRouteDetailViewController.m in Sources */,

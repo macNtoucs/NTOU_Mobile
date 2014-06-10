@@ -31,6 +31,8 @@
 
 + (NSMutableDictionary *) getNotifications;
 + (void)storeNotifications:(NSMutableDictionary *) notifications;
+
++ (void) deleteUnreadNotificationAndModifyBadge:(NSMutableDictionary *)notifications modules:(NSString *)tag;
 + (NSString *) getEmergencyNotificationAndDelete;
 + (void) setBadgeValue:(NSString *)badge forModule:(NSString *) module;
 + (void) updateUI:(Notification *) notification;

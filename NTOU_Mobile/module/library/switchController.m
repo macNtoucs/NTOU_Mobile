@@ -70,6 +70,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self ChangeDisplayView];
 }
 
 - (void)viewDidLoad
@@ -91,11 +92,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)reloadHistoryTableViewController:(UIViewController *)viewController
+{
+    if ([viewController isKindOfClass:[HistoryTableViewController class]]) {
+        HistoryTableViewController *controller = (HistoryTableViewController *)viewController;
+        [controller.tableView reloadData];
+    }
+}
+
 - (void)tabBarController:(UITabBarController *)tabBarController
  didSelectViewController:(UIViewController *)viewController
 {
     
-    [self setView];
+    //[self setView];
+    [self reloadHistoryTableViewController:viewController];
 }
 
 -(void)ChangeDisplayView
@@ -106,8 +116,9 @@
         tbi.badgeValue = [NSString stringWithFormat:@"%d",[notifs count]];
     else
         tbi.badgeValue = nil;
-    
+    [self reloadHistoryTableViewController:[[self viewControllers] objectAtIndex:1]];
 }
+
 
 
 @end

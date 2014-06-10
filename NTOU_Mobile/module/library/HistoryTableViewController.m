@@ -12,7 +12,8 @@
 #import "LoginOutResultViewController.h"
 #import "UIKit+NTOUAdditions.h"
 #import "MBProgressHUD.h"
-
+#import "TDBadgedCell.h"
+#import "NTOUNotification.h"
 @interface HistoryTableViewController ()
 @property (strong, nonatomic) LoginResultViewController *history;
 @property (strong, nonatomic) LoginResResultViewController *resHistory;
@@ -63,10 +64,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    TDBadgedCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
     {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
@@ -79,6 +80,18 @@
             break;
         case 2:
             cell.textLabel.text = @"借出記錄";
+            cell.textLabel.font = [UIFont systemFontOfSize:17];
+            NSArray *notifs = [[NTOUNotificationHandle getNotifications] objectForKey:LibrariesTag];
+            if ([notifs count] > 0) {
+                cell.badgeString = [NSString stringWithFormat:@"%d",[notifs count]];
+                cell.badgeColor = [UIColor colorWithRed:0.792 green:0.197 blue:0.219 alpha:1.000];
+            }
+            else
+            {
+                cell.badgeString = nil;
+                cell.badgeColor = [UIColor clearColor];
+            }
+
             break;
         default:
             break;

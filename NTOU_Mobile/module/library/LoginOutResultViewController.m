@@ -11,7 +11,7 @@
 #import "WOLSwitchViewController.h"
 #import "MBProgressHUD.h"
 #import "SettingsModuleViewController.h"
-
+#import "NTOUNotification.h"
 
 @interface LoginOutResultViewController ()
 @property (nonatomic, strong) NSMutableArray *selectindexs;
@@ -147,7 +147,11 @@
                                                              error:nil];
     NSString* checkLogin = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
     if ([checkLogin rangeOfString:@"Login failed"].location == NSNotFound)
+    {
         loginSuccess=true;
+        
+        [NTOUNotificationHandle deleteUnreadNotificationAndModifyBadge:[NTOUNotificationHandle getNotifications] modules:LibrariesTag];
+    }
     else loginSuccess=false;
     maindata=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
     [maindata retain];
