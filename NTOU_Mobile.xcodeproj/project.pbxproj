@@ -67,6 +67,7 @@
 		43BEDC1F19236E530091B024 /* NTOUShuttleButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDC1E19236E530091B024 /* NTOUShuttleButtonViewController.m */; };
 		43BEDC2319236E990091B024 /* NTOUBusTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDC2119236E990091B024 /* NTOUBusTableViewController.m */; };
 		43BEDC2519236EF10091B024 /* ntou_mobile3.db in Resources */ = {isa = PBXBuildFile; fileRef = 43BEDC2419236EF10091B024 /* ntou_mobile3.db */; };
+		43BF84B21948598C00B5B83F /* frequencyBusStation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43BF84B11948598C00B5B83F /* frequencyBusStation.plist */; };
 		912A53EF16E99F7900BBC013 /* NTOUGuide2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */; };
 		912A53F016E99F7900BBC013 /* NTOUGuideSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EC16E99F7900BBC013 /* NTOUGuideSetViewController.m */; };
 		912A53F116E99F7900BBC013 /* NTOUGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EE16E99F7900BBC013 /* NTOUGuideViewController.m */; };
@@ -427,6 +428,7 @@
 		43BEDC2119236E990091B024 /* NTOUBusTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUBusTableViewController.m; sourceTree = "<group>"; };
 		43BEDC2219236E990091B024 /* ShuttleConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuttleConstants.h; sourceTree = "<group>"; };
 		43BEDC2419236EF10091B024 /* ntou_mobile3.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ntou_mobile3.db; sourceTree = "<group>"; };
+		43BF84B11948598C00B5B83F /* frequencyBusStation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = frequencyBusStation.plist; sourceTree = "<group>"; };
 		912A53E916E99F7900BBC013 /* NTOUGuide2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuide2ViewController.h; sourceTree = "<group>"; };
 		912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuide2ViewController.m; sourceTree = "<group>"; };
 		912A53EB16E99F7900BBC013 /* NTOUGuideSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuideSetViewController.h; sourceTree = "<group>"; };
@@ -958,6 +960,7 @@
 				43BEDC0A19236D570091B024 /* TPRouteDetailViewController.m */,
 				43BEDC0B19236D570091B024 /* TPRouteGoBackViewController.h */,
 				43BEDC0C19236D570091B024 /* TPRouteGoBackViewController.m */,
+				43BF84B11948598C00B5B83F /* frequencyBusStation.plist */,
 			);
 			path = Bus;
 			sourceTree = "<group>";
@@ -1693,6 +1696,7 @@
 				91A9045A16E899D200ECF2CF /* magnify.png in Resources */,
 				1D8A3B241905051200816CCD /* blueArrow.png in Resources */,
 				91A9045B16E899D200ECF2CF /* speed_train.png in Resources */,
+				43BF84B21948598C00B5B83F /* frequencyBusStation.plist in Resources */,
 				1D8A3B281905051200816CCD /* whiteArrow.png in Resources */,
 				91A9045C16E899D200ECF2CF /* TimeDrive.png in Resources */,
 				1D8A3B291905051300816CCD /* whiteArrow@2x.png in Resources */,

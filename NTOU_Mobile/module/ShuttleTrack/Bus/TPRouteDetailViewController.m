@@ -23,6 +23,7 @@
 @synthesize refreshTimer;
 @synthesize preArray;
 @synthesize activityIndicator, loadingView;
+@synthesize secondsLabel;
 
 - (void) setter_busName:(NSString *)name andGoBack:(NSInteger)goback
 {
@@ -159,21 +160,25 @@
         
         bool updateTimeOnButton = YES;
         
-		if (sinceRefresh <= -kRefreshInterval)
+		/*if (sinceRefresh <= -kRefreshInterval)
 		{
             [self refreshPropertyList];
-			self.anotherButton.title = @"Refreshing";
-		}
+			//self.anotherButton.title = @"Refreshing";
+		}*/
         
-        else if (updateTimeOnButton)
+        if (updateTimeOnButton)
         {
-            int secs = (1+kRefreshInterval+sinceRefresh);
-            if (secs < 0) secs = 0;
-            self.anotherButton.title = [NSString stringWithFormat:@"Refresh in %d", secs];
-            
+            //NSLog(@"sinceRefresh=%f", sinceRefresh);
+            int secs = (1-sinceRefresh);
+            /*if (secs % 5 == 0)
+            {
+                secondsLabel.text = [NSString stringWithFormat:@"距離上次更新%d秒", secs];
+            }*/
+            secondsLabel.text = [NSString stringWithFormat:@"距離上次更新%d秒", secs];
+            //self.anotherButton.title = [NSString stringWithFormat:@"Refresh in %d", secs];
+            //NSLog(@"secs=%d", secs);
         }
 	}
-    
 }
 
 - (void)changeDetailView
@@ -182,15 +187,15 @@
     [self.loadingView show];
     if ([goBack isEqualToString:@"0"])
     {
-        anotherButton.title = destination;
-        self.navigationItem.title = [NSString stringWithFormat:@"往 %@", depature];
+        //anotherButton.title = destination;
+        self.navigationItem.title = [NSString stringWithFormat:@"%@ → %@", destination, depature];
         [self setter_busName:busName andGoBack:1];
         [self CatchData];
     }
     else
     {
-        anotherButton.title = depature;
-        self.navigationItem.title = [NSString stringWithFormat:@"往 %@", destination];
+        //anotherButton.title = depature;
+        self.navigationItem.title = [NSString stringWithFormat:@"%@ → %@", depature, destination];
         [self setter_busName:busName andGoBack:0];
         [self CatchData];
     }
@@ -205,18 +210,18 @@
     [super viewDidLoad];
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
         self.edgesForExtendedLayout = UIRectEdgeNone;
-    /*preArray = [[NSArray alloc] initWithObjects:@"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", @"讀取中請稍等", nil];*/
-    
+    [self startTimer];
     preArray = [[NSArray alloc] initWithObjects:nil];
-
-    //CGRect screenBound = [[UIScreen mainScreen] bounds];
-    //CGSize screenSize = screenBound.size;
+    self.title = [NSString stringWithFormat:@"%@ → %@", depature, destination];
+    secondsLabel = [[UILabel alloc] initWithFrame:CGRectMake(320/2-200/2, 4, 200, 30)];
+    secondsLabel.backgroundColor = [UIColor clearColor];
+    secondsLabel.textColor = [UIColor grayColor];
+    secondsLabel.text = @"距離上次更新0秒";
+    secondsLabel.font = [UIFont systemFontOfSize:15.0];
+    secondsLabel.textAlignment = NSTextAlignmentCenter;
+    
     loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
     loadingView.frame = CGRectMake(0, 0, 200, 200);
-    /*loadingView = [[UIAlertView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-    loadingView.delegate = self;
-    loadingView.message = @"下載資料中\n請稍候\n";*/
-    //loadingView.cancelButtonIndex = 0;
     
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
@@ -227,6 +232,7 @@
     else
         activityIndicator.frame = CGRectMake(115.0, 80.0, 50.0, 50.0);
     
+    [self.tableView addSubview:self.secondsLabel];
     [self.loadingView addSubview:self.activityIndicator];
     [self.tableView addSubview:self.loadingView];
     [activityIndicator startAnimating];
@@ -237,7 +243,7 @@
     m_waitTimeResult = [NSMutableArray new];
     stops = [NSMutableArray new];
     
-    anotherButton = [[UIBarButtonItem alloc] initWithTitle:depature style:UIBarButtonItemStylePlain target:self action:@selector(changeDetailView)];
+    anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"往返" style:UIBarButtonItemStylePlain target:self action:@selector(changeDetailView)];
     self.navigationItem.rightBarButtonItem = anotherButton;
     
     // 手動下拉更新
@@ -316,8 +322,8 @@
     
     cellText = @"A"; // just something to guarantee one line
     CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
-    rowHeight = labelSize.height + 20.0f;
-    
+    //rowHeight = labelSize.height + 20.0f;
+    rowHeight = labelSize.height + 25.0f;
     return rowHeight;
 }
 

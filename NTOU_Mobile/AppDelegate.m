@@ -95,6 +95,7 @@ modules;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *filePath = [documentsDirectory stringByAppendingString:@"/stationNumber.plist"];
+    NSLog(@"filePath = %@", filePath);
     BOOL success;
     success = [fileManager fileExistsAtPath:filePath];
     if (success) return YES;

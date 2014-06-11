@@ -26,10 +26,6 @@
     UITableView * tableview;
     BOOL havingTableView;
     NSMutableString * partBusName;
-    NSArray * compBusName;
-    NSMutableArray * compDeparName;
-    NSMutableArray * compDestiName;
-    NSMutableArray * cityName;
     CGFloat screenWidth;
     CGFloat screenHeight;
     UIColor *buttonTintColor;
@@ -43,27 +39,23 @@
     NSMutableArray *desArrayTaipeiBus;
     NSMutableArray *desArrayNewTaipeiBus;
     NSMutableArray *desArrayKeelungBus;
-    NSMutableArray *urlArrayKeelungBus;
-    //
-    BOOL success;
+    
+    UILabel *partBusNameLabel;
+    UIActivityIndicatorView *activityIndicator;
+    
+    //plist
     NSError *error;
     NSFileManager *fm;
     NSArray *paths;
     NSString *documentsDirecotry;
-    NSString *writableDBPath;
-    
-    UILabel *partBusNameLabel;
-    UIActivityIndicatorView *activityIndicator;
+    NSString *path;
+    int frequency;
 }
 @property (nonatomic, retain) UIView * buttonFirstView;
 @property (nonatomic, retain) UIView * buttonSecondView;
 @property (nonatomic, retain) UITableView * tableview;
 @property (nonatomic, assign) BOOL havingTableView;
 @property (nonatomic, retain) NSMutableString * partBusName;
-@property (nonatomic, retain) NSArray * compBusName;
-@property (nonatomic, retain) NSMutableArray * compDeparName;
-@property (nonatomic, retain) NSMutableArray * compDestiName;
-@property (nonatomic, retain) NSMutableArray * cityName;
 @property (nonatomic, assign) CGFloat screenWidth;
 @property (nonatomic, assign) CGFloat screenHeight;
 @property (nonatomic, retain) UIColor *buttonTintColor;
@@ -76,7 +68,12 @@
 @property (nonatomic, retain) NSMutableArray *desArrayTaipeiBus;
 @property (nonatomic, retain) NSMutableArray *desArrayNewTaipeiBus;
 @property (nonatomic, retain) NSMutableArray *desArrayKeelungBus;
-@property (nonatomic, retain) NSMutableArray * urlArrayKeelungBus;
 @property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) UILabel *partBusNameLabel;
+@property (nonatomic, retain) NSError *error;
+@property (nonatomic, retain) NSFileManager *fm;
+@property (nonatomic, retain) NSArray *paths;
+@property (nonatomic, retain) NSString *documentsDirecotry;
+@property (nonatomic, retain) NSString *path;
+@property (nonatomic, assign) int frequency;
 @end
