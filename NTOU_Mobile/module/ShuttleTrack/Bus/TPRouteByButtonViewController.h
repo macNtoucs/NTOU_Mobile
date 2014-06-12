@@ -44,12 +44,9 @@
     UIActivityIndicatorView *activityIndicator;
     
     //plist
-    NSError *error;
-    NSFileManager *fm;
-    NSArray *paths;
-    NSString *documentsDirecotry;
     NSString *path;
     int frequency;
+    NSMutableDictionary * dict;
 }
 @property (nonatomic, retain) UIView * buttonFirstView;
 @property (nonatomic, retain) UIView * buttonSecondView;
@@ -70,10 +67,7 @@
 @property (nonatomic, retain) NSMutableArray *desArrayKeelungBus;
 @property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) UILabel *partBusNameLabel;
-@property (nonatomic, retain) NSError *error;
-@property (nonatomic, retain) NSFileManager *fm;
-@property (nonatomic, retain) NSArray *paths;
-@property (nonatomic, retain) NSString *documentsDirecotry;
 @property (nonatomic, retain) NSString *path;
 @property (nonatomic, assign) int frequency;
+@property (nonatomic, retain) NSMutableDictionary * dict;
 @end

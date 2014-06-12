@@ -26,7 +26,7 @@
 @synthesize depArrayTaipeiBus, depArrayNewTaipeiBus, depArrayKeelungBus;
 @synthesize desArrayTaipeiBus, desArrayNewTaipeiBus, desArrayKeelungBus;
 @synthesize activityIndicator, partBusNameLabel;
-@synthesize error, fm, paths, documentsDirecotry, path, frequency;
+@synthesize path, frequency, dict;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -63,9 +63,9 @@
     [self.navigationController.view addSubview:partBusNameLabel];
     //NSLog(@"navView=%@", self.navigationController.view);
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Default.png"]];
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.title = @"公車";
-    havingTableView = NO;
+    havingTableView = YES;
     partBusName = [[NSMutableString alloc] init];
     arrayTaipeiBus = [[NSMutableArray alloc] init];
     arrayNewTaipeiBus = [[NSMutableArray alloc] init];
@@ -76,15 +76,15 @@
     desArrayTaipeiBus = [[NSMutableArray alloc] init];
     desArrayNewTaipeiBus = [[NSMutableArray alloc] init];
     desArrayKeelungBus = [[NSMutableArray alloc] init];
-    [self showFirstLayerButtons];
     
     /* create plist */
-    fm = [NSFileManager defaultManager];
+    NSError *error;
+    NSFileManager *fm = [NSFileManager defaultManager];
     //getting the path to document directory for the file
-    paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    documentsDirecotry = [paths objectAtIndex:0];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirecotry = [paths objectAtIndex:0];
     path = [documentsDirecotry stringByAppendingString:@"/frequencyBusStation.plist"];
-    NSLog(@"path = %@", path);
+    [path retain];
     
     //checking to see of the file already exist
     if(![fm fileExistsAtPath:path])
@@ -96,17 +96,38 @@
     }
     
     //read data with plist
-    NSMutableDictionary * data = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
     
-    if([data count] != 0)
+    if([dict count] != 0)
     {
-        NSLog(@"data has data");
-    }
-    else
-    {
-        NSLog(@"data no data");
-        frequency = 0;
-    }
+        NSArray *keys = [dict allKeys];
+        for(NSString * route in keys)
+        {
+            NSMutableDictionary * info = [dict objectForKey:route];
+            if([[info objectForKey:@"city"] isEqualToString:@"T"])
+            {
+                [arrayTaipeiBus addObject:route];
+                [depArrayTaipeiBus addObject:[info objectForKey:@"departure"]];
+                [desArrayTaipeiBus addObject:[info objectForKey:@"destination"]];
+            }
+            else if([[info objectForKey:@"city"] isEqualToString:@"N"])
+            {
+                [arrayNewTaipeiBus addObject:route];
+                [depArrayNewTaipeiBus addObject:[info objectForKey:@"departure"]];
+                [desArrayNewTaipeiBus addObject:[info objectForKey:@"destination"]];
+            }
+            else
+            {
+                [arrayKeelungBus addObject:route];
+                [depArrayKeelungBus addObject:[info objectForKey:@"departure"]];
+                [desArrayKeelungBus addObject:[info objectForKey:@"destination"]];
+            }
+            frequency = [[info objectForKey:@"frequency"] intValue];
+        } //end for: all keys of dict
+    } //end if: dict has data
+    
+    [self showFirstLayerButtons];
+    [self createTableView];
 }
 
 - (void)viewDidUnload
@@ -118,7 +139,7 @@
 - (void)showFirstLayerButtons
 {
     buttonFirstView = [[[UIView alloc] initWithFrame:CGRectMake(0, 480, 320, 250)] retain];
-    [buttonFirstView setBackgroundColor:[UIColor lightTextColor]];
+    [buttonFirstView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
     buttonTintColor = [UIColor blackColor];
     
@@ -149,8 +170,6 @@
     [buttonRed setTag:11];
     buttonRed.frame = CGRectMake(68, 5, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonRed addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
-    
-    
     
     UIButton * buttonBlue= [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [buttonBlue setTitle:@"藍" forState:UIControlStateNormal];
@@ -362,7 +381,7 @@
                      completion:nil];
 }
 
-- (void)createTableView:(int)tag
+- (void)createTableView
 {
     NSLog(@"CreateTableView");
     havingTableView = YES;
@@ -497,7 +516,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
             [rs close];
         }
         // end sqlite3
-    }
+    } //end else: 按下按鈕（除了其他）
     [db close];
     NSLog(@"showTableViewContent");
     //NSLog(@"partBusName = %@", partBusName);
@@ -515,87 +534,87 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     {
         case 0:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName appendString:@"0"];
             NSLog(@"partBusName=%@", partBusName);
             [self showTableViewContent];
             break;
         case 1:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName appendString:@"1"];
             [self showTableViewContent];
             break;
         case 2:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName appendString:@"2"];
             [self showTableViewContent];
             break;
         case 3:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName appendString:@"3"];
             [self showTableViewContent];
             break;
         case 4:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName appendString:@"4"];
             [self showTableViewContent];
             break;
         case 5:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName appendString:@"5"];
             [self showTableViewContent];
             break;
         case 6:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName appendString:@"6"];
             [self showTableViewContent];
             break;
         case 7:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName appendString:@"7"];
             [self showTableViewContent];
             break;
         case 8:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName appendString:@"8"];
             [self showTableViewContent];
             break;
         case 9:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName appendString:@"9"];
             [self showTableViewContent];
             break;
         case 11:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"紅"];
             [self showTableViewContent];
             break;
         case 12:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"綠"];
             [self showTableViewContent];
             break;
         case 13:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"橘"];
             [self showTableViewContent];
             break;
-        case 14:
+        case 14: //更多
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [buttonFirstView removeFromSuperview];
             [buttonFirstView release];
@@ -603,68 +622,75 @@ int finderSortWithLocale(id string1, id string2, void *locale)
             break;
         case 21:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"藍"];
             [self showTableViewContent];
             break;
         case 22:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"棕"];
             [self showTableViewContent];
             break;
         case 23:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"小"];
             [self showTableViewContent];
             break;
         case 24:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"F"];
             [self showTableViewContent];
             break;
-        case 34:
-            self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Default.png"]];
-            if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+        case 34: //重設
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DefaultAlpha.png"]];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             havingTableView = NO;
             [tableview removeFromSuperview];
             break;
         case 35:    // Delete
-            if (havingTableView == NO)
-                [self createTableView:[sender tag]];
-            [partBusName deleteCharactersInRange:NSMakeRange([partBusName length]-1, 1)];
-            [self showTableViewContent];
+            if ([partBusName length] > 1)
+            {
+                [partBusName deleteCharactersInRange:NSMakeRange([partBusName length]-1, 1)];
+                [self showTableViewContent];
+            }
+            else
+            {
+                if ([partBusName length] > 0)
+                    [partBusName deleteCharactersInRange:NSMakeRange([partBusName length]-1, 1)];
+                self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DefaultAlpha.png"]];
+                havingTableView = NO;
+                [tableview removeFromSuperview];
+            }
             break;
         case 211:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"新北"];
             [self showTableViewContent];
             break;
         case 212:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"市民"];
             [self showTableViewContent];
             break;
         case 213:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"接駁"];
             [self showTableViewContent];
             break;
-        case 214:
+        case 214: //返回
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [buttonSecondView removeFromSuperview];
             [buttonSecondView release];
@@ -672,42 +698,42 @@ int finderSortWithLocale(id string1, id string2, void *locale)
             break;
         case 221:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"內科"];
             [self showTableViewContent];
             break;
         case 222:   // 尚未完成
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"其他"];
             [self showTableViewContent];
             break;
         case 223:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"幹線"];
             [self showTableViewContent];
             break;
         case 231:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"南軟"];
             [self showTableViewContent];
             break;
         case 232:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"花季"];
             [self showTableViewContent];
             break;
         case 233:
             if (havingTableView == NO)
-                [self createTableView:[sender tag]];
+                [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"其他"];
             [self showTableViewContent];
@@ -821,10 +847,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     NSString * selectedBusName = [[NSString alloc] init];
     partBusNameLabel.text = @"";
     
-    /* write to plist */
-    NSString *path2 = [documentsDirecotry stringByAppendingString:@"/frequencyBusStation.plist"];
-    
-    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:path2];
+    NSMutableDictionary * data = [NSMutableDictionary new];
     
     if (indexPath.section == 0)
     {
@@ -833,12 +856,12 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         secondLevel.title = [NSString stringWithFormat:@""];
         [secondLevel setter_busName:selectedBusName andGoBack:0];
         [secondLevel setter_departure:[depArrayTaipeiBus objectAtIndex:indexPath.row] andDestination:[desArrayTaipeiBus objectAtIndex:indexPath.row]];
-        [data setObject:selectedBusName forKey:@"route"];
         [data setObject:[depArrayTaipeiBus objectAtIndex:indexPath.row] forKey:@"departure"];
         [data setObject:[desArrayTaipeiBus objectAtIndex:indexPath.row] forKey:@"destination"];
         [data setObject:@"T" forKey:@"city"];
         [data setObject:[NSNumber numberWithInt:frequency+1] forKey:@"frequency"];
-        [data writeToFile: path2 atomically:YES];
+        [dict setObject:data forKey:selectedBusName];
+        [dict writeToFile: path atomically:YES];
         [data release];
         [self.navigationController pushViewController:secondLevel animated:YES];
         [secondLevel release];
@@ -850,6 +873,13 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         secondLevel.title = [NSString stringWithFormat:@"往 %@", [desArrayNewTaipeiBus objectAtIndex:indexPath.row]];
         [secondLevel setter_busName:selectedBusName andGoBack:0];
         [secondLevel setter_departure:[depArrayNewTaipeiBus objectAtIndex:indexPath.row] andDestination:[desArrayNewTaipeiBus objectAtIndex:indexPath.row]];
+        [data setObject:[depArrayNewTaipeiBus objectAtIndex:indexPath.row] forKey:@"departure"];
+        [data setObject:[desArrayNewTaipeiBus objectAtIndex:indexPath.row] forKey:@"destination"];
+        [data setObject:@"N" forKey:@"city"];
+        [data setObject:[NSNumber numberWithInt:frequency+1] forKey:@"frequency"];
+        [dict setObject:data forKey:selectedBusName];
+        [dict writeToFile: path atomically:YES];
+        [data release];
         [self.navigationController pushViewController:secondLevel animated:YES];
         [secondLevel release];
     }
@@ -861,6 +891,13 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         secondLevel.title = [NSString stringWithFormat:@"%@ - %@", [depArrayKeelungBus objectAtIndex:indexPath.row], [desArrayKeelungBus objectAtIndex:indexPath.row]];
         [secondLevel setter_busName:selectedBusName andGoBack:0];
         [secondLevel setter_departure:[depArrayKeelungBus objectAtIndex:indexPath.row] andDestination:[desArrayKeelungBus objectAtIndex:indexPath.row]];
+        [data setObject:[depArrayKeelungBus objectAtIndex:indexPath.row] forKey:@"departure"];
+        [data setObject:[desArrayKeelungBus objectAtIndex:indexPath.row] forKey:@"destination"];
+        [data setObject:@"K" forKey:@"city"];
+        [data setObject:[NSNumber numberWithInt:frequency+1] forKey:@"frequency"];
+        [dict setObject:data forKey:selectedBusName];
+        [dict writeToFile: path atomically:YES];
+        [data release];
         [self.navigationController pushViewController:secondLevel animated:YES];
         [secondLevel release];
     }
