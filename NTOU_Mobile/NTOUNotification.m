@@ -61,12 +61,17 @@
 {
     NSMutableDictionary *notifications = [self getNotifications];
     int count = 0;
-    for ( id notifi in [notifications allValues]) {
+    for ( id notifi in [notifications allValues]) { //緊急聯絡推播數目
         if ([notifi isKindOfClass:[NSString class]])
             count++;
-        else if ([notifi isKindOfClass:[NSArray class]])
+        else if ([notifi isKindOfClass:[NSNumber class]]) //圖書館推播數目
         {
-            count += [notifi count];
+            count += [notifi intValue];
+        }
+        else if ([notifi isKindOfClass:[NSDictionary class]])  //功課表推播數目
+        {
+            for (NSNumber* courseNumber in [notifi allValues])
+                count += [courseNumber intValue];
         }
     }
     [UIApplication sharedApplication].applicationIconBadgeNumber = count;
@@ -109,14 +114,21 @@
 {
     NTOU_MobileAppDelegate *appDelegate = (NTOU_MobileAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableDictionary *notifications = [self getNotifications];
-    NSMutableArray* unReadNotification = nil;
+    id unReadNotification = nil;
     for (SpringboardIcon *aButton in [appDelegate.springboardController.grid icons])
     {
         unReadNotification = [notifications objectForKey:aButton.moduleTag];
-        if (unReadNotification && [unReadNotification isKindOfClass:[NSString class]])
+        if (unReadNotification && [unReadNotification isKindOfClass:[NSString class]]) //緊急聯絡推播數目
             [aButton setBadgeValue:@"1"];
-        else if (unReadNotification)
-            [aButton setBadgeValue:[NSString stringWithFormat:@"%lu",(unsigned long)[unReadNotification count]]];
+        else if (unReadNotification && [unReadNotification isKindOfClass:[NSNumber class]])  //圖書館推播數目
+            [aButton setBadgeValue:[NSString stringWithFormat:@"%d",[unReadNotification intValue]]];
+        else if (unReadNotification && [unReadNotification isKindOfClass:[NSDictionary class]])   //功課表推播數目
+        {
+            int count = 0;
+            for (NSNumber* courseNumber in [unReadNotification allValues])
+                count += [courseNumber intValue];
+            [aButton setBadgeValue:[NSString stringWithFormat:@"%d",count]];
+        }
         else
             [aButton setBadgeValue:nil];
     }
@@ -128,26 +140,42 @@
     NSLog(@"%@,%@",notification.moduleName,notification.content);
     NSMutableDictionary *notifications = [self getNotifications];
     
-    NSMutableArray* unReadNotification = nil;
+    id unReadNotification = nil;
     if ([notification.moduleName isEqualToString:EmergencyTag]){  //緊急聯絡
         [notifications setValue:[notification string] forKey:notification.moduleName];
         [self setBadgeValue:@"1" forModule:EmergencyTag];
     }
-    else
+    else if([notification.moduleName isEqualToString:LibrariesTag]) //圖書館
     {
-        if([notification.moduleName isEqualToString:StellarTag])  //功課表
-        {
-            ClassDataBase* dataBase = [ClassDataBase sharedData];
-            if (![dataBase searchCourseIDFormCourseName:notification.content]) //若通知不存在抓取下來的功課表，則不放入未讀推播
-                return;
+        unReadNotification = [[notifications objectForKey:notification.moduleName] retain];
+        if (!unReadNotification) unReadNotification = [[NSNumber alloc] initWithInt:0];
+        unReadNotification = [NSNumber numberWithInt:[unReadNotification intValue]+1];
+        [notifications setObject:unReadNotification forKey:notification.moduleName];
+        [self setBadgeValue:[NSString stringWithFormat:@"%d",[unReadNotification intValue]] forModule:notification.moduleName];
+    }
+    else if([notification.moduleName isEqualToString:StellarTag])   //功課表
+    {
+        NSMutableDictionary* dataBase = [ClassDataBase sharedData].courseTempID;
+        if ([[dataBase allValues] indexOfObject:notification.content] == NSNotFound) //若通知不存在抓取下來的功課表，則不放入未讀推播
+            return;
+        
+        unReadNotification = [NSMutableDictionary dictionaryWithDictionary:[notifications objectForKey:notification.moduleName]];
+        if (!unReadNotification) unReadNotification = [[NSMutableDictionary alloc] init];  //手機端不存在功課表
+        
+        NSNumber *number = [[unReadNotification objectForKey:notification.content] retain];
+        if (!number) number = [[NSNumber alloc] initWithInt:0];   //手機端不存在這個課程
+        number = [NSNumber numberWithInt:[number intValue]+1];
+        [unReadNotification setObject:number forKey:notification.content];
+        [notifications setObject:unReadNotification forKey:notification.moduleName];
+        int count = 0;
+        for (NSNumber* number in [unReadNotification allValues]) {
+            count += [number intValue];
         }
         
-        unReadNotification = [NSMutableArray arrayWithArray:[notifications objectForKey:notification.moduleName]];
-        if (!unReadNotification) unReadNotification = [[NSMutableArray alloc] init];
-        [unReadNotification addObject:[notification string]];
-        [notifications setObject:unReadNotification forKey:notification.moduleName];
-        [self setBadgeValue:[NSString stringWithFormat:@"%lu",(unsigned long)[unReadNotification count]] forModule:notification.moduleName];
+        [self setBadgeValue:[NSString stringWithFormat:@"%d",count] forModule:notification.moduleName];
+
     }
+    
     [self storeNotifications:notifications];
     [self modifyBadge];
     

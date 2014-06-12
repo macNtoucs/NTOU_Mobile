@@ -81,9 +81,9 @@
         case 2:
             cell.textLabel.text = @"借出記錄";
             cell.textLabel.font = [UIFont systemFontOfSize:17];
-            NSArray *notifs = [[NTOUNotificationHandle getNotifications] objectForKey:LibrariesTag];
-            if ([notifs count] > 0) {
-                cell.badgeString = [NSString stringWithFormat:@"%d",[notifs count]];
+            NSNumber *notifs = [[NTOUNotificationHandle getNotifications] objectForKey:LibrariesTag];
+            if ([notifs intValue] > 0) {
+                cell.badgeString = [NSString stringWithFormat:@"%d",[notifs intValue]];
                 cell.badgeColor = [UIColor colorWithRed:0.792 green:0.197 blue:0.219 alpha:1.000];
             }
             else

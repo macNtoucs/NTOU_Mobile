@@ -56,14 +56,11 @@
         
         //將未讀課程的推播通知刪除
         NSMutableDictionary* notif = [NTOUNotificationHandle getNotifications];
-        NSMutableArray* unReadNotifs = [NSMutableArray arrayWithArray:[notif objectForKey:StellarTag]];
-        NSArray* unReadNotifsTemp = [NSArray arrayWithArray:unReadNotifs];
-        for (NSString* unReadNotif in unReadNotifsTemp) {   //尋找label有多少未讀推播
-            if ([unReadNotif rangeOfString:[[ClassDataBase sharedData] searchCourseIDFormCourseName:label.text]].location != NSNotFound) {    //比對課程id
-                [unReadNotifs removeObject:unReadNotif];
-                
-            }
-        }
+        NSMutableDictionary* unReadNotifs = [NSMutableDictionary dictionaryWithDictionary:[notif objectForKey:StellarTag]];
+        
+        NSString *courseName = [[ClassDataBase sharedData] searchCourseIDFormCourseName:label.text];
+        [unReadNotifs removeObjectForKey:courseName];
+        
         if ([unReadNotifs count])
             [notif setObject:unReadNotifs forKey:StellarTag];
         else

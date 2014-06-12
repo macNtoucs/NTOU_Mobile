@@ -129,33 +129,55 @@ int isSuccess=0;
 }
 
 -(void)fetchresHistory{
-     dispatch_barrier_async(dispatch_get_main_queue(), ^{
-         NSString *account = [SettingsModuleViewController getLibraryAccount];
-         NSString *pwd = [SettingsModuleViewController getLibraryPassword];
-         NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@",account,pwd];
-         NSHTTPURLResponse *urlResponse = nil;
-         NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
-         NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/getCurrentHolds.do"];
-         [request setURL:[NSURL URLWithString:queryURL]];
-         [request setHTTPMethod:@"POST"];
-         [request setHTTPBody:[historyPost dataUsingEncoding:NSUTF8StringEncoding]];
-         NSData *responseData = [NSURLConnection sendSynchronousRequest:request
-                                                 returningResponse:&urlResponse
-                                                             error:nil];
-         NSString* checkLogin = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-         if ([checkLogin rangeOfString:@"Login failed"].location == NSNotFound)
-             loginSuccess=true;
-         else loginSuccess=false;
-         NSArray * reponseDataArray = [NSArray new];
-         reponseDataArray= [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
-         maindata = [NSMutableArray arrayWithArray:reponseDataArray];
-         [maindata retain];
+    dispatch_barrier_async(dispatch_get_main_queue(), ^{
+        @try {
+            NSString *account = [SettingsModuleViewController getLibraryAccount];
+            NSString *pwd = [SettingsModuleViewController getLibraryPassword];
+            NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@",account,pwd];
+            NSHTTPURLResponse *urlResponse = nil;
+            NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
+            NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/getCurrentHolds.do"];
+            [request setURL:[NSURL URLWithString:queryURL]];
+            [request setHTTPMethod:@"POST"];
+            [request setHTTPBody:[historyPost dataUsingEncoding:NSUTF8StringEncoding]];
+            NSData *responseData = [NSURLConnection sendSynchronousRequest:request
+                                                         returningResponse:&urlResponse
+                                                                     error:nil];
+            NSString* checkLogin = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+            if ([checkLogin rangeOfString:@"Login failed"].location == NSNotFound)
+                loginSuccess=true;
+            else loginSuccess=false;
+            NSArray * reponseDataArray = [NSArray new];
+            reponseDataArray= [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+            maindata = [NSMutableArray arrayWithArray:reponseDataArray];
+            [maindata retain];
+        }
+        @catch (NSException *exception) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
+                //[self.navigationController popViewControllerAnimated:YES];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"無網路連接"
+                                                                    message:nil
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                [alertView show];
+                [alertView release];
             });
-  
-        dispatch_barrier_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
+            
+        }
+        @finally {
+            
+        }
+        
+        
+    });
+    
+    dispatch_barrier_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 
+    
 }
 - (void)allselect
 {

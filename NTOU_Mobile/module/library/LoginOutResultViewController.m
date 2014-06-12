@@ -132,29 +132,48 @@
 
 -(void)fetchout:(NSData*)bookdata
 {
-    
-    NSString *account = [SettingsModuleViewController getLibraryAccount];
-    NSString *pwd = [SettingsModuleViewController getLibraryPassword];
-    NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@",account,pwd];
-    NSHTTPURLResponse *urlResponse = nil;
-    NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
-    NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/getCurrentBorrowedBooks.do"];
-    [request setURL:[NSURL URLWithString:queryURL]];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[historyPost dataUsingEncoding:NSUTF8StringEncoding]];
-    NSData *responseData = [NSURLConnection sendSynchronousRequest:request
-                                                 returningResponse:&urlResponse
-                                                             error:nil];
-    NSString* checkLogin = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-    if ([checkLogin rangeOfString:@"Login failed"].location == NSNotFound)
-    {
-        loginSuccess=true;
-        
-        [NTOUNotificationHandle deleteUnreadNotificationAndModifyBadge:[NTOUNotificationHandle getNotifications] modules:LibrariesTag];
+    @try {
+        NSString *account = [SettingsModuleViewController getLibraryAccount];
+        NSString *pwd = [SettingsModuleViewController getLibraryPassword];
+        NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@",account,pwd];
+        NSHTTPURLResponse *urlResponse = nil;
+        NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
+        NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/getCurrentBorrowedBooks.do"];
+        [request setURL:[NSURL URLWithString:queryURL]];
+        [request setHTTPMethod:@"POST"];
+        [request setHTTPBody:[historyPost dataUsingEncoding:NSUTF8StringEncoding]];
+        NSData *responseData = [NSURLConnection sendSynchronousRequest:request
+                                                     returningResponse:&urlResponse
+                                                                 error:nil];
+        NSString* checkLogin = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+        if ([checkLogin rangeOfString:@"Login failed"].location == NSNotFound)
+        {
+            loginSuccess=true;
+            
+            [NTOUNotificationHandle deleteUnreadNotificationAndModifyBadge:[NTOUNotificationHandle getNotifications] modules:LibrariesTag];
+        }
+        else loginSuccess=false;
+        maindata=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+        [maindata retain];
     }
-    else loginSuccess=false;
-    maindata=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
-    [maindata retain];
+    @catch (NSException *exception) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"無網路連接"
+                                                                message:nil
+                                                               delegate:self
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+            [alertView show];
+            [alertView release];
+        });
+
+    }
+    @finally {
+        
+    }
+
 }
 
 - (void)allselect

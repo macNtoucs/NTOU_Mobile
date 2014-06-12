@@ -41,22 +41,28 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
 
 +(NSDictionary *)queryFunctionType:(NSString *) type PostString:(NSString *)finailPost{
     // get response
-    NSHTTPURLResponse *urlResponse = nil;
-    NSError *error = [[NSError alloc] init];
-    NSMutableURLRequest * jsonQuest = [NSMutableURLRequest new];
-    NSString * queryURL = [NSString stringWithFormat:@"http://140.121.100.103:8080/iNTOU/%@.do",type];
-    [jsonQuest setURL:[NSURL URLWithString:queryURL]];
-    [jsonQuest setHTTPMethod:@"POST"];
-    [jsonQuest addValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
-    [jsonQuest setHTTPBody:[finailPost dataUsingEncoding:NSUTF8StringEncoding]];
-    NSData *responseData = [NSURLConnection sendSynchronousRequest:jsonQuest
-                                                 returningResponse:&urlResponse
-                                                             error:&error
-                            ];
-    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
-    
-    return dictionary;
-    
+    @try {
+        NSHTTPURLResponse *urlResponse = nil;
+        NSError *error = [[NSError alloc] init];
+        NSMutableURLRequest * jsonQuest = [NSMutableURLRequest new];
+        NSString * queryURL = [NSString stringWithFormat:@"http://140.121.100.103:8080/iNTOU/%@.do",type];
+        [jsonQuest setURL:[NSURL URLWithString:queryURL]];
+        [jsonQuest setHTTPMethod:@"POST"];
+        [jsonQuest addValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+        [jsonQuest setHTTPBody:[finailPost dataUsingEncoding:NSUTF8StringEncoding]];
+        NSData *responseData = [NSURLConnection sendSynchronousRequest:jsonQuest
+                                                     returningResponse:&urlResponse
+                                                                 error:&error
+                                ];
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+        return dictionary;
+    }
+    @catch (NSException *exception) {
+        return [NSDictionary new];
+    }
+    @finally {
+        
+    }
 }
 
 +(bool)checkIsStringIncludePulseSymbol:(NSString*) input{

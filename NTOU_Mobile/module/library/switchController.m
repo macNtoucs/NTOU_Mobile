@@ -110,10 +110,10 @@
 
 -(void)ChangeDisplayView
 {
-    NSArray *notifs = [[NTOUNotificationHandle getNotifications] objectForKey:LibrariesTag];
+    NSNumber *notifs = [[NTOUNotificationHandle getNotifications] objectForKey:LibrariesTag];
     UITabBarItem *tbi = (UITabBarItem *)[self.tabBar.items objectAtIndex:1];
-    if ([notifs count])
-        tbi.badgeValue = [NSString stringWithFormat:@"%d",[notifs count]];
+    if ([notifs intValue])
+        tbi.badgeValue = [NSString stringWithFormat:@"%d",[notifs intValue]];
     else
         tbi.badgeValue = nil;
     [self reloadHistoryTableViewController:[[self viewControllers] objectAtIndex:1]];

@@ -127,13 +127,12 @@
             label.tag = -label.tag;
             label.topDisplayView = self;
             NSMutableDictionary* notif = [NTOUNotificationHandle getNotifications];
-            NSMutableArray* unReadNotifs = [notif objectForKey:StellarTag];
-            int count = 0;
-            for (NSString* unReadNotif in unReadNotifs) {   //尋找label有多少未讀推播
-                if ([unReadNotif rangeOfString:[[ClassDataBase sharedData] searchCourseIDFormCourseName:label.text]].location != NSNotFound) {    //比對課程id
-                    count++;
-                }
-            }
+            NSMutableDictionary* unReadNotifs = [notif objectForKey:StellarTag];
+            
+            
+            int count = 0; //尋找label有多少未讀推播
+            count = [[unReadNotifs objectForKey:[[ClassDataBase sharedData] searchCourseIDFormCourseName:label.text]] intValue];
+            
             if (count)
                 [label setBadgeValue:[NSString stringWithFormat:@"%d",count]]; //設定label推播數
             [course addObject:label];

@@ -93,40 +93,66 @@
 }
 
 -(void)search{
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        // Show the HUD in the main tread
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // No need to hod onto (retain)
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow  animated:YES];
-            hud.labelText = @"Loading";
+    
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            // Show the HUD in the main tread
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // No need to hod onto (retain)
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow  animated:YES];
+                hud.labelText = @"Loading";
+            });
+            
+            @try {
+                NSError *error;
+                //  設定url
+                NSString *url = [NSString stringWithFormat:@"http://140.121.197.135:11114/NTOULibrarySearchAPI/Search.do?searcharg=%@&searchtype=X&segment=%d",inputtext,Searchpage];
+                url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                
+                // 設定丟出封包，由data來接
+                NSData* urldata = [[NSString stringWithContentsOfURL:[NSURL URLWithString:url]encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
+                
+                NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:urldata options:0 error:nil];
+                
+                newSearchBooks = [NSMutableArray arrayWithArray:[dic objectForKey:@"bookResult"]];
+                totalBookNumber =  [dic objectForKey:@"totalBookNumber"];
+                firstBookNumber =[dic objectForKey:@"firstBookNumber"];
+                [newSearchBooks retain];
+                [totalBookNumber retain];
+                [firstBookNumber retain];
+
+            }
+            @catch (NSException *exception) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
+                    //[self.navigationController popViewControllerAnimated:YES];
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"無網路連接"
+                                                                        message:nil
+                                                                       delegate:self
+                                                              cancelButtonTitle:@"OK"
+                                                              otherButtonTitles:nil];
+                    [alertView show];
+                    [alertView release];
+                });
+                
+            }
+            @finally {
+                
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                start = YES;
+                [self getContentTotal];
+                [self.tableView reloadData];
+                [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
+                
+                start = NO;
+            });
+        
         });
         
-        NSError *error;
-        //  設定url
-        NSString *url = [NSString stringWithFormat:@"http://140.121.197.135:11114/NTOULibrarySearchAPI/Search.do?searcharg=%@&searchtype=X&segment=%d",inputtext,Searchpage];
-        url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        
-        // 設定丟出封包，由data來接
-        NSData* urldata = [[NSString stringWithContentsOfURL:[NSURL URLWithString:url]encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
-        
-        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:urldata options:0 error:nil];
-        
-        newSearchBooks = [NSMutableArray arrayWithArray:[dic objectForKey:@"bookResult"]];
-        totalBookNumber =  [dic objectForKey:@"totalBookNumber"];
-        firstBookNumber =[dic objectForKey:@"firstBookNumber"];
-        [newSearchBooks retain];
-        [totalBookNumber retain];
-        [firstBookNumber retain];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            start = YES;
-            [self getContentTotal];
-            [self.tableView reloadData];
-            [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
-            
-            start = NO;
-        });    });
+        // NSLog(@"%@",searchResultArray);
     
-    // NSLog(@"%@",searchResultArray);
     
 }
 
