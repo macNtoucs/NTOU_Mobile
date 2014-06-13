@@ -151,6 +151,7 @@
     else loginSuccess=false;
     maindata=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
     [maindata retain];
+    [self.tableView reloadData];
 }
 
 - (void)allselect

@@ -115,6 +115,7 @@
                         [self.navigationController pushViewController:history  animated:YES];
                     });
                 });
+              //  [history release];
                 break;
             }
             case 1:
@@ -137,6 +138,7 @@
                         [self.navigationController pushViewController:resHistory  animated:YES];
                     });
                 });
+               // [resHistory release];
                 break;
             }
             case 2:
@@ -159,6 +161,7 @@
                         [self.navigationController pushViewController:outHistory  animated:YES];
                     });
                 });
+               // [outHistory release];
                 break;
             }
             default:
