@@ -96,12 +96,10 @@
         {
             case 0:
             {
-                if(history == NULL)
-                {
+                
                     history = [[LoginResultViewController alloc]initWithStyle:UITableViewStyleGrouped];
                     history.title= @"借閱歷史";
-                }
-                
+               
                 dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                     dispatch_async(dispatch_get_main_queue(), ^{
                         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -113,18 +111,18 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
                         [self.navigationController pushViewController:history  animated:YES];
+                        [history release];
                     });
                 });
-              //  [history release];
+                //[history release];
                 break;
             }
             case 1:
             {
-                if(resHistory == NULL)
-                {
+               
                     resHistory = [[LoginResResultViewController alloc]initWithStyle:UITableViewStyleGrouped];
                     resHistory.title=@"預約記錄";
-                }
+               
                 
                 dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -136,6 +134,7 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
                         [self.navigationController pushViewController:resHistory  animated:YES];
+                        [resHistory release];
                     });
                 });
                // [resHistory release];
@@ -143,11 +142,9 @@
             }
             case 2:
             {
-                if(outHistory == NULL)
-                {
+               
                     outHistory = [[LoginOutResultViewController alloc] initWithStyle:UITableViewStyleGrouped];
                     outHistory.title=@"借出記錄";
-                }
                 
                 dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -159,6 +156,7 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
                         [self.navigationController pushViewController:outHistory  animated:YES];
+                        [outHistory release];
                     });
                 });
                // [outHistory release];

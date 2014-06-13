@@ -71,7 +71,10 @@
 }
 
 -(void)fetchHistory{
+    
      newData = [NSMutableArray new];
+    [maindata removeAllObjects];
+    [newData removeAllObjects];
     NSString *account = [SettingsModuleViewController getLibraryAccount];
     NSString *pwd = [SettingsModuleViewController getLibraryPassword];
     NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@&segment=%d",account,pwd,page];
@@ -103,8 +106,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if([newData count] == 0)return[maindata count];
-    else return[maindata count]+1;
+
+        if([newData count] == 0 || newData ==nil)
+            return[maindata count];
+        else return[maindata count]+1;
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
