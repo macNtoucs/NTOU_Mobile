@@ -72,6 +72,7 @@
         [NTOUNotificationHandle setBadgeValue:nil forModule:EmergencyTag];
         [[NSUserDefaults standardUserDefaults] setObject:notifi.content forKey:emergencyUserDefaultsKey];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        [NTOUNotificationHandle refreshRemoteBadge];
     }
     else{
         NSString *notification = nil;

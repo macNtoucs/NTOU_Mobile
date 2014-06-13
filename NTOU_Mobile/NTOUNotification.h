@@ -42,4 +42,6 @@
 +(NSMutableArray *) getDevicePushSettingArray;
 
 + (void) sendRegisterDevice:(NSString *) studentID;
++(void)refreshRemoteBadge;
+
 @end

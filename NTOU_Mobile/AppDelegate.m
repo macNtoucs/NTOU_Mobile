@@ -86,7 +86,7 @@ modules;
     
 	// check if application was opened in response to a notofication
 	if(apnsDict) {
-        [NTOUNotificationHandle updateUI:[[Notification alloc] initWithModuleDictionary:apnsDict]];
+        [NTOUNotificationHandle refreshRemoteBadge];
 	}
 
     NSError *error;
@@ -174,6 +174,7 @@ modules;
     for (NTOUModule *aModule in self.modules) {
         [aModule applicationDidEnterBackground];
     }
+    [NTOUNotificationHandle refreshRemoteBadge];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -182,6 +183,7 @@ modules;
     for (NTOUModule *aModule in self.modules) {
         [aModule applicationWillEnterForeground];
     }
+    [NTOUNotificationHandle refreshRemoteBadge];
 }
 
 
@@ -197,11 +199,7 @@ modules;
     NSCharacterSet *charDummy = [NSCharacterSet characterSetWithCharactersInString:@"<> "];
     strDevToken = [[strDevToken componentsSeparatedByCharactersInSet: charDummy] componentsJoinedByString: @""];
     devicePushToken = [strDevToken retain];
-    if ([SettingsModuleViewController getMoodleLoginSuccess])
-        [NTOUNotificationHandle sendRegisterDevice:[SettingsModuleViewController getMoodleAccount]];
-    else
-        [NTOUNotificationHandle sendRegisterDevice:nil];
-
+    [NTOUNotificationHandle refreshRemoteBadge];
     NSLog(@"Did register for remote notifications: %@", deviceToken);
 }
 
@@ -211,7 +209,7 @@ modules;
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSLog(@"start didReceiveRemoteNotification");
-    [NTOUNotificationHandle updateUI:[[Notification alloc] initWithModuleDictionary:userInfo]];
+    [NTOUNotificationHandle refreshRemoteBadge];
     // We can determine whether an application is launched as a result of the user tapping the action
     // button or whether the notification was delivered to the already-running application by examining
     // the application state.

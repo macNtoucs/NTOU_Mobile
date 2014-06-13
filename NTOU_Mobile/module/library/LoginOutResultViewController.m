@@ -151,6 +151,7 @@
             loginSuccess=true;
             
             [NTOUNotificationHandle deleteUnreadNotificationAndModifyBadge:[NTOUNotificationHandle getNotifications] modules:LibrariesTag];
+            [NTOUNotificationHandle refreshRemoteBadge];
         }
         else loginSuccess=false;
         maindata=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];

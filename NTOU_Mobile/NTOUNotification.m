@@ -8,7 +8,7 @@
 
 #import "NTOUNotification.h"
 #import "ClassDataBase.h"
-
+#import "SettingsModuleViewController.h"
 @implementation Notification
 @synthesize moduleName,content;
 
@@ -232,9 +232,76 @@
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:data];
     //第三步，连接服务器
-    
-    [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
 
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    //NSString*string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    
+    NSDictionary *dictionary = [NSDictionary dictionaryWithDictionary:[NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:nil]];
+    NSDictionary* courseNotification = [dictionary objectForKey:StellarTag];
+    
+    NSMutableDictionary *notifications = [self getNotifications];
+    id localUnReadNotification = nil;
+    
+    //stellar 更新推播數目
+    if ([courseNotification isKindOfClass:[NSDictionary class]]) {
+        localUnReadNotification = [NSMutableDictionary dictionaryWithDictionary:[notifications objectForKey:StellarTag]];
+        if (!localUnReadNotification) localUnReadNotification = [NSMutableDictionary new];
+        
+        NSMutableDictionary* dataBase = [ClassDataBase sharedData].courseTempID;
+        
+        for (NSString *courseId in [courseNotification allKeys]) {
+            if ([[dataBase allValues] indexOfObject:courseId] != NSNotFound)
+            {
+                if ([localUnReadNotification objectForKey:courseId]) {
+                    [localUnReadNotification setObject:[NSNumber numberWithInt:[[localUnReadNotification objectForKey:courseId] intValue]+[[courseNotification objectForKey:courseId] intValue]] forKey:courseId];
+                }
+                else
+                    localUnReadNotification[courseId] = courseNotification[courseId];
+            }
+            
+        }
+        notifications[StellarTag] = localUnReadNotification;
+
+    }
+    
+    //library 更新推播數目
+    localUnReadNotification = (NSNumber *)notifications[LibrariesTag];
+    if (!localUnReadNotification) localUnReadNotification = [NSNumber numberWithInt:0];
+    
+    localUnReadNotification = [NSNumber numberWithInt:[localUnReadNotification intValue]+[dictionary[LibrariesTag] intValue]];
+    if ([localUnReadNotification intValue])
+        notifications[LibrariesTag] = localUnReadNotification;
+    
+    //emergency 更新推播數目
+    
+    localUnReadNotification = (NSString *)notifications[EmergencyTag];
+    if (!localUnReadNotification) localUnReadNotification = [NSString new];
+    if ([dictionary[EmergencyTag] intValue] >= 1)
+    {
+        localUnReadNotification = [[[Notification alloc] initWithModuleName:EmergencyTag content:[[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://140.121.91.62/NTOUmsgProvider/getLatestEmergency.php"] encoding:NSUTF8StringEncoding error:nil]] string];
+        notifications[EmergencyTag] = localUnReadNotification;
+    }
+    
+    [self storeNotifications:notifications];
+}
+
++(void)setRemotePNS_Badge
+{
+    NTOU_MobileAppDelegate *appDelegate = (NTOU_MobileAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/NTOUmsgProvider/setBadge.php?token_SET=%@&newBadgeVal=%d",appDelegate.devicePushToken,[UIApplication sharedApplication].applicationIconBadgeNumber]];
+    NSMutableURLRequest *req = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    NSURLConnection *connection = [[[NSURLConnection alloc] initWithRequest:req delegate:self]autorelease];
+    [connection start];
+}
+
++(void)refreshRemoteBadge
+{
+    if ([SettingsModuleViewController getMoodleLoginSuccess])
+        [NTOUNotificationHandle sendRegisterDevice:[SettingsModuleViewController getMoodleAccount]];
+    else
+        [NTOUNotificationHandle sendRegisterDevice:nil];
+    [NTOUNotificationHandle setAllBadge];
+    [self setRemotePNS_Badge];
 }
 
 @end

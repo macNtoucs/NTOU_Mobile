@@ -67,7 +67,7 @@
             [notif removeObjectForKey:StellarTag];
         [NTOUNotificationHandle storeNotifications:notif];
         [weekschedule drawRect:CGRectZero];
-        [NTOUNotificationHandle setAllBadge];
+        [NTOUNotificationHandle refreshRemoteBadge];
     }
     else
     {
