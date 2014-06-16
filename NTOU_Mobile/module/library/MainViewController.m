@@ -151,6 +151,18 @@
     picker.hidden=NO;
 }
 
+-(void)changeSearchType{
+    if([libSearchType  isEqual: @"關鍵字"])
+        libSearchType =@"ISBN";
+    else libSearchType =@"關鍵字";
+    [buttonLabel removeFromSuperview];
+    UIFont *font = [UIFont fontWithName:@"Helvetica" size:13.0];
+    buttonLabel.text = libSearchType;
+    buttonLabel.font = font;
+    [typeButton addSubview:buttonLabel];
+
+}
+
 - (void)viewDidLoad
 {
     //self.title = @"國立海洋大學圖書館";
@@ -174,7 +186,7 @@
     
     typeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [typeButton addTarget:self
-                   action:@selector(displayPicker)
+                   action:@selector(changeSearchType)
      forControlEvents:UIControlEventTouchDown];
     
     
