@@ -36,7 +36,7 @@
 @synthesize totalBookNumber;
 @synthesize firstBookNumber;
 @synthesize Searchpage;
-
+@synthesize searchType;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -46,6 +46,15 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    if ([searchType  isEqual: @"i"]){
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
+        if ([self.tableView.delegate respondsToSelector:
+             @selector(tableView:didSelectRowAtIndexPath:)]) {
+            [self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+            searchType = @"X";
+            }
+    }
 }
 
 - (void)viewDidLoad
@@ -80,9 +89,8 @@
     [self.tableView setContentInset:UIEdgeInsetsMake(8,0,6,0)];
     
     
-    
+   
     [super viewDidLoad];
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -101,9 +109,15 @@
         
         NSError *error;
         //  設定url
-        NSString *url = [NSString stringWithFormat:@"http://140.121.197.135:11114/NTOULibrarySearchAPI/Search.do?searcharg=%@&searchtype=X&segment=%d",inputtext,Searchpage];
+        NSString *url;
+        if ([searchType  isEqual: @"X"]){
+        url = [NSString stringWithFormat:@"http://140.121.197.135:11114/NTOULibrarySearchAPI/Search.do?searcharg=%@&searchtype=X&segment=%d",inputtext,Searchpage];
         url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        
+        }
+        else{
+            url = [NSString stringWithFormat:@"http://140.121.197.135:11114/NTOULibrarySearchAPI/Search.do?searcharg=%@&searchtype=i&segment=%d",inputtext,Searchpage];
+            url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        }
         // 設定丟出封包，由data來接
         NSData* urldata = [[NSString stringWithContentsOfURL:[NSURL URLWithString:url]encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
         

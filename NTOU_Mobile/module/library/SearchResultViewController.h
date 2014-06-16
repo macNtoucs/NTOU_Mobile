@@ -10,7 +10,7 @@
 #import "MainViewController.h"
 
 @class MainViewController;
-@interface SearchResultViewController : UITableViewController
+@interface SearchResultViewController : UITableViewController 
 
 @property (strong, nonatomic) MainViewController *mainview;
 @property (nonatomic,retain) NSMutableArray *data;
@@ -19,7 +19,7 @@
 @property (nonatomic) BOOL start;
 @property (nonatomic) NSInteger book_count;
 @property int Searchpage;
-
+@property (strong, nonatomic) NSString * searchType ;
 
 -(void)search;
 @end
