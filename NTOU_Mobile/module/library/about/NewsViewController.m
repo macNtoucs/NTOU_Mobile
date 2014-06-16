@@ -85,6 +85,9 @@
     NSDictionary *news = [NEWSdata objectAtIndex:indexPath.row];
     NSString *newstitle = [[news objectForKey:@"news_title"]objectForKey:@"text"];
     cell.textLabel.text = newstitle;
+    cell.font = [UIFont fontWithName:@"Helvetica" size:14.0];
+    cell.textLabel.numberOfLines = 0;
+    [cell setLineBreakMode:UILineBreakModeCharacterWrap];
 
     cell.detailTextLabel.text = [[news objectForKey:@"news_date"]objectForKey:@"text"];
     cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
@@ -95,8 +98,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
+     NSDictionary *news = [NEWSdata objectAtIndex:indexPath.row];
+    NSString *text = [[news objectForKey:@"news_title"]objectForKey:@"text"];
+    CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
     
-    return 48;
+    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
+    
+    CGFloat height = size.height + 12 + 16 + 2;
+    
+    return height;
 }
 
 /*
@@ -150,7 +160,7 @@
     UIViewController *load = [[UIViewController alloc] init];
     NSString *weburl = [[[NEWSdata objectAtIndex:indexPath.row] objectForKey:@"news_url"]objectForKey:@"text"];
     
-    if ([weburl isEqual:@""]) return;
+    if (weburl==nil) return;
     UIWebView *webView = [[[UIWebView alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
     webView.scalesPageToFit = YES;
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: weburl ] ]];
