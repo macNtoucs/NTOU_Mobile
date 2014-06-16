@@ -14,13 +14,12 @@
 @property (nonatomic,strong) NSMutableDictionary *urlData;
 @property (nonatomic) NSInteger urlLength;
 @property (nonatomic,strong) NSMutableDictionary *pageData;
-@property (nonatomic) BOOL start;
-@property (nonatomic) NSInteger book_count;
+
 @property (nonatomic,strong) NSMutableArray *tableData_book;
 @property (nonatomic, strong) NSArray * newSearchBooks;
 @property (nonatomic) NSNumber* totalBookNumber;
 @property (nonatomic) NSNumber* firstBookNumber;
-@property int Searchpage;
+
 @end
 
 @implementation SearchResultViewController
@@ -55,11 +54,8 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
         
     }
-    [self search];
-    
-    book_count = 10;    //一開始先載入10筆資料
-    start = NO;
-    Searchpage=1;
+   // [self search];
+  
     
     
     
@@ -67,16 +63,18 @@
     tableData_book = [[NSMutableArray alloc] init];
     urlData = [[NSMutableDictionary alloc] init];
     newSearchBooks =[NSArray new];
-    
+   /*
     UILabel *titleView = (UILabel *)self.navigationItem.titleView;
     titleView = [[UILabel alloc] initWithFrame:CGRectZero];
     titleView.backgroundColor = [UIColor clearColor];
     titleView.font = [UIFont boldSystemFontOfSize:18.0];
-    titleView.text = @"查詢結果";
+    NSString * tittleString = [NSString stringWithFormat:@"   查詢結果 共%@筆", totalBookNumber];
+    titleView.text =tittleString;
+    
     [titleView sizeToFit];
     
     self.navigationItem.titleView = titleView;
-    
+    */
     //配合nagitive和tabbar的圖片變動tableview的大小
     //nagitive 52 - 44 = 8 、 tabbar 55 - 49 = 6
     [self.tableView setContentInset:UIEdgeInsetsMake(8,0,6,0)];
@@ -122,7 +120,7 @@
             [self getContentTotal];
             [self.tableView reloadData];
             [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
-            
+            self.navigationItem.title = [NSString stringWithFormat:@"   查詢結果 共%@筆", totalBookNumber];
             start = NO;
         });    });
     
