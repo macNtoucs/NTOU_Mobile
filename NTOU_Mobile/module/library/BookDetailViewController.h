@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BookDetailViewController : UITableViewController <NSURLConnectionDelegate >
+@interface BookDetailViewController : UITableViewController <UIAlertViewDelegate , NSURLConnectionDelegate >
 @property (nonatomic,retain) NSString *bookurl;
-
 @end

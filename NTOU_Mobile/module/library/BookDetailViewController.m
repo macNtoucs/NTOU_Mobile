@@ -22,18 +22,21 @@
 }
 @property (nonatomic,retain) NSMutableDictionary *bookdetail;
 @property (nonatomic, retain) NSMutableData* receiveData;
+@property (nonatomic,retain) NSArray * electricBookArray;
+@property long int goToEternalLinkRow;
 @end
 
 @implementation BookDetailViewController
 @synthesize bookurl;
 @synthesize bookdetail;
 @synthesize receiveData;
+@synthesize electricBookArray;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        electricBookArray = [NSArray new];
     }
     return self;
 }
@@ -69,7 +72,6 @@
 - (void)viewDidLoad
 {
     self.title = @"詳細資訊";
-    self.title = @"詳細資訊";
     bookurl = [bookurl stringByReplacingOccurrencesOfString:@"&" withString:@"(ANDCHAR)"];
     NSString *parameter= [[NSString alloc]initWithFormat:@"URL=%@",bookurl];
     NSHTTPURLResponse *urlResponse = nil;
@@ -83,23 +85,35 @@
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request
                                                  returningResponse:&urlResponse
                                                              error:nil];
-    
-    
-    
-    
-    NSDictionary * bookDetailDic=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+        NSDictionary * bookDetailDic=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
     [bookDetailDic retain];
     bookdetail = [[NSMutableDictionary alloc] init];
     NSArray * bookResult = [bookDetailDic objectForKey:@"bookResult"];
     NSDictionary * bookResultDic = [bookResult objectAtIndex:0];
     NSArray * realBookDetail =[bookResultDic objectForKey:@"realBookDetail"];
+    NSArray * electricBookDetail = [bookResultDic objectForKey:@"electricBookDetail"];
+    if ([realBookDetail count]>0){
+        [bookdetail setObject:@"realBook" forKey:@"bookType"];
+        for (size_t realBook_it =0 ; realBook_it < [realBookDetail count] ; ++realBook_it){
+            NSDictionary * realBookDetailDic = [realBookDetail objectAtIndex:realBook_it];
+            book_part1[realBook_it] = [realBookDetailDic objectForKey:@"location"];
+            book_part2[realBook_it] = [realBookDetailDic objectForKey:@"number"];
+            book_part3[realBook_it] = [realBookDetailDic objectForKey:@"barcode"];
+            book_part4[realBook_it] = [realBookDetailDic objectForKey:@"status"];
+            
+        }
+        
+        book_count = [realBookDetail count];
+    }
     
-    for (size_t realBook_it =0 ; realBook_it < [realBookDetail count] ; ++realBook_it){
-        NSDictionary * realBookDetailDic = [realBookDetail objectAtIndex:realBook_it];
-        book_part1[realBook_it] = [realBookDetailDic objectForKey:@"location"];
-        book_part2[realBook_it] = [realBookDetailDic objectForKey:@"number"];
-        book_part3[realBook_it] = [realBookDetailDic objectForKey:@"barcode"];
-        book_part4[realBook_it] = [realBookDetailDic objectForKey:@"status"];
+    if ([electricBookDetail count]>0){
+        [bookdetail setObject:@"ebook" forKey:@"bookType"];
+        for (size_t eBook_it =0 ; eBook_it < [electricBookDetail count] ; ++eBook_it){
+            NSDictionary * electricBookDetailDic = [electricBookDetail objectAtIndex:eBook_it];
+            book_part1[eBook_it] = [electricBookDetailDic objectForKey:@"subtitle"];
+            book_part2[eBook_it] = [electricBookDetailDic objectForKey:@"url"];
+        }
+         book_count = [electricBookDetail count];
     }
     
     
@@ -107,8 +121,7 @@
     [bookdetail setObject:[bookResultDic objectForKey:@"author"] forKey:@"author"];
     [bookdetail setObject:[bookResultDic objectForKey:@"pubInform"] forKey:@"press"];
     [bookdetail setObject:[bookResultDic objectForKey:@"reserveURL"] forKey:@"resurl"];
-    
-    book_count = [realBookDetail count];
+    [bookdetail setObject:[bookResultDic objectForKey:@"ISBN"] forKey:@"ISBN"];
     
     [super viewDidLoad];
 }
@@ -123,39 +136,72 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if(book_count == 0 && [bookdetail objectForKey:@"resurl"] == NULL)
-        return 1;   //只有書籍資料
-    else if( [[bookdetail objectForKey:@"resurl"] isEqualToString:@""])
-        return 2;   //書籍資料＋借閱資訊
-    else
-        return 3;   //可預約
+   if ([[bookdetail objectForKey:@"bookType"]  isEqual: @"realBook"]){
+       return 2;
+   }
+    
+    if ([[bookdetail objectForKey:@"bookType"]  isEqual: @"ebook"]){
+        if(book_count == 0 && [bookdetail objectForKey:@"resurl"] == NULL)
+            return 1;   //只有書籍資料
+        else if( [[bookdetail objectForKey:@"resurl"] isEqualToString:@""])
+            return 2;   //書籍資料＋借閱資訊
+        else
+            return 3;   //可預約
+    }
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    switch (section) {
-        case 0:
-            return [NSString stringWithFormat:@"書籍資訊"];
-            break;
-        case 1:
-            return [NSString stringWithFormat:@"借閱情況"];
-            break;
-        default:
-            return [NSString stringWithFormat:@" "];
-            break;
+    
+    if ([[bookdetail objectForKey:@"bookType"]  isEqual: @"ebook"]){
+        switch (section) {
+            case 0:
+                return [NSString stringWithFormat:@"書籍資訊"];
+                break;
+            case 1:
+                return [NSString stringWithFormat:@"外部連結"];
+                break;
+             }
     }
+    
+    
+    if ([[bookdetail objectForKey:@"bookType"]  isEqual: @"realBook"]){
+         switch (section) {
+             case 0:
+                 return [NSString stringWithFormat:@"書籍資訊"];
+                 break;
+             case 1:
+                 return [NSString stringWithFormat:@"借閱情況"];
+                 break;
+             default:
+                 return [NSString stringWithFormat:@" "];
+                 break;
+         }
+     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section == 0)
-        return 3;
-    else if (section == 1)
-        return book_count;
-    else if (section == 2)
-        return 1;   //按鈕
-    else
-        return 0;
+   
+     if ([[bookdetail objectForKey:@"bookType"]  isEqual: @"ebook"]){
+         if(section == 0)
+             return 3;
+         else if (section == 1)
+             return book_count; //按鈕
+         else
+             return 0;
+
+        }
+     if ([[bookdetail objectForKey:@"bookType"]  isEqual: @"realBook"]){
+         if(section == 0)
+             return 4;
+         else if (section == 1)
+             return book_count;
+         else if (section == 2)
+             return 1;   //按鈕
+         else
+             return 0;
+     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -218,9 +264,10 @@
         NSString *book_name = [bookdetail objectForKey:@"name"];
         NSString *book_author = [bookdetail objectForKey:@"author"];
         NSString *book_press = [bookdetail objectForKey:@"press"];
+        NSString *ISBN = [bookdetail objectForKey:@"ISBN"];
         
-        CGSize booknameLabelSize,authorLabelSize,pressLabelSize;
-        CGRect booknameLabelRect, authorLabelRect,pressLabelRect;
+        CGSize booknameLabelSize,authorLabelSize,pressLabelSize,ISBNLabelSize;
+        CGRect booknameLabelRect, authorLabelRect,pressLabelRect,ISBNLabelRect;
         CGSize maximumLabelSize = CGSizeMake(200,9999);
         if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
             
@@ -239,6 +286,12 @@
                                                  options:NSStringDrawingUsesLineFragmentOrigin
                                               attributes:@{NSFontAttributeName:font}
                                                  context:nil];
+            ISBNLabelRect = [ISBN boundingRectWithSize:maximumLabelSize
+                                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                                  attributes:@{NSFontAttributeName:font}
+                                                     context:nil];
+            
+            ISBNLabelSize = ISBNLabelRect.size;
             booknameLabelSize = booknameLabelRect.size;
             authorLabelSize = authorLabelRect.size;
             pressLabelSize = pressLabelRect.size;
@@ -255,6 +308,10 @@
             pressLabelSize = [book_press sizeWithFont:font
                                constrainedToSize:maximumLabelSize
                                    lineBreakMode:NSLineBreakByWordWrapping];
+            
+            ISBNLabelSize =[ISBN sizeWithFont:font
+                                  constrainedToSize:maximumLabelSize
+                                      lineBreakMode:NSLineBreakByWordWrapping];
         }
         
         
@@ -323,13 +380,34 @@
                 [cell.contentView addSubview:presslabel];
                 [cell.contentView addSubview:press];
                 break;
+            case 3:
+                presslabel.frame = CGRectMake(0,6,80,16);
+                presslabel.text = @"ISBN：";
+                presslabel.lineBreakMode = NSLineBreakByWordWrapping;
+                presslabel.numberOfLines = 0;
+                presslabel.textAlignment = NSTextAlignmentRight;
+                presslabel.tag = indexPath.row;
+                presslabel.backgroundColor = [UIColor clearColor];
+                presslabel.font = boldfont;
+                
+                press.frame = CGRectMake(85,6,200,ISBNLabelSize.height);
+                press.text = ISBN;
+                press.lineBreakMode = NSLineBreakByWordWrapping;
+                press.numberOfLines = 0;
+                press.tag = indexPath.row;
+                press.backgroundColor = [UIColor clearColor];
+                press.font = font;
+                
+                [cell.contentView addSubview:presslabel];
+                [cell.contentView addSubview:press];
+                break;
             default:
                 break;
         }
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    else if (section == 1)
+    else if (section == 1 && [[bookdetail objectForKey:@"bookType"]  isEqual: @"realBook"])
     {
         part1label.frame = CGRectMake(0,6,100,16);
         part1label.text = @"館藏地：";
@@ -412,6 +490,15 @@
         [cell.contentView addSubview:part4];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    
+    else if (section == 1 && [[bookdetail objectForKey:@"bookType"]  isEqual: @"ebook"])
+    {
+      
+        cell.textLabel.text = book_part1[row];
+        [cell.textLabel sizeToFit];
+        cell.textLabel.font = font;
+       
+    }
     else if (section == 2)
     {
         UIFont *buttonfont = [UIFont boldSystemFontOfSize:18.0];
@@ -435,34 +522,41 @@
 {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
+    CGSize booknameLabelSize,authorLabelSize,pressLabelSize,ISBNLabelSize , linkLabelSize;
+    CGRect booknameLabelRect, authorLabelRect,pressLabelRect,ISBNLabelRect , linkLabelRect;
+    CGSize maximumLabelSize = CGSizeMake(200,9999);
+    UIFont *font = [UIFont fontWithName:@"Helvetica" size:14.0];
     
     if(section == 0)
     {
-        
-        UIFont *font = [UIFont fontWithName:@"Helvetica" size:14.0];
+       
         NSString *name = [bookdetail objectForKey:@"name"];
         NSString *author = [bookdetail objectForKey:@"author"];
         NSString *press = [bookdetail objectForKey:@"press"];
-        CGSize booknameLabelSize,authorLabelSize,pressLabelSize;
-        CGRect booknameLabelRect, authorLabelRect,pressLabelRect;
-        CGSize maximumLabelSize = CGSizeMake(200,9999);
+        NSString * ISBN = [bookdetail objectForKey:@"ISBN"];
         if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
             
             booknameLabelRect = [name boundingRectWithSize:maximumLabelSize
-                                                       options:NSStringDrawingUsesLineFragmentOrigin
-                                                    attributes:@{NSFontAttributeName:font}
-                                                       context:nil];
+                                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                                     attributes:@{NSFontAttributeName:font}
+                                                        context:nil];
             
             
             authorLabelRect = [author boundingRectWithSize:maximumLabelSize
-                                                   options:NSStringDrawingUsesLineFragmentOrigin
-                                                attributes:@{NSFontAttributeName:font}
-                                                   context:nil];
+                                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                                     attributes:@{NSFontAttributeName:font}
+                                                        context:nil];
             
             pressLabelRect = [press boundingRectWithSize:maximumLabelSize
-                                                 options:NSStringDrawingUsesLineFragmentOrigin
-                                              attributes:@{NSFontAttributeName:font}
-                                                 context:nil];
+                                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                                   attributes:@{NSFontAttributeName:font}
+                                                      context:nil];
+            ISBNLabelRect = [ISBN boundingRectWithSize:maximumLabelSize
+                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                            attributes:@{NSFontAttributeName:font}
+                                               context:nil];
+            
+            ISBNLabelSize = ISBNLabelRect.size;
             booknameLabelSize = booknameLabelRect.size;
             authorLabelSize = authorLabelRect.size;
             pressLabelSize = pressLabelRect.size;
@@ -470,17 +564,21 @@
         }
         else {
             booknameLabelSize = [name sizeWithFont:font
-                                     constrainedToSize:maximumLabelSize
-                                         lineBreakMode:NSLineBreakByWordWrapping];
+                                      constrainedToSize:maximumLabelSize
+                                          lineBreakMode:NSLineBreakByWordWrapping];
             authorLabelSize = [author sizeWithFont:font
-                                 constrainedToSize:maximumLabelSize
-                                     lineBreakMode:NSLineBreakByWordWrapping];
+                                      constrainedToSize:maximumLabelSize
+                                          lineBreakMode:NSLineBreakByWordWrapping];
             
             pressLabelSize = [press sizeWithFont:font
-                               constrainedToSize:maximumLabelSize
-                                   lineBreakMode:NSLineBreakByWordWrapping];
+                                    constrainedToSize:maximumLabelSize
+                                        lineBreakMode:NSLineBreakByWordWrapping];
+            
+            ISBNLabelSize =[ISBN sizeWithFont:font
+                            constrainedToSize:maximumLabelSize
+                                lineBreakMode:NSLineBreakByWordWrapping];
         }
-
+        
         
         switch (row) {
             case 0:
@@ -489,12 +587,37 @@
                 return 12 + authorLabelSize.height;
             case 2:
                 return 12 + pressLabelSize.height;
+            case 3:
+                return 12 + ISBNLabelSize.height;
             default:
                 return 0;
         }
     }
-    else if(section == 1)
+    else if(section == 1 && [[bookdetail objectForKey:@"bookType"]  isEqual: @"realBook"])
         return 88;  //6*2 + 20*3 + 16 = 12 + 60 + 16
+    
+    
+    else if (section == 1 && [[bookdetail objectForKey:@"bookType"]  isEqual: @"ebook"]){
+         NSString *link = book_part1[indexPath.row];
+        if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+            linkLabelRect = [link boundingRectWithSize:maximumLabelSize
+                                                   options:NSStringDrawingUsesLineFragmentOrigin
+                                                attributes:@{NSFontAttributeName:font}
+                                                   context:nil];
+         
+            linkLabelSize = linkLabelRect.size;
+        }
+        else {
+           linkLabelSize = [link sizeWithFont:font
+                                 constrainedToSize:maximumLabelSize
+                                     lineBreakMode:NSLineBreakByWordWrapping];
+                 }
+        
+        
+        return linkLabelSize.height+8;
+        
+            }
+    
     else if (section == 2)
         return 30;
     else
@@ -503,8 +626,40 @@
 
 #pragma mark - Table view delegate
 
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:{
+            UIViewController *webViewController = [[[UIViewController alloc]init] autorelease];
+            UIWebView *webView = [[[UIWebView alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
+            webView.scalesPageToFit = YES;
+            [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:book_part2[_goToEternalLinkRow]]]];
+            [webViewController.view addSubview: webView];
+            [self.navigationController pushViewController:webViewController animated:YES];
+            break;
+        }
+        case 1:
+            break;
+        default:
+            break;
+    }
+}
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+   
+    
+    if (indexPath.section ==1 && [[bookdetail objectForKey:@"bookType"]  isEqual: @"ebook"]){
+        _goToEternalLinkRow = indexPath.row;
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:@"將會連到校外網站，確定前往" delegate:self cancelButtonTitle:@"前往" otherButtonTitles:@"取消", nil];
+            [alert show];
+            [alert release];
+   
+        
+        }
+    
+    
+    
     if (indexPath.section == 2){
         NSString *reserveURL = [bookdetail objectForKey:@"resurl"];
         reserveURL= [reserveURL stringByReplacingOccurrencesOfString:@"&" withString:@"(ANDCHAR)"];

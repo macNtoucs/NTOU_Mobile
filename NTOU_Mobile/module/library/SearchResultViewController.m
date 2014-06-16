@@ -219,7 +219,8 @@
         NSString *image_url = [book objectForKey:@"image"];
         NSString *author = [book objectForKey:@"author"];
         NSString *press = [book objectForKey:@"pubInform"];
-        
+        NSArray *electricBook = [book objectForKey:@"electricBookDetail"];
+        if ([electricBook count]!=0) bookname = [NSString stringWithFormat:@"[電子資源]%@",bookname];
         if([image_url isEqualToString:@""])
             image_url = @"http://static.findbook.tw/image/book/1419879251/large";
          CGSize booknameLabelSize,authorLabelSize,pressLabelSize;
@@ -471,8 +472,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger row = [indexPath row];
+    
     if ([data count] == 0)  //沒有查獲的館藏
         return;
+  
     if(row < [data count])
     {
         BookDetailViewController *detail = [[BookDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
