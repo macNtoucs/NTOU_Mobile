@@ -107,19 +107,23 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-        if([newData count] == 0 || newData ==nil)
-            return[maindata count];
+        if([newData count] == 0 || newData ==nil)return[maindata count];
         else return[maindata count]+1;
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-   if([maindata count] == 0 && loginSuccess==true)
+    NSString *account = [SettingsModuleViewController getLibraryAccount];
+    NSString *pwd = [SettingsModuleViewController getLibraryPassword];
+    
+    if ([account isEqual:@""] && [pwd  isEqual: @""])
+        return [NSString stringWithFormat:@"\n帳密未設定\n請至主頁面→設定→圖書館 設定帳密"];
+    else if([maindata count] == 0 && loginSuccess==true)
     {
         return [NSString stringWithFormat:@"\n沒有借閱歷史紀錄"];
     }
    else if (loginSuccess==false){
-       return [NSString stringWithFormat:@"\n登入失敗，請檢查帳密設定"];
+       return [NSString stringWithFormat:@"\n登入失敗\n請至主頁面→設定→圖書館 檢查設定"];
    }
     else
         return NULL;
