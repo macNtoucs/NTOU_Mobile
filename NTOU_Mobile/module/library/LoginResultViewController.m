@@ -73,7 +73,6 @@
 -(void)fetchHistory{
     
      newData = [NSMutableArray new];
-    [maindata removeAllObjects];
     [newData removeAllObjects];
     NSString *account = [SettingsModuleViewController getLibraryAccount];
     NSString *pwd = [SettingsModuleViewController getLibraryPassword];
