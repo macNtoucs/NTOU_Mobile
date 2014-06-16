@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D0DC7D1194F3211006DA208 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0DC7D0194F3211006DA208 /* NJKWebViewProgress.m */; };
 		1D0ED730192CC665008EDC7E /* LibrarySearch.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D0ED72F192CC665008EDC7E /* LibrarySearch.png */; };
 		1D452FE31923A21D002E28ED /* accountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D452FE21923A21D002E28ED /* accountTableViewController.m */; };
 		1D6645691905087900416722 /* EGORefreshTableHeaderView.h in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B0B1905051200816CCD /* EGORefreshTableHeaderView.h */; };
@@ -329,6 +330,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D0DC7CF194F3211006DA208 /* NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgress.h; sourceTree = "<group>"; };
+		1D0DC7D0194F3211006DA208 /* NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgress.m; sourceTree = "<group>"; };
 		1D0ED72F192CC665008EDC7E /* LibrarySearch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LibrarySearch.png; path = about/LibrarySearch.png; sourceTree = "<group>"; };
 		1D452FE11923A21D002E28ED /* accountTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = accountTableViewController.h; sourceTree = "<group>"; };
 		1D452FE21923A21D002E28ED /* accountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = accountTableViewController.m; sourceTree = "<group>"; };
@@ -1190,6 +1193,8 @@
 		91A9007116E858A400ECF2CF /* common */ = {
 			isa = PBXGroup;
 			children = (
+				1D0DC7CF194F3211006DA208 /* NJKWebViewProgress.h */,
+				1D0DC7D0194F3211006DA208 /* NJKWebViewProgress.m */,
 				1D8A3B091905051200816CCD /* EGOTableViewPullRefresh */,
 				1D8A3B1C1905051200816CCD /* NTOUNotification.h */,
 				1D8A3B1D1905051200816CCD /* NTOUNotification.m */,
@@ -1949,6 +1954,7 @@
 				91756F7416F206F7001D724D /* ReaderThumbFetch.m in Sources */,
 				91756F7516F206F7001D724D /* ReaderThumbQueue.m in Sources */,
 				91756F7616F206F7001D724D /* ReaderThumbRender.m in Sources */,
+				1D0DC7D1194F3211006DA208 /* NJKWebViewProgress.m in Sources */,
 				91756F7716F206F7001D724D /* ReaderThumbRequest.m in Sources */,
 				91756F7816F206F7001D724D /* ReaderThumbsView.m in Sources */,
 				91756F7916F206F7001D724D /* ReaderThumbView.m in Sources */,

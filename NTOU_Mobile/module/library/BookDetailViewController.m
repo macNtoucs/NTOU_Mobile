@@ -19,6 +19,7 @@
     NSString *book_part3[10];
     NSString *book_part4[10];
     NSInteger book_count;
+     UIProgressView *progressView;
 }
 @property (nonatomic,retain) NSMutableDictionary *bookdetail;
 @property (nonatomic, retain) NSMutableData* receiveData;
@@ -624,16 +625,50 @@
         return 0;
 }
 
+
+-(void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress
+{
+    if (progress == 0.0) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        progressView.progress = 0;
+        [UIView animateWithDuration:0.27 animations:^{
+            progressView.alpha = 1.0;
+        }];
+    }
+    if (progress == 1.0) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [UIView animateWithDuration:0.27 delay:progress - progressView.progress options:0 animations:^{
+            progressView.alpha = 0.0;
+        } completion:nil];
+    }
+    
+    [progressView setProgress:progress animated:NO];
+}
+
+
 #pragma mark - Table view delegate
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
         case 0:{
+            progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+            progressView.frame = CGRectMake(105,
+                                            self.navigationController.navigationBar.frame.size.height,
+                                            self.navigationController.navigationBar.frame.size.width-115 ,
+                                            20);
+            //progressView.frame = CGRectMake(95, 45, 200 , 20);
             UIViewController *webViewController = [[[UIViewController alloc]init] autorelease];
             UIWebView *webView = [[[UIWebView alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
             webView.scalesPageToFit = YES;
+           NJKWebViewProgress *_progressProxy = [[NJKWebViewProgress alloc] init]; // instance variable
+            webView.delegate = _progressProxy;
+            _progressProxy.webViewProxyDelegate = self;
+            _progressProxy.progressDelegate = self;
+       
             [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:book_part2[_goToEternalLinkRow]]]];
+            //[webViewController.view addSubview: progressView];
             [webViewController.view addSubview: webView];
+            [self.navigationController.view addSubview:progressView];
             [self.navigationController pushViewController:webViewController animated:YES];
             break;
         }
