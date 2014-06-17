@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSArray * newSearchBooks;
 @property (nonatomic) NSNumber* totalBookNumber;
 @property (nonatomic) NSNumber* firstBookNumber;
+@property (nonatomic, strong) NSMutableData* urldata;
 
 @end
 
@@ -37,6 +38,7 @@
 @synthesize firstBookNumber;
 @synthesize Searchpage;
 @synthesize searchType;
+@synthesize urldata;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -67,7 +69,7 @@
   
     
     
-    
+    urldata = [NSMutableData new];
     pageData = [[NSMutableDictionary alloc] init];
     tableData_book = [[NSMutableArray alloc] init];
     urlData = [[NSMutableDictionary alloc] init];
@@ -98,6 +100,50 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [urldata appendData:data];
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    
+    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:urldata options:0 error:nil];
+    
+    newSearchBooks = [NSMutableArray arrayWithArray:[dic objectForKey:@"bookResult"]];
+    totalBookNumber =  [dic objectForKey:@"totalBookNumber"];
+    firstBookNumber =[dic objectForKey:@"firstBookNumber"];
+    [newSearchBooks retain];
+    [totalBookNumber retain];
+    [firstBookNumber retain];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        start = YES;
+        [self getContentTotal];
+        [self.tableView reloadData];
+        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
+        self.navigationItem.title = [NSString stringWithFormat:@"   查詢結果 共%@筆", totalBookNumber];
+        start = NO;
+    });
+
+}
+
+-(void)connection:(NSURLConnection *)connection
+ didFailWithError:(NSError *)error
+{
+    NSLog(@"%@",[error localizedDescription]);
+}
+
+
+-(void)initTableData{
+    
+
+}
+
 -(void)search{
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         // Show the HUD in the main tread
@@ -106,8 +152,7 @@
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow  animated:YES];
             hud.labelText = @"Loading";
         });
-        
-        NSError *error;
+       
         //  設定url
         NSString *url;
         if ([searchType  isEqual: @"X"]){
@@ -118,28 +163,19 @@
             url = [NSString stringWithFormat:@"http://140.121.197.135:11114/NTOULibrarySearchAPI/Search.do?searcharg=%@&searchtype=i&segment=%d",inputtext,Searchpage];
             url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         }
-        // 設定丟出封包，由data來接
-        NSData* urldata = [[NSString stringWithContentsOfURL:[NSURL URLWithString:url]encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
+     
+        NSURLRequest * request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
         
-        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:urldata options:0 error:nil];
+        NSURLConnection * connection = [[NSURLConnection alloc]
+                                        initWithRequest:request
+                                        delegate:self startImmediately:NO];
         
-        newSearchBooks = [NSMutableArray arrayWithArray:[dic objectForKey:@"bookResult"]];
-        totalBookNumber =  [dic objectForKey:@"totalBookNumber"];
-        firstBookNumber =[dic objectForKey:@"firstBookNumber"];
-        [newSearchBooks retain];
-        [totalBookNumber retain];
-        [firstBookNumber retain];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            start = YES;
-            [self getContentTotal];
-            [self.tableView reloadData];
-            [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
-            self.navigationItem.title = [NSString stringWithFormat:@"   查詢結果 共%@筆", totalBookNumber];
-            start = NO;
-        });    });
+        [connection scheduleInRunLoop:[NSRunLoop mainRunLoop]
+                              forMode:NSDefaultRunLoopMode];
+        [connection start];
+
     
-    // NSLog(@"%@",searchResultArray);
-    
+    });
 }
 
 

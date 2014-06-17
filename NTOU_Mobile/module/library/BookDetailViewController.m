@@ -137,11 +137,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-   if ([[bookdetail objectForKey:@"bookType"]  isEqual: @"realBook"]){
+   if ([[bookdetail objectForKey:@"bookType"]  isEqual: @"ebook"]){
        return 2;
    }
     
-    if ([[bookdetail objectForKey:@"bookType"]  isEqual: @"ebook"]){
+    if ([[bookdetail objectForKey:@"bookType"]  isEqual: @"realBook"]){
         if(book_count == 0 && [bookdetail objectForKey:@"resurl"] == NULL)
             return 1;   //只有書籍資料
         else if( [[bookdetail objectForKey:@"resurl"] isEqualToString:@""])
@@ -188,7 +188,7 @@
          if(section == 0)
              return 3;
          else if (section == 1)
-             return book_count; //按鈕
+             return book_count; 
          else
              return 0;
 
@@ -656,17 +656,15 @@
                                             self.navigationController.navigationBar.frame.size.height,
                                             self.navigationController.navigationBar.frame.size.width-115 ,
                                             20);
-            //progressView.frame = CGRectMake(95, 45, 200 , 20);
             UIViewController *webViewController = [[[UIViewController alloc]init] autorelease];
             UIWebView *webView = [[[UIWebView alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
             webView.scalesPageToFit = YES;
-           NJKWebViewProgress *_progressProxy = [[NJKWebViewProgress alloc] init]; // instance variable
+            NJKWebViewProgress *_progressProxy = [[NJKWebViewProgress alloc] init]; // instance variable
             webView.delegate = _progressProxy;
             _progressProxy.webViewProxyDelegate = self;
             _progressProxy.progressDelegate = self;
        
             [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:book_part2[_goToEternalLinkRow]]]];
-            //[webViewController.view addSubview: progressView];
             [webViewController.view addSubview: webView];
             [self.navigationController.view addSubview:progressView];
             [self.navigationController pushViewController:webViewController animated:YES];

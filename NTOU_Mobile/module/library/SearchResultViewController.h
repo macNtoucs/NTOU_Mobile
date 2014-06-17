@@ -10,7 +10,7 @@
 #import "MainViewController.h"
 
 @class MainViewController;
-@interface SearchResultViewController : UITableViewController 
+@interface SearchResultViewController : UITableViewController  <NSURLConnectionDelegate , NSURLConnectionDataDelegate>
 
 @property (strong, nonatomic) MainViewController *mainview;
 @property (nonatomic,retain) NSMutableArray *data;
