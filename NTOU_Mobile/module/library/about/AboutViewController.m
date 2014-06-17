@@ -7,11 +7,11 @@
 //
 
 #import "AboutViewController.h"
-#import "OpenTimeViewController.h"
 #import "NewsViewController.h"
 #import "floorInfoViewController.h"
 #import "AccountViewController.h"
 #import "UIKit+NTOUAdditions.h"
+#import "OpenTimeTableViewController.h"
 @interface AboutViewController ()
 @property (strong, nonatomic) AccountViewController *loginaccount;
 @end
@@ -128,17 +128,10 @@
 
                 case 1:
                 {
-                    UIViewController *load = [[UIViewController alloc] init];
-                    NSString *weburl = @"http://li.ntou.edu.tw/5open/open.php";
-                    
-                    if (weburl==nil) return;
-                    UIWebView *webView = [[[UIWebView alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
-                    webView.scalesPageToFit = YES;
-                    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: weburl ] ]];
-                    [load.view addSubview: webView];
-                    load.title = @"開館時間";
-                    
-                    [self.navigationController pushViewController:load animated:YES];
+                    OpenTimeTableViewController *op = [[OpenTimeTableViewController alloc]init];
+                    op.title= @"開館時間";
+                    [self.navigationController pushViewController:op  animated:YES];
+                    [op release];
                     break;
                 }
                 case 2:

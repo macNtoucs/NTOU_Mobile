@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1D0DC7D1194F3211006DA208 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0DC7D0194F3211006DA208 /* NJKWebViewProgress.m */; };
+		1D0DC7D419501E6C006DA208 /* OpenTimeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0DC7D319501E6C006DA208 /* OpenTimeTableViewController.m */; };
 		1D0ED730192CC665008EDC7E /* LibrarySearch.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D0ED72F192CC665008EDC7E /* LibrarySearch.png */; };
 		1D452FE31923A21D002E28ED /* accountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D452FE21923A21D002E28ED /* accountTableViewController.m */; };
+		1D63479219502809000FA24F /* DetailOpenTimeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D63479119502809000FA24F /* DetailOpenTimeTableViewController.m */; };
 		1D6645691905087900416722 /* EGORefreshTableHeaderView.h in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B0B1905051200816CCD /* EGORefreshTableHeaderView.h */; };
 		1D66456A1905087900416722 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B0C1905051200816CCD /* EGORefreshTableHeaderView.m */; };
 		1D66456D1909129400416722 /* HistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D66456C1909129400416722 /* HistoryTableViewController.m */; };
@@ -31,9 +33,6 @@
 		1DD1792218FE7AB300621B67 /* LibraryFloor.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178E818FE7AB300621B67 /* LibraryFloor.plist */; };
 		1DD1792318FE7AB300621B67 /* loadWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178EA18FE7AB300621B67 /* loadWebViewController.m */; };
 		1DD1792418FE7AB300621B67 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178EC18FE7AB300621B67 /* NewsViewController.m */; };
-		1DD1792518FE7AB300621B67 /* opentime.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178ED18FE7AB300621B67 /* opentime.png */; };
-		1DD1792618FE7AB300621B67 /* OpenTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178EF18FE7AB300621B67 /* OpenTimeViewController.m */; };
-		1DD1792718FE7AB300621B67 /* OpenTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178F018FE7AB300621B67 /* OpenTimeViewController.xib */; };
 		1DD1792918FE7AB300621B67 /* BookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178F418FE7AB300621B67 /* BookDetailViewController.m */; };
 		1DD1792D18FE7AB300621B67 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178F818FE7AB300621B67 /* InfoPlist.strings */; };
 		1DD1792E18FE7AB300621B67 /* library-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1DD178FA18FE7AB300621B67 /* library-Info.plist */; };
@@ -332,9 +331,13 @@
 /* Begin PBXFileReference section */
 		1D0DC7CF194F3211006DA208 /* NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgress.h; sourceTree = "<group>"; };
 		1D0DC7D0194F3211006DA208 /* NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgress.m; sourceTree = "<group>"; };
+		1D0DC7D219501E6C006DA208 /* OpenTimeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenTimeTableViewController.h; sourceTree = "<group>"; };
+		1D0DC7D319501E6C006DA208 /* OpenTimeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenTimeTableViewController.m; sourceTree = "<group>"; };
 		1D0ED72F192CC665008EDC7E /* LibrarySearch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LibrarySearch.png; path = about/LibrarySearch.png; sourceTree = "<group>"; };
 		1D452FE11923A21D002E28ED /* accountTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = accountTableViewController.h; sourceTree = "<group>"; };
 		1D452FE21923A21D002E28ED /* accountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = accountTableViewController.m; sourceTree = "<group>"; };
+		1D63479019502809000FA24F /* DetailOpenTimeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailOpenTimeTableViewController.h; sourceTree = "<group>"; };
+		1D63479119502809000FA24F /* DetailOpenTimeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailOpenTimeTableViewController.m; sourceTree = "<group>"; };
 		1D66456B1909129400416722 /* HistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewController.h; sourceTree = "<group>"; };
 		1D66456C1909129400416722 /* HistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryTableViewController.m; sourceTree = "<group>"; };
 		1D8A3B0B1905051200816CCD /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
@@ -366,10 +369,6 @@
 		1DD178EA18FE7AB300621B67 /* loadWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loadWebViewController.m; sourceTree = "<group>"; };
 		1DD178EB18FE7AB300621B67 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
 		1DD178EC18FE7AB300621B67 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NewsViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		1DD178ED18FE7AB300621B67 /* opentime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = opentime.png; sourceTree = "<group>"; };
-		1DD178EE18FE7AB300621B67 /* OpenTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenTimeViewController.h; sourceTree = "<group>"; };
-		1DD178EF18FE7AB300621B67 /* OpenTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenTimeViewController.m; sourceTree = "<group>"; };
-		1DD178F018FE7AB300621B67 /* OpenTimeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenTimeViewController.xib; sourceTree = "<group>"; };
 		1DD178F318FE7AB300621B67 /* BookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailViewController.h; sourceTree = "<group>"; };
 		1DD178F418FE7AB300621B67 /* BookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetailViewController.m; sourceTree = "<group>"; };
 		1DD178F918FE7AB300621B67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -939,10 +938,10 @@
 				1DD178EA18FE7AB300621B67 /* loadWebViewController.m */,
 				1DD178EB18FE7AB300621B67 /* NewsViewController.h */,
 				1DD178EC18FE7AB300621B67 /* NewsViewController.m */,
-				1DD178ED18FE7AB300621B67 /* opentime.png */,
-				1DD178EE18FE7AB300621B67 /* OpenTimeViewController.h */,
-				1DD178EF18FE7AB300621B67 /* OpenTimeViewController.m */,
-				1DD178F018FE7AB300621B67 /* OpenTimeViewController.xib */,
+				1D0DC7D219501E6C006DA208 /* OpenTimeTableViewController.h */,
+				1D0DC7D319501E6C006DA208 /* OpenTimeTableViewController.m */,
+				1D63479019502809000FA24F /* DetailOpenTimeTableViewController.h */,
+				1D63479119502809000FA24F /* DetailOpenTimeTableViewController.m */,
 			);
 			path = about;
 			sourceTree = "<group>";
@@ -1752,7 +1751,6 @@
 				91756F6416F206F7001D724D /* Reader-Mark-N.png in Resources */,
 				91756F6516F206F7001D724D /* Reader-Mark-N@2x.png in Resources */,
 				91756F6616F206F7001D724D /* Reader-Mark-Y.png in Resources */,
-				1DD1792718FE7AB300621B67 /* OpenTimeViewController.xib in Resources */,
 				91756F6716F206F7001D724D /* Reader-Mark-Y@2x.png in Resources */,
 				91756F6816F206F7001D724D /* Reader-Print.png in Resources */,
 				91756F6916F206F7001D724D /* Reader-Print@2x.png in Resources */,
@@ -1779,7 +1777,6 @@
 				C71A4EED1705B114002819AD /* inbox_24.png in Resources */,
 				C71A4EEE1705B114002819AD /* inbox.png in Resources */,
 				C71A4F00170A9399002819AD /* Default.png in Resources */,
-				1DD1792518FE7AB300621B67 /* opentime.png in Resources */,
 				1DD1792F18FE7AB300621B67 /* Library_NTU.png in Resources */,
 				C71A4F02170A93AC002819AD /* Default@2x.png in Resources */,
 				C71A4F10170A9949002819AD /* Default-568h@2x.png in Resources */,
@@ -1828,6 +1825,7 @@
 				91756FD716F20CC5001D724D /* ReaderMainToolbar.h in Sources */,
 				91756FD816F20CC5001D724D /* ReaderThumbCache.h in Sources */,
 				43BEDC1219236D570091B024 /* TPRouteDetailViewController.m in Sources */,
+				1D0DC7D419501E6C006DA208 /* OpenTimeTableViewController.m in Sources */,
 				1DD1793B18FE7AB300621B67 /* SearchResultViewController.m in Sources */,
 				91756FD916F20CC5001D724D /* ReaderThumbFetch.h in Sources */,
 				1DD1792418FE7AB300621B67 /* NewsViewController.m in Sources */,
@@ -1839,7 +1837,6 @@
 				437D52621923976E0054AD8E /* ExpressBusDetailViewController.m in Sources */,
 				91756FDE16F20CC5001D724D /* ReaderThumbView.h in Sources */,
 				91756FDF16F20CC5001D724D /* ReaderViewController.h in Sources */,
-				1DD1792618FE7AB300621B67 /* OpenTimeViewController.m in Sources */,
 				91A9005716E854E500ECF2CF /* main.m in Sources */,
 				91A9005B16E854E500ECF2CF /* AppDelegate.m in Sources */,
 				43BEDC0D19236D570091B024 /* KLRouteDetailViewController.m in Sources */,
@@ -1880,6 +1877,7 @@
 				1DD1792318FE7AB300621B67 /* loadWebViewController.m in Sources */,
 				91A9045516E899D200ECF2CF /* RequestOperation.m in Sources */,
 				91A9045E16E899D200ECF2CF /* RouteDetailViewController.m in Sources */,
+				1D63479219502809000FA24F /* DetailOpenTimeTableViewController.m in Sources */,
 				91A9046316E899D200ECF2CF /* setHTOriginAndTerminalViewController.m in Sources */,
 				1DD1793018FE7AB300621B67 /* LoginOutResultViewController.m in Sources */,
 				91A9046416E899D200ECF2CF /* SetOriginAndStationViewController.m in Sources */,
