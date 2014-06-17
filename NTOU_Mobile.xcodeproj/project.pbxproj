@@ -12,6 +12,7 @@
 		1D0ED730192CC665008EDC7E /* LibrarySearch.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D0ED72F192CC665008EDC7E /* LibrarySearch.png */; };
 		1D452FE31923A21D002E28ED /* accountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D452FE21923A21D002E28ED /* accountTableViewController.m */; };
 		1D63479219502809000FA24F /* DetailOpenTimeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D63479119502809000FA24F /* DetailOpenTimeTableViewController.m */; };
+		1D63479519503905000FA24F /* ContactInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D63479419503905000FA24F /* ContactInfoTableViewController.m */; };
 		1D6645691905087900416722 /* EGORefreshTableHeaderView.h in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B0B1905051200816CCD /* EGORefreshTableHeaderView.h */; };
 		1D66456A1905087900416722 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B0C1905051200816CCD /* EGORefreshTableHeaderView.m */; };
 		1D66456D1909129400416722 /* HistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D66456C1909129400416722 /* HistoryTableViewController.m */; };
@@ -338,6 +339,8 @@
 		1D452FE21923A21D002E28ED /* accountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = accountTableViewController.m; sourceTree = "<group>"; };
 		1D63479019502809000FA24F /* DetailOpenTimeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailOpenTimeTableViewController.h; sourceTree = "<group>"; };
 		1D63479119502809000FA24F /* DetailOpenTimeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailOpenTimeTableViewController.m; sourceTree = "<group>"; };
+		1D63479319503905000FA24F /* ContactInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInfoTableViewController.h; sourceTree = "<group>"; };
+		1D63479419503905000FA24F /* ContactInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactInfoTableViewController.m; sourceTree = "<group>"; };
 		1D66456B1909129400416722 /* HistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewController.h; sourceTree = "<group>"; };
 		1D66456C1909129400416722 /* HistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryTableViewController.m; sourceTree = "<group>"; };
 		1D8A3B0B1905051200816CCD /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
@@ -942,6 +945,8 @@
 				1D0DC7D319501E6C006DA208 /* OpenTimeTableViewController.m */,
 				1D63479019502809000FA24F /* DetailOpenTimeTableViewController.h */,
 				1D63479119502809000FA24F /* DetailOpenTimeTableViewController.m */,
+				1D63479319503905000FA24F /* ContactInfoTableViewController.h */,
+				1D63479419503905000FA24F /* ContactInfoTableViewController.m */,
 			);
 			path = about;
 			sourceTree = "<group>";
@@ -1927,6 +1932,7 @@
 				91756F3F16F206F7001D724D /* ClassAddBackground.m in Sources */,
 				91756F4216F206F7001D724D /* ClassDataBase.m in Sources */,
 				91756F4416F206F7001D724D /* NSData+DES.m in Sources */,
+				1D63479519503905000FA24F /* ContactInfoTableViewController.m in Sources */,
 				1DD1792018FE7AB300621B67 /* AccountViewController.m in Sources */,
 				91756F4516F206F7001D724D /* ClassInfoView.m in Sources */,
 				91756F4616F206F7001D724D /* ClassInfoViewController.m in Sources */,

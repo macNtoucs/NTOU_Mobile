@@ -12,6 +12,7 @@
 #import "AccountViewController.h"
 #import "UIKit+NTOUAdditions.h"
 #import "OpenTimeTableViewController.h"
+#import "ContactInfoTableViewController.h"
 @interface AboutViewController ()
 @property (strong, nonatomic) AccountViewController *loginaccount;
 @end
@@ -143,7 +144,10 @@
                     break;
                 }
             
-        case 3: {break;
+        case 3: {
+                    ContactInfoTableViewController *contact = [[[ContactInfoTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+                    [self.navigationController pushViewController:contact  animated:YES];
+                    break;
         }
             
             case 4:{
