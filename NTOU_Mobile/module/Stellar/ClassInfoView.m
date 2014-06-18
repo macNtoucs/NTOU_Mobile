@@ -62,6 +62,7 @@
 {
     [super viewDidLoad];
     [self.tableView applyStandardColors];
+    self.tableView.backgroundColor = TABLE_SEPARATOR_COLOR;
     if ([self.title isEqual: type1]){
         types = 1;
     }
@@ -301,7 +302,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%ld%ld",(long)indexPath.section,(long)indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     UILabel *label = nil;
     UILabel *detailLabel = nil;
@@ -548,7 +549,7 @@
 }
 
 
--(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     /*
     if (types==3) {

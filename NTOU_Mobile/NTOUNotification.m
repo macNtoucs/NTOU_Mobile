@@ -232,10 +232,18 @@
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:data];
     //第三步，连接服务器
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 
-    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    //NSString*string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+    {
+        if ([data length] > 0 && error == nil)
+            [self devicePushResponse:data];
+    }];
     
+}
+
++(void)devicePushResponse:(NSData *) responseData
+{
     NSDictionary *dictionary = [NSDictionary dictionaryWithDictionary:[NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:nil]];
     NSDictionary* courseNotification = [dictionary objectForKey:StellarTag];
     
@@ -261,7 +269,7 @@
             
         }
         notifications[StellarTag] = localUnReadNotification;
-
+        
     }
     
     //library 更新推播數目
@@ -278,17 +286,28 @@
     if (!localUnReadNotification) localUnReadNotification = [NSString new];
     if ([dictionary[EmergencyTag] intValue] >= 1)
     {
-        localUnReadNotification = [[[Notification alloc] initWithModuleName:EmergencyTag content:[[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://140.121.91.62/NTOUmsgProvider/getLatestEmergency.php"] encoding:NSUTF8StringEncoding error:nil]] string];
-        notifications[EmergencyTag] = localUnReadNotification;
+        
+        NSURL *url = [NSURL URLWithString:@"http://140.121.91.62/NTOUmsgProvider/getLatestEmergency.php"];
+        
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        
+        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+         {
+             if ([data length] > 0 && error == nil)
+             {
+                 notifications[EmergencyTag] = localUnReadNotification;
+                [self storeNotifications:notifications];
+             }
+         }];
     }
-    
     [self storeNotifications:notifications];
 }
 
 +(void)setRemotePNS_Badge
 {
     NTOU_MobileAppDelegate *appDelegate = (NTOU_MobileAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/NTOUmsgProvider/setBadge.php?token_SET=%@&newBadgeVal=%d",appDelegate.devicePushToken,[UIApplication sharedApplication].applicationIconBadgeNumber]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/NTOUmsgProvider/setBadge.php?token_SET=%@&newBadgeVal=%ld",appDelegate.devicePushToken,(long)[UIApplication sharedApplication].applicationIconBadgeNumber]];
     NSMutableURLRequest *req = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     NSURLConnection *connection = [[[NSURLConnection alloc] initWithRequest:req delegate:self]autorelease];
     [connection start];
@@ -302,6 +321,7 @@
         [NTOUNotificationHandle sendRegisterDevice:nil];
     [NTOUNotificationHandle setAllBadge];
     [self setRemotePNS_Badge];
+
 }
 
 @end

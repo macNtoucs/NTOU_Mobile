@@ -61,10 +61,10 @@
 -(IBAction)labelTapped:(id)sender
 {
     UIGestureRecognizer * tapGesture = (UIGestureRecognizer *)sender;
-    ClassLabelBasis*label = (ClassLabelBasis*)[self viewWithTag:tapGesture.view.tag];
+    ClassLabelBasis*label = (ClassLabelBasis*)tapGesture.view;
     if (WhetherTapped) {    //是否進入修改課程頁面中
         if (label.changeColor) {    
-            if (label.tag>=0)
+            if (label.labelID>=0)
                 [self restorTheOriginalColor];
             else
                 [TapAddCourse removeObject:label];
@@ -77,12 +77,12 @@
             label.changeColor = NO;
         } else {
             if ([TapAddCourse count]==0) {
-                if (label.tag>=0) {
-                    [parent_ViewController DisplayUITextField:[NSArray arrayWithObjects:label.text,[[ClassDataBase sharedData] FetchProfessorName:[NSNumber numberWithInt:label.tag]],[[ClassDataBase sharedData] FetchClassroomLocation:[NSNumber numberWithInt:label.tag]], nil]];
+                if (label.labelID>=0) {
+                    [parent_ViewController DisplayUITextField:[NSArray arrayWithObjects:label.text,[[ClassDataBase sharedData] FetchProfessorName:[NSNumber numberWithLong:label.labelID]],[[ClassDataBase sharedData] FetchClassroomLocation:[NSNumber numberWithLong:label.labelID]], nil]];
                     [parent_ViewController alterButtonFunction:YES];
                 }
                 for (ClassLabelBasis* courselabel in course) {
-                    if (courselabel.tag!=label.tag) {
+                    if (courselabel.labelID!=label.labelID) {
                         courselabel.backgroundColor = [UIColor colorWithRed:211.0/255 green:211.0/255 blue:211.0/255 alpha:1];
                         courselabel.userInteractionEnabled = NO;
                     }
@@ -95,7 +95,7 @@
         }
     }
     else {
-        if (label.tag>=0&&[[ClassDataBase sharedData] whetherHaveMoodleInfo:label.text]) {
+        if (label.labelID>=0&&[[ClassDataBase sharedData] whetherHaveMoodleInfo:label.text]) {
             [parent_ViewController showClassInfo:label];
         }
     }
@@ -121,10 +121,10 @@
         labelFrame = CGRectMake( LeftBaseline+number*(UpperViewWidth-TextLabelborderWidth), x+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*sameClass, UpperViewWidth, LeftViewHeight+(LeftViewHeight-TextLabelborderWidth)*(i-sameClass));
         ClassLabelBasis* label = [[[ClassLabelBasis alloc] initWithFrame: labelFrame] autorelease];
         label.text = [content objectAtIndex:i];
-        label.tag = -((day*100+sameClass)*100+i-sameClass+1); //（第幾週數－１）＊１００００＋（第幾堂數－１）＊１００＋連堂數
+        label.labelID = -((day*100+sameClass)*100+i-sameClass+1); //（第幾週數－１）＊１００００＋（第幾堂數－１）＊１００＋連堂數
         if (![[content objectAtIndex:i] isEqualToString:@" "]){  //對有課程的label作處理
             label.backgroundColor = [color objectForKey:label.text];
-            label.tag = -label.tag;
+            label.labelID = -label.labelID;
             label.topDisplayView = self;
             NSMutableDictionary* notif = [NTOUNotificationHandle getNotifications];
             NSMutableDictionary* unReadNotifs = [notif objectForKey:StellarTag];

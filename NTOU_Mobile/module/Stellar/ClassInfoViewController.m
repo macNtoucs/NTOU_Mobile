@@ -25,7 +25,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization        
+        // Custom initialization
         }
     
     return self;
@@ -176,9 +176,12 @@
         
         
     }
+    
+    
     //[[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    //self.view.backgroundColor = TABLE_SEPARATOR_COLOR;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -293,14 +296,14 @@
         
         [self setViewControllers:[NSArray arrayWithObjects:viewController1, viewController2,viewController3,viewController4,viewController5, nil] animated:YES];
         self.delegate=self;
-        self.view.backgroundColor = [UIColor clearColor];
+        self.view.backgroundColor = TABLE_SEPARATOR_COLOR;
         [self addTabBarArrow];
     }
     
     if (!classinfo) {
         classinfo = [[[ClassLabelBasis alloc] initWithFrame:CGRectMake(0, 0, 320, 40)] autorelease];
         classinfo.backgroundColor = [UIColor clearColor];
-        classinfo.textAlignment = UITextAlignmentCenter;
+        classinfo.textAlignment = NSTextAlignmentCenter;
         classinfo.font = [UIFont fontWithName:BOLD_FONT size:15];
         classinfo.lineBreakMode = NSLineBreakByWordWrapping;
         classinfo.numberOfLines = 0;

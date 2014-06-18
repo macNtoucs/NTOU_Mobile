@@ -10,7 +10,6 @@
 #import "CommonCryptor.h"
 #import "SBJson.h"
 
-
 @implementation Moodle_API
 
 
@@ -41,28 +40,23 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
 
 +(NSDictionary *)queryFunctionType:(NSString *) type PostString:(NSString *)finailPost{
     // get response
-    @try {
-        NSHTTPURLResponse *urlResponse = nil;
-        NSError *error = [[NSError alloc] init];
-        NSMutableURLRequest * jsonQuest = [NSMutableURLRequest new];
-        NSString * queryURL = [NSString stringWithFormat:@"http://140.121.100.103:8080/iNTOU/%@.do",type];
-        [jsonQuest setURL:[NSURL URLWithString:queryURL]];
-        [jsonQuest setHTTPMethod:@"POST"];
-        [jsonQuest addValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
-        [jsonQuest setHTTPBody:[finailPost dataUsingEncoding:NSUTF8StringEncoding]];
-        NSData *responseData = [NSURLConnection sendSynchronousRequest:jsonQuest
-                                                     returningResponse:&urlResponse
-                                                                 error:&error
-                                ];
-        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
-        return dictionary;
-    }
-    @catch (NSException *exception) {
-        return [NSDictionary new];
-    }
-    @finally {
-        
-    }
+    NSHTTPURLResponse *urlResponse = nil;
+    NSError *error = [[NSError alloc] init];
+    NSMutableURLRequest * jsonQuest = [NSMutableURLRequest new];
+    NSString * queryURL = [NSString stringWithFormat:@"http://140.121.100.103:8080/iNTOU/%@.do",type];
+    [jsonQuest setURL:[NSURL URLWithString:queryURL]];
+    [jsonQuest setHTTPMethod:@"POST"];
+    [jsonQuest addValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+    [jsonQuest setHTTPBody:[finailPost dataUsingEncoding:NSUTF8StringEncoding]];
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:jsonQuest
+                                                 returningResponse:&urlResponse
+                                                             error:&error
+                            ];
+    NSString *resString = [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
+    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+    
+    return dictionary;
+    
 }
 
 +(bool)checkIsStringIncludePulseSymbol:(NSString*) input{
@@ -98,6 +92,8 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
     NSString *jsonRequest = [postDic1 JSONRepresentation];
     NSString *finailPost = [NSString stringWithFormat:@"json=%@",jsonRequest];
     dictionary = [self queryFunctionType:@"login" PostString:finailPost];
+    
+    NSLog(@"%@",finailPost);
     if([[dictionary allValues]count]>1) {
         NSLog(@"登入成功");
     }
@@ -106,6 +102,17 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
     
     return dictionary;
 }
+
++(NSDictionary *)GetCourseGrade_AndUseToken:(NSString *)token{
+    NSDictionary *postDic = [[NSDictionary alloc]initWithObjectsAndKeys:token,@"stid", nil];
+    NSString *jsonRequest = [postDic JSONRepresentation];
+    NSString *finailPost = [NSString stringWithFormat:@"json=%@",jsonRequest];
+    
+    NSDictionary *dictionary = [self queryFunctionType:@"getCourseGrade" PostString:finailPost];
+    return dictionary;
+}
+
+
 
 +(NSDictionary *)GetCourse_AndUseToken:(NSString*)token{
     NSDictionary *postDic = [[NSDictionary alloc]initWithObjectsAndKeys:token,@"stid", nil];
@@ -130,12 +137,13 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
 
 +(NSDictionary* )GetMoodleInfo_AndUseToken:(NSString *)token courseID:(NSString *)cosID classID:(NSString *)clsID{
     NSDictionary * Jsonlist =[[NSDictionary alloc]initWithObjectsAndKeys:cosID,@"cosid",clsID,@"clsid",nil];
-    NSDictionary *postDic = [[NSDictionary alloc]initWithObjectsAndKeys:token,@"stid",Jsonlist,@"list",nil];
+    NSDictionary *postDic = [[NSDictionary alloc]initWithObjectsAndKeys:token,@"stid",[NSArray arrayWithObject:Jsonlist] ,@"list",nil];
+    
     NSString *const_jsonRequest = [postDic JSONRepresentation];
     NSMutableString *jsonRequest = [[NSMutableString alloc]initWithString:const_jsonRequest];
     
-    [jsonRequest insertString:@"[" atIndex:8];
-    [jsonRequest insertString:@"]" atIndex:[jsonRequest rangeOfString:@"stid"].location-2];
+    /*  [jsonRequest insertString:@"[" atIndex:8];
+     [jsonRequest insertString:@"]" atIndex:[jsonRequest rangeOfString:@"stid"].location-2];*/
     
     NSString *finailPost = [NSString stringWithFormat:@"json=%@",jsonRequest];
     NSDictionary *dictionary = [self queryFunctionType:@"getMoodleInfo" PostString:finailPost];
@@ -168,10 +176,10 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
 }
 
 +(NSArray* )getFilesFolder_InDir:(NSString *)dir{
-   // dir=@"/21464/課程講義";
+    // dir=@"/21464/課程講義";
     NSHTTPURLResponse *urlResponse = nil;
     NSError * error;
-   NSString * queryURL = [NSString stringWithFormat:@"http://moodle.ntou.edu.tw/m/new_filestring.php?dir=%@",dir];
+    NSString * queryURL = [NSString stringWithFormat:@"http://moodle.ntou.edu.tw/m/new_filestring.php?dir=%@",dir];
     NSString *encodeUrl = [queryURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSMutableURLRequest * query = [[NSMutableURLRequest new]autorelease];
     [query setURL:[NSURL URLWithString:encodeUrl]];
@@ -191,7 +199,7 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
     }
     NSArray * dic_val = [dictionary allValues];
     NSArray * inventory = [dic_val objectAtIndex:0];
-   
+    
     for (id pair in inventory){
         [result_Inventory addObject:[pair objectForKey:@"item"]];
     }

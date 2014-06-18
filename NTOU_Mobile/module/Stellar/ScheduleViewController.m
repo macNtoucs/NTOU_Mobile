@@ -46,7 +46,7 @@
     if (token) {
         classInfo = [[[ClassInfoViewController alloc] init]autorelease];
         classInfo.title = label.text;
-        classInfo.tag = label.tag;
+        classInfo.tag = label.labelID;
         classInfo.token = token;
         NSDictionary* courseInfo = [[ClassDataBase sharedData] loginCourseToGetCourseidAndClassid:label.text];
         classInfo.courseId = [courseInfo objectForKey:courseIDKey];
@@ -110,7 +110,7 @@
     }
     ClassLabelBasis* FirstTap = [weekschedule.TapAddCourse objectAtIndex:0];
     if (FinishType == move||[[array objectAtIndex:0] isEqualToString:[NSString string]]) {
-        NSNumber* deleteCourseTag = [NSNumber numberWithInt:[[weekschedule.TapAddCourse objectAtIndex:0]tag]];
+        NSNumber* deleteCourseTag = [NSNumber numberWithInt:[[weekschedule.TapAddCourse objectAtIndex:0] labelID]];
         [[ClassDataBase sharedData] UpdataScheduleInfo:deleteCourseTag ScheduleInfo:@" "];
         [[ClassDataBase sharedData] deleteClassroomLocation:deleteCourseTag];
         [[ClassDataBase sharedData] deleteProfessorName:deleteCourseTag];
@@ -129,14 +129,14 @@
     weekschedule.TapAddCourse = [NSMutableArray array];
     int i=0;
     for (ClassLabelBasis* label in sortedArr) {
-        if (label.tag<0)
-                label.tag*=-1;
+        if (label.labelID<0)
+                label.labelID*=-1;
         if ([weekschedule.TapAddCourse count]==0)
             [weekschedule.TapAddCourse addObject:label];
         else{
             ClassLabelBasis* sortedlabel = [weekschedule.TapAddCourse objectAtIndex:i];
-            if (sortedlabel.tag%10000/100+sortedlabel.tag%100==label.tag%10000/100)
-                sortedlabel.tag+=label.tag%100;
+            if (sortedlabel.labelID%10000/100+sortedlabel.labelID%100==label.labelID%10000/100)
+                sortedlabel.labelID+=label.labelID%100;
             else{
                 [weekschedule.TapAddCourse addObject:label];
                 i++;
@@ -144,9 +144,9 @@
         }
     }
     for (ClassLabelBasis* label in weekschedule.TapAddCourse) {
-        [[ClassDataBase sharedData] UpdataScheduleInfo:[NSNumber numberWithInt:label.tag] ScheduleInfo:[array objectAtIndex:0]];
-        [[ClassDataBase sharedData] UpdataProfessorNameKey:[NSNumber numberWithInt:label.tag] ProfessorName:[array objectAtIndex:1]];
-        [[ClassDataBase sharedData] UpdataClassroomLocationKey:[NSNumber numberWithInt:label.tag] Classroom:[array objectAtIndex:2]];
+        [[ClassDataBase sharedData] UpdataScheduleInfo:[NSNumber numberWithInt:label.labelID] ScheduleInfo:[array objectAtIndex:0]];
+        [[ClassDataBase sharedData] UpdataProfessorNameKey:[NSNumber numberWithInt:label.labelID] ProfessorName:[array objectAtIndex:1]];
+        [[ClassDataBase sharedData] UpdataClassroomLocationKey:[NSNumber numberWithInt:label.labelID] Classroom:[array objectAtIndex:2]];
         
     }
     [[ClassDataBase sharedData] moodleFromRecordForNewCourse:[array objectAtIndex:0] ForOldCourse:FirstTap.text];

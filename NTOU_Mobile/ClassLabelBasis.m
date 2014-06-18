@@ -10,7 +10,7 @@
 
 @implementation ClassLabelBasis
 @synthesize tempBackground;
-@synthesize changeColor,badgeValue,topDisplayView;
+@synthesize changeColor,badgeValue,topDisplayView,labelID;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -24,7 +24,7 @@
     [badgeValue release];
     badgeValue = [newValue retain];
     
-    UIView *badgeView = [self.topDisplayView.superview viewWithTag:self.tag*100];
+    UIView *badgeView = [self.topDisplayView.superview viewWithTag:self.labelID*100];
     
     if (badgeValue) {
         UIFont *labelFont = [UIFont boldSystemFontOfSize:13.0f];
@@ -35,17 +35,17 @@
             
             badgeView = [[[UIImageView alloc] initWithImage:stretchableImage] autorelease];
             badgeView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-            badgeView.tag = self.tag*100;
+            badgeView.tag = self.labelID*100;
             
             UILabel *badgeLabel = [[[UILabel alloc] initWithFrame:badgeView.frame] autorelease];
             badgeLabel.backgroundColor = [UIColor clearColor];
             badgeLabel.textColor = [UIColor whiteColor];
             badgeLabel.font = labelFont;
             badgeLabel.textAlignment = NSTextAlignmentCenter;
-            badgeLabel.tag = self.tag*100+1;
+            badgeLabel.tag = self.labelID*100+1;
             [badgeView addSubview:badgeLabel];
         }
-        UILabel *badgeLabel = (UILabel *)[badgeView viewWithTag:self.tag*100+1];
+        UILabel *badgeLabel = (UILabel *)[badgeView viewWithTag:self.labelID*100+1];
         CGSize size = [badgeValue sizeWithFont:labelFont];
         CGFloat padding = 7.0;
         CGRect frame = badgeView.frame;
