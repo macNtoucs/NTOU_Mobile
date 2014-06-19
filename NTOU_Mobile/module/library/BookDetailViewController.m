@@ -74,6 +74,7 @@
 {
     self.title = @"詳細資訊";
     bookurl = [bookurl stringByReplacingOccurrencesOfString:@"&" withString:@"(ANDCHAR)"];
+    bookurl = [bookurl stringByReplacingOccurrencesOfString:@"+" withString:@"(PLUSCHAR) "];
     bookurl = [bookurl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *parameter= [[NSString alloc]initWithFormat:@"URL=%@",bookurl];
     NSHTTPURLResponse *urlResponse = nil;

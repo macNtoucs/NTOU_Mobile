@@ -137,8 +137,10 @@
 
 }
 
+- (CGRect)editingRectForBounds:(CGRect)bounds{
+    NSLog (@"%@", bounds);
 
-
+}
 
 - (void)viewDidLoad
 {
@@ -155,7 +157,7 @@
     textField.delegate = self;
     textField.placeholder = @"書籍關鍵字/ISBN";
     textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
- 
+    textField.delegate = self;
     typeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [typeButton addTarget:self
                    action:@selector(changeSearchType)
