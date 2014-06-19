@@ -106,7 +106,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-        if([newData count] == 0 || newData ==nil)return[maindata count];
+        if([newData count] == 0 || newData ==nil )return[maindata count];
+        else if([newData count] < 10) return [newData count];
         else return[maindata count]+1;
 }
 
