@@ -63,9 +63,7 @@
     [self.navigationController.view addSubview:partBusNameLabel];
     //NSLog(@"navView=%@", self.navigationController.view);
     
-    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.title = @"公車";
-    havingTableView = YES;
     partBusName = [[NSMutableString alloc] init];
     arrayTaipeiBus = [[NSMutableArray alloc] init];
     arrayNewTaipeiBus = [[NSMutableArray alloc] init];
@@ -76,6 +74,8 @@
     desArrayTaipeiBus = [[NSMutableArray alloc] init];
     desArrayNewTaipeiBus = [[NSMutableArray alloc] init];
     desArrayKeelungBus = [[NSMutableArray alloc] init];
+    
+    [self showFirstLayerButtons];
     
     /* create plist */
     NSError *error;
@@ -94,6 +94,8 @@
         //copy the file from bundle to document dir
         [fm copyItemAtPath:correctPath toPath:path error:&error];
     }
+    
+    NSLog(@"RouteByButton.m path = %@", path);
     
     //read data with plist
     dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
@@ -124,10 +126,21 @@
             }
             frequency = [[info objectForKey:@"frequency"] intValue];
         } //end for: all keys of dict
+        
+        [self createTableView];
+        
+        if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+            self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        else
+            [tableview applyStandardColors];
+        havingTableView = YES;
     } //end if: dict has data
-    
-    [self showFirstLayerButtons];
-    [self createTableView];
+    else
+    {
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DefaultAlpha.png"]];
+        
+        havingTableView = NO;
+    }
 }
 
 - (void)viewDidUnload
@@ -139,7 +152,7 @@
 - (void)showFirstLayerButtons
 {
     buttonFirstView = [[[UIView alloc] initWithFrame:CGRectMake(0, 480, 320, 250)] retain];
-    [buttonFirstView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    [buttonFirstView setBackgroundColor:[UIColor lightTextColor]];
     
     buttonTintColor = [UIColor blackColor];
     

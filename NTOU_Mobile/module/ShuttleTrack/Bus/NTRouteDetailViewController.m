@@ -51,7 +51,7 @@
 {
     ISREAL = TRUE;
     [self estimateTime];
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
     [loadingView dismissWithClickedButtonIndex:0 animated:YES];
     [activityIndicator stopAnimating];
 }
@@ -94,6 +94,7 @@
     [stops retain];
     //[IDs retain];
     [m_waitTimeResult retain];
+    [self.tableView reloadData];
 }
 
 -(void)AlertStart:(UIAlertView *) loadingAlertView{
@@ -114,7 +115,7 @@
 	{
 		[self.refreshTimer invalidate];
 		self.refreshTimer = nil;
-		self.anotherButton.title = @"Refresh";
+		//self.anotherButton.title = @"Refresh";
 	}
 }
 
@@ -169,6 +170,14 @@
         {
             //NSLog(@"sinceRefresh=%f", sinceRefresh);
             int secs = (1-sinceRefresh);
+            if (secs > 30)
+            {
+                [self stopTimer];
+                [activityIndicator performSelectorInBackground:@selector(startAnimating) withObject:nil];
+                [self.loadingView performSelectorInBackground:@selector(show) withObject:nil];
+                [self CatchData];
+                [self startTimer];
+            }
             /*if (secs % 5 == 0)
             {
                 secondsLabel.text = [NSString stringWithFormat:@"距離上次更新%d秒", secs];
@@ -180,22 +189,27 @@
 
 - (void)changeDetailView
 {
-    [activityIndicator startAnimating];
-    [self.loadingView show];
-    
     if ([goBack isEqualToString:@"0"])
     {
         //anotherButton.title = destination;
         self.navigationItem.title = [NSString stringWithFormat:@"%@ → %@", destination, departure];
         [self setter_busName:busName andGoBack:1];
+        [self stopTimer];
+        [activityIndicator performSelectorInBackground:@selector(startAnimating) withObject:nil];
+        [self.loadingView performSelectorInBackground:@selector(show) withObject:nil];
         [self CatchData];
+        [self startTimer];
     }
     else
     {
         //anotherButton.title = departure;
         self.navigationItem.title = [NSString stringWithFormat:@"%@ → %@", departure, destination];
         [self setter_busName:busName andGoBack:0];
+        [self stopTimer];
+        [activityIndicator performSelectorInBackground:@selector(startAnimating) withObject:nil];
+        [self.loadingView performSelectorInBackground:@selector(show) withObject:nil];
         [self CatchData];
+        [self startTimer];
     }
     
 }
@@ -232,7 +246,10 @@
         activityIndicator.color = [UIColor blackColor];
     }
     else
-        activityIndicator.frame = CGRectMake(115.0, 80.0, 50.0, 50.0);
+    {
+        activityIndicator.frame = CGRectMake(115.0, 120.0, 50.0, 50.0);
+        activityIndicator.color = [UIColor blackColor];
+    }
     
     [self.tableView addSubview:self.secondsLabel];
     [self.loadingView addSubview:self.activityIndicator];
@@ -249,6 +266,7 @@
         [self.tableView addSubview:view1];
         _refreshHeaderView = view1;
         [view1 release];
+        [self CatchData];
     }
     [_refreshHeaderView refreshLastUpdatedDate];
     success = [[UIImageView alloc] initWithFrame:CGRectMake(75.0, 250.0, 150.0, 150.0)];
@@ -307,6 +325,14 @@
 {
     // Return the number of sections.
     return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if ([[[UIDevice currentDevice]systemVersion]floatValue] >= 7.0)
+        return 35;
+    
+    return 40;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

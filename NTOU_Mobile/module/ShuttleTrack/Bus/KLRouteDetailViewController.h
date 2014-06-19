@@ -20,7 +20,7 @@
 #import "EGORefreshTableHeaderView.h"
 #import "UIKit+NTOUAdditions.h"
 
-@interface KLRouteDetailViewController : UITableViewController<EGORefreshTableHeaderDelegate>
+@interface KLRouteDetailViewController : UITableViewController<EGORefreshTableHeaderDelegate, UIAlertViewDelegate>
 {
     NSString *busName;
     NSString *goBack;
