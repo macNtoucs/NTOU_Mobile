@@ -17,6 +17,7 @@
 @property(strong,nonatomic) UIPickerView *picker;
 @property (strong,nonatomic)  UIButton *typeButton;
 @property (strong,nonatomic) UILabel *buttonLabel;
+
 @end
 
 @implementation MainViewController
@@ -81,7 +82,7 @@
 -(void)search{
     [self backgroundTap];
     
-    if([textField.text length] < 1)
+    if([sTextField.text length] < 1)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"關鍵字/ISBN為空白"
                                                         message:@"請輸入欲查詢的關鍵字/ISBN！"
@@ -95,7 +96,7 @@
         SearchResultViewController * display = [[SearchResultViewController alloc]initWithStyle:UITableViewStylePlain];
         display.data = [[NSMutableArray alloc] init];
         display.mainview = self;
-        display.inputtext = textField.text;
+        display.inputtext = sTextField.text;
         display.book_count = 10;   
         display.start = NO;
         display.Searchpage=1;
@@ -151,17 +152,24 @@
     libSearchType = [[NSString alloc]initWithString:[searchType objectAtIndex: 0]];
     NSInteger swidth = [[UIScreen mainScreen] bounds].size.width;
     
+    
+    
     textField = [[UITextField alloc] initWithFrame:CGRectMake(swidth/2 - 150,50, 300, 30)];
+    sTextField = [[UITextField alloc] initWithFrame:CGRectMake(10 ,0,200, 30)];
     textField.borderStyle = UITextBorderStyleRoundedRect;
     textField.font = [UIFont systemFontOfSize:15];
     textField.delegate = self;
-    textField.placeholder = @"書籍關鍵字/ISBN";
-    textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    textField.delegate = self;
+    sTextField.delegate = self;
+    sTextField.placeholder = @"書籍關鍵字/ISBN";
+    sTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     typeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [typeButton addTarget:self
                    action:@selector(changeSearchType)
      forControlEvents:UIControlEventTouchDown];
+    
+    
+    UILabel * divider = [[UILabel alloc]initWithFrame:CGRectMake(205 ,0,5, 30)];
+    [divider setText:@"|"];
     
     
     buttonLabel = [[UILabel alloc]init];
@@ -173,7 +181,7 @@
     buttonLabel.font = font;
    
     typeButton.frame =CGRectMake(textField.frame.origin.x + 210 ,
-                                 textField.frame.origin.y ,
+                                 textField.frame.origin.y + 1,
                                  40,
                                  28);
     [typeButton addSubview:buttonLabel];
@@ -189,7 +197,7 @@
     [button setImage:[UIImage imageNamed:@"LibrarySearch.png"] forState:UIControlStateNormal];
      button.frame = CGRectMake(textField.frame.origin.x + 260 ,
                                textField.frame.origin.y ,
-                               35,
+                               30,
                                28);
     
     UIImage *Library = [UIImage imageNamed:@"NYOULogo.png"];
@@ -198,6 +206,8 @@
     
     [mainView addSubview:NTU_Library];
     [mainView addSubview:textField];
+    [textField addSubview:sTextField];
+     [textField addSubview:divider];
     [mainView addSubview:button];
     [mainView addSubview:picker];
     [mainView addSubview:typeButton];
