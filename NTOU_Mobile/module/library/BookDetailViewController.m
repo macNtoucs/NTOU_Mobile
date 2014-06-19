@@ -12,6 +12,11 @@
 #import "SettingsModuleViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
+
+#define NAV_X self.navigationController.navigationBar.frame.origin.x
+#define NAV_Y self.navigationController.navigationBar.frame.origin.y
+#define NAV_HEIGHT self.navigationController.navigationBar.frame.size.height
+#define NAV_WIDTH   self.navigationController.navigationBar.frame.size.width
 @interface BookDetailViewController ()
 {
     NSString *book_part1[10];
@@ -25,6 +30,8 @@
 @property (nonatomic, retain) NSMutableData* receiveData;
 @property (nonatomic,retain) NSArray * electricBookArray;
 @property long int goToEternalLinkRow;
+@property(nonatomic, retain) UIViewController *webViewController;
+@property (nonatomic ,retain) UIWebView *webView ;
 @end
 
 @implementation BookDetailViewController
@@ -32,6 +39,8 @@
 @synthesize bookdetail;
 @synthesize receiveData;
 @synthesize electricBookArray;
+@synthesize webViewController;
+@synthesize webView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -68,6 +77,12 @@
     NSLog(@"%@",[error localizedDescription]);
 }
 
+
+
+-(void)viewWillAppear:(BOOL)animated{
+    [progressView release];
+    [webView stopLoading];
+}
 
 
 - (void)viewDidLoad
@@ -655,12 +670,12 @@
         case 0:{
             
             progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-            progressView.frame = CGRectMake(105,
-                                            self.navigationController.navigationBar.frame.size.height,
-                                            self.navigationController.navigationBar.frame.size.width-115 ,
+            progressView.frame = CGRectMake(NAV_X,
+                                            NAV_Y+NAV_HEIGHT,
+                                            NAV_WIDTH ,
                                             20);
-            UIViewController *webViewController = [[[UIViewController alloc]init] autorelease];
-            UIWebView *webView = [[[UIWebView alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
+           webViewController = [[[UIViewController alloc]init] autorelease];
+           webView = [[[UIWebView alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
             webView.scalesPageToFit = YES;
             NJKWebViewProgress *_progressProxy = [[NJKWebViewProgress alloc] init]; // instance variable
             webView.delegate = _progressProxy;
@@ -669,9 +684,10 @@
        
             [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:book_part2[_goToEternalLinkRow]]]];
             [webViewController.view addSubview: webView];
-            [self.navigationController.view addSubview:progressView];
+            [webView addSubview:progressView];
             [self.navigationController pushViewController:webViewController animated:YES];
-            break;
+            
+                     break;
         }
         case 1:
             break;

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "NJKWebViewProgress.h"
-@interface BookDetailViewController : UITableViewController <UIAlertViewDelegate , NSURLConnectionDelegate ,NJKWebViewProgressDelegate,UIWebViewDelegate>
+@interface BookDetailViewController : UITableViewController <UIAlertViewDelegate , NSURLConnectionDelegate ,NJKWebViewProgressDelegate,UIWebViewDelegate >
 @property (nonatomic,retain) NSString *bookurl;
 @end
