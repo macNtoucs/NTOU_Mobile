@@ -287,6 +287,7 @@
         CGSize booknameLabelSize,authorLabelSize,pressLabelSize,ISBNLabelSize;
         CGRect booknameLabelRect, authorLabelRect,pressLabelRect,ISBNLabelRect;
         CGSize maximumLabelSize = CGSizeMake(200,9999);
+   
         if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
             
             booknameLabelRect = [book_name boundingRectWithSize:maximumLabelSize
@@ -512,9 +513,13 @@
     else if (section == 1 && [[bookdetail objectForKey:@"bookType"]  isEqual: @"ebook"])
     {
       
-        cell.textLabel.text = book_part1[row];
-        [cell.textLabel sizeToFit];
-        cell.textLabel.font = font;
+        UILabel *ISBNLabel = [[UILabel alloc]initWithFrame:CGRectMake(10,2,250,25)];
+        ISBNLabel.font = font;
+        [ISBNLabel setText:book_part1[row]];
+    /*
+        ISBNLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        ISBNLabel.numberOfLines = 0;*/
+        [cell.contentView addSubview:ISBNLabel];
        
     }
     else if (section == 2)
@@ -616,7 +621,7 @@
     
     
     else if (section == 1 && [[bookdetail objectForKey:@"bookType"]  isEqual: @"ebook"]){
-         NSString *link = book_part1[indexPath.row];
+      /*   NSString *link = book_part1[indexPath.row];
         if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
             linkLabelRect = [link boundingRectWithSize:maximumLabelSize
                                                    options:NSStringDrawingUsesLineFragmentOrigin
@@ -632,8 +637,8 @@
                  }
         
         
-        return linkLabelSize.height+8;
-        
+        return linkLabelSize.height+12;*/ //網址很醜
+        return 30;
             }
     
     else if (section == 2)

@@ -381,6 +381,8 @@
         NSString *bookname = [book objectForKey:@"title"];
         NSString *author = [book objectForKey:@"author"];
         NSString *press = [book objectForKey:@"pubInform"];
+        NSArray * eBookDetail = [book objectForKey:@"electricBookDetail"];
+        if ([eBookDetail count]!=0) bookname = [NSString stringWithFormat:@"[電子資源]%@",bookname]; //[電子資源也要進去算行數]
         
         UIFont *nameFont = [UIFont fontWithName:@"Helvetica" size:14.0];
         UIFont *otherFont = [UIFont fontWithName:@"Helvetica" size:12.0];
