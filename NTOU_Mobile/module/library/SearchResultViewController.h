@@ -15,7 +15,6 @@
 @property (strong, nonatomic) MainViewController *mainview;
 @property (nonatomic,retain) NSMutableArray *data;
 @property (strong, nonatomic) NSString *inputtext;
-@property (strong, nonatomic) TFHpple* sparser;
 @property (nonatomic) BOOL start;
 @property (nonatomic) NSInteger book_count;
 @property int Searchpage;

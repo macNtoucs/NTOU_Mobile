@@ -33,9 +33,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+       
         NSInteger sheight = [[UIScreen mainScreen] bounds].size.height;
         mainView = [[UIView alloc]initWithFrame:CGRectMake(0,0 , 320, sheight
-                                                           )];
+                                                        )];
     }
     return self;
 }
@@ -122,34 +123,7 @@
     retval.font = [UIFont systemFontOfSize:14];
     return retval;
 }
-// Number of components.
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    return 1;
-}
 
-// Total rows in our component.
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{    return 2;
-}
-
-// Display each row's data.
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    return [searchType objectAtIndex: row];
-}
-
-// Do something with the selected row.
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    libSearchType =[searchType objectAtIndex: row];
-    [buttonLabel removeFromSuperview];
-    UIFont *font = [UIFont fontWithName:@"Helvetica" size:13.0];
-    buttonLabel.text = libSearchType;
-    buttonLabel.font = font;
-    [typeButton addSubview:buttonLabel];
-      picker.hidden=YES;
-}
-
--(void)displayPicker{
-    picker.hidden=NO;
-}
 
 -(void)changeSearchType{
     if([libSearchType  isEqual: @"關鍵字"])
@@ -163,9 +137,13 @@
 
 }
 
+
+
+
 - (void)viewDidLoad
 {
     //self.title = @"國立海洋大學圖書館";
+    //[self navAddRightButton];
     searchResultArray = [NSMutableArray new];
     searchType = [[NSArray alloc]initWithObjects:@"關鍵字",@"ISBN", nil];
     libSearchType = [[NSString alloc]initWithString:[searchType objectAtIndex: 0]];
@@ -177,13 +155,7 @@
     textField.delegate = self;
     textField.placeholder = @"書籍關鍵字/ISBN";
     textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    picker = [[UIPickerView alloc]initWithFrame:CGRectMake(textField.frame.origin.x + 210 ,
-                                                           textField.frame.origin.y -20,
-                                                           60,
-                                                           35)];
-    
-    picker.hidden=YES;
-    
+ 
     typeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [typeButton addTarget:self
                    action:@selector(changeSearchType)
@@ -241,7 +213,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

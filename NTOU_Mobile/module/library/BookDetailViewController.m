@@ -74,6 +74,7 @@
 {
     self.title = @"詳細資訊";
     bookurl = [bookurl stringByReplacingOccurrencesOfString:@"&" withString:@"(ANDCHAR)"];
+    bookurl = [bookurl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *parameter= [[NSString alloc]initWithFormat:@"URL=%@",bookurl];
     NSHTTPURLResponse *urlResponse = nil;
     NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
@@ -651,6 +652,7 @@
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
         case 0:{
+            
             progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
             progressView.frame = CGRectMake(105,
                                             self.navigationController.navigationBar.frame.size.height,

@@ -28,6 +28,8 @@
 		1D8A3B281905051200816CCD /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D8A3B1A1905051200816CCD /* whiteArrow.png */; };
 		1D8A3B291905051300816CCD /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D8A3B1B1905051200816CCD /* whiteArrow@2x.png */; };
 		1D8A3B2A1905051300816CCD /* NTOUNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B1D1905051200816CCD /* NTOUNotification.m */; };
+		1DD157A119515D28006CA7AF /* igViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD157A019515D28006CA7AF /* igViewController.m */; };
+		1DD157A31951624A006CA7AF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD157A21951624A006CA7AF /* AVFoundation.framework */; };
 		1DD1791F18FE7AB300621B67 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178E318FE7AB300621B67 /* AboutViewController.m */; };
 		1DD1792018FE7AB300621B67 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178E518FE7AB300621B67 /* AccountViewController.m */; };
 		1DD1792118FE7AB300621B67 /* floorInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178E718FE7AB300621B67 /* floorInfoViewController.m */; };
@@ -46,7 +48,6 @@
 		1DD1793718FE7AB300621B67 /* NYOULogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1790A18FE7AB300621B67 /* NYOULogo.png */; };
 		1DD1793818FE7AB300621B67 /* RBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790C18FE7AB300621B67 /* RBookViewController.m */; };
 		1DD1793918FE7AB300621B67 /* search_tabbar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1790D18FE7AB300621B67 /* search_tabbar.jpg */; };
-		1DD1793A18FE7AB300621B67 /* SearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790F18FE7AB300621B67 /* SearchListViewController.m */; };
 		1DD1793B18FE7AB300621B67 /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1791118FE7AB300621B67 /* SearchResultViewController.m */; };
 		1DD1793C18FE7AB300621B67 /* switchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1791318FE7AB300621B67 /* switchController.m */; };
 		1DD1793D18FE7AB300621B67 /* tabbar_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1791418FE7AB300621B67 /* tabbar_background.jpg */; };
@@ -361,6 +362,9 @@
 		1D8A3B1B1905051200816CCD /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		1D8A3B1C1905051200816CCD /* NTOUNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUNotification.h; sourceTree = "<group>"; };
 		1D8A3B1D1905051200816CCD /* NTOUNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUNotification.m; sourceTree = "<group>"; };
+		1DD1579F19515D28006CA7AF /* igViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = igViewController.h; sourceTree = "<group>"; };
+		1DD157A019515D28006CA7AF /* igViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = igViewController.m; sourceTree = "<group>"; };
+		1DD157A21951624A006CA7AF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1DD178E218FE7AB300621B67 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		1DD178E318FE7AB300621B67 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		1DD178E418FE7AB300621B67 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
@@ -392,8 +396,6 @@
 		1DD1790B18FE7AB300621B67 /* RBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBookViewController.h; sourceTree = "<group>"; };
 		1DD1790C18FE7AB300621B67 /* RBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBookViewController.m; sourceTree = "<group>"; };
 		1DD1790D18FE7AB300621B67 /* search_tabbar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = search_tabbar.jpg; sourceTree = "<group>"; };
-		1DD1790E18FE7AB300621B67 /* SearchListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchListViewController.h; sourceTree = "<group>"; };
-		1DD1790F18FE7AB300621B67 /* SearchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchListViewController.m; sourceTree = "<group>"; };
 		1DD1791018FE7AB300621B67 /* SearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
 		1DD1791118FE7AB300621B67 /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
 		1DD1791218FE7AB300621B67 /* switchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = switchController.h; sourceTree = "<group>"; };
@@ -825,6 +827,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DD157A31951624A006CA7AF /* AVFoundation.framework in Frameworks */,
 				43BEDC1C19236DEC0091B024 /* libsqlite3.dylib in Frameworks */,
 				C4CA69B319112894005B272C /* CoreText.framework in Frameworks */,
 				BA06A07D16F2EF5B00212CB9 /* EventKit.framework in Frameworks */,
@@ -892,6 +895,8 @@
 				1DD178FA18FE7AB300621B67 /* library-Info.plist */,
 				1DD178FB18FE7AB300621B67 /* library-Prefix.pch */,
 				1DD178FC18FE7AB300621B67 /* Library_NTU.png */,
+				1DD1579F19515D28006CA7AF /* igViewController.h */,
+				1DD157A019515D28006CA7AF /* igViewController.m */,
 				1DD178FD18FE7AB300621B67 /* LoginOutResultViewController.h */,
 				1DD178FE18FE7AB300621B67 /* LoginOutResultViewController.m */,
 				1DD178FF18FE7AB300621B67 /* LoginResResultViewController.h */,
@@ -909,8 +914,6 @@
 				1DD1790B18FE7AB300621B67 /* RBookViewController.h */,
 				1DD1790C18FE7AB300621B67 /* RBookViewController.m */,
 				1DD1790D18FE7AB300621B67 /* search_tabbar.jpg */,
-				1DD1790E18FE7AB300621B67 /* SearchListViewController.h */,
-				1DD1790F18FE7AB300621B67 /* SearchListViewController.m */,
 				1DD1791018FE7AB300621B67 /* SearchResultViewController.h */,
 				1DD1791118FE7AB300621B67 /* SearchResultViewController.m */,
 				1DD1791218FE7AB300621B67 /* switchController.h */,
@@ -1130,6 +1133,7 @@
 		91A9004916E854E500ECF2CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1DD157A21951624A006CA7AF /* AVFoundation.framework */,
 				43BEDC1B19236DEC0091B024 /* libsqlite3.dylib */,
 				C4CA69B219112894005B272C /* CoreText.framework */,
 				91756FED16F21235001D724D /* ImageIO.framework */,
@@ -1854,7 +1858,6 @@
 				91A9007F16E85C8400ECF2CF /* AppDelegate+ModuleList.m in Sources */,
 				43BEDBF519236BED0091B024 /* FMDatabase.m in Sources */,
 				91A9008216E8609200ECF2CF /* Rotation.m in Sources */,
-				1DD1793A18FE7AB300621B67 /* SearchListViewController.m in Sources */,
 				91A9008516E8613800ECF2CF /* NTOU_MobileAppDelegate+Private.m in Sources */,
 				91A9008816E8659E00ECF2CF /* NTOUConstants.m in Sources */,
 				1DD1792918FE7AB300621B67 /* BookDetailViewController.m in Sources */,
@@ -1961,6 +1964,7 @@
 				1D0DC7D1194F3211006DA208 /* NJKWebViewProgress.m in Sources */,
 				91756F7716F206F7001D724D /* ReaderThumbRequest.m in Sources */,
 				91756F7816F206F7001D724D /* ReaderThumbsView.m in Sources */,
+				1DD157A119515D28006CA7AF /* igViewController.m in Sources */,
 				91756F7916F206F7001D724D /* ReaderThumbView.m in Sources */,
 				91756F7A16F206F7001D724D /* ReaderViewController.m in Sources */,
 				91756F7C16F206F7001D724D /* ScheduleViewController.m in Sources */,

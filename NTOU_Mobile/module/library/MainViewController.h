@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TFHpple.h"
-
+#import "igViewController.h"
 @class switchController;
-@interface MainViewController : UIViewController<UIActionSheetDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate,UIPickerViewDelegate , UIPickerViewDataSource>{
+@interface MainViewController : UIViewController<UIActionSheetDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate,UITabBarControllerDelegate , UIPickerViewDataSource>{
     UIView * mainView; UITextField *textField;
     NSMutableArray *searchResultArray;
     //NSMutableArray *searchResultPage[20];

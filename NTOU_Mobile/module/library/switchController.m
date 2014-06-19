@@ -13,44 +13,55 @@
 #import "UIKit+NTOUAdditions.h"
 
 @interface switchController ()
-
+@property (nonatomic, retain)  UIBarButtonItem * another;
+@property (nonatomic ,retain) MainViewController * mainviewcon;
+@property (nonatomic ,retain) HistoryTableViewController * hisTableCon;
+@property (nonatomic ,retain) AboutViewController * aboutViewCon;
+@property (nonatomic, retain) igViewController * scannerCon;
+@property (nonatomic, retain) NSMutableArray * controllerArray;
 @end
 
 @implementation switchController
+@synthesize mainviewcon;
+@synthesize hisTableCon;
+@synthesize aboutViewCon;
+@synthesize another;
+@synthesize scannerCon;
+@synthesize controllerArray;
 -(void)setView
 {
    
-    MainViewController* view1 = [[MainViewController alloc] init];
+    mainviewcon = [[MainViewController alloc] init];
     UITabBarItem *item1 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemSearch tag:1];
-    view1.tabBarItem = item1;
-    view1.switchviewcontroller = self;
+    mainviewcon.tabBarItem = item1;
+    mainviewcon.switchviewcontroller = self;
     [item1 release];
   
-    UINavigationController * nav1 = [[UINavigationController alloc]initWithRootViewController:view1];
+    UINavigationController * nav1 = [[UINavigationController alloc]initWithRootViewController:mainviewcon];
     
-    [view1 release];
+    [mainviewcon release];
     
-    HistoryTableViewController* view2 = [[HistoryTableViewController alloc] init];
+    hisTableCon = [[HistoryTableViewController alloc] init];
     UITabBarItem *item2 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemHistory tag:2];
-    view2.tabBarItem = item2;
+    hisTableCon.tabBarItem = item2;
     [item2 release];
     
-    UINavigationController * nav2 = [[UINavigationController alloc]initWithRootViewController:view2];
-    [view2 release];
+    UINavigationController * nav2 = [[UINavigationController alloc]initWithRootViewController:hisTableCon];
+    [hisTableCon release];
     
-    AboutViewController* view3 = [[AboutViewController alloc] init];
+    aboutViewCon = [[AboutViewController alloc] init];
     UITabBarItem *item3 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:3];
-    view3.tabBarItem = item3;
-    [item3 release];
-    UINavigationController * nav3 = [[UINavigationController alloc]initWithRootViewController:view3];
+    aboutViewCon.tabBarItem = item3;
+    UINavigationController * nav3 = [[UINavigationController alloc]initWithRootViewController:aboutViewCon];
    
-    [view3 release];
+    [aboutViewCon release];
 
     if (!self.viewControllers) {
         [self.viewControllers release];
     }
-   
-    [self setViewControllers:[NSArray arrayWithObjects:view1,view2,view3,nil] animated:NO];
+    
+    controllerArray = [[NSMutableArray alloc]initWithObjects:mainviewcon,hisTableCon,aboutViewCon, nil];
+    [self setViewControllers:controllerArray animated:NO];
    
     
     [nav1 release];
@@ -69,7 +80,34 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [another setTitle:@"條碼掃描"];
+     [super viewWillAppear:animated];
+}
+
+-(void)chanSearchStyle{
+    
+    if ([another.title  isEqual:@"條碼掃描"]){
+            scannerCon = [[igViewController alloc] init];
+        scannerCon.mainview = mainviewcon;
+        [ scannerCon.view  setFrame:CGRectMake(mainviewcon.view.frame.origin.x,
+                                               mainviewcon.view.frame.origin.y,
+                                               mainviewcon.view.frame.size.width,
+                                               mainviewcon.view.frame.size.height-100)
+        ];
+            [mainviewcon.view addSubview:scannerCon.view];
+            [another setTitle:@"取消"];
+        }
+    else{
+        [another setTitle:@"條碼掃描"];
+        [scannerCon.view  removeFromSuperview];
+        [scannerCon release];
+    }
+ 
+}
+
+-(void)navAddRightButton{
+    another = [[UIBarButtonItem alloc]initWithTitle:@"條碼掃描" style:UIBarButtonItemStylePlain target:self action:@selector(chanSearchStyle)];
+    self.navigationItem.rightBarButtonItem = another;
 }
 
 - (void)viewDidLoad
@@ -79,9 +117,9 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     
     }
-   
+   [self navAddRightButton];
     self.view.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
-    
+   // [self navAddRightButton];
 	// Do any additional setup after loading the view.
 }
 
@@ -94,7 +132,8 @@
 - (void)tabBarController:(UITabBarController *)tabBarController
  didSelectViewController:(UIViewController *)viewController
 {
-    
+   if( tabBarController.selectedIndex ==0)   [self navAddRightButton];
+    else  self.navigationItem.rightBarButtonItem = nil;
     [self setView];
 }
 

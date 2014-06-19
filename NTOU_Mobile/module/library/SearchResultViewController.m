@@ -145,6 +145,7 @@
 }
 
 -(void)search{
+    if (urldata == nil) [self viewDidLoad];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         // Show the HUD in the main tread
         dispatch_async(dispatch_get_main_queue(), ^{
