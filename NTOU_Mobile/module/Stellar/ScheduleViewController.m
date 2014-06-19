@@ -341,17 +341,17 @@
 -(void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
+    [self ChangeDisplayView];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
     [self.navigationController.view addSubview:LeftViewController];
     [self.navigationController.view addSubview:TopWeekcontroller];
     [self.navigationController.view addSubview:UpperleftView];
     [self.navigationController setNavigationBarHidden:NO];
-    
-    [super viewDidAppear:animated];
 }
 
 -(void)viewDidDisappear:(BOOL)animated

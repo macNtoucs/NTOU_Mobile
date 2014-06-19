@@ -283,7 +283,7 @@
         view4.title = type1;
         view4.delegatetype5 = self;
         view4.moodleid = [moodleid retain];
-        view4.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-30);
+        view4.view.frame =  CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-30);
         [viewController4.view addSubview:view4.tableView];
         
         view5 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];

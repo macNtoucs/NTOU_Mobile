@@ -302,6 +302,9 @@
          }];
     }
     [self storeNotifications:notifications];
+    [NTOUNotificationHandle setAllBadge];
+    
+    [self setRemotePNS_Badge];
 }
 
 +(void)setRemotePNS_Badge
@@ -319,9 +322,10 @@
         [NTOUNotificationHandle sendRegisterDevice:[SettingsModuleViewController getMoodleAccount]];
     else
         [NTOUNotificationHandle sendRegisterDevice:nil];
+        
     [NTOUNotificationHandle setAllBadge];
+    
     [self setRemotePNS_Badge];
-
 }
 
 @end

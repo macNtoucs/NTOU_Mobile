@@ -169,7 +169,7 @@
 - (void) registerDeviceToken:(NSString *)title
 {
     if ([title isEqual:moodle])
-        [NTOUNotificationHandle sendRegisterDevice:title];
+        [NTOUNotificationHandle sendRegisterDevice:[SettingsModuleViewController getMoodleAccount]];
 }
 
 #pragma mark - tableView setting
