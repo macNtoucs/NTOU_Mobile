@@ -14,13 +14,12 @@
 @property (nonatomic,strong) NSMutableDictionary *urlData;
 @property (nonatomic) NSInteger urlLength;
 @property (nonatomic,strong) NSMutableDictionary *pageData;
-@property (nonatomic) BOOL start;
-@property (nonatomic) NSInteger book_count;
+
 @property (nonatomic,strong) NSMutableArray *tableData_book;
 @property (nonatomic, strong) NSArray * newSearchBooks;
 @property (nonatomic) NSNumber* totalBookNumber;
 @property (nonatomic) NSNumber* firstBookNumber;
-@property int Searchpage;
+
 @end
 
 @implementation SearchResultViewController
@@ -37,7 +36,7 @@
 @synthesize totalBookNumber;
 @synthesize firstBookNumber;
 @synthesize Searchpage;
-
+@synthesize searchType;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -47,6 +46,15 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    if ([searchType  isEqual: @"i"]){
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
+        if ([self.tableView.delegate respondsToSelector:
+             @selector(tableView:didSelectRowAtIndexPath:)]) {
+            [self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+            searchType = @"X";
+        }
+    }
 }
 
 - (void)viewDidLoad
@@ -55,11 +63,8 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
         
     }
-    [self search];
+    // [self search];
     
-    book_count = 10;    //一開始先載入10筆資料
-    start = NO;
-    Searchpage=1;
     
     
     
@@ -67,16 +72,18 @@
     tableData_book = [[NSMutableArray alloc] init];
     urlData = [[NSMutableDictionary alloc] init];
     newSearchBooks =[NSArray new];
-    
-    UILabel *titleView = (UILabel *)self.navigationItem.titleView;
-    titleView = [[UILabel alloc] initWithFrame:CGRectZero];
-    titleView.backgroundColor = [UIColor clearColor];
-    titleView.font = [UIFont boldSystemFontOfSize:18.0];
-    titleView.text = @"查詢結果";
-    [titleView sizeToFit];
-    
-    self.navigationItem.titleView = titleView;
-    
+    /*
+     UILabel *titleView = (UILabel *)self.navigationItem.titleView;
+     titleView = [[UILabel alloc] initWithFrame:CGRectZero];
+     titleView.backgroundColor = [UIColor clearColor];
+     titleView.font = [UIFont boldSystemFontOfSize:18.0];
+     NSString * tittleString = [NSString stringWithFormat:@"   查詢結果 共%@筆", totalBookNumber];
+     titleView.text =tittleString;
+     
+     [titleView sizeToFit];
+     
+     self.navigationItem.titleView = titleView;
+     */
     //配合nagitive和tabbar的圖片變動tableview的大小
     //nagitive 52 - 44 = 8 、 tabbar 55 - 49 = 6
     [self.tableView setContentInset:UIEdgeInsetsMake(8,0,6,0)];
@@ -84,7 +91,6 @@
     
     
     [super viewDidLoad];
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -93,66 +99,68 @@
 }
 
 -(void)search{
-    
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            // Show the HUD in the main tread
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // No need to hod onto (retain)
-                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow  animated:YES];
-                hud.labelText = @"Loading";
-            });
-            
-            @try {
-                NSError *error;
-                //  設定url
-                NSString *url = [NSString stringWithFormat:@"http://140.121.197.135:11114/NTOULibrarySearchAPI/Search.do?searcharg=%@&searchtype=X&segment=%d",inputtext,Searchpage];
-                url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                
-                // 設定丟出封包，由data來接
-                NSData* urldata = [[NSString stringWithContentsOfURL:[NSURL URLWithString:url]encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
-                
-                NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:urldata options:0 error:nil];
-                
-                newSearchBooks = [NSMutableArray arrayWithArray:[dic objectForKey:@"bookResult"]];
-                totalBookNumber =  [dic objectForKey:@"totalBookNumber"];
-                firstBookNumber =[dic objectForKey:@"firstBookNumber"];
-                [newSearchBooks retain];
-                [totalBookNumber retain];
-                [firstBookNumber retain];
 
-            }
-            @catch (NSException *exception) {
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
-                    //[self.navigationController popViewControllerAnimated:YES];
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"無網路連接"
-                                                                        message:nil
-                                                                       delegate:self
-                                                              cancelButtonTitle:@"OK"
-                                                              otherButtonTitles:nil];
-                    [alertView show];
-                    [alertView release];
-                });
-                
-            }
-            @finally {
-                
-            }
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        // Show the HUD in the main tread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // No need to hod onto (retain)
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow  animated:YES];
+            hud.labelText = @"Loading";
+        });
+        @try {
+        NSError *error;
+        //  設定url
+        NSString *url;
+        if ([searchType  isEqual: @"X"]){
+            url = [NSString stringWithFormat:@"http://140.121.197.135:11114/NTOULibrarySearchAPI/Search.do?searcharg=%@&searchtype=X&segment=%d",inputtext,Searchpage];
+            url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        }
+        else{
+            url = [NSString stringWithFormat:@"http://140.121.197.135:11114/NTOULibrarySearchAPI/Search.do?searcharg=%@&searchtype=i&segment=%d",inputtext,Searchpage];
+            url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        }
+        // 設定丟出封包，由data來接
+        NSData* urldata = [[NSString stringWithContentsOfURL:[NSURL URLWithString:url]encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
+        
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:urldata options:0 error:nil];
+        
+        newSearchBooks = [NSMutableArray arrayWithArray:[dic objectForKey:@"bookResult"]];
+        totalBookNumber =  [dic objectForKey:@"totalBookNumber"];
+        firstBookNumber =[dic objectForKey:@"firstBookNumber"];
+        [newSearchBooks retain];
+        [totalBookNumber retain];
+        [firstBookNumber retain];
+            
+        }
+        @catch (NSException *exception) {
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                start = YES;
-                [self getContentTotal];
-                [self.tableView reloadData];
                 [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
-                
-                start = NO;
+                //[self.navigationController popViewControllerAnimated:YES];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"無網路連接"
+                                                                    message:nil
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                [alertView show];
+                [alertView release];
             });
-        
+            
+        }
+        @finally {
+            
+        }
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            start = YES;
+            [self getContentTotal];
+            [self.tableView reloadData];
+            [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
+            self.navigationItem.title = [NSString stringWithFormat:@"   查詢結果 共%@筆", totalBookNumber];
+            start = NO;
         });
-        
-        // NSLog(@"%@",searchResultArray);
-    
+    });
+     
     
 }
 
@@ -247,47 +255,48 @@
         NSString *image_url = [book objectForKey:@"image"];
         NSString *author = [book objectForKey:@"author"];
         NSString *press = [book objectForKey:@"pubInform"];
-        
+        NSArray *electricBook = [book objectForKey:@"electricBookDetail"];
+        if ([electricBook count]!=0) bookname = [NSString stringWithFormat:@"[電子資源]%@",bookname];
         if([image_url isEqualToString:@""])
             image_url = @"http://static.findbook.tw/image/book/1419879251/large";
-         CGSize booknameLabelSize,authorLabelSize,pressLabelSize;
-         CGRect booknameLabelRect, authorLabelRect,pressLabelRect;
-         CGSize maximumLabelSize = CGSizeMake(200,9999);
-         if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
-   
-              booknameLabelRect = [bookname boundingRectWithSize:maximumLabelSize
-                                                          options:NSStringDrawingUsesLineFragmentOrigin
-                                                       attributes:@{NSFontAttributeName:nameFont}
-                                                          context:nil];
-           
+        CGSize booknameLabelSize,authorLabelSize,pressLabelSize;
+        CGRect booknameLabelRect, authorLabelRect,pressLabelRect;
+        CGSize maximumLabelSize = CGSizeMake(200,9999);
+        if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+            
+            booknameLabelRect = [bookname boundingRectWithSize:maximumLabelSize
+                                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                                    attributes:@{NSFontAttributeName:nameFont}
+                                                       context:nil];
+            
+            
+            authorLabelRect = [author boundingRectWithSize:maximumLabelSize
+                                                   options:NSStringDrawingUsesLineFragmentOrigin
+                                                attributes:@{NSFontAttributeName:otherFont}
+                                                   context:nil];
+            
+            pressLabelRect = [press boundingRectWithSize:maximumLabelSize
+                                                 options:NSStringDrawingUsesLineFragmentOrigin
+                                              attributes:@{NSFontAttributeName:otherFont}
+                                                 context:nil];
+            booknameLabelSize = booknameLabelRect.size;
+            authorLabelSize = authorLabelRect.size;
+            pressLabelSize = pressLabelRect.size;
+            
+        }
+        else {
+            booknameLabelSize = [bookname sizeWithFont:nameFont
+                                     constrainedToSize:maximumLabelSize
+                                         lineBreakMode:NSLineBreakByWordWrapping];
+            authorLabelSize = [author sizeWithFont:otherFont
+                                 constrainedToSize:maximumLabelSize
+                                     lineBreakMode:NSLineBreakByWordWrapping];
+            
+            pressLabelSize = [press sizeWithFont:otherFont
+                               constrainedToSize:maximumLabelSize
+                                   lineBreakMode:NSLineBreakByWordWrapping];
+        }
         
-              authorLabelRect = [author boundingRectWithSize:maximumLabelSize
-                                                      options:NSStringDrawingUsesLineFragmentOrigin
-                                                   attributes:@{NSFontAttributeName:otherFont}
-                                                        context:nil];
-             
-              pressLabelRect = [press boundingRectWithSize:maximumLabelSize
-                                                    options:NSStringDrawingUsesLineFragmentOrigin
-                                                 attributes:@{NSFontAttributeName:otherFont}
-                                                    context:nil];
-             booknameLabelSize = booknameLabelRect.size;
-             authorLabelSize = authorLabelRect.size;
-             pressLabelSize = pressLabelRect.size;
-             
-         }
-         else {
-              booknameLabelSize = [bookname sizeWithFont:nameFont
-                                             constrainedToSize:maximumLabelSize
-                                                 lineBreakMode:NSLineBreakByWordWrapping];
-              authorLabelSize = [author sizeWithFont:otherFont
-                                         constrainedToSize:maximumLabelSize
-                                             lineBreakMode:NSLineBreakByWordWrapping];
-             
-              pressLabelSize = [press sizeWithFont:otherFont
-                                       constrainedToSize:maximumLabelSize
-                                           lineBreakMode:NSLineBreakByWordWrapping];
-         }
-     
         
         if([press isEqualToString:@""])
             pressLabelSize.height = 0;
@@ -394,6 +403,8 @@
         NSString *bookname = [book objectForKey:@"title"];
         NSString *author = [book objectForKey:@"author"];
         NSString *press = [book objectForKey:@"pubInform"];
+        NSArray * eBookDetail = [book objectForKey:@"electricBookDetail"];
+        if ([eBookDetail count]!=0) bookname = [NSString stringWithFormat:@"[電子資源]%@",bookname]; //[電子資源也要進去算行數]
         
         UIFont *nameFont = [UIFont fontWithName:@"Helvetica" size:14.0];
         UIFont *otherFont = [UIFont fontWithName:@"Helvetica" size:12.0];
@@ -406,20 +417,20 @@
         if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
             
             booknameLabelRect = [bookname boundingRectWithSize:maximumLabelSize
-                                                        options:NSStringDrawingUsesLineFragmentOrigin
-                                                     attributes:@{NSFontAttributeName:nameFont}
-                                                        context:nil];
+                                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                                    attributes:@{NSFontAttributeName:nameFont}
+                                                       context:nil];
             
             
             authorLabelRect = [author boundingRectWithSize:maximumLabelSize
-                                                        options:NSStringDrawingUsesLineFragmentOrigin
-                                                     attributes:@{NSFontAttributeName:otherFont}
-                                                        context:nil];
+                                                   options:NSStringDrawingUsesLineFragmentOrigin
+                                                attributes:@{NSFontAttributeName:otherFont}
+                                                   context:nil];
             
             pressLabelRect = [press boundingRectWithSize:maximumLabelSize
-                                                      options:NSStringDrawingUsesLineFragmentOrigin
-                                                   attributes:@{NSFontAttributeName:otherFont}
-                                                      context:nil];
+                                                 options:NSStringDrawingUsesLineFragmentOrigin
+                                              attributes:@{NSFontAttributeName:otherFont}
+                                                 context:nil];
             booknameLabelSize = booknameLabelRect.size;
             authorLabelSize = authorLabelRect.size;
             pressLabelSize = pressLabelRect.size;
@@ -427,18 +438,18 @@
         }
         else {
             booknameLabelSize = [bookname sizeWithFont:nameFont
-                                      constrainedToSize:maximumLabelSize
-                                          lineBreakMode:NSLineBreakByWordWrapping];
+                                     constrainedToSize:maximumLabelSize
+                                         lineBreakMode:NSLineBreakByWordWrapping];
             authorLabelSize = [author sizeWithFont:otherFont
-                                      constrainedToSize:maximumLabelSize
-                                          lineBreakMode:NSLineBreakByWordWrapping];
+                                 constrainedToSize:maximumLabelSize
+                                     lineBreakMode:NSLineBreakByWordWrapping];
             
             pressLabelSize = [press sizeWithFont:otherFont
-                                    constrainedToSize:maximumLabelSize
-                                        lineBreakMode:NSLineBreakByWordWrapping];
+                               constrainedToSize:maximumLabelSize
+                                   lineBreakMode:NSLineBreakByWordWrapping];
         }
         
-
+        
         
         if([press isEqualToString:@""])
             pressLabelSize.height = 0;
@@ -499,8 +510,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger row = [indexPath row];
+    
     if ([data count] == 0)  //沒有查獲的館藏
         return;
+    
     if(row < [data count])
     {
         BookDetailViewController *detail = [[BookDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];

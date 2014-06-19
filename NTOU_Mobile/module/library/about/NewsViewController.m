@@ -20,35 +20,10 @@
 
 -(void)loadNews
 {
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        // Show the HUD in the main tread
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // No need to hod onto (retain)
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.superview animated:YES];
-            hud.labelText = @"Loading";
-        });
-        
-        
-        NSError *error;
-        //  設定url
-        NSString *url = [NSString stringWithFormat:@"http://li.ntou.edu.tw/boardcast.php"];
-        url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        // 設定丟出封包，由data來接
-        NSData* urldata = [[NSString stringWithContentsOfURL:[NSURL URLWithString:url]encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
-        
-        //設定 parser讀取data，並透過Xpath得到想要的資料位置
-        TFHpple* parser = [[TFHpple alloc] initWithHTMLData:urldata];
-        
-        [self getcontent:parser];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.view.superview animated:YES];
-            [self.tableView reloadData];
-        });
-    });
-    
-    // NSLog(@"%@",searchResultArray);
-
+    NSData* urldata = [[NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://lib.ntou.edu.tw/mobil_client/lib_news_xml.php"]encoding:NSUTF8StringEncoding error:nil] dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary * dic = [[NSDictionary alloc]init];
+   dic =[XMLReader dictionaryForXMLData:urldata error:nil];
+    NEWSdata = [[dic objectForKey:@"root"]objectForKey:@"news"];
 }
 
 
@@ -63,7 +38,8 @@
 
 - (void)viewDidLoad
 {
-    self.NEWSdata = [[NSMutableArray alloc] init];
+    NEWSdata = [[NSArray alloc] init];
+    [NEWSdata retain];
     [self loadNews];
 
     //配合nagitive和tabbar的圖片變動tableview的大小
@@ -72,11 +48,6 @@
     
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,14 +60,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return [NEWSdata count];
 }
@@ -111,24 +81,25 @@
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    
+   
     NSDictionary *news = [NEWSdata objectAtIndex:indexPath.row];
-    NSString *newstitle = [news objectForKey:@"title"];
+    NSString *newstitle = [[news objectForKey:@"news_title"]objectForKey:@"text"];
     cell.textLabel.text = newstitle;
     cell.font = [UIFont fontWithName:@"Helvetica" size:14.0];
     cell.textLabel.numberOfLines = 0;
     [cell setLineBreakMode:UILineBreakModeCharacterWrap];
-    
-    
-    cell.detailTextLabel.text = [news objectForKey:@"time"];
+
+    cell.detailTextLabel.text = [[news objectForKey:@"news_date"]objectForKey:@"text"];
     cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
     cell.detailTextLabel.textColor = [UIColor grayColor];
+    [NEWSdata retain];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    NSString *text = [[NEWSdata objectAtIndex:indexPath.row] objectForKey:@"title"];
+     NSDictionary *news = [NEWSdata objectAtIndex:indexPath.row];
+    NSString *text = [[news objectForKey:@"news_title"]objectForKey:@"text"];
     CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
     
     CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
@@ -187,9 +158,9 @@
     load.title = @"";
     */
     UIViewController *load = [[UIViewController alloc] init];
-    NSString *weburl = [[NEWSdata objectAtIndex:indexPath.row] objectForKeyedSubscript:@"url"];
+    NSString *weburl = [[[NEWSdata objectAtIndex:indexPath.row] objectForKey:@"news_url"]objectForKey:@"text"];
     
-    
+    if (weburl==nil) return;
     UIWebView *webView = [[[UIWebView alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
     webView.scalesPageToFit = YES;
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: weburl ] ]];
@@ -198,73 +169,8 @@
 
     [self.navigationController pushViewController:load animated:YES];
     
-    //釋放 UIWebView佔用的記憶體
-    [webView release];
-    [load release];
 }
 
--(void)getcontent:(TFHpple *)parser
-{
-    //消息標題
-    NSArray *newsData = [parser searchWithXPathQuery:@"//html//body//ul//li//span//a"];
-    //消息時間
-    NSArray *timeData = [parser searchWithXPathQuery:@"//html//body//ul//span"];
-    //全部消息
-    
-    NSMutableDictionary *news;
-    for(size_t i = 0 ; i < [newsData count]; i++)
-    {
-        news=[[NSMutableDictionary alloc] init];
-        TFHppleElement* buffer = [newsData objectAtIndex:i];
-        NSString* newstitle;
-        NSString* highlight = @"";
-        NSString* tmpContent= @"";
-        
-        //<font color="red" size="+2">(徵才)</font>
-        size_t j;
-        for (j=0; j<[buffer.children count]; j++) {
-            TFHppleElement* tmp = [buffer.children objectAtIndex:j];
-            if([tmp.tagName isEqualToString:@"font"])
-            {
-                highlight = ((TFHppleElement*)[tmp.children objectAtIndex:0]).content;
-                //NSLog(@"--highlight:%@\n",highlight);
-                break;
-            }
-        }
-        
-        for (size_t k=0; k<[buffer.children count]; k++) {
-            TFHppleElement* tmp = [buffer.children objectAtIndex:k];
-            if ([tmp.tagName isEqualToString:@"text"]) {
-                tmpContent = tmp.content;
-            }
-            
-        }
-        if (j==0) {
-            newstitle =[NSString stringWithFormat: @"%@%@",highlight,tmpContent];
-        }
-        else{
-            newstitle =[NSString stringWithFormat: @"%@%@",tmpContent,highlight];
-        }
-        //NSLog(@"--title:%@\n",newstitle);
-        [news setObject:newstitle forKey:@"title"];
-        
-        
-         NSString *url = [buffer.attributes objectForKey:@"href"];
-        //NSLog(@"--URL:%@\n",url);
-        [news setObject:url forKey:@"url"];
-        
-        TFHppleElement* buffer2 = [timeData  objectAtIndex:i*2];
-        if ([buffer2.tagName isEqualToString:@"span"]&&[[buffer2.attributes objectForKey:@"class"]isEqualToString:@"rdate"])
-        {
-            NSString *time = ((TFHppleElement*)[buffer2.children objectAtIndex:0]).content;
-            //NSLog(@"--time:%@\n",time);
-            [news setObject:time forKey:@"time"];
-        }
-        [NEWSdata addObject:news];
-        [news release];
-    }
-    
-}
 
 
 

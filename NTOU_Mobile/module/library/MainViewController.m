@@ -12,6 +12,12 @@
 
 @interface MainViewController ()
 @property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
+@property (strong,nonatomic) NSArray * searchType;
+@property (strong, nonatomic) NSString * libSearchType;
+@property(strong,nonatomic) UIPickerView *picker;
+@property (strong,nonatomic)  UIButton *typeButton;
+@property (strong,nonatomic) UILabel *buttonLabel;
+
 @end
 
 @implementation MainViewController
@@ -19,14 +25,19 @@
 @synthesize nextpage_url;
 @synthesize maxpage;
 @synthesize tapRecognizer;
-
+@synthesize searchType;
+@synthesize libSearchType;
+@synthesize typeButton;
+@synthesize  picker;
+@synthesize buttonLabel;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+       
         NSInteger sheight = [[UIScreen mainScreen] bounds].size.height;
         mainView = [[UIView alloc]initWithFrame:CGRectMake(0,0 , 320, sheight
-                                                           )];
+                                                        )];
     }
     return self;
 }
@@ -71,48 +82,122 @@
 -(void)search{
     [self backgroundTap];
     
-    if([textField.text length] < 1)
+    if([sTextField.text length] < 1)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"關鍵字為空白"
-                                                        message:@"請輸入欲查詢的關鍵字！"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"關鍵字/ISBN為空白"
+                                                        message:@"請輸入欲查詢的關鍵字/ISBN！"
                                                        delegate:self
                                               cancelButtonTitle:@"好"
                                               otherButtonTitles:nil];
         [alert show];
+        [alert release];
     }
     else{
         SearchResultViewController * display = [[SearchResultViewController alloc]initWithStyle:UITableViewStylePlain];
-        
         display.data = [[NSMutableArray alloc] init];
         display.mainview = self;
-        display.inputtext = textField.text;
+        display.inputtext = sTextField.text;
+        display.book_count = 10;   
+        display.start = NO;
+        display.Searchpage=1;
+        if ([libSearchType  isEqual: @"關鍵字"])
+        display.searchType = @"X";
+        else display.searchType = @"i";
+        
+        [display search];
         [self.navigationController pushViewController:display animated:YES];
         [display release];
     }
 }
 
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
+    return 27;
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
+    UILabel *retval = (id)view;
+    if (!retval) {
+        retval= [[[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, [pickerView rowSizeForComponent:component].width, [pickerView rowSizeForComponent:component].height)] autorelease];
+    }
+    
+    retval.text = [searchType objectAtIndex: row];
+    retval.font = [UIFont systemFontOfSize:14];
+    return retval;
+}
+
+
+-(void)changeSearchType{
+    if([libSearchType  isEqual: @"關鍵字"])
+        libSearchType =@"ISBN";
+    else libSearchType =@"關鍵字";
+    [buttonLabel removeFromSuperview];
+    UIFont *font = [UIFont fontWithName:@"Helvetica" size:13.0];
+    buttonLabel.text = libSearchType;
+    buttonLabel.font = font;
+    [typeButton addSubview:buttonLabel];
+
+}
+
+- (CGRect)editingRectForBounds:(CGRect)bounds{
+    NSLog (@"%@", bounds);
+
+}
 
 - (void)viewDidLoad
 {
     //self.title = @"國立海洋大學圖書館";
+    //[self navAddRightButton];
     searchResultArray = [NSMutableArray new];
+    searchType = [[NSArray alloc]initWithObjects:@"關鍵字",@"ISBN", nil];
+    libSearchType = [[NSString alloc]initWithString:[searchType objectAtIndex: 0]];
     NSInteger swidth = [[UIScreen mainScreen] bounds].size.width;
     
+    
+    
     textField = [[UITextField alloc] initWithFrame:CGRectMake(swidth/2 - 150,50, 300, 30)];
+    sTextField = [[UITextField alloc] initWithFrame:CGRectMake(10 ,0,200, 30)];
     textField.borderStyle = UITextBorderStyleRoundedRect;
     textField.font = [UIFont systemFontOfSize:15];
     textField.delegate = self;
-    textField.placeholder = @"書籍關鍵字";
-    textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    sTextField.delegate = self;
+    sTextField.placeholder = @"書籍關鍵字/ISBN";
+    sTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    typeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [typeButton addTarget:self
+                   action:@selector(changeSearchType)
+     forControlEvents:UIControlEventTouchDown];
     
+    
+    UILabel * divider = [[UILabel alloc]initWithFrame:CGRectMake(205 ,0,5, 30)];
+    [divider setText:@"|"];
+    
+    
+    buttonLabel = [[UILabel alloc]init];
+    UIFont *font = [UIFont fontWithName:@"Helvetica" size:13.0];
+    buttonLabel.frame = CGRectMake(0,0,40,28);
+    buttonLabel.text = libSearchType;
+    buttonLabel.textAlignment = NSTextAlignmentRight;
+    buttonLabel.backgroundColor = [UIColor clearColor];
+    buttonLabel.font = font;
+   
+    typeButton.frame =CGRectMake(textField.frame.origin.x + 210 ,
+                                 textField.frame.origin.y + 1,
+                                 40,
+                                 28);
+    [typeButton addSubview:buttonLabel];
+   
+    picker.dataSource = self;
+    picker.delegate = self;
+    picker.showsSelectionIndicator = YES;
+   
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button addTarget:self
                action:@selector(search)
      forControlEvents:UIControlEventTouchDown];
     [button setImage:[UIImage imageNamed:@"LibrarySearch.png"] forState:UIControlStateNormal];
-     button.frame = CGRectMake(textField.frame.origin.x + 270 ,
+     button.frame = CGRectMake(textField.frame.origin.x + 260 ,
                                textField.frame.origin.y ,
-                               28,
+                               30,
                                28);
     
     UIImage *Library = [UIImage imageNamed:@"NYOULogo.png"];
@@ -121,8 +206,11 @@
     
     [mainView addSubview:NTU_Library];
     [mainView addSubview:textField];
+    [textField addSubview:sTextField];
+     [textField addSubview:divider];
     [mainView addSubview:button];
-
+    [mainView addSubview:picker];
+    [mainView addSubview:typeButton];
     self.view = mainView;
     
     tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTap)];
@@ -137,7 +225,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

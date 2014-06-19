@@ -7,11 +7,12 @@
 //
 
 #import "AboutViewController.h"
-#import "OpenTimeViewController.h"
 #import "NewsViewController.h"
 #import "floorInfoViewController.h"
 #import "AccountViewController.h"
 #import "UIKit+NTOUAdditions.h"
+#import "OpenTimeTableViewController.h"
+#import "ContactInfoTableViewController.h"
 @interface AboutViewController ()
 @property (strong, nonatomic) AccountViewController *loginaccount;
 @end
@@ -68,7 +69,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 5;
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -95,6 +96,12 @@
                 case 2:
                     cell.textLabel.text = @"樓層簡介";
                     break;
+                case 3:
+                       cell.textLabel.text = @"聯絡資訊";
+                       break;
+                case 4:
+                       cell.textLabel.text = @"電子書籍";
+                       break;
                 default:
                     break;
                }
@@ -117,15 +124,15 @@
                     news.title= @"最新消息";
                     [self.navigationController pushViewController:news  animated:YES];
                     [news release];
+                    break;
                 }
 
                 case 1:
                 {
-                    OpenTimeViewController *opentime = [[OpenTimeViewController alloc] init];
-                    opentime.title=@"開館時間";
-                    [self.navigationController pushViewController:opentime  animated:YES];
-                    [opentime release];
-                  
+                    OpenTimeTableViewController *op = [[OpenTimeTableViewController alloc]init];
+                    op.title= @"開館時間";
+                    [self.navigationController pushViewController:op  animated:YES];
+                    [op release];
                     break;
                 }
                 case 2:
@@ -135,6 +142,27 @@
                     [self.navigationController pushViewController:floorinfo  animated:YES];
                     [floorinfo release];
                     break;
+                }
+            
+        case 3: {
+                    ContactInfoTableViewController *contact = [[[ContactInfoTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+                    [self.navigationController pushViewController:contact  animated:YES];
+                    break;
+        }
+            
+            case 4:{
+                UIViewController *load = [[UIViewController alloc] init];
+                NSString *weburl = @"http://li.ntou.edu.tw/4net/search.php?databases_categoy=ii&top_cet=b";
+            
+                if (weburl==nil) return;
+                UIWebView *webView = [[[UIWebView alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
+                webView.scalesPageToFit = YES;
+                [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: weburl ] ]];
+                [load.view addSubview: webView];
+                load.title = @"電子書籍";
+            
+                [self.navigationController pushViewController:load animated:YES];
+                break;
                 }
             
                 default:

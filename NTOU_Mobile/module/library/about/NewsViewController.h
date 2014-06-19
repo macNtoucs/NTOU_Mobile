@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "XMLReader.h"
 @interface NewsViewController : UITableViewController
 
-@property (nonatomic,retain) NSMutableArray *NEWSdata;
+@property (nonatomic,strong) NSArray *NEWSdata;
 @end

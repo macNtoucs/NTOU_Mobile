@@ -304,12 +304,17 @@ int isSuccess=0;
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if([maindata count] == 0 && loginSuccess==true)
+    NSString *account = [SettingsModuleViewController getLibraryAccount];
+    NSString *pwd = [SettingsModuleViewController getLibraryPassword];
+    
+    if ([account isEqual:@""] && [pwd  isEqual: @""])
+        return [NSString stringWithFormat:@"\n帳密未設定\n請至主頁面→設定→圖書館 設定帳密"];
+    else if([maindata count] == 0 && loginSuccess==true)
     {
         return [NSString stringWithFormat:@"\n沒有預約記錄"];
     }
     else if (loginSuccess==false){
-        return [NSString stringWithFormat:@"\n登入失敗，請檢查帳密設定"];
+        return [NSString stringWithFormat:@"\n登入失敗\n請至主頁面→設定→圖書館 檢查設定"];
     }
    
     else

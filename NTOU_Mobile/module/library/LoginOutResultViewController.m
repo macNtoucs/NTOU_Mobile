@@ -133,29 +133,25 @@
 -(void)fetchout:(NSData*)bookdata
 {
     @try {
-        NSString *account = [SettingsModuleViewController getLibraryAccount];
-        NSString *pwd = [SettingsModuleViewController getLibraryPassword];
-        NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@",account,pwd];
-        NSHTTPURLResponse *urlResponse = nil;
-        NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
-        NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/getCurrentBorrowedBooks.do"];
-        [request setURL:[NSURL URLWithString:queryURL]];
-        [request setHTTPMethod:@"POST"];
-        [request setHTTPBody:[historyPost dataUsingEncoding:NSUTF8StringEncoding]];
-        NSData *responseData = [NSURLConnection sendSynchronousRequest:request
-                                                     returningResponse:&urlResponse
-                                                                 error:nil];
-        NSString* checkLogin = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-        if ([checkLogin rangeOfString:@"Login failed"].location == NSNotFound)
-        {
-            loginSuccess=true;
-            
-            [NTOUNotificationHandle deleteUnreadNotificationAndModifyBadge:[NTOUNotificationHandle getNotifications] modules:LibrariesTag];
-            [NTOUNotificationHandle refreshRemoteBadge];
-        }
-        else loginSuccess=false;
-        maindata=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
-        [maindata retain];
+    NSString *account = [SettingsModuleViewController getLibraryAccount];
+    NSString *pwd = [SettingsModuleViewController getLibraryPassword];
+    NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@",account,pwd];
+    NSHTTPURLResponse *urlResponse = nil;
+    NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
+    NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/getCurrentBorrowedBooks.do"];
+    [request setURL:[NSURL URLWithString:queryURL]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[historyPost dataUsingEncoding:NSUTF8StringEncoding]];
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request
+                                                 returningResponse:&urlResponse
+                                                             error:nil];
+    NSString* checkLogin = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    if ([checkLogin rangeOfString:@"Login failed"].location == NSNotFound)
+        loginSuccess=true;
+    else loginSuccess=false;
+    maindata=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+    [maindata retain];
+    [self.tableView reloadData];
     }
     @catch (NSException *exception) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -174,7 +170,6 @@
     @finally {
         
     }
-
 }
 
 - (void)allselect
@@ -337,12 +332,17 @@
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if([maindata count] == 0 && loginSuccess==true)
+    NSString *account = [SettingsModuleViewController getLibraryAccount];
+    NSString *pwd = [SettingsModuleViewController getLibraryPassword];
+    
+    if ([account isEqual:@""] && [pwd  isEqual: @""])
+        return [NSString stringWithFormat:@"\n帳密未設定\n請至主頁面→設定→圖書館 設定帳密"];
+    else if([maindata count] == 0 && loginSuccess==true)
     {
         return [NSString stringWithFormat:@"\n沒有借出記錄"];
     }
     else if (loginSuccess==false){
-        return [NSString stringWithFormat:@"\n登入失敗，請檢查帳密設定"];
+        return [NSString stringWithFormat:@"\n登入失敗\n請至主頁面→設定→圖書館 檢查設定"];
     }
     else
         return NULL;
