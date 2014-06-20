@@ -29,9 +29,10 @@
 @property (nonatomic,retain) NSMutableDictionary *bookdetail;
 @property (nonatomic, retain) NSMutableData* receiveData;
 @property (nonatomic,retain) NSArray * electricBookArray;
-@property long int goToEternalLinkRow;
+@property (nonatomic,retain) NSString* goToEternalLinkURL;
 @property(nonatomic, retain) UIViewController *webViewController;
 @property (nonatomic ,retain) UIWebView *webView ;
+@property (nonatomic, retain) NSMutableArray * reviewsResult;
 @end
 
 @implementation BookDetailViewController
@@ -41,6 +42,8 @@
 @synthesize electricBookArray;
 @synthesize webViewController;
 @synthesize webView;
+@synthesize reviewsResult;
+@synthesize goToEternalLinkURL;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -84,10 +87,7 @@
     [webView stopLoading];
 }
 
-
-- (void)viewDidLoad
-{
-    self.title = @"詳細資訊";
+-(void) fetchBookDetail{
     bookurl = [bookurl stringByReplacingOccurrencesOfString:@"&" withString:@"(ANDCHAR)"];
     bookurl = [bookurl stringByReplacingOccurrencesOfString:@"+" withString:@"(PLUSCHAR)"];
     bookurl = [bookurl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -103,7 +103,7 @@
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request
                                                  returningResponse:&urlResponse
                                                              error:nil];
-        NSDictionary * bookDetailDic=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+    NSDictionary * bookDetailDic=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
     [bookDetailDic retain];
     bookdetail = [[NSMutableDictionary alloc] init];
     NSArray * bookResult = [bookDetailDic objectForKey:@"bookResult"];
@@ -131,7 +131,7 @@
             book_part1[eBook_it] = [electricBookDetailDic objectForKey:@"subtitle"];
             book_part2[eBook_it] = [electricBookDetailDic objectForKey:@"url"];
         }
-         book_count = [electricBookDetail count];
+        book_count = [electricBookDetail count];
     }
     
     
@@ -141,6 +141,42 @@
     [bookdetail setObject:[bookResultDic objectForKey:@"reserveURL"] forKey:@"resurl"];
     [bookdetail setObject:[bookResultDic objectForKey:@"ISBN"] forKey:@"ISBN"];
     
+
+
+}
+
+-(void) checkReviewsResult{
+    NSMutableArray * reviews_t = [[NSMutableArray alloc]init];
+    for (NSDictionary * review in reviewsResult){
+        if (![[review objectForKey:@"reviewsURL"]  isEqual: @""] )
+            [reviews_t addObject:review];
+    }
+    reviewsResult = [NSMutableArray arrayWithArray:reviews_t];
+    [reviewsResult retain];
+}
+
+-(void)fetchBookReview{
+    NSString * ISBN = [bookdetail objectForKey:@"ISBN"];
+    
+    NSHTTPURLResponse *urlResponse = nil;
+    NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
+    NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/NTOULibrarySearchAPI/Reviews.do?ISBN=%@",ISBN];
+    [request setURL:[NSURL URLWithString:queryURL]];
+    [request setHTTPMethod:@"GET"];
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request
+                                                 returningResponse:&urlResponse
+                                                             error:nil];
+    
+    NSDictionary * bookReviewDic=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+    reviewsResult = [[NSMutableArray alloc]initWithArray:[bookReviewDic objectForKey:@"reivewsResult"]];
+    [self checkReviewsResult];
+}
+
+- (void)viewDidLoad
+{
+    self.title = @"詳細資訊";
+    [self fetchBookDetail];
+    [self fetchBookReview];
     [super viewDidLoad];
 }
 
@@ -154,18 +190,26 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-   if ([[bookdetail objectForKey:@"bookType"]  isEqual: @"ebook"]){
-       return 2;
+    NSInteger numberOfSections;
+    
+    if ([[bookdetail objectForKey:@"bookType"]  isEqual: @"ebook"]){
+       numberOfSections =  2;
    }
     
-    if ([[bookdetail objectForKey:@"bookType"]  isEqual: @"realBook"]){
+   else if ([[bookdetail objectForKey:@"bookType"]  isEqual: @"realBook"]){
         if(book_count == 0 && [bookdetail objectForKey:@"resurl"] == NULL)
-            return 1;   //只有書籍資料
+            numberOfSections= 1;   //只有書籍資料
         else if( [[bookdetail objectForKey:@"resurl"] isEqualToString:@""])
-            return 2;   //書籍資料＋借閱資訊
+            numberOfSections= 2;   //書籍資料＋借閱資訊
         else
-            return 3;   //可預約
+            numberOfSections= 3;   //可預約
     }
+    
+    if ([reviewsResult count]!=0)
+        return ++numberOfSections;
+    else
+        return numberOfSections;
+    
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -179,6 +223,9 @@
             case 1:
                 return [NSString stringWithFormat:@"外部連結"];
                 break;
+            case 2:
+                return [NSString stringWithFormat:@"書評"];
+                break;
              }
     }
     
@@ -190,6 +237,9 @@
                  break;
              case 1:
                  return [NSString stringWithFormat:@"借閱情況"];
+                 break;
+             case 2:
+                 return [NSString stringWithFormat:@"書評"];
                  break;
              default:
                  return [NSString stringWithFormat:@" "];
@@ -206,8 +256,9 @@
              return 3;
          else if (section == 1)
              return book_count; 
-         else
-             return 0;
+         else if (section == 2)
+             return [reviewsResult count];
+         else return 0;
 
         }
      if ([[bookdetail objectForKey:@"bookType"]  isEqual: @"realBook"]){
@@ -216,6 +267,8 @@
          else if (section == 1)
              return book_count;
          else if (section == 2)
+             return [reviewsResult count];
+         else if (section == 3)
              return 1;   //按鈕
          else
              return 0;
@@ -522,7 +575,21 @@
         [cell.contentView addSubview:ISBNLabel];
        
     }
-    else if (section == 2)
+    
+    else if (section == 2){
+        
+        UILabel *bookReivews = [[UILabel alloc]initWithFrame:CGRectMake(10,2,250,25)];
+        bookReivews.font = font;
+        if ([[reviewsResult[row] objectForKey:@"bookstoreName" ] isEqual:@"Books"])
+            [bookReivews setText:@"博客來"];
+        else if ([[reviewsResult[row] objectForKey:@"bookstoreName" ] isEqual:@"KingStone"])
+            [bookReivews setText:@"金石堂"];
+ 
+        [cell.contentView addSubview:bookReivews];
+        
+    }
+    
+    else if (section == 3)
     {
         UIFont *buttonfont = [UIFont boldSystemFontOfSize:18.0];
         
@@ -641,9 +708,9 @@
         return 30;
             }
     
-    else if (section == 2)
+    else if (section == 2 || section == 3)
         return 30;
-    else
+        else
         return 0;
 }
 
@@ -687,7 +754,7 @@
             _progressProxy.webViewProxyDelegate = self;
             _progressProxy.progressDelegate = self;
        
-            [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:book_part2[_goToEternalLinkRow]]]];
+            [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:goToEternalLinkURL]]];
             [webViewController.view addSubview: webView];
             [webView addSubview:progressView];
             [self.navigationController pushViewController:webViewController animated:YES];
@@ -707,7 +774,7 @@
    
     
     if (indexPath.section ==1 && [[bookdetail objectForKey:@"bookType"]  isEqual: @"ebook"]){
-        _goToEternalLinkRow = indexPath.row;
+            goToEternalLinkURL = book_part2[indexPath.row];
             UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:@"將會連到校外網站，確定前往" delegate:self cancelButtonTitle:@"前往" otherButtonTitles:@"取消", nil];
             [alert show];
             [alert release];
@@ -715,9 +782,16 @@
         
         }
     
+    if (indexPath.section ==2 && reviewsResult!=nil){
+        goToEternalLinkURL = [reviewsResult[indexPath.row] objectForKey:@"reviewsURL"];
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:@"將會連到校外網站，確定前往" delegate:self cancelButtonTitle:@"前往" otherButtonTitles:@"取消", nil];
+        [alert show];
+        [alert release];
+        
+        
+    }
     
-    
-    if (indexPath.section == 2){
+    if (indexPath.section == 3){
         NSString *reserveURL = [bookdetail objectForKey:@"resurl"];
         reserveURL= [reserveURL stringByReplacingOccurrencesOfString:@"&" withString:@"(ANDCHAR)"];
         NSString *account = [SettingsModuleViewController getLibraryAccount];
