@@ -94,7 +94,7 @@
         [ scannerCon.view  setFrame:CGRectMake(mainviewcon.view.frame.origin.x,
                                                mainviewcon.view.frame.origin.y,
                                                mainviewcon.view.frame.size.width,
-                                               mainviewcon.view.frame.size.height-100)
+                                               mainviewcon.view.frame.size.height)
         ];
             [mainviewcon.view addSubview:scannerCon.view];
             [another setTitle:@"取消"];
