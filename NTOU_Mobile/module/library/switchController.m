@@ -12,6 +12,8 @@
 #import "AboutViewController.h"
 #import "UIKit+NTOUAdditions.h"
 #import "NTOUNotification.h"
+#import "MBProgressHUD.h"
+
 @interface switchController ()
 @property (nonatomic, retain)  UIBarButtonItem * another;
 @property (nonatomic ,retain) MainViewController * mainviewcon;
@@ -89,20 +91,35 @@
 -(void)chanSearchStyle{
     
     if ([another.title  isEqual:@"條碼掃描"]){
-            scannerCon = [[igViewController alloc] init];
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            // Show the HUD in the main tread
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // No need to hod onto (retain)
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow  animated:YES];
+                hud.labelText = @"Loading";
+            });
+         if (scannerCon == nil)
+        scannerCon = [[igViewController alloc] init];
         scannerCon.mainview = mainviewcon;
         [ scannerCon.view  setFrame:CGRectMake(mainviewcon.view.frame.origin.x,
                                                mainviewcon.view.frame.origin.y,
                                                mainviewcon.view.frame.size.width,
                                                mainviewcon.view.frame.size.height)
         ];
-            [mainviewcon.view addSubview:scannerCon.view];
-            [another setTitle:@"取消"];
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
+                [mainviewcon.view addSubview:scannerCon.view];
+                [another setTitle:@"取消"];
+            });
+        });
         }
+  
+    
     else{
         [another setTitle:@"條碼掃描"];
         [scannerCon.view  removeFromSuperview];
-        [scannerCon release];
+        //[scannerCon release];
     }
  
 }
