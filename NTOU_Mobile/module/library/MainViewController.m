@@ -49,7 +49,9 @@
 
 -(void)backgroundTap
 {
+        [sTextField resignFirstResponder];
     [textField resignFirstResponder];
+    [self.view becomeFirstResponder];
 }
 /*
  - (void)textFieldDidBeginEditing:(UITextField *)_textField
