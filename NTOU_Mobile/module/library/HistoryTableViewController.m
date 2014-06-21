@@ -80,7 +80,6 @@
             break;
         case 2:
             cell.textLabel.text = @"借出記錄";
-            cell.textLabel.font = [UIFont systemFontOfSize:17];
             NSNumber *notifs = [[NTOUNotificationHandle getNotifications] objectForKey:LibrariesTag];
             if ([notifs intValue] > 0) {
                 cell.badgeString = [NSString stringWithFormat:@"%d",[notifs intValue]];

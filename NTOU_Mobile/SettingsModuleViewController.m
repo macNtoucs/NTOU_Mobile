@@ -73,7 +73,7 @@
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {    UILabel *label = [[[UILabel alloc] init] autorelease];
     label.frame = CGRectMake(15, 3, 284, 23);
     label.textColor = [UIColor blackColor];
-    label.font = [UIFont fontWithName:@"Helvetica" size:18];
+    label.font = [UIFont fontWithName:@"Helvetica" size:14];
     label.backgroundColor = [UIColor clearColor];
     switch (section) {
         case 0:
@@ -194,9 +194,9 @@
 {
     static NSString *SecondaryCellIdentifier = @"SecondaryCell";
     
-    SecondaryGroupedTableViewCell *cell = (SecondaryGroupedTableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondaryCellIdentifier];
+    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondaryCellIdentifier];
     if (cell == nil) {
-        cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:SecondaryCellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:SecondaryCellIdentifier] autorelease];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
