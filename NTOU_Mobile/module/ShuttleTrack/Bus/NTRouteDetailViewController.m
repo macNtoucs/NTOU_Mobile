@@ -159,30 +159,20 @@
             // bookmark time to be processed.
             
         bool updateTimeOnButton = YES;
-            
-            /*if (sinceRefresh <= -kRefreshInterval)
-             {
-             [self refreshPropertyList];
-             //self.anotherButton.title = @"Refreshing";
-             }*/
-            
         if (updateTimeOnButton)
         {
-            //NSLog(@"sinceRefresh=%f", sinceRefresh);
             int secs = (1-sinceRefresh);
-            if (secs > 30)
+            if (secs > 20)
             {
                 [self stopTimer];
-                [activityIndicator performSelectorInBackground:@selector(startAnimating) withObject:nil];
-                [self.loadingView performSelectorInBackground:@selector(show) withObject:nil];
-                [self CatchData];
+                //[activityIndicator performSelectorInBackground:@selector(startAnimating) withObject:nil];
+                //[self.loadingView performSelectorInBackground:@selector(show) withObject:nil];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self CatchData];
+                });
                 [self startTimer];
             }
-            /*if (secs % 5 == 0)
-            {
-                secondsLabel.text = [NSString stringWithFormat:@"距離上次更新%d秒", secs];
-            }*/
-            secondsLabel.text = [NSString stringWithFormat:@"距離上次更新%d秒", secs];
+            //NSLog(@"距離上次更新%d秒", secs);
         }
     }
 }
@@ -228,12 +218,12 @@
     m_waitTimeResult = [NSMutableArray new];
     stops = [NSMutableArray new];
     self.title = [NSString stringWithFormat:@"%@ → %@", departure, destination];
-    secondsLabel = [[UILabel alloc] initWithFrame:CGRectMake(320/2-200/2, 4, 200, 30)];
+    /*secondsLabel = [[UILabel alloc] initWithFrame:CGRectMake(320/2-200/2, 4, 200, 30)];
     secondsLabel.backgroundColor = [UIColor clearColor];
     secondsLabel.textColor = [UIColor grayColor];
     secondsLabel.text = @"距離上次更新0秒";
     secondsLabel.font = [UIFont systemFontOfSize:15.0];
-    secondsLabel.textAlignment = NSTextAlignmentCenter;
+    secondsLabel.textAlignment = NSTextAlignmentCenter;*/
     preArray = [[NSArray alloc] initWithObjects:nil];
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
@@ -251,7 +241,7 @@
         activityIndicator.color = [UIColor blackColor];
     }
     
-    [self.tableView addSubview:self.secondsLabel];
+    //[self.tableView addSubview:self.secondsLabel];
     [self.loadingView addSubview:self.activityIndicator];
     [activityIndicator startAnimating];
     [self.tableView addSubview:self.loadingView];
@@ -330,9 +320,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if ([[[UIDevice currentDevice]systemVersion]floatValue] >= 7.0)
-        return 35;
+        return 0.01f;
     
-    return 40;
+    return 10.0f;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -354,7 +344,8 @@
     cellText = @"A"; // just something to guarantee one line
     CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
     //rowHeight = labelSize.height + 20.0f;
-    rowHeight = labelSize.height + 25.0f;
+    //rowHeight = labelSize.height + 25.0f;
+    rowHeight = 44.0f;
     return rowHeight;
 }
 
