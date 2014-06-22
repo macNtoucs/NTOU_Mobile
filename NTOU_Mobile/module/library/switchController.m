@@ -81,15 +81,16 @@
 }
 
 
+
+
 -(void)viewWillAppear:(BOOL)animated
 {
-    [another setTitle:@"條碼掃描"];
+    //[another setTitle:@"條碼掃描"];
     [super viewWillAppear:animated];
     [self ChangeDisplayView];
 }
 
 -(void)chanSearchStyle{
-    
     if ([another.title  isEqual:@"條碼掃描"]){
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             // Show the HUD in the main tread
@@ -125,8 +126,13 @@
 }
 
 -(void)navAddRightButton{
+    if (another== nil){
     another = [[UIBarButtonItem alloc]initWithTitle:@"條碼掃描" style:UIBarButtonItemStylePlain target:self action:@selector(chanSearchStyle)];
-    self.navigationItem.rightBarButtonItem = another;
+        self.navigationItem.rightBarButtonItem = another;
+    }
+    else {
+         self.navigationItem.rightBarButtonItem = another;
+    }
 }
 - (void)viewDidLoad
 {
@@ -135,7 +141,7 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     
     }
-   [self navAddRightButton];
+   if (another==nil)[self navAddRightButton];
     self.view.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
    // [self navAddRightButton];
 	// Do any additional setup after loading the view.
@@ -159,8 +165,8 @@
 - (void)tabBarController:(UITabBarController *)tabBarController
  didSelectViewController:(UIViewController *)viewController
 {
-   if( tabBarController.selectedIndex ==0)   [self navAddRightButton];
-    else  self.navigationItem.rightBarButtonItem = nil;
+   if( tabBarController.selectedIndex ==0 )   [self navAddRightButton];
+   else  self.navigationItem.rightBarButtonItem = nil;
    //[self setView];
     [self reloadHistoryTableViewController:viewController];
 }
