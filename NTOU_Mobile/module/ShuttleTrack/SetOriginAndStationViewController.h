@@ -24,4 +24,6 @@
 @property (nonatomic ,retain) NSArray * region;
 @property (nonatomic ,retain) NSArray * station;
 @property (nonatomic, unsafe_unretained) id <SetOriginAndStationViewDelegate> delegate;
+
+@property (nonatomic, strong) NSMutableArray *indexTitles;
 @end

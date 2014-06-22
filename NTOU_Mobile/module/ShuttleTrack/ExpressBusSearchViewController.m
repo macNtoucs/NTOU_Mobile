@@ -677,7 +677,7 @@
     }
     [self.searchBar reloadInputViews];
     
-    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    if ([[[UIDevice currentDevice]systemVersion]floatValue] >= 7.0)
         [self.tableView addSubview:searchBar];
     else
         self.tableView.tableHeaderView = searchBar;

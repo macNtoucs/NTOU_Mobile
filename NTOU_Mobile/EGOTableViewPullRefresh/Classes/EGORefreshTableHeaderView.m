@@ -141,8 +141,8 @@
             }
             
         }
-        
-    } else {
+    }
+    else {
         _lastUpdatedLabel.text = nil;
     }
     

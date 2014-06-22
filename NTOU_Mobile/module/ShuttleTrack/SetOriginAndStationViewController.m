@@ -16,6 +16,8 @@
 @synthesize region;
 @synthesize station;
 @synthesize delegate;
+@synthesize indexTitles;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -28,22 +30,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     [self.tableView applyStandardColors];
     [self createData];
-    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
-        
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
         self.edgesForExtendedLayout = UIRectEdgeNone;
         
+        indexTitles = [NSMutableArray new];
+        for(int i=0; i<[region count]; i++)
+        {
+            [self addIndexTitle:[region objectAtIndex:i]];
+        }
     }
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
--(void) createData{
-    region = [[NSArray alloc] initWithObjects:@"臺北", @"桃園",@"新竹",@"苗栗",@"臺中",@"彰化",@"雲林",@"南投",@"嘉義",@"臺南",@"高雄",@"屏東",@"臺東",@"花蓮",@"宜蘭",nil];
+
+-(void) addIndexTitle:(NSString *) indexTitle
+{
+    [self.indexTitles addObject:indexTitle];
+    [self.indexTitles addObject:@""];
+}
+
+-(void) createData
+{
+    region = [[NSArray alloc] initWithObjects:@"臺北",@"桃園",@"新竹",@"苗栗",@"臺中",@"彰化",@"雲林",@"南投",@"嘉義",@"臺南",@"高雄",@"屏東",@"臺東",@"花蓮",@"宜蘭",nil];
     station = [[NSArray alloc]initWithObjects:
                [NSArray arrayWithObjects:@"福隆",@"貢寮",@"雙溪",@"牡丹",@"三貂嶺",@"侯硐",@"瑞芳",@"四腳亭",@"暖暖",@"基隆",@"三坑",@"八堵",@"七堵",@"百福",@"五堵",@"汐止",@"汐科",@"南港",@"松山",@"臺北",@"萬華",@"板橋",@"浮州",@"樹林",@"山佳",@"鶯歌",nil ],
                [NSArray arrayWithObjects:@"桃園",@"內壢",@"中壢",@"埔心",@"楊梅",@"富岡",nil ],
@@ -70,30 +80,64 @@
 }
 
 #pragma mark - Table view data source
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-        return region;
+- (NSInteger) tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        NSLog(@"sectionForSectionIndexTitle, title = %@, index = %d", [indexTitles objectAtIndex:index], index);
+        if ([title isEqualToString:@""])
+        {
+            if ( index>=13 && index<=28) index-=2;
+            
+            if ( index>=29) index-=1;
+        }
+        
+        NSLog(@"[fix]sectionForSectionIndexTitle, title = %@, index = %d", [indexTitles objectAtIndex:index], index);
+    }
+   
+    return index;
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+        return indexTitles;
+    
+    return region;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-     return 30;
+    return 30;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+        return [indexTitles count];
+    
     return [region count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        if ([indexTitles[section] isEqualToString:@""])
+            return 0;
+        else
+            return [[station objectAtIndex:(section+1)/2]count];
+    }
+    
     return [[station objectAtIndex:section]count];
 }
 
-- (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+- (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
     NSString *headerTitle;
-    headerTitle = [region objectAtIndex:section];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+        headerTitle = [indexTitles objectAtIndex:section];
+    else
+        headerTitle = [region objectAtIndex:section];
     UILabel *label = [[[UILabel alloc] init] autorelease];
     label.frame = CGRectMake(15, 3, 284, 23);
     label.textColor = [UIColor blackColor];
@@ -107,10 +151,10 @@
     [view addSubview:label];
     
     return view;
-
-    
+    //}
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     CGFloat rowHeight = 0;
     UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
     CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
@@ -124,7 +168,7 @@
             break;
     }
     
-    return rowHeight; 
+    return rowHeight;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -134,17 +178,11 @@
     if (cell == nil) {
         cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
-   
-    cell.textLabel.text = [[station objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    for(UIView *view in [tableView subviews])
-    {
-        if([[[view class] description] isEqualToString:@"UITableViewIndex"])
-        {
-            
-            [view setBackgroundColor:[UIColor clearColor]];
-            [view setFont:[UIFont systemFontOfSize:15]];
-        }
-    }
+    
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+        cell.textLabel.text = [[station objectAtIndex:(indexPath.section+1)/2] objectAtIndex:indexPath.row];
+    else
+        cell.textLabel.text = [[station objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -154,8 +192,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"station = %@", [[station objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]);
-    [delegate SetOriginAndStationViewTableView:self nowSelected:[[station objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        NSLog(@"station = %@", [[station objectAtIndex:(indexPath.section+1)/2] objectAtIndex:indexPath.row]);
+        [delegate SetOriginAndStationViewTableView:self nowSelected:[[station objectAtIndex:(indexPath.section+1)/2] objectAtIndex:indexPath.row]];
+    }
+    else
+    {
+        NSLog(@"station = %@", [[station objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]);
+        [delegate SetOriginAndStationViewTableView:self nowSelected:[[station objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
+    }
 }
 
 @end

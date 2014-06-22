@@ -23,6 +23,7 @@
 @synthesize refreshTimer;
 @synthesize preArray;
 @synthesize activityIndicator, loadingView;
+@synthesize secondsLabel;
 
 - (void) setter_busName:(NSString *)name andGoBack:(NSInteger) goback
 {
@@ -118,7 +119,7 @@
 	{
 		[self.refreshTimer invalidate];
 		self.refreshTimer = nil;
-		self.anotherButton.title = @"Refresh";
+		//self.anotherButton.title = @"Refresh";
 	}
 }
 
@@ -151,30 +152,39 @@
     
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
         self.edgesForExtendedLayout = UIRectEdgeNone;
-    
+    [self startTimer];
     preArray = [[NSArray alloc] initWithObjects:nil];
-    
+    secondsLabel = [[UILabel alloc] initWithFrame:CGRectMake(320/2-200/2, 4, 200, 30)];
+    secondsLabel.backgroundColor = [UIColor clearColor];
+    secondsLabel.textColor = [UIColor grayColor];
+    secondsLabel.text = @"距離上次更新0秒";
+    secondsLabel.font = [UIFont systemFontOfSize:15.0];
+    secondsLabel.textAlignment = NSTextAlignmentCenter;
     //IDs = [NSMutableArray new];
     m_waitTimeResult = [NSMutableArray new];
     stops = [NSMutableArray new];
-    
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
-    loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
     //loadingView.frame = CGRectMake(screenSize.width/2-100.0, screenSize.height/2-50.0, 200.0, 100.0);
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
     {
-        activityIndicator.frame = CGRectMake(135.0, 260.0, 50.0, 50.0);
+        activityIndicator.frame = CGRectMake(135.0, 280.0, 50.0, 50.0);
         activityIndicator.color = [UIColor blackColor];
     }
     else
-        activityIndicator.frame = CGRectMake(115.0, 60.0, 50.0, 50.0);
+    {
+        activityIndicator.frame = CGRectMake(115.0, 120.0, 50.0, 50.0);
+        activityIndicator.color = [UIColor blackColor];
+    }
     
+    [self.tableView addSubview:self.secondsLabel];
     [self.loadingView addSubview:self.activityIndicator];
     [self.tableView addSubview:self.loadingView];
     [activityIndicator startAnimating];
     [self.loadingView show];
+    
     m_waitTimeResult = [NSMutableArray new];
     stops = [NSMutableArray new];
     
@@ -185,6 +195,7 @@
         [self.tableView addSubview:view1];
         _refreshHeaderView = view1;
         [view1 release];
+        [self CatchData];
     }
     [_refreshHeaderView refreshLastUpdatedDate];
     /*success = [[UIImageView alloc] initWithFrame:CGRectMake(75.0, 250.0, 150.0, 150.0)];
@@ -241,12 +252,70 @@
     return YES;
 }
 
+- (void)startTimer
+{
+    self.lastRefresh = [NSDate date];
+    NSDate *oneSecondFromNow = [NSDate dateWithTimeIntervalSinceNow:0];
+    self.refreshTimer = [[[NSTimer alloc] initWithFireDate:oneSecondFromNow interval:1 target:self selector:@selector(countDownAction:) userInfo:nil repeats:YES] autorelease];
+    [[NSRunLoop currentRunLoop] addTimer:self.refreshTimer forMode:NSDefaultRunLoopMode];
+}
+
+-(void) countDownAction:(NSTimer *)timer
+{
+    
+    if (self.refreshTimer !=nil && self.refreshTimer)
+	{
+		NSTimeInterval sinceRefresh = [self.lastRefresh timeIntervalSinceNow];
+        
+        // If we detect that the app was backgrounded while this timer
+        // was expiring we go around one more time - this is to enable a commuter
+        // bookmark time to be processed.
+        
+        bool updateTimeOnButton = YES;
+        
+		/*if (sinceRefresh <= -kRefreshInterval)
+         {
+         [self refreshPropertyList];
+         //self.anotherButton.title = @"Refreshing";
+         }*/
+        
+        if (updateTimeOnButton)
+        {
+            //NSLog(@"sinceRefresh=%f", sinceRefresh);
+            int secs = (1-sinceRefresh);
+            if (secs > 30)
+            {
+                [self stopTimer];
+                [activityIndicator performSelectorInBackground:@selector(startAnimating) withObject:nil];
+                [self.loadingView performSelectorInBackground:@selector(show) withObject:nil];
+                [self CatchData];
+                [self startTimer];
+            }
+            /*if (secs % 5 == 0)
+             {
+             secondsLabel.text = [NSString stringWithFormat:@"距離上次更新%d秒", secs];
+             }*/
+            secondsLabel.text = [NSString stringWithFormat:@"距離上次更新%d秒", secs];
+            //self.anotherButton.title = [NSString stringWithFormat:@"Refresh in %d", secs];
+            //NSLog(@"secs=%d", secs);
+        }
+	}
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
     return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if ([[[UIDevice currentDevice]systemVersion]floatValue] >= 7.0)
+        return 35;
+    
+    return 40;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -264,7 +333,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil)
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     
     NSString * stopName = [[NSString alloc] init];
     NSString * comeTime = [[NSString alloc] init];
@@ -291,7 +360,8 @@
             }
             else
             {
-                cell.detailTextLabel.text = comeTime;
+                NSUInteger pos = [comeTime rangeOfString:@"鐘"].location;
+                cell.detailTextLabel.text = [comeTime substringWithRange:NSMakeRange(0, pos+1)];
                 cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:0.0 green:45.0/255.0 blue:153.0/255.0 alpha:100.0];
             }
         }
