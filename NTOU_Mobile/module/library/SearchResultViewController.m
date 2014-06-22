@@ -529,10 +529,28 @@
     
     if(row < [data count])
     {
-        BookDetailViewController *detail = [[BookDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        detail.bookurl = [[data objectAtIndex:row] objectForKey:@"URL"];
         
-        [self.navigationController pushViewController:detail animated:YES];
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+                hud.labelText = @"Loading";
+                
+            });
+            BookDetailViewController *detailView = [[BookDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            detailView.bookurl = [[data objectAtIndex:row] objectForKey:@"URL"];
+            [detailView  fetchBookDetailAndReview];
+           
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.navigationController pushViewController:detailView animated:YES];
+                [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
+                
+                
+            });
+        });
+        
     }
     else
     {

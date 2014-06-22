@@ -41,15 +41,12 @@
 {
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
+         [self.tableView setContentInset:UIEdgeInsetsMake(-35,0,-35,0)];
         
     }
     maindata = [[NSMutableArray alloc] init];
    
-    historyData = [NSDictionary new];
-    //配合nagitive和tabbar的圖片變動tableview的大小
-    //nagitive 52 - 44 = 8 、 tabbar 55 - 49 = 6
-    [self.tableView setContentInset:UIEdgeInsetsMake(-35,0,-35,0)];
-    
+    historyData = [NSDictionary new];    
     [super viewDidLoad];
 }
 
@@ -326,11 +323,26 @@
         [self.tableView reloadData];
         [self.tableView setHidden:NO];
     }else{
-        NSDictionary *book = [maindata objectAtIndex:indexPath.row];
-        BookDetailViewController *detailView = [[BookDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        detailView.bookurl = [book objectForKey:@"bookDetailURL"];
-        
-        [self.navigationController pushViewController:detailView animated:YES];
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+                hud.labelText = @"Loading";
+                
+            });
+            NSDictionary *book = [maindata objectAtIndex:indexPath.row];
+            BookDetailViewController *detailView = [[BookDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            detailView.bookurl = [book objectForKey:@"bookDetailURL"];
+            [detailView  fetchBookDetailAndReview];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.navigationController pushViewController:detailView animated:YES];
+                [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
+
+
+            });
+        });
+
     }
 }
 

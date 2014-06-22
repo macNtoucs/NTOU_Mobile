@@ -48,7 +48,7 @@
 {
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
-        
+        [self.tableView setContentInset:UIEdgeInsetsMake(-35,0,-35,0)];
     }
 
     
@@ -88,10 +88,7 @@
     flexiblespace_r.width = 12.0;
     
     [actionToolbar setItems:[NSArray arrayWithObjects:flexiblespace_l,allselectButton,flexiblespace_m,finishButton,flexiblespace_r, nil]];
-    
-    //配合nagitive和tabbar的圖片變動tableview的大小
-    //nagitive 52 - 44 = 8 、 tabbar 55 - 49 = 6
-    [self.tableView setContentInset:UIEdgeInsetsMake(-35,0,-35,0)];
+
     
     [super viewDidLoad];
 }
