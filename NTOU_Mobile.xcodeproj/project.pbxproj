@@ -2051,8 +2051,8 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ching-chi Lin (46873356PM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2072,8 +2072,8 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PROVISIONING_PROFILE = "21F38FDE-A6CC-4AE5-9CD5-9BD76A715C1B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21F38FDE-A6CC-4AE5-9CD5-9BD76A715C1B";
+				PROVISIONING_PROFILE = "0514D974-3076-46AC-9554-0387AC34790A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0514D974-3076-46AC-9554-0387AC34790A";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -2087,8 +2087,8 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ching-chi Lin (46873356PM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2101,8 +2101,8 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PROVISIONING_PROFILE = "21F38FDE-A6CC-4AE5-9CD5-9BD76A715C1B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21F38FDE-A6CC-4AE5-9CD5-9BD76A715C1B";
+				PROVISIONING_PROFILE = "0514D974-3076-46AC-9554-0387AC34790A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0514D974-3076-46AC-9554-0387AC34790A";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = NO;

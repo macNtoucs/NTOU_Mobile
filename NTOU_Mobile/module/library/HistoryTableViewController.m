@@ -65,6 +65,7 @@
 {
     NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
     TDBadgedCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UIFont * font = [tableView cellForRowAtIndexPath:indexPath].textLabel.font;
     if (cell == nil)
     {
         cell = [[[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];

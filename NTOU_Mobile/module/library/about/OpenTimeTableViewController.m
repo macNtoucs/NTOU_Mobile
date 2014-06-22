@@ -37,6 +37,7 @@
 {
     openTimeTypeArray = [NSArray new];
     [self loadOpenTimeData];
+    [openTimeTypeArray retain];
     [super viewDidLoad];
     
     
