@@ -67,10 +67,9 @@
 {
     NSString* notifications = [NTOUNotificationHandle getEmergencyNotificationAndDelete];
     if (notifications) {
-        Notification *notifi = [[Notification alloc] initWithString:notifications];
-        self.htmlString = [NSString stringWithFormat:htmlFormatString, notifi.content];
+        self.htmlString = [NSString stringWithFormat:htmlFormatString, notifications];
         [NTOUNotificationHandle setBadgeValue:nil forModule:EmergencyTag];
-        [[NSUserDefaults standardUserDefaults] setObject:notifi.content forKey:emergencyUserDefaultsKey];
+        [[NSUserDefaults standardUserDefaults] setObject:notifications forKey:emergencyUserDefaultsKey];
         [[NSUserDefaults standardUserDefaults] synchronize];
         [NTOUNotificationHandle refreshRemoteBadge];
     }

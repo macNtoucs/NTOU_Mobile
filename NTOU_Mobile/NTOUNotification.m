@@ -286,7 +286,6 @@
     if (!localUnReadNotification) localUnReadNotification = [NSString new];
     if ([dictionary[EmergencyTag] intValue] >= 1)
     {
-        
         NSURL *url = [NSURL URLWithString:@"http://140.121.91.62/NTOUmsgProvider/getLatestEmergency.php"];
         
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
@@ -296,9 +295,10 @@
          {
              if ([data length] > 0 && error == nil)
              {
-                 notifications[EmergencyTag] = localUnReadNotification;
-                [self storeNotifications:notifications];
+                 notifications[EmergencyTag] = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                 [self storeNotifications:notifications];
              }
+
          }];
     }
     [self storeNotifications:notifications];

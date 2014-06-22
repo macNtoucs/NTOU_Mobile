@@ -82,7 +82,7 @@
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(Spacing, 20, 300, 50)];
     title.text = [[[[story objectForKey:NewsAPIKeyTitle]objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
     title.backgroundColor = [UIColor clearColor];
-    title.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+    title.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
     title.lineBreakMode = NSLineBreakByCharWrapping;
     title.numberOfLines = 0;
 
