@@ -64,7 +64,6 @@
     
 }
 
-
 -(void)fetchData
 {
     NSLog(@"StationInfo.m fetchData");

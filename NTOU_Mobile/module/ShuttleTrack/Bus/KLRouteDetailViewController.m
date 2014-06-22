@@ -53,8 +53,8 @@
     ISREAL = TRUE;
     [self estimateTime];
     [self.tableView reloadData];
-    [loadingView dismissWithClickedButtonIndex:0 animated:YES];
-    [activityIndicator stopAnimating];
+    /*[loadingView dismissWithClickedButtonIndex:0 animated:YES];
+    [activityIndicator stopAnimating];*/
 }
 
 - (void)estimateTime
@@ -144,6 +144,31 @@
 
 #pragma mark - View lifecycle
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"alertClicked");
+    
+    if (buttonIndex == 0)
+    {
+        //cancel clicked ...do your action
+        NSLog(@"cancel");
+        [alertView dismissWithClickedButtonIndex:0 animated:YES];
+        [activityIndicator stopAnimating];
+        
+        if(stops)
+        {
+            [stops removeAllObjects];
+            [m_waitTimeResult removeAllObjects];
+        }
+        [stops addObject:@"更新中，暫無資料"];
+        [m_waitTimeResult addObject:@"請稍候再試"];
+        [stops retain];
+        [m_waitTimeResult retain];
+        [self.tableView reloadData];
+        
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -158,7 +183,7 @@
     m_waitTimeResult = [NSMutableArray new];
     stops = [NSMutableArray new];
     
-    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    /*CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
     loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
     //loadingView.frame = CGRectMake(screenSize.width/2-100.0, screenSize.height/2-50.0, 200.0, 100.0);
@@ -174,7 +199,26 @@
     [self.loadingView addSubview:self.activityIndicator];
     [self.tableView addSubview:self.loadingView];
     [activityIndicator startAnimating];
-    [self.loadingView show];
+    [self.loadingView show];*/
+    
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候\n" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+    alert.frame = CGRectMake(0, 0, 200, 200);
+    
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        activityIndicator.frame = CGRectMake(135.0, 260.0, 50.0, 50.0);
+        activityIndicator.color = [UIColor blackColor];
+    }
+    else
+        activityIndicator.frame = CGRectMake(115.0, 60.0, 50.0, 50.0);
+    
+    [alert addSubview:self.activityIndicator];
+    //[self.tableView addSubview:alert];
+    [activityIndicator startAnimating];
+    [alert show];
+    [alert release];
+     
     m_waitTimeResult = [NSMutableArray new];
     stops = [NSMutableArray new];
     
@@ -215,6 +259,13 @@
     {
         NSLog(@"RouteDetail.m stops is null");
         [self CatchData];
+        
+        /*for (UIView* view in self.tableView.subviews) {
+            
+            if([view isKindOfClass:[UIAlertView class]])
+                [view dismissWithClickedButtonIndex:0 animated:YES];
+        }
+        [activityIndicator stopAnimating];*/
     }
     else
     {
