@@ -297,6 +297,9 @@
              {
                  notifications[EmergencyTag] = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                  [self storeNotifications:notifications];
+                 [NTOUNotificationHandle setAllBadge];
+                 
+                 [self setRemotePNS_Badge];
              }
 
          }];
