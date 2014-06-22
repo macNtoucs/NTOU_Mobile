@@ -14,7 +14,7 @@
 //@synthesize busId;
 @synthesize busName, goBack, departure, destination;
 //@synthesize url;
-@synthesize stops, IDs, m_waitTimeResult;
+@synthesize stops, m_waitTimeResult;
 
 //@synthesize toolbar;
 @synthesize anotherButton;
@@ -63,7 +63,6 @@
     if(stops)
     {
         [stops removeAllObjects];
-        //[IDs removeAllObjects];
         [m_waitTimeResult removeAllObjects];
     }
     
@@ -80,9 +79,9 @@
     NSMutableDictionary  *stationInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
     
     //NSLog(@"NTstationInfo: %@",stationInfo);
-    
     //****
-    /*if([stationInfo[@"stationInfo"]  isKindOfClass:[NSNull class]])
+    /*
+    if([stationInfo[@"stationInfo"]  isKindOfClass:[NSNull class]])
     {
         [stops addObject:@"更新中，暫無資料"];
         [m_waitTimeResult addObject:@"請稍候再試"];
@@ -101,7 +100,6 @@
     [m_waitTimeResult addObject:@"請稍候再試"];
     
     [stops retain];
-    //[IDs retain];
     [m_waitTimeResult retain];
 }
 
@@ -189,7 +187,6 @@
     secondsLabel.text = @"距離上次更新0秒";
     secondsLabel.font = [UIFont systemFontOfSize:15.0];
     secondsLabel.textAlignment = NSTextAlignmentCenter;*/
-    //IDs = [NSMutableArray new];
     m_waitTimeResult = [NSMutableArray new];
     stops = [NSMutableArray new];
     
@@ -437,7 +434,6 @@
     [busName release];
     //[busId release];
     [goBack release];
-    [IDs release];
     [stops release];
     [m_waitTimeResult release];
     [anotherButton release];
