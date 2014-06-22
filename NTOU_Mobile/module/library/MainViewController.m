@@ -153,7 +153,7 @@
     
        
     
-    textField = [[UITextField alloc] initWithFrame:CGRectMake(swidth/2 - 150,50, 300, 30)];
+    textField = [[UIView alloc] initWithFrame:CGRectMake(swidth/2 - 150,50, 300, 30)];
     [textField setBackgroundColor:[UIColor whiteColor]];
     [[textField layer] setBorderWidth:1.0];
     [[textField layer] setBorderColor:[UIColor grayColor].CGColor];
@@ -209,7 +209,6 @@
     [textField addSubview:sTextField];
     [textField addSubview:divider];
     [mainView addSubview:button];
-    [mainView addSubview:picker];
     [mainView addSubview:typeButton];
     self.view = mainView;
     

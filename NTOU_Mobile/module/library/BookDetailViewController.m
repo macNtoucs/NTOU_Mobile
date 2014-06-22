@@ -572,25 +572,28 @@
     else if (section == 1 && [[bookdetail objectForKey:@"bookType"]  isEqual: @"ebook"])
     {
       
-        UILabel *ISBNLabel = [[UILabel alloc]initWithFrame:CGRectMake(10,2,250,25)];
-        ISBNLabel.font = font;
-        [ISBNLabel setText:book_part1[row]];
+        UILabel *externalLabel = [[UILabel alloc]initWithFrame:CGRectMake(10,10,250,25)];
+        externalLabel.font = font;
+        externalLabel.backgroundColor = [UIColor clearColor];
+        [externalLabel setText:book_part1[row]];
     /*
         ISBNLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        ISBNLabel.numberOfLines = 0;*/
-        [cell.contentView addSubview:ISBNLabel];
+        ISBNLabel.numberOfLines = 0;
+     */
+        [cell.contentView addSubview:externalLabel];
        
     }
     
     else if (section == 2){
         
-        UILabel *bookReivews = [[UILabel alloc]initWithFrame:CGRectMake(10,2,60,25)];
+        UILabel *bookReivews = [[UILabel alloc]initWithFrame:CGRectMake(10,10,60,25)];
         bookReivews.font = font;
+        bookReivews.backgroundColor = [UIColor clearColor];
         if ([[reviewsResult[row] objectForKey:@"bookstoreName" ] isEqual:@"Books"])
             [bookReivews setText:@"博客來"];
         else if ([[reviewsResult[row] objectForKey:@"bookstoreName" ] isEqual:@"KingStone"])
             [bookReivews setText:@"金石堂"];
-       cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         [cell.contentView addSubview:bookReivews];
         
     }
@@ -599,7 +602,7 @@
     {
         UIFont *buttonfont = [UIFont boldSystemFontOfSize:18.0];
         
-        button.frame = CGRectMake(110,6,100,18);
+        button.frame = CGRectMake(110,11,100,18);
         button.text = @"預        約";
         button.textColor = [UIColor blueColor];
         button.tag = indexPath.row;
@@ -711,11 +714,11 @@
         
         
         return linkLabelSize.height+12;*/ //網址很醜
-        return 30;
+        return 45;
             }
     
     else if (section == 2 || section == 3)
-        return 30;
+        return 45;
         else
         return 0;
 }
@@ -789,6 +792,7 @@
     
     if (indexPath.section ==1 && [[bookdetail objectForKey:@"bookType"]  isEqual: @"ebook"]){
             goToEternalLinkURL = book_part2[indexPath.row];
+            [goToEternalLinkURL retain];
             UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:@"將會連到校外網站，確定前往" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"前往", nil];
             [alert show];
             [alert release];
@@ -798,6 +802,7 @@
     
     if (indexPath.section ==2 && reviewsResult!=nil){
         goToEternalLinkURL = [reviewsResult[indexPath.row] objectForKey:@"reviewsURL"];
+        [goToEternalLinkURL retain];
         UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:@"將會連到校外網站，確定前往" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"前往", nil];
         [alert show];
         [alert release];

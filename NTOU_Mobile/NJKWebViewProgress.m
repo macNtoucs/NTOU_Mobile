@@ -101,6 +101,7 @@ static const float afterInteractiveMaxProgressValue = 0.9;
     BOOL isHTTP = [request.URL.scheme isEqualToString:@"http"] || [request.URL.scheme isEqualToString:@"https"];
     if (ret && !isFragmentJump && isHTTP && isTopLevelNavigation && navigationType != UIWebViewNavigationTypeBackForward) {
         _currentURL = request.URL;
+        [_currentURL retain];
         [self reset];
     }
     return ret;
