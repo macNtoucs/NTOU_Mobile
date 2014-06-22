@@ -706,116 +706,152 @@ int finderSortWithLocale(id string1, id string2, void *locale)
                 [self createTableView];
             [partBusName appendString:@"0"];
             NSLog(@"partBusName=%@", partBusName);
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 1:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName appendString:@"1"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 2:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName appendString:@"2"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 3:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName appendString:@"3"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 4:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName appendString:@"4"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 5:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName appendString:@"5"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 6:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName appendString:@"6"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 7:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName appendString:@"7"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 8:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName appendString:@"8"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 9:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName appendString:@"9"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 11:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"紅"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 12:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"綠"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 13:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"橘"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 14: //更多
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [buttonFirstView removeFromSuperview];
             [buttonFirstView release];
-            [self showSecondLayerButtons];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 21:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"藍"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 22:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"棕"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 23:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"小"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 24:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"F"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 34: //重設
             self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DefaultAlpha.png"]];
@@ -827,7 +863,9 @@ int finderSortWithLocale(id string1, id string2, void *locale)
             if ([partBusName length] > 1)
             {
                 [partBusName deleteCharactersInRange:NSMakeRange([partBusName length]-1, 1)];
-                [self showTableViewContent];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self showTableViewContent];
+                });
             }
             else
             {
@@ -843,21 +881,27 @@ int finderSortWithLocale(id string1, id string2, void *locale)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"新北"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 212:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"市民"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 213:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"接駁"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 214: //返回
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
@@ -870,48 +914,66 @@ int finderSortWithLocale(id string1, id string2, void *locale)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"內科"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 222:   // 尚未完成
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"其他"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 223:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"幹線"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 231:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"南軟"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 232:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"花季"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 233:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"其他"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         default:
             break;
     }
     partBusNameLabel.text = partBusName;
 }
+
+- (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30.0f;
+}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -972,7 +1034,8 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     cellText = @"A"; // just something to guarantee one line
     CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
     //rowHeight = labelSize.height + 20.0f;
-    rowHeight = labelSize.height + 25.0f;
+    //rowHeight = labelSize.height + 25.0f;
+    rowHeight = 44.0f;
     return rowHeight;
 }
 
