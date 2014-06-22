@@ -410,7 +410,7 @@ int isSuccess=0;
     date.backgroundColor = [UIColor clearColor];
     date.font = font;
     
-    placelabel.frame = CGRectMake(5,33 + booknameLabelSize.height + bookStatusLabelSize.height/2,90,15);
+    placelabel.frame = CGRectMake(5,30 + booknameLabelSize.height + bookStatusLabelSize.height/2,90,15);
     placelabel.text = @"取書館藏地：";
     placelabel.lineBreakMode = NSLineBreakByWordWrapping;
     placelabel.numberOfLines = 0;
@@ -419,7 +419,7 @@ int isSuccess=0;
     placelabel.backgroundColor = [UIColor clearColor];
     placelabel.font = boldfont;
     
-    place.frame = CGRectMake(100,33 + booknameLabelSize.height + bookStatusLabelSize.height/2,180,14);
+    place.frame = CGRectMake(100,30 + booknameLabelSize.height + bookStatusLabelSize.height/2,180,14);
     place.text = bookplace;
     place.lineBreakMode = NSLineBreakByWordWrapping;
     place.numberOfLines = 0;
@@ -443,18 +443,55 @@ int isSuccess=0;
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *book = [maindata objectAtIndex:indexPath.row];
-    NSString *bookname = [book objectForKey:@"bookname"];
+    NSString *bookname = [book objectForKey:@"title"];
     NSString *bookdate = [book objectForKey:@"status"];
+    NSString *bookLocation = [book objectForKey:@"location"];
     UIFont *font = [UIFont fontWithName:@"Helvetica" size:14.0];
     CGSize maximumLabelSize = CGSizeMake(200,9999);
-    CGSize booknameLabelSize = [bookname sizeWithFont:font
-                                    constrainedToSize:maximumLabelSize
-                                        lineBreakMode:NSLineBreakByWordWrapping];
-    CGSize bookStatusLabelSize = [bookdate sizeWithFont:font
-                                      constrainedToSize:maximumLabelSize
-                                          lineBreakMode:NSLineBreakByWordWrapping];
     
-    return  booknameLabelSize.height + bookStatusLabelSize.height + 16*4 + 4*3;
+    
+    
+    CGSize booknameLabelSize, bookStatusLabelSize, bookLocationLabelSize;
+     CGRect booknameLabelRect, bookStatusLabelRect,bookLocationLabelRect;
+       
+    
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        booknameLabelRect = [bookname boundingRectWithSize:maximumLabelSize
+                                                   options:NSStringDrawingUsesLineFragmentOrigin
+                                                attributes:@{NSFontAttributeName:font}
+                                                   context:nil];
+        
+        
+        bookStatusLabelRect = [bookdate boundingRectWithSize:maximumLabelSize
+                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                            attributes:@{NSFontAttributeName:font}
+                                               context:nil];
+        
+        bookLocationLabelRect = [bookLocation boundingRectWithSize:maximumLabelSize
+                                             options:NSStringDrawingUsesLineFragmentOrigin
+                                          attributes:@{NSFontAttributeName:font}
+                                             context:nil];
+        booknameLabelSize = booknameLabelRect.size;
+        bookStatusLabelSize = bookStatusLabelRect.size;
+        bookLocationLabelSize = bookLocationLabelRect.size;
+        
+    }
+    else {
+        
+         booknameLabelSize = [bookname sizeWithFont:font
+                                        constrainedToSize:maximumLabelSize
+                                            lineBreakMode:NSLineBreakByWordWrapping];
+         bookStatusLabelSize = [bookdate sizeWithFont:font
+                                          constrainedToSize:maximumLabelSize
+                                              lineBreakMode:NSLineBreakByWordWrapping];
+        
+         bookLocationLabelSize = [bookLocation sizeWithFont:font
+                                                constrainedToSize:maximumLabelSize
+                                                    lineBreakMode:NSLineBreakByWordWrapping];
+    }
+    
+    return  booknameLabelSize.height + bookStatusLabelSize.height + bookLocationLabelSize.height + 10*3;
 }
 
 #pragma mark - Table view delegate
