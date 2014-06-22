@@ -156,14 +156,15 @@
             [self getContentTotal];
             [self.tableView reloadData];
             [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
-            self.title = [NSString stringWithFormat:@"查詢結果 共%@筆", totalBookNumber];
+            self.title = [NSString stringWithFormat:@"共%@筆", totalBookNumber];
            
             UILabel *pageStatus = [[UILabel alloc]initWithFrame:CGRectMake(50,
                                                                            40,
                                                                            100,
                                                                            44)];
             [pageStatus setFont:[UIFont fontWithName:@"Helvetica" size:12]];
-            [pageStatus setTextColor:[[UIApplication sharedApplication] keyWindow].tintColor];
+            [pageStatus setBackgroundColor:[UIColor clearColor]];
+            if ([[[UIDevice currentDevice]systemVersion]floatValue] < 7.0) pageStatus.textColor = [UIColor whiteColor];
             [pageStatus setText:[NSString stringWithFormat:@"       第1筆~第%lu筆",(unsigned long)[data count]]];
             if([data count]==0)  [pageStatus setText: @""];
             

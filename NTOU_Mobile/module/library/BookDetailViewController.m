@@ -742,10 +742,18 @@
         case 0:{
             
             progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-            progressView.frame = CGRectMake(NAV_X,
-                                            NAV_Y+NAV_HEIGHT,
-                                            NAV_WIDTH ,
-                                            20);
+            if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0){
+                progressView.frame = CGRectMake(NAV_X,
+                                                NAV_Y+NAV_HEIGHT,
+                                                NAV_WIDTH ,
+                                                20);
+            }else{
+                progressView.frame = CGRectMake(NAV_X,
+                                                -3,
+                                                NAV_WIDTH ,
+                                                20);
+            
+            }
            webViewController = [[[UIViewController alloc]init] autorelease];
            webView = [[[UIWebView alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
             webView.scalesPageToFit = YES;
