@@ -31,7 +31,7 @@
 		self.backgroundColor = [UIColor clearColor];
 		self.fontSize = 11.f;
         
-        if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending)
+        if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
             self.boldFont = NO;
         else
             self.boldFont = YES;
@@ -48,7 +48,7 @@
     UIFont *font = self.boldFont ? [UIFont boldSystemFontOfSize:fontsize] : [UIFont systemFontOfSize:fontsize];
     
     CGSize numberSize;
-    if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending) {
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
         numberSize = [self.badgeString sizeWithAttributes:@{ NSFontAttributeName:font }];
     } else {
         numberSize = [self.badgeString sizeWithFont:font];
@@ -57,7 +57,7 @@
     CGFloat radius = (__radius)?__radius:8.5;
     
     // Set the badge background colours
-    if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending) {
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
         __defaultColor = [UIColor colorWithRed:0 green:0.478 blue:1 alpha:1.0];
         __defaultHighlightColor = [UIColor whiteColor];
     } else {
@@ -100,7 +100,7 @@
                                numberSize.width + 12 , numberSize.height);
     
 	// Draw and clip the badge text from the badge shape
-    if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending) {
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
         UIColor *stringColor = nil;
         if((__parent.highlighted || __parent.selected)) {
             
@@ -227,7 +227,7 @@
     
     self.badgeLeftOffset = 10.f;
     self.badgeRightOffset = 12.f;
-    
+    if ([[[UIDevice currentDevice]systemVersion]floatValue] < 7.0) self.textLabel.font = [UIFont systemFontOfSize:17];
     // by default, resize textLabel & detailTextLabel
     self.resizeableLabels = [NSMutableArray arrayWithCapacity:2];
     if (self.textLabel != nil)
@@ -268,7 +268,7 @@
 		else
 			[self.badge setHidden:NO];
 		
-        if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending) {
+        if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
             if (self.accessoryType != UITableViewCellAccessoryNone) {
                 
                 self.badgeRightOffset = 0.f;
@@ -281,7 +281,7 @@
         UIFont *font = self.badge.boldFont ? [UIFont boldSystemFontOfSize:self.badge.fontSize] : [UIFont systemFontOfSize:self.badge.fontSize];
         
         CGSize badgeSize;
-        if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending) {
+        if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
             badgeSize = [self.badgeString sizeWithAttributes:@{ NSFontAttributeName:font }];
         } else {
             badgeSize = [self.badgeString sizeWithFont:font];
