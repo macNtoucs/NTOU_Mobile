@@ -65,6 +65,7 @@
 {
     NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
     TDBadgedCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UIFont * font = [tableView cellForRowAtIndexPath:indexPath].textLabel.font;
     if (cell == nil)
     {
         cell = [[[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
@@ -81,6 +82,7 @@
         case 2:
             cell.textLabel.text = @"借出記錄";
             NSNumber *notifs = [[NTOUNotificationHandle getNotifications] objectForKey:LibrariesTag];
+            //cell.textLabel.font = [UIFont systemFontOfSize:17];
             if ([notifs intValue] > 0) {
                 cell.badgeString = [NSString stringWithFormat:@"%d",[notifs intValue]];
                 cell.badgeColor = [UIColor colorWithRed:0.792 green:0.197 blue:0.219 alpha:1.000];

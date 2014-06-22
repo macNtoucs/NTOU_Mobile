@@ -140,10 +140,7 @@
 
 }
 
-- (CGRect)editingRectForBounds:(CGRect)bounds{
-    NSLog (@"%@", bounds);
 
-}
 
 - (void)viewDidLoad
 {
@@ -154,13 +151,14 @@
     libSearchType = [[NSString alloc]initWithString:[searchType objectAtIndex: 0]];
     NSInteger swidth = [[UIScreen mainScreen] bounds].size.width;
     
+       
     
-    
-    textField = [[UITextField alloc] initWithFrame:CGRectMake(swidth/2 - 150,50, 300, 30)];
+    textField = [[UIView alloc] initWithFrame:CGRectMake(swidth/2 - 150,50, 300, 30)];
+    [textField setBackgroundColor:[UIColor whiteColor]];
+    [[textField layer] setBorderWidth:1.0];
+    [[textField layer] setBorderColor:[UIColor grayColor].CGColor];
+    [[textField layer] setCornerRadius:15.0];
     sTextField = [[UITextField alloc] initWithFrame:CGRectMake(10 ,0,200, 30)];
-    textField.borderStyle = UITextBorderStyleRoundedRect;
-    textField.font = [UIFont systemFontOfSize:15];
-    textField.delegate = self;
     sTextField.delegate = self;
     sTextField.placeholder = @"書籍關鍵字/ISBN";
     sTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -172,7 +170,7 @@
     
     UILabel * divider = [[UILabel alloc]initWithFrame:CGRectMake(205 ,0,5, 30)];
     [divider setText:@"|"];
-    
+    divider.backgroundColor = [UIColor clearColor];
     
     buttonLabel = [[UILabel alloc]init];
     UIFont *font = [UIFont fontWithName:@"Helvetica" size:13.0];
@@ -199,7 +197,7 @@
     [button setImage:[UIImage imageNamed:@"LibrarySearch.png"] forState:UIControlStateNormal];
      button.frame = CGRectMake(textField.frame.origin.x + 260 ,
                                textField.frame.origin.y ,
-                               30,
+                               35,
                                28);
     
     UIImage *Library = [UIImage imageNamed:@"NYOULogo.png"];
@@ -209,9 +207,8 @@
     [mainView addSubview:NTU_Library];
     [mainView addSubview:textField];
     [textField addSubview:sTextField];
-     [textField addSubview:divider];
+    [textField addSubview:divider];
     [mainView addSubview:button];
-    [mainView addSubview:picker];
     [mainView addSubview:typeButton];
     self.view = mainView;
     

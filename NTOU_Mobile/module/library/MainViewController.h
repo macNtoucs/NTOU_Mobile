@@ -10,7 +10,7 @@
 #import "igViewController.h"
 @class switchController;
 @interface MainViewController : UIViewController<UIActionSheetDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate,UITabBarControllerDelegate , UIPickerViewDataSource>{
-    UIView * mainView; UITextField *textField , *sTextField;
+    UIView * mainView,*textField; UITextField  *sTextField;
     NSMutableArray *searchResultArray;
     //NSMutableArray *searchResultPage[20];
     NSString *nextpage_url;

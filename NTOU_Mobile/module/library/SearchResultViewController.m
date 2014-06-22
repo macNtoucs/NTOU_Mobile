@@ -156,7 +156,20 @@
             [self getContentTotal];
             [self.tableView reloadData];
             [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
-            self.navigationItem.title = [NSString stringWithFormat:@"   查詢結果 共%@筆", totalBookNumber];
+            self.title = [NSString stringWithFormat:@"共%@筆", totalBookNumber];
+           
+            UILabel *pageStatus = [[UILabel alloc]initWithFrame:CGRectMake(50,
+                                                                           40,
+                                                                           100,
+                                                                           44)];
+            [pageStatus setFont:[UIFont fontWithName:@"Helvetica" size:12]];
+            [pageStatus setBackgroundColor:[UIColor clearColor]];
+            if ([[[UIDevice currentDevice]systemVersion]floatValue] < 7.0) pageStatus.textColor = [UIColor whiteColor];
+            [pageStatus setText:[NSString stringWithFormat:@"       第1筆~第%lu筆",(unsigned long)[data count]]];
+            if([data count]==0)  [pageStatus setText: @""];
+            
+            UIBarButtonItem *pageStatusButtonItem = [[UIBarButtonItem alloc] initWithCustomView:pageStatus];
+            self.navigationItem.rightBarButtonItem = pageStatusButtonItem;
             start = NO;
         });
     });
@@ -307,16 +320,6 @@
         CGFloat imageY = height/2 - 80/2;
         if(imageY < 6)
             imageY = 6;
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            // dispatch_async(dispatch_get_main_queue(), ^{
-            NSData * imageData = [[NSData alloc] initWithContentsOfURL:[ NSURL URLWithString: image_url ]];
-            UIImageView *imageview = [[UIImageView alloc] initWithImage: [UIImage imageWithData: imageData]];
-            //[imageData release];
-            imageview.frame = CGRectMake(10,imageY,60,80);
-            [imgLoadinglabel removeFromSuperview];
-            [cell.contentView addSubview:imageview];
-            //  });
-        });
         
         imgLoadinglabel.frame = CGRectMake(10,imageY,60,80);
         imgLoadinglabel.text = @"圖片載入中...";
@@ -333,6 +336,16 @@
         booklabel.font = nameFont;
         //booklabel.textColor = CELL_STANDARD_FONT_COLOR;
         [cell.contentView addSubview:booklabel];
+        
+      
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            NSData * imageData = [[NSData alloc] initWithContentsOfURL:[ NSURL URLWithString: image_url ]];
+            UIImageView *imageview = [[UIImageView alloc] initWithImage: [UIImage imageWithData: imageData]];
+            imageview.frame = CGRectMake(10,imageY,60,80);
+            [imgLoadinglabel removeFromSuperview];
+            [cell.contentView addSubview:imageview];
+        });
+     
         
         if(![author isEqualToString:@""])
         {
@@ -516,10 +529,28 @@
     
     if(row < [data count])
     {
-        BookDetailViewController *detail = [[BookDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        detail.bookurl = [[data objectAtIndex:row] objectForKey:@"URL"];
         
-        [self.navigationController pushViewController:detail animated:YES];
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+                hud.labelText = @"Loading";
+                
+            });
+            BookDetailViewController *detailView = [[BookDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            detailView.bookurl = [[data objectAtIndex:row] objectForKey:@"URL"];
+            [detailView  fetchBookDetailAndReview];
+           
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.navigationController pushViewController:detailView animated:YES];
+                [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
+                
+                
+            });
+        });
+        
     }
     else
     {
