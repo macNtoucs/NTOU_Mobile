@@ -127,13 +127,17 @@
     
     NSArray * responseArr = trainInfo[@"trainInfo"];
     
-    for(NSDictionary * dict in responseArr)
+    if (responseArr != [NSNull null])
     {
-        
-        [arrivalTime addObject:[dict valueForKey:@"arrivalTime"]];
-        [departureTime addObject:[dict valueForKey:@"departureTime"]];
-        [trainID addObject:[dict valueForKey:@"trainNumber"]];
+        for(NSDictionary * dict in responseArr)
+        {
+            
+            [arrivalTime addObject:[dict valueForKey:@"arrivalTime"]];
+            [departureTime addObject:[dict valueForKey:@"departureTime"]];
+            [trainID addObject:[dict valueForKey:@"trainNumber"]];
+        }
     }
+    
     
     
     NSLog(@"%@", arrivalTime);   // Here you get the Referance data
@@ -326,14 +330,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
    
     return [trainID count]>=8 ? [trainID count]+2 : [trainID count]+1;
 }
@@ -341,7 +343,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-   
+    NSLog(@"aaa");
   static  NSString *CellIdentifier = @"cell";
     SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     

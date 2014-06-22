@@ -53,6 +53,7 @@
 		1DD1794618FE826500621B67 /* LibraryModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1794518FE826500621B67 /* LibraryModule.m */; };
 		437D52621923976E0054AD8E /* ExpressBusDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 437D52611923976E0054AD8E /* ExpressBusDetailViewController.m */; };
 		437D52641923977E0054AD8E /* ExpressBusSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 437D52631923977E0054AD8E /* ExpressBusSearchViewController.m */; };
+		43B291891949770200AA70D0 /* DefaultAlpha.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B291881949770200AA70D0 /* DefaultAlpha.png */; };
 		43BEDBF519236BED0091B024 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDBF419236BED0091B024 /* FMDatabase.m */; };
 		43BEDBF819236C260091B024 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDBF719236C260091B024 /* FMResultSet.m */; };
 		43BEDBFB19236CF90091B024 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDBFA19236CF90091B024 /* FMDatabasePool.m */; };
@@ -67,6 +68,7 @@
 		43BEDC1F19236E530091B024 /* NTOUShuttleButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDC1E19236E530091B024 /* NTOUShuttleButtonViewController.m */; };
 		43BEDC2319236E990091B024 /* NTOUBusTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDC2119236E990091B024 /* NTOUBusTableViewController.m */; };
 		43BEDC2519236EF10091B024 /* ntou_mobile3.db in Resources */ = {isa = PBXBuildFile; fileRef = 43BEDC2419236EF10091B024 /* ntou_mobile3.db */; };
+		43BF84B21948598C00B5B83F /* frequencyBusStation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43BF84B11948598C00B5B83F /* frequencyBusStation.plist */; };
 		912A53EF16E99F7900BBC013 /* NTOUGuide2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */; };
 		912A53F016E99F7900BBC013 /* NTOUGuideSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EC16E99F7900BBC013 /* NTOUGuideSetViewController.m */; };
 		912A53F116E99F7900BBC013 /* NTOUGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EE16E99F7900BBC013 /* NTOUGuideViewController.m */; };
@@ -400,6 +402,7 @@
 		437D52631923977E0054AD8E /* ExpressBusSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExpressBusSearchViewController.m; path = NTOU_Mobile/module/ShuttleTrack/ExpressBusSearchViewController.m; sourceTree = SOURCE_ROOT; };
 		437D5265192397FC0054AD8E /* ExpressBusDetail2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressBusDetail2ViewController.h; sourceTree = "<group>"; };
 		437D5268192398530054AD8E /* ExpressBusSearch2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressBusSearch2ViewController.h; sourceTree = "<group>"; };
+		43B291881949770200AA70D0 /* DefaultAlpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultAlpha.png; sourceTree = "<group>"; };
 		43BEDBF319236BED0091B024 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		43BEDBF419236BED0091B024 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		43BEDBF619236C260091B024 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
@@ -427,6 +430,7 @@
 		43BEDC2119236E990091B024 /* NTOUBusTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUBusTableViewController.m; sourceTree = "<group>"; };
 		43BEDC2219236E990091B024 /* ShuttleConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuttleConstants.h; sourceTree = "<group>"; };
 		43BEDC2419236EF10091B024 /* ntou_mobile3.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ntou_mobile3.db; sourceTree = "<group>"; };
+		43BF84B11948598C00B5B83F /* frequencyBusStation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = frequencyBusStation.plist; sourceTree = "<group>"; };
 		912A53E916E99F7900BBC013 /* NTOUGuide2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuide2ViewController.h; sourceTree = "<group>"; };
 		912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuide2ViewController.m; sourceTree = "<group>"; };
 		912A53EB16E99F7900BBC013 /* NTOUGuideSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuideSetViewController.h; sourceTree = "<group>"; };
@@ -958,6 +962,7 @@
 				43BEDC0A19236D570091B024 /* TPRouteDetailViewController.m */,
 				43BEDC0B19236D570091B024 /* TPRouteGoBackViewController.h */,
 				43BEDC0C19236D570091B024 /* TPRouteGoBackViewController.m */,
+				43BF84B11948598C00B5B83F /* frequencyBusStation.plist */,
 			);
 			path = Bus;
 			sourceTree = "<group>";
@@ -1097,6 +1102,7 @@
 		91A9003B16E854E400ECF2CF = {
 			isa = PBXGroup;
 			children = (
+				43B291881949770200AA70D0 /* DefaultAlpha.png */,
 				C71A4F22171520E3002819AD /* desktop logo-512x512.png */,
 				C71A4F201715205C002819AD /* desktop logo-57x57.png */,
 				C71A4F0F170A9949002819AD /* Default-568h@2x.png */,
@@ -1693,6 +1699,7 @@
 				91A9045A16E899D200ECF2CF /* magnify.png in Resources */,
 				1D8A3B241905051200816CCD /* blueArrow.png in Resources */,
 				91A9045B16E899D200ECF2CF /* speed_train.png in Resources */,
+				43BF84B21948598C00B5B83F /* frequencyBusStation.plist in Resources */,
 				1D8A3B281905051200816CCD /* whiteArrow.png in Resources */,
 				91A9045C16E899D200ECF2CF /* TimeDrive.png in Resources */,
 				1D8A3B291905051300816CCD /* whiteArrow@2x.png in Resources */,
@@ -1772,6 +1779,7 @@
 				C71A4F00170A9399002819AD /* Default.png in Resources */,
 				1DD1792518FE7AB300621B67 /* opentime.png in Resources */,
 				1DD1792F18FE7AB300621B67 /* Library_NTU.png in Resources */,
+				43B291891949770200AA70D0 /* DefaultAlpha.png in Resources */,
 				C71A4F02170A93AC002819AD /* Default@2x.png in Resources */,
 				C71A4F10170A9949002819AD /* Default-568h@2x.png in Resources */,
 				C71A4F16170ABA7F002819AD /* map-01.png in Resources */,

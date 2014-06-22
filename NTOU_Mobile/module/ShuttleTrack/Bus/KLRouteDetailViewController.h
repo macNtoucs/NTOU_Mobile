@@ -20,7 +20,7 @@
 #import "EGORefreshTableHeaderView.h"
 #import "UIKit+NTOUAdditions.h"
 
-@interface KLRouteDetailViewController : UITableViewController<EGORefreshTableHeaderDelegate>
+@interface KLRouteDetailViewController : UITableViewController<EGORefreshTableHeaderDelegate, UIAlertViewDelegate>
 {
     NSString *busName;
     NSString *goBack;
@@ -42,6 +42,8 @@
     BOOL ISREAL;
     UIActivityIndicatorView *activityIndicator;
     UIAlertView *loadingView;
+    
+    UILabel *secondsLabel;
 }
 @property (nonatomic, retain) NSString *busName;
 @property (nonatomic, retain) NSString *goBack;
@@ -60,6 +62,8 @@
 @property (nonatomic, retain) NSArray *preArray;
 @property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) UIAlertView *loadingView;
+
+@property (nonatomic, retain) UILabel *secondsLabel;
 
 - (void) estimateTime; // 抓取公車進站時間
 - (void) setter_busName:(NSString *) name andGoBack:(NSInteger) goBack; // 取得公車名稱
