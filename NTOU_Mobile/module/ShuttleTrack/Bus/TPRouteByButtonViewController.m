@@ -157,6 +157,12 @@
     buttonTintColor = [UIColor blackColor];
     
     UIButton * buttonSeven = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonSeven.layer.cornerRadius = 10;
+        buttonSeven.layer.borderWidth = 1.0;
+        buttonSeven.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonSeven setTitle:@"7" forState:UIControlStateNormal];
     [buttonSeven setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonSeven setTag:7];
@@ -164,6 +170,12 @@
     [buttonSeven addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonEight = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonEight.layer.cornerRadius = 10;
+        buttonEight.layer.borderWidth = 1.0;
+        buttonEight.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonEight setTitle:@"8" forState:UIControlStateNormal];
     [buttonEight setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonEight setTag:8];
@@ -171,6 +183,12 @@
     [buttonEight addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonNine = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonNine.layer.cornerRadius = 10;
+        buttonNine.layer.borderWidth = 1.0;
+        buttonNine.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonNine setTitle:@"9" forState:UIControlStateNormal];
     [buttonNine setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonNine setTag:9];
@@ -178,6 +196,12 @@
     [buttonNine addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonRed = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonRed.layer.cornerRadius = 10;
+        buttonRed.layer.borderWidth = 1.0;
+        buttonRed.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonRed setTitle:@"紅" forState:UIControlStateNormal];
     [buttonRed setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     [buttonRed setTag:11];
@@ -185,6 +209,12 @@
     [buttonRed addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonBlue= [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonBlue.layer.cornerRadius = 10;
+        buttonBlue.layer.borderWidth = 1.0;
+        buttonBlue.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonBlue setTitle:@"藍" forState:UIControlStateNormal];
     [buttonBlue setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [buttonBlue setTag:21];
@@ -192,6 +222,12 @@
     [buttonBlue addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonFour = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonFour.layer.cornerRadius = 10;
+        buttonFour.layer.borderWidth = 1.0;
+        buttonFour.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonFour setTitle:@"4" forState:UIControlStateNormal];
     [buttonFour setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonFour setTag:4];
@@ -199,6 +235,12 @@
     [buttonFour addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonFive = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonFive.layer.cornerRadius = 10;
+        buttonFive.layer.borderWidth = 1.0;
+        buttonFive.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonFive setTitle:@"5" forState:UIControlStateNormal];
     [buttonFive setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonFive setTag:5];
@@ -206,6 +248,12 @@
     [buttonFive addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonSix = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonSix.layer.cornerRadius = 10;
+        buttonSix.layer.borderWidth = 1.0;
+        buttonSix.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonSix setTitle:@"6" forState:UIControlStateNormal];
     [buttonSix setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonSix setTag:6];
@@ -213,6 +261,12 @@
     [buttonSix addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonBrown = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonBrown.layer.cornerRadius = 10;
+        buttonBrown.layer.borderWidth = 1.0;
+        buttonBrown.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonBrown setTitle:@"棕" forState:UIControlStateNormal];
     [buttonBrown setTitleColor:[UIColor brownColor] forState:UIControlStateNormal];
     [buttonBrown setTag:22];
@@ -220,6 +274,12 @@
     [buttonBrown addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonGreen = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonGreen.layer.cornerRadius = 10;
+        buttonGreen.layer.borderWidth = 1.0;
+        buttonGreen.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonGreen setTitle:@"綠" forState:UIControlStateNormal];
     [buttonGreen setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
     [buttonGreen setTag:12];
@@ -227,6 +287,12 @@
     [buttonGreen addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonOne = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonOne.layer.cornerRadius = 10;
+        buttonOne.layer.borderWidth = 1.0;
+        buttonOne.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonOne setTag:1];
     [buttonOne setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonOne setTitle:@"1" forState:UIControlStateNormal];
@@ -234,6 +300,12 @@
     [buttonOne addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonTwo = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonTwo.layer.cornerRadius = 10;
+        buttonTwo.layer.borderWidth = 1.0;
+        buttonTwo.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonTwo setTitle:@"2" forState:UIControlStateNormal];
     [buttonTwo setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonTwo setTag:2];
@@ -241,6 +313,12 @@
     [buttonTwo addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonThree = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonThree.layer.cornerRadius = 10;
+        buttonThree.layer.borderWidth = 1.0;
+        buttonThree.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonThree setTitle:@"3" forState:UIControlStateNormal];
     [buttonThree setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonThree setTag:3];
@@ -248,6 +326,12 @@
     [buttonThree addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonOrange = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonOrange.layer.cornerRadius = 10;
+        buttonOrange.layer.borderWidth = 1.0;
+        buttonOrange.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonOrange setTitle:@"橘" forState:UIControlStateNormal];
     [buttonOrange setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
     [buttonOrange setTag:13];
@@ -255,6 +339,12 @@
     [buttonOrange addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonF= [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonF.layer.cornerRadius = 10;
+        buttonF.layer.borderWidth = 1.0;
+        buttonF.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonF setTitle:@"F" forState:UIControlStateNormal];
     [buttonF setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonF setTag:24];
@@ -262,6 +352,12 @@
     [buttonF addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonZero = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonZero.layer.cornerRadius = 10;
+        buttonZero.layer.borderWidth = 1.0;
+        buttonZero.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonZero setTitle:@"0" forState:UIControlStateNormal];
     [buttonZero setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonZero setTag:0];
@@ -269,6 +365,12 @@
     [buttonZero addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonSmall = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonSmall.layer.cornerRadius = 10;
+        buttonSmall.layer.borderWidth = 1.0;
+        buttonSmall.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonSmall setTitle:@"小" forState:UIControlStateNormal];
     [buttonSmall setTitleColor:buttonTintColor forState:UIControlStateNormal];
     [buttonSmall setTag:23];
@@ -276,6 +378,12 @@
     [buttonSmall addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonMore = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonMore.layer.cornerRadius = 10;
+        buttonMore.layer.borderWidth = 1.0;
+        buttonMore.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     buttonMore.frame = CGRectMake(68, 140, LAYER1_BUT_WIDTH, LAYER1_BUT_HEIGHT);
     [buttonMore setTag:14];
     [buttonMore setTitle:@"更多" forState:UIControlStateNormal];
@@ -283,6 +391,12 @@
     [buttonMore addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonReset = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonReset.layer.cornerRadius = 10;
+        buttonReset.layer.borderWidth = 1.0;
+        buttonReset.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonReset setTitle:@"重設" forState:UIControlStateNormal];
     [buttonReset setTitleColor:[UIColor colorWithRed:116/255.0 green:116/255.0 blue:116/255.0 alpha:100/100.0] forState:UIControlStateNormal];
     [buttonReset setTag:34];
@@ -290,6 +404,12 @@
     [buttonReset addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonDEL = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonDEL.layer.cornerRadius = 10;
+        buttonDEL.layer.borderWidth = 1.0;
+        buttonDEL.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonDEL setTitle:@"DEL" forState:UIControlStateNormal];
     [buttonDEL setTitleColor:[UIColor colorWithRed:116/255.0 green:116/255.0 blue:116/255.0 alpha:100/100.0] forState:UIControlStateNormal];
     [buttonDEL setTag:35];
@@ -335,6 +455,12 @@
     [buttonSecondView setBackgroundColor:[UIColor lightTextColor]];
     
     UIButton * buttonMain = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonMain.layer.cornerRadius = 10;
+        buttonMain.layer.borderWidth = 1.0;
+        buttonMain.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonMain setTag:223];
     [buttonMain setTitle:@"幹線" forState:UIControlStateNormal];
     [buttonMain setTitleColor:buttonTintColor forState:UIControlStateNormal];
@@ -342,6 +468,12 @@
     [buttonMain addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonNeiKe = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonNeiKe.layer.cornerRadius = 10;
+        buttonNeiKe.layer.borderWidth = 1.0;
+        buttonNeiKe.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonNeiKe setTag:221];
     [buttonNeiKe setTitle:@"內科" forState:UIControlStateNormal];
     [buttonNeiKe setTitleColor:buttonTintColor forState:UIControlStateNormal];
@@ -349,6 +481,12 @@
     [buttonNeiKe addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonNanRan = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonNanRan.layer.cornerRadius = 10;
+        buttonNanRan.layer.borderWidth = 1.0;
+        buttonNanRan.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonNanRan setTag:231];
     [buttonNanRan setTitle:@"南軟" forState:UIControlStateNormal];
     [buttonNanRan setTitleColor:buttonTintColor forState:UIControlStateNormal];
@@ -356,6 +494,12 @@
     [buttonNanRan addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonCitizen = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonCitizen.layer.cornerRadius = 10;
+        buttonCitizen.layer.borderWidth = 1.0;
+        buttonCitizen.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonCitizen setTag:212];
     [buttonCitizen setTitle:@"市民" forState:UIControlStateNormal];
     [buttonCitizen setTitleColor:buttonTintColor forState:UIControlStateNormal];
@@ -363,6 +507,12 @@
     [buttonCitizen addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonOthers = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonOthers.layer.cornerRadius = 10;
+        buttonOthers.layer.borderWidth = 1.0;
+        buttonOthers.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonOthers setTag:222];
     [buttonOthers setTitle:@"其他" forState:UIControlStateNormal];
     [buttonOthers setTitleColor:buttonTintColor forState:UIControlStateNormal];
@@ -370,6 +520,12 @@
     [buttonOthers addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchDown];
     
     UIButton * buttonBack = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        buttonBack.layer.cornerRadius = 10;
+        buttonBack.layer.borderWidth = 1.0;
+        buttonBack.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    }
     [buttonBack setTag:214];
     [buttonBack setTitle:@"返回" forState:UIControlStateNormal];
     [buttonBack setTitleColor:[UIColor colorWithRed:116/255.0 green:116/255.0 blue:116/255.0 alpha:100/100.0] forState:UIControlStateNormal];
@@ -413,7 +569,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
 
 - (void)showTableViewContent
 {
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:NTOUImageNameBackground]];
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [tableview applyStandardColors];
     
     [depArrayTaipeiBus removeAllObjects];
@@ -550,82 +706,108 @@ int finderSortWithLocale(id string1, id string2, void *locale)
                 [self createTableView];
             [partBusName appendString:@"0"];
             NSLog(@"partBusName=%@", partBusName);
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 1:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName appendString:@"1"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 2:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName appendString:@"2"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 3:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName appendString:@"3"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 4:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName appendString:@"4"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 5:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName appendString:@"5"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 6:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName appendString:@"6"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 7:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName appendString:@"7"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 8:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName appendString:@"8"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 9:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName appendString:@"9"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 11:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"紅"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 12:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"綠"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 13:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"橘"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 14: //更多
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
@@ -638,28 +820,36 @@ int finderSortWithLocale(id string1, id string2, void *locale)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"藍"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 22:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"棕"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 23:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"小"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 24:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"F"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 34: //重設
             self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DefaultAlpha.png"]];
@@ -671,7 +861,9 @@ int finderSortWithLocale(id string1, id string2, void *locale)
             if ([partBusName length] > 1)
             {
                 [partBusName deleteCharactersInRange:NSMakeRange([partBusName length]-1, 1)];
-                [self showTableViewContent];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self showTableViewContent];
+                });
             }
             else
             {
@@ -687,21 +879,27 @@ int finderSortWithLocale(id string1, id string2, void *locale)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"新北"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 212:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"市民"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 213:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"接駁"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 214: //返回
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
@@ -714,48 +912,66 @@ int finderSortWithLocale(id string1, id string2, void *locale)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"內科"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 222:   // 尚未完成
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"其他"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 223:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"幹線"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 231:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"南軟"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 232:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"花季"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         case 233:
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"其他"];
-            [self showTableViewContent];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTableViewContent];
+            });
             break;
         default:
             break;
     }
     partBusNameLabel.text = partBusName;
 }
+
+- (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30.0f;
+}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -816,7 +1032,8 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     cellText = @"A"; // just something to guarantee one line
     CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
     //rowHeight = labelSize.height + 20.0f;
-    rowHeight = labelSize.height + 25.0f;
+    //rowHeight = labelSize.height + 25.0f;
+    rowHeight = 44.0f;
     return rowHeight;
 }
 

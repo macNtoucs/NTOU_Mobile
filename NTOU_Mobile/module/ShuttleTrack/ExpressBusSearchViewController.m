@@ -657,7 +657,7 @@
     
     [self.searchBar setTintColor:[UIColor lightGrayColor]];
     self.searchBar.placeholder = @"請輸入路線編號或名稱";
-    [self initializeMyKeyboardView];
+    //[self initializeMyKeyboardView];
     
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
     {
