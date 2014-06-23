@@ -342,8 +342,8 @@
             NSData * imageData = [[NSData alloc] initWithContentsOfURL:[ NSURL URLWithString: image_url ]];
             UIImageView *imageview = [[UIImageView alloc] initWithImage: [UIImage imageWithData: imageData]];
             imageview.frame = CGRectMake(10,imageY,60,80);
+            [cell.contentView addSubview:imageview];            
             [imgLoadinglabel removeFromSuperview];
-            [cell.contentView addSubview:imageview];
         });
      
         
