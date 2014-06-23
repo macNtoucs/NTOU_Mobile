@@ -7,8 +7,8 @@
 //
 
 #import "NewsDetailViewController.h"
-#define pictureHeight 75
-#define pictureWeight 75
+#define pictureHeight 50
+#define pictureWeight 50
 #define personAndContentSpacing 20
 #define Spacing 10
 #define infoFontSize 14
@@ -101,8 +101,8 @@
     infoBackground.backgroundColor = [UIColor whiteColor];
     
     //圖
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon-person.jpg"]] ;
-    imageView.frame = CGRectMake(Spacing, Spacing, pictureWeight, pictureHeight);
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Icon.png"]] ;
+    imageView.frame = CGRectMake(2*Spacing, 2*Spacing, pictureWeight, pictureHeight);
     
     //名字
     
@@ -159,7 +159,7 @@
             i--;
             continue;
         }
-        UILabel *attachment = [[UILabel alloc] initWithFrame:CGRectMake(Spacing, pictureHeight +10 +attachment_TitleHeight, 280, 25)];
+        UILabel *attachment = [[UILabel alloc] initWithFrame:CGRectMake(Spacing, 2*Spacing+pictureHeight +10 +attachment_TitleHeight, 280, 25)];
         attachment.text = attachment_Title[i];
         attachment.font = [UIFont fontWithName:@"Helvetica" size:14];
         attachment.textColor = [UIColor blueColor];
@@ -191,7 +191,7 @@
     
     //新聞內容
     
-    UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(Spacing, pictureHeight + personAndContentSpacing + attachment_TitleHeight, 280, 500)];
+    UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(Spacing, 2*Spacing + pictureHeight + personAndContentSpacing + attachment_TitleHeight, 280, 500)];
     content.text = [[[[story objectForKey:NewsAPIKeyBody] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
     content.font = [UIFont fontWithName:@"Helvetica" size:15];
     content.lineBreakMode = NSLineBreakByCharWrapping;

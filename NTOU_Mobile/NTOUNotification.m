@@ -288,6 +288,11 @@
     {
         NSURL *url = [NSURL URLWithString:@"http://140.121.91.62/NTOUmsgProvider/getLatestEmergency.php"];
         
+        NSString*data = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+        notifications[EmergencyTag] = data;
+        
+        
+        /*
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
         
@@ -302,12 +307,15 @@
                  [self setRemotePNS_Badge];
              }
 
-         }];
+         }];*/
     }
-    [self storeNotifications:notifications];
-    [NTOUNotificationHandle setAllBadge];
-    
-    [self setRemotePNS_Badge];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [self storeNotifications:notifications];
+        [NTOUNotificationHandle setAllBadge];
+        
+        [self setRemotePNS_Badge];
+    });
+
 }
 
 +(void)setRemotePNS_Badge
