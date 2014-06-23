@@ -15,7 +15,7 @@
 #import "MBProgressHUD.h"
 
 @interface switchController ()
-@property (nonatomic, retain)  UIBarButtonItem * another;
+
 @property (nonatomic ,retain) MainViewController * mainviewcon;
 @property (nonatomic ,retain) HistoryTableViewController * hisTableCon;
 @property (nonatomic ,retain) AboutViewController * aboutViewCon;
@@ -85,10 +85,10 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    //[another setTitle:@"條碼掃描"];
     [super viewWillAppear:animated];
     [self ChangeDisplayView];
 }
+
 
 -(void)chanSearchStyle{
     if ([another.title  isEqual:@"條碼掃描"]){
@@ -101,6 +101,7 @@
             });
          if (scannerCon == nil)
         scannerCon = [[igViewController alloc] init];
+        scannerCon.switchCon = self;
         scannerCon.mainview = mainviewcon;
         [ scannerCon.view  setFrame:CGRectMake(mainviewcon.view.frame.origin.x,
                                                mainviewcon.view.frame.origin.y,
@@ -166,7 +167,11 @@
  didSelectViewController:(UIViewController *)viewController
 {
    if( tabBarController.selectedIndex ==0 )   [self navAddRightButton];
-   else  self.navigationItem.rightBarButtonItem = nil;
+   else{
+       [another setTitle:@"條碼掃描"];
+       [scannerCon.view removeFromSuperview];
+       self.navigationItem.rightBarButtonItem = nil;
+   }
    //[self setView];
     [self reloadHistoryTableViewController:viewController];
 }
