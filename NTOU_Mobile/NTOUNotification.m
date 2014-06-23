@@ -127,7 +127,8 @@
             int count = 0;
             for (NSNumber* courseNumber in [unReadNotification allValues])
                 count += [courseNumber intValue];
-            [aButton setBadgeValue:[NSString stringWithFormat:@"%d",count]];
+            if (count)
+                [aButton setBadgeValue:[NSString stringWithFormat:@"%d",count]];
         }
         else
             [aButton setBadgeValue:nil];
@@ -216,6 +217,7 @@
 + (void) sendRegisterDevice:(NSString *) studentID
 {
     NTOU_MobileAppDelegate *appDelegate = (NTOU_MobileAppDelegate *)[[UIApplication sharedApplication] delegate];
+    if (!appDelegate.devicePushToken)   return;
     
     // You can send here, for example, an asynchronous HTTP request to your web-server to store this deviceToken remotely.
     //第一步，创建URL
