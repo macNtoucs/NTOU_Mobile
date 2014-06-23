@@ -81,6 +81,14 @@
  */
 
 
+-(void) autoDetectSearchType {
+    NSString *searchArg = sTextField.text;
+    if ([searchArg intValue]%100000000000>0)
+        libSearchType = @"ISBN";
+    else
+        libSearchType = @"關鍵字";
+}
+
 -(void)search{
     [self backgroundTap];
     
@@ -99,6 +107,7 @@
         display.data = [[NSMutableArray alloc] init];
         display.mainview = self;
         display.inputtext = sTextField.text;
+        [self autoDetectSearchType];
         display.book_count = 10;   
         display.start = NO;
         display.Searchpage=1;
@@ -162,7 +171,7 @@
     sTextField.delegate = self;
     sTextField.placeholder = @"書籍關鍵字/ISBN";
     sTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    typeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+   /* typeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [typeButton addTarget:self
                    action:@selector(changeSearchType)
      forControlEvents:UIControlEventTouchDown];
@@ -185,11 +194,8 @@
                                  40,
                                  28);
     [typeButton addSubview:buttonLabel];
-   
-    picker.dataSource = self;
-    picker.delegate = self;
-    picker.showsSelectionIndicator = YES;
-   
+   */
+    
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button addTarget:self
                action:@selector(search)
@@ -207,7 +213,7 @@
     [mainView addSubview:NTU_Library];
     [mainView addSubview:textField];
     [textField addSubview:sTextField];
-    [textField addSubview:divider];
+    //[textField addSubview:divider];
     [mainView addSubview:button];
     [mainView addSubview:typeButton];
     self.view = mainView;
