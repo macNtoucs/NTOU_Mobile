@@ -765,6 +765,12 @@
             }
            webViewController = [[[UIViewController alloc]init] autorelease];
            webView = [[[UIWebView alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
+            if ([[[UIDevice currentDevice]systemVersion]floatValue] < 7.0)
+            {
+                CGRect webFrame = webView.frame;
+                webFrame.size.height -= 64;
+                webView.frame = webFrame;
+            }
             webView.scalesPageToFit = YES;
             NJKWebViewProgress *_progressProxy = [[NJKWebViewProgress alloc] init]; // instance variable
             webView.delegate = _progressProxy;
