@@ -813,9 +813,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [buttonFirstView removeFromSuperview];
             [buttonFirstView release];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self showTableViewContent];
-            });
+            [self showSecondLayerButtons];
             break;
         case 21:
             if (havingTableView == NO)

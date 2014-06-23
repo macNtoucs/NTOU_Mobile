@@ -65,7 +65,6 @@
         [stops removeAllObjects];
         [m_waitTimeResult removeAllObjects];
     }
-    
     NSString *encodedBus = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)busName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
     //NSLog(@"url = %@", url);
     
@@ -79,8 +78,7 @@
     NSMutableDictionary  *stationInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
     
     //NSLog(@"NTstationInfo: %@",stationInfo);
-    //****
-    /*
+    
     if([stationInfo[@"stationInfo"]  isKindOfClass:[NSNull class]])
     {
         [stops addObject:@"更新中，暫無資料"];
@@ -94,10 +92,10 @@
             [stops addObject:[dict valueForKey:@"name"]];
             [m_waitTimeResult addObject:[dict valueForKey:@"time"]];
         }
-    }*/
-    
+    }
+    /*
     [stops addObject:@"更新中，暫無資料"];
-    [m_waitTimeResult addObject:@"請稍候再試"];
+    [m_waitTimeResult addObject:@"請稍候再試"];*/
     
     [stops retain];
     [m_waitTimeResult retain];
@@ -392,9 +390,9 @@
             }
             else
             {
-                //NSRange pos = [comeTime rangeOfString:@"鐘"];
-                //cell.detailTextLabel.text = [comeTime substringWithRange:NSMakeRange(0, pos.location)];
-                cell.detailTextLabel.text = comeTime;
+                NSRange pos1 = [comeTime rangeOfString:@"約"];
+                NSRange pos2 = [comeTime rangeOfString:@"鐘"];
+                cell.detailTextLabel.text = [comeTime substringWithRange:NSMakeRange(pos1.location+1, pos2.location-1)];
                 cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:0.0 green:45.0/255.0 blue:153.0/255.0 alpha:100.0];
             }
         }

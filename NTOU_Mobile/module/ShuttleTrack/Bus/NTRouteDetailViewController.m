@@ -86,12 +86,9 @@
         NSArray * responseArr = stationInfo[@"stationInfo"];
         for(NSDictionary * dict in responseArr)
         {
-            //***[stops addObject:[dict valueForKey:@"name"]];
-            //***[m_waitTimeResult addObject:[dict valueForKey:@"time"]];
-            [stops addObject:[dict valueForKey:@"time"]];
-            [m_waitTimeResult addObject:[dict valueForKey:@"name"]];
+            [stops addObject:[dict valueForKey:@"name"]];
+            [m_waitTimeResult addObject:[dict valueForKey:@"time"]];
         }
-        [m_waitTimeResult addObject:@"未發車"]; //***
     }
     
     
@@ -372,8 +369,7 @@
         else
         {
             stopName = [stops objectAtIndex:indexPath.row];
-            //***comeTime = [m_waitTimeResult objectAtIndex:indexPath.row];
-            comeTime = [m_waitTimeResult objectAtIndex:indexPath.row+1];
+            comeTime = [m_waitTimeResult objectAtIndex:indexPath.row];
             
             if ([comeTime isEqual:@"未發車"])
             {
