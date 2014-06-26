@@ -84,15 +84,12 @@
 {
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
     {
-        NSLog(@"sectionForSectionIndexTitle, title = %@, index = %d", [indexTitles objectAtIndex:index], index);
         if ([title isEqualToString:@""])
         {
             if ( index>=13 && index<=28) index-=2;
             
             if ( index>=29) index-=1;
         }
-        
-        NSLog(@"[fix]sectionForSectionIndexTitle, title = %@, index = %d", [indexTitles objectAtIndex:index], index);
     }
    
     return index;
@@ -105,10 +102,21 @@
     
     return region;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        if ([indexTitles[section] isEqualToString:@""])
+            return 0.01f;
+    }
     return 30;
 }
+
+-(float)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 5.0f;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
