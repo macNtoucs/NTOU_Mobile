@@ -39,6 +39,7 @@
 @synthesize Searchpage;
 @synthesize searchType;
 @synthesize imgFinish;
+@synthesize storyTable;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -94,6 +95,9 @@
     
     
     [super viewDidLoad];
+    
+    self.storyTable.pullArrowImage = [UIImage imageNamed:@"blackArrow"];
+    self.storyTable.pullDelegate = self;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -205,7 +209,7 @@
     NSString *nextpage_url = [pageData objectForKey:@"nextpage"];
     
     if(nextpage_url != NULL || [firstBookNumber intValue] +10 < [totalBookNumber intValue])  //後面還有書
-        return [data count]+1;
+        return [data count];
     else if ([data count] == 0 && start == YES) //沒有查獲的館藏
         return 1;
     else
@@ -561,6 +565,47 @@
         ++Searchpage;
         [self search];
     }
+}
+
+#pragma mark - Refresh and load more methods
+
+- (void) refreshTable
+{
+    /*
+     
+     Code to actually refresh goes here.  刷新代码放在这
+     
+     */
+    self.storyTable.pullLastRefreshDate = [NSDate date];
+    self.storyTable.pullTableIsRefreshing = NO;
+}
+
+
+- (void) loadMoreDataToTable
+{
+    /*
+     
+     Code to actually load more data goes here.  加载更多实现代码放在在这
+     
+     */
+    self.storyTable.pullTableIsLoadingMore = NO;
+}
+
+#pragma mark - PullTableViewDelegate
+
+- (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView
+{
+    Searchpage = 1;
+    [data removeAllObjects];
+    [self search];
+    [self performSelector:@selector(refreshTable) withObject:nil afterDelay:3.0f];
+}
+
+- (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView
+{
+    ++Searchpage;
+    [self search];
+    [self performSelector:@selector(loadMoreDataToTable) withObject:nil afterDelay:3.0f];
 }
 
 @end
