@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface switchController : UITabBarController<UITabBarControllerDelegate>
-
+@interface switchController : UITabBarController<UITabBarControllerDelegate>{
+  UIBarButtonItem * another;
+}
+@property (nonatomic, retain)  UIBarButtonItem * another;
 -(void)ChangeDisplayView;
 @end

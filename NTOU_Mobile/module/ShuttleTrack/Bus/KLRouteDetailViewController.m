@@ -14,7 +14,7 @@
 //@synthesize busId;
 @synthesize busName, goBack, departure, destination;
 //@synthesize url;
-@synthesize stops, IDs, m_waitTimeResult;
+@synthesize stops, m_waitTimeResult;
 
 //@synthesize toolbar;
 @synthesize anotherButton;
@@ -63,10 +63,8 @@
     if(stops)
     {
         [stops removeAllObjects];
-        //[IDs removeAllObjects];
         [m_waitTimeResult removeAllObjects];
     }
-    
     NSString *encodedBus = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)busName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
     //NSLog(@"url = %@", url);
     
@@ -95,9 +93,11 @@
             [m_waitTimeResult addObject:[dict valueForKey:@"time"]];
         }
     }
+    /*
+    [stops addObject:@"更新中，暫無資料"];
+    [m_waitTimeResult addObject:@"請稍候再試"];*/
     
     [stops retain];
-    //[IDs retain];
     [m_waitTimeResult retain];
 }
 
@@ -145,6 +145,31 @@
 
 #pragma mark - View lifecycle
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"alertClicked");
+    
+    if (buttonIndex == 0)
+    {
+        //cancel clicked ...do your action
+        NSLog(@"cancel");
+        [alertView dismissWithClickedButtonIndex:0 animated:YES];
+        [activityIndicator stopAnimating];
+        
+        if(stops)
+        {
+            [stops removeAllObjects];
+            [m_waitTimeResult removeAllObjects];
+        }
+        [stops addObject:@"更新中，暫無資料"];
+        [m_waitTimeResult addObject:@"請稍候再試"];
+        [stops retain];
+        [m_waitTimeResult retain];
+        [self.tableView reloadData];
+        
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -154,19 +179,16 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     [self startTimer];
     preArray = [[NSArray alloc] initWithObjects:nil];
-    secondsLabel = [[UILabel alloc] initWithFrame:CGRectMake(320/2-200/2, 4, 200, 30)];
+    /*secondsLabel = [[UILabel alloc] initWithFrame:CGRectMake(320/2-200/2, 4, 200, 30)];
     secondsLabel.backgroundColor = [UIColor clearColor];
     secondsLabel.textColor = [UIColor grayColor];
     secondsLabel.text = @"距離上次更新0秒";
     secondsLabel.font = [UIFont systemFontOfSize:15.0];
-    secondsLabel.textAlignment = NSTextAlignmentCenter;
-    //IDs = [NSMutableArray new];
+    secondsLabel.textAlignment = NSTextAlignmentCenter;*/
     m_waitTimeResult = [NSMutableArray new];
     stops = [NSMutableArray new];
-    CGRect screenBound = [[UIScreen mainScreen] bounds];
-    CGSize screenSize = screenBound.size;
+    
     loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
-    //loadingView.frame = CGRectMake(screenSize.width/2-100.0, screenSize.height/2-50.0, 200.0, 100.0);
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
     {
@@ -179,7 +201,7 @@
         activityIndicator.color = [UIColor blackColor];
     }
     
-    [self.tableView addSubview:self.secondsLabel];
+    //[self.tableView addSubview:self.secondsLabel];
     [self.loadingView addSubview:self.activityIndicator];
     [self.tableView addSubview:self.loadingView];
     [activityIndicator startAnimating];
@@ -226,6 +248,13 @@
     {
         NSLog(@"RouteDetail.m stops is null");
         [self CatchData];
+        
+        /*for (UIView* view in self.tableView.subviews) {
+            
+            if([view isKindOfClass:[UIAlertView class]])
+                [view dismissWithClickedButtonIndex:0 animated:YES];
+        }
+        [activityIndicator stopAnimating];*/
     }
     else
     {
@@ -272,32 +301,18 @@
         // bookmark time to be processed.
         
         bool updateTimeOnButton = YES;
-        
-		/*if (sinceRefresh <= -kRefreshInterval)
-         {
-         [self refreshPropertyList];
-         //self.anotherButton.title = @"Refreshing";
-         }*/
-        
         if (updateTimeOnButton)
         {
-            //NSLog(@"sinceRefresh=%f", sinceRefresh);
             int secs = (1-sinceRefresh);
-            if (secs > 30)
+            if (secs > 20)
             {
                 [self stopTimer];
-                [activityIndicator performSelectorInBackground:@selector(startAnimating) withObject:nil];
-                [self.loadingView performSelectorInBackground:@selector(show) withObject:nil];
-                [self CatchData];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self CatchData];
+                });
                 [self startTimer];
             }
-            /*if (secs % 5 == 0)
-             {
-             secondsLabel.text = [NSString stringWithFormat:@"距離上次更新%d秒", secs];
-             }*/
-            secondsLabel.text = [NSString stringWithFormat:@"距離上次更新%d秒", secs];
-            //self.anotherButton.title = [NSString stringWithFormat:@"Refresh in %d", secs];
-            //NSLog(@"secs=%d", secs);
+            //NSLog(@"距離上次更新%d秒", secs);
         }
 	}
 }
@@ -313,9 +328,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if ([[[UIDevice currentDevice]systemVersion]floatValue] >= 7.0)
-        return 35;
+        return 0.01f;
     
-    return 40;
+    return 10.0f;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -325,6 +340,21 @@
         return [stops count];   // for can't see cell
     else
         return [preArray count];
+}
+
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat rowHeight = 0;
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+    CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
+    NSString *cellText = nil;
+    
+    cellText = @"A"; // just something to guarantee one line
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    //rowHeight = labelSize.height + 20.0f;
+    //rowHeight = labelSize.height + 25.0f;
+    rowHeight = 44.0f;
+    return rowHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -360,8 +390,9 @@
             }
             else
             {
-                NSUInteger pos = [comeTime rangeOfString:@"鐘"].location;
-                cell.detailTextLabel.text = [comeTime substringWithRange:NSMakeRange(0, pos+1)];
+                NSRange pos1 = [comeTime rangeOfString:@"約"];
+                NSRange pos2 = [comeTime rangeOfString:@"鐘"];
+                cell.detailTextLabel.text = [comeTime substringWithRange:NSMakeRange(pos1.location+1, pos2.location-1)];
                 cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:0.0 green:45.0/255.0 blue:153.0/255.0 alpha:100.0];
             }
         }
@@ -401,7 +432,6 @@
     [busName release];
     //[busId release];
     [goBack release];
-    [IDs release];
     [stops release];
     [m_waitTimeResult release];
     [anotherButton release];

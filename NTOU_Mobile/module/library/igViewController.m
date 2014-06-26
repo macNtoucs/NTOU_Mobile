@@ -9,7 +9,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import "igViewController.h"
 #import "SearchResultViewController.h"
-
 @interface igViewController () <AVCaptureMetadataOutputObjectsDelegate>
 {
     AVCaptureSession *_session;
@@ -19,17 +18,23 @@
     AVCaptureVideoPreviewLayer *_prevLayer;
     NSString *detectStr;
     UIView *_highlightView;
-    BOOL hasBeenDetect;
-   // UILabel *_label;
+    BOOL hasBeenDetect;   // UILabel *_label;
 }
 @end
 
 @implementation igViewController
 @synthesize mainview;
-
+@synthesize switchCon;
 -(void) viewWillAppear:(BOOL)animated{
     [self setComponent];
     [super viewWillAppear:animated];
+}
+
+
+
+-(void) viewWillDisappear:(BOOL)animated{
+    [switchCon.another setTitle:@"條碼掃描"];
+    [super viewDidDisappear:animated];
 }
 
 
@@ -40,17 +45,7 @@
     _highlightView.layer.borderColor = [UIColor greenColor].CGColor;
     _highlightView.layer.borderWidth = 3;
     [self.view addSubview:_highlightView];
-    
-    /* _label = [[UILabel alloc] init];
-     _label.frame = CGRectMake(0, self.view.bounds.size.height - 40, self.view.bounds.size.width, 40);
-     _label.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-     _label.backgroundColor = [UIColor colorWithWhite:0.15 alpha:0.65];
-     _label.textColor = [UIColor whiteColor];
-     _label.textAlignment = NSTextAlignmentCenter;
-     _label.text = @"(none)";
-     [self.view addSubview:_label];*/
-    
-    _session = [[AVCaptureSession alloc] init];
+      _session = [[AVCaptureSession alloc] init];
     _device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     NSError *error = nil;
     
@@ -151,7 +146,7 @@
            _input= nil;
            _output= nil;
            _prevLayer= nil;
-             [self.view removeFromSuperview];
+           [self.view removeFromSuperview];
            [self search :detectionString];
         }
     

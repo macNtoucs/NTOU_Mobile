@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSArray * newSearchBooks;
 @property (nonatomic) NSNumber* totalBookNumber;
 @property (nonatomic) NSNumber* firstBookNumber;
+@property (nonatomic ,retain) NSMutableArray *imgFinish;
 
 @end
 
@@ -37,6 +38,7 @@
 @synthesize firstBookNumber;
 @synthesize Searchpage;
 @synthesize searchType;
+@synthesize imgFinish;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -72,6 +74,7 @@
     tableData_book = [[NSMutableArray alloc] init];
     urlData = [[NSMutableDictionary alloc] init];
     newSearchBooks =[NSArray new];
+    imgFinish = [NSMutableArray new];
     /*
      UILabel *titleView = (UILabel *)self.navigationItem.titleView;
      titleView = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -337,13 +340,14 @@
         //booklabel.textColor = CELL_STANDARD_FONT_COLOR;
         [cell.contentView addSubview:booklabel];
         
-      
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+    if (indexPath.row >= [imgFinish count])
+        dispatch_sync(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             NSData * imageData = [[NSData alloc] initWithContentsOfURL:[ NSURL URLWithString: image_url ]];
             UIImageView *imageview = [[UIImageView alloc] initWithImage: [UIImage imageWithData: imageData]];
             imageview.frame = CGRectMake(10,imageY,60,80);
-            [imgLoadinglabel removeFromSuperview];
             [cell.contentView addSubview:imageview];
+            [imgLoadinglabel removeFromSuperview];
+            [imgFinish addObject:image_url];
         });
      
         

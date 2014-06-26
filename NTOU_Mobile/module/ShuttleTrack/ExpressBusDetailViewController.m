@@ -116,26 +116,62 @@
     [stops retain];
     [times retain];
     [self.tableView reloadData];
-    [loadingView dismissWithClickedButtonIndex:0 animated:YES];
-    [activityIndicator stopAnimating];
+    /*for (UIView* view in self.view.subviews) {
+        
+        if([view isKindOfClass:[UIAlertView class]])
+            [view dismissWithClickedButtonIndex:0 animated:YES];
+    }
+    [activityIndicator stopAnimating];*/
 }
 
-/*- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+-(void) alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"alertClicked");
+    NSLog(@"willDismissWithButtonIndex");
+    
     if (buttonIndex == 0)
     {
-        [loadingView dismissWithClickedButtonIndex:0 animated:YES];
+        //cancel clicked ...do your action
         NSLog(@"cancel");
     }
-}*/
-
-- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0)
-        NSLog(@"OK");
     else
-        NSLog(@"Cancel");
+    {
+        NSLog(@"hi");
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"alertClicked");
+    
+    if (buttonIndex == 0)
+    {
+        //cancel clicked ...do your action
+        NSLog(@"cancel");
+        [alertView dismissWithClickedButtonIndex:0 animated:YES];
+        [activityIndicator stopAnimating];
+        
+        if(stops)
+        {
+            [stops removeAllObjects];
+            [times removeAllObjects];
+        }
+        [stops addObject:@"更新中，暫無資料"];
+        [times addObject:@"請稍候再試"];
+        [stops retain];
+        [times retain];
+        [self.tableView reloadData];
+        
+    }
+}
+
+-(void)alertViewEnd
+{
+    for (UIView* view in self.view.subviews) {
+        
+        if([view isKindOfClass:[UIAlertView class]])
+            [view dismissWithClickedButtonIndex:1 animated:YES];
+    }
+    [activityIndicator stopAnimating];
 }
 
 - (void)viewDidLoad
@@ -146,17 +182,10 @@
     if ([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0)
         self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.parentViewController.view setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-    /*UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"發車時間" style:UIButtonTypeRoundedRect target:self action:@selector(showDepartureTime:)];
-    self.navigationItem.rightBarButtonItem = rightButton;
-    [rightButton release];*/
     
-    /*loadingView = [[UIAlertView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-    loadingView.delegate = self;
-    loadingView.message = @"下載資料中\n請稍候\n";*/
     preArray = [[NSArray alloc] initWithObjects:nil];
-    loadingView = [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候\n" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+    /*loadingView = [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候\n" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
     loadingView.frame = CGRectMake(0, 0, 200, 200);
-    //[loadingView setCancelButtonIndex:0];
     
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
@@ -171,6 +200,26 @@
     [self.tableView addSubview:self.loadingView];
     [activityIndicator startAnimating];
     [self.loadingView show];
+    [self.loadingView release];*/
+    
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候\n" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+    alert.frame = CGRectMake(0, 0, 200, 200);
+    
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        activityIndicator.frame = CGRectMake(135.0, 260.0, 50.0, 50.0);
+        activityIndicator.color = [UIColor blackColor];
+    }
+    else
+        activityIndicator.frame = CGRectMake(115.0, 60.0, 50.0, 50.0);
+    
+    [alert addSubview:self.activityIndicator];
+    [self.view addSubview:alert];
+    //[self.tableView addSubview:alert];
+    [activityIndicator startAnimating];
+    [alert show];
+    [alert release];
     
     stops = [[NSMutableArray alloc] init];
     times = [[NSMutableArray alloc] init];
@@ -215,8 +264,6 @@
     [_refreshHeaderView refreshLastUpdatedDate];
     success = [[UIImageView alloc] initWithFrame:CGRectMake(75.0, 250.0, 150.0, 150.0)];
     [success setImage:[UIImage imageNamed:@"ok.png"]];
-    
-    //[self estimateTime];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -245,9 +292,15 @@
     {
         NSLog(@"!ISREAL");
         [self estimateTime];
+        [self alertViewEnd];
     }
     else
     {
+        for (UIView* view in self.tableView.subviews) {
+            
+            if([view isKindOfClass:[UIAlertView class]])
+                [view dismissWithClickedButtonIndex:1 animated:YES];
+        }
         [activityIndicator stopAnimating];
     }
 }

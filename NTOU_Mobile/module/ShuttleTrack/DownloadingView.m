@@ -31,6 +31,7 @@
 }
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSLog(@"clickedButtonAtIndex");
     if (buttonIndex==0) [self AlertViewEnd];
     NSLog(@"ccancel");
 }

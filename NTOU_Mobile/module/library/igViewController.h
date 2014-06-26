@@ -8,12 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "MainViewController.h"
+#import "switchController.h"
+
 @class MainViewController;
 @interface igViewController : UIViewController <UIAlertViewDelegate>{
   MainViewController *mainview;
+    switchController * switchCon;
+
 }
 
 
 
+@property (nonatomic, retain)switchController * switchCon;
 @property (nonatomic,retain) MainViewController *mainview;
 @end
