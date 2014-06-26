@@ -44,6 +44,15 @@
 {
     self = [super initWithStyle:style];
     if (self) {
+        storyTable = [[PullTableView alloc] initWithFrame:self.view.bounds];
+        storyTable.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        storyTable.delegate = self;
+        storyTable.dataSource = self;
+        storyTable.separatorColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+        storyTable.pullArrowImage = [UIImage imageNamed:@"blackArrow"];
+        storyTable.pullDelegate = self;
+        storyTable.frame = CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height);
+        self.tableView = storyTable;
     }
     return self;
 }
@@ -96,8 +105,6 @@
     
     [super viewDidLoad];
     
-    self.storyTable.pullArrowImage = [UIImage imageNamed:@"blackArrow"];
-    self.storyTable.pullDelegate = self;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -162,6 +169,7 @@
             start = YES;
             [self getContentTotal];
             [self.tableView reloadData];
+            [storyTable flashScrollIndicators];
             [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
             self.title = [NSString stringWithFormat:@"共%@筆", totalBookNumber];
            
@@ -571,11 +579,10 @@
 
 - (void) refreshTable
 {
-    /*
-     
-     Code to actually refresh goes here.  刷新代码放在这
-     
-     */
+    Searchpage = 1;
+    [data removeAllObjects];
+    [self search];
+    
     self.storyTable.pullLastRefreshDate = [NSDate date];
     self.storyTable.pullTableIsRefreshing = NO;
 }
@@ -583,11 +590,8 @@
 
 - (void) loadMoreDataToTable
 {
-    /*
-     
-     Code to actually load more data goes here.  加载更多实现代码放在在这
-     
-     */
+    ++Searchpage;
+    [self search];
     self.storyTable.pullTableIsLoadingMore = NO;
 }
 
@@ -595,17 +599,12 @@
 
 - (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView
 {
-    Searchpage = 1;
-    [data removeAllObjects];
-    [self search];
-    [self performSelector:@selector(refreshTable) withObject:nil afterDelay:3.0f];
+    [self performSelector:@selector(refreshTable) withObject:nil afterDelay:0];
 }
 
 - (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView
 {
-    ++Searchpage;
-    [self search];
-    [self performSelector:@selector(loadMoreDataToTable) withObject:nil afterDelay:3.0f];
+    [self performSelector:@selector(loadMoreDataToTable) withObject:nil afterDelay:0];
 }
 
 @end

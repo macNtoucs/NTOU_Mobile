@@ -9,8 +9,7 @@
 #import "SettingsModuleViewController.h"
 #import "accountTableViewController.h"
 #import "Moodle_API.h"
-#define moodle @"Moodle"
-#define library @"圖書館"
+
 
 @interface SettingsModuleViewController ()
 

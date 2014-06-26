@@ -98,6 +98,29 @@ int isSuccess=0;
 -(void)viewDidAppear:(BOOL)animated
 {
     [[UIApplication sharedApplication].keyWindow addSubview:actionToolbar];
+    if (!loginSuccess) {
+        accountTableViewController *detailViewController = [[accountTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        detailViewController.title = library;
+        detailViewController.explanation = @"帳號:     請輸入學號,敎職員證號或本館借書證號\n密碼:     您的身份證字號(預設值)\n\n若無法使用，請將您的《姓名》、《讀者證號》、《身份證號》E-mail 至hwa重新設定！\n        若您的證件曾經補發過一次，請在讀者證號後加二位數字01；補發二次，請加02；其餘類推。";
+        detailViewController.accountStoreKey = libraryAccountKey;
+        detailViewController.passwordStoreKey = libraryPasswordKey;
+        detailViewController.loginSuccessStoreKey = libraryLoginSuccessKey;
+        detailViewController.delegate = self;
+        UINavigationController *navController = self.navigationController;
+        
+        // retain ourselves so that the controller will still exist once it's popped off
+        [[self retain] autorelease];
+        
+        [navController popViewControllerAnimated:NO];
+        [navController pushViewController:detailViewController animated:YES];
+        [detailViewController release];
+        UIAlertView *loginFail = [[UIAlertView alloc]
+                                  initWithTitle:nil message:@"帳號登入失敗，請重新輸入帳密。"
+                                  delegate:self cancelButtonTitle:@"確定"
+                                  otherButtonTitles:nil];
+        [loginFail show];
+        [loginFail release];
+    }
 }
 
 
@@ -181,19 +204,7 @@ int isSuccess=0;
             if ([checkLogin rangeOfString:@"Login failed"].location == NSNotFound)
                 loginSuccess=true;
             else
-            {
                 loginSuccess=false;
-                accountTableViewController *detailViewController = [[accountTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-                detailViewController.title = library;
-                detailViewController.explanation = @"帳號:     請輸入學號,敎職員證號或本館借書證號\n密碼:     您的身份證字號(預設值)\n\n若無法使用，請將您的《姓名》、《讀者證號》、《身份證號》E-mail 至hwa重新設定！\n        若您的證件曾經補發過一次，請在讀者證號後加二位數字01；補發二次，請加02；其餘類推。";
-                detailViewController.accountStoreKey = libraryAccountKey;
-                detailViewController.passwordStoreKey = libraryPasswordKey;
-                detailViewController.loginSuccessStoreKey = libraryLoginSuccessKey;
-                detailViewController.delegate = self;
-                [self.navigationController pushViewController:detailViewController animated:YES];
-                [detailViewController release];
-                
-            }
         }
         @catch (NSException *exception) {
             dispatch_async(dispatch_get_main_queue(), ^{
