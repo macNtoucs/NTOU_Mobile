@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "XMLReader.h"
-@interface NewsViewController : UITableViewController
+#import "NJKWebViewProgress.h"
+@interface NewsViewController : UITableViewController<NJKWebViewProgressDelegate,UIWebViewDelegate >{    
+    UIProgressView *progressView;
+}
 
 @property (nonatomic,strong) NSArray *NEWSdata;
 @end

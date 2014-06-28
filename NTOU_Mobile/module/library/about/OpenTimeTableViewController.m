@@ -18,11 +18,11 @@
 @synthesize openTimeTypeArray;
 
 -(void) loadOpenTimeData {
-    NSData* urldata = [[NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://lib.ntou.edu.tw/mobil_client/lib_open_xml.php"]encoding:NSUTF8StringEncoding error:nil] dataUsingEncoding:NSUTF8StringEncoding];
+    NSData* urldata = [[NSString stringWithContentsOfURL:[NSURL URLWithString:@"https://dl.dropboxusercontent.com/u/68445784/libop.php"]encoding:NSUTF8StringEncoding error:nil] dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary * dic = [[NSDictionary alloc]init];
     dic =[XMLReader dictionaryForXMLData:urldata error:nil];
     openTimeTypeArray = [[dic objectForKey:@"root"]objectForKey:@"tag"];
-    ;;
+
 }
 - (id)initWithStyle:(UITableViewStyle)style
 {
