@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "MainViewController.h"
-
+#import "PullTableView.h"
 @class MainViewController;
-@interface SearchResultViewController : UITableViewController  <NSURLConnectionDelegate , NSURLConnectionDataDelegate>
+@interface SearchResultViewController : UITableViewController  <NSURLConnectionDelegate , NSURLConnectionDataDelegate,PullTableViewDelegate>
+{
+    PullTableView *storyTable;
+}
 
+@property (nonatomic, assign) PullTableView *storyTable;
 @property (strong, nonatomic) MainViewController *mainview;
 @property (nonatomic,retain) NSMutableArray *data;
 @property (strong, nonatomic) NSString *inputtext;

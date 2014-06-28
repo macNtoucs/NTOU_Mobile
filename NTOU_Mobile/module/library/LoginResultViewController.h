@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "accountTableViewController.h"
 @class WOLSwitchViewController;
-@interface LoginResultViewController : UITableViewController
+@interface LoginResultViewController : UITableViewController<loginAndRegisterDelegate>
 @property int page;
 -(void)fetchHistory;
 @end

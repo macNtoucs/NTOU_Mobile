@@ -39,10 +39,20 @@
 @synthesize Searchpage;
 @synthesize searchType;
 @synthesize imgFinish;
+@synthesize storyTable;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
+        storyTable = [[PullTableView alloc] initWithFrame:self.view.bounds];
+        storyTable.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        storyTable.delegate = self;
+        storyTable.dataSource = self;
+        storyTable.separatorColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+        storyTable.pullArrowImage = [UIImage imageNamed:@"blackArrow"];
+        storyTable.pullDelegate = self;
+        storyTable.frame = CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height);
+        self.tableView = storyTable;
     }
     return self;
 }
@@ -94,6 +104,7 @@
     
     
     [super viewDidLoad];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -158,6 +169,7 @@
             start = YES;
             [self getContentTotal];
             [self.tableView reloadData];
+            [storyTable flashScrollIndicators];
             [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
             self.title = [NSString stringWithFormat:@"共%@筆", totalBookNumber];
            
@@ -205,7 +217,7 @@
     NSString *nextpage_url = [pageData objectForKey:@"nextpage"];
     
     if(nextpage_url != NULL || [firstBookNumber intValue] +10 < [totalBookNumber intValue])  //後面還有書
-        return [data count]+1;
+        return [data count];
     else if ([data count] == 0 && start == YES) //沒有查獲的館藏
         return 1;
     else
@@ -561,6 +573,38 @@
         ++Searchpage;
         [self search];
     }
+}
+
+#pragma mark - Refresh and load more methods
+
+- (void) refreshTable
+{
+    Searchpage = 1;
+    [data removeAllObjects];
+    [self search];
+    
+    self.storyTable.pullLastRefreshDate = [NSDate date];
+    self.storyTable.pullTableIsRefreshing = NO;
+}
+
+
+- (void) loadMoreDataToTable
+{
+    ++Searchpage;
+    [self search];
+    self.storyTable.pullTableIsLoadingMore = NO;
+}
+
+#pragma mark - PullTableViewDelegate
+
+- (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView
+{
+    [self performSelector:@selector(refreshTable) withObject:nil afterDelay:0];
+}
+
+- (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView
+{
+    [self performSelector:@selector(loadMoreDataToTable) withObject:nil afterDelay:0];
 }
 
 @end

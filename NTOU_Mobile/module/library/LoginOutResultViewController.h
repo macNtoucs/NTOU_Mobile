@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "accountTableViewController.h"
 @class WOLSwitchViewController;
-@interface LoginOutResultViewController : UITableViewController<UIActionSheetDelegate,UIAlertViewDelegate>
+@interface LoginOutResultViewController : UITableViewController<UIActionSheetDelegate,UIAlertViewDelegate,loginAndRegisterDelegate>
 @property (nonatomic,retain) NSString *fetchURL;
 @property (strong, nonatomic) WOLSwitchViewController *switchviewcontroller;
 @property (nonatomic,retain) NSString *userAccountId;

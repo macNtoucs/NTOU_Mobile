@@ -91,11 +91,36 @@
 
     
     [super viewDidLoad];
+    [self.tableView setContentInset:UIEdgeInsetsMake(8,0,6,0)];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
   [[UIApplication sharedApplication].keyWindow addSubview:actionToolbar];
+    if (!loginSuccess) {
+        accountTableViewController *detailViewController = [[accountTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        detailViewController.title = library;
+        detailViewController.explanation = @"帳號:     請輸入學號,敎職員證號或本館借書證號\n密碼:     您的身份證字號(預設值)\n\n若無法使用，請將您的《姓名》、《讀者證號》、《身份證號》E-mail 至hwa重新設定！\n        若您的證件曾經補發過一次，請在讀者證號後加二位數字01；補發二次，請加02；其餘類推。";
+        detailViewController.accountStoreKey = libraryAccountKey;
+        detailViewController.passwordStoreKey = libraryPasswordKey;
+        detailViewController.loginSuccessStoreKey = libraryLoginSuccessKey;
+        detailViewController.delegate = self;
+        UINavigationController *navController = self.navigationController;
+        
+        // retain ourselves so that the controller will still exist once it's popped off
+        [[self retain] autorelease];
+        
+        [navController popViewControllerAnimated:NO];
+        [navController pushViewController:detailViewController animated:YES];
+        [detailViewController release];
+        UIAlertView *loginFail = [[UIAlertView alloc]
+                           initWithTitle:nil message:@"帳號登入失敗，請重新輸入帳密。"
+                           delegate:self cancelButtonTitle:@"確定"
+                           otherButtonTitles:nil];
+        [loginFail show];
+        [loginFail release];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -127,15 +152,19 @@
     [self fetchout:bookdata];
 }
 
--(void)fetchout:(NSData*)bookdata
+
+
+
+#pragma mark - delegate
+
+-(BOOL)login:(NSString *)title
 {
-    @try {
     NSString *account = [SettingsModuleViewController getLibraryAccount];
     NSString *pwd = [SettingsModuleViewController getLibraryPassword];
     NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@",account,pwd];
     NSHTTPURLResponse *urlResponse = nil;
     NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
-    NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/getCurrentBorrowedBooks.do"];
+    NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/login.do"];
     [request setURL:[NSURL URLWithString:queryURL]];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[historyPost dataUsingEncoding:NSUTF8StringEncoding]];
@@ -144,11 +173,43 @@
                                                              error:nil];
     NSString* checkLogin = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
     if ([checkLogin rangeOfString:@"Login failed"].location == NSNotFound)
-        loginSuccess=true;
-    else loginSuccess=false;
-    maindata=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
-    [maindata retain];
-    [self.tableView reloadData];
+        return true;
+    else
+        return false;
+}
+
+- (void) registerDeviceToken:(NSString *)title
+{
+    
+}
+
+
+
+-(void)fetchout:(NSData*)bookdata
+{
+    @try {
+        NSString *account = [SettingsModuleViewController getLibraryAccount];
+        NSString *pwd = [SettingsModuleViewController getLibraryPassword];
+        NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@",account,pwd];
+        NSHTTPURLResponse *urlResponse = nil;
+        NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
+        NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/getCurrentBorrowedBooks.do"];
+        [request setURL:[NSURL URLWithString:queryURL]];
+        [request setHTTPMethod:@"POST"];
+        [request setHTTPBody:[historyPost dataUsingEncoding:NSUTF8StringEncoding]];
+        NSData *responseData = [NSURLConnection sendSynchronousRequest:request
+                                                     returningResponse:&urlResponse
+                                                                 error:nil];
+        NSString* checkLogin = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+        maindata=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+        [maindata retain];
+        [self.tableView reloadData];
+        
+        if ([checkLogin rangeOfString:@"Login failed"].location == NSNotFound)
+            loginSuccess=true;
+        else
+            loginSuccess=false;
+        
     }
     @catch (NSException *exception) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -165,7 +226,7 @@
 
     }
     @finally {
-        
+        [self.tableView reloadData];
     }
 }
 
@@ -327,23 +388,27 @@
     return [maindata count];
 }
 
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    NSString *account = [SettingsModuleViewController getLibraryAccount];
-    NSString *pwd = [SettingsModuleViewController getLibraryPassword];
-    
-    if ([account isEqual:@""] && [pwd  isEqual: @""])
-        return [NSString stringWithFormat:@"\n帳密未設定\n請至主頁面→設定→圖書館 設定帳密"];
-    else if([maindata count] == 0 && loginSuccess==true)
-    {
-        return [NSString stringWithFormat:@"\n沒有借出記錄"];
-    }
-    else if (loginSuccess==false){
-        return [NSString stringWithFormat:@"\n登入失敗\n請至主頁面→設定→圖書館 檢查設定"];
-    }
-    else
-        return NULL;
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if ([maindata count] == 0 && loginSuccess == true)
+        return 20;
+    return 0;
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {    UILabel *label = [[[UILabel alloc] init] autorelease];
+    label.frame = CGRectMake(100, 70, 284, 23);
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont fontWithName:@"Helvetica" size:18];
+    label.backgroundColor = [UIColor clearColor];
+    if ([maindata count] == 0 && loginSuccess == true) {
+        label.text = [NSString stringWithFormat:@"沒有借出記錄"];
+    }
+    // Create header view and add label as a subview
+    UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)] autorelease];
+    [view addSubview:label];
+    
+    return view;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

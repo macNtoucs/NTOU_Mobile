@@ -127,7 +127,8 @@
             int count = 0;
             for (NSNumber* courseNumber in [unReadNotification allValues])
                 count += [courseNumber intValue];
-            [aButton setBadgeValue:[NSString stringWithFormat:@"%d",count]];
+            if (count)
+                [aButton setBadgeValue:[NSString stringWithFormat:@"%d",count]];
         }
         else
             [aButton setBadgeValue:nil];
@@ -216,6 +217,7 @@
 + (void) sendRegisterDevice:(NSString *) studentID
 {
     NTOU_MobileAppDelegate *appDelegate = (NTOU_MobileAppDelegate *)[[UIApplication sharedApplication] delegate];
+    if (!appDelegate.devicePushToken)   return;
     
     // You can send here, for example, an asynchronous HTTP request to your web-server to store this deviceToken remotely.
     //第一步，创建URL
@@ -288,6 +290,11 @@
     {
         NSURL *url = [NSURL URLWithString:@"http://140.121.91.62/NTOUmsgProvider/getLatestEmergency.php"];
         
+        NSString*data = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+        notifications[EmergencyTag] = data;
+        
+        
+        /*
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
         
@@ -302,12 +309,15 @@
                  [self setRemotePNS_Badge];
              }
 
-         }];
+         }];*/
     }
-    [self storeNotifications:notifications];
-    [NTOUNotificationHandle setAllBadge];
-    
-    [self setRemotePNS_Badge];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [self storeNotifications:notifications];
+        [NTOUNotificationHandle setAllBadge];
+        
+        [self setRemotePNS_Badge];
+    });
+
 }
 
 +(void)setRemotePNS_Badge

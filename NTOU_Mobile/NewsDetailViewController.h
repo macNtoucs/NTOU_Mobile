@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 #import "Announce_API_Key.h"
-@interface NewsDetailViewController : UIViewController<UIAlertViewDelegate> 
+#import "NJKWebViewProgress.h"
+@interface NewsDetailViewController : UIViewController<UIAlertViewDelegate,NJKWebViewProgressDelegate,UIWebViewDelegate >
 
 @property (strong) NSDictionary *story;
 @end

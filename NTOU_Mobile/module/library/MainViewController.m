@@ -169,7 +169,7 @@
     [[textField layer] setCornerRadius:15.0];
     sTextField = [[UITextField alloc] initWithFrame:CGRectMake(10 ,0,200, 30)];
     sTextField.delegate = self;
-    sTextField.placeholder = @"書籍關鍵字/ISBN";
+    sTextField.placeholder = @"輸入書籍關鍵字或ISBN";
     sTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
    /* typeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [typeButton addTarget:self

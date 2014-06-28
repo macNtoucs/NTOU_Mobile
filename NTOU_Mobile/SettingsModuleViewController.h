@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "accountTableViewController.h"
+#define moodle @"Moodle"
+#define library @"圖書館"
+
 @interface SettingsModuleViewController : UITableViewController<loginAndRegisterDelegate>
 {
     NSMutableArray * receiveArray;

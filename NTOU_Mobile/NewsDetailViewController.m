@@ -7,13 +7,15 @@
 //
 
 #import "NewsDetailViewController.h"
-#define pictureHeight 75
-#define pictureWeight 75
+#define pictureHeight 50
+#define pictureWeight 50
 #define personAndContentSpacing 20
 #define Spacing 10
 #define infoFontSize 14
 @interface NewsDetailViewController ()
-
+{
+    UIProgressView *progressView;
+}
 @end
 
 @implementation NewsDetailViewController
@@ -36,8 +38,74 @@
     [telAlertView release];
 }
 
+-(void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress
+{
+    if (progress == 0.0) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        progressView.progress = 0;
+        [UIView animateWithDuration:0.27 animations:^{
+            progressView.alpha = 1.0;
+        }];
+    }
+    if (progress == 1.0) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [UIView animateWithDuration:0.27 delay:progress - progressView.progress options:0 animations:^{
+            progressView.alpha = 0.0;
+        } completion:nil];
+    }
+    
+    [progressView setProgress:progress animated:NO];
+}
+
+#define NAV_X self.navigationController.navigationBar.frame.origin.x
+#define NAV_Y self.navigationController.navigationBar.frame.origin.y
+#define NAV_HEIGHT self.navigationController.navigationBar.frame.size.height
+#define NAV_WIDTH   self.navigationController.navigationBar.frame.size.width
+
 -(IBAction)open_URL:(UITapGestureRecognizer*)sender
 {
+    
+    progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0){
+        progressView.frame = CGRectMake(NAV_X,
+                                        NAV_Y+NAV_HEIGHT,
+                                        NAV_WIDTH ,
+                                        20);
+    }else{
+        progressView.frame = CGRectMake(NAV_X,
+                                        -3,
+                                        NAV_WIDTH ,
+                                        20);
+        
+    }
+    UILabel* urlLabel = (UILabel*) sender.view;
+    NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@",[[[[[[story objectForKey:NewsAPIKeyAttachment_URL] objectForKey: NewsAPIKeyText] stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] componentsSeparatedByString:@","] objectAtIndex:urlLabel.tag]]];
+
+    
+    UIViewController* webViewController = [[[UIViewController alloc]init] autorelease];
+    webViewController.title = @"附件";
+    UIWebView* webView = [[[UIWebView alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue] < 7.0)
+    {
+        CGRect webFrame = webView.frame;
+        webFrame.size.height -= 64;
+        webView.frame = webFrame;
+    }
+
+    
+    
+    webView.scalesPageToFit = YES;
+    NJKWebViewProgress *_progressProxy = [[NJKWebViewProgress alloc] init]; // instance variable
+    webView.delegate = _progressProxy;
+    _progressProxy.webViewProxyDelegate = self;
+    _progressProxy.progressDelegate = self;
+    
+    [webView loadRequest:[NSURLRequest requestWithURL:url]];
+    [webViewController.view addSubview: webView];
+    [webView addSubview:progressView];
+    [self.navigationController pushViewController:webViewController animated:YES];
+    
+    /*
     UILabel* urlLabel = (UILabel*) sender.view;
     NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@",[[[[[[story objectForKey:NewsAPIKeyAttachment_URL] objectForKey: NewsAPIKeyText] stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] componentsSeparatedByString:@","] objectAtIndex:urlLabel.tag]]];
     UIViewController *webViewController = [[[UIViewController alloc]init] autorelease];
@@ -47,7 +115,7 @@
     [webView loadRequest:[NSURLRequest requestWithURL:url]];
     [webViewController.view addSubview: webView];
     
-    [self.navigationController pushViewController:webViewController animated:YES];
+    [self.navigationController pushViewController:webViewController animated:YES];*/
 }
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -67,7 +135,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = @"公告";
+    self.navigationItem.title = @"公告細節";
     self.view.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
     UIScrollView * background = [[UIScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];;
     if ([[[UIDevice currentDevice]systemVersion]floatValue]<7.0)
@@ -101,8 +169,8 @@
     infoBackground.backgroundColor = [UIColor whiteColor];
     
     //圖
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon-person.jpg"]] ;
-    imageView.frame = CGRectMake(Spacing, Spacing, pictureWeight, pictureHeight);
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Icon.png"]] ;
+    imageView.frame = CGRectMake(2*Spacing, 2*Spacing, pictureWeight, pictureHeight);
     
     //名字
     
@@ -159,7 +227,7 @@
             i--;
             continue;
         }
-        UILabel *attachment = [[UILabel alloc] initWithFrame:CGRectMake(Spacing, pictureHeight +10 +attachment_TitleHeight, 280, 25)];
+        UILabel *attachment = [[UILabel alloc] initWithFrame:CGRectMake(Spacing, 2*Spacing+pictureHeight +10 +attachment_TitleHeight, 280, 25)];
         attachment.text = attachment_Title[i];
         attachment.font = [UIFont fontWithName:@"Helvetica" size:14];
         attachment.textColor = [UIColor blueColor];
@@ -191,7 +259,7 @@
     
     //新聞內容
     
-    UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(Spacing, pictureHeight + personAndContentSpacing + attachment_TitleHeight, 280, 500)];
+    UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(Spacing, 2*Spacing + pictureHeight + personAndContentSpacing + attachment_TitleHeight, 280, 500)];
     content.text = [[[[story objectForKey:NewsAPIKeyBody] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
     content.font = [UIFont fontWithName:@"Helvetica" size:15];
     content.lineBreakMode = NSLineBreakByCharWrapping;
@@ -204,7 +272,7 @@
     content.frame = newFrame;
     
     newFrame = infoBackground.frame;
-    newFrame.size.height = expectedLabelSize.height + pictureHeight + 2 * personAndContentSpacing + attachment_TitleHeight;
+    newFrame.size.height = 2*Spacing + expectedLabelSize.height + pictureHeight + 2 * personAndContentSpacing + attachment_TitleHeight;
     infoBackground.frame = newFrame;
     
     background.contentSize= CGSizeMake(320,infoBackground.frame.origin.y + infoBackground.frame.size.height + Spacing);

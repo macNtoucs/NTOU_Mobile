@@ -969,9 +969,26 @@ int finderSortWithLocale(id string1, id string2, void *locale)
 
 - (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 30.0f;
+    if (section == 0)
+    {
+        if ([arrayTaipeiBus count] == 0)
+            return 0.01f;
+        else
+            return 30.0f;
+    }
+    else if (section == 1)
+    {
+        if ([arrayNewTaipeiBus count] == 0)
+            return 0.01f;
+    }
+    else
+    {
+        if ([arrayKeelungBus count] == 0)
+            return 0.01f;
+    }
+    
+    return 17.0f;
 }
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

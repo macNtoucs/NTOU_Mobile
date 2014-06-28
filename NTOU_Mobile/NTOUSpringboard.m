@@ -149,14 +149,9 @@
 #pragma mark -
 
 -(void)viewWillAppear:(BOOL)animated{
-    UIImageView * Nav_BG = [[UIImageView alloc]
-                            initWithFrame:CGRectMake(0, 0, 320, 44)];
-    Nav_BG.image = [UIImage imageNamed:@"global/Nav_backGround.png"];
-    //UIImageView *logoView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 50, 30)];
-    //[logoView setImage:[UIImage imageNamed:@"global/navbar_ntou_logo.png"]];
-    [self.navigationController.navigationBar insertSubview:Nav_BG atIndex:1];
-    //[self.navigationController.navigationBar insertSubview:logoView atIndex:2];
-    
+    UIImageView * Nav_BG = (UIImageView *)[self.navigationController.navigationBar viewWithTag:1];
+    Nav_BG.hidden = NO;
+   
     [NTOUNotificationHandle setAllBadge];
     
     [super viewWillAppear:animated];
@@ -164,6 +159,12 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIImageView* Nav_BG = [[UIImageView alloc]
+                           initWithFrame:CGRectMake(0, 0, 320, 44)];
+    Nav_BG.image = [UIImage imageNamed:@"global/Nav_backGround.png"];
+    Nav_BG.tag = 1;
+    [self.navigationController.navigationBar addSubview:Nav_BG];
     
     self.grid = [[IconGrid alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)] ;
     self.grid.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -223,8 +224,9 @@
 }
 -(void)viewWillDisappear:(BOOL)animated{
     
-    //[[self.navigationController.navigationBar.subviews objectAtIndex:2] removeFromSuperview];
-    [[self.navigationController.navigationBar.subviews objectAtIndex:1] removeFromSuperview];
+    UIImageView * Nav_BG = (UIImageView *)[self.navigationController.navigationBar viewWithTag:1];
+    Nav_BG.hidden = YES;
+    
     [super viewWillDisappear:animated];
 }
 

@@ -9,8 +9,7 @@
 #import "SettingsModuleViewController.h"
 #import "accountTableViewController.h"
 #import "Moodle_API.h"
-#define moodle @"Moodle"
-#define library @"圖書館"
+
 
 @interface SettingsModuleViewController ()
 
@@ -73,7 +72,7 @@
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {    UILabel *label = [[[UILabel alloc] init] autorelease];
     label.frame = CGRectMake(15, 3, 284, 23);
     label.textColor = [UIColor blackColor];
-    label.font = [UIFont fontWithName:@"Helvetica" size:14];
+    label.font = [UIFont fontWithName:@"Helvetica" size:18];
     label.backgroundColor = [UIColor clearColor];
     switch (section) {
         case 0:
