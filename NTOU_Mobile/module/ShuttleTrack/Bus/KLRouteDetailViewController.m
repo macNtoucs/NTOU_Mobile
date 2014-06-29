@@ -412,8 +412,8 @@
     //cell.textLabel.text = [number stringByAppendingString:stopName];
     //cell.textLabel.text = stopName;
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
-    cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
-    cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
     
     [[cell.contentView viewWithTag:indexPath.row+1]removeFromSuperview];
     //[cell.contentView addSubview:[toolbar CreateButton:indexPath]];
