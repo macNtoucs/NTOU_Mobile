@@ -47,9 +47,10 @@ int isSuccess=0;
 
 - (void)viewDidLoad
 {
+    
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
         self.edgesForExtendedLayout = UIRectEdgeNone;        
-        [self.tableView setContentInset:UIEdgeInsetsMake(-35,0,-35,0)];
+        [self.tableView setContentInset:UIEdgeInsetsMake(-19,0,-19,0)];
     }
 
      
@@ -92,7 +93,7 @@ int isSuccess=0;
 
     
     [super viewDidLoad];
-    [self.tableView setContentInset:UIEdgeInsetsMake(8,0,6,0)];
+
 }
 
 

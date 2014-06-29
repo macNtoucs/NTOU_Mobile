@@ -352,14 +352,15 @@
         //booklabel.textColor = CELL_STANDARD_FONT_COLOR;
         [cell.contentView addSubview:booklabel];
         
-    if (indexPath.row >= [imgFinish count])
-        dispatch_sync(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             NSData * imageData = [[NSData alloc] initWithContentsOfURL:[ NSURL URLWithString: image_url ]];
-            UIImageView *imageview = [[UIImageView alloc] initWithImage: [UIImage imageWithData: imageData]];
-            imageview.frame = CGRectMake(10,imageY,60,80);
-            [cell.contentView addSubview:imageview];
-            [imgLoadinglabel removeFromSuperview];
-            [imgFinish addObject:image_url];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                UIImageView *imageview = [[UIImageView alloc] initWithImage: [UIImage imageWithData: imageData]];
+                imageview.frame = CGRectMake(10,imageY,60,80);
+                [cell.contentView addSubview:imageview];
+                [imgLoadinglabel removeFromSuperview];
+            });
+
         });
      
         

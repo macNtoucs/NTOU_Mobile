@@ -41,14 +41,14 @@
 {
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
-         [self.tableView setContentInset:UIEdgeInsetsMake(-35,0,-35,0)];
+         [self.tableView setContentInset:UIEdgeInsetsMake(-19,0,-19,0)];
         
     }
     maindata = [[NSMutableArray alloc] init];
    
     historyData = [NSDictionary new];    
     [super viewDidLoad];
-    [self.tableView setContentInset:UIEdgeInsetsMake(8,0,6,0)];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -189,7 +189,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if ([maindata count] == 0 && loginSuccess == true)
+  //  if ([maindata count] == 0 && loginSuccess == true)
         return 20;
     return 0;
 }
