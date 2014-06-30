@@ -349,10 +349,9 @@
         imgLoadinglabel.font= loadingFont;
         [cell.contentView addSubview:imgLoadinglabel];
         float spaceHeight = 6;
-        if ((booknameLabelSize.height+authorLabelSize.height+pressLabelSize.height) < 92)
+        if ((booknameLabelSize.height+authorLabelSize.height+pressLabelSize.height) < 76)
             spaceHeight = (92 - (booknameLabelSize.height+authorLabelSize.height+pressLabelSize.height))/2 -2;
-            
-        
+        NSLog(@"indexPath.row:%d  spaceHeight:%f",indexPath.row,spaceHeight);
         booklabel.frame = CGRectMake(80,spaceHeight,200,booknameLabelSize.height);
         booklabel.text = bookname;
         booklabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -499,7 +498,7 @@
         
         CGFloat height = 16 + booknameLabelSize.height + authorLabelSize.height + pressLabelSize.height;
         CGFloat imageheight = 92;
-        
+        NSLog(@"indexPath.row:%d  height:%f",indexPath.row,height);
         return ( height > imageheight )? height : imageheight;
     }
     else
