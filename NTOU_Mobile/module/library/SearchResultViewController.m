@@ -175,12 +175,12 @@
            
             UILabel *pageStatus = [[UILabel alloc]initWithFrame:CGRectMake(50,
                                                                            40,
-                                                                           100,
+                                                                           110,
                                                                            44)];
             [pageStatus setFont:[UIFont fontWithName:@"Helvetica" size:12]];
             [pageStatus setBackgroundColor:[UIColor clearColor]];
             if ([[[UIDevice currentDevice]systemVersion]floatValue] < 7.0) pageStatus.textColor = [UIColor whiteColor];
-            [pageStatus setText:[NSString stringWithFormat:@"       第1筆~第%lu筆",(unsigned long)[data count]]];
+            [pageStatus setText:[NSString stringWithFormat:@"               1 ~ %lu筆",(unsigned long)[data count]]];
             if([data count]==0)  [pageStatus setText: @""];
             
             UIBarButtonItem *pageStatusButtonItem = [[UIBarButtonItem alloc] initWithCustomView:pageStatus];
@@ -341,8 +341,12 @@
         imgLoadinglabel.lineBreakMode = NSLineBreakByWordWrapping;
         imgLoadinglabel.font= loadingFont;
         [cell.contentView addSubview:imgLoadinglabel];
+        float spaceHeight = 6;
+        if ((booknameLabelSize.height+authorLabelSize.height+pressLabelSize.height) < 92)
+            spaceHeight = (92 - (booknameLabelSize.height+authorLabelSize.height+pressLabelSize.height))/2 -2;
+            
         
-        booklabel.frame = CGRectMake(80,6,200,booknameLabelSize.height);
+        booklabel.frame = CGRectMake(80,spaceHeight,200,booknameLabelSize.height);
         booklabel.text = bookname;
         booklabel.lineBreakMode = NSLineBreakByWordWrapping;
         booklabel.numberOfLines = 0;
@@ -366,7 +370,7 @@
         
         if(![author isEqualToString:@""])
         {
-            authorlabel.frame = CGRectMake(80,8 + booknameLabelSize.height,200,authorLabelSize.height);
+            authorlabel.frame = CGRectMake(80,spaceHeight+2 + booknameLabelSize.height,200,authorLabelSize.height);
             authorlabel.tag = indexPath.row;
             authorlabel.lineBreakMode = NSLineBreakByWordWrapping;
             authorlabel.numberOfLines = 0;
@@ -379,7 +383,7 @@
         
         if(![press isEqualToString:@""])
         {
-            presslabel.frame = CGRectMake(80,10 + booknameLabelSize.height + authorLabelSize.height,200,pressLabelSize.height);
+            presslabel.frame = CGRectMake(80,spaceHeight+4 + booknameLabelSize.height + authorLabelSize.height,200,pressLabelSize.height);
             presslabel.text = press;
             presslabel.lineBreakMode = NSLineBreakByWordWrapping;
             presslabel.numberOfLines = 0;

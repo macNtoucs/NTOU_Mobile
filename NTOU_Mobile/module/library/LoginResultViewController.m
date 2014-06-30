@@ -199,6 +199,7 @@
     label.textColor = [UIColor blackColor];
     label.font = [UIFont fontWithName:@"Helvetica" size:18];
     label.backgroundColor = [UIColor clearColor];
+    label.textAlignment = NSTextAlignmentCenter;
     if ([maindata count] == 0 && loginSuccess == true) {
         label.text = [NSString stringWithFormat:@"沒有借閱歷史記錄"];
     }

@@ -333,7 +333,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    UIFont *font = [UIFont fontWithName:@"Helvetica" size:14.0];
+    UIFont *font = [UIFont fontWithName:@"Helvetica" size:13.0];
     UIFont *boldfont = [UIFont boldSystemFontOfSize:14.0];
     if(section == 0)
     {
@@ -396,7 +396,7 @@
         
         switch (row) {
             case 0:
-                namelabel.frame = CGRectMake(0,6,80,16);
+                namelabel.frame = CGRectMake(0,10,80,16);
                 namelabel.text = @"書名：";
                 namelabel.lineBreakMode = NSLineBreakByWordWrapping;
                 namelabel.numberOfLines = 0;
@@ -405,7 +405,7 @@
                 namelabel.backgroundColor = [UIColor clearColor];
                 namelabel.font = boldfont;
                 
-                name.frame = CGRectMake(85,6,200,booknameLabelSize.height);
+                name.frame = CGRectMake(85,10,200,booknameLabelSize.height);
                 name.text = book_name;
                 name.lineBreakMode = NSLineBreakByWordWrapping;
                 name.numberOfLines = 0;
@@ -417,7 +417,7 @@
                 [cell.contentView addSubview:name];
                 break;
             case 1:
-                authorlabel.frame = CGRectMake(0,6,80,16);
+                authorlabel.frame = CGRectMake(0,10,80,16);
                 authorlabel.text = @"作者：";
                 authorlabel.lineBreakMode = NSLineBreakByWordWrapping;
                 authorlabel.numberOfLines = 0;
@@ -426,7 +426,7 @@
                 authorlabel.backgroundColor = [UIColor clearColor];
                 authorlabel.font = boldfont;
                 
-                author.frame = CGRectMake(85,6,200,authorLabelSize.height);
+                author.frame = CGRectMake(85,10,200,authorLabelSize.height);
                 author.text = book_author;
                 author.lineBreakMode = NSLineBreakByWordWrapping;
                 author.numberOfLines = 0;
@@ -438,7 +438,7 @@
                 [cell.contentView addSubview:author];
                 break;
             case 2:
-                presslabel.frame = CGRectMake(0,6,80,16);
+                presslabel.frame = CGRectMake(0,10,80,16);
                 presslabel.text = @"出版項：";
                 presslabel.lineBreakMode = NSLineBreakByWordWrapping;
                 presslabel.numberOfLines = 0;
@@ -459,7 +459,7 @@
                 [cell.contentView addSubview:press];
                 break;
             case 3:
-                presslabel.frame = CGRectMake(0,6,80,16);
+                presslabel.frame = CGRectMake(0,10,80,16);
                 presslabel.text = @"ISBN：";
                 presslabel.lineBreakMode = NSLineBreakByWordWrapping;
                 presslabel.numberOfLines = 0;
@@ -468,7 +468,7 @@
                 presslabel.backgroundColor = [UIColor clearColor];
                 presslabel.font = boldfont;
                 
-                press.frame = CGRectMake(85,6,200,ISBNLabelSize.height);
+                press.frame = CGRectMake(85,10,200,ISBNLabelSize.height);
                 press.text = ISBN;
                 press.lineBreakMode = NSLineBreakByWordWrapping;
                 press.numberOfLines = 0;
@@ -681,13 +681,13 @@
         
         switch (row) {
             case 0:
-                return 12 + booknameLabelSize.height;
+                return 20 + booknameLabelSize.height;
             case 1:
-                return 12 + authorLabelSize.height;
+                return 20 + authorLabelSize.height;
             case 2:
-                return 12 + pressLabelSize.height;
+                return 20 + pressLabelSize.height;
             case 3:
-                return 12 + ISBNLabelSize.height;
+                return 20 + ISBNLabelSize.height;
             default:
                 return 0;
         }

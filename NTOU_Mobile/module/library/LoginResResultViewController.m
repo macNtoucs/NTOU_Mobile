@@ -365,10 +365,11 @@ int isSuccess=0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {    UILabel *label = [[[UILabel alloc] init] autorelease];
-    label.frame = CGRectMake(100, 70, 284, 23);
+    label.frame = CGRectMake(0, 70, 320, 23);
     label.textColor = [UIColor blackColor];
     label.font = [UIFont fontWithName:@"Helvetica" size:18];
     label.backgroundColor = [UIColor clearColor];
+    label.textAlignment = NSTextAlignmentCenter;
     if ([maindata count] == 0 && loginSuccess == true) {
         label.text = [NSString stringWithFormat:@"沒有預約記錄"];
     }
