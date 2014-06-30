@@ -28,6 +28,7 @@
 		1D8A3B281905051200816CCD /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D8A3B1A1905051200816CCD /* whiteArrow.png */; };
 		1D8A3B291905051300816CCD /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D8A3B1B1905051200816CCD /* whiteArrow@2x.png */; };
 		1D8A3B2A1905051300816CCD /* NTOUNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B1D1905051200816CCD /* NTOUNotification.m */; };
+		1DC66D1219614B32006D7C4C /* UINavigationItem+iOS7Spacing.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC66D1119614B32006D7C4C /* UINavigationItem+iOS7Spacing.m */; };
 		1DD157A119515D28006CA7AF /* igViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD157A019515D28006CA7AF /* igViewController.m */; };
 		1DD157A31951624A006CA7AF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD157A21951624A006CA7AF /* AVFoundation.framework */; };
 		1DD1791F18FE7AB300621B67 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178E318FE7AB300621B67 /* AboutViewController.m */; };
@@ -365,6 +366,8 @@
 		1D8A3B1B1905051200816CCD /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		1D8A3B1C1905051200816CCD /* NTOUNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUNotification.h; sourceTree = "<group>"; };
 		1D8A3B1D1905051200816CCD /* NTOUNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUNotification.m; sourceTree = "<group>"; };
+		1DC66D1019614B32006D7C4C /* UINavigationItem+iOS7Spacing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+iOS7Spacing.h"; sourceTree = "<group>"; };
+		1DC66D1119614B32006D7C4C /* UINavigationItem+iOS7Spacing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+iOS7Spacing.m"; sourceTree = "<group>"; };
 		1DD1579F19515D28006CA7AF /* igViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = igViewController.h; sourceTree = "<group>"; };
 		1DD157A019515D28006CA7AF /* igViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = igViewController.m; sourceTree = "<group>"; };
 		1DD157A21951624A006CA7AF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -932,6 +935,8 @@
 				1DD1791C18FE7AB300621B67 /* WOLSwitchViewController.m */,
 				1DD1794418FE826400621B67 /* LibraryModule.h */,
 				1DD1794518FE826500621B67 /* LibraryModule.m */,
+				1DC66D1019614B32006D7C4C /* UINavigationItem+iOS7Spacing.h */,
+				1DC66D1119614B32006D7C4C /* UINavigationItem+iOS7Spacing.m */,
 			);
 			name = library;
 			path = module/library;
@@ -1869,6 +1874,7 @@
 				43BEDBFB19236CF90091B024 /* FMDatabasePool.m in Sources */,
 				91A9007A16E85B3500ECF2CF /* NTOUModule.m in Sources */,
 				91A9007F16E85C8400ECF2CF /* AppDelegate+ModuleList.m in Sources */,
+				1DC66D1219614B32006D7C4C /* UINavigationItem+iOS7Spacing.m in Sources */,
 				43BEDBF519236BED0091B024 /* FMDatabase.m in Sources */,
 				91A9008216E8609200ECF2CF /* Rotation.m in Sources */,
 				91A9008516E8613800ECF2CF /* NTOU_MobileAppDelegate+Private.m in Sources */,

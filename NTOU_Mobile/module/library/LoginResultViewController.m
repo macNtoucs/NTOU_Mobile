@@ -26,13 +26,22 @@
 @synthesize page;
 @synthesize newData;
 @synthesize loginSuccess;
-
+@synthesize storyTable;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         NSInteger screenheight = [[UIScreen mainScreen] bounds].size.height;
         self.view.frame = CGRectMake(0, 0, 320,screenheight-110);
+        storyTable = [[PullTableView alloc] initWithFrame:self.view.bounds];
+        storyTable.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        storyTable.delegate = self;
+        storyTable.dataSource = self;
+        storyTable.separatorColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+        storyTable.pullArrowImage = [UIImage imageNamed:@"blackArrow"];
+        storyTable.pullDelegate = self;
+        storyTable.frame = CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height);
+        self.tableView = storyTable;
     }
     return self;
 }
@@ -185,11 +194,11 @@
 
         if([newData count] == 0 || newData ==nil )return[maindata count];
         else if([newData count] < 10) return [newData count];
-        else return[maindata count]+1;
+        else return[maindata count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-  //  if ([maindata count] == 0 && loginSuccess == true)
+    if ([maindata count] == 0 && loginSuccess == true)
         return 20;
     return 0;
 }
@@ -252,7 +261,9 @@
                                         constrainedToSize:maximumLabelSize
                                             lineBreakMode:NSLineBreakByWordWrapping];
     
-    namelabel.frame = CGRectMake(5,7,80,15);
+    float spacing = 15;
+    //NSLog(@"indexPath.row:%d  spacing:%f",indexPath.row,spacing);
+    namelabel.frame = CGRectMake(5,spacing,80,15);
     namelabel.text = @"書名/作者：";
     namelabel.lineBreakMode = NSLineBreakByWordWrapping;
     namelabel.numberOfLines = 0;
@@ -261,7 +272,7 @@
     namelabel.backgroundColor = [UIColor clearColor];
     namelabel.font = boldfont;
     
-    name.frame = CGRectMake(90,6,180,booknameLabelSize.height);
+    name.frame = CGRectMake(90,spacing,180,booknameLabelSize.height);
     name.text = bookname;
     name.lineBreakMode = NSLineBreakByWordWrapping;
     name.numberOfLines = 0;
@@ -269,7 +280,7 @@
     name.backgroundColor = [UIColor clearColor];
     name.font = font;
     
-    datelabel.frame = CGRectMake(5,10 + booknameLabelSize.height + bookStatusLabelSize.height,80,15);
+    datelabel.frame = CGRectMake(5,spacing + 5 + booknameLabelSize.height,80,15);
     datelabel.text = @"借書：";
     datelabel.lineBreakMode = NSLineBreakByWordWrapping;
     datelabel.numberOfLines = 0;
@@ -278,7 +289,7 @@
     datelabel.backgroundColor = [UIColor clearColor];
     datelabel.font = boldfont;
     
-    date.frame = CGRectMake(90,10 + booknameLabelSize.height + bookStatusLabelSize.height,180,14);
+    date.frame = CGRectMake(90,spacing + 5 + booknameLabelSize.height,180,14);
     date.text = bookdate;
     date.lineBreakMode = NSLineBreakByWordWrapping;
     date.numberOfLines = 0;
@@ -356,6 +367,7 @@
     CGSize bookStatusLabelSize = [bookdate sizeWithFont:font
                                           constrainedToSize:maximumLabelSize
                                               lineBreakMode:NSLineBreakByWordWrapping];
+    //NSLog(@"indexPath.row:%d  heightForRow:%f",indexPath.row,(12 + booknameLabelSize.height +bookStatusLabelSize.height +16 + 4 + 19));
     return 12 + booknameLabelSize.height +bookStatusLabelSize.height +16 + 4 + 19;
     }
     else
@@ -411,5 +423,68 @@
 
     }
 }
+
+
+#pragma mark - Refresh and load more methods
+
+- (void) refreshTable
+{
+    page = 1;
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.labelText = @"Loading";
+            
+        });
+        [maindata removeAllObjects];
+        [self fetchHistory];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        });
+    });
+    
+    self.storyTable.pullLastRefreshDate = [NSDate date];
+    self.storyTable.pullTableIsRefreshing = NO;
+}
+
+
+- (void) loadMoreDataToTable
+{
+    ++page;
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.labelText = @"Loading";
+            
+        });
+        
+        [self fetchHistory];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        });
+    });
+    self.storyTable.pullTableIsLoadingMore = NO;
+}
+
+#pragma mark - PullTableViewDelegate
+
+- (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView
+{
+    [self performSelector:@selector(refreshTable) withObject:nil afterDelay:0];
+}
+
+- (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView
+{
+    [self performSelector:@selector(loadMoreDataToTable) withObject:nil afterDelay:0];
+}
+
+
 
 @end

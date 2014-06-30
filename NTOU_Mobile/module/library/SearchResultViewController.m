@@ -171,19 +171,26 @@
             [self.tableView reloadData];
             [storyTable flashScrollIndicators];
             [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
-            self.title = [NSString stringWithFormat:@"共%@筆", totalBookNumber];
-           
-            UILabel *pageStatus = [[UILabel alloc]initWithFrame:CGRectMake(50,
+            //self.title = [NSString stringWithFormat:@"共 %@ 筆", totalBookNumber];
+            UILabel* lbNavTitle = [[UILabel alloc] initWithFrame:CGRectMake(0,40,160,40)];
+            lbNavTitle.textAlignment = NSTextAlignmentCenter;
+            lbNavTitle.text = [NSString stringWithFormat:@"共 %@ 筆", totalBookNumber];
+            self.navigationItem.titleView = lbNavTitle;
+            [lbNavTitle release];
+            
+            UILabel *pageStatus = [[UILabel alloc]initWithFrame:CGRectMake(0,
                                                                            40,
-                                                                           110,
+                                                                           50,
                                                                            44)];
             [pageStatus setFont:[UIFont fontWithName:@"Helvetica" size:12]];
             [pageStatus setBackgroundColor:[UIColor clearColor]];
+            pageStatus.textAlignment = NSTextAlignmentRight;
             if ([[[UIDevice currentDevice]systemVersion]floatValue] < 7.0) pageStatus.textColor = [UIColor whiteColor];
-            [pageStatus setText:[NSString stringWithFormat:@"               1 ~ %lu筆",(unsigned long)[data count]]];
+            [pageStatus setText:[NSString stringWithFormat:@"1~%lu 筆",(unsigned long)[data count]]];
             if([data count]==0)  [pageStatus setText: @""];
             
             UIBarButtonItem *pageStatusButtonItem = [[UIBarButtonItem alloc] initWithCustomView:pageStatus];
+            
             self.navigationItem.rightBarButtonItem = pageStatusButtonItem;
             start = NO;
         });

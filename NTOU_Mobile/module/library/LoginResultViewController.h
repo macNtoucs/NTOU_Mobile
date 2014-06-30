@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "accountTableViewController.h"
+#import "PullTableView.h"
 @class WOLSwitchViewController;
-@interface LoginResultViewController : UITableViewController<loginAndRegisterDelegate>
+@interface LoginResultViewController : UITableViewController<loginAndRegisterDelegate,PullTableViewDelegate>
+{
+    PullTableView *storyTable;
+}
+
+@property (nonatomic, assign) PullTableView *storyTable;
 @property int page;
 -(void)fetchHistory;
 @end

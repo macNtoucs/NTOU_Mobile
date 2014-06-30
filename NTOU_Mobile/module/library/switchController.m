@@ -89,6 +89,12 @@
     [self ChangeDisplayView];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [scannerCon.view removeFromSuperview];
+}
+
 
 -(void)chanSearchStyle{
     if ([another.title  isEqual:@"條碼掃描"]){

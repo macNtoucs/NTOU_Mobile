@@ -333,7 +333,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    UIFont *font = [UIFont fontWithName:@"Helvetica" size:13.0];
+    UIFont *font = [UIFont fontWithName:@"Helvetica" size:14.0];
     UIFont *boldfont = [UIFont boldSystemFontOfSize:14.0];
     if(section == 0)
     {
@@ -447,7 +447,7 @@
                 presslabel.backgroundColor = [UIColor clearColor];
                 presslabel.font = boldfont;
                 
-                press.frame = CGRectMake(85,6,200,pressLabelSize.height);
+                press.frame = CGRectMake(85,10,200,pressLabelSize.height);
                 press.text = book_press;
                 press.lineBreakMode = NSLineBreakByWordWrapping;
                 press.numberOfLines = 0;
@@ -575,7 +575,7 @@
         UILabel *externalLabel = [[UILabel alloc]initWithFrame:CGRectMake(10,10,250,25)];
         externalLabel.font = font;
         externalLabel.backgroundColor = [UIColor clearColor];
-        [externalLabel setText:book_part1[row]];
+        [externalLabel setText:@"KOOBE"];
     /*
         ISBNLabel.lineBreakMode = NSLineBreakByWordWrapping;
         ISBNLabel.numberOfLines = 0;
