@@ -404,8 +404,8 @@
         cell.textLabel.textColor = [UIColor grayColor];
     }
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
-    cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
-    cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
     //[comeTime release]; // Analyze MemLeak
     //[stopName release]; // Analyze MemLeak
     return cell;

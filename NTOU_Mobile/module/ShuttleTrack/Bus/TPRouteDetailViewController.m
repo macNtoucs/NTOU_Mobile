@@ -210,11 +210,15 @@
 {
     NSLog(@"[Detail]viewDidLoad");
     [super viewDidLoad];
-    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
-        self.edgesForExtendedLayout = UIRectEdgeNone;
     [self startTimer];
     preArray = [[NSArray alloc] initWithObjects:nil];
     self.title = [NSString stringWithFormat:@"%@ → %@", depature, destination];
+    
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    
     /*secondsLabel = [[UILabel alloc] initWithFrame:CGRectMake(320/2-200/2, 4, 200, 30)];
     secondsLabel.backgroundColor = [UIColor clearColor];
     secondsLabel.textColor = [UIColor grayColor];
@@ -408,8 +412,8 @@
         cell.textLabel.textColor = [UIColor grayColor];
     }
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
-    cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
-    cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0];
     return cell;
 }
 
