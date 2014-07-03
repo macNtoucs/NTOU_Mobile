@@ -575,13 +575,13 @@
         UILabel *externalLabel = [[UILabel alloc]initWithFrame:CGRectMake(10,10,250,25)];
         externalLabel.font = font;
         externalLabel.backgroundColor = [UIColor clearColor];
-        [externalLabel setText:@"KOOBE"];
+        [externalLabel setText:@"  KOOBE"];
     /*
         ISBNLabel.lineBreakMode = NSLineBreakByWordWrapping;
         ISBNLabel.numberOfLines = 0;
      */
         [cell.contentView addSubview:externalLabel];
-       
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     else if (section == 2){

@@ -180,9 +180,9 @@
             
             UILabel *pageStatus = [[UILabel alloc]initWithFrame:CGRectMake(0,
                                                                            40,
-                                                                           50,
+                                                                           80,
                                                                            44)];
-            [pageStatus setFont:[UIFont fontWithName:@"Helvetica" size:12]];
+            [pageStatus setFont:[UIFont fontWithName:@"Helvetica" size:15]];
             [pageStatus setBackgroundColor:[UIColor clearColor]];
             pageStatus.textAlignment = NSTextAlignmentRight;
             if ([[[UIDevice currentDevice]systemVersion]floatValue] < 7.0) pageStatus.textColor = [UIColor whiteColor];

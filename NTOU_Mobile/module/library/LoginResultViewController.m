@@ -33,7 +33,7 @@
     if (self) {
         NSInteger screenheight = [[UIScreen mainScreen] bounds].size.height;
         self.view.frame = CGRectMake(0, 0, 320,screenheight-110);
-        storyTable = [[PullTableView alloc] initWithFrame:self.view.bounds];
+        storyTable = [[PullTableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
         storyTable.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         storyTable.delegate = self;
         storyTable.dataSource = self;
@@ -204,7 +204,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {    UILabel *label = [[[UILabel alloc] init] autorelease];
-    label.frame = CGRectMake(100, 70, 284, 23);
+    label.frame = CGRectMake(0, 70, 320, 23);
     label.textColor = [UIColor blackColor];
     label.font = [UIFont fontWithName:@"Helvetica" size:18];
     label.backgroundColor = [UIColor clearColor];
