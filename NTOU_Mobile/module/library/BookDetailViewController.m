@@ -846,6 +846,7 @@
         }
         else {
             NSString * errorMsg = [responseDic objectForKey:@"errorMsg"];
+            if (errorMsg ==nil) errorMsg = @"尚未登入";
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"預約失敗" message:errorMsg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
             [alert release];

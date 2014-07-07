@@ -32,7 +32,7 @@
 @synthesize actionToolbar;
 @synthesize loginSuccess;
 int isSuccess=0;
-
+bool shouldCancel = false;
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -254,20 +254,7 @@ int isSuccess=0;
     }
 }
 
--(void)cancelSelectResBook
-{
-    if([selectindexs count] == 0)
-    {
-        UIAlertView *alerts = [[UIAlertView alloc] initWithTitle:@"請選擇欲取消的預約"
-                                                         message:nil
-                                                        delegate:self
-                                               cancelButtonTitle:@"好"
-                                               otherButtonTitles:nil];
-        [alerts show];
-        return;
-    }
-    
-
+-(void) doCancelAction{
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         // Show the HUD in the main tread
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -275,74 +262,108 @@ int isSuccess=0;
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.superview animated:YES];
             hud.labelText = @"Loading";
         });
-    NSDictionary * Jsonresponse = [NSDictionary new];
+        NSDictionary * Jsonresponse = [NSDictionary new];
         
         NSMutableArray * postVal = [NSMutableArray new];
         for (int i = 0 ; i < [selectindexs count] ; i++) {
-                NSIndexPath *index = [selectindexs objectAtIndex:i];
-                NSString * radioVal = [NSString new];
-                NSDictionary *book = [maindata objectAtIndex: index.row ] ;
-                radioVal = [book objectForKey:@"radioValue"];
-                NSMutableDictionary *rv = [NSMutableDictionary new];
-                [rv setValue:radioVal forKey:@"radioValue"];
-                [postVal addObject: rv];
-                [rv release];
-
+            NSIndexPath *index = [selectindexs objectAtIndex:i];
+            NSString * radioVal = [NSString new];
+            NSDictionary *book = [maindata objectAtIndex: index.row ] ;
+            radioVal = [book objectForKey:@"radioValue"];
+            NSMutableDictionary *rv = [NSMutableDictionary new];
+            [rv setValue:radioVal forKey:@"radioValue"];
+            [postVal addObject: rv];
+            [rv release];
+            
         }//end for
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:postVal options:NSJSONWritingPrettyPrinted error:nil];
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:postVal options:NSJSONWritingPrettyPrinted error:nil];
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         NSString *account = [SettingsModuleViewController getLibraryAccount];
         NSString *pwd = [SettingsModuleViewController getLibraryPassword];
         NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@&radioValue=%@",account,pwd,jsonString];
-    NSHTTPURLResponse *urlResponse = nil;
-    NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
-    NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/cancelReserveBook.do"];
-    [request setURL:[NSURL URLWithString:queryURL]];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[historyPost dataUsingEncoding:NSUTF8StringEncoding]];
-    NSData *responseData = [NSURLConnection sendSynchronousRequest:request
-                                                 returningResponse:&urlResponse
-                                                             error:nil];
-    Jsonresponse=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
-    [Jsonresponse retain];
-    
-    if ([[Jsonresponse objectForKey:@"querySuccess"] isEqualToString:@"true"]) {
-        ++isSuccess;
-    }
+        NSHTTPURLResponse *urlResponse = nil;
+        NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
+        NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/cancelReserveBook.do"];
+        [request setURL:[NSURL URLWithString:queryURL]];
+        [request setHTTPMethod:@"POST"];
+        [request setHTTPBody:[historyPost dataUsingEncoding:NSUTF8StringEncoding]];
+        NSData *responseData = [NSURLConnection sendSynchronousRequest:request
+                                                     returningResponse:&urlResponse
+                                                                 error:nil];
+        Jsonresponse=  [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+        [Jsonresponse retain];
         
-       dispatch_async(dispatch_get_main_queue(), ^{
-           [self performSelector: @selector(fetchresHistory) withObject: nil afterDelay:0.5];
-       });
-     
+        if ([[Jsonresponse objectForKey:@"querySuccess"] isEqualToString:@"true"]) {
+            ++isSuccess;
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self performSelector: @selector(fetchresHistory) withObject: nil afterDelay:0.5];
+        });
+        
         
         
         dispatch_async(dispatch_get_main_queue(), ^{
-          
-          
-          if(isSuccess)
-          {
-              UIAlertView *alerts = [[UIAlertView alloc] initWithTitle:@"取消成功"
-                                                               message:nil
-                                                              delegate:self
-                                                     cancelButtonTitle:@"好"
-                                                     otherButtonTitles:nil];
-              [alerts show];
-          }
-          else {
-              UIAlertView *alerts = [[UIAlertView alloc] initWithTitle:@"取消失敗"
-                                                               message:nil
-                                                              delegate:self
-                                                     cancelButtonTitle:@"好"
-                                                     otherButtonTitles:nil];
-              [alerts show];
-          }
-
+            
+            
+            if(isSuccess)
+            {
+                UIAlertView *alerts = [[UIAlertView alloc] initWithTitle:@"取消成功"
+                                                                 message:nil
+                                                                delegate:self
+                                                       cancelButtonTitle:@"好"
+                                                       otherButtonTitles:nil];
+                [alerts show];
+            }
+            else {
+                UIAlertView *alerts = [[UIAlertView alloc] initWithTitle:@"取消失敗"
+                                                                 message:nil
+                                                                delegate:self
+                                                       cancelButtonTitle:@"好"
+                                                       otherButtonTitles:nil];
+                [alerts show];
+            }
+            
             [MBProgressHUD hideHUDForView:self.view.superview animated:YES];
-           [self.tableView reloadData];
+            [self.tableView reloadData];
             [selectindexs removeAllObjects];
-       });
-    
+        });
+        
     });
+}
+
+
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 1:{
+            [self doCancelAction];
+            break;
+        }    }
+}
+
+    
+-(void)cancelSelectResBook
+{
+    if([selectindexs count] == 0)
+    {
+        UIAlertView *alerts = [[UIAlertView alloc] initWithTitle:@"請選擇欲取消的預約"
+                                                         message:nil
+                                                        delegate:nil
+                                               cancelButtonTitle:@"好"
+                                               otherButtonTitles:nil];
+        [alerts show];
+        return;
+    }
+    else {
+        NSString * title = [NSString stringWithFormat:@"即將取消%d本書", [selectindexs count]];
+       UIAlertView *alerts = [[UIAlertView alloc] initWithTitle:title
+                                                                             message:nil
+                                                                            delegate:self
+                                                                   cancelButtonTitle:@"取消"
+                                                                   otherButtonTitles:@"好",nil];
+          [alerts show];
+        
+    }
 }
 
 #pragma mark - Table view data source
