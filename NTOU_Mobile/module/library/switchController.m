@@ -34,7 +34,10 @@
 {
    
     mainviewcon = [[MainViewController alloc] init];
-    UITabBarItem *item1 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemSearch tag:1];
+    UITabBarItem *item1 = [[UITabBarItem alloc] init];
+    item1.tag = 1;
+    [item1 setFinishedSelectedImage:[UIImage imageNamed:@"ios_library-search_26x26.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"ios_library-search_26x26.png"]];
+    item1.title = @"搜尋";
     mainviewcon.tabBarItem = item1;
     mainviewcon.switchviewcontroller = self;
     [item1 release];
@@ -44,7 +47,10 @@
     [mainviewcon release];
     
     hisTableCon = [[HistoryTableViewController alloc] init];
-    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemHistory tag:2];
+    UITabBarItem *item2 = [[UITabBarItem alloc] init];
+    item2.tag = 2;
+    [item2 setFinishedSelectedImage:[UIImage imageNamed:@"ios_library-personal_26x26.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"ios_library-personal_26x26.png"]];
+    item2.title = @"個人圖書館";
     hisTableCon.tabBarItem = item2;
     [item2 release];
     
@@ -52,7 +58,10 @@
     [hisTableCon release];
     
     aboutViewCon = [[AboutViewController alloc] init];
-    UITabBarItem *item3 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:3];
+    UITabBarItem *item3 = [[UITabBarItem alloc] init];
+    item3.tag = 3;
+    [item3 setFinishedSelectedImage:[UIImage imageNamed:@"ios_library-library_26x26.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"ios_library-library_26x26.png"]];
+    item3.title = @"關於圖書館";
     aboutViewCon.tabBarItem = item3;
     UINavigationController * nav3 = [[UINavigationController alloc]initWithRootViewController:aboutViewCon];
    

@@ -30,20 +30,22 @@
     UIButton *busButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     //position button
     busButton.frame = CGRectMake(40, 40, 100, 100);
-    [busButton setTitle:@"公車" forState:UIControlStateNormal];
+    //[busButton setTitle:@"公車" forState:UIControlStateNormal];
     [busButton.titleLabel setFont:[UIFont systemFontOfSize:20]];
     // add targets and actions
     [busButton setTag:0];
     [busButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [busButton setBackgroundImage:[UIImage imageNamed:@"bus_100x100.png"] forState:UIControlStateNormal];
     // add to a view
     [self.view addSubview:busButton];
     
     UIButton *trainButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     //position button
     trainButton.frame = CGRectMake(180, 40, 100, 100);
-    [trainButton setTitle:@"台鐵" forState:UIControlStateNormal];
+    //[trainButton setTitle:@"台鐵" forState:UIControlStateNormal];
     [trainButton.titleLabel setFont:[UIFont systemFontOfSize:20]];
     // add targets and actions
+    [trainButton setBackgroundImage:[UIImage imageNamed:@"train_100x100.png"] forState:UIControlStateNormal];
     [trainButton setTag:1];
     [trainButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     // add to a view
@@ -52,9 +54,10 @@
     UIButton *HSRailButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     //position button
     HSRailButton.frame = CGRectMake(40, 180, 100, 100);
-    [HSRailButton setTitle:@"高鐵" forState:UIControlStateNormal];
+    //[HSRailButton setTitle:@"高鐵" forState:UIControlStateNormal];
     [HSRailButton.titleLabel setFont:[UIFont systemFontOfSize:20]];
     // add targets and actions
+    [HSRailButton setBackgroundImage:[UIImage imageNamed:@"speed-rail_100x100.png"] forState:UIControlStateNormal];
     [HSRailButton setTag:2];
     [HSRailButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     // add to a view
@@ -63,9 +66,10 @@
     UIButton *passengertrafficButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     //position button
     passengertrafficButton.frame = CGRectMake(180, 180, 100, 100);
-    [passengertrafficButton setTitle:@"客運" forState:UIControlStateNormal];
+    //[passengertrafficButton setTitle:@"客運" forState:UIControlStateNormal];
     [passengertrafficButton.titleLabel setFont:[UIFont systemFontOfSize:20]];
     // add targets and actions
+    [passengertrafficButton setBackgroundImage:[UIImage imageNamed:@"transport_100x100.png"] forState:UIControlStateNormal];
     [passengertrafficButton setTag:3];
     [passengertrafficButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     // add to a view
@@ -74,8 +78,9 @@
     UIButton *ntouButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     //position button
     ntouButton.frame = CGRectMake(40, 320, 240, 50);
-    [ntouButton setTitle:@"海洋專車" forState:UIControlStateNormal];
+    //[ntouButton setTitle:@"海洋專車" forState:UIControlStateNormal];
     [ntouButton.titleLabel setFont:[UIFont systemFontOfSize:20]];
+    [ntouButton setBackgroundImage:[UIImage imageNamed:@"NTOU-bus_240x50.png"] forState:UIControlStateNormal];
     // add targets and actions
     [ntouButton setTag:4];
     [ntouButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];

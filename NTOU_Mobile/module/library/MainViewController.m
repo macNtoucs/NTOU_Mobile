@@ -201,12 +201,12 @@
                action:@selector(search)
      forControlEvents:UIControlEventTouchDown];
     [button setImage:[UIImage imageNamed:@"LibrarySearch.png"] forState:UIControlStateNormal];
-     button.frame = CGRectMake(textField.frame.origin.x + 260 ,
+     button.frame = CGRectMake(textField.frame.origin.x + 210 ,
                                textField.frame.origin.y ,
-                               35,
-                               28);
+                               90,
+                               30);
     
-    UIImage *Library = [UIImage imageNamed:@"NYOULogo.png"];
+    UIImage *Library = [UIImage imageNamed:@"NTOULogo.png"];
     UIImageView *NTU_Library = [[UIImageView alloc] initWithFrame:CGRectMake(swidth/2 - Library.size.width/4,180, Library.size.width/2, Library.size.height/2)];
     [NTU_Library setImage:Library];
     

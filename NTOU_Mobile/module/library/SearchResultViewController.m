@@ -172,9 +172,10 @@
             [storyTable flashScrollIndicators];
             [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
             //self.title = [NSString stringWithFormat:@"共 %@ 筆", totalBookNumber];
-            UILabel* lbNavTitle = [[UILabel alloc] initWithFrame:CGRectMake(0,40,160,40)];
+            UILabel* lbNavTitle = [[UILabel alloc] initWithFrame:CGRectMake(0,40,320,40)];
             lbNavTitle.textAlignment = NSTextAlignmentCenter;
             lbNavTitle.text = [NSString stringWithFormat:@"共 %@ 筆", totalBookNumber];
+            lbNavTitle.backgroundColor = [UIColor clearColor];
             self.navigationItem.titleView = lbNavTitle;
             [lbNavTitle release];
             
