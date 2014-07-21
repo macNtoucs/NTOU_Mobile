@@ -189,6 +189,10 @@
                     accountDelegate = contactNameTextField;
                     cell.textLabel.text = @"帳號:   ";
                     cell.textLabel.textAlignment = NSTextAlignmentLeft;
+                    if([buttonTitle isEqualToString:loginFailButtonTittle])
+                        contactNameTextField.textColor = [UIColor blackColor];
+                    else
+                        contactNameTextField.textColor = [UIColor grayColor];
                     contactNameTextField.backgroundColor = [UIColor clearColor];
                     contactNameTextField.keyboardType = UIKeyboardTypeDefault;
                     contactNameTextField.text = [self getAccount];
@@ -198,6 +202,10 @@
                     passwordDelegate = contactNameTextField;
                     cell.textLabel.text = @"密碼:   ";
                     cell.textLabel.textAlignment = NSTextAlignmentLeft;
+                    if([buttonTitle isEqualToString:loginFailButtonTittle])
+                        contactNameTextField.textColor = [UIColor blackColor];
+                    else
+                        contactNameTextField.textColor = [UIColor grayColor];
                     contactNameTextField.backgroundColor = [UIColor clearColor];
                     contactNameTextField.keyboardType = UIKeyboardTypeDefault;
                     contactNameTextField.text = [self getPassword];
@@ -282,6 +290,7 @@
                         [self addNavRightButton];
                         accountDelegate.userInteractionEnabled = NO;
                         passwordDelegate.userInteractionEnabled = NO;
+                        [self.tableView reloadData];
                     }
                     else
                     {
@@ -310,6 +319,7 @@
             [self addNavRightButton];
         }
     }
+    [self.tableView reloadData];
 }
 
 

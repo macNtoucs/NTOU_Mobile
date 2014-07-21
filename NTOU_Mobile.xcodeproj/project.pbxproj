@@ -29,6 +29,21 @@
 		1D8A3B291905051300816CCD /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D8A3B1B1905051200816CCD /* whiteArrow@2x.png */; };
 		1D8A3B2A1905051300816CCD /* NTOUNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B1D1905051200816CCD /* NTOUNotification.m */; };
 		1DC66D1219614B32006D7C4C /* UINavigationItem+iOS7Spacing.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC66D1119614B32006D7C4C /* UINavigationItem+iOS7Spacing.m */; };
+		1DC66F8F1976B956006D7C4C /* NTOULogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DC66F8E1976B956006D7C4C /* NTOULogo.png */; };
+		1DC670081976BAEF006D7C4C /* ios_library-search_52x52.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DC670071976BAEF006D7C4C /* ios_library-search_52x52.png */; };
+		1DC6700A1976BBE7006D7C4C /* ios_library-search_26x26.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DC670091976BBE7006D7C4C /* ios_library-search_26x26.png */; };
+		1DC6700C1976BE05006D7C4C /* ios_library-personal_26x26.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DC6700B1976BE05006D7C4C /* ios_library-personal_26x26.png */; };
+		1DC6700E1976BE0B006D7C4C /* ios_library-library_26x26.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DC6700D1976BE0B006D7C4C /* ios_library-library_26x26.png */; };
+		1DC670141976BFE7006D7C4C /* bus_100x100.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DC6700F1976BFE7006D7C4C /* bus_100x100.png */; };
+		1DC670151976BFE7006D7C4C /* NTOU-bus_240x50.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DC670101976BFE7006D7C4C /* NTOU-bus_240x50.png */; };
+		1DC670161976BFE7006D7C4C /* speed-rail_100x100.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DC670111976BFE7006D7C4C /* speed-rail_100x100.png */; };
+		1DC670171976BFE7006D7C4C /* train_100x100.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DC670121976BFE7006D7C4C /* train_100x100.png */; };
+		1DC670181976BFE7006D7C4C /* transport_100x100.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DC670131976BFE7006D7C4C /* transport_100x100.png */; };
+		1DC6701E1976C576006D7C4C /* bus_100x100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DC670191976C576006D7C4C /* bus_100x100@2x.png */; };
+		1DC6701F1976C576006D7C4C /* NTOU-bus_240x50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DC6701A1976C576006D7C4C /* NTOU-bus_240x50@2x.png */; };
+		1DC670201976C576006D7C4C /* speed-rail_100x100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DC6701B1976C576006D7C4C /* speed-rail_100x100@2x.png */; };
+		1DC670211976C576006D7C4C /* train_100x100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DC6701C1976C576006D7C4C /* train_100x100@2x.png */; };
+		1DC670221976C576006D7C4C /* transport_100x100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DC6701D1976C576006D7C4C /* transport_100x100@2x.png */; };
 		1DD157A119515D28006CA7AF /* igViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD157A019515D28006CA7AF /* igViewController.m */; };
 		1DD157A31951624A006CA7AF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD157A21951624A006CA7AF /* AVFoundation.framework */; };
 		1DD1791F18FE7AB300621B67 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD178E318FE7AB300621B67 /* AboutViewController.m */; };
@@ -46,7 +61,6 @@
 		1DD1793218FE7AB300621B67 /* LoginResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790218FE7AB300621B67 /* LoginResultViewController.m */; };
 		1DD1793318FE7AB300621B67 /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790418FE7AB300621B67 /* loginViewController.m */; };
 		1DD1793518FE7AB300621B67 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790718FE7AB300621B67 /* MainViewController.m */; };
-		1DD1793718FE7AB300621B67 /* NYOULogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1790A18FE7AB300621B67 /* NYOULogo.png */; };
 		1DD1793818FE7AB300621B67 /* RBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1790C18FE7AB300621B67 /* RBookViewController.m */; };
 		1DD1793918FE7AB300621B67 /* search_tabbar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1790D18FE7AB300621B67 /* search_tabbar.jpg */; };
 		1DD1793B18FE7AB300621B67 /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1791118FE7AB300621B67 /* SearchResultViewController.m */; };
@@ -368,6 +382,21 @@
 		1D8A3B1D1905051200816CCD /* NTOUNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUNotification.m; sourceTree = "<group>"; };
 		1DC66D1019614B32006D7C4C /* UINavigationItem+iOS7Spacing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+iOS7Spacing.h"; sourceTree = "<group>"; };
 		1DC66D1119614B32006D7C4C /* UINavigationItem+iOS7Spacing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+iOS7Spacing.m"; sourceTree = "<group>"; };
+		1DC66F8E1976B956006D7C4C /* NTOULogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NTOULogo.png; path = NTOU_Mobile/module/library/NTOULogo.png; sourceTree = SOURCE_ROOT; };
+		1DC670071976BAEF006D7C4C /* ios_library-search_52x52.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ios_library-search_52x52.png"; path = "about/ios_library-search_52x52.png"; sourceTree = "<group>"; };
+		1DC670091976BBE7006D7C4C /* ios_library-search_26x26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios_library-search_26x26.png"; sourceTree = "<group>"; };
+		1DC6700B1976BE05006D7C4C /* ios_library-personal_26x26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios_library-personal_26x26.png"; sourceTree = "<group>"; };
+		1DC6700D1976BE0B006D7C4C /* ios_library-library_26x26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios_library-library_26x26.png"; sourceTree = "<group>"; };
+		1DC6700F1976BFE7006D7C4C /* bus_100x100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_100x100.png; sourceTree = "<group>"; };
+		1DC670101976BFE7006D7C4C /* NTOU-bus_240x50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NTOU-bus_240x50.png"; sourceTree = "<group>"; };
+		1DC670111976BFE7006D7C4C /* speed-rail_100x100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speed-rail_100x100.png"; sourceTree = "<group>"; };
+		1DC670121976BFE7006D7C4C /* train_100x100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = train_100x100.png; sourceTree = "<group>"; };
+		1DC670131976BFE7006D7C4C /* transport_100x100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transport_100x100.png; sourceTree = "<group>"; };
+		1DC670191976C576006D7C4C /* bus_100x100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bus_100x100@2x.png"; sourceTree = "<group>"; };
+		1DC6701A1976C576006D7C4C /* NTOU-bus_240x50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NTOU-bus_240x50@2x.png"; sourceTree = "<group>"; };
+		1DC6701B1976C576006D7C4C /* speed-rail_100x100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speed-rail_100x100@2x.png"; sourceTree = "<group>"; };
+		1DC6701C1976C576006D7C4C /* train_100x100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "train_100x100@2x.png"; sourceTree = "<group>"; };
+		1DC6701D1976C576006D7C4C /* transport_100x100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transport_100x100@2x.png"; sourceTree = "<group>"; };
 		1DD1579F19515D28006CA7AF /* igViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = igViewController.h; sourceTree = "<group>"; };
 		1DD157A019515D28006CA7AF /* igViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = igViewController.m; sourceTree = "<group>"; };
 		1DD157A21951624A006CA7AF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -398,7 +427,6 @@
 		1DD1790418FE7AB300621B67 /* loginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginViewController.m; sourceTree = "<group>"; };
 		1DD1790618FE7AB300621B67 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		1DD1790718FE7AB300621B67 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		1DD1790A18FE7AB300621B67 /* NYOULogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NYOULogo.png; sourceTree = "<group>"; };
 		1DD1790B18FE7AB300621B67 /* RBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBookViewController.h; sourceTree = "<group>"; };
 		1DD1790C18FE7AB300621B67 /* RBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBookViewController.m; sourceTree = "<group>"; };
 		1DD1790D18FE7AB300621B67 /* search_tabbar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = search_tabbar.jpg; sourceTree = "<group>"; };
@@ -899,6 +927,11 @@
 			isa = PBXGroup;
 			children = (
 				1DD178E118FE7AB300621B67 /* about */,
+				1DC66F8E1976B956006D7C4C /* NTOULogo.png */,
+				1DC670071976BAEF006D7C4C /* ios_library-search_52x52.png */,
+				1DC670091976BBE7006D7C4C /* ios_library-search_26x26.png */,
+				1DC6700B1976BE05006D7C4C /* ios_library-personal_26x26.png */,
+				1DC6700D1976BE0B006D7C4C /* ios_library-library_26x26.png */,
 				1DD178F318FE7AB300621B67 /* BookDetailViewController.h */,
 				1DD178F418FE7AB300621B67 /* BookDetailViewController.m */,
 				1DD178F818FE7AB300621B67 /* InfoPlist.strings */,
@@ -920,7 +953,6 @@
 				1DD1790618FE7AB300621B67 /* MainViewController.h */,
 				1DD1790718FE7AB300621B67 /* MainViewController.m */,
 				1D0ED72F192CC665008EDC7E /* LibrarySearch.png */,
-				1DD1790A18FE7AB300621B67 /* NYOULogo.png */,
 				1DD1790B18FE7AB300621B67 /* RBookViewController.h */,
 				1DD1790C18FE7AB300621B67 /* RBookViewController.m */,
 				1DD1790D18FE7AB300621B67 /* search_tabbar.jpg */,
@@ -1166,9 +1198,9 @@
 		91A9005016E854E500ECF2CF /* NTOU_Mobile */ = {
 			isa = PBXGroup;
 			children = (
-				1DD178E018FE7AB300621B67 /* library */,
 				91756E4216E9A6E7001D724D /* Icon.png */,
 				91756E4416E9A6EB001D724D /* Icon@2x.png */,
+				1DD178E018FE7AB300621B67 /* library */,
 				C72B23EB176AE80800474235 /* Settings */,
 				BA06A06316F2EE6600212CB9 /* Calendar */,
 				C74699D416F21BE20060F49C /* News */,
@@ -1259,6 +1291,16 @@
 		91A903A616E899D100ECF2CF /* ShuttleTrack */ = {
 			isa = PBXGroup;
 			children = (
+				1DC6700F1976BFE7006D7C4C /* bus_100x100.png */,
+				1DC670101976BFE7006D7C4C /* NTOU-bus_240x50.png */,
+				1DC670111976BFE7006D7C4C /* speed-rail_100x100.png */,
+				1DC670121976BFE7006D7C4C /* train_100x100.png */,
+				1DC670131976BFE7006D7C4C /* transport_100x100.png */,
+				1DC670191976C576006D7C4C /* bus_100x100@2x.png */,
+				1DC6701A1976C576006D7C4C /* NTOU-bus_240x50@2x.png */,
+				1DC6701B1976C576006D7C4C /* speed-rail_100x100@2x.png */,
+				1DC6701C1976C576006D7C4C /* train_100x100@2x.png */,
+				1DC6701D1976C576006D7C4C /* transport_100x100@2x.png */,
 				43BEDBF619236C260091B024 /* FMResultSet.h */,
 				43BEDBF919236CF90091B024 /* FMDatabasePool.h */,
 				43BEDBFA19236CF90091B024 /* FMDatabasePool.m */,
@@ -1711,6 +1753,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				91A9005516E854E500ECF2CF /* InfoPlist.strings in Resources */,
+				1DC670151976BFE7006D7C4C /* NTOU-bus_240x50.png in Resources */,
 				91A903A116E88E9D00ECF2CF /* global in Resources */,
 				91A9043916E899D200ECF2CF /* left_arrow.png in Resources */,
 				91A9043A16E899D200ECF2CF /* right_arrow.png in Resources */,
@@ -1726,12 +1769,16 @@
 				1D8A3B241905051200816CCD /* blueArrow.png in Resources */,
 				91A9045B16E899D200ECF2CF /* speed_train.png in Resources */,
 				43BF84B21948598C00B5B83F /* frequencyBusStation.plist in Resources */,
+				1DC6700A1976BBE7006D7C4C /* ios_library-search_26x26.png in Resources */,
+				1DC670221976C576006D7C4C /* transport_100x100@2x.png in Resources */,
 				1D8A3B281905051200816CCD /* whiteArrow.png in Resources */,
 				91A9045C16E899D200ECF2CF /* TimeDrive.png in Resources */,
 				1D8A3B291905051300816CCD /* whiteArrow@2x.png in Resources */,
 				91A9045D16E899D200ECF2CF /* train.png in Resources */,
 				91A9047516E899D200ECF2CF /* stationNum.txt in Resources */,
+				1DC670081976BAEF006D7C4C /* ios_library-search_52x52.png in Resources */,
 				91A9047616E899D200ECF2CF /* stationNumber.plist in Resources */,
+				1DC6700C1976BE05006D7C4C /* ios_library-personal_26x26.png in Resources */,
 				91A9047716E899D200ECF2CF /* pickerBackground.png in Resources */,
 				1DD1793D18FE7AB300621B67 /* tabbar_background.jpg in Resources */,
 				91A9047816E899D200ECF2CF /* pickerBackground@2x.png in Resources */,
@@ -1752,6 +1799,8 @@
 				91756F3816F206F7001D724D /* AppIcon-057.png in Resources */,
 				91756F3916F206F7001D724D /* AppIcon-072.png in Resources */,
 				91756F3A16F206F7001D724D /* AppIcon-114.png in Resources */,
+				1DC66F8F1976B956006D7C4C /* NTOULogo.png in Resources */,
+				1DC6700E1976BE0B006D7C4C /* ios_library-library_26x26.png in Resources */,
 				91756F3B16F206F7001D724D /* AppIcon-144.png in Resources */,
 				91756F3E16F206F7001D724D /* ClassAdd.xib in Resources */,
 				91756F4016F206F7001D724D /* ClassAddRetina3.5.xib in Resources */,
@@ -1772,10 +1821,12 @@
 				91756F5F16F206F7001D724D /* Reader-Button-H@2x.png in Resources */,
 				91756F6016F206F7001D724D /* Reader-Button-N.png in Resources */,
 				91756F6116F206F7001D724D /* Reader-Button-N@2x.png in Resources */,
+				1DC6701F1976C576006D7C4C /* NTOU-bus_240x50@2x.png in Resources */,
 				91756F6216F206F7001D724D /* Reader-Email.png in Resources */,
 				91756F6316F206F7001D724D /* Reader-Email@2x.png in Resources */,
 				91756F6416F206F7001D724D /* Reader-Mark-N.png in Resources */,
 				91756F6516F206F7001D724D /* Reader-Mark-N@2x.png in Resources */,
+				1DC670141976BFE7006D7C4C /* bus_100x100.png in Resources */,
 				91756F6616F206F7001D724D /* Reader-Mark-Y.png in Resources */,
 				91756F6716F206F7001D724D /* Reader-Mark-Y@2x.png in Resources */,
 				91756F6816F206F7001D724D /* Reader-Print.png in Resources */,
@@ -1784,6 +1835,7 @@
 				1DD1794118FE7AB300621B67 /* View.xib in Resources */,
 				91756F6B16F206F7001D724D /* Reader-Thumbs@2x.png in Resources */,
 				91756F7B16F206F7001D724D /* right.png in Resources */,
+				1DC6701E1976C576006D7C4C /* bus_100x100@2x.png in Resources */,
 				1DD1792E18FE7AB300621B67 /* library-Info.plist in Resources */,
 				1DD1793918FE7AB300621B67 /* search_tabbar.jpg in Resources */,
 				91756F8B16F206F7001D724D /* TabBarNipple.png in Resources */,
@@ -1794,6 +1846,7 @@
 				BA06A07616F2EE6600212CB9 /* CalenderList.plist in Resources */,
 				BA06A07716F2EE6600212CB9 /* CalenderList_eng.plist in Resources */,
 				1D8A3B261905051200816CCD /* grayArrow.png in Resources */,
+				1DC670181976BFE7006D7C4C /* transport_100x100.png in Resources */,
 				BA06A07B16F2EE6600212CB9 /* WOLSwitchViewController.xib in Resources */,
 				43BEDC2519236EF10091B024 /* ntou_mobile3.db in Resources */,
 				C71A4EE61705B106002819AD /* Fuho_Data.plist in Resources */,
@@ -1804,25 +1857,28 @@
 				C71A4EEE1705B114002819AD /* inbox.png in Resources */,
 				C71A4F00170A9399002819AD /* Default.png in Resources */,
 				1DD1792F18FE7AB300621B67 /* Library_NTU.png in Resources */,
+				1DC670171976BFE7006D7C4C /* train_100x100.png in Resources */,
 				43B291891949770200AA70D0 /* DefaultAlpha.png in Resources */,
+				1DC670211976C576006D7C4C /* train_100x100@2x.png in Resources */,
 				C71A4F02170A93AC002819AD /* Default@2x.png in Resources */,
 				C71A4F10170A9949002819AD /* Default-568h@2x.png in Resources */,
 				C71A4F16170ABA7F002819AD /* map-01.png in Resources */,
 				C71A4F17170ABA7F002819AD /* map-02.png in Resources */,
 				C71A4F18170ABA7F002819AD /* map-03.png in Resources */,
 				C71A4F19170ABA7F002819AD /* map-04.png in Resources */,
+				1DC670161976BFE7006D7C4C /* speed-rail_100x100.png in Resources */,
 				C71A4F1A170ABA7F002819AD /* map-05.png in Resources */,
 				C71A4F1C170AD1E6002819AD /* Nav_backGround.png in Resources */,
 				C71A4F211715205C002819AD /* desktop logo-57x57.png in Resources */,
 				C71A4F23171520E4002819AD /* desktop logo-512x512.png in Resources */,
 				BAAA1F8D173CEDA1001E06D6 /* inbox_down_24.png in Resources */,
+				1DC670201976C576006D7C4C /* speed-rail_100x100@2x.png in Resources */,
 				BAAA1F8E173CEDA1001E06D6 /* tray_full_24.png in Resources */,
 				BAAA1F8F173CEDA1001E06D6 /* tray_full.png in Resources */,
 				BE73DDE917A254EB00F1B499 /* 公告.png in Resources */,
 				BE73DDEE17A2550000F1B499 /* 成績.png in Resources */,
 				BE73DDEF17A2550000F1B499 /* 作業.png in Resources */,
 				BE73DDF017A2550000F1B499 /* 筆記.png in Resources */,
-				1DD1793718FE7AB300621B67 /* NYOULogo.png in Resources */,
 				BE73DDF117A2550000F1B499 /* 講義.png in Resources */,
 				BEA9165E183B24E600F12001 /* R66HararioList.plist in Resources */,
 				BECF7C74184F48A800ADD115 /* R66Route.png in Resources */,

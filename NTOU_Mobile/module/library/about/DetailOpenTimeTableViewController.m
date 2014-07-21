@@ -29,7 +29,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -37,18 +36,18 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
     return [detailOpenTime  count];
 }
 
@@ -83,13 +82,13 @@
                                         objectAtIndex:indexPath.row];
     
     
-    NSString *opTitle = [op objectForKey:@"value"];
+    NSString *opTitle = [[[op objectForKey:@"value"]componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] componentsJoinedByString:@" "];
     cell.textLabel.text = opTitle;
     cell.font = [UIFont fontWithName:@"Helvetica" size:14.0];
     cell.textLabel.numberOfLines = 0;
     [cell setLineBreakMode:UILineBreakModeCharacterWrap];
     
-    cell.detailTextLabel.text = [op objectForKey:@"text"];
+    cell.detailTextLabel.text = [[[op objectForKey:@"text"]componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] componentsJoinedByString:@" "];
     cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
     cell.detailTextLabel.textColor = [UIColor grayColor];
     [detailOpenTime retain];
