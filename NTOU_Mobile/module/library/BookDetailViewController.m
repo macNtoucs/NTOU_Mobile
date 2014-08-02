@@ -11,18 +11,21 @@
 #import "RBookViewController.h"
 #import "SettingsModuleViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import <objc/runtime.h>
 
 
 #define NAV_X self.navigationController.navigationBar.frame.origin.x
 #define NAV_Y self.navigationController.navigationBar.frame.origin.y
 #define NAV_HEIGHT self.navigationController.navigationBar.frame.size.height
 #define NAV_WIDTH   self.navigationController.navigationBar.frame.size.width
+#define reserveTitle @"是否要預約?"
 @interface BookDetailViewController ()
 {
     NSString *book_part1[10];
     NSString *book_part2[10];
     NSString *book_part3[10];
     NSString *book_part4[10];
+    NSString *book_part5[10];
     NSInteger book_count;
      UIProgressView *progressView;
 }
@@ -44,6 +47,7 @@
 @synthesize webView;
 @synthesize reviewsResult;
 @synthesize goToEternalLinkURL;
+const char MyConstantKey;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -112,14 +116,47 @@
     NSArray * electricBookDetail = [bookResultDic objectForKey:@"electricBookDetail"];
     if ([realBookDetail count]>0){
         [bookdetail setObject:@"realBook" forKey:@"bookType"];
-        for (size_t realBook_it =0 ; realBook_it < [realBookDetail count] ; ++realBook_it){
-            NSDictionary * realBookDetailDic = [realBookDetail objectAtIndex:realBook_it];
-            book_part1[realBook_it] = [realBookDetailDic objectForKey:@"location"];
-            book_part2[realBook_it] = [realBookDetailDic objectForKey:@"number"];
-            book_part3[realBook_it] = [realBookDetailDic objectForKey:@"barcode"];
-            book_part4[realBook_it] = [realBookDetailDic objectForKey:@"status"];
+        if (![[bookResultDic objectForKey:@"reserveURL"] isEqualToString:@""]) {
+            NSString * str = [NSString stringWithString:[bookResultDic objectForKey:@"reserveURL"]];
+            str = [str stringByReplacingOccurrencesOfString:@"&" withString:@"(ANDCHAR)"];
+            str = [str stringByReplacingOccurrencesOfString:@"+" withString:@"(PLUSCHAR)"];
+            NSString *parameter2= [[NSString alloc]initWithFormat:@"account=App001&password=App001&reserveURL=%@",str];
+            NSHTTPURLResponse *urlResponse2 = nil;
+            NSMutableURLRequest * request2 = [[NSMutableURLRequest new]autorelease];
+            NSString * queryURL2 = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/canReserveBooksList.do"];
+            [request2 setURL:[NSURL URLWithString:queryURL2]];
+            [request2 setHTTPMethod:@"POST"];
+            [request2 setHTTPBody:[parameter2 dataUsingEncoding:NSUTF8StringEncoding]];
+            // NSLog(@"%@",  [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding]);
+            // NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+            NSData *responseData2 = [NSURLConnection sendSynchronousRequest:request2
+                                                          returningResponse:&urlResponse2
+                                                                      error:nil];
+            NSString *res = [[NSString alloc] initWithData:responseData2 encoding:NSUTF8StringEncoding];
+            NSArray * bookDetailDic2=  [NSJSONSerialization JSONObjectWithData:responseData2 options:0 error:nil];
+            [bookDetailDic2 retain];
+            NSLog(@"%@,%@",[bookResultDic objectForKey:@"reserveURL"],bookDetailDic2);
+
+            for (size_t realBook_it =0 ; realBook_it < [bookDetailDic2 count] ; ++realBook_it){
+                NSDictionary * realBookDetailDic = [bookDetailDic2 objectAtIndex:realBook_it];
+                book_part1[realBook_it] = [realBookDetailDic objectForKey:@"bookLocation"];
+                book_part2[realBook_it] = [realBookDetailDic objectForKey:@"bookCall"];
+                book_part3[realBook_it] = [realBookDetailDic objectForKey:@"bookCode"];
+                book_part4[realBook_it] = [realBookDetailDic objectForKey:@"bookResStatus"];
+                book_part5[realBook_it] = [realBookDetailDic objectForKey:@"radioVal"];
+            }
             
+        } else {
+            
+            for (size_t realBook_it =0 ; realBook_it < [realBookDetail count] ; ++realBook_it){
+                NSDictionary * realBookDetailDic = [realBookDetail objectAtIndex:realBook_it];
+                book_part1[realBook_it] = [realBookDetailDic objectForKey:@"location"];
+                book_part2[realBook_it] = [realBookDetailDic objectForKey:@"number"];
+                book_part3[realBook_it] = [realBookDetailDic objectForKey:@"barcode"];
+                book_part4[realBook_it] = [realBookDetailDic objectForKey:@"status"];
+            }
         }
+        
         
         book_count = [realBookDetail count];
     }
@@ -134,7 +171,6 @@
         book_count = [electricBookDetail count];
     }
     
-    
     [bookdetail setObject:[bookResultDic objectForKey:@"title"] forKey:@"name"];
     [bookdetail setObject:[bookResultDic objectForKey:@"author"] forKey:@"author"];
     [bookdetail setObject:[bookResultDic objectForKey:@"pubInform"] forKey:@"press"];
@@ -145,7 +181,7 @@
 
 }
 
--(void) checkReviewsResult{
+-(void)checkReviewsResult{
     NSMutableArray * reviews_t = [[NSMutableArray alloc]init];
     for (NSDictionary * review in reviewsResult){
         if (![[review objectForKey:@"reviewsURL"]  isEqual: @""] )
@@ -208,7 +244,7 @@
         else if( [[bookdetail objectForKey:@"resurl"] isEqualToString:@""])
             numberOfSections= 2;   //書籍資料＋借閱資訊
         else
-            numberOfSections= 3;   //可預約
+            numberOfSections= 2;   //可預約
     }
     
     if ([reviewsResult count]!=0)
@@ -242,7 +278,7 @@
                  return [NSString stringWithFormat:@"書籍資訊"];
                  break;
              case 1:
-                 return [NSString stringWithFormat:@"借閱情況"];
+                 return [NSString stringWithFormat:@"預約"];
                  break;
              case 2:
                  return [NSString stringWithFormat:@"書評"];
@@ -567,6 +603,10 @@
         [cell.contentView addSubview:part4label];
         [cell.contentView addSubview:part4];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if (![book_part5[row] isEqualToString:@"NULL"]) {
+            cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
     }
     
     else if (section == 1 && [[bookdetail objectForKey:@"bookType"]  isEqual: @"ebook"])
@@ -747,54 +787,120 @@
 #pragma mark - Table view delegate
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    switch (buttonIndex) {
-        case 1:{
-            
-            progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-            if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0){
-                progressView.frame = CGRectMake(NAV_X,
-                                                NAV_Y+NAV_HEIGHT,
-                                                NAV_WIDTH ,
-                                                20);
-            }else{
-                progressView.frame = CGRectMake(NAV_X,
-                                                -3,
-                                                NAV_WIDTH ,
-                                                20);
-            
+    
+    if ([alertView.title isEqualToString:reserveTitle]) {
+        switch (buttonIndex) {
+            case 1:{
+                NSString *reserveURL = [bookdetail objectForKey:@"resurl"];
+                reserveURL= [reserveURL stringByReplacingOccurrencesOfString:@"&" withString:@"(ANDCHAR)"];
+                NSString *account = [SettingsModuleViewController getLibraryAccount];
+                NSString *pwd = [SettingsModuleViewController getLibraryPassword];
+                NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@&reserveURL=%@&radioValue=%@",account,pwd,reserveURL,objc_getAssociatedObject(alertView, &MyConstantKey)];
+                NSHTTPURLResponse *urlResponse = nil;
+                NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
+                NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/reserveBook.do"];
+                [request setURL:[NSURL URLWithString:queryURL]];
+                [request setHTTPMethod:@"POST"];
+                [request setHTTPBody:[historyPost dataUsingEncoding:NSUTF8StringEncoding]];
+                NSData *responseData = [NSURLConnection sendSynchronousRequest:request
+                                                             returningResponse:&urlResponse
+                                                                         error:nil];
+                NSDictionary * responseDic = [NSDictionary new];
+                responseDic= [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+                
+                if ([[responseDic objectForKey: @"querySuccess"] isEqualToString:@"true"]){
+                    NSString * msg = @"取書地點: "  ;
+                    msg = [msg stringByAppendingString:[responseDic objectForKey: @"location"]];
+                    msg = [msg stringByAppendingString:@"\n狀態:"];
+                    msg = [msg stringByAppendingString:[responseDic objectForKey: @"status"]];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"預約成功" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alert show];
+                    
+                    [alert release];
+                }
+                else {
+                    NSString * errorMsg = [responseDic objectForKey:@"errorMsg"];
+                    if (errorMsg ==nil) errorMsg = @"尚未登入";
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"預約失敗" message:errorMsg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alert show];
+                    [alert release];
+                    if ([responseDic objectForKey:@"errorMsg"] == nil) {
+                        accountTableViewController *detailViewController = [[accountTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                        detailViewController.title = library;
+                        detailViewController.explanation = @"帳號:     請輸入學號,敎職員證號或本館借書證號\n密碼:     您的身份證字號(預設值)\n\n若無法使用，請將您的《姓名》、《讀者證號》、《身份證號》E-mail 至hwa重新設定！\n        若您的證件曾經補發過一次，請在讀者證號後加二位數字01；補發二次，請加02；其餘類推。";
+                        detailViewController.accountStoreKey = libraryAccountKey;
+                        detailViewController.passwordStoreKey = libraryPasswordKey;
+                        detailViewController.loginSuccessStoreKey = libraryLoginSuccessKey;
+                        detailViewController.delegate = self;
+                        [self.navigationController pushViewController:detailViewController animated:YES];
+                        [detailViewController release];
+                    }
+                }
+
             }
-           webViewController = [[[UIViewController alloc]init] autorelease];
-           webView = [[[UIWebView alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
-            if ([[[UIDevice currentDevice]systemVersion]floatValue] < 7.0)
-            {
-                CGRect webFrame = webView.frame;
-                webFrame.size.height -= 64;
-                webView.frame = webFrame;
-            }
-            webView.scalesPageToFit = YES;
-            NJKWebViewProgress *_progressProxy = [[NJKWebViewProgress alloc] init]; // instance variable
-            webView.delegate = _progressProxy;
-            _progressProxy.webViewProxyDelegate = self;
-            _progressProxy.progressDelegate = self;
-       
-            [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:goToEternalLinkURL]]];
-            [webViewController.view addSubview: webView];
-            [webView addSubview:progressView];
-            [self.navigationController pushViewController:webViewController animated:YES];
-            
-                     break;
+                break;
+            default:
+                break;
         }
-        case 0:
-            break;
-        default:
-            break;
     }
+    else
+        switch (buttonIndex) {
+            case 1:{
+                
+                progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+                if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0){
+                    progressView.frame = CGRectMake(NAV_X,
+                                                    NAV_Y+NAV_HEIGHT,
+                                                    NAV_WIDTH ,
+                                                    20);
+                }else{
+                    progressView.frame = CGRectMake(NAV_X,
+                                                    -3,
+                                                    NAV_WIDTH ,
+                                                    20);
+                    
+                }
+                webViewController = [[[UIViewController alloc]init] autorelease];
+                webView = [[[UIWebView alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
+                if ([[[UIDevice currentDevice]systemVersion]floatValue] < 7.0)
+                {
+                    CGRect webFrame = webView.frame;
+                    webFrame.size.height -= 64;
+                    webView.frame = webFrame;
+                }
+                webView.scalesPageToFit = YES;
+                NJKWebViewProgress *_progressProxy = [[NJKWebViewProgress alloc] init]; // instance variable
+                webView.delegate = _progressProxy;
+                _progressProxy.webViewProxyDelegate = self;
+                _progressProxy.progressDelegate = self;
+                
+                [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:goToEternalLinkURL]]];
+                [webViewController.view addSubview: webView];
+                [webView addSubview:progressView];
+                [self.navigationController pushViewController:webViewController animated:YES];
+                
+                break;
+            }
+            case 0:
+                break;
+            default:
+                break;
+        }
+
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   
+    
+    
+    if (indexPath.section ==1 && [[bookdetail objectForKey:@"bookType"]  isEqual: @"realBook"] &&book_part5[indexPath.row]!=nil&& ![book_part5[indexPath.row] isEqualToString:@"NULL"]){
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:reserveTitle message:book_part2[indexPath.row] delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
+        [alert show];
+        [alert release];
+        objc_setAssociatedObject(alert, &MyConstantKey, indexPath.row, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
     
     if (indexPath.section ==1 && [[bookdetail objectForKey:@"bookType"]  isEqual: @"ebook"]){
             goToEternalLinkURL = book_part2[indexPath.row];
@@ -816,46 +922,6 @@
         
     }
     
-    if (indexPath.section == 3){
-        NSString *reserveURL = [bookdetail objectForKey:@"resurl"];
-        reserveURL= [reserveURL stringByReplacingOccurrencesOfString:@"&" withString:@"(ANDCHAR)"];
-        NSString *account = [SettingsModuleViewController getLibraryAccount];
-        NSString *pwd = [SettingsModuleViewController getLibraryPassword];
-        NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@&reserveURL=%@",account,pwd,reserveURL];
-        NSHTTPURLResponse *urlResponse = nil;
-        NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
-        NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/reserveBook.do"];
-        [request setURL:[NSURL URLWithString:queryURL]];
-        [request setHTTPMethod:@"POST"];
-        [request setHTTPBody:[historyPost dataUsingEncoding:NSUTF8StringEncoding]];
-        NSData *responseData = [NSURLConnection sendSynchronousRequest:request
-                                                     returningResponse:&urlResponse
-                                                                 error:nil];
-        NSDictionary * responseDic = [NSDictionary new];
-        responseDic= [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
-        
-        if ([[responseDic objectForKey: @"querySuccess"] isEqualToString:@"true"]){
-            NSString * msg = @"取書地點: "  ;
-            msg = [msg stringByAppendingString:[responseDic objectForKey: @"location"]];
-            msg = [msg stringByAppendingString:@"\n狀態:"];
-            msg = [msg stringByAppendingString:[responseDic objectForKey: @"status"]];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"預約成功" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-            
-            [alert release];
-        }
-        else {
-            NSString * errorMsg = [responseDic objectForKey:@"errorMsg"];
-            if (errorMsg ==nil) errorMsg = @"尚未登入";
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"預約失敗" message:errorMsg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-            [alert release];
-            
-        }
-        
-        
-        
-    }
     
 }
 
