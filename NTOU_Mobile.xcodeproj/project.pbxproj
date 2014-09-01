@@ -28,6 +28,11 @@
 		1D8A3B281905051200816CCD /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D8A3B1A1905051200816CCD /* whiteArrow.png */; };
 		1D8A3B291905051300816CCD /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D8A3B1B1905051200816CCD /* whiteArrow@2x.png */; };
 		1D8A3B2A1905051300816CCD /* NTOUNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B1D1905051200816CCD /* NTOUNotification.m */; };
+		1DA9F88B19B3B4C200261C7E /* FreshmenWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA9F88A19B3B4C200261C7E /* FreshmenWebView.m */; };
+		1DA9F88E19B3B52900261C7E /* FreshmenWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA9F88D19B3B52900261C7E /* FreshmenWebViewController.m */; };
+		1DA9F89119B3B66600261C7E /* FreshmenModuel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA9F89019B3B66600261C7E /* FreshmenModuel.m */; };
+		1DA9F8A319B484A000261C7E /* freshmen in Resources */ = {isa = PBXBuildFile; fileRef = 1DA9F8A219B484A000261C7E /* freshmen */; };
+		1DA9F8A519B5037600261C7E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DA9F8A419B5037600261C7E /* Images.xcassets */; };
 		1DC66D1219614B32006D7C4C /* UINavigationItem+iOS7Spacing.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC66D1119614B32006D7C4C /* UINavigationItem+iOS7Spacing.m */; };
 		1DC66F8F1976B956006D7C4C /* NTOULogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DC66F8E1976B956006D7C4C /* NTOULogo.png */; };
 		1DC670081976BAEF006D7C4C /* ios_library-search_52x52.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DC670071976BAEF006D7C4C /* ios_library-search_52x52.png */; };
@@ -380,6 +385,14 @@
 		1D8A3B1B1905051200816CCD /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		1D8A3B1C1905051200816CCD /* NTOUNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUNotification.h; sourceTree = "<group>"; };
 		1D8A3B1D1905051200816CCD /* NTOUNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUNotification.m; sourceTree = "<group>"; };
+		1DA9F88919B3B4C200261C7E /* FreshmenWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreshmenWebView.h; sourceTree = "<group>"; };
+		1DA9F88A19B3B4C200261C7E /* FreshmenWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreshmenWebView.m; sourceTree = "<group>"; };
+		1DA9F88C19B3B52900261C7E /* FreshmenWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreshmenWebViewController.h; sourceTree = "<group>"; };
+		1DA9F88D19B3B52900261C7E /* FreshmenWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreshmenWebViewController.m; sourceTree = "<group>"; };
+		1DA9F88F19B3B66600261C7E /* FreshmenModuel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreshmenModuel.h; sourceTree = "<group>"; };
+		1DA9F89019B3B66600261C7E /* FreshmenModuel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreshmenModuel.m; sourceTree = "<group>"; };
+		1DA9F8A219B484A000261C7E /* freshmen */ = {isa = PBXFileReference; lastKnownFileType = folder; path = freshmen; sourceTree = "<group>"; };
+		1DA9F8A419B5037600261C7E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1DC66D1019614B32006D7C4C /* UINavigationItem+iOS7Spacing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+iOS7Spacing.h"; sourceTree = "<group>"; };
 		1DC66D1119614B32006D7C4C /* UINavigationItem+iOS7Spacing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+iOS7Spacing.m"; sourceTree = "<group>"; };
 		1DC66F8E1976B956006D7C4C /* NTOULogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NTOULogo.png; path = NTOU_Mobile/module/library/NTOULogo.png; sourceTree = SOURCE_ROOT; };
@@ -923,6 +936,19 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		1DA9F88219B3B2F900261C7E /* FreshmenEducation */ = {
+			isa = PBXGroup;
+			children = (
+				1DA9F88919B3B4C200261C7E /* FreshmenWebView.h */,
+				1DA9F88A19B3B4C200261C7E /* FreshmenWebView.m */,
+				1DA9F88C19B3B52900261C7E /* FreshmenWebViewController.h */,
+				1DA9F88D19B3B52900261C7E /* FreshmenWebViewController.m */,
+				1DA9F88F19B3B66600261C7E /* FreshmenModuel.h */,
+				1DA9F89019B3B66600261C7E /* FreshmenModuel.m */,
+			);
+			name = FreshmenEducation;
+			sourceTree = "<group>";
+		};
 		1DD178E018FE7AB300621B67 /* library */ = {
 			isa = PBXGroup;
 			children = (
@@ -1198,6 +1224,7 @@
 		91A9005016E854E500ECF2CF /* NTOU_Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				1DA9F88219B3B2F900261C7E /* FreshmenEducation */,
 				91756E4216E9A6E7001D724D /* Icon.png */,
 				91756E4416E9A6EB001D724D /* Icon@2x.png */,
 				1DD178E018FE7AB300621B67 /* library */,
@@ -1221,6 +1248,7 @@
 				91A9005116E854E500ECF2CF /* Supporting Files */,
 				91A9008016E8609200ECF2CF /* Rotation.h */,
 				91A9008116E8609200ECF2CF /* Rotation.m */,
+				1DA9F8A419B5037600261C7E /* Images.xcassets */,
 			);
 			path = NTOU_Mobile;
 			sourceTree = "<group>";
@@ -1280,6 +1308,7 @@
 		91A9029816E88E0D00ECF2CF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1DA9F8A219B484A000261C7E /* freshmen */,
 				C71A4F1B170AD1E6002819AD /* Nav_backGround.png */,
 				C74699E816F21CF40060F49C /* news */,
 				91A9049A16E8A09A00ECF2CF /* icons */,
@@ -1778,6 +1807,7 @@
 				91A9047516E899D200ECF2CF /* stationNum.txt in Resources */,
 				1DC670081976BAEF006D7C4C /* ios_library-search_52x52.png in Resources */,
 				91A9047616E899D200ECF2CF /* stationNumber.plist in Resources */,
+				1DA9F8A319B484A000261C7E /* freshmen in Resources */,
 				1DC6700C1976BE05006D7C4C /* ios_library-personal_26x26.png in Resources */,
 				91A9047716E899D200ECF2CF /* pickerBackground.png in Resources */,
 				1DD1793D18FE7AB300621B67 /* tabbar_background.jpg in Resources */,
@@ -1798,6 +1828,7 @@
 				91756E4516E9A6EB001D724D /* Icon@2x.png in Resources */,
 				91756F3816F206F7001D724D /* AppIcon-057.png in Resources */,
 				91756F3916F206F7001D724D /* AppIcon-072.png in Resources */,
+				1DA9F8A519B5037600261C7E /* Images.xcassets in Resources */,
 				91756F3A16F206F7001D724D /* AppIcon-114.png in Resources */,
 				1DC66F8F1976B956006D7C4C /* NTOULogo.png in Resources */,
 				1DC6700E1976BE0B006D7C4C /* ios_library-library_26x26.png in Resources */,
@@ -1956,6 +1987,7 @@
 				91A9045216E899D200ECF2CF /* NTOUTableViewControllerLayer1.m in Sources */,
 				91A9045316E899D200ECF2CF /* NTOUTableViewControllerLayer2.m in Sources */,
 				91A9045416E899D200ECF2CF /* OtherTrafficTrapViewController.m in Sources */,
+				1DA9F88E19B3B52900261C7E /* FreshmenWebViewController.m in Sources */,
 				43BEDC1319236D570091B024 /* TPRouteGoBackViewController.m in Sources */,
 				1DD1792318FE7AB300621B67 /* loadWebViewController.m in Sources */,
 				91A9045516E899D200ECF2CF /* RequestOperation.m in Sources */,
@@ -1995,6 +2027,7 @@
 				913A0D1A16E98EBA007BAD8F /* OutCampusViewController.m in Sources */,
 				912A53EF16E99F7900BBC013 /* NTOUGuide2ViewController.m in Sources */,
 				912A53F016E99F7900BBC013 /* NTOUGuideSetViewController.m in Sources */,
+				1DA9F88B19B3B4C200261C7E /* FreshmenWebView.m in Sources */,
 				912A53F116E99F7900BBC013 /* NTOUGuideViewController.m in Sources */,
 				912A540316E9A09600BBC013 /* CustomPagerViewController.m in Sources */,
 				912A540616E9A09600BBC013 /* PagerViewController.m in Sources */,
@@ -2020,6 +2053,7 @@
 				91756F5016F206F7001D724D /* MBProgressHUD.m in Sources */,
 				91756F5816F206F7001D724D /* Moodle_API.m in Sources */,
 				91756F5D16F206F7001D724D /* NTOU_ClassColorTableController.m in Sources */,
+				1DA9F89119B3B66600261C7E /* FreshmenModuel.m in Sources */,
 				1DD1792118FE7AB300621B67 /* floorInfoViewController.m in Sources */,
 				91756F6C16F206F7001D724D /* ReaderConstants.m in Sources */,
 				437D52641923977E0054AD8E /* ExpressBusSearchViewController.m in Sources */,
@@ -2121,8 +2155,8 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: ching-chi Lin (46873356PM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2142,8 +2176,8 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PROVISIONING_PROFILE = "0514D974-3076-46AC-9554-0387AC34790A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0514D974-3076-46AC-9554-0387AC34790A";
+				PROVISIONING_PROFILE = "4D6D9AFB-3FB2-4E04-A053-1295389E0867";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4D6D9AFB-3FB2-4E04-A053-1295389E0867";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -2171,8 +2205,8 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PROVISIONING_PROFILE = "0514D974-3076-46AC-9554-0387AC34790A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0514D974-3076-46AC-9554-0387AC34790A";
+				PROVISIONING_PROFILE = "c919905f-50f2-40e0-9cc3-9603f8f73d15";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "c919905f-50f2-40e0-9cc3-9603f8f73d15";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = NO;
@@ -2182,6 +2216,8 @@
 		91A9006516E854E500ECF2CF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2193,8 +2229,9 @@
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "0514D974-3076-46AC-9554-0387AC34790A";
-				"PROVISIONING_PROFILE[sdk=*]" = "07B40E79-EF0F-4CAA-89B5-58653F8F587A";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=*]" = "4D6D9AFB-3FB2-4E04-A053-1295389E0867";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4D6D9AFB-3FB2-4E04-A053-1295389E0867";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2203,6 +2240,8 @@
 		91A9006616E854E500ECF2CF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: ching-chi Lin (46873356PM)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2214,8 +2253,8 @@
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "0514D974-3076-46AC-9554-0387AC34790A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0514D974-3076-46AC-9554-0387AC34790A";
+				PROVISIONING_PROFILE = "c919905f-50f2-40e0-9cc3-9603f8f73d15";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "c919905f-50f2-40e0-9cc3-9603f8f73d15";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

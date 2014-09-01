@@ -18,6 +18,7 @@
 #import "StellarModule.h"
 #import "SettingModule.h"
 #import "LibraryModule.h"
+#include "FreshmenModuel.h"
 /*#import "NewsModule.h"
 
 
@@ -55,13 +56,14 @@
     //[result addObject:[[[YourNTOUModuleSubclass alloc] init] autorelease]];
     [result addObject:[[[NewsModule alloc] init] autorelease]];
     [result addObject:[[[StellarModule alloc] init] autorelease]];
-    [result addObject:[[[ShuttleModule alloc] init] autorelease]];
-	[result addObject:[[[LibraryModule alloc] init] autorelease]];
+    //[result addObject:[[[ShuttleModule alloc] init] autorelease]];
+	//[result addObject:[[[LibraryModule alloc] init] autorelease]];
     [result addObject:[[[CMModule alloc] init] autorelease]];
     //[result addObject:[[[CalendarModule alloc] init] autorelease]];
 	[result addObject:[[[PeopleModule alloc] init] autorelease]];
     // [result addObject:[[[ToursModule alloc] init] autorelease]];
     [result addObject:[[[ScheduleModule alloc] init] autorelease]];
+    [result addObject:[[[FreshmenModuel alloc] init] autorelease]];
     [result addObject:[[[EmergencyModule alloc] init] autorelease]];
     //  [result addObject:[[[FacilitiesModule alloc] init] autorelease]];
     //[result addObject:[[[QRReaderModule alloc] init] autorelease]];
