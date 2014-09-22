@@ -28,6 +28,7 @@
 		1D8A3B281905051200816CCD /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D8A3B1A1905051200816CCD /* whiteArrow.png */; };
 		1D8A3B291905051300816CCD /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D8A3B1B1905051200816CCD /* whiteArrow@2x.png */; };
 		1D8A3B2A1905051300816CCD /* NTOUNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8A3B1D1905051200816CCD /* NTOUNotification.m */; };
+		1DA7DB5719D029850027F2F3 /* CalenderList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1DA7DB5619D029850027F2F3 /* CalenderList.plist */; };
 		1DA9F88B19B3B4C200261C7E /* FreshmenWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA9F88A19B3B4C200261C7E /* FreshmenWebView.m */; };
 		1DA9F88E19B3B52900261C7E /* FreshmenWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA9F88D19B3B52900261C7E /* FreshmenWebViewController.m */; };
 		1DA9F89119B3B66600261C7E /* FreshmenModuel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA9F89019B3B66600261C7E /* FreshmenModuel.m */; };
@@ -297,7 +298,6 @@
 		91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */; };
 		91A9049B16E8A09A00ECF2CF /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 91A9049A16E8A09A00ECF2CF /* icons */; };
 		BA06A07516F2EE6600212CB9 /* ScheduleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06816F2EE6600212CB9 /* ScheduleModule.m */; };
-		BA06A07616F2EE6600212CB9 /* CalenderList.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06A16F2EE6600212CB9 /* CalenderList.plist */; };
 		BA06A07716F2EE6600212CB9 /* CalenderList_eng.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */; };
 		BA06A07816F2EE6600212CB9 /* ChiListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06D16F2EE6600212CB9 /* ChiListViewController.m */; };
 		BA06A07916F2EE6600212CB9 /* EnglistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06F16F2EE6600212CB9 /* EnglistViewController.m */; };
@@ -385,6 +385,7 @@
 		1D8A3B1B1905051200816CCD /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		1D8A3B1C1905051200816CCD /* NTOUNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUNotification.h; sourceTree = "<group>"; };
 		1D8A3B1D1905051200816CCD /* NTOUNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUNotification.m; sourceTree = "<group>"; };
+		1DA7DB5619D029850027F2F3 /* CalenderList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CalenderList.plist; sourceTree = "<group>"; };
 		1DA9F88919B3B4C200261C7E /* FreshmenWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreshmenWebView.h; sourceTree = "<group>"; };
 		1DA9F88A19B3B4C200261C7E /* FreshmenWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreshmenWebView.m; sourceTree = "<group>"; };
 		1DA9F88C19B3B52900261C7E /* FreshmenWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreshmenWebViewController.h; sourceTree = "<group>"; };
@@ -796,7 +797,6 @@
 		91A9049A16E8A09A00ECF2CF /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
 		BA06A06716F2EE6600212CB9 /* ScheduleModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleModule.h; sourceTree = "<group>"; };
 		BA06A06816F2EE6600212CB9 /* ScheduleModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleModule.m; sourceTree = "<group>"; };
-		BA06A06A16F2EE6600212CB9 /* CalenderList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CalenderList.plist; sourceTree = "<group>"; };
 		BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CalenderList_eng.plist; sourceTree = "<group>"; };
 		BA06A06C16F2EE6600212CB9 /* ChiListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiListViewController.h; sourceTree = "<group>"; };
 		BA06A06D16F2EE6600212CB9 /* ChiListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ChiListViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -1525,7 +1525,7 @@
 		BA06A06916F2EE6600212CB9 /* list */ = {
 			isa = PBXGroup;
 			children = (
-				BA06A06A16F2EE6600212CB9 /* CalenderList.plist */,
+				1DA7DB5619D029850027F2F3 /* CalenderList.plist */,
 				BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */,
 			);
 			path = list;
@@ -1874,7 +1874,6 @@
 				91756F9216F206F7001D724D /* wrong.png in Resources */,
 				91756FCA16F20A5A001D724D /* NTOU_ClassColorViewController.xib in Resources */,
 				C74699E916F21CF40060F49C /* news in Resources */,
-				BA06A07616F2EE6600212CB9 /* CalenderList.plist in Resources */,
 				BA06A07716F2EE6600212CB9 /* CalenderList_eng.plist in Resources */,
 				1D8A3B261905051200816CCD /* grayArrow.png in Resources */,
 				1DC670181976BFE7006D7C4C /* transport_100x100.png in Resources */,
@@ -1892,6 +1891,7 @@
 				43B291891949770200AA70D0 /* DefaultAlpha.png in Resources */,
 				1DC670211976C576006D7C4C /* train_100x100@2x.png in Resources */,
 				C71A4F02170A93AC002819AD /* Default@2x.png in Resources */,
+				1DA7DB5719D029850027F2F3 /* CalenderList.plist in Resources */,
 				C71A4F10170A9949002819AD /* Default-568h@2x.png in Resources */,
 				C71A4F16170ABA7F002819AD /* map-01.png in Resources */,
 				C71A4F17170ABA7F002819AD /* map-02.png in Resources */,

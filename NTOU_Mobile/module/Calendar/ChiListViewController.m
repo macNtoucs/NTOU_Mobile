@@ -9,7 +9,7 @@
 #import "ChiListViewController.h"
 #import "NTOUUIConstants.h"
 #import "MBProgressHUD.h"
-#define YEAR 2013   //起始學期年份
+#define YEAR 2014   //起始學期年份
 
 @interface ChiListViewController ()
 

@@ -25,11 +25,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.20</string>
+	<string>1.21</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.20</string>
+	<string>1.21</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
@@ -84,6 +84,6 @@ FAX:+886-2-2462-0724
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>ourEmail</key>
-	<string>mac.ntoucs@gmail.com</string>
+	<string>ntouapp@ntou.edu.tw</string>
 </dict>
 </plist>
