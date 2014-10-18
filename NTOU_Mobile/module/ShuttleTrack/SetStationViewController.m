@@ -139,6 +139,7 @@
     else{
         viewControllers = [[NSArray alloc]initWithObjects:setStartStationController, setdepatureStationviewController,setTimeviewController,setHTTimeviewController,resultViewController,nil];
     }
+
    // [viewControllers retain];
     [self setViewControllers:viewControllers animated:YES];
     self.delegate=self;
