@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>zh_TW</string>
+	<key>CFBundleDisplayName</key>
+	<string>海大App</string>
+	<key>CFBundleExecutable</key>
+	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIcons</key>
+	<dict/>
+	<key>CFBundleIcons~ipad</key>
+	<dict/>
+	<key>CFBundleIdentifier</key>
+	<string>APNSTest.test</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>zh_TW</string>
+	</array>
+	<key>CFBundleName</key>
+	<string>${PRODUCT_NAME}</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.21</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.21</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NTOUAboutAppText</key>
+	<string>開發者：海大資訊工程學系
+美工設計協助：畢冊王
+
+基隆市中正區北寧路2號
+2 Pei-Ning Road, Keelung, 
+Taiwan 20224, R.O.C.
+
+TEL:+886-2-2462-2192 
+FAX:+886-2-2462-0724
+
+國立臺灣海洋大學 
+版權所有 @copyright 2013</string>
+	<key>NTOUAboutMemberText</key>
+	<string>                    林清池
+                    何佳儒   資工大四
+                    李翔昕   資工大四
+                    邱俊崎   資工大四
+                    魏琳鴻   資工大四
+                    陳沐萱   資工大三
+                    蘇庭琍   資工大三</string>
+	<key>NTOUAboutNTOUText</key>
+	<string>本校自1953年創校以來，在歷任校長卓越領導及全體師生積極努力下，從臺灣省立海事專科學校、臺灣省立海洋學院、國立臺灣海洋學院到國立臺灣海洋大學，逐步發展成為一所具有海洋專業特色，教學、研究並重的重點大學。
+歷年來，在教學、研究與服務等各方面的表現屢屢獲得肯定，自94年起海大連續獲選為教育部「獎勵大學教學卓越計畫」重點大學；95年起也持續獲教育部「五年五百億發展國際一流大學及頂尖研究計劃」補助；另外，高等教育評鑑中心100年校務評鑑五大評鑑項目也全數通過；本校「海洋學刊」也順利成為國內大學第一個雙I（SCI與EI）引用之期刊，這些肯定，都是外界對海洋大學在教學、研究、服務等各個面向的肯定。
+未來我們將傾聽校內外的意見，建立同仁間互信與共識基礎，尊重教師的多元價值，凝聚師生職工的向心力。積極推動有效的招生策略、強化通識教育、培育具有海洋人文素養與競爭力的學生。同時延攬人才，擴大學術能量，推動具有優勢之海洋特色領域之研究，強化產學研發，推動國內外學術合作與結盟，成立「海洋中心」積極爭取研發計畫。擴展學生國際觀，促進校園國際化，並與相關學校及研究機構與重要產業形成策略聯盟，形成「海洋園區」，擦亮我們「海洋特色」的招牌。
+另外，將整合並改善校內各項學術資源，連結校友，並爭取外部資源，妥善運用校務基金以擴大可運用之經費來源，「結合學校、校友與產業」的資源，擴大學校對社會的貢獻與影響力。
+海大未來的發展不是以漸進成長為策略，而是要以躍進的方式來推展海洋特色。持續「培育兼具人文素之基礎與應用能力之人才」與「致力於海洋相關領域之學術與應用發展」，達成「加強海洋特色、提升學校競爭力」、「培養兼具人文關懷、專業創新、國際視野的人才」與「發展世界的海洋教育及研究」的目標，讓海大成為一所具有活力與高度榮譽感之「卓越教學與特色研究兼具的海洋頂尖大學」。</string>
+	<key>NTOUFeedbackAddress</key>
+	<array/>
+	<key>UIPrerenderedIcon</key>
+	<true/>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleBlackOpaque</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations - 2</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>ourEmail</key>
+	<string>ntouapp@ntou.edu.tw</string>
+</dict>
+</plist>
