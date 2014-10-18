@@ -102,7 +102,8 @@
     
     return region;
 }
-- (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
     {
@@ -112,7 +113,7 @@
     return 30;
 }
 
--(float)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section
+-(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section
 {
     return 5.0f;
 }
