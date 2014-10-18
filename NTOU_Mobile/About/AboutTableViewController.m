@@ -127,7 +127,7 @@
                     MFMailComposeViewController *mailView = [[MFMailComposeViewController alloc] init];
                     [mailView setMailComposeDelegate:self];
                     [mailView setSubject:subject];
-                    [mailView setToRecipients:[NSArray arrayWithObjects:@"tinghung@ntou.edu.tw",@"mac.ntoucs@gmail.com", nil]];
+                    [mailView setToRecipients:[NSArray arrayWithObjects:@"mac.ntoucs@gmail.com", nil]];
                     [self presentModalViewController:mailView
                                             animated:YES];
                 }

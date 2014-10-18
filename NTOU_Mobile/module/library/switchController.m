@@ -37,6 +37,7 @@
     UITabBarItem *item1 = [[UITabBarItem alloc] init];
     item1.tag = 1;
     [item1 setFinishedSelectedImage:[UIImage imageNamed:@"Search_30x30.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"Search_30x30.png"]];
+
     item1.title = @"搜尋";
     mainviewcon.tabBarItem = item1;
     mainviewcon.switchviewcontroller = self;

@@ -697,6 +697,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         [tableview reloadData];
     });
     
+
 }
 
 - (void)buttonClicked:(id)sender
@@ -807,7 +808,6 @@ int finderSortWithLocale(id string1, id string2, void *locale)
             if (havingTableView == NO)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
-            [partBusName appendString:@"橘"];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [self showTableViewContent];
             });
@@ -915,7 +915,9 @@ int finderSortWithLocale(id string1, id string2, void *locale)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"內科"];
+
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
                 [self showTableViewContent];
             });
             break;
@@ -924,7 +926,9 @@ int finderSortWithLocale(id string1, id string2, void *locale)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"其他"];
+
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
                 [self showTableViewContent];
             });
             break;
@@ -933,7 +937,9 @@ int finderSortWithLocale(id string1, id string2, void *locale)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"幹線"];
+
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
                 [self showTableViewContent];
             });
             break;
@@ -942,7 +948,9 @@ int finderSortWithLocale(id string1, id string2, void *locale)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"南軟"];
+
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
                 [self showTableViewContent];
             });
             break;
@@ -951,7 +959,9 @@ int finderSortWithLocale(id string1, id string2, void *locale)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"花季"];
+
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
                 [self showTableViewContent];
             });
             break;
@@ -960,7 +970,9 @@ int finderSortWithLocale(id string1, id string2, void *locale)
                 [self createTableView];
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             [partBusName appendString:@"其他"];
+
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
                 [self showTableViewContent];
             });
             break;

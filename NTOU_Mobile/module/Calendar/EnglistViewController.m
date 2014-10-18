@@ -113,7 +113,7 @@
         month -= 8;
     else
         month += 4;
-    
+    [self.searchDisplayController.searchResultsTableView setContentOffset:CGPointZero];
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:month] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 

@@ -139,7 +139,6 @@
     else{
         viewControllers = [[NSArray alloc]initWithObjects:setStartStationController, setdepatureStationviewController,setTimeviewController,setHTTimeviewController,resultViewController,nil];
     }
-
    // [viewControllers retain];
     [self setViewControllers:viewControllers animated:YES];
     self.delegate=self;
@@ -262,7 +261,7 @@
     [super viewDidLoad];
     
     //NSLog(@"setStation.m viewDidLoad");
-   
+
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
         
         if([[[UIDevice currentDevice]systemVersion]floatValue]>7.0)
