@@ -725,6 +725,11 @@
     }
 }
 
+//ios8 defaule is 0
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 20;
+}
 
 
 @end

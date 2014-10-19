@@ -9,7 +9,7 @@
 #import "EnglistViewController.h"
 #import "NTOUUIConstants.h"
 #import "MBProgressHUD.h"
-#define YEAR 2012   //起始學期年份
+#define YEAR 2014   //起始學期年份
 @interface EnglistViewController ()
 
 @property (nonatomic, strong) NSMutableArray *selectindexs;
@@ -698,6 +698,12 @@
         [userDefaults setObject:localCalendar.calendarIdentifier forKey:@"NTOUCalendarIdentifier"];
         [userDefaults synchronize];
     }
+}
+
+//ios8 defaule is 0
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 20;
 }
 
 @end
