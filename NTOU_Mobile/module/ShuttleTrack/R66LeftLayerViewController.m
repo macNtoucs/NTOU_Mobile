@@ -105,7 +105,7 @@
     return @"平常日發車時間";
 }
 
--(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 32;
 }

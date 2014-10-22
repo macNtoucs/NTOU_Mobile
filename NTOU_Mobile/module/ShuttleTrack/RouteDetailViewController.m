@@ -351,8 +351,8 @@
 }
 - (void)connectionDidFinishLoading:(NSMutableData *)received
 {
-    if (queue) {
-        UInt32 big5 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingBig5);
+    if (queue && received != nil && received != [NSMutableData data]) {
+        //UInt32 big5 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingBig5);
         //NSData* data = [[NSString stringWithContentsOfURL:obj encoding:big5 error:&error] dataUsingEncoding:big5];
         TFHpple* parser = [[TFHpple alloc] initWithHTMLData:received];
         NSArray *waittime_tmp  = [parser searchWithXPathQuery:@"//body//div//table//tr//td"]; // get the title
@@ -374,6 +374,10 @@
             theConncetionCount=0;
             updateTimeOnButton = YES;
         }
+    }
+    else if (received != nil && received != [NSMutableData data])
+    {
+        [self connection:nil didFailWithError:[NSError errorWithDomain:NSMachErrorDomain code:0 userInfo:nil]];
     }
     else
         theConncetionCount=0;
