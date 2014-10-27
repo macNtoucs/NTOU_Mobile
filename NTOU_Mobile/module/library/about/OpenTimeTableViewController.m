@@ -145,7 +145,7 @@
     cell.textLabel.text = opTitle;
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:14.0];
     cell.textLabel.numberOfLines = 0;
-    [cell setLineBreakMode:UILineBreakModeCharacterWrap];
+    [cell setLineBreakMode:NSLineBreakByCharWrapping];
     
     cell.detailTextLabel.text = opDetailTitle;
     cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];

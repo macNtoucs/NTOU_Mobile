@@ -8,15 +8,15 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>First Semester Begins；Classes Begin for Second Summer Session；Application for Tuition Fee Loan Begins</string>
+			<string>First Semester Begins;Classes Begin for Second Summer Session;Application for Tuition Fee Loan Begins</string>
 			<key>startdate</key>
 			<string>1</string>
 			<key>enddate</key>
 			<string>1</string>
 			<key>startweek</key>
-			<string>Mon</string>
+			<string>Fri</string>
 			<key>endweek</key>
-			<string>Mon</string>
+			<string>Fri</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -24,13 +24,13 @@
 			<key>value</key>
 			<string>Dormitory Drawing Application (for New Graduate Students)</string>
 			<key>startdate</key>
-			<string>6</string>
+			<string>7</string>
 			<key>enddate</key>
-			<string>9</string>
+			<string>12</string>
 			<key>startweek</key>
-			<string>Mon</string>
+			<string>Thur</string>
 			<key>endweek</key>
-			<string>Mon</string>
+			<string>Tue</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -38,13 +38,13 @@
 			<key>value</key>
 			<string>Registration for Returning Students</string>
 			<key>startdate</key>
-			<string>10</string>
+			<string>9</string>
 			<key>enddate</key>
-			<string>10</string>
+			<string>9</string>
 			<key>startweek</key>
-			<string>Mon</string>
+			<string>Sat</string>
 			<key>endweek</key>
-			<string>Mon</string>
+			<string>Sat</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -52,13 +52,13 @@
 			<key>value</key>
 			<string>Dormitory Application (for Freshmen)</string>
 			<key>startdate</key>
-			<string>16</string>
+			<string>14</string>
 			<key>enddate</key>
-			<string>20</string>
+			<string>19</string>
 			<key>startweek</key>
-			<string>Mon</string>
+			<string>Thur</string>
 			<key>endweek</key>
-			<string>Mon</string>
+			<string>Tue</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -66,27 +66,13 @@
 			<key>value</key>
 			<string>Orientation for New students and Parents&apos; Day</string>
 			<key>startdate</key>
-			<string>18</string>
+			<string>17</string>
 			<key>enddate</key>
-			<string>18</string>
+			<string>17</string>
 			<key>startweek</key>
-			<string>Mon</string>
+			<string>Sun</string>
 			<key>endweek</key>
-			<string>Mon</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>National Grandparents Day</string>
-			<key>startdate</key>
-			<string>26</string>
-			<key>enddate</key>
-			<string>26</string>
-			<key>startweek</key>
-			<string>Mon</string>
-			<key>endweek</key>
-			<string>Mon</string>
+			<string>Sun</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -94,13 +80,27 @@
 			<key>value</key>
 			<string>Credit Transfer Application Begins</string>
 			<key>startdate</key>
-			<string>27</string>
+			<string>18</string>
 			<key>enddate</key>
-			<string>27</string>
+			<string>29</string>
 			<key>startweek</key>
 			<string>Mon</string>
 			<key>endweek</key>
-			<string>Mon</string>
+			<string>Fri</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>National Grandparents Day</string>
+			<key>startdate</key>
+			<string>24</string>
+			<key>enddate</key>
+			<string>24</string>
+			<key>startweek</key>
+			<string>Sun</string>
+			<key>endweek</key>
+			<string>Sun</string>
 		</dict>
 	</array>
 	<key>9</key>
@@ -109,15 +109,15 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Application Deadline for Credit Transfer</string>
+			<string>Orientation Week</string>
 			<key>startdate</key>
-			<string>7</string>
+			<string>6</string>
 			<key>enddate</key>
-			<string>7</string>
+			<string>13</string>
 			<key>startweek</key>
-			<string>Fri</string>
+			<string>Sat</string>
 			<key>endweek</key>
-			<string>Fri</string>
+			<string>Sat</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -125,9 +125,9 @@
 			<key>value</key>
 			<string>Summer Vacation Ends ; Dormitory Opens</string>
 			<key>startdate</key>
-			<string>8</string>
+			<string>6</string>
 			<key>enddate</key>
-			<string>8</string>
+			<string>6</string>
 			<key>startweek</key>
 			<string>Sat</string>
 			<key>endweek</key>
@@ -139,9 +139,9 @@
 			<key>value</key>
 			<string>Dormitory Opens</string>
 			<key>startdate</key>
-			<string>9</string>
+			<string>7</string>
 			<key>enddate</key>
-			<string>9</string>
+			<string>7</string>
 			<key>startweek</key>
 			<string>Sun</string>
 			<key>endweek</key>
@@ -151,11 +151,11 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Physical Examination for New Graduate Students, New Graduate Students in the Professional Development Programs and Freshmen in the Evening Division ; Application Deadline for Tuition Fee Loan and Registration for Freshmen in the Evening Division and New Graduate Students in the Professional Development Programs ; Orientation for New Graduate Students in the Professional Development Programs and Freshmen in the Evening Division ; Minority Aid Application Begins</string>
+			<string>Mid-Autumn Festival (Holiday)</string>
 			<key>startdate</key>
-			<string>10</string>
+			<string>8</string>
 			<key>enddate</key>
-			<string>10</string>
+			<string>8</string>
 			<key>startweek</key>
 			<string>Mon</string>
 			<key>endweek</key>
@@ -165,11 +165,11 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Registration and Course Selection Workshop for New Graduate Students in the Day Division ; Application Deadline for Tuition Fee Loan for New Graduate Students in the Day Division ; Physical Examination for Freshmen in the Day Division</string>
+			<string>Physical Examination for Newly-admitted Students</string>
 			<key>startdate</key>
-			<string>11</string>
+			<string>9</string>
 			<key>enddate</key>
-			<string>11</string>
+			<string>9</string>
 			<key>startweek</key>
 			<string>Tue</string>
 			<key>endweek</key>
@@ -179,11 +179,11 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Registration and Course Selection Workshop for Freshmen in the Day Division ; Application Deadline for Tuition Fee Loan for Freshmen</string>
+			<string>Reception and Registration for Newly-admitted Graduate Students in the Day Division ; Application Deadline for Tuition Fee Loan and Tuition Exemption or Reduction Application for Newly-admitted Graduate Students</string>
 			<key>startdate</key>
-			<string>12</string>
+			<string>10</string>
 			<key>enddate</key>
-			<string>12</string>
+			<string>10</string>
 			<key>startweek</key>
 			<string>Wed</string>
 			<key>endweek</key>
@@ -193,25 +193,25 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Orientation for New Students in the Day Division ; Online Course Selection (Session Three) for 1011 (for Continuing Students) Begins ; Online Course Selection for Freshmen Begins</string>
+			<string>Registration and Course Selection Workshop for Newly-admitted Undergraduate Students in the Day Division ; Application Deadline for Tuition Fee Loan and Tuition Exemption or Reduction Application for Newly-admitted Undergraduate Students in the Day Division</string>
 			<key>startdate</key>
-			<string>13</string>
+			<string>11</string>
 			<key>enddate</key>
-			<string>13</string>
+			<string>11</string>
 			<key>startweek</key>
-			<string>Thu</string>
+			<string>Thur</string>
 			<key>endweek</key>
-			<string>Thu</string>
+			<string>Thur</string>
 		</dict>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Safety Education for New Students ; Orientation for New Students in the Day Division</string>
+			<string>Safety Education for Newly-admitted Students</string>
 			<key>startdate</key>
-			<string>14</string>
+			<string>12</string>
 			<key>enddate</key>
-			<string>14</string>
+			<string>12</string>
 			<key>startweek</key>
 			<string>Fri</string>
 			<key>endweek</key>
@@ -223,9 +223,9 @@
 			<key>value</key>
 			<string>First Day of Classes for All Students</string>
 			<key>startdate</key>
-			<string>16</string>
+			<string>14</string>
 			<key>enddate</key>
-			<string>16</string>
+			<string>14</string>
 			<key>startweek</key>
 			<string>Sun</string>
 			<key>endweek</key>
@@ -235,11 +235,11 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Registration for Continuing Students ; NTOU Scholarship Application Begins</string>
+			<string>Minority Aid Application Begins</string>
 			<key>startdate</key>
-			<string>17</string>
+			<string>15</string>
 			<key>enddate</key>
-			<string>17</string>
+			<string>15</string>
 			<key>startweek</key>
 			<string>Mon</string>
 			<key>endweek</key>
@@ -249,11 +249,39 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Registration for Continuing Students ; Application Deadline for Tuition Fee Loan (for Continuing Students) ; Application Deadline for Tuition Exemption or Reduction</string>
+			<string>Registration for Continuing Students</string>
 			<key>startdate</key>
-			<string>18</string>
+			<string>15</string>
 			<key>enddate</key>
-			<string>18</string>
+			<string>16</string>
+			<key>startweek</key>
+			<string>Mon</string>
+			<key>endweek</key>
+			<string>Tue</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Online Course Selection (Session Three) for 1031 (for Continuing Students) Begins ; Online Course Selection for Newly-admitted Students Begins</string>
+			<key>startdate</key>
+			<string>15</string>
+			<key>enddate</key>
+			<string>26</string>
+			<key>startweek</key>
+			<string>Mon</string>
+			<key>endweek</key>
+			<string>Fri</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Deadline for Tuition Fee Loan and Tuition Exemption or Reduction Application</string>
+			<key>startdate</key>
+			<string>16</string>
+			<key>enddate</key>
+			<string>16</string>
 			<key>startweek</key>
 			<string>Tue</string>
 			<key>endweek</key>
@@ -265,51 +293,37 @@
 			<key>value</key>
 			<string>Late Registration for Students on Approved Leave on Registration Day</string>
 			<key>startdate</key>
-			<string>19</string>
+			<string>17</string>
 			<key>enddate</key>
-			<string>20</string>
+			<string>18</string>
 			<key>startweek</key>
 			<string>Wed</string>
 			<key>endweek</key>
-			<string>Thu</string>
+			<string>Thur</string>
 		</dict>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Online Course Selection (Session Three) for 1011 Ends (for Continuing Students) ;Online Course Selection for Freshmen Ends</string>
-			<key>startdate</key>
-			<string>21</string>
-			<key>enddate</key>
-			<string>21</string>
-			<key>startweek</key>
-			<string>Fri</string>
-			<key>endweek</key>
-			<string>Fri</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Application for Course Addition via Manpower and Application for Credit Overload</string>
+			<string>NTOU Scholarship Application Begins</string>
 			<key>startdate</key>
 			<string>22</string>
 			<key>enddate</key>
-			<string>28</string>
+			<string>22</string>
 			<key>startweek</key>
-			<string>Sat</string>
+			<string>Mon</string>
 			<key>endweek</key>
-			<string>Fri</string>
+			<string>Mon</string>
 		</dict>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Mid-Autumn Festival (No Deferred Holiday for National Holidays on Weekends)</string>
+			<string>Application for Course Addition via Manpower and Application for Credit Overload Begins</string>
 			<key>startdate</key>
-			<string>30</string>
+			<string>27</string>
 			<key>enddate</key>
-			<string>30</string>
+			<string>27</string>
 			<key>startweek</key>
 			<string>Sun</string>
 			<key>endweek</key>
@@ -322,11 +336,11 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Last Day of Confirmation of Online Course Selection Results</string>
+			<string>Application for Course Addition via Manpower and Application for Credit Overload Ends</string>
 			<key>startdate</key>
-			<string>5</string>
+			<string>3</string>
 			<key>enddate</key>
-			<string>5</string>
+			<string>3</string>
 			<key>startweek</key>
 			<string>Fri</string>
 			<key>endweek</key>
@@ -336,15 +350,43 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Double-Tenth Day (Holiday) ; Minority Aid Application Ends</string>
+			<string>Application for Five-Year Bachelor’s/Master’s Degree Program</string>
+			<key>startdate</key>
+			<string>6</string>
+			<key>enddate</key>
+			<string>13</string>
+			<key>startweek</key>
+			<string>Mon</string>
+			<key>endweek</key>
+			<string>Mon</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Double-Tenth Day (Holiday)</string>
 			<key>startdate</key>
 			<string>10</string>
 			<key>enddate</key>
 			<string>10</string>
 			<key>startweek</key>
-			<string>Wed</string>
+			<string>Fri</string>
 			<key>endweek</key>
-			<string>Wed</string>
+			<string>Fri</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Last Day of Confirmation of Online Course Selection Results;Minority Aid Application Ends</string>
+			<key>startdate</key>
+			<string>13</string>
+			<key>enddate</key>
+			<string>13</string>
+			<key>startweek</key>
+			<string>Mon</string>
+			<key>endweek</key>
+			<string>Mon</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -352,9 +394,9 @@
 			<key>value</key>
 			<string>NTOU Scholarship Application Ends</string>
 			<key>startdate</key>
-			<string>19</string>
+			<string>17</string>
 			<key>enddate</key>
-			<string>19</string>
+			<string>17</string>
 			<key>startweek</key>
 			<string>Fri</string>
 			<key>endweek</key>
@@ -364,29 +406,15 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>59th Anniversary Celebration and Land Sports Meet Day (All Staff, Faculty and Students Attendance Required)</string>
+			<string>61th Anniversary Celebration and Land Sports Meet Day</string>
 			<key>startdate</key>
-			<string>20</string>
+			<string>18</string>
 			<key>enddate</key>
-			<string>20</string>
+			<string>18</string>
 			<key>startweek</key>
 			<string>Sat</string>
 			<key>endweek</key>
 			<string>Sat</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Application for Master&apos;s Degree Examination</string>
-			<key>startdate</key>
-			<string>20</string>
-			<key>enddate</key>
-			<string>31</string>
-			<key>startweek</key>
-			<string>Sat</string>
-			<key>endweek</key>
-			<string>Wed</string>
 		</dict>
 	</array>
 	<key>11</key>
@@ -397,9 +425,9 @@
 			<key>value</key>
 			<string>Mid-Term Examination</string>
 			<key>startdate</key>
-			<string>11</string>
+			<string>9</string>
 			<key>enddate</key>
-			<string>17</string>
+			<string>15</string>
 			<key>startweek</key>
 			<string>Sun</string>
 			<key>endweek</key>
@@ -409,11 +437,25 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
+			<string>Department Transfer Application</string>
+			<key>startdate</key>
+			<string>12</string>
+			<key>enddate</key>
+			<string>21</string>
+			<key>startweek</key>
+			<string>Wed</string>
+			<key>endweek</key>
+			<string>Fei</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
 			<string>Due date for Credit Fees Payment</string>
 			<key>startdate</key>
-			<string>16</string>
+			<string>14</string>
 			<key>enddate</key>
-			<string>16</string>
+			<string>14</string>
 			<key>startweek</key>
 			<string>Fri</string>
 			<key>endweek</key>
@@ -423,29 +465,15 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>First Day of Entering Early Mid-Term Warnings</string>
+			<string>First Day of Entering Mid-Term Warnings ; Mid-Term Course Withdrawal Application Begins</string>
 			<key>startdate</key>
-			<string>19</string>
+			<string>17</string>
 			<key>enddate</key>
-			<string>19</string>
+			<string>17</string>
 			<key>startweek</key>
 			<string>Mon</string>
 			<key>endweek</key>
 			<string>Mon</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Mid-Term Course Withdrawal Application</string>
-			<key>startdate</key>
-			<string>19</string>
-			<key>enddate</key>
-			<string>30</string>
-			<key>startweek</key>
-			<string>Mon</string>
-			<key>endweek</key>
-			<string>Fri</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -453,27 +481,27 @@
 			<key>value</key>
 			<string>Second Semester Tuition Exemption or Reduction Application Begins</string>
 			<key>startdate</key>
-			<string>21</string>
+			<string>20</string>
 			<key>enddate</key>
-			<string>21</string>
+			<string>20</string>
 			<key>startweek</key>
-			<string>Wed</string>
+			<string>Thur</string>
 			<key>endweek</key>
-			<string>Wed</string>
+			<string>Thur</string>
 		</dict>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Application Deadline for Doctoral Degree Examination</string>
+			<string>Application Deadline for Master&apos;s Degree Examination and Doctoral Degree Examination</string>
 			<key>startdate</key>
 			<string>30</string>
 			<key>enddate</key>
 			<string>30</string>
 			<key>startweek</key>
-			<string>Fri</string>
+			<string>Sun</string>
 			<key>endweek</key>
-			<string>Fri</string>
+			<string>Sun</string>
 		</dict>
 	</array>
 	<key>12</key>
@@ -482,15 +510,29 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Deadline for Entering Early Mid-Term Warnings</string>
+			<string>Deadline for Entering Mid-Term Warnings</string>
+			<key>startdate</key>
+			<string>1</string>
+			<key>enddate</key>
+			<string>1</string>
+			<key>startweek</key>
+			<string>Mon</string>
+			<key>endweek</key>
+			<string>Mon</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Mid-Term Course Withdrawal Application Ends</string>
 			<key>startdate</key>
 			<string>3</string>
 			<key>enddate</key>
 			<string>3</string>
 			<key>startweek</key>
-			<string>Mon</string>
+			<string>Wed</string>
 			<key>endweek</key>
-			<string>Mon</string>
+			<string>Wed</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -498,79 +540,51 @@
 			<key>value</key>
 			<string>Second Semester Tuition Exemption or Reduction Application Ends</string>
 			<key>startdate</key>
-			<string>5</string>
+			<string>4</string>
 			<key>enddate</key>
-			<string>5</string>
+			<string>4</string>
 			<key>startweek</key>
-			<string>Wed</string>
+			<string>Thur</string>
 			<key>endweek</key>
-			<string>Wed</string>
+			<string>Thur</string>
 		</dict>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Online Course Selection for 1012 Begins (Session One)</string>
+			<string>Online Course Selection for 1032 (Session One)</string>
 			<key>startdate</key>
-			<string>7</string>
+			<string>5</string>
 			<key>enddate</key>
-			<string>7</string>
+			<string>11</string>
 			<key>startweek</key>
 			<string>Fri</string>
 			<key>endweek</key>
-			<string>Fri</string>
+			<string>Thur</string>
 		</dict>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Application for Minors and Double Majors Begins</string>
+			<string>Application for Minors and Double Majors</string>
 			<key>startdate</key>
-			<string>10</string>
+			<string>8</string>
 			<key>enddate</key>
-			<string>10</string>
+			<string>12</string>
 			<key>startweek</key>
 			<string>Mon</string>
 			<key>endweek</key>
-			<string>Mon</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Online Course Selection for 1012 Ends (Session One)</string>
-			<key>startdate</key>
-			<string>13</string>
-			<key>enddate</key>
-			<string>13</string>
-			<key>startweek</key>
-			<string>Thu</string>
-			<key>endweek</key>
-			<string>Thu</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Application Deadline for Minors and Double Majors</string>
-			<key>startdate</key>
-			<string>14</string>
-			<key>enddate</key>
-			<string>14</string>
-			<key>startweek</key>
-			<string>Fri</string>
-			<key>endweek</key>
 			<string>Fri</string>
 		</dict>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Online Course Selection Drawing (1012)</string>
+			<string>Online Course Selection Drawing (1032)</string>
 			<key>startdate</key>
+			<string>17</string>
+			<key>enddate</key>
 			<string>19</string>
-			<key>enddate</key>
-			<string>21</string>
 			<key>startweek</key>
 			<string>Wed</string>
 			<key>endweek</key>
@@ -580,15 +594,15 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>An Extended Holiday for Faculty and Staff</string>
+			<string>Bed Reservation Application for Continuing Students</string>
 			<key>startdate</key>
-			<string>31</string>
+			<string>22</string>
 			<key>enddate</key>
-			<string>31</string>
+			<string>26</string>
 			<key>startweek</key>
 			<string>Mon</string>
 			<key>endweek</key>
-			<string>Mon</string>
+			<string>Fri</string>
 		</dict>
 	</array>
 	<key>1</key>
@@ -603,33 +617,19 @@
 			<key>enddate</key>
 			<string>1</string>
 			<key>startweek</key>
-			<string>Tue</string>
+			<string>Thur</string>
 			<key>endweek</key>
-			<string>Tue</string>
+			<string>Thur</string>
 		</dict>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Application for Tuition Fee Loan Begins</string>
+			<string>A Deferred Holiday for 61th Anniversary Celebration</string>
 			<key>startdate</key>
-			<string>3</string>
+			<string>2</string>
 			<key>enddate</key>
-			<string>3</string>
-			<key>startweek</key>
-			<string>Thu</string>
-			<key>endweek</key>
-			<string>Thu</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Online Course Selection for 1012 Begins (Session Two)</string>
-			<key>startdate</key>
-			<string>4</string>
-			<key>enddate</key>
-			<string>4</string>
+			<string>2</string>
 			<key>startweek</key>
 			<string>Fri</string>
 			<key>endweek</key>
@@ -639,13 +639,27 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Online Course Selection for 1012 Ends (Session Two) ; Application Deadline for Suspension of Studies for 1011</string>
+			<string>Application Deadline for Suspension of Studies for 1031</string>
 			<key>startdate</key>
-			<string>11</string>
+			<string>9</string>
 			<key>enddate</key>
-			<string>11</string>
+			<string>9</string>
 			<key>startweek</key>
 			<string>Fri</string>
+			<key>endweek</key>
+			<string>Fri</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Online Course Selection for 1032 (Session Two)</string>
+			<key>startdate</key>
+			<string>5</string>
+			<key>enddate</key>
+			<string>9</string>
+			<key>startweek</key>
+			<string>Mon</string>
 			<key>endweek</key>
 			<string>Fri</string>
 		</dict>
@@ -655,9 +669,9 @@
 			<key>value</key>
 			<string>Final Exam</string>
 			<key>startdate</key>
-			<string>13</string>
+			<string>11</string>
 			<key>enddate</key>
-			<string>19</string>
+			<string>17</string>
 			<key>startweek</key>
 			<string>Sun</string>
 			<key>endweek</key>
@@ -667,11 +681,25 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Winter Vacation Begins ; Reserve Officer Exams in Late January</string>
+			<string>Application for Tuition Fee Loan Begins</string>
 			<key>startdate</key>
-			<string>20</string>
+			<string>15</string>
 			<key>enddate</key>
-			<string>20</string>
+			<string>15</string>
+			<key>startweek</key>
+			<string>Thur</string>
+			<key>endweek</key>
+			<string>Thur</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Winter Vacation Begins</string>
+			<key>startdate</key>
+			<string>18</string>
+			<key>enddate</key>
+			<string>18</string>
 			<key>startweek</key>
 			<string>Sun</string>
 			<key>endweek</key>
@@ -681,15 +709,15 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>First Semester Ends ; Thesis/Dissertation Submission Deadline for Postgraduate Students</string>
+			<string>First Semester Ends</string>
 			<key>startdate</key>
 			<string>31</string>
 			<key>enddate</key>
 			<string>31</string>
 			<key>startweek</key>
-			<string>Thu</string>
+			<string>Sat</string>
 			<key>endweek</key>
-			<string>Thu</string>
+			<string>Sat</string>
 		</dict>
 	</array>
 	<key>2</key>
@@ -704,6 +732,34 @@
 			<key>enddate</key>
 			<string>1</string>
 			<key>startweek</key>
+			<string>Sun</string>
+			<key>endweek</key>
+			<string>Sun</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Thesis/Dissertation Submission Deadline for Postgraduate Students</string>
+			<key>startdate</key>
+			<string>2</string>
+			<key>enddate</key>
+			<string>2</string>
+			<key>startweek</key>
+			<string>Mon</string>
+			<key>endweek</key>
+			<string>Mon</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Registartion for Returning Students</string>
+			<key>startdate</key>
+			<string>6</string>
+			<key>enddate</key>
+			<string>6</string>
+			<key>startweek</key>
 			<string>Fri</string>
 			<key>endweek</key>
 			<string>Fri</string>
@@ -712,15 +768,15 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Registration for Returning Students</string>
+			<string>Registartion for Newly-adimitted students</string>
 			<key>startdate</key>
-			<string>4</string>
+			<string>10</string>
 			<key>enddate</key>
-			<string>4</string>
+			<string>10</string>
 			<key>startweek</key>
-			<string>Mon</string>
+			<string>Tue</string>
 			<key>endweek</key>
-			<string>Mon</string>
+			<string>Tue</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -728,25 +784,11 @@
 			<key>value</key>
 			<string>Dormitory Partially Closed</string>
 			<key>startdate</key>
-			<string>4</string>
+			<string>13</string>
 			<key>enddate</key>
-			<string>16</string>
+			<string>20</string>
 			<key>startweek</key>
-			<string>Mon</string>
-			<key>endweek</key>
-			<string>Sat</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>An Extended Holiday for Faculty and Staff</string>
-			<key>startdate</key>
-			<string>8</string>
-			<key>enddate</key>
-			<string>8</string>
-			<key>startweek</key>
-			<string>Fir</string>
+			<string>Fri</string>
 			<key>endweek</key>
 			<string>Fri</string>
 		</dict>
@@ -756,27 +798,13 @@
 			<key>value</key>
 			<string>Chinese New Year (Holiday)</string>
 			<key>startdate</key>
-			<string>9</string>
+			<string>16</string>
 			<key>enddate</key>
-			<string>14</string>
+			<string>23</string>
 			<key>startweek</key>
-			<string>Sat</string>
+			<string>Mon</string>
 			<key>endweek</key>
-			<string>Thu</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>An Extended Holiday for Faculty and Staff</string>
-			<key>startdate</key>
-			<string>15</string>
-			<key>enddate</key>
-			<string>15</string>
-			<key>startweek</key>
-			<string>Fri</string>
-			<key>endweek</key>
-			<string>Fri</string>
+			<string>Mon</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -784,9 +812,9 @@
 			<key>value</key>
 			<string>Winter Vacation Ends</string>
 			<key>startdate</key>
-			<string>16</string>
+			<string>21</string>
 			<key>enddate</key>
-			<string>16</string>
+			<string>21</string>
 			<key>startweek</key>
 			<string>Sat</string>
 			<key>endweek</key>
@@ -796,15 +824,15 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Classes Begin for All Students</string>
+			<string>Classes Begin for All Students;Online Course Selection for 1032 (Session Three) Begins</string>
 			<key>startdate</key>
-			<string>17</string>
+			<string>24</string>
 			<key>enddate</key>
-			<string>17</string>
+			<string>24</string>
 			<key>startweek</key>
-			<string>Sun</string>
+			<string>Tue</string>
 			<key>endweek</key>
-			<string>Sun</string>
+			<string>Tue</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -812,41 +840,27 @@
 			<key>value</key>
 			<string>Registration</string>
 			<key>startdate</key>
-			<string>18</string>
-			<key>enddate</key>
-			<string>19</string>
-			<key>startweek</key>
-			<string>Mon</string>
-			<key>endweek</key>
-			<string>Tue</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Online Course Selection for 1012 (Session Three)</string>
-			<key>startdate</key>
-			<string>18</string>
+			<string>24</string>
 			<key>enddate</key>
 			<string>25</string>
 			<key>startweek</key>
-			<string>Mon</string>
+			<string>Tue</string>
 			<key>endweek</key>
-			<string>Mon</string>
+			<string>Wed</string>
 		</dict>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Application Deadline for Tuition Fee Loan</string>
+			<string>Application Deadline for Tuition Fee Loan and Tuition Exemption or Reduction</string>
 			<key>startdate</key>
-			<string>19</string>
+			<string>25</string>
 			<key>enddate</key>
-			<string>19</string>
+			<string>25</string>
 			<key>startweek</key>
-			<string>Tue</string>
+			<string>Wed</string>
 			<key>endweek</key>
-			<string>Tue</string>
+			<string>Wed</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -854,25 +868,25 @@
 			<key>value</key>
 			<string>Late Registration for Students on Approved Leave on Registration Day</string>
 			<key>startdate</key>
-			<string>20</string>
+			<string>26</string>
 			<key>enddate</key>
-			<string>21</string>
+			<string>26</string>
 			<key>startweek</key>
-			<string>Wed</string>
+			<string>Thur</string>
 			<key>endweek</key>
-			<string>Thu</string>
+			<string>Thur</string>
 		</dict>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Application for Course Addition via Manpower and Application for Credit Overload Begin</string>
+			<string>A Deferred Holiday for Peace Memorial Day</string>
 			<key>startdate</key>
-			<string>26</string>
+			<string>27</string>
 			<key>enddate</key>
-			<string>8</string>
+			<string>27</string>
 			<key>startweek</key>
-			<string>Tue</string>
+			<string>Fri</string>
 			<key>endweek</key>
 			<string>Fri</string>
 		</dict>
@@ -886,9 +900,9 @@
 			<key>enddate</key>
 			<string>28</string>
 			<key>startweek</key>
-			<string>Thu</string>
+			<string>Sat</string>
 			<key>endweek</key>
-			<string>Thu</string>
+			<string>Sat</string>
 		</dict>
 	</array>
 	<key>3</key>
@@ -897,15 +911,15 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Activities to Enhance Family Intimacy (An Extended Holiday for Faculty and Staff)</string>
+			<string>Application for Dormitory Drawing</string>
 			<key>startdate</key>
 			<string>1</string>
 			<key>enddate</key>
-			<string>1</string>
+			<string>14</string>
 			<key>startweek</key>
-			<string>Fri</string>
+			<string>Sun</string>
 			<key>endweek</key>
-			<string>Fri</string>
+			<string>Sat</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -913,9 +927,9 @@
 			<key>value</key>
 			<string>NTOU Scholarship Application Begins</string>
 			<key>startdate</key>
-			<string>4</string>
+			<string>2</string>
 			<key>enddate</key>
-			<string>4</string>
+			<string>2</string>
 			<key>startweek</key>
 			<string>Mon</string>
 			<key>endweek</key>
@@ -925,11 +939,11 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Application Deadline for Course Addition via Manpower and Application Deadline for Credit Overload</string>
+			<string>Online Course Selection for 1032 (Session Three) Ends</string>
 			<key>startdate</key>
-			<string>8</string>
+			<string>6</string>
 			<key>enddate</key>
-			<string>8</string>
+			<string>6</string>
 			<key>startweek</key>
 			<string>Fir</string>
 			<key>endweek</key>
@@ -939,15 +953,29 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Bed Reservation Application for Continuing Students</string>
+			<string>Application for Course Addition via Manpower and Application for Credit Overload</string>
 			<key>startdate</key>
-			<string>14</string>
+			<string>7</string>
 			<key>enddate</key>
-			<string>19</string>
+			<string>13</string>
 			<key>startweek</key>
-			<string>Thu</string>
+			<string>Sat</string>
 			<key>endweek</key>
-			<string>Tue</string>
+			<string>Fri</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Application for Five-Year Bachelor’s/Master’s Degree Program</string>
+			<key>startdate</key>
+			<string>16</string>
+			<key>enddate</key>
+			<string>20</string>
+			<key>startweek</key>
+			<string>Mon</string>
+			<key>endweek</key>
+			<string>Fri</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -955,27 +983,13 @@
 			<key>value</key>
 			<string>Last Day of Confirmation of Online Course Selection Results</string>
 			<key>startdate</key>
-			<string>15</string>
+			<string>20</string>
 			<key>enddate</key>
-			<string>15</string>
+			<string>20</string>
 			<key>startweek</key>
 			<string>Fri</string>
 			<key>endweek</key>
 			<string>Fri</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Unified Chinese and English Proficiency Exam</string>
-			<key>startdate</key>
-			<string>16</string>
-			<key>enddate</key>
-			<string>16</string>
-			<key>startweek</key>
-			<string>Sat</string>
-			<key>endweek</key>
-			<string>Sat</string>
 		</dict>
 	</array>
 	<key>4</key>
@@ -984,29 +998,57 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>NTOU Scholarship Application Ends</string>
+			<string>Activities to Enhance Family Intimacy (An Extended Holiday for Faculty and Staff;) NTOU Scholarship Application Ends</string>
 			<key>startdate</key>
-			<string>3</string>
+			<string>2</string>
 			<key>enddate</key>
-			<string>3</string>
+			<string>2</string>
 			<key>startweek</key>
-			<string>Wed</string>
+			<string>Thur</string>
 			<key>endweek</key>
-			<string>Wed</string>
+			<string>Thur</string>
 		</dict>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Children&apos; s Day and Tomb-Sweeping Festival (Holiday)</string>
+			<string>A Deferred Holiday for Children&apos; s Day</string>
+			<key>startdate</key>
+			<string>3</string>
+			<key>enddate</key>
+			<string>3</string>
+			<key>startweek</key>
+			<string>Fri</string>
+			<key>endweek</key>
+			<string>Fri</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Children&apos; s Day (Holiday)</string>
 			<key>startdate</key>
 			<string>4</string>
 			<key>enddate</key>
 			<string>4</string>
 			<key>startweek</key>
-			<string>Thu</string>
+			<string>Sat</string>
 			<key>endweek</key>
-			<string>Thu</string>
+			<string>Sat</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Tomb-Sweeping Festival</string>
+			<key>startdate</key>
+			<string>5</string>
+			<key>enddate</key>
+			<string>5</string>
+			<key>startweek</key>
+			<string>Sun</string>
+			<key>endweek</key>
+			<string>Sun</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -1014,53 +1056,11 @@
 			<key>value</key>
 			<string>Activities to Enhance Family Intimacy (An Extended Holiday for Faculty and Staff)</string>
 			<key>startdate</key>
-			<string>5</string>
+			<string>7</string>
 			<key>enddate</key>
-			<string>5</string>
+			<string>7</string>
 			<key>startweek</key>
-			<string>Fri</string>
-			<key>endweek</key>
-			<string>Fri</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Mid-Term Examination</string>
-			<key>startdate</key>
-			<string>14</string>
-			<key>enddate</key>
-			<string>20</string>
-			<key>startweek</key>
-			<string>Sun</string>
-			<key>endweek</key>
-			<string>Sat</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Due Date for Credit Fees Payment</string>
-			<key>startdate</key>
-			<string>19</string>
-			<key>enddate</key>
-			<string>19</string>
-			<key>startweek</key>
-			<string>Fri</string>
-			<key>endweek</key>
-			<string>Fri</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Application for Master&apos; s Degree Examination</string>
-			<key>startdate</key>
-			<string>20</string>
-			<key>enddate</key>
-			<string>30</string>
-			<key>startweek</key>
-			<string>Sat</string>
+			<string>Tue</string>
 			<key>endweek</key>
 			<string>Tue</string>
 		</dict>
@@ -1068,57 +1068,85 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>First Day of Entering Early Mid-Term Warnings ; Mid-Term Course Withdrawal Application Begins ; Application for Teacher Education Program Begins</string>
+			<string>Mid-Term Examination</string>
 			<key>startdate</key>
-			<string>22</string>
+			<string>21</string>
 			<key>enddate</key>
-			<string>22</string>
+			<string>27</string>
 			<key>startweek</key>
-			<string>Mon</string>
+			<string>Wed</string>
 			<key>endweek</key>
-			<string>Mon</string>
+			<string>Tue</string>
 		</dict>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Department Transfer Application</string>
+			<string>Application for Department Transfer Begins</string>
 			<key>startdate</key>
 			<string>22</string>
 			<key>enddate</key>
-			<string>26</string>
+			<string>22</string>
 			<key>startweek</key>
-			<string>Mon</string>
+			<string>Thur</string>
+			<key>endweek</key>
+			<string>Thur</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Due Date for Credit Fees Payment</string>
+			<key>startdate</key>
+			<string>24</string>
+			<key>enddate</key>
+			<string>24</string>
+			<key>startweek</key>
+			<string>Sat</string>
+			<key>endweek</key>
+			<string>Sat</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Application for Teacher Education Program Begins</string>
+			<key>startdate</key>
+			<string>27</string>
+			<key>enddate</key>
+			<string>27</string>
+			<key>startweek</key>
+			<string>Tue</string>
+			<key>endweek</key>
+			<string>Tue</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Mid-Term Course Withdrawal Application Begins</string>
+			<key>startdate</key>
+			<string>28</string>
+			<key>enddate</key>
+			<string>28</string>
+			<key>startweek</key>
+			<string>Wed</string>
+			<key>endweek</key>
+			<string>Wed</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Firefly Festival Begins</string>
+			<key>startdate</key>
+			<string>30</string>
+			<key>enddate</key>
+			<string>30</string>
+			<key>startweek</key>
+			<string>Fri</string>
 			<key>endweek</key>
 			<string>Fri</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Dormitory Drawing Application (for Continuing Students)</string>
-			<key>startdate</key>
-			<string>22</string>
-			<key>enddate</key>
-			<string>25</string>
-			<key>startweek</key>
-			<string>Mon</string>
-			<key>endweek</key>
-			<string>Thu</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Second Semester Tuition Exemption or Reduction Application Begins</string>
-			<key>startdate</key>
-			<string>29</string>
-			<key>enddate</key>
-			<string>29</string>
-			<key>startweek</key>
-			<string>Mon</string>
-			<key>endweek</key>
-			<string>Mon</string>
 		</dict>
 	</array>
 	<key>5</key>
@@ -1127,53 +1155,11 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Application for Change of Department Transfer</string>
+			<string>Application for Department Transfer Ends</string>
 			<key>startdate</key>
-			<string>2</string>
+			<string>1</string>
 			<key>enddate</key>
-			<string>3</string>
-			<key>startweek</key>
-			<string>Thu</string>
-			<key>endweek</key>
-			<string>Fri</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Mid-Term Course Withdrawal Application Ends ; Application Deadline for Teacher Education Program</string>
-			<key>startdate</key>
-			<string>2</string>
-			<key>enddate</key>
-			<string>3</string>
-			<key>startweek</key>
-			<string>Thu</string>
-			<key>endweek</key>
-			<string>Fri</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Deadline for Entering Early Mid-Term Warnings</string>
-			<key>startdate</key>
-			<string>6</string>
-			<key>enddate</key>
-			<string>6</string>
-			<key>startweek</key>
-			<string>Mon</string>
-			<key>endweek</key>
-			<string>Mon</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Second Semester Tuition Exemption or Reduction Application Ends</string>
-			<key>startdate</key>
-			<string>10</string>
-			<key>enddate</key>
-			<string>10</string>
+			<string>1</string>
 			<key>startweek</key>
 			<string>Fri</string>
 			<key>endweek</key>
@@ -1183,39 +1169,11 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Online Course Selection for 1021 (Session One)</string>
+			<string>Application for Teacher Education Program Ends;Firefly Festival Ends</string>
 			<key>startdate</key>
-			<string>10</string>
+			<string>8</string>
 			<key>enddate</key>
-			<string>16</string>
-			<key>startweek</key>
-			<string>Fri</string>
-			<key>endweek</key>
-			<string>Thu</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Registration for First Summer Session</string>
-			<key>startdate</key>
-			<string>13</string>
-			<key>enddate</key>
-			<string>17</string>
-			<key>startweek</key>
-			<string>Mon</string>
-			<key>endweek</key>
-			<string>Fri</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Department Transfer Exam</string>
-			<key>startdate</key>
-			<string>17</string>
-			<key>enddate</key>
-			<string>17</string>
+			<string>8</string>
 			<key>startweek</key>
 			<string>Fri</string>
 			<key>endweek</key>
@@ -1225,27 +1183,41 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Graduation Exam</string>
+			<string>Mid-Term Course Withdrawal Application Ends</string>
 			<key>startdate</key>
-			<string>19</string>
+			<string>14</string>
 			<key>enddate</key>
-			<string>25</string>
+			<string>14</string>
 			<key>startweek</key>
-			<string>Sun</string>
+			<string>Thur</string>
 			<key>endweek</key>
-			<string>Sat</string>
+			<string>Thur</string>
 		</dict>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Online Course Selection Drawing</string>
+			<string>Online Course Selection for 1041 (Session One)</string>
 			<key>startdate</key>
+			<string>15</string>
+			<key>enddate</key>
+			<string>21</string>
+			<key>startweek</key>
+			<string>Fri</string>
+			<key>endweek</key>
+			<string>Thur</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Application for Minors and Double Majors ; Registration for First Summer Session</string>
+			<key>startdate</key>
+			<string>18</string>
+			<key>enddate</key>
 			<string>22</string>
-			<key>enddate</key>
-			<string>24</string>
 			<key>startweek</key>
-			<string>Wed</string>
+			<string>Mon</string>
 			<key>endweek</key>
 			<string>Fri</string>
 		</dict>
@@ -1255,9 +1227,9 @@
 			<key>value</key>
 			<string>Application for Dormitory during Summer Vacation</string>
 			<key>startdate</key>
-			<string>27</string>
+			<string>25</string>
 			<key>enddate</key>
-			<string>31</string>
+			<string>29</string>
 			<key>startweek</key>
 			<string>Mon</string>
 			<key>endweek</key>
@@ -1265,31 +1237,45 @@
 		</dict>
 		<dict>
 			<key>cross</key>
-			<string>no</string>
+			<string>yes</string>
 			<key>value</key>
-			<string>Water Sports Meet Day</string>
+			<string>Graduation Exam</string>
 			<key>startdate</key>
-			<string>30</string>
+			<string>26</string>
 			<key>enddate</key>
-			<string>30</string>
+			<string>1</string>
 			<key>startweek</key>
-			<string>Thu</string>
+			<string>Tue</string>
 			<key>endweek</key>
-			<string>Thu</string>
+			<string>Mon</string>
 		</dict>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Application for Doctoral Degree Exam Ends</string>
+			<string>Online Course Selection Drawing (1041)</string>
+			<key>startdate</key>
+			<string>27</string>
+			<key>enddate</key>
+			<string>29</string>
+			<key>startweek</key>
+			<string>Wed</string>
+			<key>endweek</key>
+			<string>Fri</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Application for Master&apos;s and Doctoral Degree Exam Ends</string>
 			<key>startdate</key>
 			<string>31</string>
 			<key>enddate</key>
 			<string>31</string>
 			<key>startweek</key>
-			<string>Fri</string>
+			<string>Sun</string>
 			<key>endweek</key>
-			<string>Fri</string>
+			<string>Sun</string>
 		</dict>
 	</array>
 	<key>6</key>
@@ -1298,15 +1284,29 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Online Course Selection for 1021(Session Two)</string>
+			<string>Water Sports Meet Day</string>
 			<key>startdate</key>
-			<string>5</string>
+			<string>4</string>
 			<key>enddate</key>
-			<string>14</string>
+			<string>4</string>
 			<key>startweek</key>
-			<string>Wed</string>
+			<string>Thur</string>
 			<key>endweek</key>
-			<string>Fri</string>
+			<string>Thur</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Online Course Selection for 1041(Session Two)</string>
+			<key>startdate</key>
+			<string>11</string>
+			<key>enddate</key>
+			<string>17</string>
+			<key>startweek</key>
+			<string>Thur</string>
+			<key>endweek</key>
+			<string>Wed</string>
 		</dict>
 		<dict>
 			<key>cross</key>
@@ -1314,53 +1314,11 @@
 			<key>value</key>
 			<string>Commencement (Offices Open)</string>
 			<key>startdate</key>
-			<string>8</string>
+			<string>13</string>
 			<key>enddate</key>
-			<string>8</string>
+			<string>13</string>
 			<key>startweek</key>
 			<string>Sat</string>
-			<key>endweek</key>
-			<string>Sat</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Dragon Boat Festival (Holiday)</string>
-			<key>startdate</key>
-			<string>12</string>
-			<key>enddate</key>
-			<string>12</string>
-			<key>startweek</key>
-			<string>Wed</string>
-			<key>endweek</key>
-			<string>Wed</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Application Deadline for Suspension of Studies for 1012</string>
-			<key>startdate</key>
-			<string>14</string>
-			<key>enddate</key>
-			<string>14</string>
-			<key>startweek</key>
-			<string>Fri</string>
-			<key>endweek</key>
-			<string>Fri</string>
-		</dict>
-		<dict>
-			<key>cross</key>
-			<string>no</string>
-			<key>value</key>
-			<string>Final Exam</string>
-			<key>startdate</key>
-			<string>16</string>
-			<key>enddate</key>
-			<string>22</string>
-			<key>startweek</key>
-			<string>Sun</string>
 			<key>endweek</key>
 			<string>Sat</string>
 		</dict>
@@ -1370,9 +1328,9 @@
 			<key>value</key>
 			<string>Application for Dormitory during Summer Vacation (for New Graduate Students)</string>
 			<key>startdate</key>
-			<string>17</string>
+			<string>15</string>
 			<key>enddate</key>
-			<string>21</string>
+			<string>19</string>
 			<key>startweek</key>
 			<string>Mon</string>
 			<key>endweek</key>
@@ -1382,43 +1340,85 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Summer Vacation Begins</string>
+			<string>A Deferred Holiday for Commencement</string>
 			<key>startdate</key>
-			<string>23</string>
+			<string>18</string>
 			<key>enddate</key>
-			<string>23</string>
+			<string>18</string>
 			<key>startweek</key>
-			<string>Sun</string>
+			<string>Thur</string>
 			<key>endweek</key>
-			<string>Sun</string>
+			<string>Thur</string>
 		</dict>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Dormitory Closing</string>
+			<string>A Deferred Holiday for Dragon Boat Festival</string>
 			<key>startdate</key>
-			<string>28</string>
+			<string>19</string>
 			<key>enddate</key>
-			<string>29</string>
+			<string>19</string>
 			<key>startweek</key>
 			<string>Fri</string>
 			<key>endweek</key>
+			<string>Fri</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Dragon Boat Festival</string>
+			<key>startdate</key>
+			<string>20</string>
+			<key>enddate</key>
+			<string>20</string>
+			<key>startweek</key>
+			<string>Sat</string>
+			<key>endweek</key>
 			<string>Sat</string>
 		</dict>
 		<dict>
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Dormitory Opens for Summer Residents</string>
+			<string>Application Deadline for Suspension of Studies for 1032</string>
 			<key>startdate</key>
-			<string>29</string>
+			<string>22</string>
+			<key>enddate</key>
+			<string>22</string>
+			<key>startweek</key>
+			<string>Mon</string>
+			<key>endweek</key>
+			<string>Mon</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Final Exam</string>
+			<key>startdate</key>
+			<string>23</string>
 			<key>enddate</key>
 			<string>29</string>
 			<key>startweek</key>
-			<string>Sat</string>
+			<string>Tue</string>
 			<key>endweek</key>
-			<string>Sat</string>
+			<string>Mon</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Summer Vacation Begins</string>
+			<key>startdate</key>
+			<string>30</string>
+			<key>enddate</key>
+			<string>30</string>
+			<key>startweek</key>
+			<string>Tue</string>
+			<key>endweek</key>
+			<string>Tue</string>
 		</dict>
 	</array>
 	<key>7</key>
@@ -1427,11 +1427,39 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Classes Begin for First Summer Session；Second Semester Tuition Exemption or Reduction Application (Second Session) Begins</string>
+			<string>Dormitory Closing</string>
 			<key>startdate</key>
-			<string>8</string>
+			<string>4</string>
 			<key>enddate</key>
-			<string>8</string>
+			<string>5</string>
+			<key>startweek</key>
+			<string>Sat</string>
+			<key>endweek</key>
+			<string>Sun</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Dormitory Opens for Summer Residents</string>
+			<key>startdate</key>
+			<string>5</string>
+			<key>enddate</key>
+			<string>5</string>
+			<key>startweek</key>
+			<string>Sun</string>
+			<key>endweek</key>
+			<string>Sun</string>
+		</dict>
+		<dict>
+			<key>cross</key>
+			<string>no</string>
+			<key>value</key>
+			<string>Classes Begin for First Summer Session</string>
+			<key>startdate</key>
+			<string>6</string>
+			<key>enddate</key>
+			<string>6</string>
 			<key>startweek</key>
 			<string>Mon</string>
 			<key>endweek</key>
@@ -1443,9 +1471,9 @@
 			<key>value</key>
 			<string>Registration for Second Summer Session</string>
 			<key>startdate</key>
-			<string>8</string>
+			<string>6</string>
 			<key>enddate</key>
-			<string>12</string>
+			<string>10</string>
 			<key>startweek</key>
 			<string>Mon</string>
 			<key>endweek</key>
@@ -1457,11 +1485,11 @@
 			<key>value</key>
 			<string>Bed Reservation Application for New Graduate Students</string>
 			<key>startdate</key>
-			<string>18</string>
+			<string>16</string>
 			<key>enddate</key>
-			<string>24</string>
+			<string>22</string>
 			<key>startweek</key>
-			<string>Thu</string>
+			<string>Thur</string>
 			<key>endweek</key>
 			<string>Wed</string>
 		</dict>
@@ -1469,15 +1497,15 @@
 			<key>cross</key>
 			<string>no</string>
 			<key>value</key>
-			<string>Second Semester Ends；Thesis/Dissertation Submission Deadline for Postgraduate Students</string>
+			<string>Second Semester Ends;Thesis/Dissertation Submission Deadline for Postgraduate Students</string>
 			<key>startdate</key>
 			<string>31</string>
 			<key>enddate</key>
 			<string>31</string>
 			<key>startweek</key>
-			<string>Wed</string>
+			<string>Fri</string>
 			<key>endweek</key>
-			<string>Wed</string>
+			<string>Fri</string>
 		</dict>
 	</array>
 </dict>

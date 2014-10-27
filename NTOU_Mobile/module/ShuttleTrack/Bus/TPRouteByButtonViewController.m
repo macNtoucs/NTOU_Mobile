@@ -1,6 +1,7 @@
 //
 //  TPRouteByButtonViewController.m
 //  bus
+//  公車號碼查詢按鈕
 //
 //  Created by NTOUCS on 12/10/30.
 //
@@ -560,7 +561,7 @@
     [self.view addSubview:tableview];
 }
 
-int finderSortWithLocale(id string1, id string2, void *locale)
+NSInteger finderSortWithLocale(id string1, id string2, void *locale)
 {
     static NSStringCompareOptions comparisonOptions = NSCaseInsensitiveSearch|NSNumericSearch|NSWidthInsensitiveSearch|NSForcedOrderingSearch;
     NSRange string1Range = NSMakeRange(0, [string1 length]);
@@ -624,11 +625,11 @@ int finderSortWithLocale(id string1, id string2, void *locale)
         }
         [rs close];
         
-        arrayTaipeiBus = [testT sortedArrayUsingFunction:finderSortWithLocale context:[NSLocale currentLocale]];
+        arrayTaipeiBus = [[NSMutableArray alloc]initWithArray:[testT sortedArrayUsingFunction:finderSortWithLocale context:[NSLocale currentLocale]] ];
         
-        arrayNewTaipeiBus = [testN sortedArrayUsingFunction:finderSortWithLocale context:[NSLocale currentLocale]];
+        arrayNewTaipeiBus = [[NSMutableArray alloc]initWithArray:[testN sortedArrayUsingFunction:finderSortWithLocale context:[NSLocale currentLocale]]];
         
-        arrayKeelungBus = [testK sortedArrayUsingFunction:finderSortWithLocale context:[NSLocale currentLocale]];
+        arrayKeelungBus = [[NSMutableArray alloc]initWithArray:[testK sortedArrayUsingFunction:finderSortWithLocale context:[NSLocale currentLocale]]];
         
         // end natural sorting
         
@@ -698,6 +699,32 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     });
     
 }
+
+//清除arrayTaipeiBus, arrayNewTaipeiBus, arrayKeelungBus的資料，以便於下次搜尋時新增Table不會用錯資料。
+-(void)cleanArrayBusData
+{
+    NSLog(@"TCount=%lu\n",[arrayTaipeiBus count]);
+    NSLog(@"TNCount=%lu\n",[arrayNewTaipeiBus count]);
+    NSLog(@"KLCount=%lu\n",[arrayKeelungBus count]);
+    if ([arrayTaipeiBus count]>0) {
+        [arrayTaipeiBus removeAllObjects];
+        //[arrayTaipeiBus retain];
+        //NSLog(@"2retainCount=%lu\n",[arrayTaipeiBus retainCount]);
+    }
+    
+    if ([arrayNewTaipeiBus count]>0) {
+        [arrayNewTaipeiBus removeAllObjects];
+        //[arrayNewTaipeiBus retain];
+        //NSLog(@"retainCount=%lu\n",[arrayNewTaipeiBus retainCount]);
+    }
+    
+    if ([arrayKeelungBus count]>0) {
+        [arrayKeelungBus removeAllObjects];
+        //[arrayKeelungBus retain];
+        //NSLog(@"retainCount=%lu\n",[arrayKeelungBus retainCount]);
+    }
+}
+
 
 - (void)buttonClicked:(id)sender
 {
@@ -855,10 +882,26 @@ int finderSortWithLocale(id string1, id string2, void *locale)
             });
             break;
         case 34: //重設
+            //*
+            [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DefaultAlpha.png"]];
+            havingTableView = NO;
+            [tableview removeFromSuperview];
+            [self cleanArrayBusData];
+            //*/
+            /*
+            //fix 因為常用列表而table生成過快，arrayTaipeiBus arrayNewTaipeiBus arrayKeelungBus來不及更新資料導致overflow
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             havingTableView = NO;
             [tableview removeFromSuperview];
+            [self cleanArrayBusData];
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [self showTableViewContent];
+            });
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DefaultAlpha.png"]];
+            /*/
+            
             break;
         case 35:    // Delete
             if ([partBusName length] > 1)
@@ -870,11 +913,25 @@ int finderSortWithLocale(id string1, id string2, void *locale)
             }
             else
             {
+                
                 if ([partBusName length] > 0)
                     [partBusName deleteCharactersInRange:NSMakeRange([partBusName length]-1, 1)];
+                //*
                 self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DefaultAlpha.png"]];
                 havingTableView = NO;
                 [tableview removeFromSuperview];
+                [self cleanArrayBusData];
+                //*/
+                /*
+                [tableview removeFromSuperview];
+                [self cleanArrayBusData];
+                havingTableView = NO;
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    [self showTableViewContent];
+                });
+                self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DefaultAlpha.png"]];
+                /*/
+                
             }
             break;
         case 211:
@@ -970,7 +1027,7 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     partBusNameLabel.text = partBusName;
 }
 
-- (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 0)
     {
@@ -1042,15 +1099,15 @@ int finderSortWithLocale(id string1, id string2, void *locale)
     }
 }
 
-- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat rowHeight = 0;
     UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
     CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
     NSString *cellText = nil;
-    
+    //UILineBreakModeWordWrap
     cellText = @"A"; // just something to guarantee one line
-    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
     //rowHeight = labelSize.height + 20.0f;
     //rowHeight = labelSize.height + 25.0f;
     rowHeight = 44.0f;

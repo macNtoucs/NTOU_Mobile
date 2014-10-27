@@ -66,8 +66,11 @@
     NSDictionary *list = [[NSDictionary alloc] initWithContentsOfFile:path];
     self.events = list;
     
+    
+    
     NSArray *array = [[NSArray alloc] initWithObjects:@"8",@"9",@"10",@"11",@"12",@"1",@"2",@"3",@"4",@"5",@"6",@"7", nil];
     self.keys = array;
+    
     
     self.actionToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 416, 320, 44)];
     
@@ -101,22 +104,24 @@
     
     downLoadEditing = NO;
     
+    
     [self.tableView reloadData];
     
     [self scrolltableview];
 }
-
+//自動滾動到當前月份
 -(void)scrolltableview
 {
     NSCalendar * calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDate *today = [NSDate date];
-    NSDateComponents *dateComponents = [calendar components:(NSWeekdayCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSWeekCalendarUnit) fromDate:today];
+    NSDateComponents *dateComponents = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:today];
+    //[calendar components:(NSWeekdayCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSWeekCalendarUnit) fromDate:today];
     NSInteger month = [dateComponents month];
     if(month >= 8)
         month -= 8;
     else
         month += 4;
-    
+    [self.searchDisplayController.searchResultsTableView setContentOffset:CGPointZero];
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:month] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
@@ -359,7 +364,7 @@
     CGFloat height = 33.0 + size.height;
     return height;
 }
-
+//右方索引條
 -(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
     return keys;
@@ -719,5 +724,12 @@
         [userDefaults synchronize];
     }
 }
+
+//ios8 defaule is 0
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 20;
+}
+
 
 @end

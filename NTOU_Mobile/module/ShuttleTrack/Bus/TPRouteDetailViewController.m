@@ -330,7 +330,7 @@
         return [preArray count];
 }
 
-- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat rowHeight = 0;
     UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
@@ -338,7 +338,7 @@
     NSString *cellText = nil;
     
     cellText = @"A"; // just something to guarantee one line
-    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByCharWrapping];
     //rowHeight = labelSize.height + 20.0f;
     //rowHeight = labelSize.height + 25.0f;
     rowHeight = 44.0f;
