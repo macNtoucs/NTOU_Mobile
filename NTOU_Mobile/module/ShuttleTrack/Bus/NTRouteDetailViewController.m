@@ -70,27 +70,39 @@
     
     NSURL * url=[NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/NTRouteDetail_5284.php?bus=%@&goBack=%@", encodedBus, goBack]];
     
-    NSData *data=[NSData dataWithContentsOfURL:url];
-    
+
     NSError *error;
     
-    NSMutableDictionary  *stationInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
+    //NSData *data = [NSData dataWithContentsOfURL:url];
+    NSData *data = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:&error];
+    //NSLog(@"data=%@", data);
     
-    if([stationInfo[@"stationInfo"]  isKindOfClass:[NSNull class]])
+    if (data)
     {
-        [stops addObject:@"更新中，暫無資料"];
-        [m_waitTimeResult addObject:@"請稍候再試"];
-    }
-    else
-    {
-        NSArray * responseArr = stationInfo[@"stationInfo"];
-        for(NSDictionary * dict in responseArr)
+        
+        NSMutableDictionary  *stationInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
+    
+        if([stationInfo[@"stationInfo"]  isKindOfClass:[NSNull class]])
         {
-            [stops addObject:[dict valueForKey:@"name"]];
-            [m_waitTimeResult addObject:[dict valueForKey:@"time"]];
+            [stops addObject:@"更新中，暫無資料"];
+            [m_waitTimeResult addObject:@"請稍候再試"];
+        }
+        else
+        {
+            NSArray * responseArr = stationInfo[@"stationInfo"];
+            for(NSDictionary * dict in responseArr)
+            {
+                [stops addObject:[dict valueForKey:@"name"]];
+                [m_waitTimeResult addObject:[dict valueForKey:@"time"]];
+            }
         }
     }
-    
+    else //data沒有資料（nil）（發生情形：沒有網路連線）
+    {
+        NSLog(@"error:%@\n",error);
+        [stops addObject:@"無資料"];
+        [m_waitTimeResult addObject:@"請稍候再試"];
+    }
     
     [stops retain];
     //[IDs retain];
@@ -351,7 +363,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * CellIdentifier = [NSString stringWithFormat:@"Cell%d%d", [indexPath section], [indexPath row]];
+    NSString * CellIdentifier = [NSString stringWithFormat:@"Cell%lu%lu", [indexPath section], [indexPath row]];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil)
@@ -383,6 +395,11 @@
             else if ([comeTime isEqual:@"進站中"])
             {
                 cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:188.0/255.0 green:2.0/255.0 blue:9.0/255.0 alpha:100.0];
+            }
+            else if ([comeTime isEqualToString:@"請稍候再試"])//data==nil
+            {
+                cell.detailTextLabel.text = @"沒有網路或資料庫異常";
+                cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:127.0/255.0 green:127.0/255.0 blue:127.0/255.0 alpha:100.0];
             }
             /*else if ([comeTime isEqual:@"將到站"])
              {

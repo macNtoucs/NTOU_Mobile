@@ -52,6 +52,7 @@
 
 -(void)CatchData
 {
+    NSLog(@"[Detail]CatchData");
     ISREAL = TRUE;
     [self estimateTime];
     [self.tableView reloadData];
@@ -67,37 +68,47 @@
         [m_waitTimeResult removeAllObjects];
     }
     NSString *encodedBus = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)busName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
-    //NSLog(@"url = %@", url);
+    
     
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web.php?bus=%@", encodedBus]];
+    //NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web_multi.php?bus=%@", encodedBus]];
+    //NSLog(@"url = %@", url);
     
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    //NSLog(@"data=%@", data);
     NSError *error;
     
-    NSMutableDictionary  *stationInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
+    //NSData *data = [NSData dataWithContentsOfURL:url];
+    NSData *data = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:&error];
+    //NSLog(@"data=%@", data);
     
-    //NSLog(@"NTstationInfo: %@",stationInfo);
+    //data有資料
+    if (data) {
+        
+        NSMutableDictionary  *stationInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
     
-    if([stationInfo[@"stationInfo"]  isKindOfClass:[NSNull class]])
-    {
-        [stops addObject:@"更新中，暫無資料"];
-        [m_waitTimeResult addObject:@"請稍候再試"];
-    }
-    else
-    {
-        NSArray * responseArr = stationInfo[@"stationInfo"];
-        for(NSDictionary * dict in responseArr)
+        //NSLog(@"NTstationInfo: %@",stationInfo);
+    
+        if([stationInfo[@"stationInfo"]  isKindOfClass:[NSNull class]])
         {
-            [stops addObject:[dict valueForKey:@"name"]];
-            [m_waitTimeResult addObject:[dict valueForKey:@"time"]];
+            [stops addObject:@"更新中，暫無資料"];
+            [m_waitTimeResult addObject:@"請稍候再試"];
+        }
+        else
+        {
+            NSArray * responseArr = stationInfo[@"stationInfo"];
+            for(NSDictionary * dict in responseArr)
+            {
+                [stops addObject:[dict valueForKey:@"name"]];
+                [m_waitTimeResult addObject:[dict valueForKey:@"time"]];
+            }
         }
     }
-    /*
-    [stops addObject:@"更新中，暫無資料"];
-    [m_waitTimeResult addObject:@"請稍候再試"];*/
-    
+    else //data沒有資料（nil）（發生情形：沒有網路連線）
+    {
+        NSLog(@"error:%@\n",error);
+        [stops addObject:@"無資料"];
+        [m_waitTimeResult addObject:@"請稍候再試"];
+    }
     [stops retain];
     [m_waitTimeResult retain];
 }
@@ -305,7 +316,8 @@
         if (updateTimeOnButton)
         {
             int secs = (1-sinceRefresh);
-            if (secs > 20)
+            //if (secs > 20)
+            if (secs > 60)
             {
                 [self stopTimer];
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -387,6 +399,11 @@
             else if([comeTime isEqualToString:@"目前無公車即時資料"])
             {
                 cell.detailTextLabel.text = @"現在無班車";
+                cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:127.0/255.0 green:127.0/255.0 blue:127.0/255.0 alpha:100.0];
+            }
+            else if ([comeTime isEqualToString:@"請稍候再試"])//data==nil
+            {
+                cell.detailTextLabel.text = @"沒有網路或資料庫異常";
                 cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:127.0/255.0 green:127.0/255.0 blue:127.0/255.0 alpha:100.0];
             }
             else

@@ -28,7 +28,7 @@
 - (void) setter_busName:(NSString *)name andGoBack:(NSInteger)goback
 {
     busName = name;
-    goBack = [[NSString alloc] initWithFormat:@"%i", goback];
+    goBack = [[NSString alloc] initWithFormat:@"%lu", goback];
     NSLog(@"busName:%@, goBack:%@", busName, goBack);
     ISREAL = FALSE;
 }
@@ -72,18 +72,29 @@
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/AllRoutePhpFile.php?bus=%@&goBack=%@", encodedBus, goBack]];
     
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    
     NSError *error;
     
-    NSMutableDictionary  *trainInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
+    //NSData *data = [NSData dataWithContentsOfURL:url];
+    NSData *data = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:&error];
+    //NSLog(@"data=%@", data);
     
-    NSArray * responseArr = trainInfo[@"stationInfo"];
-    
-    for(NSDictionary * dict in responseArr)
+    if (data)
     {
-        [stops addObject:[dict valueForKey:@"name"]];
-        [m_waitTimeResult addObject:[dict valueForKey:@"time"]];
+        NSMutableDictionary  *trainInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
+        
+        NSArray * responseArr = trainInfo[@"stationInfo"];
+        
+        for(NSDictionary * dict in responseArr)
+        {
+            [stops addObject:[dict valueForKey:@"name"]];
+            [m_waitTimeResult addObject:[dict valueForKey:@"time"]];
+        }
+    }
+    else //data沒有資料（nil）（發生情形：沒有網路連線）
+    {
+        NSLog(@"error:%@\n",error);
+        [stops addObject:@"無資料"];
+        [m_waitTimeResult addObject:@"請稍候再試"];
     }
     
     [stops retain];
@@ -226,6 +237,8 @@
     secondsLabel.font = [UIFont systemFontOfSize:15.0];
     secondsLabel.textAlignment = NSTextAlignmentCenter;*/
     
+    
+    //放入下載提示視窗（alert）
     loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
     loadingView.frame = CGRectMake(0, 0, 200, 200);
     
@@ -296,7 +309,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    //[self stopTimer];
+    [self stopTimer];
     [super viewDidDisappear:animated];
 }
 
@@ -347,7 +360,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * CellIdentifier = [NSString stringWithFormat:@"Cell%d%d", [indexPath section], [indexPath row]];
+    NSString * CellIdentifier = [NSString stringWithFormat:@"Cell%lu%lu", [indexPath section], [indexPath row]];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil)
@@ -380,6 +393,11 @@
             {
                 cell.detailTextLabel.text = @"末班車已過";
                 cell.detailTextLabel.textColor = [UIColor grayColor];
+            }
+            else if ([comeTime isEqualToString:@"請稍候再試"])//data==nil
+            {
+                cell.detailTextLabel.text = @"沒有網路或資料庫異常";
+                cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:127.0/255.0 green:127.0/255.0 blue:127.0/255.0 alpha:100.0];
             }
             else if ([comeTime isEqual:@"更新中..."])
             {
