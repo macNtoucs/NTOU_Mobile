@@ -71,7 +71,7 @@
     
     
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web.php?bus=%@", encodedBus]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web3.php?bus=%@&goBack=%@", encodedBus,goBack]];
     //NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web_multi.php?bus=%@", encodedBus]];
     //NSLog(@"url = %@", url);
     
@@ -182,6 +182,33 @@
     }
 }
 
+- (void)changeDetailView
+{
+    if ([goBack isEqualToString:@"0"])
+    {
+        //anotherButton.title = destination;
+        self.navigationItem.title = [NSString stringWithFormat:@"%@ → %@", destination, departure];
+        [self setter_busName:busName andGoBack:1];
+        [self stopTimer];
+        [activityIndicator performSelectorInBackground:@selector(startAnimating) withObject:nil];
+        [self.loadingView performSelectorInBackground:@selector(show) withObject:nil];
+        [self CatchData];
+        [self startTimer];
+    }
+    else
+    {
+        //anotherButton.title = departure;
+        self.navigationItem.title = [NSString stringWithFormat:@"%@ → %@", departure, destination];
+        [self setter_busName:busName andGoBack:0];
+        [self stopTimer];
+        [activityIndicator performSelectorInBackground:@selector(startAnimating) withObject:nil];
+        [self.loadingView performSelectorInBackground:@selector(show) withObject:nil];
+        [self CatchData];
+        [self startTimer];
+    }
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -218,7 +245,8 @@
     [self.tableView addSubview:self.loadingView];
     [activityIndicator startAnimating];
     [self.loadingView show];
-    
+    anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"往返" style:UIBarButtonItemStylePlain target:self action:@selector(changeDetailView)];
+    self.navigationItem.rightBarButtonItem = anotherButton;
     m_waitTimeResult = [NSMutableArray new];
     stops = [NSMutableArray new];
     
