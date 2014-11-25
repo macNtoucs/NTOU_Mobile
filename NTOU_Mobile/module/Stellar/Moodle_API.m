@@ -54,7 +54,15 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
                             ];
     NSString *resString = [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
-    
+    /*
+    //讀取有問題的個案資料
+    if ([type isEqualToString:@"getCourse"]) {
+         NSURL *queryURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.100.103:8080/iNTOU/getCourse.do"]];
+        NSError *error;
+        NSData *data = [NSData dataWithContentsOfURL:queryURL options:NSDataReadingMappedIfSafe error:&error];
+        dictionary = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
+    }
+     */
     return dictionary;
     
 }
@@ -213,6 +221,7 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
 {
     //moodle.ntou.edu.tw/file.php/19367/課程講義/_10_JavaScript_for_Ajax.pptx
     NSString *URL = [NSString stringWithFormat:@"http://moodle.ntou.edu.tw/file.php%@/%@",dir,FileName];
+    
     return URL;
     URL = [URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL  *url = [NSURL URLWithString:URL];

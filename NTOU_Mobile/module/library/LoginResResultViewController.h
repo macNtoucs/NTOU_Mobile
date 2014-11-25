@@ -1,6 +1,6 @@
 //
 //  LoginResResultViewController.h
-//  library
+//  library-個人圖書館-預約記錄
 //
 //  Created by apple on 13/7/19.
 //  Copyright (c) 2013年 NTOUcs_MAC. All rights reserved.

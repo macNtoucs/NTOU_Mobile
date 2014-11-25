@@ -21,6 +21,7 @@
 
 @interface TPRouteByButtonViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
+    UIBarButtonItem *DeleteButton;
     UIView * buttonFirstView;
     UIView * buttonSecondView;
     UITableView * tableview;
@@ -48,6 +49,7 @@
     int frequency;
     NSMutableDictionary * dict;
 }
+@property (nonatomic, retain) UIBarButtonItem *DeleteButton;
 @property (nonatomic, retain) UIView * buttonFirstView;
 @property (nonatomic, retain) UIView * buttonSecondView;
 @property (nonatomic, retain) UITableView * tableview;

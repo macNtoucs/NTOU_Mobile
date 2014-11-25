@@ -142,6 +142,28 @@
         
         havingTableView = NO;
     }
+    DeleteButton = [[UIBarButtonItem alloc] initWithTitle:@"清除常用列表" style:UIBarButtonItemStylePlain target:self action:@selector(deletefrequencyBusStationData)];
+    self.navigationItem.rightBarButtonItem = DeleteButton;
+}
+
+-(void)deletefrequencyBusStationData
+{
+    //清空frequencyBusStation.plist裡的資料
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSError *error;
+    //checking to see of the file already exist
+    if([fm fileExistsAtPath:path])
+    {
+        //remove the plist
+        [fm removeItemAtPath:path error:&error];
+        NSLog(@"frequencyBusStation.plisl 資料清除");
+        /*
+        //清除目前tableView
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DefaultAlpha.png"]];
+        havingTableView = NO;
+        [tableview removeFromSuperview];
+         */
+    }
 }
 
 - (void)viewDidUnload
@@ -729,6 +751,13 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
 - (void)buttonClicked:(id)sender
 {
     NSLog(@"buttonClicked");
+    
+    
+    if ( [sender tag]!=214 && [sender tag]!=14) {
+        //不是按到返回或更多按鈕時隱藏
+        self.navigationItem.rightBarButtonItem = nil;//隱藏清除按鈕
+    }
+    
     switch ([sender tag])
     {
         case 0:
@@ -882,25 +911,11 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
             });
             break;
         case 34: //重設
-            //*
             [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
             self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DefaultAlpha.png"]];
             havingTableView = NO;
             [tableview removeFromSuperview];
             [self cleanArrayBusData];
-            //*/
-            /*
-            //fix 因為常用列表而table生成過快，arrayTaipeiBus arrayNewTaipeiBus arrayKeelungBus來不及更新資料導致overflow
-            [partBusName deleteCharactersInRange:NSMakeRange(0, [partBusName length])];
-            havingTableView = NO;
-            [tableview removeFromSuperview];
-            [self cleanArrayBusData];
-            
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [self showTableViewContent];
-            });
-            self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DefaultAlpha.png"]];
-            /*/
             
             break;
         case 35:    // Delete
@@ -916,21 +931,10 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
                 
                 if ([partBusName length] > 0)
                     [partBusName deleteCharactersInRange:NSMakeRange([partBusName length]-1, 1)];
-                //*
                 self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DefaultAlpha.png"]];
                 havingTableView = NO;
                 [tableview removeFromSuperview];
                 [self cleanArrayBusData];
-                //*/
-                /*
-                [tableview removeFromSuperview];
-                [self cleanArrayBusData];
-                havingTableView = NO;
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    [self showTableViewContent];
-                });
-                self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DefaultAlpha.png"]];
-                /*/
                 
             }
             break;

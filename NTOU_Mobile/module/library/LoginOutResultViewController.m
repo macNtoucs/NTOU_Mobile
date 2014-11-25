@@ -1,6 +1,6 @@
 //
 //  LoginOutResultViewController.m
-//  library
+//  library -個人圖書館-借出記錄
 //
 //  Created by apple on 13/7/21.
 //  Copyright (c) 2013年 NTOUcs_MAC. All rights reserved.
@@ -49,7 +49,7 @@
     
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
-        [self.tableView setContentInset:UIEdgeInsetsMake(-54,0,-54,0)];
+        //[self.tableView setContentInset:UIEdgeInsetsMake(-54,0,-54,0)];
     }
 
     

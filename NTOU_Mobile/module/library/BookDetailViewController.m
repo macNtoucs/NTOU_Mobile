@@ -1,6 +1,6 @@
 //
 //  BookDetailViewController.m
-//  library
+//  library-書籍詳細資料
 //
 //  Created by apple on 13/6/27.
 //  Copyright (c) 2013年 NTOUcs_MAC. All rights reserved.

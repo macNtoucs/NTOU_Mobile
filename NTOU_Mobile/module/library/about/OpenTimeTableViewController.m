@@ -1,6 +1,8 @@
 //
 //  OpenTimeTableViewController.m
 //  NTOU_Mobile
+//  library-關於圖書館-開館時間 (資料來源：https://dl.dropboxusercontent.com/u/68445784/libop.php)
+//  順序：上學期  寒假 下學期 暑假
 //
 //  Created by Rick on 2014/6/17.
 //  Copyright (c) 2014年 NTOUcs_MAC. All rights reserved.
@@ -69,17 +71,21 @@
     NSCalendar * calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDate *today = [NSDate date];
     NSDateComponents *dateComponents = [calendar components:(NSWeekdayCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSWeekCalendarUnit) fromDate:today];
-    if ((dateComponents.month >= 1 && dateComponents.day >= 18)&&(dateComponents.month <= 2 && dateComponents.day <= 21)){
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-    }
-    else if ((dateComponents.month >= 2 && dateComponents.day >= 22)&&(dateComponents.month <= 6 && dateComponents.day <= 30)){
+    if ((dateComponents.month >= 1 && dateComponents.day >= 18)&&(dateComponents.month <= 2 && dateComponents.day <= 23)){
+        //寒假
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     }
-    else if ((dateComponents.month >= 7 && dateComponents.day >= 1)&&(dateComponents.month <= 9 && dateComponents.day <= 6)){
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    else if ((dateComponents.month >= 2 && dateComponents.day >= 24)&&(dateComponents.month <= 6 && dateComponents.day <= 29)){
+        //下學期
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    }
+    else if ((dateComponents.month >= 6 && dateComponents.day >= 22)&&(dateComponents.month <= 9 && dateComponents.day <= 11)){
+        //暑假
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     }
     else{
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        //上學期
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     }
     
 }

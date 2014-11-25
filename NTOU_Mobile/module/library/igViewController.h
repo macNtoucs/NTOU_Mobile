@@ -1,6 +1,7 @@
 //
 //  igViewController.h
 //  ScanBarCodes
+//  條碼掃描
 //
 //  Created by Torrey Betts on 10/10/13.
 //  Copyright (c) 2013 Infragistics. All rights reserved.

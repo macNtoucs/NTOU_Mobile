@@ -1,6 +1,6 @@
 //
 //  NewsViewController.h
-//  library
+//  library-關於圖書館-最新消息
 //
 //  Created by su on 13/7/5.
 //  Copyright (c) 2013年 NTOUcs_MAC. All rights reserved.

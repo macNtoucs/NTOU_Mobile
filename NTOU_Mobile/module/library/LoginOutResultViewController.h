@@ -1,6 +1,6 @@
 //
 //  LoginOutResultViewController.h
-//  library
+//  library -個人圖書館-借出記錄
 //
 //  Created by apple on 13/7/21.
 //  Copyright (c) 2013年 NTOUcs_MAC. All rights reserved.

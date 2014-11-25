@@ -1,6 +1,6 @@
 //
 //  LoginResultViewController.h
-//  library
+//  library-個人圖書館-借閱歷史
 //
 //  Created by apple on 13/7/5.
 //  Copyright (c) 2013年 NTOUcs_MAC. All rights reserved.

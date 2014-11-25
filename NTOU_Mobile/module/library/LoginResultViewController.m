@@ -1,6 +1,6 @@
 //
 //  LoginResultViewController.m
-//  library
+//  library-個人圖書館-借閱歷史
 //
 //  Created by apple on 13/7/5.
 //  Copyright (c) 2013年 NTOUcs_MAC. All rights reserved.
@@ -191,10 +191,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
+    /*
+     //會有載入途中卡住的狀態，newData的pointer有問題（待處理）
         if([newData count] == 0 || newData ==nil )return[maindata count];
         else if([newData count] < 10) return [newData count];
-        else return[maindata count];
+        else return[maindata count];*/
+    return[maindata count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
