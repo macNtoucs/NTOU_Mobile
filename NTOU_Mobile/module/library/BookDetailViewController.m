@@ -36,6 +36,8 @@
 @property(nonatomic, retain) UIViewController *webViewController;
 @property (nonatomic ,retain) UIWebView *webView ;
 @property (nonatomic, retain) NSMutableArray * reviewsResult;
+@property (nonatomic) NSInteger nowSelectCellIndex;
+
 @end
 
 @implementation BookDetailViewController
@@ -47,6 +49,7 @@
 @synthesize webView;
 @synthesize reviewsResult;
 @synthesize goToEternalLinkURL;
+@synthesize nowSelectCellIndex;
 const char MyConstantKey;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -116,6 +119,8 @@ const char MyConstantKey;
     NSArray * electricBookDetail = [bookResultDic objectForKey:@"electricBookDetail"];
     if ([realBookDetail count]>0){
         [bookdetail setObject:@"realBook" forKey:@"bookType"];
+        
+        
         if (![[bookResultDic objectForKey:@"reserveURL"] isEqualToString:@""]) {
             NSString * str = [NSString stringWithString:[bookResultDic objectForKey:@"reserveURL"]];
             str = [str stringByReplacingOccurrencesOfString:@"&" withString:@"(ANDCHAR)"];
@@ -602,11 +607,19 @@ const char MyConstantKey;
         
         [cell.contentView addSubview:part4label];
         [cell.contentView addSubview:part4];
+        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        /*
         if (![book_part5[row] isEqualToString:@"NULL"]) {
             cell.selectionStyle = UITableViewCellSelectionStyleDefault;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }*/
+        
+        if([book_part4[row] rangeOfString:@"在架上"].location == NSNotFound ){
+            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
+            
     }
     
     else if (section == 1 && [[bookdetail objectForKey:@"bookType"]  isEqual: @"ebook"])
@@ -661,8 +674,8 @@ const char MyConstantKey;
 {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    CGSize booknameLabelSize,authorLabelSize,pressLabelSize,ISBNLabelSize , linkLabelSize;
-    CGRect booknameLabelRect, authorLabelRect,pressLabelRect,ISBNLabelRect , linkLabelRect;
+    CGSize booknameLabelSize, authorLabelSize, pressLabelSize, ISBNLabelSize;
+    CGRect booknameLabelRect, authorLabelRect, pressLabelRect, ISBNLabelRect;
     CGSize maximumLabelSize = CGSizeMake(200,9999);
     UIFont *font = [UIFont fontWithName:@"Helvetica" size:14.0];
     
@@ -795,7 +808,8 @@ const char MyConstantKey;
                 reserveURL= [reserveURL stringByReplacingOccurrencesOfString:@"&" withString:@"(ANDCHAR)"];
                 NSString *account = [SettingsModuleViewController getLibraryAccount];
                 NSString *pwd = [SettingsModuleViewController getLibraryPassword];
-                NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@&reserveURL=%@&radioValue=%@",account,pwd,reserveURL,objc_getAssociatedObject(alertView, &MyConstantKey)];
+                NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@&reserveURL=%@&radioValue=%@",
+                                         account, pwd, reserveURL, book_part5[nowSelectCellIndex]];
                 NSHTTPURLResponse *urlResponse = nil;
                 NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
                 NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/reserveBook.do"];
@@ -892,14 +906,20 @@ const char MyConstantKey;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell *nowCell = [tableView cellForRowAtIndexPath:indexPath];
     
-    
-    if (indexPath.section ==1 && [[bookdetail objectForKey:@"bookType"]  isEqual: @"realBook"] &&book_part5[indexPath.row]!=nil&& ![book_part5[indexPath.row] isEqualToString:@"NULL"]){
+    if([nowCell accessoryType] == UITableViewCellAccessoryDisclosureIndicator)
+    {
+        if (indexPath.section ==1 && [[bookdetail objectForKey:@"bookType"]  isEqual: @"realBook"] &&book_part5[indexPath.row]!=nil&& ![book_part5[indexPath.row] isEqualToString:@"NULL"]){
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:reserveTitle message:book_part2[indexPath.row] delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
-        [alert show];
-        [alert release];
-        objc_setAssociatedObject(alert, &MyConstantKey, indexPath.row, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            nowSelectCellIndex = indexPath.row;
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:reserveTitle message:book_part2[indexPath.row] delegate:self cancelButtonTitle:@"否"     otherButtonTitles:@"是", nil];
+            [alert show];
+            [alert release];
+            
+            //objc_setAssociatedObject(alert, &MyConstantKey, indexPath.row, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        }
     }
     
     if (indexPath.section ==1 && [[bookdetail objectForKey:@"bookType"]  isEqual: @"ebook"]){
@@ -908,9 +928,7 @@ const char MyConstantKey;
             UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:@"將會連到校外網站，確定前往" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"前往", nil];
             [alert show];
             [alert release];
-   
-        
-        }
+    }
     
     if (indexPath.section ==2 && reviewsResult!=nil){
         goToEternalLinkURL = [reviewsResult[indexPath.row] objectForKey:@"reviewsURL"];
@@ -918,8 +936,6 @@ const char MyConstantKey;
         UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:@"將會連到校外網站，確定前往" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"前往", nil];
         [alert show];
         [alert release];
-        
-        
     }
     
     
