@@ -305,20 +305,20 @@
     NSString *key = [keys objectAtIndex:section];
     NSString *sectiontitle;
     
-    //除七月其他皆更新
+    /*
     if(section < 5)
         sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR - 1911,key];    //當年
     else if(section == 11) //七月
-        sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR - 1911,key];
+        sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR - 1910,key];
     else
         sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR - 1910,key];    //隔年
-    /*
+    */
     //全更新
     if(section < 5)
         sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR - 1911,key];    //當年
     else
         sectiontitle = [[NSString alloc] initWithFormat:@"  民國%d年 %@月",YEAR - 1910,key];    //隔年
-     */
+    
     UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 25)] autorelease];
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 25)] autorelease];
     label.text = sectiontitle;
