@@ -86,7 +86,7 @@
     return [weekday_marine count];
 }
 
-- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat rowHeight = 0;
     UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];

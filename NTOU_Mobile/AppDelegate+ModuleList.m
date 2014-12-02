@@ -54,22 +54,34 @@
     
     // add your NTOUModule subclass here by duplicating this line
     //[result addObject:[[[YourNTOUModuleSubclass alloc] init] autorelease]];
-    [result addObject:[[[NewsModule alloc] init] autorelease]];
-    [result addObject:[[[StellarModule alloc] init] autorelease]];
-    [result addObject:[[[ShuttleModule alloc] init] autorelease]];
-	[result addObject:[[[LibraryModule alloc] init] autorelease]];
-    [result addObject:[[[CMModule alloc] init] autorelease]];
+    
+    [result addObject:[[[NewsModule alloc] init] autorelease]];//最新消息
+    [result addObject:[[[CMModule alloc] init] autorelease]];//校園導覽
+    [result addObject:[[[ShuttleModule alloc] init] autorelease]];//交通資訊
+    [result addObject:[[[PeopleModule alloc] init] autorelease]];//生活圈
+    
+    [result addObject:[[[StellarModule alloc] init] autorelease]];//個人課程
+    [result addObject:[[[LibraryModule alloc] init] autorelease]];//圖書館
+    [result addObject:[[[ScheduleModule alloc] init] autorelease]];//行事曆
+    [result addObject:[[[EmergencyModule alloc] init] autorelease]];//緊急聯絡
+    
+    [result addObject:[[[SettingModule alloc] init] autorelease]];//設定
+    [result addObject:[[[AboutModule alloc] init] autorelease]];//關於
+    
+    
+    
+	
+    
     //[result addObject:[[[CalendarModule alloc] init] autorelease]];
-	[result addObject:[[[PeopleModule alloc] init] autorelease]];
+	
     // [result addObject:[[[ToursModule alloc] init] autorelease]];
-    [result addObject:[[[ScheduleModule alloc] init] autorelease]];
+    
     //[result addObject:[[[FreshmenModuel alloc] init] autorelease]];
-    [result addObject:[[[EmergencyModule alloc] init] autorelease]];
+    
     //  [result addObject:[[[FacilitiesModule alloc] init] autorelease]];
     //[result addObject:[[[QRReaderModule alloc] init] autorelease]];
     // [result addObject:[[[LinksModule alloc] init] autorelease]];
-    [result addObject:[[[SettingModule alloc] init] autorelease]];
-    [result addObject:[[[AboutModule alloc] init] autorelease]];
+    
     
     
     return result;
