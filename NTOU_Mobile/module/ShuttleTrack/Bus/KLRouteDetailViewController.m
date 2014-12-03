@@ -71,7 +71,7 @@
     
     
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web3.php?bus=%@&goBack=%@", encodedBus,goBack]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web4.php?bus=%@&goBack=%@", encodedBus,goBack]];//測試用API
     //NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web_multi.php?bus=%@", encodedBus]];
     //NSLog(@"url = %@", url);
     

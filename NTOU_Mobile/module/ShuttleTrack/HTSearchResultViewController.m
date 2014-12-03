@@ -1,7 +1,7 @@
 //
 //  HTSearchResultViewController.m
 //  MIT Mobile
-//
+//  交通功能：高鐵 查詢結果
 //  Created by MacAir on 12/11/26.
 //
 //
@@ -363,11 +363,11 @@
     else if (indexPath.row == 0 ) {
         if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
         {
-            cell.textLabel.text = [NSString stringWithFormat:@"      車次                      %@           %@",departureStation, arrivalStation];
+            cell.textLabel.text = [NSString stringWithFormat:@"            車次                %@           %@",departureStation, arrivalStation];
         }
         else
         {
-            cell.textLabel.text = [NSString stringWithFormat:@"      車次                        %@           %@",departureStation, arrivalStation];
+            cell.textLabel.text = [NSString stringWithFormat:@"            車次                  %@           %@",departureStation, arrivalStation];
         }
         cell.textLabel.textColor = [UIColor brownColor];
     }
@@ -380,7 +380,7 @@
     }
     else {
         NSString * detailString = [NSString stringWithFormat:@"%@         %@", [departureTime objectAtIndex:indexPath.row-1],[arrivalTime objectAtIndex:indexPath.row-1] ] ;
-        cell.textLabel.text=[NSString stringWithFormat:@"       %@",[trainID objectAtIndex:indexPath.row-1]] ;
+        cell.textLabel.text=[NSString stringWithFormat:@"            %@",[trainID objectAtIndex:indexPath.row-1]] ;
         cell.detailTextLabel.text = detailString;
         cell.detailTextLabel.backgroundColor = [UIColor clearColor];
         cell.detailTextLabel.textColor = [UIColor blueColor];

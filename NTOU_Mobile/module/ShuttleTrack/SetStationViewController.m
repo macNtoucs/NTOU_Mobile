@@ -1,7 +1,7 @@
 //
 //  SetStationViewController.m
 //  MIT Mobile
-//
+//  交通功能：火車
 //  Created by MacAir on 12/11/6.
 //
 //

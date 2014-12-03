@@ -1,7 +1,7 @@
 //
 //  HTSearchResultViewController.h
 //  MIT Mobile
-//
+//  交通功能：高鐵 查詢結果
 //  Created by MacAir on 12/11/26.
 //
 //

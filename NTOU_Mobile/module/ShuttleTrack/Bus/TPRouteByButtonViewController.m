@@ -12,6 +12,9 @@
 #import <sqlite3.h>
 
 @interface TPRouteByButtonViewController ()
+{
+    UIAlertView *alertView;
+}
 
 @end
 
@@ -144,7 +147,69 @@
     }
     DeleteButton = [[UIBarButtonItem alloc] initWithTitle:@"清除常用列表" style:UIBarButtonItemStylePlain target:self action:@selector(deletefrequencyBusStationData)];
     self.navigationItem.rightBarButtonItem = DeleteButton;
+    
+    
+    //---------------------------使用提示視窗
+    NSString *isNextTimeShow;
+    NSPropertyListFormat format;
+    NSString *errorDesc = nil;
+    NSString *plistPath;
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                              NSUserDomainMask, YES) objectAtIndex:0];
+    plistPath = [rootPath stringByAppendingPathComponent:@"BusAlertViewShown.plist"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
+        plistPath = [[NSBundle mainBundle] pathForResource:@"BusAlertViewShown" ofType:@"plist"];
+    }
+    NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
+    NSDictionary *temp = (NSDictionary *)[NSPropertyListSerialization
+                                          propertyListFromData:plistXML
+                                          mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                          format:&format
+                                          errorDescription:&errorDesc];
+    isNextTimeShow = [[NSString alloc] init];
+    if (!temp)
+        NSLog(@"Error reading plist: BusAlertViewShown.plist, format: %d", format);
+    else
+        isNextTimeShow = [temp objectForKey:@"NextTimeShown"];
+    NSLog(@"%@", isNextTimeShow);
+    if ([isNextTimeShow isEqualToString:@"TRUE"])
+    {
+        alertView = [[UIAlertView alloc] initWithTitle:@"溫馨提醒" message:@"請使用下方鍵盤搜尋公車路線，右上按鈕點選後會在下次進入時清除資訊" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:@"不再提醒", nil];
+    }
+    [alertView show];
+    [alertView release];
+    //-------------------------------
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    //-------使用提示視窗
+    switch (buttonIndex)
+    {
+        case 0:
+            NSLog(@"Cancel Button Pressed");
+            break;
+        case 1:
+        {
+            NSString *error;
+            NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+            NSString *plistPath = [rootPath stringByAppendingPathComponent:@"BusAlertViewShown.plist"];
+            NSDictionary *plistDict = [NSDictionary dictionaryWithObject:@"FALSE" forKey:@"NextTimeShown"];
+            NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:plistDict format:NSPropertyListXMLFormat_v1_0 errorDescription:&error];
+            if(plistData) {
+                [plistData writeToFile:plistPath atomically:YES];
+            }
+            else {
+                NSLog(@"%@", error);
+                [error release];
+            }
+            break;
+        }
+        default:
+            break;
+    }
+}
+
 
 -(void)deletefrequencyBusStationData
 {

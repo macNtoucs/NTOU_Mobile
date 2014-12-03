@@ -1,7 +1,7 @@
 //
 //  accountTableViewController.m
 //  NTOU_Mobile
-//
+//  設定-moodle & 圖書館共用
 //  Created by IMAC on 2014/5/14.
 //  Copyright (c) 2014年 NTOUcs_MAC. All rights reserved.
 //
@@ -169,11 +169,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *SecondaryCellIdentifier = @"SecondaryCell";
-    
+    /*
     SecondaryGroupedTableViewCell *cell = (SecondaryGroupedTableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondaryCellIdentifier];
     if (cell == nil) {
         cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:SecondaryCellIdentifier] autorelease];
-    }
+    }*/
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SecondaryCellIdentifier];
+    
     UITextField* contactNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(93, 10, 200, 20)];
     contactNameTextField.delegate = self;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -219,6 +221,7 @@
             break;
             
         case 1:
+            //說明文字
             textCaption.font = [UIFont systemFontOfSize:15.0];
             textCaption.text = explanation;
             textCaption.textColor = [UIColor blackColor];
@@ -338,6 +341,7 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
+    //偵測點擊UITextField
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
     
     [self.tableView addGestureRecognizer:gestureRecognizer];

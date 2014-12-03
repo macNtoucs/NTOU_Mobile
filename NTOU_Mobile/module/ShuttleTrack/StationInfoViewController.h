@@ -1,7 +1,7 @@
 //
 //  StationInfoViewController.h
 //  MIT Mobile
-//
+//  交通功能：火車 查詢
 //  Created by MacAir on 12/11/3.
 //
 //
