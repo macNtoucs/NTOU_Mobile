@@ -61,7 +61,7 @@
     [result addObject:[[[PeopleModule alloc] init] autorelease]];//生活圈
     
     [result addObject:[[[StellarModule alloc] init] autorelease]];//個人課程
-    [result addObject:[[[LibraryModule alloc] init] autorelease]];//圖書館
+    //[result addObject:[[[LibraryModule alloc] init] autorelease]];//圖書館
     [result addObject:[[[ScheduleModule alloc] init] autorelease]];//行事曆
     [result addObject:[[[EmergencyModule alloc] init] autorelease]];//緊急聯絡
     

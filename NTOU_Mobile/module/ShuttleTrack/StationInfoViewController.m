@@ -192,26 +192,29 @@
         NSData *data = [NSData dataWithContentsOfURL:url];
         
         NSError *error;
-        
-        NSMutableDictionary  *trainInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
-        
-        //NSLog(@"trainInfo = %@",trainInfo);
-        
-        NSArray * responseArr = trainInfo[@"trainInfo"];
-        
-        //NSLog(@"responseArr=%@", responseArr);
-        
-        if (responseArr != [NSNull null])
+        //確定data有資料，以防閃退
+        if(data)
         {
-            NSLog(@"In responseArr");
-            for(NSDictionary * dict in responseArr)
+            NSMutableDictionary  *trainInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
+            
+            //NSLog(@"trainInfo = %@",trainInfo);
+            
+            NSArray * responseArr = trainInfo[@"trainInfo"];
+            
+            //NSLog(@"responseArr=%@", responseArr);
+            
+            if (responseArr != [NSNull null])
             {
-                [arrivalTimes addObject:[dict valueForKey:@"arriveTime"]];
-                [trainStyle addObject:[dict valueForKey:@"carClass"]];
-                [departureTimes addObject:[dict valueForKey:@"departureTime"]];
-                [trainNumber addObject:[dict valueForKey:@"trainNumber"]];
-                [trainStartFroms addObject:[dict valueForKey:@"trainStartFrom"]];
-                [trainTravelTos addObject:[dict valueForKey:@"trainTravelTo"]];
+                NSLog(@"In responseArr");
+                for(NSDictionary * dict in responseArr)
+                {
+                    [arrivalTimes addObject:[dict valueForKey:@"arriveTime"]];
+                    [trainStyle addObject:[dict valueForKey:@"carClass"]];
+                    [departureTimes addObject:[dict valueForKey:@"departureTime"]];
+                    [trainNumber addObject:[dict valueForKey:@"trainNumber"]];
+                    [trainStartFroms addObject:[dict valueForKey:@"trainStartFrom"]];
+                    [trainTravelTos addObject:[dict valueForKey:@"trainTravelTo"]];
+                }
             }
         }
     }
@@ -223,6 +226,24 @@
     [trainNumber retain];
     [trainStartFroms retain];
     [trainTravelTos retain];
+}
+
+-(bool)hasWifi{
+    //Create zero addy
+    struct sockaddr_in Addr;
+    bzero(&Addr, sizeof(Addr));
+    Addr.sin_len = sizeof(Addr);
+    Addr.sin_family = AF_INET;
+    
+    //結果存至旗標中
+    SCNetworkReachabilityRef target = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr *) &Addr);
+    SCNetworkReachabilityFlags flags;
+    SCNetworkReachabilityGetFlags(target, &flags);
+    
+    
+    //將取得結果與狀態旗標位元做AND的運算並輸出
+    if (flags & kSCNetworkFlagsReachable)  return true;
+    else return false;
 }
 
 - (void)viewDidLoad
@@ -249,23 +270,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(bool)hasWifi{
-    //Create zero addy
-    struct sockaddr_in Addr;
-    bzero(&Addr, sizeof(Addr));
-    Addr.sin_len = sizeof(Addr);
-    Addr.sin_family = AF_INET;
-    
-    //結果存至旗標中
-    SCNetworkReachabilityRef target = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr *) &Addr);
-    SCNetworkReachabilityFlags flags;
-    SCNetworkReachabilityGetFlags(target, &flags);
-    
-    
-    //將取得結果與狀態旗標位元做AND的運算並輸出
-    if (flags & kSCNetworkFlagsReachable)  return true;
-    else return false;
-}
 
 #pragma mark - Table view data source
 -(void)viewWillAppear:(BOOL)animated{
@@ -305,7 +309,10 @@
     if (cell == nil) {
         cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
-    if([trainNumber count] == 1)
+    if (![self hasWifi]){
+        cell.textLabel.text = [NSString stringWithFormat:@"無法連線，請檢查網路"];
+    }
+    else if([trainNumber count] == 1)
     {
         cell.textLabel.text = @"查無資料！";
     }

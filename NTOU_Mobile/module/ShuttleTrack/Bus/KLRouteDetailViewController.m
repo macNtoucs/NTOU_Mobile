@@ -71,8 +71,8 @@
     
     
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web4.php?bus=%@&goBack=%@", encodedBus,goBack]];//測試用API
-    //NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web_multi.php?bus=%@", encodedBus]];
+    //NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web4.php?bus=%@&goBack=%@", encodedBus,goBack]];//測試用API
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/KLRouteDetail_web.php?bus=%@&goBack=%@", encodedBus,goBack]];
     //NSLog(@"url = %@", url);
     
     NSError *error;
@@ -178,7 +178,7 @@
         [stops retain];
         [m_waitTimeResult retain];
         [self.tableView reloadData];
-        
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -211,6 +211,13 @@
 
 - (void)viewDidLoad
 {
+    
+    loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self AlertStart:loadingView];
+    });
+    
     [super viewDidLoad];
     [self.tableView applyStandardColors];
     
@@ -227,8 +234,7 @@
     m_waitTimeResult = [NSMutableArray new];
     stops = [NSMutableArray new];
     
-    loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
-    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
     {
         activityIndicator.frame = CGRectMake(135.0, 280.0, 50.0, 50.0);
@@ -287,7 +293,9 @@
     if (!ISREAL)
     {
         NSLog(@"RouteDetail.m stops is null");
-        [self CatchData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self CatchData];
+        });
         
         /*for (UIView* view in self.tableView.subviews) {
             
@@ -344,8 +352,7 @@
         if (updateTimeOnButton)
         {
             int secs = (1-sinceRefresh);
-            //if (secs > 20)
-            if (secs > 60)
+            if (secs > 20)//20秒刷新一次
             {
                 [self stopTimer];
                 dispatch_async(dispatch_get_main_queue(), ^{

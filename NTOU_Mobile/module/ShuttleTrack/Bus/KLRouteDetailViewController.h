@@ -22,6 +22,7 @@
 
 @interface KLRouteDetailViewController : UITableViewController<EGORefreshTableHeaderDelegate, UIAlertViewDelegate>
 {
+    
     NSString *busName;
     NSString *goBack;
     NSString *departure;
@@ -44,6 +45,7 @@
     
     UILabel *secondsLabel;
 }
+
 @property (nonatomic, retain) NSString *busName;
 @property (nonatomic, retain) NSString *goBack;
 @property (nonatomic, retain) NSString *departure;

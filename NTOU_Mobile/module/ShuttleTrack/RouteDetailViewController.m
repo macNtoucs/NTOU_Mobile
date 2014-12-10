@@ -1,7 +1,7 @@
 //
 //  RouteDetailViewController.m
 //  bus
-//
+//  海洋專車：市區公車站牌列表-所經公車路線到站資訊
 //  Created by mac_hero on 12/5/18.
 //  Copyright 2012年 __MyCompanyName__. All rights reserved.
 //
@@ -162,7 +162,7 @@
     [[NSRunLoop currentRunLoop] addTimer:self.refreshTimer forMode:NSDefaultRunLoopMode];
 	
 }
-
+//更新倒數
 -(void) countDownAction:(NSTimer *)timer
 {
     

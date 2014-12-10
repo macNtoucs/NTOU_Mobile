@@ -1,7 +1,7 @@
 //
 //  NTOUShuttleButtonViewController.h
 //  NTOU_Mobile
-//
+//  交通功能首頁
 //  Created by iMac on 14/4/7.
 //  Copyright (c) 2014年 NTOUcs_MAC. All rights reserved.
 //

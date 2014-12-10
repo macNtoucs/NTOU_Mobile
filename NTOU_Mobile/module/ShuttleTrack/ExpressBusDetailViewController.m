@@ -1,13 +1,15 @@
 //
 //  ExpressBusDetailViewController.m
 //  NTOU_Mobile
-//
+//  交通功能：客運 站牌及到站資訊
 //  Created by iMac on 14/4/17.
 //  Copyright (c) 2014年 NTOUcs_MAC. All rights reserved.
 //
 
 #import "ExpressBusDetail2ViewController.h"
 #import "FMDatabase.h"
+#import <netinet/in.h>
+#import <SystemConfiguration/SystemConfiguration.h>
 
 @interface ExpressBusDetail2ViewController ()
 
@@ -96,32 +98,36 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/ExpressBusTime_web.php?bus=%@", encodedBus]];
     
     NSData *data = [NSData dataWithContentsOfURL:url];
-    NSError *error;
     
-    NSMutableDictionary  *stationInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
-    if([stationInfo[@"stationInfo"]  isKindOfClass:[NSNull class]])
+    if (data)
     {
-        [stops addObject:@"更新中，暫無資料"];
-        [times addObject:@"請稍候再試"];
-    }
-    else
-    {
-        NSArray * responseArr = stationInfo[@"stationInfo"];
-        for(NSDictionary * dict in responseArr)
-        {
-            [stops addObject:[dict valueForKey:@"name"]];
-            [times addObject:[dict valueForKey:@"time"]];
-        }
-    }
-    [stops retain];
-    [times retain];
-    [self.tableView reloadData];
-    /*for (UIView* view in self.view.subviews) {
+        NSError *error;
         
-        if([view isKindOfClass:[UIAlertView class]])
-            [view dismissWithClickedButtonIndex:0 animated:YES];
+        NSMutableDictionary  *stationInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
+        if([stationInfo[@"stationInfo"]  isKindOfClass:[NSNull class]])
+        {
+            [stops addObject:@"更新中，暫無資料"];
+            [times addObject:@"請稍候再試"];
+        }
+        else
+        {
+            NSArray * responseArr = stationInfo[@"stationInfo"];
+            for(NSDictionary * dict in responseArr)
+            {
+                [stops addObject:[dict valueForKey:@"name"]];
+                [times addObject:[dict valueForKey:@"time"]];
+            }
+        }
+        [stops retain];
+        [times retain];
+        [self.tableView reloadData];
+        /*for (UIView* view in self.view.subviews) {
+            
+            if([view isKindOfClass:[UIAlertView class]])
+                [view dismissWithClickedButtonIndex:0 animated:YES];
+        }
+        [activityIndicator stopAnimating];*/
     }
-    [activityIndicator stopAnimating];*/
 }
 
 -(void) alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -173,6 +179,25 @@
     }
     [activityIndicator stopAnimating];
 }
+
+-(bool)hasWifi{
+    //Create zero addy
+    struct sockaddr_in Addr;
+    bzero(&Addr, sizeof(Addr));
+    Addr.sin_len = sizeof(Addr);
+    Addr.sin_family = AF_INET;
+    
+    //結果存至旗標中
+    SCNetworkReachabilityRef target = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr *) &Addr);
+    SCNetworkReachabilityFlags flags;
+    SCNetworkReachabilityGetFlags(target, &flags);
+    
+    
+    //將取得結果與狀態旗標位元做AND的運算並輸出
+    if (flags & kSCNetworkFlagsReachable)  return true;
+    else return false;
+}
+
 
 - (void)viewDidLoad
 {
@@ -345,7 +370,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if (ISREAL)
+    if (![self hasWifi])
+        return 1;
+    else if (ISREAL)
         return [stops count];
     else
         return [preArray count];
@@ -372,7 +399,10 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
-    if (ISREAL)
+    if (![self hasWifi]){
+        cell.textLabel.text = [NSString stringWithFormat:@"無法連線，請檢查網路"];
+    }
+    else if (ISREAL)
     {
         cell.textLabel.text = [stops objectAtIndex:indexPath.row];
         if([stops count] == 1)

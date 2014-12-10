@@ -119,67 +119,71 @@
     
     NSData *data=[NSData dataWithContentsOfURL:url];
     
-    NSError *error;
-    
-    NSMutableDictionary  *trainInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
-    
-    NSLog(@"%@",trainInfo);
-    
-    NSArray * responseArr = trainInfo[@"trainInfo"];
-    
-    if (responseArr != [NSNull null])
+    //確定data有資料，以防閃退
+    if(data)
     {
-        for(NSDictionary * dict in responseArr)
+        NSError *error;
+        
+        NSMutableDictionary  *trainInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
+        
+        NSLog(@"%@",trainInfo);
+        
+        NSArray * responseArr = trainInfo[@"trainInfo"];
+        
+        if (responseArr != [NSNull null])
         {
-            
-            [arrivalTime addObject:[dict valueForKey:@"arrivalTime"]];
-            [departureTime addObject:[dict valueForKey:@"departureTime"]];
-            [trainID addObject:[dict valueForKey:@"trainNumber"]];
+            for(NSDictionary * dict in responseArr)
+            {
+                
+                [arrivalTime addObject:[dict valueForKey:@"arrivalTime"]];
+                [departureTime addObject:[dict valueForKey:@"departureTime"]];
+                [trainID addObject:[dict valueForKey:@"trainNumber"]];
+            }
         }
-    }
-    
-    
-    
-    NSLog(@"%@", arrivalTime);   // Here you get the Referance data
-    NSLog(@"%@", departureTime);      // Here you get the Period data
-    NSLog(@"%@", trainID);
-    
-    [self.tableView reloadData];
-    
-    /*NSArray * stopsAndTimes = [strResult componentsSeparatedByString:@";"];
-    
-    NSArray * tmp_stops = [[NSArray alloc] init];
-    tmp_stops = [[stopsAndTimes objectAtIndex:0] componentsSeparatedByString:@"|"];
-    for (NSString * str in tmp_stops)
-    {
-        [stops addObject:str];
-    }
-    [stops removeLastObject];*/
-    
-    /*NSData * BIN_resultString = [NSData new];
-    BIN_resultString = [queryResult dataUsingEncoding:NSUTF8StringEncoding];
-    TFHpple* parser = [[TFHpple alloc] initWithHTMLData:BIN_resultString];
-    
-    NSArray *tableData_td  = [parser searchWithXPathQuery:@"//body//div//div//section//section//ul//section//table//tr//td//table//tr//td//a"];
-    for (int i=0 ; i< [tableData_td count] ; ++i){
-       
+        
+        
+        
+        NSLog(@"%@", arrivalTime);   // Here you get the Referance data
+        NSLog(@"%@", departureTime);      // Here you get the Period data
+        NSLog(@"%@", trainID);
+        
+        [self.tableView reloadData];
+        
+        /*NSArray * stopsAndTimes = [strResult componentsSeparatedByString:@";"];
+        
+        NSArray * tmp_stops = [[NSArray alloc] init];
+        tmp_stops = [[stopsAndTimes objectAtIndex:0] componentsSeparatedByString:@"|"];
+        for (NSString * str in tmp_stops)
+        {
+            [stops addObject:str];
+        }
+        [stops removeLastObject];*/
+        
+        /*NSData * BIN_resultString = [NSData new];
+        BIN_resultString = [queryResult dataUsingEncoding:NSUTF8StringEncoding];
+        TFHpple* parser = [[TFHpple alloc] initWithHTMLData:BIN_resultString];
+        
+        NSArray *tableData_td  = [parser searchWithXPathQuery:@"//body//div//div//section//section//ul//section//table//tr//td//table//tr//td//a"];
+        for (int i=0 ; i< [tableData_td count] ; ++i){
+           
+                TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
+                NSString * context = [[[attributeElement children]objectAtIndex:0]content];
+               // NSLog(@"context => %@",context);
+                [trainID addObject:context];
+        }
+        tableData_td  = [parser searchWithXPathQuery:@"//body//div//div//section//section//ul//section//table//tr//td//table//tr//td"];
+        
+        for (int i=0 ; i< [tableData_td count] ; ++i){
+            if (i%4==0 || i%4==3) continue;
             TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
             NSString * context = [[[attributeElement children]objectAtIndex:0]content];
-           // NSLog(@"context => %@",context);
-            [trainID addObject:context];
+           //  NSLog(@"context => %@",context);
+            if (i%4==2)  [depatureTime addObject:context];
+            else [startTime addObject:context];
+        }
+           [self.tableView reloadData];
+        [BIN_resultString release];*/
     }
-    tableData_td  = [parser searchWithXPathQuery:@"//body//div//div//section//section//ul//section//table//tr//td//table//tr//td"];
-    
-    for (int i=0 ; i< [tableData_td count] ; ++i){
-        if (i%4==0 || i%4==3) continue;
-        TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
-        NSString * context = [[[attributeElement children]objectAtIndex:0]content];
-       //  NSLog(@"context => %@",context);
-        if (i%4==2)  [depatureTime addObject:context];
-        else [startTime addObject:context];
-    }
-       [self.tableView reloadData];
-    [BIN_resultString release];*/
     [downloadView AlertViewEnd];
 }
 
