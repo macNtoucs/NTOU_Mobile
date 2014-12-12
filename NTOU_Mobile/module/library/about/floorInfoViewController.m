@@ -34,7 +34,7 @@
     
     //配合nagitive和tabbar的圖片變動tableview的大小
     //nagitive 52 - 44 = 8 、 tabbar 55 - 49 = 6
-    [self.tableView setContentInset:UIEdgeInsetsMake(-20,0,0,0)];
+    //[self.tableView setContentInset:UIEdgeInsetsMake(-10,0,0,0)];
     
     [super viewDidLoad];
 }

@@ -134,7 +134,7 @@
 
 #pragma mark - delegate
 
--(BOOL)login:(NSString *)title
++(BOOL)login:(NSString *)title
 {
     if ([title isEqual:moodle]) {
         NSDictionary* info = [Moodle_API Login:[SettingsModuleViewController getMoodleAccount] andPassword:[SettingsModuleViewController getMoodlePassword]];
@@ -165,7 +165,7 @@
     return false;
 }
 
-- (void) registerDeviceToken:(NSString *)title
++ (void) registerDeviceToken:(NSString *)title
 {
     if ([title isEqual:moodle])
         [NTOUNotificationHandle sendRegisterDevice:[SettingsModuleViewController getMoodleAccount]];

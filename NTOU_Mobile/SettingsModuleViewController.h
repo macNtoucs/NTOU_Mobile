@@ -30,4 +30,7 @@
 +(NSString *) getLibraryPassword;
 +(BOOL) getLibraryLoginSuccess;
 
++(BOOL)login:(NSString *)title;
++ (void) registerDeviceToken:(NSString *)title;
+
 @end

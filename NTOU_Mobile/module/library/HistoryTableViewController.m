@@ -75,13 +75,7 @@
 
     switch (indexPath.row) {
         case 0:
-            cell.textLabel.text = @"借閱歷史";
-            break;
-        case 1:
-            cell.textLabel.text = @"預約記錄";
-            break;
-        case 2:
-            cell.textLabel.text = @"借出記錄";
+            cell.textLabel.text = @"現正借閱";
             NSNumber *notifs = [[NTOUNotificationHandle getNotifications] objectForKey:LibrariesTag];
             //cell.textLabel.font = [UIFont systemFontOfSize:17];
             if ([notifs intValue] > 0) {
@@ -93,7 +87,12 @@
                 cell.badgeString = nil;
                 cell.badgeColor = [UIColor clearColor];
             }
-
+            break;
+        case 1:
+            cell.textLabel.text = @"借閱歷史";
+            break;
+        case 2:
+            cell.textLabel.text = @"預約清單";
             break;
         default:
             break;
@@ -111,10 +110,31 @@
         {
             case 0:
             {
+                outHistory = [[LoginOutResultViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                outHistory.title=@"現正借閱";
                 
-                    history = [[LoginResultViewController alloc]initWithStyle:UITableViewStyleGrouped];
-                    history.title= @"借閱歷史";
-               
+                dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                        hud.labelText = @"Loading";
+                    });
+                    [outHistory fetchoutHistory];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        [self.navigationController pushViewController:outHistory  animated:YES];
+                        [outHistory release];
+                    });
+                });
+                // [outHistory release];
+                
+                break;
+            }
+            case 1:
+            {
+                history = [[LoginResultViewController alloc]initWithStyle:UITableViewStyleGrouped];
+                history.title= @"借閱歷史";
+                
                 dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                     dispatch_async(dispatch_get_main_queue(), ^{
                         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -130,14 +150,14 @@
                     });
                 });
                 //[history release];
+                
                 break;
             }
-            case 1:
+            case 2:
             {
-               
-                    resHistory = [[LoginResResultViewController alloc]initWithStyle:UITableViewStyleGrouped];
-                    resHistory.title=@"預約記錄";
-               
+                resHistory = [[LoginResResultViewController alloc]initWithStyle:UITableViewStyleGrouped];
+                resHistory.title=@"預約清單";
+                
                 
                 dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -152,29 +172,8 @@
                         [resHistory release];
                     });
                 });
-               // [resHistory release];
-                break;
-            }
-            case 2:
-            {
-               
-                    outHistory = [[LoginOutResultViewController alloc] initWithStyle:UITableViewStyleGrouped];
-                    outHistory.title=@"借出記錄";
+                // [resHistory release];
                 
-                dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                        hud.labelText = @"Loading";
-                    });
-                    [outHistory fetchoutHistory];
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [MBProgressHUD hideHUDForView:self.view animated:YES];
-                        [self.navigationController pushViewController:outHistory  animated:YES];
-                        [outHistory release];
-                    });
-                });
-               // [outHistory release];
                 break;
             }
             default:

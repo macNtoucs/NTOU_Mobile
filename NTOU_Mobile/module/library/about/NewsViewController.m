@@ -9,20 +9,48 @@
 #import "NewsViewController.h"
 #import "MBProgressHUD.h"
 #import "TFHpple.h"
+#import <netinet/in.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+
 #define FONT_SIZE 14.0f
+#define ARROW_WIDTH 20.0f
 #define CELL_CONTENT_WIDTH 320.0f
 #define CELL_CONTENT_MARGIN 10.0f
 @interface NewsViewController ()
+@property (nonatomic) BOOL nowWifi;
 @end
 
 @implementation NewsViewController
 @synthesize NEWSdata;
+@synthesize nowWifi;
+
+-(bool)hasWifi{
+    //Create zero addy
+    struct sockaddr_in Addr;
+    bzero(&Addr, sizeof(Addr));
+    Addr.sin_len = sizeof(Addr);
+    Addr.sin_family = AF_INET;
+    
+    //結果存至旗標中
+    SCNetworkReachabilityRef target = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr *) &Addr);
+    SCNetworkReachabilityFlags flags;
+    SCNetworkReachabilityGetFlags(target, &flags);
+    
+    
+    //將取得結果與狀態旗標位元做AND的運算並輸出
+    if (flags & kSCNetworkFlagsReachable)  return true;
+    else return false;
+}
+
 
 -(void)loadNews
 {
+    nowWifi = [self hasWifi];   //統一偵測有無網路，避免跑到一半突然有網路的狀況
+    if(!nowWifi)
+        return;
     NSData* urldata = [[NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://lib.ntou.edu.tw/mobil_client/lib_news_xml.php"]encoding:NSUTF8StringEncoding error:nil] dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary * dic = [[NSDictionary alloc]init];
-   dic =[XMLReader dictionaryForXMLData:urldata error:nil];
+    dic =[XMLReader dictionaryForXMLData:urldata error:nil];
     NEWSdata = [[dic objectForKey:@"root"]objectForKey:@"news"];
 }
 
@@ -43,7 +71,7 @@
     [NEWSdata retain];
     //配合nagitive和tabbar的圖片變動tableview的大小
     //nagitive 52 - 44 = 8 、 tabbar 55 - 49 = 6
-    [self.tableView setContentInset:UIEdgeInsetsMake(8,0,6,0)];
+    //[self.tableView setContentInset:UIEdgeInsetsMake(8,0,6,0)];
     
     [super viewDidLoad];
 
@@ -59,7 +87,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
     // Return the number of sections.
     return 1;
 }
@@ -67,86 +94,107 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [NEWSdata count];
+    if(nowWifi) //若有網路
+        return [NEWSdata count];
+    else
+        return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%ld%ld",(long)indexPath.section,(long)indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil)
+    
+    if(nowWifi) //若有網路
     {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        if (cell == nil)
+        {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        }
+        
+        NSDictionary *news = [NEWSdata objectAtIndex:indexPath.row];
+        NSString *newstitle = [[news objectForKey:@"news_title"]objectForKey:@"text"];
+        cell.textLabel.text = newstitle;
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:FONT_SIZE];
+        cell.textLabel.numberOfLines = 0;
+        [cell setLineBreakMode:UILineBreakModeCharacterWrap];
+        
+        cell.detailTextLabel.text = [[news objectForKey:@"news_date"]objectForKey:@"text"];
+        cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
+        cell.detailTextLabel.textColor = [UIColor grayColor];
+        
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-   
-    NSDictionary *news = [NEWSdata objectAtIndex:indexPath.row];
-    NSString *newstitle = [[news objectForKey:@"news_title"]objectForKey:@"text"];
-    cell.textLabel.text = newstitle;
-    cell.font = [UIFont fontWithName:@"Helvetica" size:14.0];
-    cell.textLabel.numberOfLines = 0;
-    [cell setLineBreakMode:UILineBreakModeCharacterWrap];
-
-    cell.detailTextLabel.text = [[news objectForKey:@"news_date"]objectForKey:@"text"];
-    cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
-    cell.detailTextLabel.textColor = [UIColor grayColor];
+    else {
+        UILabel *nolabel = nil;
+        if (cell == nil)
+        {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            nolabel = [[UILabel alloc] init];
+        }
+        
+        UIFont *boldfont = [UIFont boldSystemFontOfSize:18.0];
+        
+        CGRect screenBound = [[UIScreen mainScreen] bounds];
+        CGSize screenSize = screenBound.size;
+        CGFloat screenWidth = screenSize.width;
+        
+        CGSize maximumLabelSize = CGSizeMake(200,9999);
+        CGSize booknameLabelSize = [[NSString stringWithFormat:@"無網路連接"] sizeWithFont:boldfont
+                                                                      constrainedToSize:maximumLabelSize
+                                                                          lineBreakMode:NSLineBreakByWordWrapping];
+        nolabel.frame = CGRectMake((screenWidth - booknameLabelSize.width)/2,11,booknameLabelSize.width,20);
+        
+        nolabel.font = boldfont;
+        nolabel.text = [NSString stringWithFormat:@"無網路連接"];
+        [cell.contentView addSubview:nolabel];
+    }
+    
     [NEWSdata retain];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-     NSDictionary *news = [NEWSdata objectAtIndex:indexPath.row];
-    NSString *text = [[news objectForKey:@"news_title"]objectForKey:@"text"];
-    CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
+    CGSize size;
+    CGRect rect;
     
-    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
+    if(nowWifi) //若有網路
+    {
+        NSDictionary *news = [NEWSdata objectAtIndex:indexPath.row];
+        NSString *text = [[news objectForKey:@"news_title"]objectForKey:@"text"];
     
-    CGFloat height = size.height + 12 + 16 + 2;
+        CGRect screenBound = [[UIScreen mainScreen] bounds];
+        CGSize screenSize = screenBound.size;
+        CGFloat screenWidth = screenSize.width;
     
-    return height;
+        CGSize constraint = CGSizeMake(screenWidth - (CELL_CONTENT_MARGIN * 2) - ARROW_WIDTH, 10000.0f);
+        UIFont *labelFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+    
+        CGSize maximumLabelSize = CGSizeMake(screenWidth - (CELL_CONTENT_MARGIN * 2) - ARROW_WIDTH,10000.0f);
+        if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+            rect = [text boundingRectWithSize:maximumLabelSize
+                    options:NSStringDrawingUsesLineFragmentOrigin
+                    attributes:@{NSFontAttributeName:labelFont}
+                    context:nil];
+            size = rect.size;
+        
+        }
+        else {
+            size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE]
+                    constrainedToSize:constraint
+                    lineBreakMode:NSLineBreakByWordWrapping];
+        }
+        
+        CGFloat height = size.height + 12 + 16 + 2;
+        
+        return height;
+    }else
+        return 40.0;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 -(void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress
 {
@@ -166,8 +214,6 @@
     
     [progressView setProgress:progress animated:NO];
 }
-
-
 
 
 

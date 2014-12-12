@@ -48,7 +48,7 @@
         storyTable.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         storyTable.delegate = self;
         storyTable.dataSource = self;
-        storyTable.separatorColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+        //storyTable.separatorColor = [UIColor colorWithWhite:0.5 alpha:1.0];
         storyTable.pullArrowImage = [UIImage imageNamed:@"blackArrow"];
         storyTable.pullDelegate = self;
         storyTable.frame = CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height);
@@ -122,28 +122,28 @@
             hud.labelText = @"Loading";
         });
         @try {
-        NSError *error;
-        //  設定url
-        NSString *url;
-        if ([searchType  isEqual: @"X"]){
-            url = [NSString stringWithFormat:@"http://140.121.197.135:11114/NTOULibrarySearchAPI/Search.do?searcharg=%@&searchtype=X&segment=%d",inputtext,Searchpage];
-            url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        }
-        else{
-            url = [NSString stringWithFormat:@"http://140.121.197.135:11114/NTOULibrarySearchAPI/Search.do?searcharg=%@&searchtype=i&segment=%d",inputtext,Searchpage];
-            url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        }
-        // 設定丟出封包，由data來接
-        NSData* urldata = [[NSString stringWithContentsOfURL:[NSURL URLWithString:url]encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
+            NSError *error;
+            //  設定url
+            NSString *url;
+            if ([searchType  isEqual: @"X"]){
+                url = [NSString stringWithFormat:@"http://140.121.197.135:11114/NTOULibrarySearchAPI/Search.do?searcharg=%@&searchtype=X&segment=%d",inputtext,Searchpage];
+                url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            }
+            else{
+                url = [NSString stringWithFormat:@"http://140.121.197.135:11114/NTOULibrarySearchAPI/Search.do?searcharg=%@&searchtype=i&segment=%d",inputtext,Searchpage];
+                url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            }
+            // 設定丟出封包，由data來接
+            NSData* urldata = [[NSString stringWithContentsOfURL:[NSURL URLWithString:url]encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
         
-        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:urldata options:0 error:nil];
+            NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:urldata options:0 error:nil];
         
-        newSearchBooks = [NSMutableArray arrayWithArray:[dic objectForKey:@"bookResult"]];
-        totalBookNumber =  [dic objectForKey:@"totalBookNumber"];
-        firstBookNumber =[dic objectForKey:@"firstBookNumber"];
-        [newSearchBooks retain];
-        [totalBookNumber retain];
-        [firstBookNumber retain];
+            newSearchBooks = [NSMutableArray arrayWithArray:[dic objectForKey:@"bookResult"]];
+            totalBookNumber =  [dic objectForKey:@"totalBookNumber"];
+            firstBookNumber =[dic objectForKey:@"firstBookNumber"];
+            [newSearchBooks retain];
+            [totalBookNumber retain];
+            [firstBookNumber retain];
             
         }
         @catch (NSException *exception) {
@@ -174,7 +174,10 @@
             //self.title = [NSString stringWithFormat:@"共 %@ 筆", totalBookNumber];
             UILabel* lbNavTitle = [[UILabel alloc] initWithFrame:CGRectMake(0,40,320,40)];
             lbNavTitle.textAlignment = NSTextAlignmentCenter;
-            lbNavTitle.text = [NSString stringWithFormat:@"共 %@ 筆", totalBookNumber];
+            if(totalBookNumber == NULL)
+                lbNavTitle.text = [NSString stringWithFormat:@"共 0 筆"];
+            else
+                lbNavTitle.text = [NSString stringWithFormat:@"共 %@ 筆", totalBookNumber];
             lbNavTitle.backgroundColor = [UIColor clearColor];
             self.navigationItem.titleView = lbNavTitle;
             [lbNavTitle release];
@@ -245,7 +248,7 @@
         if (cell == nil)
         {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier] autorelease];
-            cell.selectionStyle = UITableViewCellSelectionStyleGray;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             nolabel = [[UILabel alloc] init];
         }

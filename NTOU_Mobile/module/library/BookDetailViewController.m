@@ -845,7 +845,8 @@ const char MyConstantKey;
                         detailViewController.accountStoreKey = libraryAccountKey;
                         detailViewController.passwordStoreKey = libraryPasswordKey;
                         detailViewController.loginSuccessStoreKey = libraryLoginSuccessKey;
-                        detailViewController.delegate = self;
+                        //SettingsModuleViewController * settingDelegate = [[SettingsModuleViewController init] alloc];
+                        //detailViewController.delegate = settingDelegate;
                         [self.navigationController pushViewController:detailViewController animated:YES];
                         [detailViewController release];
                     }
