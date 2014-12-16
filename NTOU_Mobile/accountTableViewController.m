@@ -7,6 +7,10 @@
 //
 
 #import "accountTableViewController.h"
+#import "SettingsModuleViewController.h"
+#import <netinet/in.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+
 #define loginSuccessButtonTittle @"登出"
 #define loginFailButtonTittle @"登入"
 @interface accountTableViewController ()
@@ -27,6 +31,25 @@
 @synthesize loginSuccessStoreKey;
 @synthesize explanation;
 @synthesize delegate;
+
+-(bool)hasWifi{
+    //Create zero addy
+    struct sockaddr_in Addr;
+    bzero(&Addr, sizeof(Addr));
+    Addr.sin_len = sizeof(Addr);
+    Addr.sin_family = AF_INET;
+    
+    //結果存至旗標中
+    SCNetworkReachabilityRef target = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr *) &Addr);
+    SCNetworkReachabilityFlags flags;
+    SCNetworkReachabilityGetFlags(target, &flags);
+    
+    
+    //將取得結果與狀態旗標位元做AND的運算並輸出
+    if (flags & kSCNetworkFlagsReachable)  return true;
+    else return false;
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -83,12 +106,23 @@
     
     if([buttonTitle isEqualToString:loginFailButtonTittle])
     {
-        logInAlertView = [[UIAlertView alloc]
-                          initWithTitle:nil message:@"確定登入？"
-                          delegate:self cancelButtonTitle:@"取消"
-                          otherButtonTitles:@"確定", nil];
-        [logInAlertView show];
-        [logInAlertView release];
+        if([self hasWifi])
+        {
+            logInAlertView = [[UIAlertView alloc]
+                              initWithTitle:nil message:@"確定登入？"
+                              delegate:self cancelButtonTitle:@"取消"
+                              otherButtonTitles:@"確定", nil];
+            [logInAlertView show];
+            [logInAlertView release];
+        } else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"無網路連接"
+                                                                message:nil
+                                                               delegate:self
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+            [alertView show];
+            [alertView release];
+        }
     }
     else
     {
@@ -282,13 +316,13 @@
                     hud.labelText = @"登入中";
                 });
                 
-                loginSuccess = [self.delegate login:self.title];
+                loginSuccess = [SettingsModuleViewController login:self.title];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                     if (loginSuccess)
                     {
-                        [self.delegate registerDeviceToken:self.title];
+                        [SettingsModuleViewController registerDeviceToken:self.title];
                         [buttonTitle setString:loginSuccessButtonTittle];
                         [self addNavRightButton];
                         accountDelegate.userInteractionEnabled = NO;

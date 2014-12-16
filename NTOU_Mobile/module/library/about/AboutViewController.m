@@ -13,12 +13,33 @@
 #import "UIKit+NTOUAdditions.h"
 #import "OpenTimeTableViewController.h"
 #import "ContactInfoTableViewController.h"
+#import <netinet/in.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+
 @interface AboutViewController ()
 @property (strong, nonatomic) AccountViewController *loginaccount;
 @end
 
 @implementation AboutViewController
 @synthesize loginaccount;
+
+-(bool)hasWifi{
+    //Create zero addy
+    struct sockaddr_in Addr;
+    bzero(&Addr, sizeof(Addr));
+    Addr.sin_len = sizeof(Addr);
+    Addr.sin_family = AF_INET;
+    
+    //結果存至旗標中
+    SCNetworkReachabilityRef target = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr *) &Addr);
+    SCNetworkReachabilityFlags flags;
+    SCNetworkReachabilityGetFlags(target, &flags);
+    
+    
+    //將取得結果與狀態旗標位元做AND的運算並輸出
+    if (flags & kSCNetworkFlagsReachable)  return true;
+    else return false;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -151,23 +172,34 @@
         }
             
             case 4:{
-                UIViewController *load = [[UIViewController alloc] init];
-                NSString *weburl = @"http://li.ntou.edu.tw/4net/search.php?databases_categoy=ii&top_cet=b";
-            
-                if (weburl==nil) return;
-                UIWebView *webView = [[[UIWebView alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
-                webView.scalesPageToFit = YES;
-                [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: weburl ] ]];
-                [load.view addSubview: webView];
-                load.title = @"電子書籍";
-            
-                [self.navigationController pushViewController:load animated:YES];
-                break;
+                if([self hasWifi]) //若有網路
+                {
+                    UIViewController *load = [[UIViewController alloc] init];
+                    NSString *weburl = @"http://li.ntou.edu.tw/4net/search.php?databases_categoy=ii&top_cet=b";
+                
+                    if (weburl==nil) return;
+                    UIWebView *webView = [[[UIWebView alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
+                    webView.scalesPageToFit = YES;
+                    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: weburl ] ]];
+                    [load.view addSubview: webView];
+                    load.title = @"電子書籍";
+                
+                    [self.navigationController pushViewController:load animated:YES];
+                } else {
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"無網路連接"
+                                                                        message:nil
+                                                                       delegate:self
+                                                              cancelButtonTitle:@"OK"
+                                                              otherButtonTitles:nil];
+                    [alertView show];
+                    [alertView release];
                 }
+                break;
+            }
             
-                default:
-                    break;
-             }
+            default:
+                break;
+         }
     }
 
 

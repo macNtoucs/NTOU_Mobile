@@ -8,7 +8,8 @@
 extern const char MyConstantKey;
 #import <UIKit/UIKit.h>
 #import "NJKWebViewProgress.h"
-@interface BookDetailViewController : UITableViewController <UIAlertViewDelegate , NSURLConnectionDelegate ,NJKWebViewProgressDelegate,UIWebViewDelegate >
+#import "accountTableViewController.h"
+@interface BookDetailViewController : UITableViewController <UIAlertViewDelegate , NSURLConnectionDelegate ,NJKWebViewProgressDelegate,UIWebViewDelegate,loginAndRegisterDelegate >
 @property (nonatomic,retain) NSString *bookurl;
 
 
