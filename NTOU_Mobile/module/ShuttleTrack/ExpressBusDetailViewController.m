@@ -153,6 +153,8 @@
     {
         //cancel clicked ...do your action
         NSLog(@"cancel");
+        [self.navigationController popViewControllerAnimated:YES];//直接回客運列表
+        /*
         [alertView dismissWithClickedButtonIndex:0 animated:YES];
         [activityIndicator stopAnimating];
         
@@ -166,6 +168,7 @@
         [stops retain];
         [times retain];
         [self.tableView reloadData];
+        */
         
     }
 }
@@ -266,14 +269,14 @@
     
     //設置自動行數與字符換行
     [label setNumberOfLines:0];
-    label.lineBreakMode = UILineBreakModeWordWrap;
-    UIFont *font = [UIFont fontWithName:@"Arial" size:18];
+    label.lineBreakMode = NSLineBreakByWordWrapping;
+    UIFont *font = [UIFont fontWithName:@"Arial" size:16];
     
     //設置寬、高上限
     CGSize size = CGSizeMake(screenWidth-40, screenHeight);
     //計算實際 frame 大小，並將 label 的 frame 變成實際大小
     labelsize = [completeRouteName sizeWithFont:font constrainedToSize:size
-                                         lineBreakMode:UILineBreakModeWordWrap];
+                                         lineBreakMode:NSLineBreakByWordWrapping];
     [label setFrame:CGRectMake(20, 70, screenWidth-40, labelsize.height)];
     
     [self.parentViewController.view addSubview:label];
@@ -396,6 +399,7 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell.textLabel.font = [UIFont fontWithName:@"Arial" size:14];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }

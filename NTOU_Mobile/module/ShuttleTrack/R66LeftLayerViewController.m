@@ -55,6 +55,7 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
         
     }
+    
     [self.tableView applyStandardColors];
     [self initWithData];
     // Uncomment the following line to preserve selection between presentations.

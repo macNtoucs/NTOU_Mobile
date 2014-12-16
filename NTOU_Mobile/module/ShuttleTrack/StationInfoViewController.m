@@ -145,7 +145,8 @@
             [query appendString:@"'"];
             //NSLog(@"query=%@", query);
             FMResultSet *rs = [db executeQuery:query];
-        for(int i=0; i < [lineName count] && [rs next]; ++i)
+            [rs next];
+        for(int i=0; i < [lineName count] ; ++i)
             {
                     [startLineNums setObject:[rs stringForColumn:[lineName objectAtIndex:i]] forKey:[lineName objectAtIndex:i]];
             }
@@ -159,8 +160,13 @@
         [query2 appendString:@"'"];
         //NSLog(@"query=%@", query);
         FMResultSet *rs2 = [db executeQuery:query2];
-        for(int i=0; i < [lineName count] && [rs2 next]; ++i)//while ([rs2 next])
+        
+        //排除因為資料庫路線值是0（不停靠）而造成順逆行判斷錯誤
+        [rs2 next];
+        for(int i=0; i < [lineName count]; ++i)//while ([rs2 next])
         {
+            if([[startLineNums valueForKey:[lineName objectAtIndex:i]] intValue]==0||[[rs2 stringForColumn:[lineName objectAtIndex:i]] intValue]==0)
+                continue;
             {
                 if([rs2 stringForColumn:[lineName objectAtIndex:i]])
                 {

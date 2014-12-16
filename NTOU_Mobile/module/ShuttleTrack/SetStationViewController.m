@@ -360,7 +360,7 @@
         
         queryURL= [queryURL stringByAppendingString:[NSString stringWithFormat:@"&fromcity=0&tocity=0&fromstation=%@&tostation=%@&",StartStationID,DepatureStationID]];
         queryURL= [queryURL stringByAppendingString:[NSString stringWithFormat:@"trainclass=%@&fromtime=0000&totime=2359",trainStyle]];
-       // NSLog( @"%@",queryURL);
+       NSLog( @"%@",queryURL);
        // queryURL= @"http://140.121.91.62/Rail_Web_Query.php?searchtype=0&searchdate=2013%2f04%2f02&fromcity=0&tocity=0&fromstation=1001&tostation=1008&trainclass=2&fromtime=0000&totime=2359";
         return [NSURL URLWithString:queryURL];
     }

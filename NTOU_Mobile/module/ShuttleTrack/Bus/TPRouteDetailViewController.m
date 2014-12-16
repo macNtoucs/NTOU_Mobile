@@ -72,6 +72,7 @@
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/AllRoutePhpFile.php?bus=%@&goBack=%@", encodedBus, goBack]];
     
+    NSLog(@"url:%@",url);
     NSError *error;
     
     //NSData *data = [NSData dataWithContentsOfURL:url];
@@ -84,11 +85,19 @@
         
         NSArray * responseArr = trainInfo[@"stationInfo"];
         
-        for(NSDictionary * dict in responseArr)
-        {
-            [stops addObject:[dict valueForKey:@"name"]];
-            [m_waitTimeResult addObject:[dict valueForKey:@"time"]];
+        if (![responseArr isKindOfClass:[NSNull class]]) {//排除單項路線會閃退情況
+            for(NSDictionary * dict in responseArr)
+            {
+                [stops addObject:[dict valueForKey:@"name"]];
+                [m_waitTimeResult addObject:[dict valueForKey:@"time"]];
+            }
         }
+        else
+        {
+            [stops addObject:@"無資料"];
+            [m_waitTimeResult addObject:@"沒有此班車資訊"];
+        }
+        
     }
     else //data沒有資料（nil）（發生情形：沒有網路連線）
     {
@@ -397,6 +406,11 @@
             else if ([comeTime isEqualToString:@"請稍候再試"])//data==nil
             {
                 cell.detailTextLabel.text = @"沒有網路或資料庫異常";
+                cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:127.0/255.0 green:127.0/255.0 blue:127.0/255.0 alpha:100.0];
+            }
+            else if ([comeTime isEqualToString:@"沒有此班車資訊"])//responseArr is null
+            {
+                cell.detailTextLabel.text = @"沒有此班車資訊";
                 cell.detailTextLabel.textColor = [[UIColor alloc] initWithRed:127.0/255.0 green:127.0/255.0 blue:127.0/255.0 alpha:100.0];
             }
             else if ([comeTime isEqual:@"更新中..."])

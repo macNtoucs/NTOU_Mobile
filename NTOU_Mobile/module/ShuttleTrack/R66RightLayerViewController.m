@@ -59,13 +59,16 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 2;//原本是1，2是為了
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
+    if (section ==1) {
+        return 0;
+    }
     return [weekend_marine count];
 }
 
@@ -85,6 +88,9 @@
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    if (section ==1) {
+        return @"";
+    }
     return @"例假日發車時間";
 }
 
@@ -95,6 +101,9 @@
 
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    if (section ==1) {
+        return [UITableView groupedSectionHeaderWithTitle3:@"" andOther:@""];
+    }
 	NSString *headerTitle1 = @"平常日發車時間";
     NSString *headerTitle2 = @"例假日發車時間";
     return [UITableView groupedSectionHeaderWithTitle3:headerTitle1 andOther:headerTitle2];
@@ -102,6 +111,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+        
+    
     NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
     SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
@@ -110,6 +122,8 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSString *timeString;
+        
+      if (indexPath.section ==0) {
     if (indexPath.row == 0)
         timeString = [[NSString alloc] initWithFormat:@"           %@               %@", [weekend_marine objectAtIndex:indexPath.row], [weekend_qidu objectAtIndex:indexPath.row]];
     else
@@ -117,7 +131,9 @@
     
     // Configure the cell...
     cell.textLabel.text = timeString;
+          }
     return cell;
+    
 }
 /*
  // Override to support conditional editing of the table view.

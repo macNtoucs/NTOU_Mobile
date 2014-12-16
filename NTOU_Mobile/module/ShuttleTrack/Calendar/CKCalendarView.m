@@ -386,9 +386,13 @@
 - (void)setMonthShowing:(NSDate *)aMonthShowing {
     _monthShowing = aMonthShowing;
     [_monthShowing retain];
+    NSDateComponents* components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:_monthShowing];
+    /*
     NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init]autorelease];
     dateFormatter.dateFormat = @"MM月 YYYY年";
-    self.titleLabel.text = [dateFormatter stringFromDate:aMonthShowing];
+    //[stringFromDate:]此mrthod會造成
+    self.titleLabel.text = [dateFormatter stringFromDate:aMonthShowing];*/
+    self.titleLabel.text = [NSString stringWithFormat:@"%ld月 %ld年",(long)components.month,(long)components.year];
     [self setNeedsLayout];
 }
 

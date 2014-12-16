@@ -105,7 +105,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
 - (void)loadView
 {
     [super loadView];
-    self.navigationItem.title = @"公告";
+    self.navigationItem.title = @"最新消息";
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)] autorelease];
     
     tempTableSelection = nil;
