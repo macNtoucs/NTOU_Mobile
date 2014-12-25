@@ -8,7 +8,7 @@
 //
 
 #import "KLRouteDetailViewController.h"
-#define kRefreshInterval 60
+#define kRefreshInterval 20
 
 @implementation KLRouteDetailViewController
 
@@ -54,10 +54,18 @@
 {
     NSLog(@"[Detail]CatchData");
     ISREAL = TRUE;
-    [self estimateTime];
-    [self.tableView reloadData];
-    [loadingView dismissWithClickedButtonIndex:0 animated:YES];
-    [activityIndicator stopAnimating];
+    //[loadingView show];
+    [self AlertStart:loadingView];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [self estimateTime];
+        
+        [loadingView dismissWithClickedButtonIndex:0 animated:YES];
+        [activityIndicator stopAnimating];
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    });
 }
 
 - (void)estimateTime
@@ -76,9 +84,8 @@
     //NSLog(@"url = %@", url);
     
     NSError *error;
-    
-    //NSData *data = [NSData dataWithContentsOfURL:url];
-    NSData *data = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:&error];
+    //NSData *data = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:&error];
+    NSData *data = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url] returningResponse:NULL error:&error];
     //NSLog(@"data=%@", data);
     
     //data有資料
@@ -113,8 +120,8 @@
     [m_waitTimeResult retain];
 }
 
+
 -(void)AlertStart:(UIAlertView *) loadingAlertView{
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     CGRect frame = CGRectMake(120, 10, 40, 40);
     UIActivityIndicatorView* progressInd = [[UIActivityIndicatorView alloc] initWithFrame:frame];
     progressInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
@@ -122,7 +129,6 @@
     [loadingAlertView addSubview:progressInd];
     [loadingAlertView show];
     [progressInd release];
-    [pool drain];
 }
 
 -(void)stopTimer
@@ -134,7 +140,7 @@
 		//self.anotherButton.title = @"Refresh";
 	}
 }
-
+/*
 - (void)refreshPropertyList{
     self.lastRefresh = [NSDate date];
     self.navigationItem.rightBarButtonItem.title = @"Refreshing";
@@ -153,7 +159,7 @@
     [loadingAlertView dismissWithClickedButtonIndex:0 animated:NO];
     [loadingAlertView release];
     [thread release];
-}
+}*/
 
 #pragma mark - View lifecycle
 
@@ -211,15 +217,15 @@
 
 - (void)viewDidLoad
 {
-    
-    loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
-    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:@"取消" otherButtonTitles: nil];
+    [self AlertStart:loadingView];
+/*
     dispatch_async(dispatch_get_main_queue(), ^{
         [self AlertStart:loadingView];
-    });
+    });*/
     
     [super viewDidLoad];
-    [self.tableView applyStandardColors];
+    //[self.tableView applyStandardColors];
     
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -245,12 +251,11 @@
         activityIndicator.frame = CGRectMake(115.0, 120.0, 50.0, 50.0);
         activityIndicator.color = [UIColor blackColor];
     }
-    
-    //[self.tableView addSubview:self.secondsLabel];
-    [self.loadingView addSubview:self.activityIndicator];
+    /*
     [self.tableView addSubview:self.loadingView];
-    [activityIndicator startAnimating];
-    [self.loadingView show];
+    [self.loadingView show];*/
+    
+    //往返按鈕設定
     anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"往返" style:UIBarButtonItemStylePlain target:self action:@selector(changeDetailView)];
     self.navigationItem.rightBarButtonItem = anotherButton;
     m_waitTimeResult = [NSMutableArray new];
@@ -268,7 +273,6 @@
     [_refreshHeaderView refreshLastUpdatedDate];
     /*success = [[UIImageView alloc] initWithFrame:CGRectMake(75.0, 250.0, 150.0, 150.0)];
     [success setImage:[UIImage imageNamed:@"ok.png"]];*/
-    //[self CatchData];
 }
 
 - (void)viewDidUnload
@@ -293,9 +297,6 @@
     if (!ISREAL)
     {
         NSLog(@"RouteDetail.m stops is null");
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self CatchData];
-        });
         
         /*for (UIView* view in self.tableView.subviews) {
             
@@ -385,7 +386,10 @@
 {
     // Return the number of rows in the section.
     if (ISREAL)
+    {
+        NSLog(@"numberOfRowsInSection: %lu",[stops count]);
         return [stops count];   // for can't see cell
+    }
     else
         return [preArray count];
 }

@@ -50,10 +50,17 @@
 -(void)CatchData
 {
     ISREAL = TRUE;
-    [self estimateTime];
-    //[self.tableView reloadData];
-    [loadingView dismissWithClickedButtonIndex:0 animated:YES];
-    [activityIndicator stopAnimating];
+    [self AlertStart:loadingView];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [self estimateTime];
+        
+        [loadingView dismissWithClickedButtonIndex:0 animated:YES];
+        [activityIndicator stopAnimating];
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    });
 }
 
 - (void)estimateTime
@@ -74,7 +81,8 @@
     NSError *error;
     
     //NSData *data = [NSData dataWithContentsOfURL:url];
-    NSData *data = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:&error];
+    //NSData *data = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:&error];
+    NSData *data = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url] returningResponse:NULL error:&error];
     //NSLog(@"data=%@", data);
     
     if (data)
@@ -111,7 +119,6 @@
 }
 
 -(void)AlertStart:(UIAlertView *) loadingAlertView{
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     CGRect frame = CGRectMake(120, 10, 40, 40);
     UIActivityIndicatorView* progressInd = [[UIActivityIndicatorView alloc] initWithFrame:frame];
     progressInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
@@ -119,7 +126,6 @@
     [loadingAlertView addSubview:progressInd];
     [loadingAlertView show];
     [progressInd release];
-    [pool drain];
 }
 
 -(void)stopTimer
@@ -180,9 +186,9 @@
                 [self stopTimer];
                 //[activityIndicator performSelectorInBackground:@selector(startAnimating) withObject:nil];
                 //[self.loadingView performSelectorInBackground:@selector(show) withObject:nil];
-                dispatch_async(dispatch_get_main_queue(), ^{
+                
                     [self CatchData];
-                });
+            
                 [self startTimer];
             }
             //NSLog(@"距離上次更新%d秒", secs);

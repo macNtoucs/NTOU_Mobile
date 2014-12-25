@@ -79,7 +79,7 @@
     NSString *cellText = nil;
     
     cellText = @"A"; // just something to guarantee one line
-    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
     rowHeight = labelSize.height + 20.0f;
     
     return rowHeight;
@@ -87,7 +87,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%lu%lu",indexPath.section,indexPath.row];
     SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
     {
@@ -170,7 +170,7 @@
         selectedRouteName = [to stringByAppendingString:departure];
     
     NSLog(@"BusName:%@", busName);
-    NSLog(@"selected route = %@, goback = %i", selectedRouteName, indexPath.row);
+    NSLog(@"selected route = %@, goback = %lu", selectedRouteName, indexPath.row);
     secondLevel.title = selectedRouteName;
     [secondLevel setter_busName:busName andGoBack:indexPath.row];
     
