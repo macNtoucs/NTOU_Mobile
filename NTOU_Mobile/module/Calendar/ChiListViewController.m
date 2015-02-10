@@ -37,12 +37,21 @@
 @synthesize showing;
 @synthesize menuHeight;
 
+
+- (void)setupFrame:(float) NavBarHeight
+{
+    NSInteger screenHeight = [[UIScreen mainScreen] bounds].size.height;
+    NSInteger screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    self.tableView.frame = CGRectMake(0, NavBarHeight, screenWidth, screenHeight-NavBarHeight);
+    NSLog(@"navigationBar height:%f", NavBarHeight);
+}
+
+
 -(id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    NSInteger screenheight = [[UIScreen mainScreen] bounds].size.height;
-    NSInteger height = screenheight;
-    self.tableView.frame = CGRectMake(0, 0, 320, height);
+    
+    //self.navigationController.navigationBar.frame.size.height
     return self;
 }
 
@@ -103,7 +112,6 @@
     self.actionToolbar.barStyle = UIBarStyleBlack;
     
     downLoadEditing = NO;
-    
     
     [self.tableView reloadData];
     
@@ -298,6 +306,13 @@
     
     return cell;
 }
+
+//ios8 defaule is 0
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 25;
+}
+
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -723,12 +738,6 @@
         [userDefaults setObject:localCalendar.calendarIdentifier forKey:@"NTOUCalendarIdentifier"];
         [userDefaults synchronize];
     }
-}
-
-//ios8 defaule is 0
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 20;
 }
 
 

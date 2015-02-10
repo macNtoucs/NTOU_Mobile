@@ -242,7 +242,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    CGFloat screenHeight = screenBound.size.height;
+    CGFloat screenWidth = screenBound.size.width;
+
     if (indexPath.section==0)
     {
         if (indexPath.row == 0)
@@ -282,7 +285,7 @@
         StopsViewController * stops = [[StopsViewController alloc]initWithStyle:UITableViewStyleGrouped];
         // 這行沒mark掉會導致R66公車無法進到下層
         //stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];
-        R66SwitchViewController *r66Switch = [[R66SwitchViewController alloc] init];
+        R66TableViewController *r66Switch = [[R66TableViewController alloc] init];
         
         if (indexPath.row==0) {
             stops.title =[ NSString stringWithFormat:@"往%@",[cell.textLabel.text substringWithRange:NSMakeRange(13, 3)] ];            [stops setDirection:true];
@@ -297,7 +300,6 @@
         else
         {
             r66Switch.title = @"R66 時刻表";
-            
             //[self.navigationController.toolbar setFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
             //NSLog(@"toolbar = %f", self.navigationController.toolbar.frame.size.height);
             [self.navigationController pushViewController:r66Switch animated:YES];

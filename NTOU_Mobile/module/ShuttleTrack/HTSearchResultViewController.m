@@ -116,13 +116,15 @@
     }*/
     
     NSURL * url=[NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/HTSearchResult.php?startId=%@&endId=%@&date=%@&time=%@", startId, endId, strDate, time]];   // pass your URL  Here.
-    
-    NSData *data=[NSData dataWithContentsOfURL:url];
+    NSLog(@"%@",url);
+    NSError *error;
+    NSData *data = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url] returningResponse:NULL error:&error];
+    NSLog(@"data=%@", data);
+
     
     //確定data有資料，以防閃退
     if(data)
     {
-        NSError *error;
         
         NSMutableDictionary  *trainInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
         
@@ -183,6 +185,10 @@
         }
            [self.tableView reloadData];
         [BIN_resultString release];*/
+    }
+    else
+    {
+        NSLog(@"高鐵 no data");
     }
     [downloadView AlertViewEnd];
 }

@@ -106,12 +106,16 @@
 	// Do any additional setup after loading the view.
     NSInteger screenheight = [[UIScreen mainScreen] bounds].size.height;
     self.view.frame = CGRectMake(0, 0, 320, screenheight);
+    float NavBarHeight = self.navigationController.navigationBar.frame.size.height;
     
     
     chiViewController.menuHeight = 0;
     engViewController.menuHeight = 0;
     self.engViewController = [[EnglistViewController alloc]initWithStyle:UITableViewStylePlain];
     self.chiViewController = [[ChiListViewController alloc]initWithStyle:UITableViewStylePlain];
+    [self.engViewController setupFrame:NavBarHeight];
+    [self.chiViewController setupFrame:NavBarHeight];
+
     engViewController.switchviewcontroller = self;
     chiViewController.switchviewcontroller = self;
     [self.view addSubview:self.chiViewController.view];

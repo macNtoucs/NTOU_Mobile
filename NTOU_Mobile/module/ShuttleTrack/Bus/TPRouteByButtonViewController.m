@@ -149,7 +149,7 @@
     self.navigationItem.rightBarButtonItem = DeleteButton;
     
     
-    //---------------------------使用提示視窗
+    /*---------------------------使用提示視窗
     NSString *isNextTimeShow;
     NSPropertyListFormat format;
     NSString *errorDesc = nil;
@@ -178,9 +178,9 @@
     }
     [alertView show];
     [alertView release];
-    //-------------------------------
+    -------------------------------*/
 }
-
+/*
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     //-------使用提示視窗
@@ -209,7 +209,7 @@
             break;
     }
 }
-
+*/
 
 -(void)deletefrequencyBusStationData
 {
@@ -222,12 +222,14 @@
         //remove the plist
         [fm removeItemAtPath:path error:&error];
         NSLog(@"frequencyBusStation.plisl 資料清除");
-        /*
+        
         //清除目前tableView
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"DefaultAlpha.png"]];
         havingTableView = NO;
         [tableview removeFromSuperview];
-         */
+        [self cleanArrayBusData];
+
+        
     }
 }
 

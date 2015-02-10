@@ -39,6 +39,24 @@
     return self;
 }
 
+-(void)CatchData
+{
+    NSLog(@"[Detail]CatchData");
+    ISREAL = TRUE;
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [self estimateTime];
+        
+        [loadingView dismissWithClickedButtonIndex:0 animated:YES];
+        [activityIndicator stopAnimating];
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    });
+}
+
+
+
 // 顯示發車時間
 - (void)showDepartureTime:(NSString *)selectedShortRouteName
 {
@@ -288,6 +306,7 @@
         [self.tableView addSubview:view1];
         _refreshHeaderView = view1;
         [view1 release];
+        [self CatchData];
     }
     [_refreshHeaderView refreshLastUpdatedDate];
     success = [[UIImageView alloc] initWithFrame:CGRectMake(75.0, 250.0, 150.0, 150.0)];
@@ -319,16 +338,14 @@
     if (!ISREAL)
     {
         NSLog(@"!ISREAL");
-        [self estimateTime];
-        [self alertViewEnd];
     }
     else
-    {
+    {/*
         for (UIView* view in self.tableView.subviews) {
             
             if([view isKindOfClass:[UIAlertView class]])
                 [view dismissWithClickedButtonIndex:1 animated:YES];
-        }
+        }*/
         [activityIndicator stopAnimating];
     }
 }

@@ -1,7 +1,7 @@
 //
 //  SetStationViewController.m
 //  MIT Mobile
-//  交通功能：火車
+//  交通功能：火車 高鐵
 //  Created by MacAir on 12/11/6.
 //
 //
@@ -110,7 +110,7 @@
         view5.dataSource = self;
         view5.title = type5;
         view5.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
-        resultViewController.view.frame= CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height+25);
+        resultViewController.view.frame= CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height+50);
         [resultViewController.view addSubview:view5.tableView];
         resultViewController.tabBarItem.tag=4;
         resultViewController.tabBarItem.image = [UIImage imageNamed:@"magnify.png"];
@@ -126,7 +126,7 @@
         ht_searchResult = [[HTSearchResultViewController alloc]init];
         ht_searchResult.dataSource = self;
         ht_searchResult.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
-        resultViewController.view.frame= CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
+        resultViewController.view.frame= CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height+10);
         [resultViewController.view addSubview:ht_searchResult.tableView];
         resultViewController.tabBarItem.tag=4;
         resultViewController.tabBarItem.image = [UIImage imageNamed:@"magnify.png"];

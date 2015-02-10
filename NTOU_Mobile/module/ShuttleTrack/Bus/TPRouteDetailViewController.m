@@ -231,6 +231,32 @@
 
 #pragma mark - View lifecycle
 
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"alertClicked");
+    
+    if (buttonIndex == 0)
+    {
+        //cancel clicked ...do your action
+        NSLog(@"cancel");
+        [alertView dismissWithClickedButtonIndex:0 animated:YES];
+        [activityIndicator stopAnimating];
+        
+        if(stops)
+        {
+            [stops removeAllObjects];
+            [m_waitTimeResult removeAllObjects];
+        }
+        [stops addObject:@"更新中，暫無資料"];
+        [m_waitTimeResult addObject:@"請稍候再試"];
+        [stops retain];
+        [m_waitTimeResult retain];
+        [self.tableView reloadData];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 - (void)viewDidLoad
 {
     NSLog(@"[Detail]viewDidLoad");

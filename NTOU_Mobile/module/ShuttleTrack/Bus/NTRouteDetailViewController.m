@@ -225,6 +225,32 @@
 
 #pragma mark - View lifecycle
 
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"alertClicked");
+    
+    if (buttonIndex == 0)
+    {
+        //cancel clicked ...do your action
+        NSLog(@"cancel");
+        [alertView dismissWithClickedButtonIndex:0 animated:YES];
+        [activityIndicator stopAnimating];
+        
+        if(stops)
+        {
+            [stops removeAllObjects];
+            [m_waitTimeResult removeAllObjects];
+        }
+        [stops addObject:@"更新中，暫無資料"];
+        [m_waitTimeResult addObject:@"請稍候再試"];
+        [stops retain];
+        [m_waitTimeResult retain];
+        [self.tableView reloadData];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 - (void)viewDidLoad
 {
     NSLog(@"[NTDetail]viewDidLoad");
@@ -246,7 +272,7 @@
     preArray = [[NSArray alloc] initWithObjects:nil];
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
-    loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
+    loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
     
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)

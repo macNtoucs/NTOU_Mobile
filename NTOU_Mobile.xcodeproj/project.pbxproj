@@ -355,6 +355,7 @@
 		C74699E016F21C2D0060F49C /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699DC16F21C2D0060F49C /* XMLReader.m */; };
 		C74699E316F21C680060F49C /* NavScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699E216F21C680060F49C /* NavScrollerView.m */; };
 		C74699E916F21CF40060F49C /* news in Resources */ = {isa = PBXBuildFile; fileRef = C74699E816F21CF40060F49C /* news */; };
+		EAB7701D1A8330C100258229 /* R66TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB7701C1A8330C100258229 /* R66TableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -879,6 +880,8 @@
 		C74699E216F21C680060F49C /* NavScrollerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavScrollerView.m; sourceTree = "<group>"; };
 		C74699E816F21CF40060F49C /* news */ = {isa = PBXFileReference; lastKnownFileType = folder; path = news; sourceTree = "<group>"; };
 		C74699EA16F21D590060F49C /* Announce_API_Key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Announce_API_Key.h; path = module/NEWS/Announce_API_Key.h; sourceTree = "<group>"; };
+		EAB7701B1A8330C100258229 /* R66TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R66TableViewController.h; sourceTree = "<group>"; };
+		EAB7701C1A8330C100258229 /* R66TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R66TableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1335,13 +1338,13 @@
 				1DC6700F1976BFE7006D7C4C /* bus_100x100.png */,
 				1DC670101976BFE7006D7C4C /* NTOU-bus_240x50.png */,
 				1DC670111976BFE7006D7C4C /* speed-rail_100x100.png */,
+				1DC670131976BFE7006D7C4C /* transport_100x100.png */,
 				1DC670121976BFE7006D7C4C /* train_100x100.png */,
 				1DC670191976C576006D7C4C /* bus_100x100@2x.png */,
 				1DC6701A1976C576006D7C4C /* NTOU-bus_240x50@2x.png */,
 				1DC6701B1976C576006D7C4C /* speed-rail_100x100@2x.png */,
 				1DC6701C1976C576006D7C4C /* train_100x100@2x.png */,
 				1DC6701D1976C576006D7C4C /* transport_100x100@2x.png */,
-				1DC670131976BFE7006D7C4C /* transport_100x100.png */,
 				43BEDBF619236C260091B024 /* FMResultSet.h */,
 				43BEDBF919236CF90091B024 /* FMDatabasePool.h */,
 				43BEDBFA19236CF90091B024 /* FMDatabasePool.m */,
@@ -1349,12 +1352,18 @@
 				43BEDBF319236BED0091B024 /* FMDatabase.h */,
 				43BEDBF419236BED0091B024 /* FMDatabase.m */,
 				BECF7C73184F48A800ADD115 /* R66Route.png */,
-				BECF7C6D184F468200ADD115 /* R66LeftLayerViewController.h */,
-				BECF7C6E184F468200ADD115 /* R66LeftLayerViewController.m */,
+				43BEDC1D19236E530091B024 /* NTOUShuttleButtonViewController.h */,
+				43BEDC1E19236E530091B024 /* NTOUShuttleButtonViewController.m */,
 				43BEDBFE19236D570091B024 /* Bus */,
 				43BEDC1419236D6E0091B024 /* ExpressBusSearch */,
-				BECF7C70184F468200ADD115 /* R66RightLayerViewController.m */,
 				BECF7C6F184F468200ADD115 /* R66RightLayerViewController.h */,
+				BECF7C70184F468200ADD115 /* R66RightLayerViewController.m */,
+				BECF7C6D184F468200ADD115 /* R66LeftLayerViewController.h */,
+				BECF7C6E184F468200ADD115 /* R66LeftLayerViewController.m */,
+				BE98A967183CFA6000EF3CDC /* R66SwitchViewController.h */,
+				BE98A968183CFA6000EF3CDC /* R66SwitchViewController.m */,
+				EAB7701B1A8330C100258229 /* R66TableViewController.h */,
+				EAB7701C1A8330C100258229 /* R66TableViewController.m */,
 				91A9048F16E89E5200ECF2CF /* StationInfoViewController.h */,
 				91A9049016E89E5400ECF2CF /* StationInfoViewController.m */,
 				91A903A716E899D200ECF2CF /* Annotation.h */,
@@ -1390,8 +1399,6 @@
 				91A903E016E899D200ECF2CF /* NTOUTableViewControllerLayer1.m */,
 				91A903E116E899D200ECF2CF /* NTOUTableViewControllerLayer2.h */,
 				91A903E216E899D200ECF2CF /* NTOUTableViewControllerLayer2.m */,
-				43BEDC1D19236E530091B024 /* NTOUShuttleButtonViewController.h */,
-				43BEDC1E19236E530091B024 /* NTOUShuttleButtonViewController.m */,
 				43BEDC2219236E990091B024 /* ShuttleConstants.h */,
 				91A903E316E899D200ECF2CF /* OtherTrafficTrapViewController.h */,
 				91A903E416E899D200ECF2CF /* OtherTrafficTrapViewController.m */,
@@ -1439,8 +1446,6 @@
 				BEA91660183C5F0400F12001 /* R66Layer1ViewController.m */,
 				BE98A964183CF79300EF3CDC /* R66Layer2ViewController.h */,
 				BE98A965183CF79300EF3CDC /* R66Layer2ViewController.m */,
-				BE98A967183CFA6000EF3CDC /* R66SwitchViewController.h */,
-				BE98A968183CFA6000EF3CDC /* R66SwitchViewController.m */,
 				BECF7C75185598AD00ADD115 /* AlertViewShown.plist */,
 			);
 			name = ShuttleTrack;
@@ -1967,6 +1972,7 @@
 				437D52621923976E0054AD8E /* ExpressBusDetailViewController.m in Sources */,
 				91756FDE16F20CC5001D724D /* ReaderThumbView.h in Sources */,
 				91756FDF16F20CC5001D724D /* ReaderViewController.h in Sources */,
+				EAB7701D1A8330C100258229 /* R66TableViewController.m in Sources */,
 				91A9005716E854E500ECF2CF /* main.m in Sources */,
 				91A9005B16E854E500ECF2CF /* AppDelegate.m in Sources */,
 				43BEDC0D19236D570091B024 /* KLRouteDetailViewController.m in Sources */,
@@ -2186,8 +2192,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				ONLY_ACTIVE_ARCH = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -2215,14 +2221,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 				);
-				PROVISIONING_PROFILE = "82c6a710-cbda-43e1-845d-9327b0e1eb18";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "82c6a710-cbda-43e1-845d-9327b0e1eb18";
+				PROVISIONING_PROFILE = "d7e276a6-d686-4bbb-a262-2d494a842d28";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "d7e276a6-d686-4bbb-a262-2d494a842d28";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = NO;
@@ -2269,8 +2276,8 @@
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "82c6a710-cbda-43e1-845d-9327b0e1eb18";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "82c6a710-cbda-43e1-845d-9327b0e1eb18";
+				PROVISIONING_PROFILE = "d7e276a6-d686-4bbb-a262-2d494a842d28";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "d7e276a6-d686-4bbb-a262-2d494a842d28";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

@@ -7,21 +7,16 @@
 //
 
 #import "R66SwitchViewController.h"
-//#import "R66Layer1ViewController.h"
-//#import "R66Layer2ViewController.h"
-#import "R66LeftLayerViewController.h"
-#import "R66RightLayerViewController.h"
-
+#import "R66TableViewController.h"
 @interface R66SwitchViewController ()
 @end
 
 @implementation R66SwitchViewController
-@synthesize r66layer1ViewController, r66layer2ViewController, r66routePicViewController;
+@synthesize r66TableViewController, r66routePicViewController;
 @synthesize switchButton, swipeRecognizer, pinchRecognizer, imageView, scrollView, alertView;
 
 - (void)viewDidLoad
 {
-    [self detectCurrentTime];
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
         
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -32,8 +27,7 @@
     screenHeight = screenBound.size.height;
     screenWidth = screenBound.size.width;
     
-    // ------------------------------------------------------------------------
-    NSString *isNextTimeShow;
+    /* ------------------------------------------------------------------------
     NSString *errorDesc = nil;
     NSPropertyListFormat format;
     NSString *plistPath;
@@ -49,80 +43,20 @@
                                           mutabilityOption:NSPropertyListMutableContainersAndLeaves
                                           format:&format
                                           errorDescription:&errorDesc];
-    isNextTimeShow = [[NSString alloc] init];
-    if (!temp)
-        NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
-    else
-        isNextTimeShow = [temp objectForKey:@"NextTimeShown"];
-    NSLog(@"%@", isNextTimeShow);
-    // ------------------------------------------------------------------------
-    
-    
-    if ([isNextTimeShow isEqualToString:@"TRUE"])
-    {
-        alertView = [[UIAlertView alloc] initWithTitle:@"溫馨提醒" message:@"左右滑動可切換平日與假日" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:@"不再提醒", nil];
-    }
-    
-    swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(convertSwipeRecognizer)];
+     */
     pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch)];
     
-    R66LeftLayerViewController *layer1ViewController = [[R66LeftLayerViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    R66RightLayerViewController *layer2ViewController = [[R66RightLayerViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    layer1ViewController.tableView.frame = CGRectMake(0.0, 0.0, screenWidth, screenHeight);
-    layer2ViewController.tableView.frame = CGRectMake(0.0, 0.0, screenWidth, screenHeight);
-    
-    if (isWeekday)  // 平常日
-    {
-        self.r66layer1ViewController = layer1ViewController;
-        [self.view insertSubview:r66layer1ViewController.view atIndex:0];
-        [swipeRecognizer setDirection:UISwipeGestureRecognizerDirectionLeft];
-    }
-    else            // 假日
-    {
-        self.r66layer2ViewController = layer2ViewController;
-        [self.view insertSubview:r66layer2ViewController.view atIndex:0];
-        [swipeRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
-    }
-    
+    R66TableViewController *r66TableViewController = [[R66TableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    r66TableViewController.tableView.frame = CGRectMake(0.0, 0.0, screenWidth, screenHeight);
+    [self.view insertSubview:r66TableViewController.view atIndex:0];
+
     switchButton = [[UIBarButtonItem alloc] initWithTitle:@"路線圖" style:UIBarButtonItemStyleBordered target:self action:@selector(showR66RoutePic)];
     switchButton.style = UIBarButtonItemStylePlain;
     self.navigationItem.rightBarButtonItem = switchButton;
-    [self.view addGestureRecognizer:swipeRecognizer];
     [super viewDidLoad];
     [alertView show];
     [alertView release];
 }
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex)
-    {
-        case 0:
-            NSLog(@"Cancel Button Pressed");
-            break;
-        case 1:
-        {
-            // ------------------------------------------------------------------------
-            NSString *error;
-            NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-            NSString *plistPath = [rootPath stringByAppendingPathComponent:@"AlertViewShown.plist"];
-            NSDictionary *plistDict = [NSDictionary dictionaryWithObject:@"FALSE" forKey:@"NextTimeShown"];
-            NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:plistDict format:NSPropertyListXMLFormat_v1_0 errorDescription:&error];
-            if(plistData) {
-                [plistData writeToFile:plistPath atomically:YES];
-            }
-            else {
-                NSLog(@"%@", error);
-                [error release];
-            }
-            // ------------------------------------------------------------------------
-            break;
-        }
-        default:
-            break;
-    }
-}
-
 - (void)handlePinch
 {
     
@@ -189,74 +123,10 @@
     return self.imageView;
 }
 
-- (void)convertSwipeRecognizer
-{
-    if (swipeRecognizer.direction == UISwipeGestureRecognizerDirectionLeft)
-        swipeRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-    else
-        swipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-    [self switchView];
-    NSLog(@"switchLeft");
-}
-
-- (void)detectCurrentTime
-{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    NSDate *date = [NSDate date];
-    [formatter setDateFormat:@"cccc"];
-    NSString *currentTime = [formatter stringFromDate:date];
-    NSLog(@"%@", currentTime);
-    if ([currentTime isEqualToString:@"Saturday"] || [currentTime isEqualToString:@"星期六"] || [currentTime isEqualToString:@"Sunday"] || [currentTime isEqualToString:@"星期日"])
-        isWeekday = false;
-    else
-        isWeekday = true;
-}
-
-- (void)switchView
-{
-    [UIView beginAnimations:@"View Curl" context:nil];
-    [UIView setAnimationDuration:0.5];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    
-    if (self.r66layer2ViewController.view.superview == nil)
-    {
-        if (self.r66layer2ViewController == nil)
-        {
-            //R66Layer2ViewController *layer2ViewController = [[R66Layer2ViewController alloc] initWithStyle:UITableViewStyleGrouped];
-            R66RightLayerViewController *layer2ViewController = [[R66RightLayerViewController alloc] initWithStyle:UITableViewStyleGrouped];
-            layer2ViewController.tableView.frame = CGRectMake(0.0, 0.0, screenWidth, screenHeight);
-            self.r66layer2ViewController = layer2ViewController;
-            [layer2ViewController release];
-        }
-        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
-        switchButton.title = @"路線圖";
-        [r66layer1ViewController.view removeFromSuperview];
-        [self.view insertSubview:r66layer2ViewController.view atIndex:0];
-        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
-    }
-    else
-    {
-        if (self.r66layer1ViewController == nil)
-        {
-            //R66Layer1ViewController *layer1ViewController = [[R66Layer1ViewController alloc] initWithStyle:UITableViewStyleGrouped];
-            R66LeftLayerViewController *layer1ViewController = [[R66LeftLayerViewController alloc] initWithStyle:UITableViewStyleGrouped];
-            layer1ViewController.tableView.frame = CGRectMake(0.0, 0.0, screenWidth, screenHeight);
-            self.r66layer1ViewController = layer1ViewController;
-            [layer1ViewController release];
-        }
-        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
-        switchButton.title = @"路線圖";
-        [r66layer2ViewController.view removeFromSuperview];
-        [self.view insertSubview:r66layer1ViewController.view atIndex:0];
-    }
-    [UIView commitAnimations];
-}
-
 - (void)dealloc
 {
     [switchButton release];
-    [r66layer1ViewController release];
-    [r66layer2ViewController release];
+    [r66TableViewController release];
     [super dealloc];
 }
 

@@ -19,4 +19,5 @@
 
 - (IBAction)chooseitem;
 - (void)scrolltableview;//自動滾動到當前月份
+- (void)setupFrame:(float) NavBarHeight;
 @end

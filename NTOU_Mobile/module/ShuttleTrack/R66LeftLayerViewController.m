@@ -1,7 +1,7 @@
 //
 //  R66Layer1ViewController.m
 //  NTOU_Mobile
-//
+//  R66平日班次
 //  Created by NTOUCS on 13/11/20.
 //  Copyright (c) 2013年 NTOUcs_MAC. All rights reserved.
 //
@@ -20,7 +20,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -84,6 +84,8 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
+    NSLog(@"R66Left tableCell count:%lu",(unsigned long)[weekday_marine count]);
+
     return [weekday_marine count];
 }
 

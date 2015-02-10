@@ -38,6 +38,14 @@
 @synthesize menuHeight;
 
 
+- (void)setupFrame:(float) NavBarHeight
+{
+    NSInteger screenHeight = [[UIScreen mainScreen] bounds].size.height;
+    NSInteger screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    self.tableView.frame = CGRectMake(0, NavBarHeight, screenWidth, screenHeight-NavBarHeight);
+    NSLog(@"navigationBar height:%f", NavBarHeight);
+}
+
 -(id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];

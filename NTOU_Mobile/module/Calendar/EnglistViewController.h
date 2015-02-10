@@ -17,6 +17,7 @@
 @property (nonatomic) NSInteger menuHeight;
 @property (nonatomic, strong) UIToolbar *actionToolbar;
 
+- (void)setupFrame:(float) NavBarHeight;
 - (IBAction)chooseitem;
 - (void)scrolltableview;
 @end

@@ -1,7 +1,7 @@
 //
 //  R66Layer2ViewController.m
 //  NTOU_Mobile
-//
+//  R66假日
 //  Created by NTOUCS on 13/11/20.
 //  Copyright (c) 2013年 NTOUcs_MAC. All rights reserved.
 //
@@ -59,7 +59,7 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 2;//原本是1，2是為了
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -69,6 +69,7 @@
     if (section ==1) {
         return 0;
     }
+    NSLog(@"R66Right tableCell count:%lu",(unsigned long)[weekend_marine count]);
     return [weekend_marine count];
 }
 
@@ -114,7 +115,7 @@
     
         
     
-    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%ld%ld",(long)indexPath.section,(long)indexPath.row];
     SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
     {
