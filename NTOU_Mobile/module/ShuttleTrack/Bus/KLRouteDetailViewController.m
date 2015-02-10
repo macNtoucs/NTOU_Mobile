@@ -1,7 +1,7 @@
 //
 //  SecondLevelViewController.m
 //  TaipeiBusSystem
-//  基隆市公車站牌到站資訊
+//  交通功能：公車 基隆市公車站牌到站資訊
 //
 //  Created by Ching-Chi Lin on 12/7/27.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
@@ -171,7 +171,7 @@
     {
         //cancel clicked ...do your action
         NSLog(@"cancel");
-        [alertView dismissWithClickedButtonIndex:0 animated:YES];
+        //[alertView dismissWithClickedButtonIndex:0 animated:YES];
         [activityIndicator stopAnimating];
         
         if(stops)
@@ -186,6 +186,7 @@
         [self.tableView reloadData];
         [self.navigationController popViewControllerAnimated:YES];
     }
+    else{}
 }
 
 - (void)changeDetailView

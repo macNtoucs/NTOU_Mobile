@@ -1064,10 +1064,10 @@
 		43BEDC1419236D6E0091B024 /* ExpressBusSearch */ = {
 			isa = PBXGroup;
 			children = (
-				437D52611923976E0054AD8E /* ExpressBusDetailViewController.m */,
-				437D52631923977E0054AD8E /* ExpressBusSearchViewController.m */,
 				437D5265192397FC0054AD8E /* ExpressBusDetail2ViewController.h */,
+				437D52611923976E0054AD8E /* ExpressBusDetailViewController.m */,
 				437D5268192398530054AD8E /* ExpressBusSearch2ViewController.h */,
+				437D52631923977E0054AD8E /* ExpressBusSearchViewController.m */,
 			);
 			path = ExpressBusSearch;
 			sourceTree = "<group>";

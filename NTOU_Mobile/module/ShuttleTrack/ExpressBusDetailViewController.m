@@ -26,7 +26,7 @@
 
 @synthesize success;
 @synthesize refreshTimer;
-@synthesize activityIndicator;
+//@synthesize activityIndicator;
 @synthesize loadingView;
 @synthesize preArray;
 
@@ -46,9 +46,8 @@
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         [self estimateTime];
         
-        [loadingView dismissWithClickedButtonIndex:0 animated:YES];
-        [activityIndicator stopAnimating];
-        
+        [loadingView dismissWithClickedButtonIndex:0 animated:NO];
+        //[activityIndicator stopAnimating];
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
@@ -155,8 +154,7 @@
     if (buttonIndex == 0)
     {
         //cancel clicked ...do your action
-        NSLog(@"cancel");
-    }
+        NSLog(@"cancel");    }
     else
     {
         NSLog(@"hi");
@@ -171,11 +169,11 @@
     {
         //cancel clicked ...do your action
         NSLog(@"cancel");
+        
+        //[alertView dismissWithClickedButtonIndex:0 animated:YES];
+        //[self.activityIndicator stopAnimating];
         [self.navigationController popViewControllerAnimated:YES];//直接回客運列表
         /*
-        [alertView dismissWithClickedButtonIndex:0 animated:YES];
-        [activityIndicator stopAnimating];
-        
         if(stops)
         {
             [stops removeAllObjects];
@@ -187,10 +185,9 @@
         [times retain];
         [self.tableView reloadData];
         */
-        
     }
 }
-
+/*
 -(void)alertViewEnd
 {
     for (UIView* view in self.view.subviews) {
@@ -199,7 +196,7 @@
             [view dismissWithClickedButtonIndex:1 animated:YES];
     }
     [activityIndicator stopAnimating];
-}
+}*/
 
 -(bool)hasWifi{
     //Create zero addy
@@ -230,9 +227,9 @@
     [self.parentViewController.view setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     
     preArray = [[NSArray alloc] initWithObjects:nil];
-    /*loadingView = [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候\n" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+    loadingView = [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候\n" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
     loadingView.frame = CGRectMake(0, 0, 200, 200);
-    
+    /*
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
     {
@@ -245,12 +242,14 @@
     [self.loadingView addSubview:self.activityIndicator];
     [self.tableView addSubview:self.loadingView];
     [activityIndicator startAnimating];
+    */
     [self.loadingView show];
-    [self.loadingView release];*/
-    
+    [self.loadingView release];
+    /*
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候\n" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
     alert.frame = CGRectMake(0, 0, 200, 200);
-    
+     */
+    /*
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
     {
@@ -260,12 +259,13 @@
     else
         activityIndicator.frame = CGRectMake(115.0, 60.0, 50.0, 50.0);
     
-    [alert addSubview:self.activityIndicator];
-    [self.view addSubview:alert];
+    [alert addSubview:activityIndicator];
     //[self.tableView addSubview:alert];
     [activityIndicator startAnimating];
-    [alert show];
-    [alert release];
+    */
+    //[self.view addSubview:alert];
+    //[alert show];
+    //[alert release];
     
     stops = [[NSMutableArray alloc] init];
     times = [[NSMutableArray alloc] init];
@@ -346,7 +346,7 @@
             if([view isKindOfClass:[UIAlertView class]])
                 [view dismissWithClickedButtonIndex:1 animated:YES];
         }*/
-        [activityIndicator stopAnimating];
+        //[activityIndicator stopAnimating];
     }
 }
 

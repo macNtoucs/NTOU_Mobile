@@ -1,7 +1,7 @@
 //
 //  StopsViewController.h
 //  MIT Mobile
-//  海洋專車：市區公車 站牌tableView
+//  交通功能：海洋專車：市區公車 站牌tableView
 //  Created by mac_hero on 12/9/27.
 //
 //

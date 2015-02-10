@@ -1,6 +1,7 @@
 //
 //  TPRouteDetailViewController.h
 //  bus
+//  交通功能：公車 新北市公車站牌到站資訊
 //
 //  Created by iMac on 12/9/5.
 //

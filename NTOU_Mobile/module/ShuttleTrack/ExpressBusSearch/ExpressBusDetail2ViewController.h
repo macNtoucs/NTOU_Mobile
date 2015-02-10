@@ -25,7 +25,7 @@
     UIImageView * success;
     NSTimer * refreshTimer; // 倒數計時
     BOOL _reloading;
-    UIActivityIndicatorView *activityIndicator;
+    //UIActivityIndicatorView *activityIndicator;
     UIAlertView *loadingView;
     BOOL ISREAL;
     NSArray *preArray;
@@ -40,7 +40,7 @@
 
 @property (nonatomic, retain) UIImageView * success;
 @property (nonatomic, retain) NSTimer *refreshTimer;
-@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
+//@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) UIAlertView *loadingView;
 @property (nonatomic, retain) NSArray *preArray;
 

@@ -1,7 +1,7 @@
 //
 //  TPRouteDetailViewController.h
 //  bus
-//
+//  交通功能：公車 基隆市公車站牌到站資訊
 //  Created by iMac on 12/9/5.
 //
 //
