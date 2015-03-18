@@ -58,6 +58,7 @@
     CKViewController * calendar;
     SetTimeViewController * HTTime;
     NSString * selectedHTTime;
+    NSString * selectedTimeCategory;
 }
 @property int tag;
 @property (nonatomic, retain) UIImageView* tabBarArrow;

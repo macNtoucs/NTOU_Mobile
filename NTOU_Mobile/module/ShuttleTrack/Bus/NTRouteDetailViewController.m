@@ -243,14 +243,15 @@
             [stops removeAllObjects];
             [m_waitTimeResult removeAllObjects];
         }
+        [self.navigationController popViewControllerAnimated:YES];
+        /*
         [stops addObject:@"更新中，暫無資料"];
         [m_waitTimeResult addObject:@"請稍候再試"];
         [stops retain];
         [m_waitTimeResult retain];
         [self.tableView reloadData];
-        [self.navigationController popViewControllerAnimated:YES];
+        */
     }
-    else{}
 }
 
 - (void)viewDidLoad
@@ -276,7 +277,7 @@
     CGSize screenSize = screenBound.size;
     loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
     
-    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    /*activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
     {
         activityIndicator.frame = CGRectMake(135.0, 280.0, 50.0, 50.0);
@@ -291,6 +292,7 @@
     //[self.tableView addSubview:self.secondsLabel];
     [self.loadingView addSubview:self.activityIndicator];
     [activityIndicator startAnimating];
+     */
     [self.tableView addSubview:self.loadingView];
     [self.loadingView show];
     anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"往返" style:UIBarButtonItemStylePlain target:self action:@selector(changeDetailView)];

@@ -93,6 +93,7 @@
     NSString *strDate = [dateFormatter stringFromDate:selectedDate];
     
     NSString * time = [[NSString alloc]init];
+    //時間去除":"
     time = [time stringByAppendingFormat:@"%@",[[selectedHTTime componentsSeparatedByString:@":"] objectAtIndex:0]];
     time = [time stringByAppendingFormat:@"%@",[[selectedHTTime componentsSeparatedByString:@":"] objectAtIndex:1]];
     
@@ -136,7 +137,14 @@
         {
             for(NSDictionary * dict in responseArr)
             {
-                
+                NSLog(@"%@",dict);
+                NSString* tmpDepartureTime = [[[dict valueForKey:@"departureTime"] componentsSeparatedByString:@":"] objectAtIndex:0];
+                //判斷時間分線，以11:00 15:00 19:00做分隔成早上、中午、下午、晚上
+                //@"早上",@"中午",@"下午",@"晚上"
+                if (([self.selectedTimeCategory isEqualToString:@"早上"]&&[tmpDepartureTime isEqualToString:@"11"])|| ([self.selectedTimeCategory isEqualToString:@"中午"]&&[tmpDepartureTime isEqualToString:@"15"]) || ([self.selectedTimeCategory isEqualToString:@"下午"]&&[tmpDepartureTime isEqualToString:@"19"])) {
+                    NSLog(@"時段：%@, time:%@", self.selectedTimeCategory,tmpDepartureTime);
+                    break;
+                }
                 [arrivalTime addObject:[dict valueForKey:@"arrivalTime"]];
                 [departureTime addObject:[dict valueForKey:@"departureTime"]];
                 [trainID addObject:[dict valueForKey:@"trainNumber"]];
@@ -353,8 +361,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    NSLog(@"aaa");
-  static  NSString *CellIdentifier = @"cell";
+    //NSLog(@"aaa");
+    static  NSString *CellIdentifier = @"cell";
     SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {

@@ -1,6 +1,7 @@
 //
 //  Des_decrypt.m
 //  APITest
+//  功課表：取得已修課程資訊
 //
 //  Created by R MAC on 12/12/7.
 //  Copyright (c) 2012年 R MAC. All rights reserved.
@@ -53,7 +54,12 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
                                                              error:&error
                             ];
     NSString *resString = [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
-    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+    //閃退：The request timed out. http://140.121.100.103:8080/iNTOU/getCourse.do
+    //閃退：沒有網路
+    if (responseData ==nil) {
+        return nil;
+    }
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
     /*
     //讀取有問題的個案資料
     if ([type isEqualToString:@"getCourse"]) {
@@ -101,7 +107,7 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
     NSString *finailPost = [NSString stringWithFormat:@"json=%@",jsonRequest];
     dictionary = [self queryFunctionType:@"login" PostString:finailPost];
     
-    NSLog(@"%@",finailPost);
+    NSLog(@"finailPost：%@",finailPost);
     if([[dictionary allValues]count]>1) {
         NSLog(@"登入成功");
     }

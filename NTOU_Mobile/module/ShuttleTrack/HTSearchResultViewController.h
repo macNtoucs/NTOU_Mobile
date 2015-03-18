@@ -30,7 +30,8 @@
 
 @property (nonatomic,unsafe_unretained)id dataSource;
 @property (nonatomic,retain) NSDate * selectedDate;
-@property (nonatomic,retain)NSString * selectedHTTime;
+@property (nonatomic,retain)NSString * selectedHTTime;//時間 e.g.16:00
+@property (nonatomic,retain)NSString *selectedTimeCategory;//時段 e.g.下午，對應SetTimeViewController的TimeCategory
 @property (nonatomic,retain)NSArray * HTStationNameCode;
 -(void) recieveData;
 

@@ -96,7 +96,6 @@
 		43BEDC1C19236DEC0091B024 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BEDC1B19236DEC0091B024 /* libsqlite3.dylib */; };
 		43BEDC1F19236E530091B024 /* NTOUShuttleButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDC1E19236E530091B024 /* NTOUShuttleButtonViewController.m */; };
 		43BEDC2319236E990091B024 /* NTOUBusTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDC2119236E990091B024 /* NTOUBusTableViewController.m */; };
-		43BEDC2519236EF10091B024 /* ntou_mobile3.db in Resources */ = {isa = PBXBuildFile; fileRef = 43BEDC2419236EF10091B024 /* ntou_mobile3.db */; };
 		43BF84B21948598C00B5B83F /* frequencyBusStation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43BF84B11948598C00B5B83F /* frequencyBusStation.plist */; };
 		912A53EF16E99F7900BBC013 /* NTOUGuide2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */; };
 		912A53F016E99F7900BBC013 /* NTOUGuideSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EC16E99F7900BBC013 /* NTOUGuideSetViewController.m */; };
@@ -355,6 +354,7 @@
 		C74699E016F21C2D0060F49C /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699DC16F21C2D0060F49C /* XMLReader.m */; };
 		C74699E316F21C680060F49C /* NavScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C74699E216F21C680060F49C /* NavScrollerView.m */; };
 		C74699E916F21CF40060F49C /* news in Resources */ = {isa = PBXBuildFile; fileRef = C74699E816F21CF40060F49C /* news */; };
+		EA6203A11AB97B4C0066E913 /* ntou_mobile3.db in Resources */ = {isa = PBXBuildFile; fileRef = EA6203A01AB97B4C0066E913 /* ntou_mobile3.db */; };
 		EAB7701D1A8330C100258229 /* R66TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB7701C1A8330C100258229 /* R66TableViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -495,7 +495,6 @@
 		43BEDC2019236E990091B024 /* NTOUBusTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUBusTableViewController.h; sourceTree = "<group>"; };
 		43BEDC2119236E990091B024 /* NTOUBusTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUBusTableViewController.m; sourceTree = "<group>"; };
 		43BEDC2219236E990091B024 /* ShuttleConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuttleConstants.h; sourceTree = "<group>"; };
-		43BEDC2419236EF10091B024 /* ntou_mobile3.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ntou_mobile3.db; sourceTree = "<group>"; };
 		43BF84B11948598C00B5B83F /* frequencyBusStation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = frequencyBusStation.plist; sourceTree = "<group>"; };
 		912A53E916E99F7900BBC013 /* NTOUGuide2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuide2ViewController.h; sourceTree = "<group>"; };
 		912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuide2ViewController.m; sourceTree = "<group>"; };
@@ -880,6 +879,7 @@
 		C74699E216F21C680060F49C /* NavScrollerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavScrollerView.m; sourceTree = "<group>"; };
 		C74699E816F21CF40060F49C /* news */ = {isa = PBXFileReference; lastKnownFileType = folder; path = news; sourceTree = "<group>"; };
 		C74699EA16F21D590060F49C /* Announce_API_Key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Announce_API_Key.h; path = module/NEWS/Announce_API_Key.h; sourceTree = "<group>"; };
+		EA6203A01AB97B4C0066E913 /* ntou_mobile3.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ntou_mobile3.db; sourceTree = "<group>"; };
 		EAB7701B1A8330C100258229 /* R66TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R66TableViewController.h; sourceTree = "<group>"; };
 		EAB7701C1A8330C100258229 /* R66TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R66TableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1471,8 +1471,8 @@
 		91A903E716E899D200ECF2CF /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				EA6203A01AB97B4C0066E913 /* ntou_mobile3.db */,
 				91A903E816E899D200ECF2CF /* bank.png */,
-				43BEDC2419236EF10091B024 /* ntou_mobile3.db */,
 				91A903E916E899D200ECF2CF /* gigoung_train.png */,
 				91A903EA16E899D200ECF2CF /* local_speed_train.png */,
 				91A903EB16E899D200ECF2CF /* local_train.png */,
@@ -1823,6 +1823,7 @@
 				91A9047516E899D200ECF2CF /* stationNum.txt in Resources */,
 				91A9047616E899D200ECF2CF /* stationNumber.plist in Resources */,
 				1DA9F8A319B484A000261C7E /* freshmen in Resources */,
+				EA6203A11AB97B4C0066E913 /* ntou_mobile3.db in Resources */,
 				1DF2C94F19D178D6003CC269 /* Personal_30x30@2x.png in Resources */,
 				91A9047716E899D200ECF2CF /* pickerBackground.png in Resources */,
 				1DD1793D18FE7AB300621B67 /* tabbar_background.jpg in Resources */,
@@ -1897,7 +1898,6 @@
 				1D8A3B261905051200816CCD /* grayArrow.png in Resources */,
 				1DC670181976BFE7006D7C4C /* transport_100x100.png in Resources */,
 				BA06A07B16F2EE6600212CB9 /* WOLSwitchViewController.xib in Resources */,
-				43BEDC2519236EF10091B024 /* ntou_mobile3.db in Resources */,
 				C71A4EE61705B106002819AD /* Fuho_Data.plist in Resources */,
 				C71A4EEB1705B114002819AD /* cancel_24.png in Resources */,
 				C71A4EEC1705B114002819AD /* cancel.png in Resources */,

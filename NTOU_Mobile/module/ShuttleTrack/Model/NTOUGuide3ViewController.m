@@ -132,40 +132,52 @@
             switch (indexPath.row) {
                 case 0:
                     cell.textLabel.text = @"綜合一館";
+                    cell.detailTextLabel.text = @"GH1";
                     break;
                 case 1:
                     cell.textLabel.text = @"綜合二館";
+                    cell.detailTextLabel.text = @"GH2";
                     break;
                 case 2:
                     cell.textLabel.text = @"綜合三館";
+                    cell.detailTextLabel.text = @"GH3";
                     break;
                 case 3:
                     cell.textLabel.text = @"行政資訊大樓";
+                    cell.detailTextLabel.text = @"";
                     break;
                 case 4:
                     cell.textLabel.text = @"生科院辦公室";
+                    cell.detailTextLabel.text = @"";
                     break;
                 case 5:
                     cell.textLabel.text = @"延平技術大樓";
+                    cell.detailTextLabel.text = @"TEC";
                     break;
             
                 case 6:
                     cell.textLabel.text = @"海空大樓";
+                    cell.detailTextLabel.text = @"SAH";
                     break;
                 case 7:
                     cell.textLabel.text = @"人文大樓";
+                    cell.detailTextLabel.text = @"BOH";
                     break;
                 case 8:
                     cell.textLabel.text = @"沛華大樓";
+                    cell.detailTextLabel.text = @"";
                     break;
                 case 9:
                     cell.textLabel.text = @"海事大樓甲棟";
+                    cell.detailTextLabel.text = @"MAF";
                     break;
                 case 10:
                     cell.textLabel.text = @"海事大樓乙棟";
+                    cell.detailTextLabel.text = @"MAF";
                     break;
                 case 11:
                     cell.textLabel.text = @"海事大樓丙棟";
+                    cell.detailTextLabel.text = @"MAF";
                     break;
                 default:
                     break;

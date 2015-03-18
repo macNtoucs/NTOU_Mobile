@@ -1,5 +1,6 @@
 //
 //  SetTimeViewController.h
+//  交通功能：高鐵 選擇時間
 //  MIT Mobile
 //
 //  Created by R MAC on 12/12/17.
@@ -11,7 +12,7 @@
 @class SetTimeViewController;
 @protocol SetTimeViewControllerDelegate <NSObject>
 
--(void)HTTime:(SetTimeViewController *) controller nowselectedTime:(NSString *)Time;
+-(void)HTTime:(SetTimeViewController *) controller nowselectedTime:(NSString *)Time nowselectedTimeCategory:(NSString *)timeCategory;
 
 @end
 

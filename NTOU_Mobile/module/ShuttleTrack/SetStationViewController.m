@@ -153,6 +153,7 @@
     return self;
 }
 
+//下方選單條
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -392,11 +393,12 @@
     else return [[ NSUserDefaults standardUserDefaults]objectForKey:@"DepatureStaion"];
 }
 
-
+//設定時間給搜尋結果
 - (NSURL*)HTStationInfoURL:(HTSearchResultViewController *)stationInfoTableView{
     //http://www.thsrc.com.tw/tw/TimeTable/SearchResult
     stationInfoTableView.selectedDate = calendar.selectedDate;
     stationInfoTableView.selectedHTTime=self->selectedHTTime;
+    stationInfoTableView.selectedTimeCategory=self->selectedTimeCategory;
     NSString * queryURL = @"http://www.thsrc.com.tw/tw/TimeTable/SearchResult";
     return [NSURL URLWithString: queryURL] ;
 }
@@ -410,9 +412,10 @@
         return DepatureStation;
     else return @"左營";
 }
-
--(void)HTTime:(SetTimeViewController *) controller nowselectedTime:(NSString *)Time{
+//傳遞時間資訊給其他的view
+-(void)HTTime:(SetTimeViewController *) controller nowselectedTime:(NSString *)Time nowselectedTimeCategory:(NSString *)timeCategory{
     selectedHTTime = Time;
+    selectedTimeCategory = timeCategory;
 }
 
 

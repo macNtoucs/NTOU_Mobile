@@ -1,5 +1,6 @@
 //
 //  SetTimeViewController.m
+//  交通功能：高鐵 選擇時間
 //  MIT Mobile
 //
 //  Created by R MAC on 12/12/17.
@@ -18,6 +19,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
+        //高鐵選擇時間
         HT_timeArr_morning =
         [[NSArray alloc]initWithObjects:@"06:00",@"06:30",@"07:00",@"07:30",@"08:00",@"08:30",@"09:00",@"09:30",@"10:00",@"10:30", nil];
         HT_timeArr_noon =
@@ -49,10 +51,13 @@
 }
 -(void) initialTime{
     
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"H:mm"];
     NSDate *date = [NSDate date];
-    [delegate HTTime:self nowselectedTime:[dateFormatter stringFromDate:date ]];
+    [delegate HTTime:self nowselectedTime:[dateFormatter stringFromDate:date ] nowselectedTimeCategory:[TimeCategory objectAtIndex:3]];
+    
+    //[delegate HTTime:self nowselectedTime:[HT_timeArr_morning objectAtIndex:0] nowselectedTimeCategory:[TimeCategory objectAtIndex:0]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -126,6 +131,7 @@
     return rowHeight;
 }
 
+//高鐵 選擇時間table
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -197,7 +203,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [delegate HTTime:self nowselectedTime:cell.textLabel.text];
+    NSLog(@"你選擇了：%@", cell.textLabel.text);
+    //傳遞時間資訊給查詢頁面做query
+    [delegate HTTime:self nowselectedTime:cell.textLabel.text nowselectedTimeCategory:[TimeCategory objectAtIndex:indexPath.section]];
 }
 
 

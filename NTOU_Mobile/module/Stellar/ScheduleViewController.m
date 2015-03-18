@@ -74,7 +74,7 @@
         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
         dispatch_async(dispatch_get_main_queue(), ^{
             UIAlertView *loadingAlertView = [[UIAlertView alloc]
-                                             initWithTitle:nil message:@"登入失敗"
+                                             initWithTitle:@"登入失敗" message:@"請確認網路狀態或稍後再嘗試"
                                              delegate:self cancelButtonTitle:@"確定"
                                              otherButtonTitles:nil];
             [loadingAlertView show];

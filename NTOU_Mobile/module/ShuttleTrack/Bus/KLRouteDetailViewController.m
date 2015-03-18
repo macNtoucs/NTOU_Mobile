@@ -179,14 +179,15 @@
             [stops removeAllObjects];
             [m_waitTimeResult removeAllObjects];
         }
+        [self.navigationController popViewControllerAnimated:YES];
+
+        /*
         [stops addObject:@"更新中，暫無資料"];
         [m_waitTimeResult addObject:@"請稍候再試"];
         [stops retain];
         [m_waitTimeResult retain];
-        [self.tableView reloadData];
-        [self.navigationController popViewControllerAnimated:YES];
+        [self.tableView reloadData];*/
     }
-    else{}
 }
 
 - (void)changeDetailView

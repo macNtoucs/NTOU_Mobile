@@ -1238,7 +1238,9 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
         [data setObject:[desArrayTaipeiBus objectAtIndex:indexPath.row] forKey:@"destination"];
         [data setObject:@"T" forKey:@"city"];
         [data setObject:[NSNumber numberWithInt:frequency+1] forKey:@"frequency"];
+        //閃退：dict的data每筆裡面都沒有資料（三線皆有此bug）
         [dict setObject:data forKey:selectedBusName];
+        //NSLog(@"dict:%@",dict);
         [dict writeToFile: path atomically:YES];
         [data release];
         [self.navigationController pushViewController:secondLevel animated:YES];
@@ -1288,6 +1290,9 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
 
 - (void)dealloc
 {
+    NSLog(@"data release");
+    [dict release];
+    [path release];
     [partBusNameLabel release];
     [arrayTaipeiBus release];
     [arrayNewTaipeiBus release];
