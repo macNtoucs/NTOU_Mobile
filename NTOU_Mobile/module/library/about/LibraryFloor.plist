@@ -7,13 +7,13 @@
 			<key>floor</key>
 			<string>地下室</string>
 			<key>info</key>
-			<string>閱報區、K書中心、罕用書庫</string>
+			<string>全興書苑、罕用書庫</string>
 		</dict>
 		<dict>
 			<key>floor</key>
 			<string>一樓</string>
 			<key>info</key>
-			<string>採編組辦公室、館藏管理組辦公室、藝文中心辦公室</string>
+			<string>採編組辦公室、館藏管理組辦公室、藝文中心辦公室、臨時閱讀區</string>
 		</dict>
 		<dict>
 			<key>floor</key>
