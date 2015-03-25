@@ -148,7 +148,7 @@ moduleHomeController;
 - (UIImage *)icon {
     UIImage *result = nil;
     if (self.iconName) {
-        NSString *iconPath = [NSString stringWithFormat:@"%@%@%@", @"icons/module-", self.iconName, @".png"];
+        NSString *iconPath = [NSString stringWithFormat:@"%@%@%@", @"module-", self.iconName, @".png"];
         result = [UIImage imageNamed:iconPath];
     }
     return result;
@@ -157,7 +157,7 @@ moduleHomeController;
 - (UIImage *)springboardIcon {
     UIImage *result = nil;
     if (self.iconName) {
-        NSString *iconPath = [NSString stringWithFormat:@"%@%@%@", @"icons/home-", self.iconName, @".png"];
+        NSString *iconPath = [NSString stringWithFormat:@"%@%@%@", @"home-", self.iconName, @".png"];
         result = [UIImage imageNamed:iconPath];
     }
     return result;
@@ -166,7 +166,7 @@ moduleHomeController;
 - (UIImage *)tabBarIcon {
     UIImage *result = nil;
     if (self.iconName) {
-        NSString *iconPath = [NSString stringWithFormat:@"%@%@%@", @"/icons/tab-", self.iconName, @".png"];
+        NSString *iconPath = [NSString stringWithFormat:@"%@%@%@", @"tab-", self.iconName, @".png"];
         result = [UIImage imageNamed:iconPath];
     }
     return result;
