@@ -182,10 +182,8 @@
 }
 
 -(void)SwapStation{
-    NSString * tmpForSwap = [[NSString alloc]initWithString:DepatureStation];
-    DepatureStation = [NSString stringWithString:startStaion];
-    startStaion = [NSString stringWithString:tmpForSwap];
-    
+    [[NSUserDefaults standardUserDefaults]setObject:startStaion forKey:@"DepatureStaion"];
+    [[NSUserDefaults standardUserDefaults]setObject:DepatureStation forKey:@"startStaion"];
     [self viewDidLoad];
     
     if (self.selectedIndex==4){
@@ -281,10 +279,13 @@
     if(!_isHightSpeedTrain){
         self.title = [NSString stringWithFormat: @" %@ → %@",
                       [[ NSUserDefaults standardUserDefaults]objectForKey:@"startStaion"] ,[[ NSUserDefaults standardUserDefaults]objectForKey:@"DepatureStaion"]];
+        startStaion=[[NSUserDefaults standardUserDefaults]objectForKey:@"startStaion"];
+        DepatureStation=[[NSUserDefaults standardUserDefaults]objectForKey:@"DepatureStaion"];
     }
-    else self.title = [NSString stringWithFormat: @" 台北 → 左營"];
+    else
+        self.title = [NSString stringWithFormat: @" 台北 → 左營"];
     
-    if (((startStaion && DepatureStation) &&![startStaion isEqualToString:@""] ))
+    if (((startStaion && DepatureStation) &&![startStaion isEqualToString:@""]))
         self.title = [NSString stringWithFormat: @" %@ → %@",startStaion,DepatureStation];
     
     
