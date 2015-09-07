@@ -45,6 +45,7 @@
 
 #define moodleGradeNameKey @"name"
 #define moodleGradeKey @"grade"
+#define moodleYearKey @"year"
 #define moodleGradeCommentKey @"comment"
 #define moodleGradeEndKey @"end"
 
