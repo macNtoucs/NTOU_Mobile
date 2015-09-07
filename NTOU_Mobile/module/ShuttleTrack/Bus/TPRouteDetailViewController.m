@@ -198,6 +198,10 @@
             
                 [self startTimer];
             }
+            if ([goBack isEqualToString:@"0"])
+                secondsLabel.text = [NSString stringWithFormat:@"%@ → %@\n距離上次更新%d秒", depature, destination ,secs];
+            else
+                secondsLabel.text = [NSString stringWithFormat:@"%@ → %@\n距離上次更新%d秒", destination, depature, secs];
             //NSLog(@"距離上次更新%d秒", secs);
         }
 	}
@@ -208,7 +212,7 @@
     if ([goBack isEqualToString:@"0"])
     {
         //anotherButton.title = destination;
-        self.navigationItem.title = [NSString stringWithFormat:@"%@ → %@", destination, depature];
+        secondsLabel.text = [NSString stringWithFormat:@"%@ → %@\n距離上次更新0秒", destination, depature];
         [self setter_busName:busName andGoBack:1];
         [self stopTimer];
         [activityIndicator performSelectorInBackground:@selector(startAnimating) withObject:nil];
@@ -219,7 +223,7 @@
     else
     {
         //anotherButton.title = depature;
-        self.navigationItem.title = [NSString stringWithFormat:@"%@ → %@", depature, destination];
+        secondsLabel.text = [NSString stringWithFormat:@"%@ → %@\n距離上次更新0秒", depature, destination];
         [self setter_busName:busName andGoBack:0];
         [self stopTimer];
         [activityIndicator performSelectorInBackground:@selector(startAnimating) withObject:nil];
@@ -265,21 +269,19 @@
     [super viewDidLoad];
     [self startTimer];
     preArray = [[NSArray alloc] initWithObjects:nil];
-    self.title = [NSString stringWithFormat:@"%@ → %@", depature, destination];
     
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
     {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     
-    /*secondsLabel = [[UILabel alloc] initWithFrame:CGRectMake(320/2-200/2, 4, 200, 30)];
-    secondsLabel.backgroundColor = [UIColor clearColor];
-    secondsLabel.textColor = [UIColor grayColor];
-    secondsLabel.text = @"距離上次更新0秒";
-    secondsLabel.font = [UIFont systemFontOfSize:15.0];
-    secondsLabel.textAlignment = NSTextAlignmentCenter;*/
-    
-    
+    secondsLabel = [[UILabel alloc] initWithFrame:CGRectMake(320/2-200/2, 4, 200, 30)];
+    secondsLabel.backgroundColor = [UIColor clearColor];    secondsLabel.font = [UIFont systemFontOfSize:10.0];
+    secondsLabel.textAlignment = NSTextAlignmentCenter;
+    [secondsLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    secondsLabel.numberOfLines=2;
+    secondsLabel.text = [NSString stringWithFormat:@"%@ → %@\n距離上次更新0秒", depature, destination];
+    self.navigationItem.titleView=secondsLabel;
     //放入下載提示視窗（alert）
     loadingView =  [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
     loadingView.frame = CGRectMake(0, 0, 200, 200);

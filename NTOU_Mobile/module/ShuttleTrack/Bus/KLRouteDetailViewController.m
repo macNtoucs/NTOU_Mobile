@@ -195,7 +195,6 @@
     if ([goBack isEqualToString:@"0"])
     {
         //anotherButton.title = destination;
-        self.navigationItem.title = [NSString stringWithFormat:@"%@ → %@", destination, departure];
         [self setter_busName:busName andGoBack:1];
         [self stopTimer];
         [activityIndicator performSelectorInBackground:@selector(startAnimating) withObject:nil];
@@ -206,7 +205,6 @@
     else
     {
         //anotherButton.title = departure;
-        self.navigationItem.title = [NSString stringWithFormat:@"%@ → %@", departure, destination];
         [self setter_busName:busName andGoBack:0];
         [self stopTimer];
         [activityIndicator performSelectorInBackground:@selector(startAnimating) withObject:nil];
@@ -233,12 +231,14 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     [self startTimer];
     preArray = [[NSArray alloc] initWithObjects:nil];
-    /*secondsLabel = [[UILabel alloc] initWithFrame:CGRectMake(320/2-200/2, 4, 200, 30)];
+    secondsLabel = [[UILabel alloc] initWithFrame:CGRectMake(320/2-200/2, 4, 200, 30)];
     secondsLabel.backgroundColor = [UIColor clearColor];
-    secondsLabel.textColor = [UIColor grayColor];
-    secondsLabel.text = @"距離上次更新0秒";
-    secondsLabel.font = [UIFont systemFontOfSize:15.0];
-    secondsLabel.textAlignment = NSTextAlignmentCenter;*/
+    secondsLabel.font = [UIFont systemFontOfSize:10.0];
+    secondsLabel.textAlignment = NSTextAlignmentCenter;
+    [secondsLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    secondsLabel.numberOfLines=2;
+    secondsLabel.text = [NSString stringWithFormat:@"%@ → %@\n距離上次更新0秒", departure, destination];
+    self.navigationItem.titleView=secondsLabel;
     m_waitTimeResult = [NSMutableArray new];
     stops = [NSMutableArray new];
     
@@ -363,6 +363,10 @@
                 });
                 [self startTimer];
             }
+            if ([goBack isEqualToString:@"0"])
+                secondsLabel.text = [NSString stringWithFormat:@"%@ → %@\n距離上次更新%d秒", departure, destination ,secs];
+            else
+                secondsLabel.text = [NSString stringWithFormat:@"%@ → %@\n距離上次更新%d秒", destination, departure, secs];
             //NSLog(@"距離上次更新%d秒", secs);
         }
 	}
