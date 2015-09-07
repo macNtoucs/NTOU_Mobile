@@ -10,6 +10,7 @@
 #import "FMDatabase.h"
 #import <netinet/in.h>
 #import <SystemConfiguration/SystemConfiguration.h>
+#define kRefreshInterval 20
 
 @interface ExpressBusDetail2ViewController ()
 
@@ -25,6 +26,7 @@
 @synthesize departureTimeTableView;
 
 @synthesize success;
+@synthesize lastRefresh;
 @synthesize refreshTimer;
 //@synthesize activityIndicator;
 @synthesize loadingView;
@@ -43,10 +45,11 @@
 {
     NSLog(@"[Detail]CatchData");
     ISREAL = TRUE;
+    [loadingView show];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         [self estimateTime];
         
-        [loadingView dismissWithClickedButtonIndex:0 animated:NO];
+        [loadingView dismissWithClickedButtonIndex:0 animated:YES];
         //[activityIndicator stopAnimating];
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -187,6 +190,17 @@
         */
     }
 }
+
+-(void)stopTimer
+{
+    if (self.refreshTimer !=nil)
+    {
+        [self.refreshTimer invalidate];
+        self.refreshTimer = nil;
+        //self.anotherButton.title = @"Refresh";
+    }
+}
+
 /*
 -(void)alertViewEnd
 {
@@ -244,7 +258,7 @@
     [activityIndicator startAnimating];
     */
     [self.loadingView show];
-    [self.loadingView release];
+    //[self.loadingView release];
     /*
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil message:@"下載資料中\n請稍候\n" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
     alert.frame = CGRectMake(0, 0, 200, 200);
@@ -275,12 +289,14 @@
     CGFloat screenWidth = screenSize.width;
     CGFloat screenHeight = screenSize.height;
     
+    [self startTimer];
     departureTimeTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight) style:UITableViewStyleGrouped];
     //departureTimeTableView.delegate = self;
     //departureTimeTableView.dataSource = self;
     
     label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,0,0)];
-    label.text = completeRouteName;
+    label.text = [NSString stringWithFormat:@"%@\n%@",routeId,completeRouteName];
+    NSLog(label.text);
     label.textColor = [UIColor blackColor];
     label.textAlignment = NSTextAlignmentCenter;
     label.backgroundColor = [UIColor clearColor];
@@ -293,10 +309,10 @@
     //設置寬、高上限
     CGSize size = CGSizeMake(screenWidth-40, screenHeight);
     //計算實際 frame 大小，並將 label 的 frame 變成實際大小
-    labelsize = [completeRouteName sizeWithFont:font constrainedToSize:size
+    labelsize = [label.text sizeWithFont:font constrainedToSize:size
                                          lineBreakMode:NSLineBreakByWordWrapping];
     [label setFrame:CGRectMake(20, 70, screenWidth-40, labelsize.height)];
-    
+    [label setFont:[UIFont fontWithName:@"Arial" size:14]];
     [self.parentViewController.view addSubview:label];
     
     // 手動下拉更新
@@ -316,6 +332,11 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [self.label removeFromSuperview];
+}
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self stopTimer];
+    [super viewDidDisappear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -357,29 +378,6 @@
 }
 
 #pragma mark - Table view data source
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    CGRect screenBound = [[UIScreen mainScreen] bounds];
-    CGSize screenSize = screenBound.size;
-    CGFloat screenWidth = screenSize.width;
-    CGFloat screenHeight = screenSize.height;
-    
-    if (scrollView.contentOffset.y == 0)
-    {
-        if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
-            [self.tableView setFrame:CGRectMake(0,labelsize.height+40, screenWidth, screenHeight-labelsize.height-50)];
-        else
-            [self.tableView setFrame:CGRectMake(0,labelsize.height, screenWidth, screenHeight-labelsize.height-50)];
-    }
-    else
-    {
-        if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
-            [self.tableView setFrame:CGRectMake(0,labelsize.height+75, screenWidth, screenHeight-labelsize.height-50)];
-        else
-            [self.tableView setFrame:CGRectMake(0,labelsize.height+12, screenWidth, screenHeight-labelsize.height-50)];
-    }
-}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -461,6 +459,44 @@
     return cell;
 }
 
+- (void)startTimer
+{
+    self.lastRefresh = [NSDate date];
+    NSDate *oneSecondFromNow = [NSDate dateWithTimeIntervalSinceNow:0];
+    self.refreshTimer = [[[NSTimer alloc] initWithFireDate:oneSecondFromNow interval:1 target:self selector:@selector(countDownAction:) userInfo:nil repeats:YES] autorelease];
+    [[NSRunLoop currentRunLoop] addTimer:self.refreshTimer forMode:NSDefaultRunLoopMode];
+}
+
+-(void) countDownAction:(NSTimer *)timer
+{
+    
+    if (self.refreshTimer !=nil && self.refreshTimer)
+    {
+        NSTimeInterval sinceRefresh = [self.lastRefresh timeIntervalSinceNow];
+        
+        // If we detect that the app was backgrounded while this timer
+        // was expiring we go around one more time - this is to enable a commuter
+        // bookmark time to be processed.
+        
+        bool updateTimeOnButton = YES;
+        if (updateTimeOnButton)
+        {
+            int secs = (1-sinceRefresh);
+            if (secs > 20)//20秒刷新一次
+            {
+                [self stopTimer];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self CatchData];
+                });
+                [self startTimer];
+            }
+            self.navigationItem.title=[NSString stringWithFormat:@"距離上次更新%d秒",secs];
+            //NSLog(@"距離上次更新%d秒", secs);
+        }
+    }
+}
+
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -512,6 +548,47 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
+}
+
+#pragma mark –
+#pragma mark Data Source Loading / Reloading Methods
+
+- (void)reloadTableViewDataSource{
+    _reloading = YES;
+}
+
+- (void)doneLoadingTableViewData{
+    _reloading = NO;
+    //[self CatchData];
+    self.lastRefresh = [NSDate date];
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+}
+
+#pragma mark –
+#pragma mark UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+}
+
+#pragma mark –
+#pragma mark EGORefreshTableHeaderDelegate Methods
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
+    [self reloadTableViewDataSource];
+    [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:0];
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
+    return _reloading;
+}
+
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
+    return [NSDate date];
 }
 
 @end

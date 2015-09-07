@@ -23,6 +23,7 @@
     // alert view
     EGORefreshTableHeaderView *_refreshHeaderView; // 手動下拉更新
     UIImageView * success;
+    NSDate * lastRefresh;
     NSTimer * refreshTimer; // 倒數計時
     BOOL _reloading;
     //UIActivityIndicatorView *activityIndicator;
@@ -39,6 +40,7 @@
 @property (nonatomic, retain) UITableView *departureTimeTableView;
 
 @property (nonatomic, retain) UIImageView * success;
+@property (nonatomic, retain) NSDate *lastRefresh;
 @property (nonatomic, retain) NSTimer *refreshTimer;
 //@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) UIAlertView *loadingView;
