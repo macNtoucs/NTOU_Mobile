@@ -86,6 +86,27 @@
     [ntouButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     // add to a view
     [self.view addSubview:ntouButton];
+    
+    
+    //http://140.121.100.103:8080/iNTOU/getBusNews.do
+    NSHTTPURLResponse *urlResponse = nil;
+    NSError *error = [[NSError alloc] init];
+    NSMutableURLRequest * jsonQuest = [NSMutableURLRequest new];
+    NSString * queryURL = @"http://140.121.100.103:8080/iNTOU/getBusNews.do";
+    [jsonQuest setURL:[NSURL URLWithString:queryURL]];
+    [jsonQuest setHTTPMethod:@"GET"];
+    [jsonQuest addValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:jsonQuest
+                                                 returningResponse:&urlResponse
+                                                             error:&error
+                            ];
+    NSString *news = [NSString stringWithFormat:@"資料來源<br>臺北市公車-臺北市政府交通局<br>新北市公車-我愛巴士5284行動查詢系統<br>基隆市公車-基隆市公車資訊便民服務系統<br>客運-我愛巴士5284行動查詢系統<br>火車-臺灣鐵路管理局<br>高鐵-台灣高鐵<br><br><br>公告<br>%@",[[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding]];
+    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[news dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    UITextView *newsDisplay = [[UITextView alloc]initWithFrame:CGRectMake(40,380,240,100)];
+    [newsDisplay setFont:[UIFont systemFontOfSize:10]];
+    newsDisplay.attributedText=attrStr;
+    [self.view addSubview:newsDisplay];
+
 }
 
 /*-(void)viewDidLoad:(BOOL)animated
