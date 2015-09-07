@@ -50,6 +50,7 @@ extern NSString * const CampusMapTag;
 extern NSString * const NewsOfficeTag;
 extern NSString * const DirectoryTag;
 extern NSString * const StellarTag;
+extern NSString * const InformationTag;
 extern NSString * const ShuttleTag;
 extern NSString * const ToursTag;
 extern NSString * const AnniversaryTag;

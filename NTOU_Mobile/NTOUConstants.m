@@ -37,6 +37,7 @@ NSString * const CampusMapTag  = @"map";
 NSString * const NewsOfficeTag = @"newsoffice";
 NSString * const DirectoryTag  = @"people";
 NSString * const StellarTag    = @"stellar";
+NSString * const InformationTag    = @"information";
 NSString * const ShuttleTag    = @"shuttletrack";
 NSString * const ToursTag      = @"tours";
 NSString * const AnniversaryTag = @"NTOU150";
