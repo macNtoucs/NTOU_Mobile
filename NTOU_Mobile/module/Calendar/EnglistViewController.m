@@ -9,7 +9,7 @@
 #import "EnglistViewController.h"
 #import "NTOUUIConstants.h"
 #import "MBProgressHUD.h"
-#define YEAR 2014   //起始學期年份
+#define YEAR 2015   //起始學期年份
 @interface EnglistViewController ()
 
 @property (nonatomic, strong) NSMutableArray *selectindexs;
