@@ -129,4 +129,8 @@
  */
 +(BOOL)CleanUpAllTheFiles;
 
+/*
+ 回傳成績
+*/
++(NSDictionary *)GetCourseGrade_AndUseToken:(NSString *)token;
 @end
