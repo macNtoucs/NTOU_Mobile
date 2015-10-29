@@ -10,6 +10,10 @@
 #import "RouteDetailViewController.h"
 @interface StopsViewController : UITableViewController{
     bool go;  //true 往市區, false 往八斗子
+    NSMutableArray *innerStop;
+    NSMutableArray *outerStop;
 }
+@property (nonatomic,retain) NSMutableArray *innerStop;
+@property (nonatomic,retain) NSMutableArray *outerStop;
 -(void) setDirection :(BOOL) dir;
 @end

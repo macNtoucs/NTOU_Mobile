@@ -29,6 +29,41 @@
 {
     [super viewDidLoad];
     [self.tableView applyStandardColors];
+    innerStop=[[NSMutableArray alloc]init];
+    outerStop=[[NSMutableArray alloc]init];
+    NSURL *url = [NSURL URLWithString:@"http://140.121.91.62/NTOUBusStop/stop.php"];
+    NSError *error;
+    NSData *data = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url] returningResponse:NULL error:&error];
+    if (data) {
+        
+        NSMutableDictionary  *stationInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
+        
+        //NSLog(@"NTstationInfo: %@",stationInfo);
+        
+        if([stationInfo[@"NTOUBusStop"]  isKindOfClass:[NSNull class]])
+        {
+            [innerStop addObject:@"更新中，暫無資料"];
+            [outerStop addObject:@"請稍候再試"];
+        }
+        else
+        {
+            NSArray * responseArr = stationInfo[@"NTOUBusStop"][@"inner"];
+            for(NSDictionary * dict in responseArr)
+                [innerStop addObject:[dict valueForKey:@"name"]];
+            responseArr = stationInfo[@"NTOUBusStop"][@"outer"];
+            for(NSDictionary * dict in responseArr)
+                [outerStop addObject:[dict valueForKey:@"name"]];
+        }
+    }
+    else //data沒有資料（nil）（發生情形：沒有網路連線）
+    {
+        NSLog(@"error:%@\n",error);
+        [innerStop addObject:@"無資料"];
+        [outerStop addObject:@"請稍候再試"];
+    }
+    [innerStop retain];
+    [outerStop retain];
+
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
         
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -66,10 +101,10 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-     if (go)
-         return 5;
+    if (go)
+         return innerStop.count;
     else
-         return 6;
+         return outerStop.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -79,51 +114,10 @@
     if (cell == nil) {
         cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-    if (go){
-    switch (indexPath.row) {
-        case 0:
-            cell.textLabel.text = @"體育館";
-            break;
-        case 1:
-            cell.textLabel.text = @"濱海校門";
-            break;
-        case 2:
-            cell.textLabel.text = @"祥豐校門";
-            break;
-        case 3:
-            cell.textLabel.text = @"中正校門";
-            break;
-        case 4:
-            cell.textLabel.text = @"二信中學";
-            break;
-        default:
-            break;
-      }
-    }
-    else {
-        switch (indexPath.row) {
-            case 0:
-                cell.textLabel.text = @"體育館";
-                break;
-            case 1:
-                cell.textLabel.text = @"濱海校門";
-                break;
-            case 2:
-                cell.textLabel.text = @"祥豐校門";
-                break;
-            case 3:
-                cell.textLabel.text = @"中正校門";
-                break;
-            case 4:
-                cell.textLabel.text = @"二信中學";
-                break;
-            case 5:
-                cell.textLabel.text = @"火車站";
-                break;
-        }
-    
-    }
-    // Configure the cell...
+    if (go)
+        cell.textLabel.text=[innerStop objectAtIndex:indexPath.row];
+    else
+        cell.textLabel.text=[outerStop objectAtIndex:indexPath.row];    // Configure the cell...
     
     return cell;
 }
@@ -171,107 +165,38 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSString *busName[6]={@"103 八斗子-經中正路(經海科館)",@"103 八斗子-經祥豐街(經海科館)",@"104 新豐街-經中正路",@"104 新豐街-經祥豐街",@"108 潮境公園-經祥豐街",@"108 潮境公園-基隆車站"};
+    NSString *encodedBus[6];
+    NSString *encodedStop;
+    if(indexPath.section==0)
+        encodedStop = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)[innerStop objectAtIndex:indexPath.row], NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
+    else
+        encodedStop = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)[outerStop objectAtIndex:indexPath.row], NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
+
+    for(int i=0;i<6;++i)
+       encodedBus[i] = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)busName[i], NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
+
     RouteDetailViewController * detail = [[RouteDetailViewController alloc]initWithStyle:UITableViewStyleGrouped];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     detail.title = cell.textLabel.text;
     if (go){ //往市區
-        if (indexPath.row ==0){
-            //體育館
-            [detail addRoutesURL:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103101&sid=120"
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103102&sid=120"
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104101&sid=120"
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104102&sid=120"
-             ];
-        }
-        else if (indexPath.row ==1){
-        //濱海校門
-            [detail addRoutesURL:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103101&sid=121"
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103102&sid=121"
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104101&sid=121"
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104102&sid=121"
-             ];
-        }
-        else if (indexPath.row ==2){
-        //祥豐校門
-            [detail addRoutesURL:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103101&sid=122"
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103102&sid=122"
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104101&sid=122"
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104102&sid=122"
-             ];
-        }
-        else if (indexPath.row ==3){
-        //中正校門
-            [detail addRoutesURL:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103101&sid=65"
-                             and: nil
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104101&sid=65"
-                             and: nil
-             ];
-        }
-        else if (indexPath.row ==4){
-        //二信中學
-            [detail addRoutesURL:nil
-                         and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103102&sid=69"
-                         and: nil
-                         and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104102&sid=69"
-             ];
-        }
+        [detail addRoutesURL:[NSString stringWithFormat:@"http://140.121.91.62/NTOUBusStop/stopDetail.php?bus=%@&stopName=%@&goBack=0",encodedBus[0],encodedStop]
+            and:[NSString stringWithFormat:@"http://140.121.91.62/NTOUBusStop/stopDetail.php?bus=%@&stopName=%@&goBack=0",encodedBus[1],encodedStop]
+            and:[NSString stringWithFormat:@"http://140.121.91.62/NTOUBusStop/stopDetail.php?bus=%@&stopName=%@&goBack=0",encodedBus[2],encodedStop]
+            and:[NSString stringWithFormat:@"http://140.121.91.62/NTOUBusStop/stopDetail.php?bus=%@&stopName=%@&goBack=0",encodedBus[3],encodedStop]
+            and:[NSString stringWithFormat:@"http://140.121.91.62/NTOUBusStop/stopDetail.php?bus=%@&stopName=%@&goBack=0",encodedBus[4],encodedStop]
+            and:[NSString stringWithFormat:@"http://140.121.91.62/NTOUBusStop/stopDetail.php?bus=%@&stopName=%@&goBack=0",encodedBus[5],encodedStop]
+        ];
     }
     else{//往八斗
-        if (indexPath.row ==0){
-             //體育館
-            [detail addRoutesURL:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103201&sid=165"
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103202&sid=165"
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104201&sid=165"
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104202&sid=165"
-             ];
-        }
-        else if (indexPath.row ==1){
-            //濱海校門
-            [detail addRoutesURL:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103201&sid=164"
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103202&sid=164"
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104201&sid=164"
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104202&sid=164"
-             ];
-        }
-        else if (indexPath.row ==2){
-            //祥豐校門
-            [detail addRoutesURL:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103201&sid=163"
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103202&sid=163"
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104201&sid=163"
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104202&sid=163"
-             ];
-        }
-        else if (indexPath.row==3){
-            //中正校門
-            [detail addRoutesURL:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103201&sid=102"
-                             and: nil
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104201&sid=102"
-                             and: nil
-             ];
-        }
-        else if (indexPath.row ==4){
-            //二信中學
-            [detail addRoutesURL:nil
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103202&sid=98"
-                             and: nil
-                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104202&sid=98"
-             ];
-        }
-    
-        else {
-            //火車站
-            [detail addStationURL:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103201&sid=28"
-                              and:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103202&sid=28"
-                              and:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104201&sid=28"
-                and:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104202&sid=28"];
-        }
-
-    
+        [detail addRoutesURL:[NSString stringWithFormat:@"http://140.121.91.62/NTOUBusStop/stopDetail.php?bus=%@&stopName=%@&goBack=1",encodedBus[0],encodedStop]
+            and:[NSString stringWithFormat:@"http://140.121.91.62/NTOUBusStop/stopDetail.php?bus=%@&stopName=%@&goBack=1",encodedBus[1],encodedStop]
+            and:[NSString stringWithFormat:@"http://140.121.91.62/NTOUBusStop/stopDetail.php?bus=%@&stopName=%@&goBack=1",encodedBus[2],encodedStop]
+            and:[NSString stringWithFormat:@"http://140.121.91.62/NTOUBusStop/stopDetail.php?bus=%@&stopName=%@&goBack=1",encodedBus[3],encodedStop]
+            and:[NSString stringWithFormat:@"http://140.121.91.62/NTOUBusStop/stopDetail.php?bus=%@&stopName=%@&goBack=1",encodedBus[4],encodedStop]
+            and:[NSString stringWithFormat:@"http://140.121.91.62/NTOUBusStop/stopDetail.php?bus=%@&stopName=%@&goBack=1",encodedBus[5],encodedStop]
+         ];
     }
-    if (indexPath.row == 3)
-        [detail isZhongzheng:TRUE];
-    else
-        [detail isZhongzheng:FALSE];
     [detail goBackMode:go];
     [self.navigationController pushViewController:detail animated:YES];
     detail.navigationItem.leftBarButtonItem.title=@"back";

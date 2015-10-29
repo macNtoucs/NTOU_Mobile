@@ -14,12 +14,15 @@
 
 
 @implementation RouteDetailViewController
-@synthesize item;
+@synthesize routeNames;
+@synthesize waitTimes;
 @synthesize waitTime;
-@synthesize  waitTime1_103;
+@synthesize waitTime1_103;
 @synthesize waitTime2_103;
 @synthesize waitTime1_104;
 @synthesize waitTime2_104;
+@synthesize waitTime1_108;
+@synthesize waitTime2_108;
 @synthesize station_waitTime1_103;
 @synthesize station_waitTime1_104;
 @synthesize station_waitTime2_103;
@@ -44,13 +47,14 @@
     }
     theConncetionCount = 0;
     updateTimeOnButton = NO;
-    item = [NSMutableArray new];
+    waitTimes=[[NSMutableArray alloc]init];
+    routeNames=[[NSMutableArray alloc]init];
     queue = [[NSOperationQueue alloc] init];
     waitTime = [NSMutableArray new];
     return self;
 }
 
--(void) addRoutesURL:(NSString *)_103First and:(NSString *)_103Second and:(NSString *)_104First and:(NSString *)_104Second{
+-(void) addRoutesURL:(NSString *)_103First and:(NSString *)_103Second and:(NSString *)_104First and:(NSString *)_104Second and: (NSString *)_108First and: (NSString *)_108Second;{
     if (_103First){
         waitTime1_103 = [[NSURL alloc ]initWithString:_103First];
         [waitTime  addObject:waitTime1_103 ];
@@ -66,6 +70,15 @@
     if (_104Second){
         waitTime2_104 = [[NSURL alloc ]initWithString:_104Second];
         [ waitTime  addObject:waitTime2_104 ];
+    }
+    
+    if (_108First){
+        waitTime1_108 = [[NSURL alloc ]initWithString:_108First];
+        [ waitTime  addObject:waitTime1_108 ];
+    }
+    if (_108Second){
+        waitTime2_108 = [[NSURL alloc ]initWithString:_108Second];
+        [ waitTime  addObject:waitTime2_108 ];
     }
 }
 -(void) addStationURL:(NSString *)_103First and:(NSString *)_103Second and:(NSString *)_104First and:(NSString *)_104Second{
@@ -94,22 +107,50 @@
 
 
 -(void)CatchData{
-    [item removeAllObjects];
-    for (id obj in waitTime){
-        if (queue) {
-            NSURLRequest* request = [NSURLRequest requestWithURL:obj cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:0];
-            RequestOperation* operation = [[RequestOperation alloc] initWithRequest:request];
-            operation.RequestDelegate = self;
-            [operation start];
-            [operation autorelease];
-            [queue addOperation:operation];
-            NSLog(@"%@",[queue operations]);
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        
+        [routeNames removeAllObjects];
+        [waitTimes removeAllObjects];
+        for(int i=0;i<6;++i){
+            NSURL *url=[waitTime objectAtIndex:i];
+            //NSLog(@"url = %@", url);
+            
+            NSError *error;
+            //NSData *data = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:&error];
+            NSData *data = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url] returningResponse:NULL error:&error];
+            //NSLog(@"data=%@", data);
+            
+            //data有資料
+            if (data) {
+                
+                NSMutableDictionary  *stationInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
+                
+                //NSLog(@"NTstationInfo: %@",stationInfo);
+                if(![stationInfo[@"stationInfo"]  isKindOfClass:[NSNull class]]){
+                    NSArray * responseArr = stationInfo[@"stationInfo"];
+                    for(NSDictionary * dict in responseArr)
+                    {
+                        [routeNames addObject:[dict valueForKey:@"name"]];
+                        [waitTimes addObject:[dict valueForKey:@"time"]];
+                    }
+                }
+            }
+            else{//data沒有資料（nil）（發生情形：沒有網路連線
+                NSLog(@"error:%@\n",error);
+                [routeNames addObject:@"網路異常"];
+                [waitTimes addObject:@"請稍候再試"];
+            }
         }
-        /*NSURLRequest *urlRequest = [NSURLRequest requestWithURL:obj];
-        theConncetion=[[NSURLConnection alloc]initWithRequest:urlRequest delegate:self];*/
-               
-    }
-
+        [routeNames retain];
+        [waitTimes retain];
+            
+        [loadingAlertView dismissWithClickedButtonIndex:0 animated:YES];
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    });
+    
 }
 
 -(void)AlertStart:(UIAlertView *) loadingAlertView{
@@ -304,7 +345,6 @@
 }
 
 - (void)dealloc {
-    [item release];
     [super dealloc];
 }
 
@@ -349,39 +389,6 @@
     }
     NSLog(@"Did Fail");
 }
-- (void)connectionDidFinishLoading:(NSMutableData *)received
-{
-    if (queue && received != nil && received != [NSMutableData data]) {
-        //UInt32 big5 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingBig5);
-        //NSData* data = [[NSString stringWithContentsOfURL:obj encoding:big5 error:&error] dataUsingEncoding:big5];
-        TFHpple* parser = [[TFHpple alloc] initWithHTMLData:received];
-        NSArray *waittime_tmp  = [parser searchWithXPathQuery:@"//body//div//table//tr//td"]; // get the title
-        
-        TFHppleElement* T_ptr2 = [waittime_tmp objectAtIndex:2];
-        NSArray *child2 = [T_ptr2 children];
-        TFHppleElement* buf2 = [child2 objectAtIndex:0];
-        [item  addObject: [buf2 content] ];
-        theConncetionCount++;
-        NSLog(@"Did Finish");
-        if ([waitTime count]==theConncetionCount) {
-            if (loadingAlertView) {
-                [loadingAlertView dismissWithClickedButtonIndex:0 animated:NO];
-                [loadingAlertView release];
-                loadingAlertView = nil;
-            }
-            [self.tableView reloadData];
-            self.lastRefresh = [NSDate date];
-            theConncetionCount=0;
-            updateTimeOnButton = YES;
-        }
-    }
-    else if (received != nil && received != [NSMutableData data])
-    {
-        [self connection:nil didFailWithError:[NSError errorWithDomain:NSMachErrorDomain code:0 userInfo:nil]];
-    }
-    else
-        theConncetionCount=0;
-}
 
 - (void)isZhongzheng:(BOOL)is
 {
@@ -399,7 +406,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [item count];
+    return [routeNames count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -412,68 +419,14 @@
     
     // Set up the cell
     cell.detailTextLabel.backgroundColor = [UIColor clearColor];
-    cell.detailTextLabel.text =[item objectAtIndex:indexPath.row];
+    cell.detailTextLabel.text =[waitTimes objectAtIndex:indexPath.row];
     
     cell.backgroundColor = SECONDARY_GROUP_BACKGROUND_COLOR;
 	
 	cell.textLabel.font = [UIFont fontWithName:BOLD_FONT size:CELL_STANDARD_FONT_SIZE];
 	cell.textLabel.textColor = CELL_STANDARD_FONT_COLOR;
 	cell.textLabel.backgroundColor = [UIColor clearColor];
-
-    if (dir){
-        switch (indexPath.row) {
-            case 0:
-                if ([waitTime count] <= 2 && !isZhongzheng)
-                    cell.textLabel.text = @"103八斗子-祥豐街-總站";
-                else
-                    cell.textLabel.text = @"103八斗子-中正路-總站";
-                break;
-            case 1:
-                if ([waitTime count] <= 2 && isZhongzheng)
-                    cell.textLabel.text = @"104新豐街-中正路-總站";
-                else if ([waitTime count] <= 2 && !isZhongzheng)
-                    cell.textLabel.text = @"104新豐街-祥豐街-總站";
-                else
-                    cell.textLabel.text = @"103八斗子-祥豐街-總站";
-                break;
-            case 2:
-                cell.textLabel.text = @"104新豐街-中正路-總站";
-                break;
-            case 3:
-                cell.textLabel.text = @"104新豐街-祥豐街-總站";
-                break;
-            default:
-                break;
-        }
-    }
-    else {
-        switch (indexPath.row) {
-            case 0:
-                if ([waitTime count] <= 2 && !isZhongzheng)
-                    cell.textLabel.text = @"103總站-祥豐街-八斗子";
-                else
-                    cell.textLabel.text = @"103總站-中正路-八斗子";
-                break;
-            case 1:
-                if ([waitTime count] <= 2 && isZhongzheng)
-                    cell.textLabel.text = @"104總站-中正路-新豐街";
-                else if ([waitTime count] <= 2 && !isZhongzheng)
-                    cell.textLabel.text = @"104總站-祥豐街-新豐街";
-                else
-                    cell.textLabel.text = @"103總站-祥豐街-八斗子";
-                break;
-            case 2:
-                cell.textLabel.text = @"104總站-中正路-新豐街";
-                break;
-            case 3:
-                cell.textLabel.text = @"104總站-祥豐街-新豐街";
-                break;
-            default:
-                break;
-        }
-    
-    
-    }
+    cell.textLabel.text = [routeNames objectAtIndex:indexPath.row];
     cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
     if ([cell.detailTextLabel.text isEqualToString:@"即將進站..."]) {
         cell.detailTextLabel.textColor = [UIColor redColor];
