@@ -8,39 +8,83 @@
 #define emergencyUserDefaultsKey @"emergencyUserDefaults"
 @synthesize delegate, htmlString, infoWebView;
 @synthesize imagePicker;
-
+@synthesize innerNumber;
+@synthesize outerNumber;
+@synthesize alertTouchIndex;
 - (id)initWithStyle:(UITableViewStyle)style {
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
     self = [super initWithStyle:style];
     if (self) {
 		refreshButtonPressed = NO;
         infoWebView = nil;
-        numbers =[[NSArray arrayWithObjects:
-                            [NSDictionary dictionaryWithObjectsAndKeys:
-                             @"教官室(24H)", @"title",
-                             @"0224629976", @"phone",
-                             nil],
-                            [NSDictionary dictionaryWithObjectsAndKeys:
-                             @"衛生保健組", @"title",
-                             @"0224622192,1071", @"phone",
-                             nil],
-                            [NSDictionary dictionaryWithObjectsAndKeys:
-                             @"警衛室", @"title",
-                             @"0224622192,1132", @"phone",
-                             nil],
-                            [NSDictionary dictionaryWithObjectsAndKeys:
-                             @"八斗子派出所", @"title",
-                             @"0224692077", @"phone",
-                             nil],
-                            [NSDictionary dictionaryWithObjectsAndKeys:
-                             @"正濱派出所", @"title",
-                             @"0224621889", @"phone",
-                             nil],
-                            [NSDictionary dictionaryWithObjectsAndKeys:
-                             @"基隆市警察局", @"title",
-                             @"0224248141", @"phone",
-                             nil],
-                            nil] retain];
+        innerNumber=[[NSMutableArray alloc]init];
+        outerNumber=[[NSMutableArray alloc]init];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://140.121.91.62/contact/contact.php"]];
+        //NSLog(@"url = %@", url);
+        
+        NSError *error;
+        //NSData *data = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:&error];
+        NSData *data = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url] returningResponse:NULL error:&error];
+        //NSLog(@"data=%@", data);
+        
+        //data有資料
+        if (data) {
+            
+            NSMutableDictionary  *stationInfo = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
+            
+            //NSLog(@"NTstationInfo: %@",stationInfo);
+            
+            NSArray * responseArr = stationInfo[@"contactInfo"][@"inner"];
+            for(NSDictionary * dict in responseArr)
+                [innerNumber addObject:dict];
+            responseArr = stationInfo[@"contactInfo"][@"outer"];
+            for(NSDictionary * dict in responseArr)
+                [outerNumber addObject:dict];
+            [innerNumber retain];
+            [outerNumber retain];
+        }
+        else //data沒有資料（nil）（發生情形：沒有網路連線）
+        {
+            innerNumber =[[NSMutableArray arrayWithObjects:
+                    [NSDictionary dictionaryWithObjectsAndKeys:
+                        @"教官室(24H)", @"name",
+                        @"0224629976", @"phone",
+                        @"",@"email",
+                        nil],
+                    [NSDictionary dictionaryWithObjectsAndKeys:
+                        @"衛生保健組", @"name",
+                        @"0224622192,1071", @"phone",
+                        @"",@"email",
+                        nil],
+                    [NSDictionary dictionaryWithObjectsAndKeys:
+                        @"警衛室", @"name",
+                        @"0224622192,1132", @"phone",
+                        @"",@"email",
+                        nil],
+                    [NSDictionary dictionaryWithObjectsAndKeys:
+                        @"拍照寄給教官",@"name",
+                        @"",@"phone",
+                        @"wendylin@mail.ntou.edu.tw",@"email",
+                        nil],
+                    nil] retain];
+            outerNumber =[[NSMutableArray arrayWithObjects:
+                    [NSDictionary dictionaryWithObjectsAndKeys:
+                        @"八斗子派出所", @"name",
+                        @"0224692077", @"phone",
+                        @"",@"email",
+                        nil],
+                    [NSDictionary dictionaryWithObjectsAndKeys:
+                        @"正濱派出所", @"name",
+                        @"0224621889", @"phone",
+                        @"",@"email",
+                        nil],
+                    [NSDictionary dictionaryWithObjectsAndKeys:
+                        @"基隆市警察局", @"name",
+                        @"0224248141", @"phone",
+                        @"",@"email",
+                        nil],
+                    nil] retain];
+        }
         htmlFormatString = [@"<html>"
                             "<head>"
                             "<style type=\"text/css\" media=\"screen\">"
@@ -91,7 +135,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSysteNTOUem:UIBarButtonSysteNTOUemRefresh target:self action:@selector(refreshInfo:)] autorelease];
-	self.tableView.scrollEnabled = NO;
+	self.tableView.scrollEnabled = YES;
 	infoWebView = [[UIWebView alloc] initWithFrame:CGRectMake(5, 5, self.view.frame.size.width - 30 , 90)];
 	infoWebView.delegate = self;
 	infoWebView.dataDetectorTypes = UIDataDetectorTypeAll;
@@ -157,7 +201,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return @"緊急事件";
+            return @"緊急公告";
             break;
             
         case 1:
@@ -165,7 +209,7 @@
             break;
             
         case 2:
-            return @"其他";
+            return @"校內";
             break;
        
     }
@@ -187,11 +231,11 @@
             num = 1;
             break;
         case 1: {
-            num=4;
+            num=innerNumber.count;
             break;
         }
         case 2: {
-            num=1;
+            num=outerNumber.count;
             break;
         }
           }
@@ -208,15 +252,15 @@
     label.backgroundColor = [UIColor clearColor];
     switch (section) {
         case 0:
-             label.text = @"校內";
+             label.text = @"緊急公告";
             break;
             
         case 1:
-             label.text =@"校外";
+             label.text =@"校內";
             break;
             
         case 2:
-             label.text =@"其他";
+             label.text =@"校外";
             break;
             
     }
@@ -284,42 +328,38 @@
 			SecondaryGroupedTableViewCell *cell = (SecondaryGroupedTableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondaryCellIdentifier];
 			if (cell == nil) {
 				cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SecondaryCellIdentifier] autorelease];
-			}
-			
-			if (indexPath.row==3){
-                cell.accessoryView = [UIImageView accessoryViewWithNTOUType: NTOUAccessoryViewEmail];
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                cell.textLabel.text = @"拍照寄給教官";
-                return cell;
             }
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-			
-                NSDictionary *anEntry = [numbers objectAtIndex:indexPath.row];
-				cell.textLabel.text = [anEntry objectForKey:@"title"];
-				cell.secondaryTextLabel.text = [anEntry objectForKey:@"phone"];
+            cell.textLabel.text = [innerNumber objectAtIndex:indexPath.row][@"name"];
+			if ([[innerNumber objectAtIndex:indexPath.row][@"phone"] isEqualToString:@""]){
+                cell.accessoryView = [UIImageView accessoryViewWithNTOUType: NTOUAccessoryViewEmail];
+                cell.secondaryTextLabel.text =[innerNumber objectAtIndex:indexPath.row][@"mail"];
+            }
+            else{
+                cell.secondaryTextLabel.text =[innerNumber objectAtIndex:indexPath.row][@"phone"];
                 cell.accessoryView = [UIImageView accessoryViewWithNTOUType:NTOUAccessoryViewPhone];
-           
+            }
 			
 			return cell;
 		}
         case 2:
-		{
-			SecondaryGroupedTableViewCell *cell = (SecondaryGroupedTableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondaryCellIdentifier];
-			if (cell == nil) {
-				cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SecondaryCellIdentifier] autorelease];
-			}
-			
-			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-			cell.textLabel.text = @"警察局";
-         /*   NSArray *numbers = [[EmergencyData sharedData] primaryPhoneNumbers];
-            
-                NSDictionary *anEntry = [numbers objectAtIndex:indexPath.row+3];
-				cell.textLabel.text = [anEntry objectForKey:@"title"];
-				cell.secondaryTextLabel.text = [anEntry objectForKey:@"phone"];
+        {
+            SecondaryGroupedTableViewCell *cell = (SecondaryGroupedTableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondaryCellIdentifier];
+            if (cell == nil) {
+                cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SecondaryCellIdentifier] autorelease];
+            }
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.textLabel.text = [outerNumber objectAtIndex:indexPath.row][@"name"];
+            if ([[outerNumber objectAtIndex:indexPath.row][@"phone"] isEqualToString:@""]){
+                cell.accessoryView = [UIImageView accessoryViewWithNTOUType: NTOUAccessoryViewEmail];
+                cell.secondaryTextLabel.text =[outerNumber objectAtIndex:indexPath.row][@"mail"];
+            }
+            else{
+                cell.secondaryTextLabel.text =[outerNumber objectAtIndex:indexPath.row][@"phone"];
                 cell.accessoryView = [UIImageView accessoryViewWithNTOUType:NTOUAccessoryViewPhone];
-           
-			*/
-			return cell;
+            }
+            
+            return cell;
 		}
        
     }
@@ -343,7 +383,10 @@
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *mailView = [[MFMailComposeViewController alloc] init];
         mailView.mailComposeDelegate = self;
-        [mailView setToRecipients:[NSArray arrayWithObjects:@"wendylin@mail.ntou.edu.tw", nil]];
+        if(alertTouchIndex.section==1)
+            [mailView setToRecipients:[NSArray arrayWithObjects:[innerNumber objectAtIndex:alertTouchIndex.row][@"mail"], nil]];
+        else
+            [mailView setToRecipients:[NSArray arrayWithObjects:[outerNumber objectAtIndex:alertTouchIndex.row][@"mail"], nil]];
         [mailView setSubject:@"緊急事件"];
         
         [mailView setMessageBody:@"[照片]" isHTML:NO];
@@ -363,7 +406,11 @@
         case 0:
             break;
         default:{
-            NSDictionary *anEntry = [numbers objectAtIndex:alertTouchRow];
+            NSDictionary *anEntry;
+            if(alertTouchIndex.section==1)
+                anEntry= [innerNumber objectAtIndex:alertTouchIndex.row];
+            else
+                anEntry= [outerNumber objectAtIndex:alertTouchIndex.row];
             NSString *phoneNumber = [[anEntry objectForKey:@"phone"]
                            stringByReplacingOccurrencesOfString:@"."
                            withString:@""];
@@ -381,8 +428,10 @@
     NSString *title;
     NSURL *aURL;
     switch (indexPath.section) {
+        case 2:{
+        }
         case 1:{
-            if (indexPath.row==3){
+            if ([[outerNumber objectAtIndex:indexPath.row][@"phone"] isEqualToString:@""]){
                 if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                     break;
                 }
@@ -391,11 +440,13 @@
                 imagePicker.sourceType=UIImagePickerControllerSourceTypeCamera;
                 [self presentModalViewController:imagePicker animated:YES];
                 break;
-
             }
-            alertTouchRow = indexPath.row;
-            anEntry = [numbers objectAtIndex:indexPath.row];
-            title = [[anEntry objectForKey:@"title"]
+            alertTouchIndex=indexPath;
+            if(alertTouchIndex.section==1)
+                anEntry= [innerNumber objectAtIndex:alertTouchIndex.row];
+            else
+                anEntry= [outerNumber objectAtIndex:alertTouchIndex.row];
+            title = [[anEntry objectForKey:@"name"]
                            stringByReplacingOccurrencesOfString:@"."
                            withString:@""];
             phoneNumber = [[anEntry objectForKey:@"phone"]
@@ -408,22 +459,6 @@
             }
             break;
          }
-        case 2:{
-            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-            OutCampusViewController *outCampus = [[OutCampusViewController alloc]initWithStyle:UITableViewStyleGrouped];
-            outCampus.title = cell.textLabel.text;
-            [self.navigationController pushViewController:outCampus animated:YES];
-            outCampus.navigationItem.leftBarButtonItem.title=@"上一頁";
-          /*  anEntry = [numbers objectAtIndex:indexPath.row+3];
-            phoneNumber = [[anEntry objectForKey:@"phone"]
-                           stringByReplacingOccurrencesOfString:@"."
-                           withString:@""];
-            aURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", phoneNumber]];
-            if ([[UIApplication sharedApplication] canOpenURL:aURL]) {
-                [[UIApplication sharedApplication] openURL:aURL];
-            }*/
-            break;
-        }
     }
 }
 

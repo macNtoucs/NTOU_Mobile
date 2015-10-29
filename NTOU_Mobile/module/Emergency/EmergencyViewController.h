@@ -12,13 +12,14 @@
 
 @interface EmergencyViewController : UITableViewController <UIWebViewDelegate,MFMailComposeViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate> {
     id<EmergencyViewControllerDelegate> delegate;
-    int alertTouchRow;
+    NSIndexPath *alertTouchIndex;
 	BOOL refreshButtonPressed;
     NSString *htmlString;
 	NSString *htmlFormatString;
     UIWebView *infoWebView;
     UIImagePickerController * imagePicker;
-    NSArray *numbers;
+    NSMutableArray *innerNumber;
+    NSMutableArray *outerNumber;
 }
 
 - (void)infoDidLoad:(NSNotification *)aNotification;
@@ -30,6 +31,9 @@
 @property (nonatomic, retain) id<EmergencyViewControllerDelegate> delegate;
 @property (nonatomic, retain) NSString *htmlString;
 @property (nonatomic, retain) UIWebView *infoWebView;
+@property (nonatomic, retain) NSMutableArray *innerNumber;
+@property (nonatomic, retain) NSMutableArray *outerNumber;
+@property (nonatomic, retain) NSIndexPath *alertTouchIndex;
 @property (nonatomic, retain) UIImagePickerController * imagePicker;
 
 @end
