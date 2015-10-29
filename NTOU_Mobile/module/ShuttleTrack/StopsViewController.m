@@ -168,7 +168,7 @@
     NSString *busName[6]={@"103 八斗子-經中正路(經海科館)",@"103 八斗子-經祥豐街(經海科館)",@"104 新豐街-經中正路",@"104 新豐街-經祥豐街",@"108 潮境公園-經祥豐街",@"108 潮境公園-基隆車站"};
     NSString *encodedBus[6];
     NSString *encodedStop;
-    if(indexPath.section==0)
+    if(go)
         encodedStop = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)[innerStop objectAtIndex:indexPath.row], NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
     else
         encodedStop = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)[outerStop objectAtIndex:indexPath.row], NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
