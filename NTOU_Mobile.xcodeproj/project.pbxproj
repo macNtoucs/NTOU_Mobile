@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04AD3B031C16B83F00760D2C /* ChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AD3B021C16B83F00760D2C /* ChangeViewController.m */; };
 		04F703301B9D51B600EC6C92 /* InformationModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F7032F1B9D51B600EC6C92 /* InformationModule.m */; };
 		04F703331B9D51D000EC6C92 /* DisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F703321B9D51D000EC6C92 /* DisplayViewController.m */; };
 		1D0DC7D1194F3211006DA208 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0DC7D0194F3211006DA208 /* NJKWebViewProgress.m */; };
@@ -261,6 +262,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04AD3B011C16B83F00760D2C /* ChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeViewController.h; sourceTree = "<group>"; };
+		04AD3B021C16B83F00760D2C /* ChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeViewController.m; sourceTree = "<group>"; };
 		04F7032E1B9D51B600EC6C92 /* InformationModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationModule.h; sourceTree = "<group>"; };
 		04F7032F1B9D51B600EC6C92 /* InformationModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationModule.m; sourceTree = "<group>"; };
 		04F703311B9D51D000EC6C92 /* DisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayViewController.h; sourceTree = "<group>"; };
@@ -1309,6 +1312,8 @@
 		C4CA69AB1911013B005B272C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				04AD3B011C16B83F00760D2C /* ChangeViewController.h */,
+				04AD3B021C16B83F00760D2C /* ChangeViewController.m */,
 				04F703311B9D51D000EC6C92 /* DisplayViewController.h */,
 				04F703321B9D51D000EC6C92 /* DisplayViewController.m */,
 				91756EFA16F206F7001D724D /* ScheduleViewController.h */,
@@ -1618,6 +1623,7 @@
 				91A9044816E899D200ECF2CF /* NTOUGuide3ViewController.m in Sources */,
 				91A9044916E899D200ECF2CF /* NTOUGuide4ViewController.m in Sources */,
 				91A9045216E899D200ECF2CF /* NTOUTableViewControllerLayer1.m in Sources */,
+				04AD3B031C16B83F00760D2C /* ChangeViewController.m in Sources */,
 				91A9045316E899D200ECF2CF /* NTOUTableViewControllerLayer2.m in Sources */,
 				91A9045416E899D200ECF2CF /* OtherTrafficTrapViewController.m in Sources */,
 				1DA9F88E19B3B52900261C7E /* FreshmenWebViewController.m in Sources */,
