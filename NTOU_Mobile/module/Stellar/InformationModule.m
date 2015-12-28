@@ -1,7 +1,7 @@
 #import "InformationModule.h"
 #import "AppDelegate+ModuleList.h"
 #import "NTOUConstants.h"
-#import "DisplayViewController.h"
+#import "ChangeViewController.h"
 #import "NTOUModule+Protected.h"
 
 @implementation InformationModule
@@ -15,7 +15,7 @@
         self.longName = @"NTOU Information";
         self.iconName = @"stellar";
         self.pushNotificationSupported = YES;
-        self.moduleHomeController = [[[DisplayViewController alloc] init] autorelease];
+        self.moduleHomeController = [[[ChangeViewController alloc] init] autorelease];
     }
     return self;
 }

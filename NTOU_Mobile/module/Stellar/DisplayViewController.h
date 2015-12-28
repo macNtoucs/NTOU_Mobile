@@ -11,10 +11,10 @@
 #import "Moodle_API.h"
 #import "SettingsModuleViewController.h"
 @interface DisplayViewController : UITableViewController{
-    NSMutableArray *itemsArray;
+    NSMutableArray *itemsArray,*gradesArray;
     NSString * token;
 }
+- (void)setData:(NSDictionary *)info Year:(NSString*)year;
 @property(nonatomic, retain)NSMutableArray *itemsArray,*gradesArray;
 @property(nonatomic,retain)NSString * token;
-@property(nonatomic,retain)NSDictionary* info;
 @end

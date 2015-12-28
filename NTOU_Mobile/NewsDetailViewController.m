@@ -79,8 +79,25 @@
         
     }
     UILabel* urlLabel = (UILabel*) sender.view;
-    NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@",[[[[[[story objectForKey:NewsAPIKeyAttachment_URL] objectForKey: NewsAPIKeyText] stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] componentsSeparatedByString:@","] objectAtIndex:urlLabel.tag]]];
-
+    /*
+     NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@",[[[[[[story objectForKey:NewsAPIKeyAttachment_URL] objectForKey: NewsAPIKeyText] stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] componentsSeparatedByString:@","] objectAtIndex:urlLabel.tag]]];
+     */
+    
+    
+    
+    NSMutableArray * attachment_URL;
+    NSMutableArray *attachment_Temp=[story objectForKey:NewsAPIKeyAttachment_URL];
+    attachment_URL =[[NSMutableArray alloc]init];
+    if([attachment_Temp count]>1){
+        for(int i=0;i<[attachment_Temp count];++i)
+            [attachment_URL addObject:[attachment_Temp[i] objectForKey:NewsAPIKeyText]];
+    }
+    else if([attachment_Temp count]==1)
+        [attachment_URL addObject:[attachment_Temp objectForKey:NewsAPIKeyText]];
+    NSString *urlString=[[[NSString stringWithFormat:@"%@",attachment_URL[urlLabel.tag]]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+    NSURL *url = [[NSURL alloc] initWithString:urlString];
+    
+    
     
     UIViewController* webViewController = [[[UIViewController alloc]init] autorelease];
     webViewController.title = @"附件";
@@ -91,7 +108,7 @@
         webFrame.size.height -= 64;
         webView.frame = webFrame;
     }
-
+    
     
     
     webView.scalesPageToFit = YES;
@@ -106,16 +123,16 @@
     [self.navigationController pushViewController:webViewController animated:YES];
     
     /*
-    UILabel* urlLabel = (UILabel*) sender.view;
-    NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@",[[[[[[story objectForKey:NewsAPIKeyAttachment_URL] objectForKey: NewsAPIKeyText] stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] componentsSeparatedByString:@","] objectAtIndex:urlLabel.tag]]];
-    UIViewController *webViewController = [[[UIViewController alloc]init] autorelease];
-    webViewController.title = urlLabel.text;
-    UIWebView *webView = [[[UIWebView alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
-    webView.scalesPageToFit = YES;
-    [webView loadRequest:[NSURLRequest requestWithURL:url]];
-    [webViewController.view addSubview: webView];
-    
-    [self.navigationController pushViewController:webViewController animated:YES];*/
+     UILabel* urlLabel = (UILabel*) sender.view;
+     NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@",[[[[[[story objectForKey:NewsAPIKeyAttachment_URL] objectForKey: NewsAPIKeyText] stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] componentsSeparatedByString:@","] objectAtIndex:urlLabel.tag]]];
+     UIViewController *webViewController = [[[UIViewController alloc]init] autorelease];
+     webViewController.title = urlLabel.text;
+     UIWebView *webView = [[[UIWebView alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
+     webView.scalesPageToFit = YES;
+     [webView loadRequest:[NSURLRequest requestWithURL:url]];
+     [webViewController.view addSubview: webView];
+     
+     [self.navigationController pushViewController:webViewController animated:YES];*/
 }
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -136,6 +153,16 @@
 {
     [super viewDidLoad];
     self.navigationItem.title = @"公告細節";
+    /*
+     UIWebView *webView=[[UIWebView alloc]initWithFrame:CGRectMake(Spacing,20,300,50)];
+     NSString *urlString=[[[[[story objectForKey:NewsAPIKeyLink]objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""]stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+     urlString=[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+     NSURL *url=[NSURL URLWithString:urlString];
+     NSURLRequest *requestUrl = [NSURLRequest requestWithURL:url];
+     [webView loadRequest:requestUrl];
+     webView.scalesPageToFit=YES;
+     self.view=webView;
+     */
     self.view.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0];
     UIScrollView * background = [[UIScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];;
     if ([[[UIDevice currentDevice]systemVersion]floatValue]<7.0)
@@ -153,7 +180,7 @@
     title.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
     title.lineBreakMode = NSLineBreakByCharWrapping;
     title.numberOfLines = 0;
-
+    
     title.backgroundColor = [UIColor clearColor];
     CGSize maximumLabelSize = CGSizeMake(300, FLT_MAX);
     CGSize expectedLabelSize = [title.text sizeWithFont:title.font constrainedToSize:maximumLabelSize lineBreakMode:NSLineBreakByCharWrapping];
@@ -181,7 +208,7 @@
     name.font = [UIFont fontWithName:@"Helvetica" size:infoFontSize];
     name.lineBreakMode = NSLineBreakByCharWrapping;
     name.numberOfLines = 0;
-
+    
     //電話
     
     UILabel *telephone = [[UILabel alloc] initWithFrame:CGRectMake(100, 35, 190, 15)];
@@ -216,8 +243,16 @@
     date.backgroundColor = [UIColor clearColor];
     
     //附件
-    
-    NSMutableArray * attachment_Title = [[[[[[story objectForKey:NewsAPIKeyAttachment_Title] objectForKey: NewsAPIKeyText] stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""] componentsSeparatedByString:@","] mutableCopy];
+    NSMutableArray * attachment_Title;
+    NSMutableArray *attachment_Temp=[story objectForKey:NewsAPIKeyAttachment_Title];
+    attachment_Title =[[NSMutableArray alloc]init];
+    if([attachment_Temp count]>1){
+        for(int i=0;i<[attachment_Temp count];++i)
+            [attachment_Title addObject:[[[attachment_Temp[i] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""]];
+    }
+    else if([attachment_Temp count]==1)
+        [attachment_Title addObject:[[[attachment_Temp objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""]];
+    //    [attachment_Title addObject:@""];
     int attachment_TitleHeight = 0;
     maximumLabelSize = CGSizeMake(280, FLT_MAX);
     
@@ -228,7 +263,7 @@
             continue;
         }
         UILabel *attachment = [[UILabel alloc] initWithFrame:CGRectMake(Spacing, 2*Spacing+pictureHeight +10 +attachment_TitleHeight, 280, 25)];
-        attachment.text = attachment_Title[i];
+        attachment.text =  attachment_Title[i];
         attachment.font = [UIFont fontWithName:@"Helvetica" size:14];
         attachment.textColor = [UIColor blueColor];
         attachment.lineBreakMode = NSLineBreakByCharWrapping;
@@ -253,26 +288,37 @@
     }
     
     
-
     
-
+    
+    
     
     //新聞內容
+    /*
+     NSString *news = [NSString stringWithFormat:@"資料來源<br>臺北市公車-臺北市政府交通局<br>新北市公車-我愛巴士5284行動查詢系統<br>基隆市公車-基隆市公車資訊便民服務系統<br>客運-我愛巴士5284行動查詢系統<br>火車-臺灣鐵路管理局<br>高鐵-台灣高鐵<br><br><br>公告<br>%@",responseData?[[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding]:@""];
+     NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[news dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+     UITextView *newsDisplay = [[UITextView alloc]initWithFrame:CGRectMake(40,380,240,100)];
+     [newsDisplay setFont:[UIFont systemFontOfSize:10]];
+     newsDisplay.attributedText=attrStr;
+     
+     
+     UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(Spacing, 2*Spacing + pictureHeight + personAndContentSpacing + attachment_TitleHeight, 280, 500)];
+     content.text = [[[[story objectForKey:NewsAPIKeyBody] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+     content.font = [UIFont fontWithName:@"Helvetica" size:15];
+     content.lineBreakMode = NSLineBreakByCharWrapping;
+     content.numberOfLines = 0;
+     content.backgroundColor = [UIColor clearColor];
+     */
     
-    UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(Spacing, 2*Spacing + pictureHeight + personAndContentSpacing + attachment_TitleHeight, 280, 500)];
-    content.text = [[[[story objectForKey:NewsAPIKeyBody] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""];
-    content.font = [UIFont fontWithName:@"Helvetica" size:15];
-    content.lineBreakMode = NSLineBreakByCharWrapping;
-    content.numberOfLines = 0;
-    content.backgroundColor = [UIColor clearColor];
     
-    expectedLabelSize = [content.text sizeWithFont:content.font constrainedToSize:maximumLabelSize lineBreakMode:NSLineBreakByCharWrapping];
-    newFrame = content.frame;
-    newFrame.size.height = expectedLabelSize.height;
-    content.frame = newFrame;
+    NSString *news = [[[[[story objectForKey:NewsAPIKeyBody] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n" withString:@""]stringByReplacingOccurrencesOfString:@"\t" withString:@""]stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[news dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    NSString *temp=[[[[[story objectForKey:NewsAPIKeyBody] objectForKey:NewsAPIKeyText]stringByReplacingOccurrencesOfString:@"\n\r" withString:@"</br>"]stringByReplacingOccurrencesOfString:@"\t" withString:@""]stringByReplacingOccurrencesOfString:@"\n" withString:@"</br>"];
+    UIWebView *content = [[UIWebView alloc] initWithFrame:CGRectMake(Spacing, 2*Spacing + pictureHeight + personAndContentSpacing + attachment_TitleHeight, 280, infoBackground.frame.size.height-2*Spacing-pictureHeight-personAndContentSpacing-attachment_TitleHeight)];
+    [content loadHTMLString:temp baseURL:nil];
+    
     
     newFrame = infoBackground.frame;
-    newFrame.size.height = 2*Spacing + expectedLabelSize.height + pictureHeight + 2 * personAndContentSpacing + attachment_TitleHeight;
+    newFrame.size.height = 2*Spacing + content.frame.size.height+ pictureHeight + 2 * personAndContentSpacing + attachment_TitleHeight;
     infoBackground.frame = newFrame;
     
     background.contentSize= CGSizeMake(320,infoBackground.frame.origin.y + infoBackground.frame.size.height + Spacing);
@@ -295,14 +341,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

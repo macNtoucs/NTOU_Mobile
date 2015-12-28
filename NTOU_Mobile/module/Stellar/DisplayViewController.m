@@ -17,7 +17,6 @@
 @synthesize itemsArray;
 @synthesize gradesArray;
 @synthesize token;
-@synthesize info;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -36,34 +35,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //NSLog(@"%@",[info objectForKey:moodleLoginResultKey]);
+}
+
+- (void)setData:(NSDictionary *)info Year:(NSString *)year{
     itemsArray = [[NSMutableArray alloc] init];
     gradesArray = [[NSMutableArray alloc] init];
-    info = [Moodle_API Login:[SettingsModuleViewController getMoodleAccount]andPassword:[SettingsModuleViewController getMoodlePassword]];
-    //NSLog(@"%@",[info objectForKey:moodleLoginResultKey]);
-    if([[info objectForKey:moodleLoginResultKey] intValue]==1){
-        token = [info objectForKey:moodleLoginTokenKey];
-        NSDictionary *dictionary = [Moodle_API GetCourseGrade_AndUseToken:token];
-        dictionary=@{@"result":@"1",@"list":@[@{@"name":@"經濟學",@"grade":@"81",@"year":@"1011"},@{@"name":@"濟學",@"grade":@"61",@"year":@"1011"},@{@"name":@"經學",@"grade":@"51",@"year":@"1011"},@{@"name":@"經濟學",@"grade":@"",@"year":@"1011"}]};
-  //@{@"key1": @"value1",@"key2": @"value2"};
-        for (NSDictionary * gradeDic in [dictionary objectForKey:moodleListKey]){
+    for (NSDictionary * gradeDic in [info objectForKey:moodleListKey]){
+        if([[gradeDic objectForKey:moodleGradeYearKey]isEqualToString:year]){
             [itemsArray addObject:[gradeDic objectForKey:moodleGradeNameKey]];
             [gradesArray addObject:[gradeDic objectForKey:moodleGradeKey]];
             [gradeDic count];
         }
     }
-    else
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            UIAlertView *loadingAlertView = [[UIAlertView alloc]
-                                             initWithTitle:nil message:@"帳號、密碼錯誤"
-                                             delegate:self cancelButtonTitle:@"確定"
-                                             otherButtonTitles:nil];
-            [loadingAlertView show];
-            [loadingAlertView release];
-        });
-    }
-    //初始化資料陣列，待會使用
-    
+    [self loadView];
 }
 
 #pragma mark - Table view data source
