@@ -12,12 +12,13 @@
 #import "NewsDetailViewController.h"
 #import "PullTableView.h"
 typedef enum {
-    NewsCategoryIdAnnounce = 0,
-    NewsCategoryIdSymposium = 1,
-    NewsCategoryIdArt = 2,
-    NewsCategoryIdLecture = 3,
+    NewsCategoryIdFocus = 0,
+    NewsCategoryIdAnnounce = 1,
+    NewsCategoryIdSymposium = 2,
+    NewsCategoryIdArt = 3,
+    NewsCategoryIdLecture = 4,
     NewsCategoryIdDocument = 999,
-    NewsCategoryIdInformation = 4,
+    NewsCategoryIdInformation = 5,
 } NewsCategoryId;
 
 

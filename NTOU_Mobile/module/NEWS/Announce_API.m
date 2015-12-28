@@ -22,7 +22,7 @@
 
 
 - (void)getAnnounceInfo_Count:(int)count andType:(NSString *)type andPage:(int) page {
-    NSString *url = [NSString stringWithFormat:@"http://dtop.ntou.edu.tw/app1020402.php?page=%d&count=%d&class=%@",page,count,type];
+    NSString *url = [NSString stringWithFormat:@"http://140.121.81.93/api/ntou_app.php?page=%d&count=%d&class=%@",page,count,type];
     //NSString *url = [NSString stringWithFormat:@"http://dtop.ntou.edu.tw/appAPI.php?page=%d&count=%d&class=%@",page,count,type];
     //  NSString *url = [NSString stringWithFormat:@"https://dl.dropboxusercontent.com/u/68445784/test.htm"];
     

@@ -15,13 +15,15 @@
 #define NewsAPIKeyTel @"tel"
 #define NewsAPIKeyTitle @"title"
 #define NewsAPIKeyBody @"body"
-#define NewsAPIKeyStartdate @"startdate"
+#define NewsAPIKeyStartdate @"pubDate"//原為startdate 20151118修改為pubDate
 #define NewsAPIKeyClass @"class"
 #define NewsAPIKeyEmail @"email"
 #define NewsAPIKeyText @"text"
 #define NewsAPIKeyDpname @"dpname"
 #define NewsAPIKeyAttachment_Title @"Attachment_Title"
 #define NewsAPIKeyAttachment_URL @"Attachment_URL"
+#define NewsAPIKeyColor @"color"//20151118新增
+#define NewsAPIKeyLink @"link"//20151119新增
 
 #define NewsCategoryIdAnnounceAPI  @"announce"
 #define NewsCategorySymposiumAPI  @"symposium"
@@ -29,6 +31,7 @@
 #define NewsCategoryLectureAPI  @"lecture"
 #define NewsCategoryDocumentAPI  @"document"
 #define NewsCategoryInformationAPI  @"Information"
+#define NewsCategoryFocusAPI @"focus"//20151118
 
 #define NewsCatchDataCount 6
 #endif
