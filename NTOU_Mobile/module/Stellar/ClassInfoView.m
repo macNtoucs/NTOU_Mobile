@@ -330,7 +330,8 @@
             if (types==3){
                 dispatch_async(dispatch_get_main_queue(), ^{
                     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(5, 5,290, rowHeight-10)];
-                    [webView loadHTMLString:[self textLabeltext:indexPath] baseURL:nil];
+                    NSLog([NSString stringWithFormat:@"<body width=320px style=\"word-wrap:break-word;\">%@</body>",[self textLabeltext:indexPath]]);
+                    [webView loadHTMLString:[NSString stringWithFormat:@"<body width=320px style=\"word-wrap:break-word;\">%@</body>",[self textLabeltext:indexPath]] baseURL:nil];
                     webView.backgroundColor = [UIColor clearColor];
                     [webView setOpaque:NO];
                     webView.scrollView.scrollEnabled = NO;
@@ -358,9 +359,13 @@
         label.backgroundColor = [UIColor clearColor];
         detailLabel.backgroundColor = [UIColor clearColor];
         detailLabel.textAlignment = NSTextAlignmentRight;
+        detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        detailLabel.numberOfLines = 0;
+        
         [cell.contentView addSubview:label];
         [cell.contentView addSubview:detailLabel];
         if ( types != 3) {
+            NSLog([self textLabeltext:indexPath]);
             label.text = [self textLabeltext:indexPath];
             detailLabel.text = [self subLabeltext:indexPath];
         }
@@ -536,11 +541,13 @@
         label.textColor = GROUPED_SECTION_FONT_COLOR;
         label.font = font;
         label.backgroundColor = [UIColor clearColor];
-        
+        label.lineBreakMode=NSLineBreakByWordWrapping;
+        label.numberOfLines=0;
+        [label sizeToFit];
         UIView *labelContainer = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, appFrame.size.width, GROUPED_SECTION_HEADER_HEIGHT)] autorelease];
         labelContainer.backgroundColor = [UIColor clearColor];
-        
         [labelContainer addSubview:label];
+        [labelContainer sizeToFit];
         [label release];
         return labelContainer;
     }

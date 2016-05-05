@@ -70,9 +70,37 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
         
     }
+    /*
+    
+    
+    
     NSString *path = [[NSBundle mainBundle] pathForResource:@"CalenderList" ofType:@"plist"];
     
     NSDictionary *list = [[NSDictionary alloc] initWithContentsOfFile:path];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:list options:NSJSONWritingPrettyPrinted error:nil];
+    */
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];//暫存
+    NSURL * url=[NSURL URLWithString:@"http://140.121.91.62/calendar.php"];
+    
+    
+    NSError *error;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url] returningResponse:NULL error:&error];
+    NSMutableDictionary  *list;
+    if(data){
+        list = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
+        [userDefaults setObject:list forKey:@"NTOUChiCalendar"];
+    }
+    else{
+        if([userDefaults objectForKey:@"NTOUChiCalendar"]!=nil)
+            list = [userDefaults objectForKey:@"NTOUChiCalendar"];
+        else{
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"CalenderList" ofType:@"plist"];
+            list = [[NSDictionary alloc] initWithContentsOfFile:path];
+        }
+    }
+    //NSLog([[NSString alloc] initWithBytes:[jsonData bytes] length:[jsonData length] encoding:NSUTF8StringEncoding]);
     self.events = list;
     
     

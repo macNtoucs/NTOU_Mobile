@@ -24,7 +24,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        station = [[NSArray alloc]initWithObjects:@"台北",@"板橋",@"桃園",@"新竹",@"台中",@"嘉義",@"台南",@"左營", nil];
+        station = [[NSArray alloc]initWithObjects:@"臺北",@"板橋",@"桃園",@"新竹",@"苗栗",@"台中",@"彰化",@"雲林",@"嘉義",@"台南",@"左營", nil];
         
         /* change station id */
         //台北 : 977abb69-413a-4ccf-a109-0272c24fd490
@@ -48,7 +48,10 @@
                              @"1010",
                              @"1020",
                              @"1030",
+                             @"1035",
                              @"1040",
+                             @"1043",
+                             @"1047",
                              @"1050",
                              @"1060",
                              @"1070", nil];
@@ -379,8 +382,20 @@
         cell.textLabel.text = [NSString stringWithFormat:@"無資料"];
         cell.detailTextLabel.text=@"";
     }
-
-    else if (indexPath.row == 0 ) {
+    else if (indexPath.row > [trainID count]){
+        cell.textLabel.text=@"";
+        cell.detailTextLabel.text=@"";
+    }
+    else if(indexPath.row != 0){
+        NSString * detailString = [NSString stringWithFormat:@"%@         %@", [departureTime objectAtIndex:indexPath.row-1],[arrivalTime objectAtIndex:indexPath.row-1] ] ;
+        cell.textLabel.text=[NSString stringWithFormat:@"            %@",[trainID objectAtIndex:indexPath.row-1]] ;
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
+        cell.detailTextLabel.text = detailString;
+        cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
+        cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+        cell.detailTextLabel.textColor = [UIColor blueColor];
+    }
+    else if (indexPath.row == 0) {
         if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
         {
             cell.textLabel.text = [NSString stringWithFormat:@"            車次                %@           %@",departureStation, arrivalStation];
@@ -391,22 +406,9 @@
         }
         cell.textLabel.textColor = [UIColor brownColor];
     }
-      
-   
-   
-    else if (indexPath.row > [trainID count]){
-        cell.textLabel.text=@"";
-        cell.detailTextLabel.text=@"";
-    }
-    else {
-        NSString * detailString = [NSString stringWithFormat:@"%@         %@", [departureTime objectAtIndex:indexPath.row-1],[arrivalTime objectAtIndex:indexPath.row-1] ] ;
-        cell.textLabel.text=[NSString stringWithFormat:@"            %@",[trainID objectAtIndex:indexPath.row-1]] ;
-        cell.detailTextLabel.text = detailString;
-        cell.detailTextLabel.backgroundColor = [UIColor clearColor];
-        cell.detailTextLabel.textColor = [UIColor blueColor];
-    }
-    
-       return cell;
+    [cell.textLabel sizeToFit];
+    [cell.detailTextLabel sizeToFit];
+    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

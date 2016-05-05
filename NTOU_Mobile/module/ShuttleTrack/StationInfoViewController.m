@@ -329,14 +329,18 @@
             if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
             {
                 cell.textLabel.text = [NSString stringWithFormat:@"           車種     車次"];
+                cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
             }
             else
             {
                 cell.textLabel.text = [NSString stringWithFormat:@"       車種          車次"];
+                cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
             }
             cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:10];
             cell.detailTextLabel.textColor = [UIColor brownColor];
             cell.textLabel.textColor = [UIColor brownColor];
+            [cell.detailTextLabel sizeToFit];
+            [cell.textLabel sizeToFit];
             UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(187, 15.5, 60, 15)] autorelease];
             label.backgroundColor = [UIColor clearColor];
             label.lineBreakMode = UILineBreakModeWordWrap;
@@ -346,6 +350,7 @@
             label.textColor = CELL_STANDARD_FONT_COLOR;
             label.text = departureStation;
             label.textAlignment = UITextAlignmentCenter;
+            [label sizeToFit];
             UILabel* detailLabel = [[[UILabel alloc] initWithFrame:CGRectMake(255, 15.5, 60, 15)] autorelease];
             detailLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
             detailLabel.backgroundColor = [UIColor clearColor];
@@ -354,6 +359,7 @@
             detailLabel.backgroundColor = [UIColor clearColor];
             detailLabel.text = arrivalStation;
             detailLabel.textAlignment = UITextAlignmentCenter;
+            [detailLabel sizeToFit];
             [cell.contentView removeAllSubviews];
             [cell.contentView addSubview:label];
             [cell.contentView addSubview:detailLabel];
@@ -382,13 +388,16 @@
                 cell.imageView.image = [UIImage imageNamed:@"gigoung_train.png"];
             
             cell.textLabel.text = textString;
+            cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
+            [cell.textLabel sizeToFit];
             cell.detailTextLabel.text = detailString;
             cell.detailTextLabel.textColor = [UIColor blueColor];
+            cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
+            [cell.detailTextLabel sizeToFit];
             //NSLog(@"textString: %@, detailString: %@", textString, detailString);
         }
 
     }
-    
     return cell;
 }
 

@@ -26,9 +26,7 @@
     }
     return self;
 }
--(void) createData{    station = [[NSArray alloc]initWithObjects:
-                @"台北",@"板橋",@"桃園",@"新竹",@"台中",@"嘉義",@"台南",@"左營"
-               , nil];
+-(void) createData{    station = [[NSArray alloc]initWithObjects:@"臺北",@"板橋",@"桃園",@"新竹",@"苗栗",@"台中",@"彰化",@"雲林",@"嘉義",@"台南",@"左營", nil];
 }
 - (void)viewDidLoad
 {

@@ -57,7 +57,7 @@
         ///////////////////////////////////////////////////////////
     }
     else{
-        startStaion = [[NSString alloc]initWithString:@"台北"];
+        startStaion = [[NSString alloc]initWithString:@"臺北"];
         DepatureStation = [[NSString alloc]initWithString:@"左營"];
         HTView_origin = [[setHTOriginAndTerminalViewController alloc] initWithStyle:UITableViewStyleGrouped];
         HTView_origin.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
@@ -71,8 +71,8 @@
         HTView_terminal.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
         [setdepatureStationviewController.view addSubview:HTView_terminal.view];
         [setdepatureStationviewController.view addSubview:bg];
-        HTView_terminal.delegate = self;
         setdepatureStationviewController.tabBarItem.tag=1;
+        HTView_terminal.delegate = self;
         setdepatureStationviewController.tabBarItem.image = [UIImage imageNamed:@"bank.png"];
         ///////////////////////////////////////////////////////////
     }
@@ -182,10 +182,16 @@
 }
 
 -(void)SwapStation{
-    [[NSUserDefaults standardUserDefaults]setObject:startStaion forKey:@"DepatureStaion"];
-    [[NSUserDefaults standardUserDefaults]setObject:DepatureStation forKey:@"startStaion"];
+    if(!_isHightSpeedTrain){
+        [[NSUserDefaults standardUserDefaults]setObject:startStaion forKey:@"DepatureStaion"];
+        [[NSUserDefaults standardUserDefaults]setObject:DepatureStation forKey:@"startStaion"];
+    }
+    else{
+        [[NSUserDefaults standardUserDefaults]setObject:startStaion forKey:@"HTDepatureStaion"];
+        [[NSUserDefaults standardUserDefaults]setObject:DepatureStation forKey:@"HTstartStaion"];
+        
+    }
     [self viewDidLoad];
-    
     if (self.selectedIndex==4){
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyyMMdd"];
@@ -282,9 +288,12 @@
         startStaion=[[NSUserDefaults standardUserDefaults]objectForKey:@"startStaion"];
         DepatureStation=[[NSUserDefaults standardUserDefaults]objectForKey:@"DepatureStaion"];
     }
-    else
-        self.title = [NSString stringWithFormat: @" 台北 → 左營"];
-    
+    else{
+        self.title = [NSString stringWithFormat: @" %@ → %@",
+                      [[ NSUserDefaults standardUserDefaults]objectForKey:@"HTstartStaion"] ,[[ NSUserDefaults standardUserDefaults]objectForKey:@"HTDepatureStaion"]];
+        startStaion=[[NSUserDefaults standardUserDefaults]objectForKey:@"HTstartStaion"];
+        DepatureStation=[[NSUserDefaults standardUserDefaults]objectForKey:@"HTDepatureStaion"];
+    }
     if (((startStaion && DepatureStation) &&![startStaion isEqualToString:@""]))
         self.title = [NSString stringWithFormat: @" %@ → %@",startStaion,DepatureStation];
     
@@ -406,7 +415,7 @@
 - (NSString *)HTstartStationTitile:(HTSearchResultViewController *)stationInfoTableView{
     if (![startStaion isEqualToString:@""] && startStaion)
         return startStaion;
-    else return @"台北";
+    else return @"臺北";
 }
 - (NSString *)HTdepatureStationTitile:(HTSearchResultViewController *)stationInfoTableView{
     if (![DepatureStation isEqualToString:@""] && DepatureStation)

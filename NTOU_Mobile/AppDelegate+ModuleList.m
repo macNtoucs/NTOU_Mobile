@@ -67,7 +67,7 @@
     
     //[result addObject:[[[InformationModule alloc] init] autorelease]];//個人資訊
     
-    [result addObject:[[[LibraryModule alloc] init] autorelease]];//圖書館
+    //[result addObject:[[[LibraryModule alloc] init] autorelease]];//圖書館
     [result addObject:[[[ScheduleModule alloc] init] autorelease]];//行事曆
     [result addObject:[[[EmergencyModule alloc] init] autorelease]];//緊急聯絡
     
