@@ -18,6 +18,7 @@
 
 - (void)loadModuleHomeController
 {
+    
     [self setModuleHomeController:[[[NTOUGuideViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease]];
     
    

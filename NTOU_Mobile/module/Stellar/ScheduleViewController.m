@@ -103,13 +103,13 @@
 
 -(void) buttonDidFinish:(int)FinishType StringData:(NSArray *)array
 {
-    if (FinishType == clean||(FinishType == move&&[weekschedule.TapAddCourse count]==1)) {
+    if (FinishType == clean||(FinishType == moveConstant&&[weekschedule.TapAddCourse count]==1)) {
         [weekschedule restorTheOriginalColor];
         [weekschedule removeAllcourselabel];
         return;
     }
     ClassLabelBasis* FirstTap = [weekschedule.TapAddCourse objectAtIndex:0];
-    if (FinishType == move||[[array objectAtIndex:0] isEqualToString:[NSString string]]) {
+    if (FinishType == moveConstant||[[array objectAtIndex:0] isEqualToString:[NSString string]]) {
         NSNumber* deleteCourseTag = [NSNumber numberWithInt:[[weekschedule.TapAddCourse objectAtIndex:0] labelID]];
         [[ClassDataBase sharedData] UpdataScheduleInfo:deleteCourseTag ScheduleInfo:@" "];
         [[ClassDataBase sharedData] deleteClassroomLocation:deleteCourseTag];

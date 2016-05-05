@@ -7,11 +7,12 @@
 //
 #import "Annotation.h"
 #import <UIKit/UIKit.h>
+#import <GoogleMaps/GoogleMaps.h>
 
 @interface NTOUGuideSetViewController : UIViewController{
     CLLocationCoordinate2D location;
     MKCoordinateSpan span;
-    MKMapView *mapView;
+    GMSMapView *mapView;
     UIBarButtonItem *switchButton;
 
     

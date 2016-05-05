@@ -19,7 +19,7 @@
 #import <Foundation/Foundation.h>
 #import "DefineConstant.h"
 #import "Moodle_API.h"
-typedef enum {clean,modify,move}ButtonType;
+typedef enum {clean,modify,moveConstant}ButtonType;
 typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnName;
 @interface ClassDataBase : NSObject<NSCoding>{
     int WeekTimes;

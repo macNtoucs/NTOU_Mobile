@@ -130,7 +130,7 @@
 - (IBAction)clean:(UIButton *)sender {
     if (firstButtonType) {  //移動
         _modifyInfo.hidden = YES;
-        [delegate buttonDidFinish:move StringData:[NSArray arrayWithObjects:_classNameField.text,_teacherNameField.text,_roomNameField.text, nil]];
+        [delegate buttonDidFinish:moveConstant StringData:[NSArray arrayWithObjects:_classNameField.text,_teacherNameField.text,_roomNameField.text, nil]];
         [self buttonFuntion:NO];
     }
     else{   //清空

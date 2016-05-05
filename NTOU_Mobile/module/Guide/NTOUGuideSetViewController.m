@@ -25,14 +25,7 @@
 {
     [theMapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
 }
--(void)addBusAnnotationNearLatitude :(double)latitude andLongtitude:(double)longtitude{
-    
-    
-    [mapView addAnnotation:[[Annotation alloc] initWhithTitle:self.title
-                                                     subTitle:nil
-                                                andCoordiante:location]];
-    
-}
+
 
 -(id)init{
     self = [super init];
@@ -60,14 +53,10 @@
     return self;
 }
 -(void)viewWillAppear:(BOOL)animated{
-
-   
-
-
-    MKUserLocation *userlocation = [[MKUserLocation alloc]init];
-    [userlocation setCoordinate:location];
     
-    mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height)];
+    
+    
+    /*
     MKCoordinateRegion region;
     region.center.latitude = location.latitude;
     region.center.longitude = location.longitude;
@@ -77,27 +66,35 @@
     mapView.showsUserLocation = YES;
     mapView.mapType = MKMapTypeHybrid;
     [mapView setRegion:region animated:YES];
-
     [self.view addSubview:mapView];
     [mapView release];
-    
     [super viewWillAppear:animated];
+     */
+    
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.position = CLLocationCoordinate2DMake(location.latitude, location.longitude);
+    marker.title = self.title;
+    marker.snippet = self.title;
+    marker.map = mapView;
+    
 }
 -(void)switchMapType{
     if (switchButton.title==@"衛星地圖")
     {
-        mapView.mapType = MKMapTypeSatellite;
+        mapView.mapType=kGMSTypeSatellite;
         switchButton.title =@"混合地圖";
     }
     else if (switchButton.title==@"標準地圖")
     {
-        mapView.mapType = MKMapTypeStandard;
+        mapView.mapType = kGMSTypeNormal;
+        //mapView.mapType = MKMapTypeStandard;
         switchButton.title =@"衛星地圖";
         
     }
     else if (switchButton.title==@"混合地圖")
     {
-        mapView.mapType = MKMapTypeHybrid;
+        mapView.mapType = kGMSTypeHybrid;
+        //mapView.mapType = MKMapTypeHybrid;
         switchButton.title =@"標準地圖";
         
     }
@@ -109,16 +106,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    MKUserLocation *userlocation = [[MKUserLocation alloc]init];
+    [userlocation setCoordinate:location];
+    GMSCameraPosition *region=[GMSCameraPosition cameraWithLatitude:location.latitude longitude:location.longitude zoom:17];
+    mapView=[GMSMapView mapWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height) camera:region];
+    mapView.myLocationEnabled=YES;
+    self.view=mapView;
     switchButton = [[UIBarButtonItem alloc] initWithTitle:@"衛星地圖" style:UIBarButtonItemStylePlain target:self action:@selector(switchMapType)];
     self.navigationItem.rightBarButtonItem = switchButton;
     
-	// Do any additional setup after loading the view.
+    // Creates a marker in the center of the map.
+    // Do any additional setup after loading the view.
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-
+    
     [super viewWillDisappear:animated];
 }
 

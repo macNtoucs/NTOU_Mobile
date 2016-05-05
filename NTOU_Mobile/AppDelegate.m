@@ -15,6 +15,7 @@
 #import "NTOUConstants.h"
 #import "NTOUNotification.h"
 #import "SettingsModuleViewController.h"
+@import GoogleMaps;
 @implementation NTOU_MobileAppDelegate
 @synthesize window=_window,
 rootNavigationController = _rootNavigationController,
@@ -26,6 +27,7 @@ modules;
 #pragma mark -
 #pragma mark Application lifecycle
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [GMSServices provideAPIKey:@"AIzaSyDa7WM05jLY1Q7tdQWGn2R2kWctOXt2Ukc"];
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     networkActivityRefCount = 0;
     
@@ -106,7 +108,6 @@ modules;
     if (!success) {
         NSAssert1(0, @"Failed to copy Plist. Error %@", [error localizedDescription]);
     }
-    
     return YES;
     
 }
