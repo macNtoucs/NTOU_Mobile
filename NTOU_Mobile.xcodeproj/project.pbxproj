@@ -78,11 +78,11 @@
 		7CBFB5631CDB6E230048C7D2 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB5621CDB6E230048C7D2 /* GLKit.framework */; };
 		7CBFB5651CDB6E3A0048C7D2 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB5641CDB6E3A0048C7D2 /* libc++.tbd */; };
 		7CBFB5671CDB6E430048C7D2 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB5661CDB6E430048C7D2 /* libicucore.tbd */; };
-		7CBFB5691CDB6FD20048C7D2 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB5681CDB6FD20048C7D2 /* GoogleMaps.framework */; };
 		7CBFB56B1CDB70360048C7D2 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB56A1CDB70360048C7D2 /* libz.tbd */; };
 		7CBFB56D1CDB703D0048C7D2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB56C1CDB703D0048C7D2 /* OpenGLES.framework */; };
 		7CBFB56F1CDB70510048C7D2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB56E1CDB70510048C7D2 /* Security.framework */; };
 		7CBFB5711CDB7A8B0048C7D2 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7CBFB5701CDB7A8B0048C7D2 /* GoogleMaps.bundle */; };
+		7CBFB5781CDB98820048C7D2 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB5761CDB98820048C7D2 /* GoogleMaps.framework */; };
 		912A53EF16E99F7900BBC013 /* NTOUGuide2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */; };
 		912A53F016E99F7900BBC013 /* NTOUGuideSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EC16E99F7900BBC013 /* NTOUGuideSetViewController.m */; };
 		912A53F116E99F7900BBC013 /* NTOUGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EE16E99F7900BBC013 /* NTOUGuideViewController.m */; };
@@ -395,11 +395,11 @@
 		7CBFB5621CDB6E230048C7D2 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		7CBFB5641CDB6E3A0048C7D2 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		7CBFB5661CDB6E430048C7D2 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
-		7CBFB5681CDB6FD20048C7D2 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		7CBFB56A1CDB70360048C7D2 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		7CBFB56C1CDB703D0048C7D2 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		7CBFB56E1CDB70510048C7D2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7CBFB5701CDB7A8B0048C7D2 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
+		7CBFB5761CDB98820048C7D2 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		912A53E916E99F7900BBC013 /* NTOUGuide2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuide2ViewController.h; sourceTree = "<group>"; };
 		912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuide2ViewController.m; sourceTree = "<group>"; };
 		912A53EB16E99F7900BBC013 /* NTOUGuideSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuideSetViewController.h; sourceTree = "<group>"; };
@@ -728,6 +728,7 @@
 				7CBFB56D1CDB703D0048C7D2 /* OpenGLES.framework in Frameworks */,
 				7CBFB56B1CDB70360048C7D2 /* libz.tbd in Frameworks */,
 				7CBFB5671CDB6E430048C7D2 /* libicucore.tbd in Frameworks */,
+				7CBFB5781CDB98820048C7D2 /* GoogleMaps.framework in Frameworks */,
 				7CBFB5651CDB6E3A0048C7D2 /* libc++.tbd in Frameworks */,
 				91756FEE16F21236001D724D /* ImageIO.framework in Frameworks */,
 				7CBFB5631CDB6E230048C7D2 /* GLKit.framework in Frameworks */,
@@ -741,7 +742,6 @@
 				43BEDC1C19236DEC0091B024 /* libsqlite3.dylib in Frameworks */,
 				BA06A07D16F2EF5B00212CB9 /* EventKit.framework in Frameworks */,
 				913A0D1E16E98F99007BAD8F /* MessageUI.framework in Frameworks */,
-				7CBFB5691CDB6FD20048C7D2 /* GoogleMaps.framework in Frameworks */,
 				7CBFB5591CDB6D820048C7D2 /* MapKit.framework in Frameworks */,
 				91A9048816E89A3700ECF2CF /* libxml2.2.dylib in Frameworks */,
 				91A9004B16E854E500ECF2CF /* UIKit.framework in Frameworks */,
@@ -1041,10 +1041,10 @@
 		91A9004916E854E500ECF2CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7CBFB5761CDB98820048C7D2 /* GoogleMaps.framework */,
 				7CBFB56E1CDB70510048C7D2 /* Security.framework */,
 				7CBFB56C1CDB703D0048C7D2 /* OpenGLES.framework */,
 				7CBFB56A1CDB70360048C7D2 /* libz.tbd */,
-				7CBFB5681CDB6FD20048C7D2 /* GoogleMaps.framework */,
 				7CBFB5661CDB6E430048C7D2 /* libicucore.tbd */,
 				7CBFB5641CDB6E3A0048C7D2 /* libc++.tbd */,
 				7CBFB5621CDB6E230048C7D2 /* GLKit.framework */,
@@ -1869,8 +1869,6 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PROVISIONING_PROFILE = "35f431b7-0bd5-47a4-bf63-3239b83a2ccb";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "35f431b7-0bd5-47a4-bf63-3239b83a2ccb";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -1899,8 +1897,6 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PROVISIONING_PROFILE = "bf26e16e-4821-4464-baee-ee1097c65e1c";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "bf26e16e-4821-4464-baee-ee1097c65e1c";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = NO;
@@ -1913,21 +1909,19 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/GoogleMaps.bundle",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "35f431b7-0bd5-47a4-bf63-3239b83a2ccb";
-				"PROVISIONING_PROFILE[sdk=*]" = "35f431b7-0bd5-47a4-bf63-3239b83a2ccb";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "35f431b7-0bd5-47a4-bf63-3239b83a2ccb";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1945,14 +1939,13 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/GoogleMaps.bundle",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "海大App";
-				PROVISIONING_PROFILE = "bf26e16e-4821-4464-baee-ee1097c65e1c";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "bf26e16e-4821-4464-baee-ee1097c65e1c";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
