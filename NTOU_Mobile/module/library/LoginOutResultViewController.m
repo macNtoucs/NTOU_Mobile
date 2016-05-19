@@ -164,7 +164,7 @@
     NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@",account,pwd];
     NSHTTPURLResponse *urlResponse = nil;
     NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
-    NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/login.do"];
+    NSString * queryURL = [NSString stringWithFormat:@"http://140.121.100.103:8080/NTOULibraryAPI/login.do"];
     [request setURL:[NSURL URLWithString:queryURL]];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[historyPost dataUsingEncoding:NSUTF8StringEncoding]];
@@ -193,7 +193,7 @@
         NSString *historyPost = [[NSString alloc]initWithFormat:@"account=%@&password=%@",account,pwd];
         NSHTTPURLResponse *urlResponse = nil;
         NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
-        NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/getCurrentBorrowedBooks.do"];
+        NSString * queryURL = [NSString stringWithFormat:@"http://140.121.100.103:8080/NTOULibraryAPI/getCurrentBorrowedBooks.do"];
         [request setURL:[NSURL URLWithString:queryURL]];
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody:[historyPost dataUsingEncoding:NSUTF8StringEncoding]];
@@ -273,7 +273,7 @@
        
         NSHTTPURLResponse *urlResponse = nil;
         NSMutableURLRequest * request = [[NSMutableURLRequest new]autorelease];
-        NSString * queryURL = [NSString stringWithFormat:@"http://140.121.197.135:11114/LibraryHistoryAPI/renewBook.do"];
+        NSString * queryURL = [NSString stringWithFormat:@"http://140.121.100.103:8080/NTOULibraryAPI/renewBook.do"];
         [request setURL:[NSURL URLWithString:queryURL]];
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody:[historyPost dataUsingEncoding:NSUTF8StringEncoding]];

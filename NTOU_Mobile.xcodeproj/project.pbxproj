@@ -1023,7 +1023,6 @@
 		91A9003B16E854E400ECF2CF = {
 			isa = PBXGroup;
 			children = (
-				BA06A07C16F2EF5B00212CB9 /* EventKit.framework */,
 				91A9005016E854E500ECF2CF /* NTOU_Mobile */,
 				91A9004916E854E500ECF2CF /* Frameworks */,
 				91A9004716E854E500ECF2CF /* Products */,
@@ -1041,6 +1040,7 @@
 		91A9004916E854E500ECF2CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BA06A07C16F2EF5B00212CB9 /* EventKit.framework */,
 				7CBFB5761CDB98820048C7D2 /* GoogleMaps.framework */,
 				7CBFB56E1CDB70510048C7D2 /* Security.framework */,
 				7CBFB56C1CDB703D0048C7D2 /* OpenGLES.framework */,

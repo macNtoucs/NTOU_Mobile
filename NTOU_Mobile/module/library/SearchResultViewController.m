@@ -126,11 +126,11 @@
             //  設定url
             NSString *url;
             if ([searchType  isEqual: @"X"]){
-                url = [NSString stringWithFormat:@"http://140.121.197.135:11114/NTOULibrarySearchAPI/Search.do?searcharg=%@&searchtype=X&segment=%d",inputtext,Searchpage];
+                url = [NSString stringWithFormat:@"http://140.121.100.103:8080/NTOULibraryAPI/Search.do?searcharg=%@&searchtype=X&segment=%d",inputtext,Searchpage];
                 url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             }
             else{
-                url = [NSString stringWithFormat:@"http://140.121.197.135:11114/NTOULibrarySearchAPI/Search.do?searcharg=%@&searchtype=i&segment=%d",inputtext,Searchpage];
+                url = [NSString stringWithFormat:@"http://140.121.100.103:8080/NTOULibraryAPI/Search.do?searcharg=%@&searchtype=i&segment=%d",inputtext,Searchpage];
                 url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             }
             // 設定丟出封包，由data來接
