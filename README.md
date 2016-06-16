@@ -1,5 +1,7 @@
 NTOU_Mobile
 ===========
+編譯時，會需要 GoogleMapApi  
+https://drive.google.com/a/email.ntou.edu.tw/file/d/0BB3qVktG6rZOE81OFZpN1VSY0U/view?usp=sharing
 
 #ver2.0 更新事項#
       0. 建立push server 
