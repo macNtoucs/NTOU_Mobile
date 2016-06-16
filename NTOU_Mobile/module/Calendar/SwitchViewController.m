@@ -106,19 +106,6 @@
 	// Do any additional setup after loading the view.
     NSInteger screenheight = [[UIScreen mainScreen] bounds].size.height;
     self.view.frame = CGRectMake(0, 0, 320, screenheight);
-    float NavBarHeight = self.navigationController.navigationBar.frame.size.height;
-    
-    
-    chiViewController.menuHeight = 0;
-    engViewController.menuHeight = 0;
-    self.engViewController = [[EnglistViewController alloc]initWithStyle:UITableViewStylePlain];
-    self.chiViewController = [[ChiListViewController alloc]initWithStyle:UITableViewStylePlain];
-    [self.engViewController setupFrame:NavBarHeight];
-    [self.chiViewController setupFrame:NavBarHeight];
-
-    engViewController.switchviewcontroller = self;
-    chiViewController.switchviewcontroller = self;
-    [self.view addSubview:self.chiViewController.view];
     
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle:@"Eng." style:UIBarButtonItemStyleBordered target:self action:@selector(showMenuView)];
     menuButton.style = UIBarButtonItemStylePlain;
@@ -131,21 +118,21 @@
     [self.view addGestureRecognizer:swipeRecognizer];
     self.title = @"行事曆";
     
-   /* if([[NSUserDefaults standardUserDefaults] boolForKey:@"showNotifyCalendar"] != YES)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"【NTOU】行事曆 貼心使用提示"
-                                                        message:@"點選右上方-匯入-圖示\n可以選擇想要的事件\n匯入您手機的 行事曆APP 中\n*左右滑動可以切換中英版本*"
-                                                       delegate:self
-                                              cancelButtonTitle:@"知道了"
-                                              otherButtonTitles:nil];
-        [alert show];
-        
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"showNotifyCalendar"];
-    }*/
+    /* if([[NSUserDefaults standardUserDefaults] boolForKey:@"showNotifyCalendar"] != YES)
+     {
+     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"【NTOU】行事曆 貼心使用提示"
+     message:@"點選右上方-匯入-圖示\n可以選擇想要的事件\n匯入您手機的 行事曆APP 中\n*左右滑動可以切換中英版本*"
+     delegate:self
+     cancelButtonTitle:@"知道了"
+     otherButtonTitles:nil];
+     [alert show];
+     
+     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"showNotifyCalendar"];
+     }*/
     
     self.chiViewController.switchviewcontroller = self;
     self.engViewController.switchviewcontroller = self;
-    
+
     menuView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
     menuView.backgroundColor = [UIColor colorWithRed:0.3f green:0.3f blue:0.3f alpha:1.0f];
     
@@ -171,8 +158,39 @@
     
     chiMenuShowing = NO;
     EngMenuShowing = NO;
+    
+    UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.height)];
+    background.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0f];
+    [self.view addSubview:background];
+    
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [spinner setCenter:CGPointMake(self.view.frame.origin.x + self.view.frame.size.width/2, self.view.frame.origin.y + self.view.frame.size.height/2)];
+    [spinner setColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f]];
+    spinner.hidden = NO;
+    [self.view addSubview: spinner];
+    [spinner startAnimating];
+    
+}
+
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    float NavBarHeight = self.navigationController.navigationBar.frame.size.height;
+    chiViewController.menuHeight = 0;
+    engViewController.menuHeight = 0;
+    self.engViewController = [[EnglistViewController alloc]initWithStyle:UITableViewStylePlain];
+    self.chiViewController = [[ChiListViewController alloc]initWithStyle:UITableViewStylePlain];
+    [self.engViewController setupFrame:NavBarHeight];
+    [self.chiViewController setupFrame:NavBarHeight];
+    
+    engViewController.switchviewcontroller = self;
+    chiViewController.switchviewcontroller = self;
+    [self.view addSubview:self.chiViewController.view];
+
 
 }
+
 
 - (void)viewDidDisappear:(BOOL)animated
 {
