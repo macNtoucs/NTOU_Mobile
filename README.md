@@ -1,8 +1,8 @@
 NTOU_Mobile
 ===========
-編譯時，會需要 GoogleMapApi 
-https://drive.google.com/open?id=0B-B3qVktG6rZYlBzUl92MFp4VTg
-解壓縮後丟入專案目錄
+編譯時，會需要 GoogleMapApi  
+https://drive.google.com/open?id=0B-B3qVktG6rZYlBzUl92MFp4VTg  
+解壓縮後丟入專案目錄 
 
 
 #ver2.0 更新事項#
