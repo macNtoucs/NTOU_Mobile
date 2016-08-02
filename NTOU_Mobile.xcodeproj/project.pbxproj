@@ -54,6 +54,29 @@
 		1DD1794118FE7AB300621B67 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1791A18FE7AB300621B67 /* View.xib */; };
 		1DD1794218FE7AB300621B67 /* WOLSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1791C18FE7AB300621B67 /* WOLSwitchViewController.m */; };
 		1DD1794618FE826500621B67 /* LibraryModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1794518FE826500621B67 /* LibraryModule.m */; };
+		1F4F0D331D499BF4000ED111 /* libpjmedia-audiodev-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D2F1D499BF4000ED111 /* libpjmedia-audiodev-i386-apple-darwin_ios.a */; };
+		1F4F0D341D499BF4000ED111 /* libpjmedia-codec-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D301D499BF4000ED111 /* libpjmedia-codec-i386-apple-darwin_ios.a */; };
+		1F4F0D351D499BF4000ED111 /* libpjmedia-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D311D499BF4000ED111 /* libpjmedia-i386-apple-darwin_ios.a */; };
+		1F4F0D361D499BF4000ED111 /* libpjmedia-videodev-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D321D499BF4000ED111 /* libpjmedia-videodev-i386-apple-darwin_ios.a */; };
+		1F4F0D381D499C07000ED111 /* libpjlib-util-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D371D499C07000ED111 /* libpjlib-util-i386-apple-darwin_ios.a */; };
+		1F4F0D401D499C15000ED111 /* libg7221codec-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D391D499C15000ED111 /* libg7221codec-i386-apple-darwin_ios.a */; };
+		1F4F0D411D499C15000ED111 /* libgsmcodec-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D3A1D499C15000ED111 /* libgsmcodec-i386-apple-darwin_ios.a */; };
+		1F4F0D421D499C15000ED111 /* libilbccodec-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D3B1D499C15000ED111 /* libilbccodec-i386-apple-darwin_ios.a */; };
+		1F4F0D431D499C15000ED111 /* libresample-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D3C1D499C15000ED111 /* libresample-i386-apple-darwin_ios.a */; };
+		1F4F0D441D499C15000ED111 /* libspeex-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D3D1D499C15000ED111 /* libspeex-i386-apple-darwin_ios.a */; };
+		1F4F0D451D499C15000ED111 /* libsrtp-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D3E1D499C15000ED111 /* libsrtp-i386-apple-darwin_ios.a */; };
+		1F4F0D461D499C15000ED111 /* libyuv-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D3F1D499C15000ED111 /* libyuv-i386-apple-darwin_ios.a */; };
+		1F4F0D481D499C25000ED111 /* libpjnath-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D471D499C25000ED111 /* libpjnath-i386-apple-darwin_ios.a */; };
+		1F4F0D4E1D499C33000ED111 /* libpjsip-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D491D499C33000ED111 /* libpjsip-i386-apple-darwin_ios.a */; };
+		1F4F0D4F1D499C33000ED111 /* libpjsip-simple-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D4A1D499C33000ED111 /* libpjsip-simple-i386-apple-darwin_ios.a */; };
+		1F4F0D501D499C33000ED111 /* libpjsip-ua-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D4B1D499C33000ED111 /* libpjsip-ua-i386-apple-darwin_ios.a */; };
+		1F4F0D511D499C34000ED111 /* libpjsua-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D4C1D499C33000ED111 /* libpjsua-i386-apple-darwin_ios.a */; };
+		1F4F0D521D499C34000ED111 /* libpjsua2-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D4D1D499C33000ED111 /* libpjsua2-i386-apple-darwin_ios.a */; };
+		1F4F0D541D499C3F000ED111 /* libpj-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D531D499C3F000ED111 /* libpj-i386-apple-darwin_ios.a */; };
+		1F4F0D561D499C61000ED111 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D551D499C61000ED111 /* libstdc++.6.0.9.tbd */; };
+		1F4F0D5F1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F0D5E1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.m */; };
+		1FE7D3731D48BEAA00666955 /* SipPhoneModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE7D3701D48BEAA00666955 /* SipPhoneModule.m */; };
+		1FE7D3741D48BEAA00666955 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE7D3721D48BEAA00666955 /* TestViewController.m */; };
 		437D52621923976E0054AD8E /* ExpressBusDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 437D52611923976E0054AD8E /* ExpressBusDetailViewController.m */; };
 		437D52641923977E0054AD8E /* ExpressBusSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 437D52631923977E0054AD8E /* ExpressBusSearchViewController.m */; };
 		43BEDBF519236BED0091B024 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDBF419236BED0091B024 /* FMDatabase.m */; };
@@ -356,6 +379,32 @@
 		1DD1791C18FE7AB300621B67 /* WOLSwitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOLSwitchViewController.m; sourceTree = "<group>"; };
 		1DD1794418FE826400621B67 /* LibraryModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryModule.h; sourceTree = "<group>"; };
 		1DD1794518FE826500621B67 /* LibraryModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryModule.m; sourceTree = "<group>"; };
+		1F4F0D2F1D499BF4000ED111 /* libpjmedia-audiodev-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-audiodev-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjmedia/lib/libpjmedia-audiodev-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
+		1F4F0D301D499BF4000ED111 /* libpjmedia-codec-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-codec-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjmedia/lib/libpjmedia-codec-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
+		1F4F0D311D499BF4000ED111 /* libpjmedia-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjmedia/lib/libpjmedia-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
+		1F4F0D321D499BF4000ED111 /* libpjmedia-videodev-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-videodev-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjmedia/lib/libpjmedia-videodev-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
+		1F4F0D371D499C07000ED111 /* libpjlib-util-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjlib-util-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjlib-util/lib/libpjlib-util-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
+		1F4F0D391D499C15000ED111 /* libg7221codec-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libg7221codec-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/third_party/lib/libg7221codec-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
+		1F4F0D3A1D499C15000ED111 /* libgsmcodec-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgsmcodec-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/third_party/lib/libgsmcodec-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
+		1F4F0D3B1D499C15000ED111 /* libilbccodec-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libilbccodec-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/third_party/lib/libilbccodec-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
+		1F4F0D3C1D499C15000ED111 /* libresample-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libresample-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/third_party/lib/libresample-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
+		1F4F0D3D1D499C15000ED111 /* libspeex-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/third_party/lib/libspeex-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
+		1F4F0D3E1D499C15000ED111 /* libsrtp-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsrtp-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/third_party/lib/libsrtp-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
+		1F4F0D3F1D499C15000ED111 /* libyuv-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libyuv-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/third_party/lib/libyuv-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
+		1F4F0D471D499C25000ED111 /* libpjnath-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjnath-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjnath/lib/libpjnath-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
+		1F4F0D491D499C33000ED111 /* libpjsip-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjsip/lib/libpjsip-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
+		1F4F0D4A1D499C33000ED111 /* libpjsip-simple-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-simple-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjsip/lib/libpjsip-simple-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
+		1F4F0D4B1D499C33000ED111 /* libpjsip-ua-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-ua-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjsip/lib/libpjsip-ua-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
+		1F4F0D4C1D499C33000ED111 /* libpjsua-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsua-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjsip/lib/libpjsua-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
+		1F4F0D4D1D499C33000ED111 /* libpjsua2-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsua2-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjsip/lib/libpjsua2-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
+		1F4F0D531D499C3F000ED111 /* libpj-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjlib/lib/libpj-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
+		1F4F0D551D499C61000ED111 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		1F4F0D5D1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NTOU_MobileAppDelegate+SipPhone.h"; path = "module/SipPhone/NTOU_MobileAppDelegate+SipPhone.h"; sourceTree = "<group>"; };
+		1F4F0D5E1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NTOU_MobileAppDelegate+SipPhone.m"; path = "module/SipPhone/NTOU_MobileAppDelegate+SipPhone.m"; sourceTree = "<group>"; };
+		1FE7D36F1D48BEAA00666955 /* SipPhoneModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipPhoneModule.h; path = module/SipPhone/SipPhoneModule.h; sourceTree = "<group>"; };
+		1FE7D3701D48BEAA00666955 /* SipPhoneModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipPhoneModule.m; path = module/SipPhone/SipPhoneModule.m; sourceTree = "<group>"; };
+		1FE7D3711D48BEAA00666955 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestViewController.h; path = module/SipPhone/TestViewController.h; sourceTree = "<group>"; };
+		1FE7D3721D48BEAA00666955 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestViewController.m; path = module/SipPhone/TestViewController.m; sourceTree = "<group>"; };
 		437D52611923976E0054AD8E /* ExpressBusDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExpressBusDetailViewController.m; path = ../ExpressBusDetailViewController.m; sourceTree = "<group>"; };
 		437D52631923977E0054AD8E /* ExpressBusSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExpressBusSearchViewController.m; path = NTOU_Mobile/module/ShuttleTrack/ExpressBusSearchViewController.m; sourceTree = SOURCE_ROOT; };
 		437D5265192397FC0054AD8E /* ExpressBusDetail2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressBusDetail2ViewController.h; sourceTree = "<group>"; };
@@ -722,13 +771,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F4F0D561D499C61000ED111 /* libstdc++.6.0.9.tbd in Frameworks */,
+				1F4F0D521D499C34000ED111 /* libpjsua2-i386-apple-darwin_ios.a in Frameworks */,
+				1F4F0D4F1D499C33000ED111 /* libpjsip-simple-i386-apple-darwin_ios.a in Frameworks */,
 				91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */,
 				7CBFB56F1CDB70510048C7D2 /* Security.framework in Frameworks */,
+				1F4F0D461D499C15000ED111 /* libyuv-i386-apple-darwin_ios.a in Frameworks */,
 				91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */,
 				7CBFB56D1CDB703D0048C7D2 /* OpenGLES.framework in Frameworks */,
 				7CBFB56B1CDB70360048C7D2 /* libz.tbd in Frameworks */,
+				1F4F0D511D499C34000ED111 /* libpjsua-i386-apple-darwin_ios.a in Frameworks */,
 				7CBFB5671CDB6E430048C7D2 /* libicucore.tbd in Frameworks */,
 				7CBFB5781CDB98820048C7D2 /* GoogleMaps.framework in Frameworks */,
+				1F4F0D4E1D499C33000ED111 /* libpjsip-i386-apple-darwin_ios.a in Frameworks */,
+				1F4F0D341D499BF4000ED111 /* libpjmedia-codec-i386-apple-darwin_ios.a in Frameworks */,
+				1F4F0D431D499C15000ED111 /* libresample-i386-apple-darwin_ios.a in Frameworks */,
 				7CBFB5651CDB6E3A0048C7D2 /* libc++.tbd in Frameworks */,
 				91756FEE16F21236001D724D /* ImageIO.framework in Frameworks */,
 				7CBFB5631CDB6E230048C7D2 /* GLKit.framework in Frameworks */,
@@ -737,15 +794,27 @@
 				91A9004F16E854E500ECF2CF /* CoreGraphics.framework in Frameworks */,
 				7CBFB55F1CDB6E050048C7D2 /* CoreData.framework in Frameworks */,
 				7CBFB55D1CDB6DFD0048C7D2 /* CoreBluetooth.framework in Frameworks */,
+				1F4F0D501D499C33000ED111 /* libpjsip-ua-i386-apple-darwin_ios.a in Frameworks */,
+				1F4F0D411D499C15000ED111 /* libgsmcodec-i386-apple-darwin_ios.a in Frameworks */,
 				1DD157A31951624A006CA7AF /* AVFoundation.framework in Frameworks */,
+				1F4F0D351D499BF4000ED111 /* libpjmedia-i386-apple-darwin_ios.a in Frameworks */,
 				7CBFB55B1CDB6DF40048C7D2 /* Accelerate.framework in Frameworks */,
+				1F4F0D421D499C15000ED111 /* libilbccodec-i386-apple-darwin_ios.a in Frameworks */,
+				1F4F0D441D499C15000ED111 /* libspeex-i386-apple-darwin_ios.a in Frameworks */,
 				43BEDC1C19236DEC0091B024 /* libsqlite3.dylib in Frameworks */,
 				BA06A07D16F2EF5B00212CB9 /* EventKit.framework in Frameworks */,
 				913A0D1E16E98F99007BAD8F /* MessageUI.framework in Frameworks */,
+				1F4F0D331D499BF4000ED111 /* libpjmedia-audiodev-i386-apple-darwin_ios.a in Frameworks */,
 				7CBFB5591CDB6D820048C7D2 /* MapKit.framework in Frameworks */,
+				1F4F0D361D499BF4000ED111 /* libpjmedia-videodev-i386-apple-darwin_ios.a in Frameworks */,
+				1F4F0D381D499C07000ED111 /* libpjlib-util-i386-apple-darwin_ios.a in Frameworks */,
+				1F4F0D401D499C15000ED111 /* libg7221codec-i386-apple-darwin_ios.a in Frameworks */,
+				1F4F0D541D499C3F000ED111 /* libpj-i386-apple-darwin_ios.a in Frameworks */,
 				91A9048816E89A3700ECF2CF /* libxml2.2.dylib in Frameworks */,
+				1F4F0D451D499C15000ED111 /* libsrtp-i386-apple-darwin_ios.a in Frameworks */,
 				91A9004B16E854E500ECF2CF /* UIKit.framework in Frameworks */,
 				91A9004D16E854E500ECF2CF /* Foundation.framework in Frameworks */,
+				1F4F0D481D499C25000ED111 /* libpjnath-i386-apple-darwin_ios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -862,6 +931,20 @@
 				1D63479419503905000FA24F /* ContactInfoTableViewController.m */,
 			);
 			path = about;
+			sourceTree = "<group>";
+		};
+		1FE7D36E1D48BE9800666955 /* SipPhone */ = {
+			isa = PBXGroup;
+			children = (
+				91AFB1AD1D4B3AB80063B228 /* SipLib */,
+				1FE7D36F1D48BEAA00666955 /* SipPhoneModule.h */,
+				1FE7D3701D48BEAA00666955 /* SipPhoneModule.m */,
+				1FE7D3711D48BEAA00666955 /* TestViewController.h */,
+				1FE7D3721D48BEAA00666955 /* TestViewController.m */,
+				1F4F0D5D1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.h */,
+				1F4F0D5E1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.m */,
+			);
+			name = SipPhone;
 			sourceTree = "<group>";
 		};
 		43BEDBFE19236D570091B024 /* Bus */ = {
@@ -1040,6 +1123,7 @@
 		91A9004916E854E500ECF2CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1F4F0D551D499C61000ED111 /* libstdc++.6.0.9.tbd */,
 				BA06A07C16F2EF5B00212CB9 /* EventKit.framework */,
 				7CBFB5761CDB98820048C7D2 /* GoogleMaps.framework */,
 				7CBFB56E1CDB70510048C7D2 /* Security.framework */,
@@ -1072,6 +1156,7 @@
 		91A9005016E854E500ECF2CF /* NTOU_Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				1FE7D36E1D48BE9800666955 /* SipPhone */,
 				1DA9F88219B3B2F900261C7E /* FreshmenEducation */,
 				1DD178E018FE7AB300621B67 /* library */,
 				C72B23EB176AE80800474235 /* Settings */,
@@ -1287,6 +1372,32 @@
 			children = (
 			);
 			path = StationPicker;
+			sourceTree = "<group>";
+		};
+		91AFB1AD1D4B3AB80063B228 /* SipLib */ = {
+			isa = PBXGroup;
+			children = (
+				1F4F0D2F1D499BF4000ED111 /* libpjmedia-audiodev-i386-apple-darwin_ios.a */,
+				1F4F0D301D499BF4000ED111 /* libpjmedia-codec-i386-apple-darwin_ios.a */,
+				1F4F0D311D499BF4000ED111 /* libpjmedia-i386-apple-darwin_ios.a */,
+				1F4F0D321D499BF4000ED111 /* libpjmedia-videodev-i386-apple-darwin_ios.a */,
+				1F4F0D371D499C07000ED111 /* libpjlib-util-i386-apple-darwin_ios.a */,
+				1F4F0D391D499C15000ED111 /* libg7221codec-i386-apple-darwin_ios.a */,
+				1F4F0D3A1D499C15000ED111 /* libgsmcodec-i386-apple-darwin_ios.a */,
+				1F4F0D531D499C3F000ED111 /* libpj-i386-apple-darwin_ios.a */,
+				1F4F0D3B1D499C15000ED111 /* libilbccodec-i386-apple-darwin_ios.a */,
+				1F4F0D471D499C25000ED111 /* libpjnath-i386-apple-darwin_ios.a */,
+				1F4F0D3C1D499C15000ED111 /* libresample-i386-apple-darwin_ios.a */,
+				1F4F0D491D499C33000ED111 /* libpjsip-i386-apple-darwin_ios.a */,
+				1F4F0D4A1D499C33000ED111 /* libpjsip-simple-i386-apple-darwin_ios.a */,
+				1F4F0D4B1D499C33000ED111 /* libpjsip-ua-i386-apple-darwin_ios.a */,
+				1F4F0D4C1D499C33000ED111 /* libpjsua-i386-apple-darwin_ios.a */,
+				1F4F0D4D1D499C33000ED111 /* libpjsua2-i386-apple-darwin_ios.a */,
+				1F4F0D3D1D499C15000ED111 /* libspeex-i386-apple-darwin_ios.a */,
+				1F4F0D3E1D499C15000ED111 /* libsrtp-i386-apple-darwin_ios.a */,
+				1F4F0D3F1D499C15000ED111 /* libyuv-i386-apple-darwin_ios.a */,
+			);
+			name = SipLib;
 			sourceTree = "<group>";
 		};
 		91CAC0FF16E98D48000F9B32 /* Emergency */ = {
@@ -1536,8 +1647,11 @@
 					91A9004516E854E500ECF2CF = {
 						DevelopmentTeam = 46873356PM;
 						SystemCapabilities = {
-							com.apple.Maps.iOS = {
+							com.apple.BackgroundModes = {
 								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 0;
 							};
 						};
 					};
@@ -1657,6 +1771,7 @@
 				91A9008216E8609200ECF2CF /* Rotation.m in Sources */,
 				91A9008516E8613800ECF2CF /* NTOU_MobileAppDelegate+Private.m in Sources */,
 				91A9008816E8659E00ECF2CF /* NTOUConstants.m in Sources */,
+				1FE7D3731D48BEAA00666955 /* SipPhoneModule.m in Sources */,
 				1DD1792918FE7AB300621B67 /* BookDetailViewController.m in Sources */,
 				1D8A3B1F1905051200816CCD /* LoadMoreTableFooterView.m in Sources */,
 				91A9043616E899D200ECF2CF /* Annotation.m in Sources */,
@@ -1664,6 +1779,7 @@
 				91A9043816E899D200ECF2CF /* CKViewController.m in Sources */,
 				1DD1793318FE7AB300621B67 /* loginViewController.m in Sources */,
 				91A9043B16E899D200ECF2CF /* DepatureViewController.m in Sources */,
+				1FE7D3741D48BEAA00666955 /* TestViewController.m in Sources */,
 				91A9043C16E899D200ECF2CF /* DownloadingView.m in Sources */,
 				91A9043E16E899D200ECF2CF /* HTSearchResultViewController.m in Sources */,
 				91A9044116E899D200ECF2CF /* K_RouteViewController.m in Sources */,
@@ -1811,6 +1927,7 @@
 				C72B23F1176AE87200474235 /* SettingsModuleViewController.m in Sources */,
 				C72B23F4176AE97100474235 /* SettingModule.m in Sources */,
 				BEA91661183C5F0400F12001 /* R66Layer1ViewController.m in Sources */,
+				1F4F0D5F1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.m in Sources */,
 				BE98A966183CF79400EF3CDC /* R66Layer2ViewController.m in Sources */,
 				BE98A969183CFA6000EF3CDC /* R66SwitchViewController.m in Sources */,
 				BECF7C71184F468200ADD115 /* R66LeftLayerViewController.m in Sources */,
@@ -1919,10 +2036,34 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"${SDK_DIR}/usr/include/libxml2",
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjlib/include",
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjlib-util/include",
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjmedia/include",
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjnath/include",
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjsip/include",
+				);
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjlib/lib",
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjlib-util/lib",
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjmedia/lib",
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjnath/lib",
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjsip/lib",
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/third_party/lib",
+					"$(PROJECT_DIR)/NTOU_Mobile/module/SipPhone/Library&header/pjmedia/lib",
+					"$(PROJECT_DIR)/NTOU_Mobile/module/SipPhone/Library&header/pjlib-util/lib",
+					"$(PROJECT_DIR)/NTOU_Mobile/module/SipPhone/Library&header/third_party/lib",
+					"$(PROJECT_DIR)/NTOU_Mobile/module/SipPhone/Library&header/pjnath/lib",
+					"$(PROJECT_DIR)/NTOU_Mobile/module/SipPhone/Library&header/pjsip/lib",
+					"$(PROJECT_DIR)/NTOU_Mobile/module/SipPhone/Library&header/pjlib/lib",
+				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "海大App";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1943,10 +2084,34 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"${SDK_DIR}/usr/include/libxml2",
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjlib/include",
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjlib-util/include",
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjmedia/include",
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjnath/include",
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjsip/include",
+				);
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjlib/lib",
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjlib-util/lib",
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjmedia/lib",
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjnath/lib",
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjsip/lib",
+					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/third_party/lib",
+					"$(PROJECT_DIR)/NTOU_Mobile/module/SipPhone/Library&header/pjmedia/lib",
+					"$(PROJECT_DIR)/NTOU_Mobile/module/SipPhone/Library&header/pjlib-util/lib",
+					"$(PROJECT_DIR)/NTOU_Mobile/module/SipPhone/Library&header/third_party/lib",
+					"$(PROJECT_DIR)/NTOU_Mobile/module/SipPhone/Library&header/pjnath/lib",
+					"$(PROJECT_DIR)/NTOU_Mobile/module/SipPhone/Library&header/pjsip/lib",
+					"$(PROJECT_DIR)/NTOU_Mobile/module/SipPhone/Library&header/pjlib/lib",
+				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "海大App";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -62,7 +62,7 @@ extern NSString * const QRReaderTag;
 extern NSString * const FacilitiesTag;
 extern NSString * const LibrariesTag;
 extern NSString * const FreshmenTag;
-
+extern NSString * const SipPhoneTag;
 // notification names
 extern NSString * const EmergencyInfoDidLoadNotification;
 extern NSString * const EmergencyInfoDidFailToLoadNotification;

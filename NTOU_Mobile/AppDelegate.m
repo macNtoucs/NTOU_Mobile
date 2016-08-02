@@ -15,6 +15,7 @@
 #import "NTOUConstants.h"
 #import "NTOUNotification.h"
 #import "SettingsModuleViewController.h"
+#import <pjsua.h>
 @import GoogleMaps;
 @implementation NTOU_MobileAppDelegate
 @synthesize window=_window,
@@ -24,10 +25,14 @@ modules;
 @synthesize devicePushToken;
 
 @synthesize springboardController = _springboardController;
+
 #pragma mark -
 #pragma mark Application lifecycle
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [GMSServices provideAPIKey:@"AIzaSyDa7WM05jLY1Q7tdQWGn2R2kWctOXt2Ukc"];
+    [GMSServices provideAPIKey:@"AIzaSyDa7WM05jLY1Q7tdQWGn2R2kWctOXt2Ukc"]; //account:mac.ntoucs@gmail.com
+    
+    [NSThread detachNewThreadSelector:@selector(pjsuaStart) toTarget:self withObject:nil];//see SipPhone/NTOU_MobileAppDelegate+SipPhone
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     networkActivityRefCount = 0;
     
@@ -169,6 +174,7 @@ modules;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+    pjsua_destroy(); // close pjsip
 	[self applicationShouldSaveState:application];
 }
 

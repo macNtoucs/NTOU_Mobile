@@ -49,6 +49,7 @@ NSString * const QRReaderTag    = @"qrreader";
 NSString * const FacilitiesTag    = @"facilities";
 NSString * const LibrariesTag   = @"libraries";
 NSString * const FreshmenTag   = @"freshmen";
+NSString * const SipPhoneTag = @"sipphone";
 
 // notification names
 NSString * const EmergencyInfoDidLoadNotification = @"NTOUEmergencyInfoDidLoadNotification";
