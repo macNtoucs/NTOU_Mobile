@@ -19,12 +19,15 @@
 
 -(void)callToNtou{
     if(current_call == PJSUA_INVALID_ID)
-    pjsua_call_make_call(acc_id,&NtouUri,0,0,0,&current_call);
-
+        pjsua_call_make_call(acc_id,&NtouUri,0,0,0,&current_call);
+    else{
+        if(pjsua_call_is_active(current_call) == PJ_FALSE)
+            pjsua_call_make_call(acc_id,&NtouUri,0,0,0,&current_call);
+    }
+    
 }
 -(void)hangup{
     pjsua_call_hangup_all();
-    current_call = PJSUA_INVALID_ID;
 }
 -(void)DTMF:(UIButton*)button{
     if(current_call != PJSUA_INVALID_ID){
@@ -37,56 +40,59 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     current_call = PJSUA_INVALID_ID;
     
     UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     background.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0f];
     [self.view addSubview:background];
     
-    UILabel * callinfo = [[UILabel alloc]initWithFrame:CGRectMake(self.view.bounds.size.width/2-75, self.view.bounds.size.height/2-65, 120, 60)];
+    UILabel * callinfo = [[UILabel alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height/2-(self.view.bounds.size.height/8)*2,self.view.bounds.size.width, (self.view.bounds.size.height/8))];
     callinfo.text = @"請先撥號";
+    callinfo.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:callinfo];
     
     call = [UIButton buttonWithType:UIButtonTypeSystem];
     [call setTitle:@"撥號" forState:UIControlStateNormal];
-    call.frame = CGRectMake(self.view.bounds.size.width/2-75, self.view.bounds.size.height/2-15, 30, 30);
+    call.frame = CGRectMake(0, self.view.bounds.size.height/2-(self.view.bounds.size.height/8), (self.view.bounds.size.width/3), (self.view.bounds.size.height/8));
     [call addTarget:self
-               action:@selector(callToNtou)
-     forControlEvents:UIControlEventTouchUpInside];
+             action:@selector(callToNtou)
+   forControlEvents:UIControlEventTouchUpInside];
+    call.titleLabel.font = [UIFont systemFontOfSize:30];
     [self.view addSubview:call];
     
     hangup = [UIButton buttonWithType:UIButtonTypeSystem];
     [hangup setTitle:@"掛斷" forState:UIControlStateNormal];
-    hangup.frame = CGRectMake(self.view.bounds.size.width/2+45, self.view.bounds.size.height/2-15, 30, 30);
+    hangup.frame = CGRectMake((self.view.bounds.size.width/3)*2,self.view.bounds.size.height/2-(self.view.bounds.size.height/8), (self.view.bounds.size.width/3), (self.view.bounds.size.height/8));
     [hangup addTarget:self
-             action:@selector(hangup)
-   forControlEvents:UIControlEventTouchUpInside];
+               action:@selector(hangup)
+     forControlEvents:UIControlEventTouchUpInside];
+    hangup.titleLabel.font = [UIFont systemFontOfSize:30];
     [self.view addSubview:hangup];
     
     for(int i=0;i<4;i++){
         for(int j=0;j<3;j++){
-        UIButton *bx = [UIButton buttonWithType:UIButtonTypeSystem];
+            UIButton *bx = [UIButton buttonWithType:UIButtonTypeSystem];
             if(i*3+j+1>9)
                 switch(i*3+j+1){
-                case 10:
+                    case 10:
                         [bx setTitle: @"*" forState:UIControlStateNormal];
                         break;
-                case 11:
+                    case 11:
                         [bx setTitle: @"0" forState:UIControlStateNormal];
                         break;
-                case 12:
+                    case 12:
                         [bx setTitle: @"#" forState:UIControlStateNormal];
                         break;
                 }
-                else
-                    [bx setTitle: [NSString stringWithFormat:@"%d",i*3+j+1] forState:UIControlStateNormal];
+            else
+                [bx setTitle: [NSString stringWithFormat:@"%d",i*3+j+1] forState:UIControlStateNormal];
             
-        bx.frame = CGRectMake(self.view.bounds.size.width/2-75+j*60, self.view.bounds.size.height/2+15+i*30, 30, 30);
-        [bx addTarget:self
-               action:@selector(DTMF:)
-       forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:bx];
+            bx.frame = CGRectMake((self.view.bounds.size.width/3)*j, self.view.bounds.size.height/2+(self.view.bounds.size.height/8)*i, (self.view.bounds.size.width/3), (self.view.bounds.size.height/8));
+            [bx addTarget:self
+                   action:@selector(DTMF:)
+         forControlEvents:UIControlEventTouchUpInside];
+            bx.titleLabel.font = [UIFont systemFontOfSize:30];
+            [self.view addSubview:bx];
         }
     }
     
@@ -109,7 +115,7 @@
     
     NtouUri = pj_str("sip:16877@140.121.99.170");
     pjsua_acc_add(&acc, PJ_TRUE, &acc_id);
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -118,13 +124,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
