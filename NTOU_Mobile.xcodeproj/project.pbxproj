@@ -209,6 +209,21 @@
 		9177D8F21D52F7CC00C20949 /* SipCallHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177D8F11D52F7CC00C20949 /* SipCallHistoryViewController.m */; };
 		9177D8F51D52F80C00C20949 /* SipContactInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177D8F41D52F80C00C20949 /* SipContactInformationViewController.m */; };
 		9177D8F81D52F9A200C20949 /* SipEmergencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177D8F71D52F9A200C20949 /* SipEmergencyViewController.m */; };
+		9177D8FA1D53003100C20949 /* SipMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9177D8F91D53003100C20949 /* SipMedia.xcassets */; };
+		9177D8FC1D530D0800C20949 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9177D8FB1D530D0800C20949 /* AudioToolbox.framework */; };
+		9177D90A1D53165D00C20949 /* Dtmf-0.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D8FE1D53165D00C20949 /* Dtmf-0.wav */; };
+		9177D90B1D53165D00C20949 /* Dtmf-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D8FF1D53165D00C20949 /* Dtmf-1.wav */; };
+		9177D90C1D53165D00C20949 /* Dtmf-2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D9001D53165D00C20949 /* Dtmf-2.wav */; };
+		9177D90D1D53165D00C20949 /* Dtmf-3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D9011D53165D00C20949 /* Dtmf-3.wav */; };
+		9177D90E1D53165D00C20949 /* Dtmf-4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D9021D53165D00C20949 /* Dtmf-4.wav */; };
+		9177D90F1D53165D00C20949 /* Dtmf-5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D9031D53165D00C20949 /* Dtmf-5.wav */; };
+		9177D9101D53165D00C20949 /* Dtmf-6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D9041D53165D00C20949 /* Dtmf-6.wav */; };
+		9177D9111D53165D00C20949 /* Dtmf-7.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D9051D53165D00C20949 /* Dtmf-7.wav */; };
+		9177D9121D53165D00C20949 /* Dtmf-8.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D9061D53165D00C20949 /* Dtmf-8.wav */; };
+		9177D9131D53165D00C20949 /* Dtmf-9.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D9071D53165D00C20949 /* Dtmf-9.wav */; };
+		9177D9141D53165D00C20949 /* Dtmf-#.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D9081D53165D00C20949 /* Dtmf-#.wav */; };
+		9177D9151D53165D00C20949 /* Dtmf-*.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D9091D53165D00C20949 /* Dtmf-*.wav */; };
+		9177D9191D5324FB00C20949 /* SipDiagButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177D9181D5324FB00C20949 /* SipDiagButton.m */; };
 		91A9004B16E854E500ECF2CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9004A16E854E500ECF2CF /* UIKit.framework */; };
 		91A9004D16E854E500ECF2CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9004C16E854E500ECF2CF /* Foundation.framework */; };
 		91A9004F16E854E500ECF2CF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9004E16E854E500ECF2CF /* CoreGraphics.framework */; };
@@ -613,6 +628,22 @@
 		9177D8F41D52F80C00C20949 /* SipContactInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipContactInformationViewController.m; path = module/SipPhone/SipViewControllers/SipContactInformationViewController.m; sourceTree = "<group>"; };
 		9177D8F61D52F9A200C20949 /* SipEmergencyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipEmergencyViewController.h; path = module/SipPhone/SipViewControllers/SipEmergencyViewController.h; sourceTree = "<group>"; };
 		9177D8F71D52F9A200C20949 /* SipEmergencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipEmergencyViewController.m; path = module/SipPhone/SipViewControllers/SipEmergencyViewController.m; sourceTree = "<group>"; };
+		9177D8F91D53003100C20949 /* SipMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = SipMedia.xcassets; path = module/SipPhone/SipMedia.xcassets; sourceTree = "<group>"; };
+		9177D8FB1D530D0800C20949 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		9177D8FE1D53165D00C20949 /* Dtmf-0.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-0.wav"; path = "module/SipPhone/SipSound/Dtmf-0.wav"; sourceTree = "<group>"; };
+		9177D8FF1D53165D00C20949 /* Dtmf-1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-1.wav"; path = "module/SipPhone/SipSound/Dtmf-1.wav"; sourceTree = "<group>"; };
+		9177D9001D53165D00C20949 /* Dtmf-2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-2.wav"; path = "module/SipPhone/SipSound/Dtmf-2.wav"; sourceTree = "<group>"; };
+		9177D9011D53165D00C20949 /* Dtmf-3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-3.wav"; path = "module/SipPhone/SipSound/Dtmf-3.wav"; sourceTree = "<group>"; };
+		9177D9021D53165D00C20949 /* Dtmf-4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-4.wav"; path = "module/SipPhone/SipSound/Dtmf-4.wav"; sourceTree = "<group>"; };
+		9177D9031D53165D00C20949 /* Dtmf-5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-5.wav"; path = "module/SipPhone/SipSound/Dtmf-5.wav"; sourceTree = "<group>"; };
+		9177D9041D53165D00C20949 /* Dtmf-6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-6.wav"; path = "module/SipPhone/SipSound/Dtmf-6.wav"; sourceTree = "<group>"; };
+		9177D9051D53165D00C20949 /* Dtmf-7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-7.wav"; path = "module/SipPhone/SipSound/Dtmf-7.wav"; sourceTree = "<group>"; };
+		9177D9061D53165D00C20949 /* Dtmf-8.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-8.wav"; path = "module/SipPhone/SipSound/Dtmf-8.wav"; sourceTree = "<group>"; };
+		9177D9071D53165D00C20949 /* Dtmf-9.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-9.wav"; path = "module/SipPhone/SipSound/Dtmf-9.wav"; sourceTree = "<group>"; };
+		9177D9081D53165D00C20949 /* Dtmf-#.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-#.wav"; path = "module/SipPhone/SipSound/Dtmf-#.wav"; sourceTree = "<group>"; };
+		9177D9091D53165D00C20949 /* Dtmf-*.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-*.wav"; path = "module/SipPhone/SipSound/Dtmf-*.wav"; sourceTree = "<group>"; };
+		9177D9171D5324FB00C20949 /* SipDiagButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipDiagButton.h; path = module/SipPhone/SipObject/SipDiagButton.h; sourceTree = "<group>"; };
+		9177D9181D5324FB00C20949 /* SipDiagButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipDiagButton.m; path = module/SipPhone/SipObject/SipDiagButton.m; sourceTree = "<group>"; };
 		91A9004616E854E500ECF2CF /* 海大App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "海大App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A9004A16E854E500ECF2CF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		91A9004C16E854E500ECF2CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -786,6 +817,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9177D8FC1D530D0800C20949 /* AudioToolbox.framework in Frameworks */,
 				1F4F0D561D499C61000ED111 /* libstdc++.6.0.9.tbd in Frameworks */,
 				1F4F0D521D499C34000ED111 /* libpjsua2-i386-apple-darwin_ios.a in Frameworks */,
 				1F4F0D4F1D499C33000ED111 /* libpjsip-simple-i386-apple-darwin_ios.a in Frameworks */,
@@ -951,6 +983,8 @@
 		1FE7D36E1D48BE9800666955 /* SipPhone */ = {
 			isa = PBXGroup;
 			children = (
+				9177D9161D5324AC00C20949 /* SipObject */,
+				9177D8FD1D53165100C20949 /* SipSound */,
 				9177D8EC1D52F69F00C20949 /* SipViewControllers */,
 				91AFB1AD1D4B3AB80063B228 /* SipLib */,
 				1FE7D36F1D48BEAA00666955 /* SipPhoneModule.h */,
@@ -961,6 +995,7 @@
 				1FE7D3721D48BEAA00666955 /* TestViewController.m */,
 				1F4F0D5D1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.h */,
 				1F4F0D5E1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.m */,
+				9177D8F91D53003100C20949 /* SipMedia.xcassets */,
 			);
 			name = SipPhone;
 			sourceTree = "<group>";
@@ -1136,6 +1171,34 @@
 			name = SipViewControllers;
 			sourceTree = "<group>";
 		};
+		9177D8FD1D53165100C20949 /* SipSound */ = {
+			isa = PBXGroup;
+			children = (
+				9177D8FE1D53165D00C20949 /* Dtmf-0.wav */,
+				9177D8FF1D53165D00C20949 /* Dtmf-1.wav */,
+				9177D9001D53165D00C20949 /* Dtmf-2.wav */,
+				9177D9011D53165D00C20949 /* Dtmf-3.wav */,
+				9177D9021D53165D00C20949 /* Dtmf-4.wav */,
+				9177D9031D53165D00C20949 /* Dtmf-5.wav */,
+				9177D9041D53165D00C20949 /* Dtmf-6.wav */,
+				9177D9051D53165D00C20949 /* Dtmf-7.wav */,
+				9177D9061D53165D00C20949 /* Dtmf-8.wav */,
+				9177D9071D53165D00C20949 /* Dtmf-9.wav */,
+				9177D9081D53165D00C20949 /* Dtmf-#.wav */,
+				9177D9091D53165D00C20949 /* Dtmf-*.wav */,
+			);
+			name = SipSound;
+			sourceTree = "<group>";
+		};
+		9177D9161D5324AC00C20949 /* SipObject */ = {
+			isa = PBXGroup;
+			children = (
+				9177D9171D5324FB00C20949 /* SipDiagButton.h */,
+				9177D9181D5324FB00C20949 /* SipDiagButton.m */,
+			);
+			name = SipObject;
+			sourceTree = "<group>";
+		};
 		91A9003B16E854E400ECF2CF = {
 			isa = PBXGroup;
 			children = (
@@ -1156,6 +1219,7 @@
 		91A9004916E854E500ECF2CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9177D8FB1D530D0800C20949 /* AudioToolbox.framework */,
 				1F4F0D551D499C61000ED111 /* libstdc++.6.0.9.tbd */,
 				BA06A07C16F2EF5B00212CB9 /* EventKit.framework */,
 				7CBFB5761CDB98820048C7D2 /* GoogleMaps.framework */,
@@ -1713,6 +1777,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				91A9005516E854E500ECF2CF /* InfoPlist.strings in Resources */,
+				9177D9101D53165D00C20949 /* Dtmf-6.wav in Resources */,
 				91A903A116E88E9D00ECF2CF /* global in Resources */,
 				91A9044016E899D200ECF2CF /* K_data.plist in Resources */,
 				43BF84B21948598C00B5B83F /* frequencyBusStation.plist in Resources */,
@@ -1722,15 +1787,22 @@
 				1DA9F8A319B484A000261C7E /* freshmen in Resources */,
 				EA6203A11AB97B4C0066E913 /* ntou_mobile3.db in Resources */,
 				1DD1793D18FE7AB300621B67 /* tabbar_background.jpg in Resources */,
+				9177D8FA1D53003100C20949 /* SipMedia.xcassets in Resources */,
 				912A540516E9A09600BBC013 /* MainStoryboard.storyboard in Resources */,
 				912A543716E9A56D00BBC013 /* credits.html in Resources */,
+				9177D90F1D53165D00C20949 /* Dtmf-5.wav in Resources */,
+				9177D9151D53165D00C20949 /* Dtmf-*.wav in Resources */,
 				1DA9F8A519B5037600261C7E /* Images.xcassets in Resources */,
+				9177D90A1D53165D00C20949 /* Dtmf-0.wav in Resources */,
 				91756F3E16F206F7001D724D /* ClassAdd.xib in Resources */,
 				91756F4016F206F7001D724D /* ClassAddRetina3.5.xib in Resources */,
 				91756F4116F206F7001D724D /* ClassAddRetina4.xib in Resources */,
 				1DD1792D18FE7AB300621B67 /* InfoPlist.strings in Resources */,
+				9177D9131D53165D00C20949 /* Dtmf-9.wav in Resources */,
 				91756F4716F206F7001D724D /* ClassInfoViewController.xib in Resources */,
 				1DD1792218FE7AB300621B67 /* LibraryFloor.plist in Resources */,
+				9177D9121D53165D00C20949 /* Dtmf-8.wav in Resources */,
+				9177D90D1D53165D00C20949 /* Dtmf-3.wav in Resources */,
 				91756F4916F206F7001D724D /* Course in Resources */,
 				91756F4A16F206F7001D724D /* CourseInfo in Resources */,
 				91756F4D16F206F7001D724D /* Grade in Resources */,
@@ -1740,13 +1812,18 @@
 				91756F5A16F206F7001D724D /* MoodleInfo in Resources */,
 				91756F5B16F206F7001D724D /* MoodleInfo2 in Resources */,
 				1DD1794118FE7AB300621B67 /* View.xib in Resources */,
+				9177D90E1D53165D00C20949 /* Dtmf-4.wav in Resources */,
 				1DD1792E18FE7AB300621B67 /* library-Info.plist in Resources */,
 				1DD1793918FE7AB300621B67 /* search_tabbar.jpg in Resources */,
+				9177D9141D53165D00C20949 /* Dtmf-#.wav in Resources */,
 				91756FCA16F20A5A001D724D /* NTOU_ClassColorViewController.xib in Resources */,
+				9177D9111D53165D00C20949 /* Dtmf-7.wav in Resources */,
 				C74699E916F21CF40060F49C /* news in Resources */,
 				BA06A07716F2EE6600212CB9 /* CalenderList_eng.plist in Resources */,
 				BA06A07B16F2EE6600212CB9 /* WOLSwitchViewController.xib in Resources */,
 				C71A4EE61705B106002819AD /* Fuho_Data.plist in Resources */,
+				9177D90B1D53165D00C20949 /* Dtmf-1.wav in Resources */,
+				9177D90C1D53165D00C20949 /* Dtmf-2.wav in Resources */,
 				1DA7DB5719D029850027F2F3 /* CalenderList.plist in Resources */,
 				BEA9165E183B24E600F12001 /* R66HararioList.plist in Resources */,
 				BECF7C76185598AD00ADD115 /* AlertViewShown.plist in Resources */,
@@ -1908,6 +1985,7 @@
 				1D452FE31923A21D002E28ED /* accountTableViewController.m in Sources */,
 				1DD1793518FE7AB300621B67 /* MainViewController.m in Sources */,
 				43BEDC1119236D570091B024 /* TPRouteByButtonViewController.m in Sources */,
+				9177D9191D5324FB00C20949 /* SipDiagButton.m in Sources */,
 				91756F7116F206F7001D724D /* ReaderMainPagebar.m in Sources */,
 				91756F7216F206F7001D724D /* ReaderMainToolbar.m in Sources */,
 				91756F7316F206F7001D724D /* ReaderThumbCache.m in Sources */,
