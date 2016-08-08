@@ -16,6 +16,7 @@
 @end
 
 @implementation TestViewController
+@synthesize sipViewRoot;
 
 -(void)waitForSendDtmf{
     pj_thread_desc a_thread_desc;
@@ -23,16 +24,15 @@
     if (!pj_thread_is_registered()) {
         pj_thread_register(nil, a_thread_desc, &a_thread);
     }
-    pjsua_call_info ci;
     NSRange range;
     range.location = 0;
     range.length = 1;
     
     while(current_call != PJSUA_INVALID_ID){
         
-        pjsua_call_get_info(current_call, &ci);
+        pjsua_call_get_info(current_call, &call_info);
         
-        if(ci.state == PJSIP_INV_STATE_CONFIRMED){
+        if(call_info.state == PJSIP_INV_STATE_CONFIRMED){
             char temp[2];
             while(range.location+1 <= callinfo.text.length){
             strcpy(temp,[[callinfo.text substringWithRange:range]UTF8String]);
@@ -48,15 +48,43 @@
     pj_thread_destroy(a_thread);
 }
 
+-(void)waitForDisconnect{
+    pj_thread_desc a_thread_desc;
+    pj_thread_t *a_thread;
+    if (!pj_thread_is_registered()) {
+        pj_thread_register(nil, a_thread_desc, &a_thread);
+    }
+    
+    pjsua_call_get_info(current_call, &call_info);
+
+    while(call_info.state != PJSIP_INV_STATE_NULL){
+        
+        if(current_call != PJSUA_INVALID_ID)
+        pjsua_call_get_info(current_call, &call_info);
+        
+        NSLog(@"%d",call_info.state);
+        
+        [NSThread sleepForTimeInterval:1];
+    }
+    [self hangup];
+    pj_thread_destroy(a_thread);
+    
+}
+
 -(void)callToNtou{
     if(current_call == PJSUA_INVALID_ID){
         if([callinfo.text compare:@"請輸入分機號碼"] != 0){
             if(callinfo.text.length >0){
         pjsua_call_make_call(acc_id,&NtouUri,0,0,0,&current_call);
         [NSThread detachNewThreadSelector:@selector(waitForSendDtmf) toTarget:self withObject:nil];
+        [NSThread detachNewThreadSelector:@selector(waitForDisconnect) toTarget:self withObject:nil];
+                
         [hangup setTitle:@"掛斷" forState:nil];
         [hangup removeTarget:self action:@selector(clearInfo) forControlEvents:UIControlEventTouchUpInside];
         [hangup addTarget:self action:@selector(hangup) forControlEvents:UIControlEventTouchUpInside];
+            }
+            else{
+                callinfo.text = @"請輸入分機號碼";
             }
         }
     }
@@ -64,6 +92,9 @@
 }
 -(void)hangup{
     pjsua_call_hangup_all();
+    
+    call_info.state = PJSIP_INV_STATE_NULL;
+    
     current_call = PJSUA_INVALID_ID;
     [self clearInfo];
     [hangup setTitle:@"清除" forState:nil];
@@ -95,6 +126,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    pj_thread_desc a_thread_desc;
+    pj_thread_t *a_thread;
+    if (!pj_thread_is_registered()) {
+        pj_thread_register("SipPhoneModule", a_thread_desc, &a_thread);
+    }
+    
     current_call = PJSUA_INVALID_ID;
     
     UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
@@ -124,7 +161,6 @@
      forControlEvents:UIControlEventTouchUpInside];
     hangup.titleLabel.font = [UIFont systemFontOfSize:30];
     [self.view addSubview:hangup];
-    
     
     for(int i=0;i<4;i++){
         for(int j=0;j<3;j++){
@@ -168,21 +204,16 @@
     acc.cred_info[0].data_type = 0;
     acc.cred_info[0].data = pj_str("12345678");
     
-    pj_thread_desc a_thread_desc;
-    pj_thread_t *a_thread;
-    if (!pj_thread_is_registered()) {
-        pj_thread_register("SipPhoneModule", a_thread_desc, &a_thread);
-    }
-    
     NtouUri = pj_str("sip:16877@140.121.99.170");
     pjsua_acc_add(&acc, PJ_TRUE, &acc_id);
-    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 /*
  #pragma mark - Navigation

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SipTabBarViewController.h"
 @interface SipCallHistoryViewController : UIViewController
+@property (nonatomic,assign)SipTabBarViewController *sipViewRoot;
 
 @end

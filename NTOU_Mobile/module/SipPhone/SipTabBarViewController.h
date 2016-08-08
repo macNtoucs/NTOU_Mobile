@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SipTabBarViewController : UITabBarController
+@interface SipTabBarViewController : UITabBarController <UITabBarControllerDelegate>
 
 @end

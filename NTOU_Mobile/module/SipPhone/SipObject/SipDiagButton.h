@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "pjsua.h"
 
-@interface SipDiagButton : UIButton
+@interface SipDiagButton : UIButton{
+    pjsua_player_id player_id;
+}
 
 @property (nonatomic,assign)NSString *sign;
-@property (nonatomic,assign)UInt32 sound_id;
 -(void)registerDiagSound;
 -(void)playDiagSound;
 @end

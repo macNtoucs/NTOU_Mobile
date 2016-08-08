@@ -8,11 +8,8 @@
 
 #import "SipContactInformationViewController.h"
 
-@interface SipContactInformationViewController ()
-
-@end
-
 @implementation SipContactInformationViewController
+@synthesize sipViewRoot;
 
 - (void)viewDidLoad {
     [super viewDidLoad];

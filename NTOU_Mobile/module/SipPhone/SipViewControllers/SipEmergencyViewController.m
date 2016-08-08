@@ -8,11 +8,8 @@
 
 #import "SipEmergencyViewController.h"
 
-@interface SipEmergencyViewController ()
-
-@end
-
 @implementation SipEmergencyViewController
+@synthesize sipViewRoot;
 
 - (void)viewDidLoad {
     [super viewDidLoad];

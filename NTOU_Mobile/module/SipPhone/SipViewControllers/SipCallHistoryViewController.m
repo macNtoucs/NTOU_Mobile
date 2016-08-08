@@ -8,11 +8,8 @@
 
 #import "SipCallHistoryViewController.h"
 
-@interface SipCallHistoryViewController ()
-
-@end
-
 @implementation SipCallHistoryViewController
+@synthesize sipViewRoot;
 
 - (void)viewDidLoad {
     [super viewDidLoad];

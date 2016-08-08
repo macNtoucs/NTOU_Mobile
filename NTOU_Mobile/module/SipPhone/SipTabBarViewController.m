@@ -14,42 +14,61 @@
 #import "SipEmergencyViewController.h"
 #import "EmergencyViewController.h"
 
-@interface SipTabBarViewController ()
-
-@end
-
 @implementation SipTabBarViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    SipPhoneUsuallyUseViewController * view1 = [SipPhoneUsuallyUseViewController new];
-    view1.tabBarItem = [[UITabBarItem new] initWithTitle:@"常用聯絡資訊" image:nil tag:0];
-    SipCallHistoryViewController * view2 = [SipCallHistoryViewController new];
-    view2.tabBarItem = [[UITabBarItem new] initWithTitle:@"通話紀錄" image:nil tag:1];
-    SipContactInformationViewController * view3 = [SipContactInformationViewController new];
-    view3.tabBarItem = [[UITabBarItem new] initWithTitle:@"聯絡資訊" image:nil tag:2];
-    TestViewController * view4 = [TestViewController new];
-    view4.tabBarItem = [[UITabBarItem new] initWithTitle:@"數字鍵盤" image:nil tag:3];
-    SipEmergencyViewController * view5 = [SipEmergencyViewController new];
-    view5.tabBarItem = [[UITabBarItem new] initWithTitle:@"緊急聯絡" image:nil tag:4];
-    self.viewControllers = [NSArray arrayWithObjects:view1,view2,view3,view4,view5,nil];
+    self.delegate = self; //To use delegate,must to do this
+    
+    SipPhoneUsuallyUseViewController * view0 = [SipPhoneUsuallyUseViewController new];
+    view0.tabBarItem = [[UITabBarItem new] initWithTitle:@"常用聯絡資訊" image:[UIImage imageNamed:@"SipButtons-Star.png"] tag:0];
+    view0.sipViewRoot = self;
+    SipCallHistoryViewController * view1 = [SipCallHistoryViewController new];
+    view1.tabBarItem = [[UITabBarItem new] initWithTitle:@"通話紀錄" image:[UIImage imageNamed:@"SipButtons-History.png"] tag:1];
+    view1.sipViewRoot = self;
+    SipContactInformationViewController * view2 = [SipContactInformationViewController new];
+    view2.tabBarItem = [[UITabBarItem new] initWithTitle:@"聯絡資訊" image:[UIImage imageNamed:@"SipButtons-Contactperson.png"] tag:2];
+    view2.sipViewRoot = self;
+    TestViewController * view3 = [TestViewController new];
+    view3.tabBarItem = [[UITabBarItem new] initWithTitle:@"數字鍵盤" image:[UIImage imageNamed:@"SipButtons-Pad.png"] tag:3];
+    view3.sipViewRoot = self;
+    SipEmergencyViewController * view4 = [SipEmergencyViewController new];
+    view4.tabBarItem = [[UITabBarItem new] initWithTitle:@"緊急聯絡" image:[UIImage imageNamed:@"SipButtons-Warning.png"] tag:4];
+    view4.sipViewRoot = self;
+    self.viewControllers = [NSArray arrayWithObjects:view0,view1,view2,view3,view4,nil];
+    
     self.selectedIndex = 3;
+    self.title = @"數字鍵盤";
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void) tabBarController:(SipTabBarViewController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    switch (self.selectedIndex) {
+        case 0:
+            self.title = @"常用聯絡資訊";
+            break;
+        case 1:
+            self.title = @"通話紀錄";
+            break;
+        case 2:
+            self.title = @"聯絡資訊";
+            break;
+        case 3:
+            self.title = @"數字鍵盤";
+            break;
+        case 4:
+            self.title = @"緊急聯絡";
+            break;
+            
+        default:
+            break;
+    }
 }
-*/
+
 
 @end

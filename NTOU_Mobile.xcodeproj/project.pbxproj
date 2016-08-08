@@ -991,8 +991,6 @@
 				1FE7D3701D48BEAA00666955 /* SipPhoneModule.m */,
 				9177D8E91D52DCA400C20949 /* SipTabBarViewController.h */,
 				9177D8EA1D52DCA400C20949 /* SipTabBarViewController.m */,
-				1FE7D3711D48BEAA00666955 /* TestViewController.h */,
-				1FE7D3721D48BEAA00666955 /* TestViewController.m */,
 				1F4F0D5D1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.h */,
 				1F4F0D5E1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.m */,
 				9177D8F91D53003100C20949 /* SipMedia.xcassets */,
@@ -1167,6 +1165,8 @@
 				9177D8F41D52F80C00C20949 /* SipContactInformationViewController.m */,
 				9177D8F61D52F9A200C20949 /* SipEmergencyViewController.h */,
 				9177D8F71D52F9A200C20949 /* SipEmergencyViewController.m */,
+				1FE7D3711D48BEAA00666955 /* TestViewController.h */,
+				1FE7D3721D48BEAA00666955 /* TestViewController.m */,
 			);
 			name = SipViewControllers;
 			sourceTree = "<group>";

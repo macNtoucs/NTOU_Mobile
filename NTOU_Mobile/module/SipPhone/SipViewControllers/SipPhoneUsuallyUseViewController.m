@@ -8,11 +8,8 @@
 
 #import "SipPhoneUsuallyUseViewController.h"
 
-@interface SipPhoneUsuallyUseViewController ()
-
-@end
-
 @implementation SipPhoneUsuallyUseViewController
+@synthesize sipViewRoot;
 
 - (void)viewDidLoad {
     [super viewDidLoad];

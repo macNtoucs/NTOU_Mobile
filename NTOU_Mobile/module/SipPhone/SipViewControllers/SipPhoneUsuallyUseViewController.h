@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SipTabBarViewController.h"
 
 @interface SipPhoneUsuallyUseViewController : UIViewController
+
+@property (nonatomic,assign)SipTabBarViewController *sipViewRoot;
 
 @end
