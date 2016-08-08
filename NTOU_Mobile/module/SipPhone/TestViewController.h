@@ -16,7 +16,7 @@
     UIButton *call;
     UIButton *hangup;
     NSArray *dtmf_ids;
+    UILabel *callinfo;
 
 }
-@property (nonatomic,assign)pjsua_call_id current_call;
 @end

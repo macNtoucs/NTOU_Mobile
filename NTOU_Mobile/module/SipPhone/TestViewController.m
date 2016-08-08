@@ -17,19 +17,62 @@
 
 @implementation TestViewController
 
-@synthesize current_call;
+-(void)waitForSendDtmf{
+    pj_thread_desc a_thread_desc;
+    pj_thread_t *a_thread;
+    if (!pj_thread_is_registered()) {
+        pj_thread_register(nil, a_thread_desc, &a_thread);
+    }
+    pjsua_call_info ci;
+    NSRange range;
+    range.location = 0;
+    range.length = 1;
+    
+    while(current_call != PJSUA_INVALID_ID){
+        
+        pjsua_call_get_info(current_call, &ci);
+        
+        if(ci.state == PJSIP_INV_STATE_CONFIRMED){
+            char temp[2];
+            while(range.location+1 <= callinfo.text.length){
+            strcpy(temp,[[callinfo.text substringWithRange:range]UTF8String]);
+            pj_str_t diag = pj_str(temp);
+            pjsua_call_dial_dtmf(current_call,&diag);
+                
+            range.location ++;
+            }
+            break;
+        }
+        [NSThread sleepForTimeInterval:0.01];
+    }
+    pj_thread_destroy(a_thread);
+}
 
 -(void)callToNtou{
-    if(current_call == PJSUA_INVALID_ID)
+    if(current_call == PJSUA_INVALID_ID){
+        if([callinfo.text compare:@"請輸入分機號碼"] != 0){
+            if(callinfo.text.length >0){
         pjsua_call_make_call(acc_id,&NtouUri,0,0,0,&current_call);
-    else{
-        if(pjsua_call_is_active(current_call) == PJ_FALSE)
-            pjsua_call_make_call(acc_id,&NtouUri,0,0,0,&current_call);
+        [NSThread detachNewThreadSelector:@selector(waitForSendDtmf) toTarget:self withObject:nil];
+        [hangup setTitle:@"掛斷" forState:nil];
+        [hangup removeTarget:self action:@selector(clearInfo) forControlEvents:UIControlEventTouchUpInside];
+        [hangup addTarget:self action:@selector(hangup) forControlEvents:UIControlEventTouchUpInside];
+            }
+        }
     }
     
 }
 -(void)hangup{
     pjsua_call_hangup_all();
+    current_call = PJSUA_INVALID_ID;
+    [self clearInfo];
+    [hangup setTitle:@"清除" forState:nil];
+    [hangup removeTarget:self action:@selector(hangup) forControlEvents:UIControlEventTouchUpInside];
+    [hangup addTarget:self action:@selector(clearInfo) forControlEvents:UIControlEventTouchUpInside];
+
+}
+-(void)clearInfo{
+    callinfo.text = @"";
 }
 -(void)DTMF:(SipDiagButton*)button{
     [button playDiagSound];
@@ -41,19 +84,25 @@
         pjsua_call_dial_dtmf(current_call,&diag);
         }
     }
+    if([callinfo.text compare:@"請輸入分機號碼"] == 0){
+        callinfo.text = [[NSString alloc]initWithString:button.sign];
+    }
+    else{
+        callinfo.text = [callinfo.text stringByAppendingString:button.sign];
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"數字鍵盤";
+    
     current_call = PJSUA_INVALID_ID;
     
     UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     background.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0f];
     [self.view addSubview:background];
     
-    UILabel * callinfo = [[UILabel alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height/2-(self.view.bounds.size.height/8)*3,self.view.bounds.size.width, (self.view.bounds.size.height/8))];
-    callinfo.text = @"請先撥號";
+    callinfo = [[UILabel alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height/2-(self.view.bounds.size.height/8)*3,self.view.bounds.size.width, (self.view.bounds.size.height/8))];
+    callinfo.text = @"請輸入分機號碼";
     callinfo.textAlignment = NSTextAlignmentCenter;
     callinfo.font = [UIFont systemFontOfSize:25];
     [self.view addSubview:callinfo];
@@ -68,10 +117,10 @@
     [self.view addSubview:call];
     
     hangup = [UIButton buttonWithType:UIButtonTypeSystem];
-    [hangup setTitle:@"掛斷" forState:UIControlStateNormal];
+    [hangup setTitle:@"清除" forState:UIControlStateNormal];
     hangup.frame = CGRectMake((self.view.bounds.size.width/3)*2,self.view.bounds.size.height/2-(self.view.bounds.size.height/8)*2, (self.view.bounds.size.width/3), (self.view.bounds.size.height/8));
     [hangup addTarget:self
-               action:@selector(hangup)
+               action:@selector(clearInfo)
      forControlEvents:UIControlEventTouchUpInside];
     hangup.titleLabel.font = [UIFont systemFontOfSize:30];
     [self.view addSubview:hangup];
@@ -108,11 +157,6 @@
             [self.view addSubview:bx];
         }
     }
-    
-    /*SipDiagButton * test1 = [SipDiagButton new];
-    test1.sign = @"1";
-    [test1 registerSystemSound];
-    [test1 playSystemSound];*/
    
     pjsua_acc_config_default(&acc);
     acc.id = pj_str("<sip:601@140.121.99.170>");
@@ -124,10 +168,10 @@
     acc.cred_info[0].data_type = 0;
     acc.cred_info[0].data = pj_str("12345678");
     
-    static pj_thread_desc a_thread_desc;
-    static pj_thread_t *a_thread;
+    pj_thread_desc a_thread_desc;
+    pj_thread_t *a_thread;
     if (!pj_thread_is_registered()) {
-        pj_thread_register("ipjsua", a_thread_desc, &a_thread);
+        pj_thread_register("SipPhoneModule", a_thread_desc, &a_thread);
     }
     
     NtouUri = pj_str("sip:16877@140.121.99.170");

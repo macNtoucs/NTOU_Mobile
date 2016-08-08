@@ -14,7 +14,6 @@
 
 @implementation NTOU_MobileAppDelegate (SipPhone)
 
-
 static void on_call_media_state(pjsua_call_id call_id) // a special c-function called by pjsua, go to pjsip Documentations see more function like this
 {
     pjsua_call_info ci;
@@ -24,7 +23,7 @@ static void on_call_media_state(pjsua_call_id call_id) // a special c-function c
     if (ci.media_status == PJSUA_CALL_MEDIA_ACTIVE) { // when answering the phone,open sound outbound
         pjsua_conf_connect(ci.conf_slot, 0);
         pjsua_conf_connect(0, ci.conf_slot);
-    }  
+    }
 }
 
 - (void)pjsuaStart{
