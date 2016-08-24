@@ -1,23 +1,17 @@
 //
-//  TestViewController.m
+//  SipDiagPadViewController.m
 //  NTOU_Mobile
 //
-//  Created by Lab414 on 2016/7/27.
+//  Created by Jheng-Chi on 2016/8/22.
 //  Copyright © 2016年 NTOUcs_MAC. All rights reserved.
 //
 
-#import "TestViewController.h"
+#import "SipDiagPadViewController.h"
 #import <pjsua.h>
 #import "SipDiagButton.h"
-@import AudioToolbox;
 
-@interface TestViewController ()
-
-@end
-
-@implementation TestViewController
-@synthesize sipViewRoot;
-
+@implementation SipDiagPadViewController
+@synthesize callinfo;
 -(void)waitForSendDtmf{
     pj_thread_desc a_thread_desc;
     pj_thread_t *a_thread;
@@ -29,78 +23,66 @@
     range.length = 1;
     
     while(current_call != PJSUA_INVALID_ID){
-        
-        pjsua_call_get_info(current_call, &call_info);
-        
         if(call_info.state == PJSIP_INV_STATE_CONFIRMED){
             char temp[2];
             while(range.location+1 <= callinfo.text.length){
-            strcpy(temp,[[callinfo.text substringWithRange:range]UTF8String]);
-            pj_str_t diag = pj_str(temp);
-            pjsua_call_dial_dtmf(current_call,&diag);
+                strcpy(temp,[[callinfo.text substringWithRange:range]UTF8String]);
+                pj_str_t diag = pj_str(temp);
+                pjsua_call_dial_dtmf(current_call,&diag);
                 
-            range.location ++;
+                range.location ++;
             }
             break;
         }
-        [NSThread sleepForTimeInterval:0.01];
+        [NSThread sleepForTimeInterval:0.1];
     }
     pj_thread_destroy(a_thread);
 }
 
--(void)waitForDisconnect{
+-(void)waitForDisconnected{
     pj_thread_desc a_thread_desc;
     pj_thread_t *a_thread;
     if (!pj_thread_is_registered()) {
         pj_thread_register(nil, a_thread_desc, &a_thread);
     }
-    
-    pjsua_call_get_info(current_call, &call_info);
-
-    while(call_info.state != PJSIP_INV_STATE_NULL){
-        
+    while(current_call != PJSUA_INVALID_ID){
         if(current_call != PJSUA_INVALID_ID)
         pjsua_call_get_info(current_call, &call_info);
-        
-        NSLog(@"%d",call_info.state);
-        
-        [NSThread sleepForTimeInterval:1];
+        if(call_info.state == PJSIP_INV_STATE_DISCONNECTED)
+            break;
+        [NSThread sleepForTimeInterval:0.1];
     }
     [self hangup];
     pj_thread_destroy(a_thread);
-    
 }
 
--(void)callToNtou{
+
+-(void)makeCallToNTOU{
     if(current_call == PJSUA_INVALID_ID){
-        if([callinfo.text compare:@"請輸入分機號碼"] != 0){
-            if(callinfo.text.length >0){
         pjsua_call_make_call(acc_id,&NtouUri,0,0,0,&current_call);
-        [NSThread detachNewThreadSelector:@selector(waitForSendDtmf) toTarget:self withObject:nil];
-        [NSThread detachNewThreadSelector:@selector(waitForDisconnect) toTarget:self withObject:nil];
-                
+        if(callinfo.text.length > 0 && [callinfo.text compare: @"請輸入分機號碼"] != 0)
+            [NSThread detachNewThreadSelector:@selector(waitForSendDtmf) toTarget:self withObject:nil];
+        [NSThread detachNewThreadSelector:@selector(waitForDisconnected) toTarget:self withObject:nil];
+        
+        
         [hangup setTitle:@"掛斷" forState:nil];
         [hangup removeTarget:self action:@selector(clearInfo) forControlEvents:UIControlEventTouchUpInside];
         [hangup addTarget:self action:@selector(hangup) forControlEvents:UIControlEventTouchUpInside];
-            }
-            else{
-                callinfo.text = @"請輸入分機號碼";
-            }
-        }
     }
     
 }
 -(void)hangup{
-    pjsua_call_hangup_all();
-    
-    call_info.state = PJSIP_INV_STATE_NULL;
+    call_info.state = PJSIP_INV_STATE_DISCONNECTED;
+    if(current_call != PJSUA_INVALID_ID)
+        pjsua_call_hangup(current_call,0,0,0);
     
     current_call = PJSUA_INVALID_ID;
-    [self clearInfo];
+    if([callinfo.text compare: @"請輸入分機號碼"] != 0)
+        [self clearInfo];
     [hangup setTitle:@"清除" forState:nil];
     [hangup removeTarget:self action:@selector(hangup) forControlEvents:UIControlEventTouchUpInside];
     [hangup addTarget:self action:@selector(clearInfo) forControlEvents:UIControlEventTouchUpInside];
-
+    
 }
 -(void)clearInfo{
     callinfo.text = @"";
@@ -109,10 +91,10 @@
     [button playDiagSound];
     if(current_call != PJSUA_INVALID_ID){
         if(pjsua_call_is_active(current_call) == PJ_TRUE){
-        char temp[2];
-        strcpy(temp,[button.titleLabel.text UTF8String]);
-        pj_str_t diag = pj_str(temp);
-        pjsua_call_dial_dtmf(current_call,&diag);
+            char temp[2];
+            strcpy(temp,[button.titleLabel.text UTF8String]);
+            pj_str_t diag = pj_str(temp);
+            pjsua_call_dial_dtmf(current_call,&diag);
         }
     }
     if([callinfo.text compare:@"請輸入分機號碼"] == 0){
@@ -148,7 +130,7 @@
     [call setTitle:@"撥號" forState:UIControlStateNormal];
     call.frame = CGRectMake(0, self.view.bounds.size.height/2-(self.view.bounds.size.height/8)*2, (self.view.bounds.size.width/3), (self.view.bounds.size.height/8));
     [call addTarget:self
-             action:@selector(callToNtou)
+             action:@selector(makeCallToNTOU)
    forControlEvents:UIControlEventTouchUpInside];
     call.titleLabel.font = [UIFont systemFontOfSize:30];
     [self.view addSubview:call];
@@ -193,7 +175,7 @@
             [self.view addSubview:bx];
         }
     }
-   
+    
     pjsua_acc_config_default(&acc);
     acc.id = pj_str("<sip:601@140.121.99.170>");
     acc.reg_uri = pj_str("sip:140.121.99.170");
@@ -212,17 +194,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

@@ -9,7 +9,6 @@
 #import "SipPhoneModule.h"
 #import "NTOUConstants.h"
 #import "NTOUModule+Protected.h"
-#import "TestViewController.h"
 #import "SipTabBarViewController.h"
 
 @implementation SipPhoneModule
@@ -27,8 +26,8 @@
 
 - (void)loadModuleHomeController
 {
-    SipTabBarViewController * test = [[[SipTabBarViewController alloc]init]autorelease];
-    self.moduleHomeController = test;
+    SipTabBarViewController * tabbar = [[[SipTabBarViewController alloc]init]autorelease];
+    self.moduleHomeController = tabbar;
 }
 
 - (void)dealloc {

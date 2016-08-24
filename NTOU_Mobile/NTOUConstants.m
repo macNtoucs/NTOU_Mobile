@@ -134,3 +134,6 @@ NSString * const MobileWebErrorDomain = @"edu.NTOU.mobile.WebRequestError";
 NSString * const MobileWebTouchstoneErrorDomain = @"edu.NTOU.mobile.TouchstoneError";
 
 NSString* const MobileLoginKeychainIdentifier = @"edu.NTOU.mobile.MobileWebLogin";
+
+//API Url
+NSString * const NTOUUrlSipPhone = @"http://140.121.197.122/";

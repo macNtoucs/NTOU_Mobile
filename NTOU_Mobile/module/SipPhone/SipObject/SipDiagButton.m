@@ -22,9 +22,6 @@
     strcpy(temp_c, [temp_ns UTF8String]);
     pj_str_t temp = pj_str(temp_c);
     status = pjsua_player_create(&temp,PJMEDIA_FILE_NO_LOOP, &player_id);
-    if(status != PJ_SUCCESS){
-        NSLog(@"GG");
-    }
     [prefix release];
 }
 -(void)playDiagSound{

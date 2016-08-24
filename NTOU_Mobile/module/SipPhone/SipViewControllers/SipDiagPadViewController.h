@@ -1,15 +1,15 @@
 //
-//  TestViewController.h
+//  SipDiagPadViewController.h
 //  NTOU_Mobile
 //
-//  Created by Lab414 on 2016/7/27.
+//  Created by Jheng-Chi on 2016/8/22.
 //  Copyright © 2016年 NTOUcs_MAC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <pjsua.h>
-#import "SipTabBarViewController.h"
-@interface TestViewController : UIViewController{
+
+@interface SipDiagPadViewController : UIViewController{
     pjsua_acc_config acc;
     pjsua_acc_id acc_id;
     pj_str_t NtouUri;
@@ -18,8 +18,8 @@
     UIButton *call;
     UIButton *hangup;
     NSArray *dtmf_ids;
-    UILabel *callinfo;
-
 }
-@property (nonatomic,assign)SipTabBarViewController *sipViewRoot;
+@property (assign,nonatomic)UILabel *callinfo;
+-(void)makeCallToNTOU;
+
 @end

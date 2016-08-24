@@ -7,7 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SipTabBarViewController.h"
+#import "SipDiagPadViewController.h"
+#import "SipPhoneUsuallyUseTableViewController.h"
+#import "SipHistoryTableViewController.h"
+#import "SipContactInformationTableViewController.h"
+#import "SipEmergencyViewController.h"
 
 @interface SipTabBarViewController : UITabBarController <UITabBarControllerDelegate>
+{
+    SipPhoneUsuallyUseTableViewController *view0;
+    SipHistoryTableViewController *view1;
+    SipContactInformationTableViewController *view2;
+    SipDiagPadViewController *view3;
+    SipEmergencyViewController *view4;
+}
+
+@property (nonatomic,assign)NSArray *NTOUContactInformation;
+
+-(void)makeCallToNTOU:(NSString*)number;
 
 @end

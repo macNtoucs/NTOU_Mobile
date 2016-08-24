@@ -76,7 +76,6 @@
 		1F4F0D561D499C61000ED111 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D551D499C61000ED111 /* libstdc++.6.0.9.tbd */; };
 		1F4F0D5F1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F0D5E1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.m */; };
 		1FE7D3731D48BEAA00666955 /* SipPhoneModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE7D3701D48BEAA00666955 /* SipPhoneModule.m */; };
-		1FE7D3741D48BEAA00666955 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE7D3721D48BEAA00666955 /* TestViewController.m */; };
 		437D52621923976E0054AD8E /* ExpressBusDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 437D52611923976E0054AD8E /* ExpressBusDetailViewController.m */; };
 		437D52641923977E0054AD8E /* ExpressBusSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 437D52631923977E0054AD8E /* ExpressBusSearchViewController.m */; };
 		43BEDBF519236BED0091B024 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDBF419236BED0091B024 /* FMDatabase.m */; };
@@ -106,6 +105,10 @@
 		7CBFB56F1CDB70510048C7D2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB56E1CDB70510048C7D2 /* Security.framework */; };
 		7CBFB5711CDB7A8B0048C7D2 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7CBFB5701CDB7A8B0048C7D2 /* GoogleMaps.bundle */; };
 		7CBFB5781CDB98820048C7D2 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB5761CDB98820048C7D2 /* GoogleMaps.framework */; };
+		91004F771D615CDE00A26388 /* SipContactInformationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91004F761D615CDE00A26388 /* SipContactInformationTableViewController.m */; };
+		910E9A971D6AE86500B8556B /* SipDiagPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E9A961D6AE86500B8556B /* SipDiagPadViewController.m */; };
+		91206EAA1D6DB8E700A9BAED /* SipHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91206EA91D6DB8E700A9BAED /* SipHistoryTableViewController.m */; };
+		91206EAD1D6DB9BB00A9BAED /* SipPhoneUsuallyUseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91206EAC1D6DB9BB00A9BAED /* SipPhoneUsuallyUseTableViewController.m */; };
 		912A53EF16E99F7900BBC013 /* NTOUGuide2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */; };
 		912A53F016E99F7900BBC013 /* NTOUGuideSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EC16E99F7900BBC013 /* NTOUGuideSetViewController.m */; };
 		912A53F116E99F7900BBC013 /* NTOUGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EE16E99F7900BBC013 /* NTOUGuideViewController.m */; };
@@ -205,9 +208,6 @@
 		91756FEA16F20E85001D724D /* UIXToolbarView.h in Sources */ = {isa = PBXBuildFile; fileRef = 91756F1D16F206F7001D724D /* UIXToolbarView.h */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		91756FEE16F21236001D724D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91756FED16F21235001D724D /* ImageIO.framework */; };
 		9177D8EB1D52DCA400C20949 /* SipTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177D8EA1D52DCA400C20949 /* SipTabBarViewController.m */; };
-		9177D8EF1D52F78A00C20949 /* SipPhoneUsuallyUseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177D8EE1D52F78A00C20949 /* SipPhoneUsuallyUseViewController.m */; };
-		9177D8F21D52F7CC00C20949 /* SipCallHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177D8F11D52F7CC00C20949 /* SipCallHistoryViewController.m */; };
-		9177D8F51D52F80C00C20949 /* SipContactInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177D8F41D52F80C00C20949 /* SipContactInformationViewController.m */; };
 		9177D8F81D52F9A200C20949 /* SipEmergencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177D8F71D52F9A200C20949 /* SipEmergencyViewController.m */; };
 		9177D8FA1D53003100C20949 /* SipMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9177D8F91D53003100C20949 /* SipMedia.xcassets */; };
 		9177D8FC1D530D0800C20949 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9177D8FB1D530D0800C20949 /* AudioToolbox.framework */; };
@@ -423,8 +423,6 @@
 		1F4F0D5E1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NTOU_MobileAppDelegate+SipPhone.m"; path = "module/SipPhone/NTOU_MobileAppDelegate+SipPhone.m"; sourceTree = "<group>"; };
 		1FE7D36F1D48BEAA00666955 /* SipPhoneModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipPhoneModule.h; path = module/SipPhone/SipPhoneModule.h; sourceTree = "<group>"; };
 		1FE7D3701D48BEAA00666955 /* SipPhoneModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipPhoneModule.m; path = module/SipPhone/SipPhoneModule.m; sourceTree = "<group>"; };
-		1FE7D3711D48BEAA00666955 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestViewController.h; path = module/SipPhone/TestViewController.h; sourceTree = "<group>"; };
-		1FE7D3721D48BEAA00666955 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestViewController.m; path = module/SipPhone/TestViewController.m; sourceTree = "<group>"; };
 		437D52611923976E0054AD8E /* ExpressBusDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExpressBusDetailViewController.m; path = ../ExpressBusDetailViewController.m; sourceTree = "<group>"; };
 		437D52631923977E0054AD8E /* ExpressBusSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExpressBusSearchViewController.m; path = NTOU_Mobile/module/ShuttleTrack/ExpressBusSearchViewController.m; sourceTree = SOURCE_ROOT; };
 		437D5265192397FC0054AD8E /* ExpressBusDetail2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressBusDetail2ViewController.h; sourceTree = "<group>"; };
@@ -469,6 +467,14 @@
 		7CBFB56E1CDB70510048C7D2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7CBFB5701CDB7A8B0048C7D2 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		7CBFB5761CDB98820048C7D2 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		91004F751D615CDE00A26388 /* SipContactInformationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipContactInformationTableViewController.h; path = module/SipPhone/SipViewControllers/SipContactInformationTableViewController.h; sourceTree = "<group>"; };
+		91004F761D615CDE00A26388 /* SipContactInformationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipContactInformationTableViewController.m; path = module/SipPhone/SipViewControllers/SipContactInformationTableViewController.m; sourceTree = "<group>"; };
+		910E9A951D6AE86500B8556B /* SipDiagPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipDiagPadViewController.h; path = module/SipPhone/SipViewControllers/SipDiagPadViewController.h; sourceTree = "<group>"; };
+		910E9A961D6AE86500B8556B /* SipDiagPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipDiagPadViewController.m; path = module/SipPhone/SipViewControllers/SipDiagPadViewController.m; sourceTree = "<group>"; };
+		91206EA81D6DB8E700A9BAED /* SipHistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipHistoryTableViewController.h; path = module/SipPhone/SipViewControllers/SipHistoryTableViewController.h; sourceTree = "<group>"; };
+		91206EA91D6DB8E700A9BAED /* SipHistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipHistoryTableViewController.m; path = module/SipPhone/SipViewControllers/SipHistoryTableViewController.m; sourceTree = "<group>"; };
+		91206EAB1D6DB9BB00A9BAED /* SipPhoneUsuallyUseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipPhoneUsuallyUseTableViewController.h; path = module/SipPhone/SipViewControllers/SipPhoneUsuallyUseTableViewController.h; sourceTree = "<group>"; };
+		91206EAC1D6DB9BB00A9BAED /* SipPhoneUsuallyUseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipPhoneUsuallyUseTableViewController.m; path = module/SipPhone/SipViewControllers/SipPhoneUsuallyUseTableViewController.m; sourceTree = "<group>"; };
 		912A53E916E99F7900BBC013 /* NTOUGuide2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuide2ViewController.h; sourceTree = "<group>"; };
 		912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuide2ViewController.m; sourceTree = "<group>"; };
 		912A53EB16E99F7900BBC013 /* NTOUGuideSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuideSetViewController.h; sourceTree = "<group>"; };
@@ -620,12 +626,6 @@
 		91756FED16F21235001D724D /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		9177D8E91D52DCA400C20949 /* SipTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipTabBarViewController.h; path = module/SipPhone/SipTabBarViewController.h; sourceTree = "<group>"; };
 		9177D8EA1D52DCA400C20949 /* SipTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipTabBarViewController.m; path = module/SipPhone/SipTabBarViewController.m; sourceTree = "<group>"; };
-		9177D8ED1D52F78900C20949 /* SipPhoneUsuallyUseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipPhoneUsuallyUseViewController.h; path = module/SipPhone/SipViewControllers/SipPhoneUsuallyUseViewController.h; sourceTree = "<group>"; };
-		9177D8EE1D52F78A00C20949 /* SipPhoneUsuallyUseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipPhoneUsuallyUseViewController.m; path = module/SipPhone/SipViewControllers/SipPhoneUsuallyUseViewController.m; sourceTree = "<group>"; };
-		9177D8F01D52F7CC00C20949 /* SipCallHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipCallHistoryViewController.h; path = module/SipPhone/SipViewControllers/SipCallHistoryViewController.h; sourceTree = "<group>"; };
-		9177D8F11D52F7CC00C20949 /* SipCallHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipCallHistoryViewController.m; path = module/SipPhone/SipViewControllers/SipCallHistoryViewController.m; sourceTree = "<group>"; };
-		9177D8F31D52F80C00C20949 /* SipContactInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipContactInformationViewController.h; path = module/SipPhone/SipViewControllers/SipContactInformationViewController.h; sourceTree = "<group>"; };
-		9177D8F41D52F80C00C20949 /* SipContactInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipContactInformationViewController.m; path = module/SipPhone/SipViewControllers/SipContactInformationViewController.m; sourceTree = "<group>"; };
 		9177D8F61D52F9A200C20949 /* SipEmergencyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipEmergencyViewController.h; path = module/SipPhone/SipViewControllers/SipEmergencyViewController.h; sourceTree = "<group>"; };
 		9177D8F71D52F9A200C20949 /* SipEmergencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipEmergencyViewController.m; path = module/SipPhone/SipViewControllers/SipEmergencyViewController.m; sourceTree = "<group>"; };
 		9177D8F91D53003100C20949 /* SipMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = SipMedia.xcassets; path = module/SipPhone/SipMedia.xcassets; sourceTree = "<group>"; };
@@ -1157,16 +1157,16 @@
 		9177D8EC1D52F69F00C20949 /* SipViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9177D8ED1D52F78900C20949 /* SipPhoneUsuallyUseViewController.h */,
-				9177D8EE1D52F78A00C20949 /* SipPhoneUsuallyUseViewController.m */,
-				9177D8F01D52F7CC00C20949 /* SipCallHistoryViewController.h */,
-				9177D8F11D52F7CC00C20949 /* SipCallHistoryViewController.m */,
-				9177D8F31D52F80C00C20949 /* SipContactInformationViewController.h */,
-				9177D8F41D52F80C00C20949 /* SipContactInformationViewController.m */,
 				9177D8F61D52F9A200C20949 /* SipEmergencyViewController.h */,
 				9177D8F71D52F9A200C20949 /* SipEmergencyViewController.m */,
-				1FE7D3711D48BEAA00666955 /* TestViewController.h */,
-				1FE7D3721D48BEAA00666955 /* TestViewController.m */,
+				91004F751D615CDE00A26388 /* SipContactInformationTableViewController.h */,
+				91004F761D615CDE00A26388 /* SipContactInformationTableViewController.m */,
+				910E9A951D6AE86500B8556B /* SipDiagPadViewController.h */,
+				910E9A961D6AE86500B8556B /* SipDiagPadViewController.m */,
+				91206EA81D6DB8E700A9BAED /* SipHistoryTableViewController.h */,
+				91206EA91D6DB8E700A9BAED /* SipHistoryTableViewController.m */,
+				91206EAB1D6DB9BB00A9BAED /* SipPhoneUsuallyUseTableViewController.h */,
+				91206EAC1D6DB9BB00A9BAED /* SipPhoneUsuallyUseTableViewController.m */,
 			);
 			name = SipViewControllers;
 			sourceTree = "<group>";
@@ -1840,6 +1840,7 @@
 			files = (
 				1D6645691905087900416722 /* EGORefreshTableHeaderView.h in Sources */,
 				1D66456A1905087900416722 /* EGORefreshTableHeaderView.m in Sources */,
+				910E9A971D6AE86500B8556B /* SipDiagPadViewController.m in Sources */,
 				91756FE816F20E85001D724D /* ThumbsMainToolbar.h in Sources */,
 				91756FE916F20E85001D724D /* ThumbsViewController.h in Sources */,
 				91756FEA16F20E85001D724D /* UIXToolbarView.h in Sources */,
@@ -1874,24 +1875,25 @@
 				91A9007416E8597400ECF2CF /* UIKit+NTOUAdditions.m in Sources */,
 				91A9007716E85A9A00ECF2CF /* IconGrid.m in Sources */,
 				43BEDC0E19236D570091B024 /* KuoFuhoViewController.m in Sources */,
+				91004F771D615CDE00A26388 /* SipContactInformationTableViewController.m in Sources */,
 				43BEDBFB19236CF90091B024 /* FMDatabasePool.m in Sources */,
 				91A9007A16E85B3500ECF2CF /* NTOUModule.m in Sources */,
 				91A9007F16E85C8400ECF2CF /* AppDelegate+ModuleList.m in Sources */,
+				91206EAA1D6DB8E700A9BAED /* SipHistoryTableViewController.m in Sources */,
 				1DC66D1219614B32006D7C4C /* UINavigationItem+iOS7Spacing.m in Sources */,
 				43BEDBF519236BED0091B024 /* FMDatabase.m in Sources */,
 				91A9008216E8609200ECF2CF /* Rotation.m in Sources */,
+				91206EAD1D6DB9BB00A9BAED /* SipPhoneUsuallyUseTableViewController.m in Sources */,
 				91A9008516E8613800ECF2CF /* NTOU_MobileAppDelegate+Private.m in Sources */,
 				91A9008816E8659E00ECF2CF /* NTOUConstants.m in Sources */,
 				1FE7D3731D48BEAA00666955 /* SipPhoneModule.m in Sources */,
 				1DD1792918FE7AB300621B67 /* BookDetailViewController.m in Sources */,
 				1D8A3B1F1905051200816CCD /* LoadMoreTableFooterView.m in Sources */,
-				9177D8F21D52F7CC00C20949 /* SipCallHistoryViewController.m in Sources */,
 				91A9043616E899D200ECF2CF /* Annotation.m in Sources */,
 				91A9043716E899D200ECF2CF /* CKCalendarView.m in Sources */,
 				91A9043816E899D200ECF2CF /* CKViewController.m in Sources */,
 				1DD1793318FE7AB300621B67 /* loginViewController.m in Sources */,
 				91A9043B16E899D200ECF2CF /* DepatureViewController.m in Sources */,
-				1FE7D3741D48BEAA00666955 /* TestViewController.m in Sources */,
 				91A9043C16E899D200ECF2CF /* DownloadingView.m in Sources */,
 				91A9043E16E899D200ECF2CF /* HTSearchResultViewController.m in Sources */,
 				91A9044116E899D200ECF2CF /* K_RouteViewController.m in Sources */,
@@ -2021,7 +2023,6 @@
 				91756FC216F20859001D724D /* SBJsonStreamWriterState.m in Sources */,
 				91756FC316F20859001D724D /* SBJsonTokeniser.m in Sources */,
 				91756FC416F20859001D724D /* SBJsonUTF8Stream.m in Sources */,
-				9177D8EF1D52F78A00C20949 /* SipPhoneUsuallyUseViewController.m in Sources */,
 				91756FC516F20859001D724D /* SBJsonWriter.m in Sources */,
 				91756FC916F20A5A001D724D /* NTOU_ClassColorViewController.m in Sources */,
 				C4CA69B11911276C005B272C /* RTLabel.m in Sources */,
@@ -2029,7 +2030,6 @@
 				C74699DD16F21C2D0060F49C /* Announce_API.m in Sources */,
 				C74699DE16F21C2D0060F49C /* NewsModule.m in Sources */,
 				C74699DF16F21C2D0060F49C /* StoryListViewController.m in Sources */,
-				9177D8F51D52F80C00C20949 /* SipContactInformationViewController.m in Sources */,
 				1D8A3B201905051200816CCD /* MessageInterceptor.m in Sources */,
 				C74699E016F21C2D0060F49C /* XMLReader.m in Sources */,
 				C74699E316F21C680060F49C /* NavScrollerView.m in Sources */,

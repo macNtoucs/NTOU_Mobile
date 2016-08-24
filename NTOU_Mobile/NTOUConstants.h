@@ -162,4 +162,6 @@ enum {
 
 extern NSString * const MobileLoginKeychainIdentifier;
 
+//API Url
+extern NSString * const NTOUUrlSipPhone;
 

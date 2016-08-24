@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SipTabBarViewController.h"
+
 @interface SipEmergencyViewController : UIViewController
-@property (nonatomic,assign)SipTabBarViewController *sipViewRoot;
+
 @end
