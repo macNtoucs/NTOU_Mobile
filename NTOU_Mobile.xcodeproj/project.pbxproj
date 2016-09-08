@@ -54,28 +54,7 @@
 		1DD1794118FE7AB300621B67 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1791A18FE7AB300621B67 /* View.xib */; };
 		1DD1794218FE7AB300621B67 /* WOLSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1791C18FE7AB300621B67 /* WOLSwitchViewController.m */; };
 		1DD1794618FE826500621B67 /* LibraryModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1794518FE826500621B67 /* LibraryModule.m */; };
-		1F4F0D331D499BF4000ED111 /* libpjmedia-audiodev-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D2F1D499BF4000ED111 /* libpjmedia-audiodev-i386-apple-darwin_ios.a */; };
-		1F4F0D341D499BF4000ED111 /* libpjmedia-codec-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D301D499BF4000ED111 /* libpjmedia-codec-i386-apple-darwin_ios.a */; };
-		1F4F0D351D499BF4000ED111 /* libpjmedia-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D311D499BF4000ED111 /* libpjmedia-i386-apple-darwin_ios.a */; };
-		1F4F0D361D499BF4000ED111 /* libpjmedia-videodev-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D321D499BF4000ED111 /* libpjmedia-videodev-i386-apple-darwin_ios.a */; };
-		1F4F0D381D499C07000ED111 /* libpjlib-util-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D371D499C07000ED111 /* libpjlib-util-i386-apple-darwin_ios.a */; };
-		1F4F0D401D499C15000ED111 /* libg7221codec-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D391D499C15000ED111 /* libg7221codec-i386-apple-darwin_ios.a */; };
-		1F4F0D411D499C15000ED111 /* libgsmcodec-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D3A1D499C15000ED111 /* libgsmcodec-i386-apple-darwin_ios.a */; };
-		1F4F0D421D499C15000ED111 /* libilbccodec-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D3B1D499C15000ED111 /* libilbccodec-i386-apple-darwin_ios.a */; };
-		1F4F0D431D499C15000ED111 /* libresample-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D3C1D499C15000ED111 /* libresample-i386-apple-darwin_ios.a */; };
-		1F4F0D441D499C15000ED111 /* libspeex-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D3D1D499C15000ED111 /* libspeex-i386-apple-darwin_ios.a */; };
-		1F4F0D451D499C15000ED111 /* libsrtp-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D3E1D499C15000ED111 /* libsrtp-i386-apple-darwin_ios.a */; };
-		1F4F0D461D499C15000ED111 /* libyuv-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D3F1D499C15000ED111 /* libyuv-i386-apple-darwin_ios.a */; };
-		1F4F0D481D499C25000ED111 /* libpjnath-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D471D499C25000ED111 /* libpjnath-i386-apple-darwin_ios.a */; };
-		1F4F0D4E1D499C33000ED111 /* libpjsip-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D491D499C33000ED111 /* libpjsip-i386-apple-darwin_ios.a */; };
-		1F4F0D4F1D499C33000ED111 /* libpjsip-simple-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D4A1D499C33000ED111 /* libpjsip-simple-i386-apple-darwin_ios.a */; };
-		1F4F0D501D499C33000ED111 /* libpjsip-ua-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D4B1D499C33000ED111 /* libpjsip-ua-i386-apple-darwin_ios.a */; };
-		1F4F0D511D499C34000ED111 /* libpjsua-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D4C1D499C33000ED111 /* libpjsua-i386-apple-darwin_ios.a */; };
-		1F4F0D521D499C34000ED111 /* libpjsua2-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D4D1D499C33000ED111 /* libpjsua2-i386-apple-darwin_ios.a */; };
-		1F4F0D541D499C3F000ED111 /* libpj-i386-apple-darwin_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D531D499C3F000ED111 /* libpj-i386-apple-darwin_ios.a */; };
 		1F4F0D561D499C61000ED111 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4F0D551D499C61000ED111 /* libstdc++.6.0.9.tbd */; };
-		1F4F0D5F1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F0D5E1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.m */; };
-		1FE7D3731D48BEAA00666955 /* SipPhoneModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE7D3701D48BEAA00666955 /* SipPhoneModule.m */; };
 		437D52621923976E0054AD8E /* ExpressBusDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 437D52611923976E0054AD8E /* ExpressBusDetailViewController.m */; };
 		437D52641923977E0054AD8E /* ExpressBusSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 437D52631923977E0054AD8E /* ExpressBusSearchViewController.m */; };
 		43BEDBF519236BED0091B024 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDBF419236BED0091B024 /* FMDatabase.m */; };
@@ -105,10 +84,6 @@
 		7CBFB56F1CDB70510048C7D2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB56E1CDB70510048C7D2 /* Security.framework */; };
 		7CBFB5711CDB7A8B0048C7D2 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7CBFB5701CDB7A8B0048C7D2 /* GoogleMaps.bundle */; };
 		7CBFB5781CDB98820048C7D2 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB5761CDB98820048C7D2 /* GoogleMaps.framework */; };
-		91004F771D615CDE00A26388 /* SipContactInformationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91004F761D615CDE00A26388 /* SipContactInformationTableViewController.m */; };
-		910E9A971D6AE86500B8556B /* SipDiagPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E9A961D6AE86500B8556B /* SipDiagPadViewController.m */; };
-		91206EAA1D6DB8E700A9BAED /* SipHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91206EA91D6DB8E700A9BAED /* SipHistoryTableViewController.m */; };
-		91206EAD1D6DB9BB00A9BAED /* SipPhoneUsuallyUseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91206EAC1D6DB9BB00A9BAED /* SipPhoneUsuallyUseTableViewController.m */; };
 		912A53EF16E99F7900BBC013 /* NTOUGuide2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */; };
 		912A53F016E99F7900BBC013 /* NTOUGuideSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EC16E99F7900BBC013 /* NTOUGuideSetViewController.m */; };
 		912A53F116E99F7900BBC013 /* NTOUGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EE16E99F7900BBC013 /* NTOUGuideViewController.m */; };
@@ -207,23 +182,7 @@
 		91756FE916F20E85001D724D /* ThumbsViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 91756F1B16F206F7001D724D /* ThumbsViewController.h */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		91756FEA16F20E85001D724D /* UIXToolbarView.h in Sources */ = {isa = PBXBuildFile; fileRef = 91756F1D16F206F7001D724D /* UIXToolbarView.h */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		91756FEE16F21236001D724D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91756FED16F21235001D724D /* ImageIO.framework */; };
-		9177D8EB1D52DCA400C20949 /* SipTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177D8EA1D52DCA400C20949 /* SipTabBarViewController.m */; };
-		9177D8F81D52F9A200C20949 /* SipEmergencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177D8F71D52F9A200C20949 /* SipEmergencyViewController.m */; };
-		9177D8FA1D53003100C20949 /* SipMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9177D8F91D53003100C20949 /* SipMedia.xcassets */; };
 		9177D8FC1D530D0800C20949 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9177D8FB1D530D0800C20949 /* AudioToolbox.framework */; };
-		9177D90A1D53165D00C20949 /* Dtmf-0.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D8FE1D53165D00C20949 /* Dtmf-0.wav */; };
-		9177D90B1D53165D00C20949 /* Dtmf-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D8FF1D53165D00C20949 /* Dtmf-1.wav */; };
-		9177D90C1D53165D00C20949 /* Dtmf-2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D9001D53165D00C20949 /* Dtmf-2.wav */; };
-		9177D90D1D53165D00C20949 /* Dtmf-3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D9011D53165D00C20949 /* Dtmf-3.wav */; };
-		9177D90E1D53165D00C20949 /* Dtmf-4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D9021D53165D00C20949 /* Dtmf-4.wav */; };
-		9177D90F1D53165D00C20949 /* Dtmf-5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D9031D53165D00C20949 /* Dtmf-5.wav */; };
-		9177D9101D53165D00C20949 /* Dtmf-6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D9041D53165D00C20949 /* Dtmf-6.wav */; };
-		9177D9111D53165D00C20949 /* Dtmf-7.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D9051D53165D00C20949 /* Dtmf-7.wav */; };
-		9177D9121D53165D00C20949 /* Dtmf-8.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D9061D53165D00C20949 /* Dtmf-8.wav */; };
-		9177D9131D53165D00C20949 /* Dtmf-9.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D9071D53165D00C20949 /* Dtmf-9.wav */; };
-		9177D9141D53165D00C20949 /* Dtmf-#.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D9081D53165D00C20949 /* Dtmf-#.wav */; };
-		9177D9151D53165D00C20949 /* Dtmf-*.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9177D9091D53165D00C20949 /* Dtmf-*.wav */; };
-		9177D9191D5324FB00C20949 /* SipDiagButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177D9181D5324FB00C20949 /* SipDiagButton.m */; };
 		91A9004B16E854E500ECF2CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9004A16E854E500ECF2CF /* UIKit.framework */; };
 		91A9004D16E854E500ECF2CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9004C16E854E500ECF2CF /* Foundation.framework */; };
 		91A9004F16E854E500ECF2CF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9004E16E854E500ECF2CF /* CoreGraphics.framework */; };
@@ -399,30 +358,7 @@
 		1DD1791C18FE7AB300621B67 /* WOLSwitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOLSwitchViewController.m; sourceTree = "<group>"; };
 		1DD1794418FE826400621B67 /* LibraryModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryModule.h; sourceTree = "<group>"; };
 		1DD1794518FE826500621B67 /* LibraryModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryModule.m; sourceTree = "<group>"; };
-		1F4F0D2F1D499BF4000ED111 /* libpjmedia-audiodev-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-audiodev-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjmedia/lib/libpjmedia-audiodev-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
-		1F4F0D301D499BF4000ED111 /* libpjmedia-codec-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-codec-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjmedia/lib/libpjmedia-codec-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
-		1F4F0D311D499BF4000ED111 /* libpjmedia-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjmedia/lib/libpjmedia-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
-		1F4F0D321D499BF4000ED111 /* libpjmedia-videodev-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-videodev-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjmedia/lib/libpjmedia-videodev-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
-		1F4F0D371D499C07000ED111 /* libpjlib-util-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjlib-util-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjlib-util/lib/libpjlib-util-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
-		1F4F0D391D499C15000ED111 /* libg7221codec-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libg7221codec-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/third_party/lib/libg7221codec-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
-		1F4F0D3A1D499C15000ED111 /* libgsmcodec-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgsmcodec-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/third_party/lib/libgsmcodec-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
-		1F4F0D3B1D499C15000ED111 /* libilbccodec-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libilbccodec-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/third_party/lib/libilbccodec-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
-		1F4F0D3C1D499C15000ED111 /* libresample-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libresample-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/third_party/lib/libresample-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
-		1F4F0D3D1D499C15000ED111 /* libspeex-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/third_party/lib/libspeex-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
-		1F4F0D3E1D499C15000ED111 /* libsrtp-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsrtp-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/third_party/lib/libsrtp-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
-		1F4F0D3F1D499C15000ED111 /* libyuv-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libyuv-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/third_party/lib/libyuv-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
-		1F4F0D471D499C25000ED111 /* libpjnath-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjnath-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjnath/lib/libpjnath-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
-		1F4F0D491D499C33000ED111 /* libpjsip-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjsip/lib/libpjsip-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
-		1F4F0D4A1D499C33000ED111 /* libpjsip-simple-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-simple-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjsip/lib/libpjsip-simple-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
-		1F4F0D4B1D499C33000ED111 /* libpjsip-ua-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-ua-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjsip/lib/libpjsip-ua-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
-		1F4F0D4C1D499C33000ED111 /* libpjsua-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsua-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjsip/lib/libpjsua-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
-		1F4F0D4D1D499C33000ED111 /* libpjsua2-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsua2-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjsip/lib/libpjsua2-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
-		1F4F0D531D499C3F000ED111 /* libpj-i386-apple-darwin_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-i386-apple-darwin_ios.a"; path = "module/SipPhone/Library&header/pjlib/lib/libpj-i386-apple-darwin_ios.a"; sourceTree = "<group>"; };
 		1F4F0D551D499C61000ED111 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
-		1F4F0D5D1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NTOU_MobileAppDelegate+SipPhone.h"; path = "module/SipPhone/NTOU_MobileAppDelegate+SipPhone.h"; sourceTree = "<group>"; };
-		1F4F0D5E1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NTOU_MobileAppDelegate+SipPhone.m"; path = "module/SipPhone/NTOU_MobileAppDelegate+SipPhone.m"; sourceTree = "<group>"; };
-		1FE7D36F1D48BEAA00666955 /* SipPhoneModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipPhoneModule.h; path = module/SipPhone/SipPhoneModule.h; sourceTree = "<group>"; };
-		1FE7D3701D48BEAA00666955 /* SipPhoneModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipPhoneModule.m; path = module/SipPhone/SipPhoneModule.m; sourceTree = "<group>"; };
 		437D52611923976E0054AD8E /* ExpressBusDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExpressBusDetailViewController.m; path = ../ExpressBusDetailViewController.m; sourceTree = "<group>"; };
 		437D52631923977E0054AD8E /* ExpressBusSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExpressBusSearchViewController.m; path = NTOU_Mobile/module/ShuttleTrack/ExpressBusSearchViewController.m; sourceTree = SOURCE_ROOT; };
 		437D5265192397FC0054AD8E /* ExpressBusDetail2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressBusDetail2ViewController.h; sourceTree = "<group>"; };
@@ -467,14 +403,6 @@
 		7CBFB56E1CDB70510048C7D2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7CBFB5701CDB7A8B0048C7D2 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		7CBFB5761CDB98820048C7D2 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
-		91004F751D615CDE00A26388 /* SipContactInformationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipContactInformationTableViewController.h; path = module/SipPhone/SipViewControllers/SipContactInformationTableViewController.h; sourceTree = "<group>"; };
-		91004F761D615CDE00A26388 /* SipContactInformationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipContactInformationTableViewController.m; path = module/SipPhone/SipViewControllers/SipContactInformationTableViewController.m; sourceTree = "<group>"; };
-		910E9A951D6AE86500B8556B /* SipDiagPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipDiagPadViewController.h; path = module/SipPhone/SipViewControllers/SipDiagPadViewController.h; sourceTree = "<group>"; };
-		910E9A961D6AE86500B8556B /* SipDiagPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipDiagPadViewController.m; path = module/SipPhone/SipViewControllers/SipDiagPadViewController.m; sourceTree = "<group>"; };
-		91206EA81D6DB8E700A9BAED /* SipHistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipHistoryTableViewController.h; path = module/SipPhone/SipViewControllers/SipHistoryTableViewController.h; sourceTree = "<group>"; };
-		91206EA91D6DB8E700A9BAED /* SipHistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipHistoryTableViewController.m; path = module/SipPhone/SipViewControllers/SipHistoryTableViewController.m; sourceTree = "<group>"; };
-		91206EAB1D6DB9BB00A9BAED /* SipPhoneUsuallyUseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipPhoneUsuallyUseTableViewController.h; path = module/SipPhone/SipViewControllers/SipPhoneUsuallyUseTableViewController.h; sourceTree = "<group>"; };
-		91206EAC1D6DB9BB00A9BAED /* SipPhoneUsuallyUseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipPhoneUsuallyUseTableViewController.m; path = module/SipPhone/SipViewControllers/SipPhoneUsuallyUseTableViewController.m; sourceTree = "<group>"; };
 		912A53E916E99F7900BBC013 /* NTOUGuide2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuide2ViewController.h; sourceTree = "<group>"; };
 		912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuide2ViewController.m; sourceTree = "<group>"; };
 		912A53EB16E99F7900BBC013 /* NTOUGuideSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuideSetViewController.h; sourceTree = "<group>"; };
@@ -624,26 +552,7 @@
 		91756FCE16F20C79001D724D /* LessonTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LessonTimeView.h; sourceTree = "<group>"; };
 		91756FCF16F20C79001D724D /* LessonTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LessonTimeView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		91756FED16F21235001D724D /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		9177D8E91D52DCA400C20949 /* SipTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipTabBarViewController.h; path = module/SipPhone/SipTabBarViewController.h; sourceTree = "<group>"; };
-		9177D8EA1D52DCA400C20949 /* SipTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipTabBarViewController.m; path = module/SipPhone/SipTabBarViewController.m; sourceTree = "<group>"; };
-		9177D8F61D52F9A200C20949 /* SipEmergencyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipEmergencyViewController.h; path = module/SipPhone/SipViewControllers/SipEmergencyViewController.h; sourceTree = "<group>"; };
-		9177D8F71D52F9A200C20949 /* SipEmergencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipEmergencyViewController.m; path = module/SipPhone/SipViewControllers/SipEmergencyViewController.m; sourceTree = "<group>"; };
-		9177D8F91D53003100C20949 /* SipMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = SipMedia.xcassets; path = module/SipPhone/SipMedia.xcassets; sourceTree = "<group>"; };
 		9177D8FB1D530D0800C20949 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		9177D8FE1D53165D00C20949 /* Dtmf-0.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-0.wav"; path = "module/SipPhone/SipSound/Dtmf-0.wav"; sourceTree = "<group>"; };
-		9177D8FF1D53165D00C20949 /* Dtmf-1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-1.wav"; path = "module/SipPhone/SipSound/Dtmf-1.wav"; sourceTree = "<group>"; };
-		9177D9001D53165D00C20949 /* Dtmf-2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-2.wav"; path = "module/SipPhone/SipSound/Dtmf-2.wav"; sourceTree = "<group>"; };
-		9177D9011D53165D00C20949 /* Dtmf-3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-3.wav"; path = "module/SipPhone/SipSound/Dtmf-3.wav"; sourceTree = "<group>"; };
-		9177D9021D53165D00C20949 /* Dtmf-4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-4.wav"; path = "module/SipPhone/SipSound/Dtmf-4.wav"; sourceTree = "<group>"; };
-		9177D9031D53165D00C20949 /* Dtmf-5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-5.wav"; path = "module/SipPhone/SipSound/Dtmf-5.wav"; sourceTree = "<group>"; };
-		9177D9041D53165D00C20949 /* Dtmf-6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-6.wav"; path = "module/SipPhone/SipSound/Dtmf-6.wav"; sourceTree = "<group>"; };
-		9177D9051D53165D00C20949 /* Dtmf-7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-7.wav"; path = "module/SipPhone/SipSound/Dtmf-7.wav"; sourceTree = "<group>"; };
-		9177D9061D53165D00C20949 /* Dtmf-8.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-8.wav"; path = "module/SipPhone/SipSound/Dtmf-8.wav"; sourceTree = "<group>"; };
-		9177D9071D53165D00C20949 /* Dtmf-9.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-9.wav"; path = "module/SipPhone/SipSound/Dtmf-9.wav"; sourceTree = "<group>"; };
-		9177D9081D53165D00C20949 /* Dtmf-#.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-#.wav"; path = "module/SipPhone/SipSound/Dtmf-#.wav"; sourceTree = "<group>"; };
-		9177D9091D53165D00C20949 /* Dtmf-*.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Dtmf-*.wav"; path = "module/SipPhone/SipSound/Dtmf-*.wav"; sourceTree = "<group>"; };
-		9177D9171D5324FB00C20949 /* SipDiagButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SipDiagButton.h; path = module/SipPhone/SipObject/SipDiagButton.h; sourceTree = "<group>"; };
-		9177D9181D5324FB00C20949 /* SipDiagButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SipDiagButton.m; path = module/SipPhone/SipObject/SipDiagButton.m; sourceTree = "<group>"; };
 		91A9004616E854E500ECF2CF /* 海大App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "海大App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A9004A16E854E500ECF2CF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		91A9004C16E854E500ECF2CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -819,20 +728,13 @@
 			files = (
 				9177D8FC1D530D0800C20949 /* AudioToolbox.framework in Frameworks */,
 				1F4F0D561D499C61000ED111 /* libstdc++.6.0.9.tbd in Frameworks */,
-				1F4F0D521D499C34000ED111 /* libpjsua2-i386-apple-darwin_ios.a in Frameworks */,
-				1F4F0D4F1D499C33000ED111 /* libpjsip-simple-i386-apple-darwin_ios.a in Frameworks */,
 				91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */,
 				7CBFB56F1CDB70510048C7D2 /* Security.framework in Frameworks */,
-				1F4F0D461D499C15000ED111 /* libyuv-i386-apple-darwin_ios.a in Frameworks */,
 				91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */,
 				7CBFB56D1CDB703D0048C7D2 /* OpenGLES.framework in Frameworks */,
 				7CBFB56B1CDB70360048C7D2 /* libz.tbd in Frameworks */,
-				1F4F0D511D499C34000ED111 /* libpjsua-i386-apple-darwin_ios.a in Frameworks */,
 				7CBFB5671CDB6E430048C7D2 /* libicucore.tbd in Frameworks */,
 				7CBFB5781CDB98820048C7D2 /* GoogleMaps.framework in Frameworks */,
-				1F4F0D4E1D499C33000ED111 /* libpjsip-i386-apple-darwin_ios.a in Frameworks */,
-				1F4F0D341D499BF4000ED111 /* libpjmedia-codec-i386-apple-darwin_ios.a in Frameworks */,
-				1F4F0D431D499C15000ED111 /* libresample-i386-apple-darwin_ios.a in Frameworks */,
 				7CBFB5651CDB6E3A0048C7D2 /* libc++.tbd in Frameworks */,
 				91756FEE16F21236001D724D /* ImageIO.framework in Frameworks */,
 				7CBFB5631CDB6E230048C7D2 /* GLKit.framework in Frameworks */,
@@ -841,27 +743,15 @@
 				91A9004F16E854E500ECF2CF /* CoreGraphics.framework in Frameworks */,
 				7CBFB55F1CDB6E050048C7D2 /* CoreData.framework in Frameworks */,
 				7CBFB55D1CDB6DFD0048C7D2 /* CoreBluetooth.framework in Frameworks */,
-				1F4F0D501D499C33000ED111 /* libpjsip-ua-i386-apple-darwin_ios.a in Frameworks */,
-				1F4F0D411D499C15000ED111 /* libgsmcodec-i386-apple-darwin_ios.a in Frameworks */,
 				1DD157A31951624A006CA7AF /* AVFoundation.framework in Frameworks */,
-				1F4F0D351D499BF4000ED111 /* libpjmedia-i386-apple-darwin_ios.a in Frameworks */,
 				7CBFB55B1CDB6DF40048C7D2 /* Accelerate.framework in Frameworks */,
-				1F4F0D421D499C15000ED111 /* libilbccodec-i386-apple-darwin_ios.a in Frameworks */,
-				1F4F0D441D499C15000ED111 /* libspeex-i386-apple-darwin_ios.a in Frameworks */,
 				43BEDC1C19236DEC0091B024 /* libsqlite3.dylib in Frameworks */,
 				BA06A07D16F2EF5B00212CB9 /* EventKit.framework in Frameworks */,
 				913A0D1E16E98F99007BAD8F /* MessageUI.framework in Frameworks */,
-				1F4F0D331D499BF4000ED111 /* libpjmedia-audiodev-i386-apple-darwin_ios.a in Frameworks */,
 				7CBFB5591CDB6D820048C7D2 /* MapKit.framework in Frameworks */,
-				1F4F0D361D499BF4000ED111 /* libpjmedia-videodev-i386-apple-darwin_ios.a in Frameworks */,
-				1F4F0D381D499C07000ED111 /* libpjlib-util-i386-apple-darwin_ios.a in Frameworks */,
-				1F4F0D401D499C15000ED111 /* libg7221codec-i386-apple-darwin_ios.a in Frameworks */,
-				1F4F0D541D499C3F000ED111 /* libpj-i386-apple-darwin_ios.a in Frameworks */,
 				91A9048816E89A3700ECF2CF /* libxml2.2.dylib in Frameworks */,
-				1F4F0D451D499C15000ED111 /* libsrtp-i386-apple-darwin_ios.a in Frameworks */,
 				91A9004B16E854E500ECF2CF /* UIKit.framework in Frameworks */,
 				91A9004D16E854E500ECF2CF /* Foundation.framework in Frameworks */,
-				1F4F0D481D499C25000ED111 /* libpjnath-i386-apple-darwin_ios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -978,24 +868,6 @@
 				1D63479419503905000FA24F /* ContactInfoTableViewController.m */,
 			);
 			path = about;
-			sourceTree = "<group>";
-		};
-		1FE7D36E1D48BE9800666955 /* SipPhone */ = {
-			isa = PBXGroup;
-			children = (
-				9177D9161D5324AC00C20949 /* SipObject */,
-				9177D8FD1D53165100C20949 /* SipSound */,
-				9177D8EC1D52F69F00C20949 /* SipViewControllers */,
-				91AFB1AD1D4B3AB80063B228 /* SipLib */,
-				1FE7D36F1D48BEAA00666955 /* SipPhoneModule.h */,
-				1FE7D3701D48BEAA00666955 /* SipPhoneModule.m */,
-				9177D8E91D52DCA400C20949 /* SipTabBarViewController.h */,
-				9177D8EA1D52DCA400C20949 /* SipTabBarViewController.m */,
-				1F4F0D5D1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.h */,
-				1F4F0D5E1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.m */,
-				9177D8F91D53003100C20949 /* SipMedia.xcassets */,
-			);
-			name = SipPhone;
 			sourceTree = "<group>";
 		};
 		43BEDBFE19236D570091B024 /* Bus */ = {
@@ -1154,51 +1026,6 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
-		9177D8EC1D52F69F00C20949 /* SipViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				9177D8F61D52F9A200C20949 /* SipEmergencyViewController.h */,
-				9177D8F71D52F9A200C20949 /* SipEmergencyViewController.m */,
-				91004F751D615CDE00A26388 /* SipContactInformationTableViewController.h */,
-				91004F761D615CDE00A26388 /* SipContactInformationTableViewController.m */,
-				910E9A951D6AE86500B8556B /* SipDiagPadViewController.h */,
-				910E9A961D6AE86500B8556B /* SipDiagPadViewController.m */,
-				91206EA81D6DB8E700A9BAED /* SipHistoryTableViewController.h */,
-				91206EA91D6DB8E700A9BAED /* SipHistoryTableViewController.m */,
-				91206EAB1D6DB9BB00A9BAED /* SipPhoneUsuallyUseTableViewController.h */,
-				91206EAC1D6DB9BB00A9BAED /* SipPhoneUsuallyUseTableViewController.m */,
-			);
-			name = SipViewControllers;
-			sourceTree = "<group>";
-		};
-		9177D8FD1D53165100C20949 /* SipSound */ = {
-			isa = PBXGroup;
-			children = (
-				9177D8FE1D53165D00C20949 /* Dtmf-0.wav */,
-				9177D8FF1D53165D00C20949 /* Dtmf-1.wav */,
-				9177D9001D53165D00C20949 /* Dtmf-2.wav */,
-				9177D9011D53165D00C20949 /* Dtmf-3.wav */,
-				9177D9021D53165D00C20949 /* Dtmf-4.wav */,
-				9177D9031D53165D00C20949 /* Dtmf-5.wav */,
-				9177D9041D53165D00C20949 /* Dtmf-6.wav */,
-				9177D9051D53165D00C20949 /* Dtmf-7.wav */,
-				9177D9061D53165D00C20949 /* Dtmf-8.wav */,
-				9177D9071D53165D00C20949 /* Dtmf-9.wav */,
-				9177D9081D53165D00C20949 /* Dtmf-#.wav */,
-				9177D9091D53165D00C20949 /* Dtmf-*.wav */,
-			);
-			name = SipSound;
-			sourceTree = "<group>";
-		};
-		9177D9161D5324AC00C20949 /* SipObject */ = {
-			isa = PBXGroup;
-			children = (
-				9177D9171D5324FB00C20949 /* SipDiagButton.h */,
-				9177D9181D5324FB00C20949 /* SipDiagButton.m */,
-			);
-			name = SipObject;
-			sourceTree = "<group>";
-		};
 		91A9003B16E854E400ECF2CF = {
 			isa = PBXGroup;
 			children = (
@@ -1253,7 +1080,6 @@
 		91A9005016E854E500ECF2CF /* NTOU_Mobile */ = {
 			isa = PBXGroup;
 			children = (
-				1FE7D36E1D48BE9800666955 /* SipPhone */,
 				1DA9F88219B3B2F900261C7E /* FreshmenEducation */,
 				1DD178E018FE7AB300621B67 /* library */,
 				C72B23EB176AE80800474235 /* Settings */,
@@ -1469,32 +1295,6 @@
 			children = (
 			);
 			path = StationPicker;
-			sourceTree = "<group>";
-		};
-		91AFB1AD1D4B3AB80063B228 /* SipLib */ = {
-			isa = PBXGroup;
-			children = (
-				1F4F0D2F1D499BF4000ED111 /* libpjmedia-audiodev-i386-apple-darwin_ios.a */,
-				1F4F0D301D499BF4000ED111 /* libpjmedia-codec-i386-apple-darwin_ios.a */,
-				1F4F0D311D499BF4000ED111 /* libpjmedia-i386-apple-darwin_ios.a */,
-				1F4F0D321D499BF4000ED111 /* libpjmedia-videodev-i386-apple-darwin_ios.a */,
-				1F4F0D371D499C07000ED111 /* libpjlib-util-i386-apple-darwin_ios.a */,
-				1F4F0D391D499C15000ED111 /* libg7221codec-i386-apple-darwin_ios.a */,
-				1F4F0D3A1D499C15000ED111 /* libgsmcodec-i386-apple-darwin_ios.a */,
-				1F4F0D531D499C3F000ED111 /* libpj-i386-apple-darwin_ios.a */,
-				1F4F0D3B1D499C15000ED111 /* libilbccodec-i386-apple-darwin_ios.a */,
-				1F4F0D471D499C25000ED111 /* libpjnath-i386-apple-darwin_ios.a */,
-				1F4F0D3C1D499C15000ED111 /* libresample-i386-apple-darwin_ios.a */,
-				1F4F0D491D499C33000ED111 /* libpjsip-i386-apple-darwin_ios.a */,
-				1F4F0D4A1D499C33000ED111 /* libpjsip-simple-i386-apple-darwin_ios.a */,
-				1F4F0D4B1D499C33000ED111 /* libpjsip-ua-i386-apple-darwin_ios.a */,
-				1F4F0D4C1D499C33000ED111 /* libpjsua-i386-apple-darwin_ios.a */,
-				1F4F0D4D1D499C33000ED111 /* libpjsua2-i386-apple-darwin_ios.a */,
-				1F4F0D3D1D499C15000ED111 /* libspeex-i386-apple-darwin_ios.a */,
-				1F4F0D3E1D499C15000ED111 /* libsrtp-i386-apple-darwin_ios.a */,
-				1F4F0D3F1D499C15000ED111 /* libyuv-i386-apple-darwin_ios.a */,
-			);
-			name = SipLib;
 			sourceTree = "<group>";
 		};
 		91CAC0FF16E98D48000F9B32 /* Emergency */ = {
@@ -1777,7 +1577,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				91A9005516E854E500ECF2CF /* InfoPlist.strings in Resources */,
-				9177D9101D53165D00C20949 /* Dtmf-6.wav in Resources */,
 				91A903A116E88E9D00ECF2CF /* global in Resources */,
 				91A9044016E899D200ECF2CF /* K_data.plist in Resources */,
 				43BF84B21948598C00B5B83F /* frequencyBusStation.plist in Resources */,
@@ -1787,22 +1586,15 @@
 				1DA9F8A319B484A000261C7E /* freshmen in Resources */,
 				EA6203A11AB97B4C0066E913 /* ntou_mobile3.db in Resources */,
 				1DD1793D18FE7AB300621B67 /* tabbar_background.jpg in Resources */,
-				9177D8FA1D53003100C20949 /* SipMedia.xcassets in Resources */,
 				912A540516E9A09600BBC013 /* MainStoryboard.storyboard in Resources */,
 				912A543716E9A56D00BBC013 /* credits.html in Resources */,
-				9177D90F1D53165D00C20949 /* Dtmf-5.wav in Resources */,
-				9177D9151D53165D00C20949 /* Dtmf-*.wav in Resources */,
 				1DA9F8A519B5037600261C7E /* Images.xcassets in Resources */,
-				9177D90A1D53165D00C20949 /* Dtmf-0.wav in Resources */,
 				91756F3E16F206F7001D724D /* ClassAdd.xib in Resources */,
 				91756F4016F206F7001D724D /* ClassAddRetina3.5.xib in Resources */,
 				91756F4116F206F7001D724D /* ClassAddRetina4.xib in Resources */,
 				1DD1792D18FE7AB300621B67 /* InfoPlist.strings in Resources */,
-				9177D9131D53165D00C20949 /* Dtmf-9.wav in Resources */,
 				91756F4716F206F7001D724D /* ClassInfoViewController.xib in Resources */,
 				1DD1792218FE7AB300621B67 /* LibraryFloor.plist in Resources */,
-				9177D9121D53165D00C20949 /* Dtmf-8.wav in Resources */,
-				9177D90D1D53165D00C20949 /* Dtmf-3.wav in Resources */,
 				91756F4916F206F7001D724D /* Course in Resources */,
 				91756F4A16F206F7001D724D /* CourseInfo in Resources */,
 				91756F4D16F206F7001D724D /* Grade in Resources */,
@@ -1812,18 +1604,13 @@
 				91756F5A16F206F7001D724D /* MoodleInfo in Resources */,
 				91756F5B16F206F7001D724D /* MoodleInfo2 in Resources */,
 				1DD1794118FE7AB300621B67 /* View.xib in Resources */,
-				9177D90E1D53165D00C20949 /* Dtmf-4.wav in Resources */,
 				1DD1792E18FE7AB300621B67 /* library-Info.plist in Resources */,
 				1DD1793918FE7AB300621B67 /* search_tabbar.jpg in Resources */,
-				9177D9141D53165D00C20949 /* Dtmf-#.wav in Resources */,
 				91756FCA16F20A5A001D724D /* NTOU_ClassColorViewController.xib in Resources */,
-				9177D9111D53165D00C20949 /* Dtmf-7.wav in Resources */,
 				C74699E916F21CF40060F49C /* news in Resources */,
 				BA06A07716F2EE6600212CB9 /* CalenderList_eng.plist in Resources */,
 				BA06A07B16F2EE6600212CB9 /* WOLSwitchViewController.xib in Resources */,
 				C71A4EE61705B106002819AD /* Fuho_Data.plist in Resources */,
-				9177D90B1D53165D00C20949 /* Dtmf-1.wav in Resources */,
-				9177D90C1D53165D00C20949 /* Dtmf-2.wav in Resources */,
 				1DA7DB5719D029850027F2F3 /* CalenderList.plist in Resources */,
 				BEA9165E183B24E600F12001 /* R66HararioList.plist in Resources */,
 				BECF7C76185598AD00ADD115 /* AlertViewShown.plist in Resources */,
@@ -1840,7 +1627,6 @@
 			files = (
 				1D6645691905087900416722 /* EGORefreshTableHeaderView.h in Sources */,
 				1D66456A1905087900416722 /* EGORefreshTableHeaderView.m in Sources */,
-				910E9A971D6AE86500B8556B /* SipDiagPadViewController.m in Sources */,
 				91756FE816F20E85001D724D /* ThumbsMainToolbar.h in Sources */,
 				91756FE916F20E85001D724D /* ThumbsViewController.h in Sources */,
 				91756FEA16F20E85001D724D /* UIXToolbarView.h in Sources */,
@@ -1867,7 +1653,6 @@
 				91756FDE16F20CC5001D724D /* ReaderThumbView.h in Sources */,
 				91756FDF16F20CC5001D724D /* ReaderViewController.h in Sources */,
 				EAB7701D1A8330C100258229 /* R66TableViewController.m in Sources */,
-				9177D8EB1D52DCA400C20949 /* SipTabBarViewController.m in Sources */,
 				91A9005716E854E500ECF2CF /* main.m in Sources */,
 				91A9005B16E854E500ECF2CF /* AppDelegate.m in Sources */,
 				43BEDC0D19236D570091B024 /* KLRouteDetailViewController.m in Sources */,
@@ -1875,18 +1660,14 @@
 				91A9007416E8597400ECF2CF /* UIKit+NTOUAdditions.m in Sources */,
 				91A9007716E85A9A00ECF2CF /* IconGrid.m in Sources */,
 				43BEDC0E19236D570091B024 /* KuoFuhoViewController.m in Sources */,
-				91004F771D615CDE00A26388 /* SipContactInformationTableViewController.m in Sources */,
 				43BEDBFB19236CF90091B024 /* FMDatabasePool.m in Sources */,
 				91A9007A16E85B3500ECF2CF /* NTOUModule.m in Sources */,
 				91A9007F16E85C8400ECF2CF /* AppDelegate+ModuleList.m in Sources */,
-				91206EAA1D6DB8E700A9BAED /* SipHistoryTableViewController.m in Sources */,
 				1DC66D1219614B32006D7C4C /* UINavigationItem+iOS7Spacing.m in Sources */,
 				43BEDBF519236BED0091B024 /* FMDatabase.m in Sources */,
 				91A9008216E8609200ECF2CF /* Rotation.m in Sources */,
-				91206EAD1D6DB9BB00A9BAED /* SipPhoneUsuallyUseTableViewController.m in Sources */,
 				91A9008516E8613800ECF2CF /* NTOU_MobileAppDelegate+Private.m in Sources */,
 				91A9008816E8659E00ECF2CF /* NTOUConstants.m in Sources */,
-				1FE7D3731D48BEAA00666955 /* SipPhoneModule.m in Sources */,
 				1DD1792918FE7AB300621B67 /* BookDetailViewController.m in Sources */,
 				1D8A3B1F1905051200816CCD /* LoadMoreTableFooterView.m in Sources */,
 				91A9043616E899D200ECF2CF /* Annotation.m in Sources */,
@@ -1987,7 +1768,6 @@
 				1D452FE31923A21D002E28ED /* accountTableViewController.m in Sources */,
 				1DD1793518FE7AB300621B67 /* MainViewController.m in Sources */,
 				43BEDC1119236D570091B024 /* TPRouteByButtonViewController.m in Sources */,
-				9177D9191D5324FB00C20949 /* SipDiagButton.m in Sources */,
 				91756F7116F206F7001D724D /* ReaderMainPagebar.m in Sources */,
 				91756F7216F206F7001D724D /* ReaderMainToolbar.m in Sources */,
 				91756F7316F206F7001D724D /* ReaderThumbCache.m in Sources */,
@@ -2003,7 +1783,6 @@
 				91756F7A16F206F7001D724D /* ReaderViewController.m in Sources */,
 				91756F7C16F206F7001D724D /* ScheduleViewController.m in Sources */,
 				91756F7D16F206F7001D724D /* SetWeekTimesViewController.m in Sources */,
-				9177D8F81D52F9A200C20949 /* SipEmergencyViewController.m in Sources */,
 				91756F8816F206F7001D724D /* StellarModule.m in Sources */,
 				91756F8D16F206F7001D724D /* ThumbsMainToolbar.m in Sources */,
 				91756F8E16F206F7001D724D /* ThumbsViewController.m in Sources */,
@@ -2043,7 +1822,6 @@
 				C72B23F1176AE87200474235 /* SettingsModuleViewController.m in Sources */,
 				C72B23F4176AE97100474235 /* SettingModule.m in Sources */,
 				BEA91661183C5F0400F12001 /* R66Layer1ViewController.m in Sources */,
-				1F4F0D5F1D49ABF7000ED111 /* NTOU_MobileAppDelegate+SipPhone.m in Sources */,
 				BE98A966183CF79400EF3CDC /* R66Layer2ViewController.m in Sources */,
 				BE98A969183CFA6000EF3CDC /* R66SwitchViewController.m in Sources */,
 				BECF7C71184F468200ADD115 /* R66LeftLayerViewController.m in Sources */,
@@ -2144,6 +1922,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lin ching-chi (JJY99JB76X)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -2152,6 +1931,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "PJ_AUTOCONF=1";
 				HEADER_SEARCH_PATHS = (
 					"${SDK_DIR}/usr/include/libxml2",
 					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjlib/include",
@@ -2179,7 +1959,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "海大App";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2192,6 +1972,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: ching-chi Lin (46873356PM)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ching-chi Lin (46873356PM)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -2200,6 +1981,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "PJ_AUTOCONF=1";
 				HEADER_SEARCH_PATHS = (
 					"${SDK_DIR}/usr/include/libxml2",
 					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjlib/include",
@@ -2227,7 +2009,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "海大App";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -9,7 +9,7 @@
 #import "ChiListViewController.h"
 #import "NTOUUIConstants.h"
 #import "MBProgressHUD.h"
-#define YEAR 2015   //起始學期年份
+#define YEAR 2016   //起始學期年份
 
 @interface ChiListViewController ()
 
@@ -58,7 +58,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     //setup Calendar
     eventStore = [[EKEventStore alloc] init];
 
@@ -71,15 +70,37 @@
         
     }
     /*
-    
-    
-    
     NSString *path = [[NSBundle mainBundle] pathForResource:@"CalenderList" ofType:@"plist"];
     
     NSDictionary *list = [[NSDictionary alloc] initWithContentsOfFile:path];
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:list options:NSJSONWritingPrettyPrinted error:nil];
     */
+  
+    NSArray *array = [[NSArray alloc] initWithObjects:@"8",@"9",@"10",@"11",@"12",@"1",@"2",@"3",@"4",@"5",@"6",@"7", nil];
+    self.keys = array;
     
+    [NSThread detachNewThreadSelector:@selector(loadData) toTarget:self withObject:nil];
+    
+   }
+
+//自動滾動到當前月份
+-(void)scrolltableview
+{
+    NSCalendar * calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate *today = [NSDate date];
+    NSDateComponents *dateComponents = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:today];
+    //[calendar components:(NSWeekdayCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSWeekCalendarUnit) fromDate:today];
+    NSInteger month = [dateComponents month];
+    if(month >= 8)
+        month -= 8;
+    else
+        month += 4;
+    [self.searchDisplayController.searchResultsTableView setContentOffset:CGPointZero];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:month] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+}
+
+-(void)loadData{
+    self.title = @"載入中";
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];//暫存
     NSURL * url=[NSURL URLWithString:@"http://140.121.91.62/calendar.php"];
     
@@ -102,11 +123,6 @@
     }
     //NSLog([[NSString alloc] initWithBytes:[jsonData bytes] length:[jsonData length] encoding:NSUTF8StringEncoding]);
     self.events = list;
-    
-    
-    
-    NSArray *array = [[NSArray alloc] initWithObjects:@"8",@"9",@"10",@"11",@"12",@"1",@"2",@"3",@"4",@"5",@"6",@"7", nil];
-    self.keys = array;
     
     
     self.actionToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 416, 320, 44)];
@@ -142,33 +158,18 @@
     downLoadEditing = NO;
     
     [self.tableView reloadData];
-    
     [self scrolltableview];
-}
-//自動滾動到當前月份
--(void)scrolltableview
-{
-    NSCalendar * calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDate *today = [NSDate date];
-    NSDateComponents *dateComponents = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:today];
-    //[calendar components:(NSWeekdayCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSWeekCalendarUnit) fromDate:today];
-    NSInteger month = [dateComponents month];
-    if(month >= 8)
-        month -= 8;
-    else
-        month += 4;
-    [self.searchDisplayController.searchResultsTableView setContentOffset:CGPointZero];
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:month] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    self.title = @"行事曆";
+    if (!(self.isMovingToParentViewController || self.isBeingPresented))
+    {
+        [self scrolltableview];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    if (!(self.isMovingToParentViewController || self.isBeingPresented))
-    {
-        [self scrolltableview];
-    }
 }
 
 -(void)viewDidUnload

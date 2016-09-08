@@ -16,7 +16,6 @@
 @property (nonatomic) BOOL downLoadEditing;
 @property (nonatomic) NSInteger menuHeight;
 @property (nonatomic, strong) UIToolbar *actionToolbar;
-
 - (IBAction)chooseitem;
 - (void)scrolltableview;//自動滾動到當前月份
 - (void)setupFrame:(float) NavBarHeight;

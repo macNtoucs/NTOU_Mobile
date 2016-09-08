@@ -159,7 +159,7 @@
     chiMenuShowing = NO;
     EngMenuShowing = NO;
     
-    UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.height)];
+    /*UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.height)];
     background.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0f];
     [self.view addSubview:background];
     
@@ -168,7 +168,7 @@
     [spinner setColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f]];
     spinner.hidden = NO;
     [self.view addSubview: spinner];
-    [spinner startAnimating];
+    [spinner startAnimating];*/ 
     
 }
 

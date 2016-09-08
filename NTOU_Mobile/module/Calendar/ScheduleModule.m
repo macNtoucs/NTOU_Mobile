@@ -2,7 +2,7 @@
 #import "SwitchViewController.h"
 #import "NTOUModule+Protected.h"
 #import "NTOUConstants.h"
-
+#import "ChiListViewController.h"
 
 @implementation ScheduleModule
 @synthesize requestQueue = _requestQueue;
@@ -27,7 +27,7 @@
 
 - (void)loadModuleHomeController
 {
-    SwitchViewController *viewcontroller = [[SwitchViewController alloc] init];
+    ChiListViewController *viewcontroller = [[ChiListViewController alloc]initWithStyle:UITableViewStylePlain];
     viewcontroller.title = @"行事曆";
     self.moduleHomeController = viewcontroller;
 }
