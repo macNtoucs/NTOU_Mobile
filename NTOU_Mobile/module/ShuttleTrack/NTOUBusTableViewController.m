@@ -104,7 +104,7 @@
     
     switch (section) {
         case 0:
-            return 2;
+            return 4;//20160912 新增1800公車
             break;
         case 1:
             return 3;
@@ -131,6 +131,12 @@
                     break;
                 case 1:
                     cell.textLabel.text = @"捷運劍潭站  → 海洋大學";
+                    break;
+                case 2://20160912 新增1800公車
+                    cell.textLabel.text = @"1800海洋大學  → 中崙";
+                    break;
+                case 3:
+                    cell.textLabel.text = @"1800中崙  → 海洋大學";
                     break;
                 default:
                     break;

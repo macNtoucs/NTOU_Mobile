@@ -13,7 +13,8 @@
 //#define ZhongxiaFuxing_NTOU 0
 #define NTOU_Jiantan 0
 #define Jiantan_NTOU 1
-
+#define NTOU_TiongLun 2 //20160912 新增1800
+#define TiongLun_NTOU 3
 
 
 @interface NTOUTableViewControllerLayer2 ()
@@ -86,6 +87,12 @@
         case NTOU_Jiantan:
             headerTitle = @"海洋大學  → 捷運劍潭站";
             break;
+        case NTOU_TiongLun:
+            headerTitle = @"1800海洋大學  → 中崙";
+            break;
+        case TiongLun_NTOU:
+            headerTitle = @"1800中崙  → 海洋大學";
+            break;
         default:
             break;
     }
@@ -112,6 +119,12 @@
             break;
         case NTOU_Jiantan:
             return 4;
+            break;
+        case NTOU_TiongLun:
+            return 6;
+            break;
+        case TiongLun_NTOU:
+            return 5;
             break;
         default:
             return 0;
@@ -230,6 +243,63 @@
                     break;
             }
             break;
+        case TiongLun_NTOU:
+            switch (indexPath.row) {
+                case 0:
+                    cell.textLabel.text = @"班次";
+                    cell.textLabel.textColor = [UIColor blueColor];
+                    cell.detailTextLabel.text = @"發車時間";
+                    cell.detailTextLabel.textColor = [UIColor blueColor];
+                    cell.accessoryType = UITableViewCellAccessoryNone;
+                    break;
+                case 1:
+                    cell.textLabel.text = @"1";
+                    cell.detailTextLabel.text = @"07:10";
+                    break;
+                case 2:
+                    cell.textLabel.text = @"2";
+                    cell.detailTextLabel.text = @"07:30";
+                    break;
+                case 3:
+                    cell.textLabel.text = @"3";
+                    cell.detailTextLabel.text = @"08:10";
+                    break;
+                case 4:
+                    cell.textLabel.text = @"4";
+                    cell.detailTextLabel.text = @"08:30";
+                    break;
+            }
+            break;
+        case NTOU_TiongLun:
+            switch (indexPath.row) {
+                case 0:
+                    cell.textLabel.text = @"班次";
+                    cell.textLabel.textColor = [UIColor blueColor];
+                    cell.detailTextLabel.text = @"發車時間";
+                    cell.detailTextLabel.textColor = [UIColor blueColor];
+                    cell.accessoryType = UITableViewCellAccessoryNone;
+                    break;
+                case 1:
+                    cell.textLabel.text = @"1";
+                    cell.detailTextLabel.text = @"16:50";
+                    break;
+                case 2:
+                    cell.textLabel.text = @"2";
+                    cell.detailTextLabel.text = @"17:20";
+                    break;
+                case 3:
+                    cell.textLabel.text = @"3";
+                    cell.detailTextLabel.text = @"17:50";
+                    break;
+                case 4:
+                    cell.textLabel.text = @"4";
+                    cell.detailTextLabel.text = @"18:20";
+                    break;
+                case 5:
+                    cell.textLabel.text = @"5";
+                    cell.detailTextLabel.text = @"21:30";
+                    break;
+            }
         default:
             break;
     }
@@ -349,8 +419,6 @@
          break;
          }
          break;
-            break;
-            
         /*case NTOU_ZhongxiaFuxing:
             switch (indexPath.row) {
                 case 1:
@@ -396,11 +464,18 @@
         default:
             break;
     }
-    stopsLocation.view.hidden = NO;
-    stopsLocation.title = [cell.textLabel.text retain];
-    [self.navigationController pushViewController:stopsLocation animated:YES];
-    stopsLocation.navigationItem.leftBarButtonItem.title=@"back";
-    [stopsLocation release];
+    switch (self->WhatRoute) {
+        case NTOU_Jiantan:
+        case Jiantan_NTOU:
+            stopsLocation.view.hidden = NO;
+            stopsLocation.title = [cell.textLabel.text retain];
+            [self.navigationController pushViewController:stopsLocation animated:YES];
+            stopsLocation.navigationItem.leftBarButtonItem.title=@"back";
+            [stopsLocation release];
+            break;
+        default:
+            break;
+    }
 
 }
 
