@@ -64,9 +64,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%ld%ld",(long)indexPath.section,(long)indexPath.row];
     TDBadgedCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    UIFont * font = [tableView cellForRowAtIndexPath:indexPath].textLabel.font;
     if (cell == nil)
     {
         cell = [[[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];

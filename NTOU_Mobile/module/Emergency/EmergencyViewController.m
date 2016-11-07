@@ -333,7 +333,7 @@
             cell.textLabel.text = [innerNumber objectAtIndex:indexPath.row][@"name"];
 			if ([[innerNumber objectAtIndex:indexPath.row][@"phone"] isEqualToString:@""]){
                 cell.accessoryView = [UIImageView accessoryViewWithNTOUType: NTOUAccessoryViewEmail];
-                cell.secondaryTextLabel.text =[innerNumber objectAtIndex:indexPath.row][@"mail"];
+                cell.secondaryTextLabel.text =[innerNumber objectAtIndex:indexPath.row][@"email"];
             }
             else{
                 cell.secondaryTextLabel.text =[innerNumber objectAtIndex:indexPath.row][@"phone"];
@@ -352,7 +352,7 @@
             cell.textLabel.text = [outerNumber objectAtIndex:indexPath.row][@"name"];
             if ([[outerNumber objectAtIndex:indexPath.row][@"phone"] isEqualToString:@""]){
                 cell.accessoryView = [UIImageView accessoryViewWithNTOUType: NTOUAccessoryViewEmail];
-                cell.secondaryTextLabel.text =[outerNumber objectAtIndex:indexPath.row][@"mail"];
+                cell.secondaryTextLabel.text =[outerNumber objectAtIndex:indexPath.row][@"email"];
             }
             else{
                 cell.secondaryTextLabel.text =[outerNumber objectAtIndex:indexPath.row][@"phone"];
@@ -371,7 +371,7 @@
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
     
     //執行取消發送電子郵件畫面的動畫
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
    
 
 }
@@ -383,65 +383,74 @@
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *mailView = [[MFMailComposeViewController alloc] init];
         mailView.mailComposeDelegate = self;
+
         if(alertTouchIndex.section==1)
-            [mailView setToRecipients:[NSArray arrayWithObjects:[innerNumber objectAtIndex:alertTouchIndex.row][@"mail"], nil]];
+            [mailView setToRecipients:[NSArray arrayWithObjects:[innerNumber objectAtIndex:alertTouchIndex.row][@"email"], nil]];
         else
-            [mailView setToRecipients:[NSArray arrayWithObjects:[outerNumber objectAtIndex:alertTouchIndex.row][@"mail"], nil]];
+            [mailView setToRecipients:[NSArray arrayWithObjects:[outerNumber objectAtIndex:alertTouchIndex.row][@"email"], nil]];
+
         [mailView setSubject:@"緊急事件"];
         
         [mailView setMessageBody:@"[照片]" isHTML:NO];
         NSData *imageData = UIImageJPEGRepresentation(image,0.3);
         [mailView addAttachmentData:imageData mimeType:@"image/png" fileName:@"image"];
-        [self dismissModalViewControllerAnimated:NO];
-        [self presentModalViewController:mailView
-                                animated:YES];
-        
+        [self dismissViewControllerAnimated:YES completion:nil];
+        [self presentViewController:mailView animated:YES completion:nil];
     }
+    else
+        [self dismissViewControllerAnimated:YES completion:nil];
 
 }
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
     switch (buttonIndex) {
         case 0:
+            if([alertView.message isEqualToString:@"未偵測到可用郵件帳號"])
+            {
+                NSURL* mailURL = [NSURL URLWithString:@"message://"];
+                if ([[UIApplication sharedApplication] canOpenURL:mailURL]) {
+                    [[UIApplication sharedApplication] openURL:mailURL];
+                }
+            }
             break;
-        default:{
-            NSDictionary *anEntry;
-            if(alertTouchIndex.section==1)
-                anEntry= [innerNumber objectAtIndex:alertTouchIndex.row];
-            else
-                anEntry= [outerNumber objectAtIndex:alertTouchIndex.row];
-            NSString *phoneNumber = [[anEntry objectForKey:@"phone"]
-                           stringByReplacingOccurrencesOfString:@"."
-                           withString:@""];
-            NSURL *aURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", phoneNumber]];
-            [[UIApplication sharedApplication] openURL:aURL];
+        case 1:
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",alertView.message]]];
             break;
-        }
+        default:
+            break;
     }
-    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *anEntry;
     NSString *phoneNumber;
     NSString *title;
-    NSURL *aURL;
     switch (indexPath.section) {
         case 2:{
         }
         case 1:{
-            if ([[outerNumber objectAtIndex:indexPath.row][@"phone"] isEqualToString:@""]){
+            alertTouchIndex=[indexPath copy];
+            
+            if ([[innerNumber objectAtIndex:indexPath.row][@"phone"] isEqualToString:@""]){
                 if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                     break;
                 }
-                imagePicker = [UIImagePickerController new];
-                imagePicker.delegate = self;
-                imagePicker.sourceType=UIImagePickerControllerSourceTypeCamera;
-                [self presentModalViewController:imagePicker animated:YES];
+                if([MFMailComposeViewController canSendMail])
+                {
+                    imagePicker = [UIImagePickerController new];
+                    imagePicker.delegate = self;
+                    imagePicker.sourceType=UIImagePickerControllerSourceTypeCamera;
+                    [self presentViewController:imagePicker animated:YES completion:nil];
+                }
+                else
+                {
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提醒" message:@"未偵測到可用郵件帳號" delegate:self cancelButtonTitle:@"前往郵件" otherButtonTitles:nil];
+                    [alert show];
+                    [alert release];
+                }
                 break;
             }
-            alertTouchIndex=indexPath;
+            
             if(alertTouchIndex.section==1)
                 anEntry= [innerNumber objectAtIndex:alertTouchIndex.row];
             else
@@ -452,11 +461,8 @@
             phoneNumber = [[anEntry objectForKey:@"phone"]
                                      stringByReplacingOccurrencesOfString:@"."
                                      withString:@""];
-            aURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", phoneNumber]];
-            if ([[UIApplication sharedApplication] canOpenURL:aURL]) {
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"警告" message:[NSString stringWithFormat:@"即將撥往%@",title] delegate:self cancelButtonTitle:@"取消"  otherButtonTitles:@"撥打", nil];
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"即將撥往" message:[NSString stringWithFormat:@"%@",phoneNumber] delegate:self cancelButtonTitle:@"取消"  otherButtonTitles:@"撥打", nil];
                 [alert show];
-            }
             break;
          }
     }

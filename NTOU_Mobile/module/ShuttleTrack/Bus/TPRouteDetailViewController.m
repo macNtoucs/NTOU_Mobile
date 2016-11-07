@@ -29,7 +29,7 @@
 - (void) setter_busName:(NSString *)name andGoBack:(NSInteger)goback
 {
     busName = name;
-    goBack = [[NSString alloc] initWithFormat:@"%lu", goback];
+    goBack = [[NSString alloc] initWithFormat:@"%lu", (long int)goback];
     NSLog(@"busName:%@, goBack:%@", busName, goBack);
     ISREAL = FALSE;
 }

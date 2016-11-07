@@ -33,7 +33,7 @@
 @property (nonatomic, retain) UIWebView *infoWebView;
 @property (nonatomic, retain) NSMutableArray *innerNumber;
 @property (nonatomic, retain) NSMutableArray *outerNumber;
-@property (nonatomic, retain) NSIndexPath *alertTouchIndex;
+@property (nonatomic, assign) NSIndexPath *alertTouchIndex;
 @property (nonatomic, retain) UIImagePickerController * imagePicker;
 
 @end

@@ -13,7 +13,7 @@
 	<key>CFBundleIcons~ipad</key>
 	<dict/>
 	<key>CFBundleIdentifier</key>
-	<string>ntoucs.NTOU-Mobile</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleLocalizations</key>
@@ -25,11 +25,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.510</string>
+	<string>1.512</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.510</string>
+	<string>1.512</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -44,6 +44,12 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCalendarsUsageDescription</key>
+	<string>App需要您的同意，才能訪問日曆。</string>
+	<key>NSCameraUsageDescription</key>
+	<string>App需要您的同意，才能訪問相機。</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App需要您的同意，才能訪問相冊。</string>
 	<key>NTOUAboutAppText</key>
 	<string>開發者：海大資訊工程學系
 美工設計協助：畢冊王
@@ -73,11 +79,6 @@ FAX:+886-2-2462-0724
 海大未來的發展不是以漸進成長為策略，而是要以躍進的方式來推展海洋特色。持續「培育兼具人文素之基礎與應用能力之人才」與「致力於海洋相關領域之學術與應用發展」，達成「加強海洋特色、提升學校競爭力」、「培養兼具人文關懷、專業創新、國際視野的人才」與「發展世界的海洋教育及研究」的目標，讓海大成為一所具有活力與高度榮譽感之「卓越教學與特色研究兼具的海洋頂尖大學」。</string>
 	<key>NTOUFeedbackAddress</key>
 	<array/>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>audio</string>
-		<string>voip</string>
-	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
