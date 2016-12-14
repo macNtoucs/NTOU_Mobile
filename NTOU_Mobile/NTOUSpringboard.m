@@ -214,13 +214,7 @@
     }
 
     [self displayBannerImage];
-	//[self checkForFeaturedModule];
-    
-	checkBannerTimer = [[NSTimer scheduledTimerWithTimeInterval:60 * 60 * 12
-														 target:self
-													   selector:@selector(checkForFeaturedModule)
-													   userInfo:nil
-														repeats:YES] retain];
+
 }
 -(void)viewWillDisappear:(BOOL)animated{
     

@@ -84,13 +84,10 @@
 		7CBFB56F1CDB70510048C7D2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB56E1CDB70510048C7D2 /* Security.framework */; };
 		7CBFB5711CDB7A8B0048C7D2 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7CBFB5701CDB7A8B0048C7D2 /* GoogleMaps.bundle */; };
 		7CBFB5781CDB98820048C7D2 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB5761CDB98820048C7D2 /* GoogleMaps.framework */; };
+		9118539F1DFEB4220001F556 /* LifeDefaultData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9118539E1DFEB4220001F556 /* LifeDefaultData.plist */; };
 		912A53EF16E99F7900BBC013 /* NTOUGuide2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */; };
 		912A53F016E99F7900BBC013 /* NTOUGuideSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EC16E99F7900BBC013 /* NTOUGuideSetViewController.m */; };
 		912A53F116E99F7900BBC013 /* NTOUGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EE16E99F7900BBC013 /* NTOUGuideViewController.m */; };
-		912A540316E9A09600BBC013 /* CustomPagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53F916E9A09600BBC013 /* CustomPagerViewController.m */; };
-		912A540516E9A09600BBC013 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 912A53FB16E9A09600BBC013 /* MainStoryboard.storyboard */; };
-		912A540616E9A09600BBC013 /* PagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53FD16E9A09600BBC013 /* PagerViewController.m */; };
-		912A540716E9A09600BBC013 /* PeopleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53FF16E9A09600BBC013 /* PeopleModule.m */; };
 		912A542516E9A22300BBC013 /* AboutModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A542016E9A22300BBC013 /* AboutModule.m */; };
 		912A542616E9A22300BBC013 /* AboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A542216E9A22300BBC013 /* AboutTableViewController.m */; };
 		912A542916E9A26F00BBC013 /* AboutNTOUVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A542816E9A26F00BBC013 /* AboutNTOUVC.m */; };
@@ -100,6 +97,10 @@
 		913A0D1916E98EBA007BAD8F /* EmergencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 913A0D1316E98EBA007BAD8F /* EmergencyViewController.m */; };
 		913A0D1A16E98EBA007BAD8F /* OutCampusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 913A0D1516E98EBA007BAD8F /* OutCampusViewController.m */; };
 		913A0D1E16E98F99007BAD8F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 913A0D1D16E98F99007BAD8F /* MessageUI.framework */; };
+		913ADD671DF5909800809F35 /* LifeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 913ADD661DF5909800809F35 /* LifeButton.m */; };
+		913ADD701DF5910C00809F35 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 913ADD6A1DF5910C00809F35 /* MainStoryboard.storyboard */; };
+		913ADD711DF5910C00809F35 /* PagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 913ADD6C1DF5910C00809F35 /* PagerViewController.m */; };
+		913ADD721DF5910C00809F35 /* PeopleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 913ADD6E1DF5910C00809F35 /* PeopleModule.m */; };
 		91756E4816E9B5EB001D724D /* CMModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 91756E4716E9B5EB001D724D /* CMModule.m */; };
 		91756F3C16F206F7001D724D /* CGPDFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 91756E9116F206F7001D724D /* CGPDFDocument.m */; };
 		91756F3D16F206F7001D724D /* ClassAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 91756E9316F206F7001D724D /* ClassAdd.m */; };
@@ -241,6 +242,7 @@
 		91A9049116E89E5500ECF2CF /* StationInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A9049016E89E5400ECF2CF /* StationInfoViewController.m */; };
 		91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049416E89FE300ECF2CF /* QuartzCore.framework */; };
 		91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */; };
+		91BFE77E1DF00D9800F2C26B /* LifeMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91BFE77D1DF00D9800F2C26B /* LifeMedia.xcassets */; };
 		BA06A07516F2EE6600212CB9 /* ScheduleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06816F2EE6600212CB9 /* ScheduleModule.m */; };
 		BA06A07716F2EE6600212CB9 /* CalenderList_eng.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */; };
 		BA06A07816F2EE6600212CB9 /* ChiListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06D16F2EE6600212CB9 /* ChiListViewController.m */; };
@@ -403,19 +405,13 @@
 		7CBFB56E1CDB70510048C7D2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7CBFB5701CDB7A8B0048C7D2 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		7CBFB5761CDB98820048C7D2 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		9118539E1DFEB4220001F556 /* LifeDefaultData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LifeDefaultData.plist; path = module/Life/LifeDefaultData.plist; sourceTree = "<group>"; };
 		912A53E916E99F7900BBC013 /* NTOUGuide2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuide2ViewController.h; sourceTree = "<group>"; };
 		912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuide2ViewController.m; sourceTree = "<group>"; };
 		912A53EB16E99F7900BBC013 /* NTOUGuideSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuideSetViewController.h; sourceTree = "<group>"; };
 		912A53EC16E99F7900BBC013 /* NTOUGuideSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuideSetViewController.m; sourceTree = "<group>"; };
 		912A53ED16E99F7900BBC013 /* NTOUGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuideViewController.h; sourceTree = "<group>"; };
 		912A53EE16E99F7900BBC013 /* NTOUGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NTOUGuideViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		912A53F816E9A09600BBC013 /* CustomPagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPagerViewController.h; sourceTree = "<group>"; };
-		912A53F916E9A09600BBC013 /* CustomPagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPagerViewController.m; sourceTree = "<group>"; };
-		912A53FB16E9A09600BBC013 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
-		912A53FC16E9A09600BBC013 /* PagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagerViewController.h; sourceTree = "<group>"; };
-		912A53FD16E9A09600BBC013 /* PagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagerViewController.m; sourceTree = "<group>"; };
-		912A53FE16E9A09600BBC013 /* PeopleModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleModule.h; sourceTree = "<group>"; };
-		912A53FF16E9A09600BBC013 /* PeopleModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleModule.m; sourceTree = "<group>"; };
 		912A541D16E9A22300BBC013 /* AboutNTOUVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutNTOUVC.h; sourceTree = "<group>"; };
 		912A541F16E9A22300BBC013 /* AboutModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutModule.h; sourceTree = "<group>"; };
 		912A542016E9A22300BBC013 /* AboutModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutModule.m; sourceTree = "<group>"; };
@@ -433,6 +429,13 @@
 		913A0D1516E98EBA007BAD8F /* OutCampusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutCampusViewController.m; sourceTree = "<group>"; };
 		913A0D1C16E98F66007BAD8F /* NTOUModule+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NTOUModule+Protected.h"; sourceTree = "<group>"; };
 		913A0D1D16E98F99007BAD8F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		913ADD651DF5909800809F35 /* LifeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LifeButton.h; path = module/Life/LifeButton.h; sourceTree = "<group>"; };
+		913ADD661DF5909800809F35 /* LifeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LifeButton.m; path = module/Life/LifeButton.m; sourceTree = "<group>"; };
+		913ADD6A1DF5910C00809F35 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard.storyboard; path = module/Life/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		913ADD6B1DF5910C00809F35 /* PagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PagerViewController.h; path = module/Life/PagerViewController.h; sourceTree = "<group>"; };
+		913ADD6C1DF5910C00809F35 /* PagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PagerViewController.m; path = module/Life/PagerViewController.m; sourceTree = "<group>"; };
+		913ADD6D1DF5910C00809F35 /* PeopleModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PeopleModule.h; path = module/Life/PeopleModule.h; sourceTree = "<group>"; };
+		913ADD6E1DF5910C00809F35 /* PeopleModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PeopleModule.m; path = module/Life/PeopleModule.m; sourceTree = "<group>"; };
 		91756E4616E9B5EB001D724D /* CMModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMModule.h; sourceTree = "<group>"; };
 		91756E4716E9B5EB001D724D /* CMModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMModule.m; sourceTree = "<group>"; };
 		91756E9016F206F7001D724D /* CGPDFDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGPDFDocument.h; path = ../CGPDFDocument.h; sourceTree = "<group>"; };
@@ -664,6 +667,7 @@
 		91A9049016E89E5400ECF2CF /* StationInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationInfoViewController.m; sourceTree = "<group>"; };
 		91A9049416E89FE300ECF2CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		91BFE77D1DF00D9800F2C26B /* LifeMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = LifeMedia.xcassets; path = module/Life/LifeMedia.xcassets; sourceTree = "<group>"; };
 		BA06A06716F2EE6600212CB9 /* ScheduleModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleModule.h; sourceTree = "<group>"; };
 		BA06A06816F2EE6600212CB9 /* ScheduleModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleModule.m; sourceTree = "<group>"; };
 		BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CalenderList_eng.plist; sourceTree = "<group>"; };
@@ -926,13 +930,15 @@
 		912A53F616E9A03D00BBC013 /* Life */ = {
 			isa = PBXGroup;
 			children = (
-				912A53F816E9A09600BBC013 /* CustomPagerViewController.h */,
-				912A53F916E9A09600BBC013 /* CustomPagerViewController.m */,
-				912A53FB16E9A09600BBC013 /* MainStoryboard.storyboard */,
-				912A53FC16E9A09600BBC013 /* PagerViewController.h */,
-				912A53FD16E9A09600BBC013 /* PagerViewController.m */,
-				912A53FE16E9A09600BBC013 /* PeopleModule.h */,
-				912A53FF16E9A09600BBC013 /* PeopleModule.m */,
+				9118539E1DFEB4220001F556 /* LifeDefaultData.plist */,
+				913ADD6A1DF5910C00809F35 /* MainStoryboard.storyboard */,
+				913ADD6B1DF5910C00809F35 /* PagerViewController.h */,
+				913ADD6C1DF5910C00809F35 /* PagerViewController.m */,
+				913ADD6D1DF5910C00809F35 /* PeopleModule.h */,
+				913ADD6E1DF5910C00809F35 /* PeopleModule.m */,
+				91BFE77D1DF00D9800F2C26B /* LifeMedia.xcassets */,
+				913ADD651DF5909800809F35 /* LifeButton.h */,
+				913ADD661DF5909800809F35 /* LifeButton.m */,
 			);
 			name = Life;
 			sourceTree = "<group>";
@@ -1583,11 +1589,12 @@
 				43BF84B21948598C00B5B83F /* frequencyBusStation.plist in Resources */,
 				91A9047516E899D200ECF2CF /* stationNum.txt in Resources */,
 				91A9047616E899D200ECF2CF /* stationNumber.plist in Resources */,
+				913ADD701DF5910C00809F35 /* MainStoryboard.storyboard in Resources */,
 				7CBFB5711CDB7A8B0048C7D2 /* GoogleMaps.bundle in Resources */,
 				1DA9F8A319B484A000261C7E /* freshmen in Resources */,
 				EA6203A11AB97B4C0066E913 /* ntou_mobile3.db in Resources */,
 				1DD1793D18FE7AB300621B67 /* tabbar_background.jpg in Resources */,
-				912A540516E9A09600BBC013 /* MainStoryboard.storyboard in Resources */,
+				91BFE77E1DF00D9800F2C26B /* LifeMedia.xcassets in Resources */,
 				912A543716E9A56D00BBC013 /* credits.html in Resources */,
 				1DA9F8A519B5037600261C7E /* Images.xcassets in Resources */,
 				91756F3E16F206F7001D724D /* ClassAdd.xib in Resources */,
@@ -1611,6 +1618,7 @@
 				C74699E916F21CF40060F49C /* news in Resources */,
 				BA06A07716F2EE6600212CB9 /* CalenderList_eng.plist in Resources */,
 				BA06A07B16F2EE6600212CB9 /* WOLSwitchViewController.xib in Resources */,
+				9118539F1DFEB4220001F556 /* LifeDefaultData.plist in Resources */,
 				C71A4EE61705B106002819AD /* Fuho_Data.plist in Resources */,
 				1DA7DB5719D029850027F2F3 /* CalenderList.plist in Resources */,
 				BEA9165E183B24E600F12001 /* R66HararioList.plist in Resources */,
@@ -1634,6 +1642,7 @@
 				91756FD116F20CC5001D724D /* ReaderConstants.h in Sources */,
 				91756FD216F20CC5001D724D /* ReaderContentPage.h in Sources */,
 				91756FD316F20CC5001D724D /* ReaderContentTile.h in Sources */,
+				913ADD721DF5910C00809F35 /* PeopleModule.m in Sources */,
 				91756FD416F20CC5001D724D /* ReaderContentView.h in Sources */,
 				91756FD516F20CC5001D724D /* ReaderDocument.h in Sources */,
 				91756FD616F20CC5001D724D /* ReaderMainPagebar.h in Sources */,
@@ -1681,6 +1690,7 @@
 				91A9044116E899D200ECF2CF /* K_RouteViewController.m in Sources */,
 				91A9044216E899D200ECF2CF /* K_TimeView.m in Sources */,
 				91A9044316E899D200ECF2CF /* Kuo_Data.m in Sources */,
+				913ADD711DF5910C00809F35 /* PagerViewController.m in Sources */,
 				91A9044416E899D200ECF2CF /* KUO_Data_Bra2.m in Sources */,
 				91A9044516E899D200ECF2CF /* KUO_KUANGViewController.m in Sources */,
 				91A9044616E899D200ECF2CF /* KUO_RouteViewController_Bra2.m in Sources */,
@@ -1705,6 +1715,7 @@
 				1DD1794618FE826500621B67 /* LibraryModule.m in Sources */,
 				1DD1793118FE7AB300621B67 /* LoginResResultViewController.m in Sources */,
 				91A9046916E899D200ECF2CF /* ShuttleModule.m in Sources */,
+				913ADD671DF5909800809F35 /* LifeButton.m in Sources */,
 				43BEDC1F19236E530091B024 /* NTOUShuttleButtonViewController.m in Sources */,
 				91A9047D16E899D200ECF2CF /* StationView.m in Sources */,
 				1DD1794218FE7AB300621B67 /* WOLSwitchViewController.m in Sources */,
@@ -1734,10 +1745,7 @@
 				912A53F016E99F7900BBC013 /* NTOUGuideSetViewController.m in Sources */,
 				1DA9F88B19B3B4C200261C7E /* FreshmenWebView.m in Sources */,
 				912A53F116E99F7900BBC013 /* NTOUGuideViewController.m in Sources */,
-				912A540316E9A09600BBC013 /* CustomPagerViewController.m in Sources */,
-				912A540616E9A09600BBC013 /* PagerViewController.m in Sources */,
 				1D8A3B211905051200816CCD /* PullTableView.m in Sources */,
-				912A540716E9A09600BBC013 /* PeopleModule.m in Sources */,
 				912A542516E9A22300BBC013 /* AboutModule.m in Sources */,
 				912A542616E9A22300BBC013 /* AboutTableViewController.m in Sources */,
 				912A542916E9A26F00BBC013 /* AboutNTOUVC.m in Sources */,
