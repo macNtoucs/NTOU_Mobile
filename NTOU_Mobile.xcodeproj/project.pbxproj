@@ -82,8 +82,6 @@
 		7CBFB56B1CDB70360048C7D2 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB56A1CDB70360048C7D2 /* libz.tbd */; };
 		7CBFB56D1CDB703D0048C7D2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB56C1CDB703D0048C7D2 /* OpenGLES.framework */; };
 		7CBFB56F1CDB70510048C7D2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB56E1CDB70510048C7D2 /* Security.framework */; };
-		7CBFB5711CDB7A8B0048C7D2 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7CBFB5701CDB7A8B0048C7D2 /* GoogleMaps.bundle */; };
-		7CBFB5781CDB98820048C7D2 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB5761CDB98820048C7D2 /* GoogleMaps.framework */; };
 		9118539F1DFEB4220001F556 /* LifeDefaultData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9118539E1DFEB4220001F556 /* LifeDefaultData.plist */; };
 		912A53EF16E99F7900BBC013 /* NTOUGuide2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */; };
 		912A53F016E99F7900BBC013 /* NTOUGuideSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 912A53EC16E99F7900BBC013 /* NTOUGuideSetViewController.m */; };
@@ -243,6 +241,7 @@
 		91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049416E89FE300ECF2CF /* QuartzCore.framework */; };
 		91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */; };
 		91BFE77E1DF00D9800F2C26B /* LifeMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91BFE77D1DF00D9800F2C26B /* LifeMedia.xcassets */; };
+		B95DBE0C8031079CE32C85CE /* libPods-NTOU_Mobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B14CD421B70F5FDC571D151 /* libPods-NTOU_Mobile.a */; };
 		BA06A07516F2EE6600212CB9 /* ScheduleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06816F2EE6600212CB9 /* ScheduleModule.m */; };
 		BA06A07716F2EE6600212CB9 /* CalenderList_eng.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */; };
 		BA06A07816F2EE6600212CB9 /* ChiListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06D16F2EE6600212CB9 /* ChiListViewController.m */; };
@@ -284,6 +283,7 @@
 		04F7032F1B9D51B600EC6C92 /* InformationModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationModule.m; sourceTree = "<group>"; };
 		04F703311B9D51D000EC6C92 /* DisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayViewController.h; sourceTree = "<group>"; };
 		04F703321B9D51D000EC6C92 /* DisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayViewController.m; sourceTree = "<group>"; };
+		0B14CD421B70F5FDC571D151 /* libPods-NTOU_Mobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NTOU_Mobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D0DC7CF194F3211006DA208 /* NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgress.h; sourceTree = "<group>"; };
 		1D0DC7D0194F3211006DA208 /* NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgress.m; sourceTree = "<group>"; };
 		1D0DC7D219501E6C006DA208 /* OpenTimeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenTimeTableViewController.h; sourceTree = "<group>"; };
@@ -403,8 +403,6 @@
 		7CBFB56A1CDB70360048C7D2 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		7CBFB56C1CDB703D0048C7D2 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		7CBFB56E1CDB70510048C7D2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		7CBFB5701CDB7A8B0048C7D2 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
-		7CBFB5761CDB98820048C7D2 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		9118539E1DFEB4220001F556 /* LifeDefaultData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LifeDefaultData.plist; path = module/Life/LifeDefaultData.plist; sourceTree = "<group>"; };
 		912A53E916E99F7900BBC013 /* NTOUGuide2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuide2ViewController.h; sourceTree = "<group>"; };
 		912A53EA16E99F7900BBC013 /* NTOUGuide2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuide2ViewController.m; sourceTree = "<group>"; };
@@ -691,6 +689,7 @@
 		BECF7C6F184F468200ADD115 /* R66RightLayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R66RightLayerViewController.h; sourceTree = "<group>"; };
 		BECF7C70184F468200ADD115 /* R66RightLayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = R66RightLayerViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		BECF7C75185598AD00ADD115 /* AlertViewShown.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AlertViewShown.plist; sourceTree = "<group>"; };
+		C371E33D330838C89C36D7DB /* Pods-NTOU_Mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NTOU_Mobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-NTOU_Mobile/Pods-NTOU_Mobile.release.xcconfig"; sourceTree = "<group>"; };
 		C442C4E41946E5BD00C8449F /* TDBadgedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBadgedCell.h; sourceTree = "<group>"; };
 		C442C4E51946E5BD00C8449F /* TDBadgedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBadgedCell.m; sourceTree = "<group>"; };
 		C4CA69AF1911276C005B272C /* RTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLabel.h; sourceTree = "<group>"; };
@@ -720,6 +719,7 @@
 		C74699E216F21C680060F49C /* NavScrollerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavScrollerView.m; sourceTree = "<group>"; };
 		C74699E816F21CF40060F49C /* news */ = {isa = PBXFileReference; lastKnownFileType = folder; path = news; sourceTree = "<group>"; };
 		C74699EA16F21D590060F49C /* Announce_API_Key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Announce_API_Key.h; path = module/NEWS/Announce_API_Key.h; sourceTree = "<group>"; };
+		D57694FA2A5C5580831A6ADC /* Pods-NTOU_Mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NTOU_Mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NTOU_Mobile/Pods-NTOU_Mobile.debug.xcconfig"; sourceTree = "<group>"; };
 		EA6203A01AB97B4C0066E913 /* ntou_mobile3.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ntou_mobile3.db; sourceTree = "<group>"; };
 		EAB7701B1A8330C100258229 /* R66TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R66TableViewController.h; sourceTree = "<group>"; };
 		EAB7701C1A8330C100258229 /* R66TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R66TableViewController.m; sourceTree = "<group>"; };
@@ -738,7 +738,6 @@
 				7CBFB56D1CDB703D0048C7D2 /* OpenGLES.framework in Frameworks */,
 				7CBFB56B1CDB70360048C7D2 /* libz.tbd in Frameworks */,
 				7CBFB5671CDB6E430048C7D2 /* libicucore.tbd in Frameworks */,
-				7CBFB5781CDB98820048C7D2 /* GoogleMaps.framework in Frameworks */,
 				7CBFB5651CDB6E3A0048C7D2 /* libc++.tbd in Frameworks */,
 				91756FEE16F21236001D724D /* ImageIO.framework in Frameworks */,
 				7CBFB5631CDB6E230048C7D2 /* GLKit.framework in Frameworks */,
@@ -756,6 +755,7 @@
 				91A9048816E89A3700ECF2CF /* libxml2.2.dylib in Frameworks */,
 				91A9004B16E854E500ECF2CF /* UIKit.framework in Frameworks */,
 				91A9004D16E854E500ECF2CF /* Foundation.framework in Frameworks */,
+				B95DBE0C8031079CE32C85CE /* libPods-NTOU_Mobile.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1038,6 +1038,7 @@
 				91A9005016E854E500ECF2CF /* NTOU_Mobile */,
 				91A9004916E854E500ECF2CF /* Frameworks */,
 				91A9004716E854E500ECF2CF /* Products */,
+				CE31A308F761B3BAF8F7750B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1055,7 +1056,6 @@
 				9177D8FB1D530D0800C20949 /* AudioToolbox.framework */,
 				1F4F0D551D499C61000ED111 /* libstdc++.6.0.9.tbd */,
 				BA06A07C16F2EF5B00212CB9 /* EventKit.framework */,
-				7CBFB5761CDB98820048C7D2 /* GoogleMaps.framework */,
 				7CBFB56E1CDB70510048C7D2 /* Security.framework */,
 				7CBFB56C1CDB703D0048C7D2 /* OpenGLES.framework */,
 				7CBFB56A1CDB70360048C7D2 /* libz.tbd */,
@@ -1069,7 +1069,6 @@
 				7CBFB5581CDB6D820048C7D2 /* MapKit.framework */,
 				1DD157A21951624A006CA7AF /* AVFoundation.framework */,
 				43BEDC1B19236DEC0091B024 /* libsqlite3.dylib */,
-				7CBFB5701CDB7A8B0048C7D2 /* GoogleMaps.bundle */,
 				C4CA69B219112894005B272C /* CoreText.framework */,
 				91756FED16F21235001D724D /* ImageIO.framework */,
 				913A0D1D16E98F99007BAD8F /* MessageUI.framework */,
@@ -1079,6 +1078,7 @@
 				91A9004A16E854E500ECF2CF /* UIKit.framework */,
 				91A9004C16E854E500ECF2CF /* Foundation.framework */,
 				91A9004E16E854E500ECF2CF /* CoreGraphics.framework */,
+				0B14CD421B70F5FDC571D151 /* libPods-NTOU_Mobile.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1518,6 +1518,15 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		CE31A308F761B3BAF8F7750B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D57694FA2A5C5580831A6ADC /* Pods-NTOU_Mobile.debug.xcconfig */,
+				C371E33D330838C89C36D7DB /* Pods-NTOU_Mobile.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1525,9 +1534,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 91A9006416E854E500ECF2CF /* Build configuration list for PBXNativeTarget "NTOU_Mobile" */;
 			buildPhases = (
+				6CFF4EBFD6966AF1F9F9284C /* [CP] Check Pods Manifest.lock */,
 				91A9004216E854E500ECF2CF /* Sources */,
 				91A9004316E854E500ECF2CF /* Frameworks */,
 				91A9004416E854E500ECF2CF /* Resources */,
+				3B9F72E930A0F72E7CAC2D54 /* [CP] Embed Pods Frameworks */,
+				D73341A3ACC01DD42419C755 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1590,7 +1602,6 @@
 				91A9047516E899D200ECF2CF /* stationNum.txt in Resources */,
 				91A9047616E899D200ECF2CF /* stationNumber.plist in Resources */,
 				913ADD701DF5910C00809F35 /* MainStoryboard.storyboard in Resources */,
-				7CBFB5711CDB7A8B0048C7D2 /* GoogleMaps.bundle in Resources */,
 				1DA9F8A319B484A000261C7E /* freshmen in Resources */,
 				EA6203A11AB97B4C0066E913 /* ntou_mobile3.db in Resources */,
 				1DD1793D18FE7AB300621B67 /* tabbar_background.jpg in Resources */,
@@ -1628,6 +1639,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3B9F72E930A0F72E7CAC2D54 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NTOU_Mobile/Pods-NTOU_Mobile-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6CFF4EBFD6966AF1F9F9284C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D73341A3ACC01DD42419C755 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NTOU_Mobile/Pods-NTOU_Mobile-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		91A9004216E854E500ECF2CF /* Sources */ = {
@@ -1884,10 +1943,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1895,10 +1951,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${SDK_DIR}/usr/include/libxml2",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-all_load",
 					"-ObjC",
 				);
@@ -1928,17 +1988,22 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${SDK_DIR}/usr/include/libxml2",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-all_load",
 					"-ObjC",
 				);
@@ -1950,6 +2015,7 @@
 		};
 		91A9006516E854E500ECF2CF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D57694FA2A5C5580831A6ADC /* Pods-NTOU_Mobile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1966,8 +2032,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "PJ_AUTOCONF=1";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"PJ_AUTOCONF=1",
+				);
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"${SDK_DIR}/usr/include/libxml2",
 					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjlib/include",
 					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjlib-util/include",
@@ -1978,6 +2048,7 @@
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
 					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjlib/lib",
 					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjlib-util/lib",
 					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjmedia/lib",
@@ -2004,6 +2075,7 @@
 		};
 		91A9006616E854E500ECF2CF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C371E33D330838C89C36D7DB /* Pods-NTOU_Mobile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -2020,8 +2092,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTOU_Mobile/NTOU_Mobile-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "PJ_AUTOCONF=1";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"PJ_AUTOCONF=1",
+				);
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"${SDK_DIR}/usr/include/libxml2",
 					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjlib/include",
 					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjlib-util/include",
@@ -2032,6 +2108,7 @@
 				INFOPLIST_FILE = "NTOU_Mobile/NTOU_Mobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
 					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjlib/lib",
 					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjlib-util/lib",
 					"${PROJECT_DIR}/NTOU_Mobile/module/SipPhone/Library&header/pjmedia/lib",
