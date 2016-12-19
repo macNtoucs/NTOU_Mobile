@@ -27,8 +27,8 @@
 
 - (void)initWithData
 {
-    weekday_marine = [[NSArray alloc] initWithObjects:@"海科館", @"06:30", @"06:50", @"07:10", @"07:30", @"07:50", @"08:10", @"08:30", @"08:50", @"09:10", @"09:30", @"09:50", @"10:10", @"10:30", @"10:50", @"11:10", @"12:00", @"12:50", @"13:40", @"14:30", @"15:20", @"16:00", @"16:20", @"16:40", @"17:00", @"17:20", @"18:10", @"19:00", @"19:50", @"20:40", @"21:30", nil];
-    weekday_qidu = [[NSArray alloc] initWithObjects:@"七堵車站", @"07:20", @"07:40", @"08:00", @"08:20", @"08:40", @"09:00", @"09:20", @"09:40", @"10:00", @"10:20", @"10:40", @"11:00", @"11:20", @"11:40", @"12:00", @"12:50", @"13:40", @"14:30", @"15:20", @"16:10", @"16:50", @"17:10", @"17:30", @"17:50", @"18:10", @"19:00", @"19:50", @"20:40", @"21:30", @"22:20", nil];
+    weekday_marine = [[NSArray alloc] initWithObjects:@"海科館", @"06:30", @"06:50", @"07:10", @"07:30", @"08:00", @"08:20", @"08:40", @"09:10", @"10:00", @"11:20", @"12:40", @"14:00", @"15:20", @"15:40", @"15:55", @"16:20", @"16:35", @"17:00", @"17:25", @"18:10", @"19:00", @"19:40", @"20:30", nil];
+    weekday_qidu = [[NSArray alloc] initWithObjects:@"七堵車站", @"07:05", @"07:25", @"07:45", @"08:05", @"08:35", @"08:55", @"09:15", @"09:45", @"10:35", @"11:55", @"13:15", @"14:35", @"15:55", @"16:15", @"16:45", @"17:15", @"17:35", @"17:55", @"18:15", @"18:45", @"19:35", @"20:15", @"21:00", @"17:50", nil];
 }
 
 /*- (void)swipeLeft:(UITapGestureRecognizer *)recongizer
@@ -75,14 +75,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     NSLog(@"R66Left tableCell count:%lu",(unsigned long)[weekday_marine count]);
 

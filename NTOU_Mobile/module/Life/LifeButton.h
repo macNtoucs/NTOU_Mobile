@@ -12,7 +12,7 @@
 
 @property (nonatomic,retain)NSDictionary* data; //存放json內的資料
 
-/* Exampe (詳細情況參閱Android組API說明)
+/* Example (詳細情況參閱Android組API說明)
  
  {
  "id":"L24",

@@ -108,36 +108,38 @@
         
             for(int j=0;j<[streetsSouce count];j++)
             {
+                NSDictionary * ptr = [streetsSouce objectAtIndex:j];
+                NSString * ptr_id = [ptr objectForKey:@"id"];
                 
-                if([[[streetsSouce objectAtIndex:j]objectForKey:@"street"] isEqualToString: [streetsNames objectAtIndex:i]])
+                if([[ptr objectForKey:@"street"] isEqualToString: [streetsNames objectAtIndex:i]])
                 {
-                    if([[[streetsSouce objectAtIndex:j]objectForKey:@"id"]length] > 0 && [[[streetsSouce objectAtIndex:j]objectForKey:@"id"] characterAtIndex:0] != 'E')
+                    if([ptr_id length] > 0 && [ptr_id characterAtIndex:0] != 'E')
                     {
                         NSArray *temp;
                         int pos;
-                        if([[[streetsSouce objectAtIndex:j]objectForKey:@"id"] characterAtIndex:0] == 'S' )
+                        if([ptr_id characterAtIndex:0] == 'S' )
                             //Special tag
                         {
-                            temp = [[streetsInfo objectAtIndex:i]objectForKey:[[streetsSouce objectAtIndex:j]objectForKey:@"id"]];
+                            temp = [[streetsInfo objectAtIndex:i]objectForKey:ptr_id];
                             pos =0;
                         }
                         else
                             //Normal tag
                         {
-                            temp = [[streetsInfo objectAtIndex:i]objectForKey:[NSString stringWithFormat:@"%c",[[[streetsSouce objectAtIndex:j]objectForKey:@"id"] characterAtIndex:0]]];
-                            pos = ([[[[streetsSouce objectAtIndex:j]objectForKey:@"id"]substringFromIndex:1] intValue] - [[temp objectAtIndex:2]intValue]);
+                            temp = [[streetsInfo objectAtIndex:i]objectForKey:[NSString stringWithFormat:@"%c",[ptr_id characterAtIndex:0]]];
+                            pos = ([[ptr_id substringFromIndex:1] intValue] - [[temp objectAtIndex:2]intValue]);
                         }
                         LifeButton * btn = [LifeButton buttonWithType:UIButtonTypeCustom];
                         [btn setFrame:CGRectMake(newOrg + [[temp objectAtIndex:0] intValue] *ratio, [[temp objectAtIndex:1] intValue] *ratio + pos*diffy, diffx, diffy)];
-                        [btn setTitle:[[streetsSouce objectAtIndex:j]objectForKey:@"name"] forState:UIControlStateNormal];
+                        [btn setTitle:[ptr objectForKey:@"name"] forState:UIControlStateNormal];
                         btn.titleLabel.font = [UIFont systemFontOfSize:9];
                         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                         [btn addTarget:self action:@selector(lifeButtonPressedHandler:) forControlEvents:UIControlEventTouchUpInside];
-                        btn.data = [streetsSouce objectAtIndex:j];
+                        btn.data = ptr ;
                         [btn setContentMode:UIViewContentModeLeft];
                         //[controller.view addSubview:btn];
                         
-                        UIImageView * btnIcon = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@%@",[[[streetsSouce objectAtIndex:j] objectForKey:@"type"] stringByReplacingOccurrencesOfString:@"/" withString:@""],@".png"]]];
+                        UIImageView * btnIcon = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@%@",[[ptr objectForKey:@"type"] stringByReplacingOccurrencesOfString:@"/" withString:@""],@".png"]]];
                         [btnIcon setFrame:CGRectMake(btn.frame.origin.x - 31 *ratio, btn.frame.origin.y, diffy, diffy)];
                         //[controller.view addSubview:btnIcon];
                         
