@@ -79,22 +79,20 @@
     
 }
 -(void)switchMapType{
-    if (switchButton.title==@"衛星地圖")
+    if ([switchButton.title isEqualToString: @"衛星地圖" ])
     {
         mapView.mapType=kGMSTypeSatellite;
         switchButton.title =@"混合地圖";
     }
-    else if (switchButton.title==@"標準地圖")
+    else if ([switchButton.title isEqualToString: @"標準地圖"])
     {
         mapView.mapType = kGMSTypeNormal;
-        //mapView.mapType = MKMapTypeStandard;
         switchButton.title =@"衛星地圖";
         
     }
-    else if (switchButton.title==@"混合地圖")
+    else if ([switchButton.title isEqualToString: @"混合地圖"])
     {
         mapView.mapType = kGMSTypeHybrid;
-        //mapView.mapType = MKMapTypeHybrid;
         switchButton.title =@"標準地圖";
         
     }
@@ -106,8 +104,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    MKUserLocation *userlocation = [[MKUserLocation alloc]init];
-    [userlocation setCoordinate:location];
     GMSCameraPosition *region=[GMSCameraPosition cameraWithLatitude:location.latitude longitude:location.longitude zoom:17];
     mapView=[GMSMapView mapWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height) camera:region];
     mapView.myLocationEnabled=YES;

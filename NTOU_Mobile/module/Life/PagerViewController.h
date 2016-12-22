@@ -14,5 +14,5 @@
 
 @property (nonatomic, strong) IBOutlet UIScrollView *lifeScrollView;
 @property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
-
+@property (nonatomic, assign) NSDictionary *buttonAlertTempData;
 @end
