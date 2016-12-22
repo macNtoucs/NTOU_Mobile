@@ -240,6 +240,7 @@
 		91A9049516E89FE400ECF2CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049416E89FE300ECF2CF /* QuartzCore.framework */; };
 		91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */; };
 		91BFE77E1DF00D9800F2C26B /* LifeMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91BFE77D1DF00D9800F2C26B /* LifeMedia.xcassets */; };
+		91CD4CB01E0BE670002E12B6 /* StreetViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CD4CAF1E0BE670002E12B6 /* StreetViewViewController.m */; };
 		B95DBE0C8031079CE32C85CE /* libPods-NTOU_Mobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B14CD421B70F5FDC571D151 /* libPods-NTOU_Mobile.a */; };
 		BA06A07516F2EE6600212CB9 /* ScheduleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06816F2EE6600212CB9 /* ScheduleModule.m */; };
 		BA06A07716F2EE6600212CB9 /* CalenderList_eng.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */; };
@@ -665,6 +666,8 @@
 		91A9049416E89FE300ECF2CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		91BFE77D1DF00D9800F2C26B /* LifeMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = LifeMedia.xcassets; path = module/Life/LifeMedia.xcassets; sourceTree = "<group>"; };
+		91CD4CAE1E0BE670002E12B6 /* StreetViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreetViewViewController.h; sourceTree = "<group>"; };
+		91CD4CAF1E0BE670002E12B6 /* StreetViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreetViewViewController.m; sourceTree = "<group>"; };
 		BA06A06716F2EE6600212CB9 /* ScheduleModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleModule.h; sourceTree = "<group>"; };
 		BA06A06816F2EE6600212CB9 /* ScheduleModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleModule.m; sourceTree = "<group>"; };
 		BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CalenderList_eng.plist; sourceTree = "<group>"; };
@@ -1152,6 +1155,8 @@
 				91A9007E16E85C8400ECF2CF /* AppDelegate+ModuleList.m */,
 				91A9008316E8613800ECF2CF /* NTOU_MobileAppDelegate+Private.h */,
 				91A9008416E8613800ECF2CF /* NTOU_MobileAppDelegate+Private.m */,
+				91CD4CAE1E0BE670002E12B6 /* StreetViewViewController.h */,
+				91CD4CAF1E0BE670002E12B6 /* StreetViewViewController.m */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -1701,6 +1706,7 @@
 				91756FD316F20CC5001D724D /* ReaderContentTile.h in Sources */,
 				913ADD721DF5910C00809F35 /* PeopleModule.m in Sources */,
 				91756FD416F20CC5001D724D /* ReaderContentView.h in Sources */,
+				91CD4CB01E0BE670002E12B6 /* StreetViewViewController.m in Sources */,
 				91756FD516F20CC5001D724D /* ReaderDocument.h in Sources */,
 				91756FD616F20CC5001D724D /* ReaderMainPagebar.h in Sources */,
 				91756FD716F20CC5001D724D /* ReaderMainToolbar.h in Sources */,
