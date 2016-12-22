@@ -71,7 +71,6 @@
 		43BEDC1F19236E530091B024 /* NTOUShuttleButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDC1E19236E530091B024 /* NTOUShuttleButtonViewController.m */; };
 		43BEDC2319236E990091B024 /* NTOUBusTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEDC2119236E990091B024 /* NTOUBusTableViewController.m */; };
 		43BF84B21948598C00B5B83F /* frequencyBusStation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43BF84B11948598C00B5B83F /* frequencyBusStation.plist */; };
-		7CBFB5591CDB6D820048C7D2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB5581CDB6D820048C7D2 /* MapKit.framework */; };
 		7CBFB55B1CDB6DF40048C7D2 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB55A1CDB6DF40048C7D2 /* Accelerate.framework */; };
 		7CBFB55D1CDB6DFD0048C7D2 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB55C1CDB6DFD0048C7D2 /* CoreBluetooth.framework */; };
 		7CBFB55F1CDB6E050048C7D2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBFB55E1CDB6E050048C7D2 /* CoreData.framework */; };
@@ -751,7 +750,6 @@
 				43BEDC1C19236DEC0091B024 /* libsqlite3.dylib in Frameworks */,
 				BA06A07D16F2EF5B00212CB9 /* EventKit.framework in Frameworks */,
 				913A0D1E16E98F99007BAD8F /* MessageUI.framework in Frameworks */,
-				7CBFB5591CDB6D820048C7D2 /* MapKit.framework in Frameworks */,
 				91A9048816E89A3700ECF2CF /* libxml2.2.dylib in Frameworks */,
 				91A9004B16E854E500ECF2CF /* UIKit.framework in Frameworks */,
 				91A9004D16E854E500ECF2CF /* Foundation.framework in Frameworks */,
