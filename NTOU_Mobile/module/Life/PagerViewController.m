@@ -8,6 +8,7 @@
 #import "PagerViewController.h"
 #import "LifeButton.h"
 #import "StreetViewViewController.h"
+#import "NTOUGuideSetViewController.h"
 
 @interface PagerViewController ()
 @property (assign) BOOL pageControlUsed;
@@ -240,7 +241,7 @@
 {
     NSLog(@"%@",button.data);
     UIAlertView * alert = [[UIAlertView alloc]initWithTitle:[button.data objectForKey:@"name"] message:[button.data objectForKey:@"phone"]
-                                                   delegate:self cancelButtonTitle:@"確定" otherButtonTitles:@"撥號",@"街景", nil];
+                                                   delegate:self cancelButtonTitle:@"確定" otherButtonTitles:@"撥號",@"地圖",@"街景", nil];
     buttonAlertTempData = button.data;
     
     [alert show];
@@ -255,6 +256,17 @@
         [[ UIApplication sharedApplication]openURL:url];
     }
     else if(buttonIndex == 2)
+    {
+        NTOUGuideSetViewController  * stopsLocation = [[NTOUGuideSetViewController  alloc]init];
+        CLLocationCoordinate2D location ;
+        location.longitude = [[buttonAlertTempData objectForKey:@"longitude"] doubleValue];
+        location.latitude = [[buttonAlertTempData objectForKey:@"latitude"] doubleValue];
+        [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
+        stopsLocation.view.hidden = NO;
+        [self.navigationController pushViewController:stopsLocation animated:YES];
+        [stopsLocation release];
+    }
+    else if(buttonIndex == 3)
     {
         StreetViewViewController * stopsLocation = [StreetViewViewController new];
         [stopsLocation setLatitude:[[buttonAlertTempData objectForKey:@"latitude"] doubleValue] setLongitude:[[buttonAlertTempData objectForKey:@"longitude"] doubleValue]];
