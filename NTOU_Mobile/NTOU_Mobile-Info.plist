@@ -50,6 +50,8 @@
 	<string>App需要您的同意，才能訪問相機。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>App需要您的同意，才能訪問相冊。</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>App需要您的同意，才能使用麥克風。</string>
 	<key>NTOUAboutAppText</key>
 	<string>開發者：海大資訊工程學系
 美工設計協助：畢冊王

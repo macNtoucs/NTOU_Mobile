@@ -22,6 +22,7 @@
 #import "SettingModule.h"
 #import "LibraryModule.h"
 #include "FreshmenModuel.h"
+#include "SipPhoneModule.h"
 /*#import "NewsModule.h"
 
 
@@ -71,9 +72,10 @@
     [result addObject:[[[ScheduleModule alloc] init] autorelease]];//行事曆
     [result addObject:[[[EmergencyModule alloc] init] autorelease]];//緊急聯絡
     
+    [result addObject:[[[SipPhoneModule alloc]init] autorelease]];//校內電話
+    
     [result addObject:[[[SettingModule alloc] init] autorelease]];//設定
     [result addObject:[[[AboutModule alloc] init] autorelease]];//關於
-    
     
     
 	

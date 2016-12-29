@@ -31,6 +31,8 @@ modules;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [GMSServices provideAPIKey:@"AIzaSyDa7WM05jLY1Q7tdQWGn2R2kWctOXt2Ukc"]; //account:mac.ntoucs@gmail.com
     
+    [[[NSThread alloc]initWithTarget:self selector:@selector(pjsuaStart) object:nil] start];
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     networkActivityRefCount = 0;
     
