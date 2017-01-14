@@ -283,7 +283,7 @@ const char MyConstantKey;
                  return [NSString stringWithFormat:@"書籍資訊"];
                  break;
              case 1:
-                 return [NSString stringWithFormat:@"預約"];
+                 return [NSString stringWithFormat:@"預約（暫時關閉預約功能）"];
                  break;
              case 2:
                  return [NSString stringWithFormat:@"書評"];
@@ -908,10 +908,11 @@ const char MyConstantKey;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *nowCell = [tableView cellForRowAtIndexPath:indexPath];
-    
+    /*
     if([nowCell accessoryType] == UITableViewCellAccessoryDisclosureIndicator)
     {
-        if (indexPath.section ==1 && [[bookdetail objectForKey:@"bookType"]  isEqual: @"realBook"] &&book_part5[indexPath.row]!=nil&& ![book_part5[indexPath.row] isEqualToString:@"NULL"]){
+        
+         if (indexPath.section ==1 && [[bookdetail objectForKey:@"bookType"]  isEqual: @"realBook"] &&book_part5[indexPath.row]!=nil&& ![book_part5[indexPath.row] isEqualToString:@"NULL"]){
         
             nowSelectCellIndex = indexPath.row;
             
@@ -919,9 +920,9 @@ const char MyConstantKey;
             [alert show];
             [alert release];
             
-            //objc_setAssociatedObject(alert, &MyConstantKey, indexPath.row, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
+    */ //預約功能 2017/1/15關閉
     
     if (indexPath.section ==1 && [[bookdetail objectForKey:@"bookType"]  isEqual: @"ebook"]){
             goToEternalLinkURL = book_part2[indexPath.row];

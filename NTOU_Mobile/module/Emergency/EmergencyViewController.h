@@ -22,10 +22,7 @@
     NSMutableArray *outerNumber;
 }
 
-- (void)infoDidLoad:(NSNotification *)aNotification;
-- (void)infoDidFailToLoad:(NSNotification *)aNotification;
 - (void)notificationProcess;
-- (void)refreshInfo:(id)sender; // force view controller to refresh itself
 - (void)setHtmlNotification:(NSString *)notification;
 
 @property (nonatomic, retain) id<EmergencyViewControllerDelegate> delegate;

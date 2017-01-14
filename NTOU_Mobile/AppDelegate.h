@@ -21,13 +21,10 @@
     NSInteger networkActivityRefCount; // the number of concurrent network connections the user should know about. If > 0, spinny in status bar is shown
 }
 
-- (BOOL)shouldShowOpenHouseContent;
 
 - (void)showNetworkActivityIndicator;
 - (void)hideNetworkActivityIndicator;
 
-- (void)presentAppModalViewController:(UIViewController *)viewController animated:(BOOL)animated;
-- (void)dismissAppModalViewControllerAnimated:(BOOL)animated;
 
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) UINavigationController *rootNavigationController;

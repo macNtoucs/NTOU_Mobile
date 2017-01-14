@@ -251,6 +251,14 @@
 
 -(void)keepSelectResBook
 {
+    
+    UIAlertView *alerts = [[UIAlertView alloc] initWithTitle:@"續借功能暫時關閉"
+                                                     message:nil
+                                                    delegate:self
+                                           cancelButtonTitle:@"好"
+                                           otherButtonTitles:nil];
+    [alerts show];
+    /* 2017/1/15關閉
     NSString *radioVal = [NSString new];
     if([selectindexs count] == 0)
     {
@@ -309,7 +317,7 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     [self.tableView reloadData];
-    //[radioVal release];
+    */
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
