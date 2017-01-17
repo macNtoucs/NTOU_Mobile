@@ -14,85 +14,79 @@
 
 @implementation SipDiagPadViewController
 @synthesize callinfo;
--(void)waitingForSendDtmf{
+static SipDiagPadViewController* uIViewController = NULL;
+
++(SipDiagPadViewController*)getSipDiagPadViewController{
+    return uIViewController;
+}
+
+-(void)SendDtmf{
     pj_thread_desc a_thread_desc;
     pj_thread_t *a_thread;
     if (!pj_thread_is_registered()) {
-        pj_thread_register(nil, a_thread_desc, &a_thread);
+        pj_thread_register("SendDtmf", a_thread_desc, &a_thread);
     }
+    
     NSRange range;
     range.location = 0;
     range.length = 1;
     
-    while(current_call != PJSUA_INVALID_ID){
-        if(call_info.state == PJSIP_INV_STATE_CONFIRMED){
-            char temp[2];
-            while(range.location+1 <= callinfo.text.length){
-                strcpy(temp,[[callinfo.text substringWithRange:range]UTF8String]);
-                pj_str_t diag = pj_str(temp);
-                pjsua_call_dial_dtmf(current_call,&diag);
-                
-                range.location ++;
-            }
-            break;
+    char temp[2];
+    if([self isCallinfoOnlyNumber])
+        while(range.location < callinfo.text.length){
+            strcpy(temp,[[callinfo.text substringWithRange:range]UTF8String]);
+            pj_str_t diag = pj_str(temp);
+            pjsua_call_dial_dtmf(current_call,&diag);
+            
+            range.location ++;
         }
-        [NSThread sleepForTimeInterval:0.1];
-    }
-    pj_thread_destroy(a_thread);
+    
 }
 
--(void)waitingForDisconnected{
-    pj_thread_desc a_thread_desc;
-    pj_thread_t *a_thread;
-    if (!pj_thread_is_registered()) {
-        pj_thread_register(nil, a_thread_desc, &a_thread);
-    }
-    while(current_call != PJSUA_INVALID_ID){
-        if(current_call != PJSUA_INVALID_ID)
-        pjsua_call_get_info(current_call, &call_info);
-        if(call_info.state == PJSIP_INV_STATE_DISCONNECTED)
-            break;
-        [NSThread sleepForTimeInterval:0.1];
-    }
-    [self hangup];
-    pj_thread_destroy(a_thread);
-}
 
 
 -(void)makeCallToNTOU{
-    if(current_call == PJSUA_INVALID_ID){
-        pjsua_call_make_call(acc_id,&NtouUri,0,0,0,&current_call);
-        if(callinfo.text.length > 0 && [callinfo.text compare: @"請輸入分機號碼"] != 0)
-            [NSThread detachNewThreadSelector:@selector(waitingForSendDtmf) toTarget:self withObject:nil];
-        [NSThread detachNewThreadSelector:@selector(waitingForDisconnected) toTarget:self withObject:nil];
-        if(![callinfo.text isEqualToString:@""])
-            [(SipTabBarViewController*)self.tabBarController addNumberToHistory:callinfo.text];
-        
-        [hangup setTitle:@"掛斷" forState:UIControlStateNormal];
-        [hangup removeTarget:self action:@selector(clearInfo) forControlEvents:UIControlEventTouchUpInside];
-        [hangup addTarget:self action:@selector(hangup) forControlEvents:UIControlEventTouchUpInside];
-    }
+    
+    pjsua_call_make_call(acc_id,&NtouUri,0,0,0,&current_call);
+    
+    if([self isCallinfoOnlyNumber])
+        [(SipTabBarViewController*)self.tabBarController addNumberToHistory:callinfo.text];
+    
+    [hangup setTitle:@"掛斷" forState:UIControlStateNormal];
+    [hangup removeTarget:self action:@selector(clearInfo) forControlEvents:UIControlEventTouchUpInside];
+    [hangup addTarget:self action:@selector(hangup) forControlEvents:UIControlEventTouchUpInside];
+    call.enabled = false;
     
 }
 -(void)hangup{
-    call_info.state = PJSIP_INV_STATE_DISCONNECTED;
-    if(current_call != PJSUA_INVALID_ID)
-        pjsua_call_hangup_all();
-        //pjsua_call_hangup(current_call,0,0,0);
-    
+    pjsua_call_hangup_all();
     current_call = PJSUA_INVALID_ID;
-    if([callinfo.text compare: @"請輸入分機號碼"] != 0)
-        [self clearInfo];
-    [hangup setTitle:@"清除" forState:UIControlStateNormal];
-    [hangup removeTarget:self action:@selector(hangup) forControlEvents:UIControlEventTouchUpInside];
-    [hangup addTarget:self action:@selector(clearInfo) forControlEvents:UIControlEventTouchUpInside];
     
+    dispatch_async(dispatch_get_main_queue(),^{
+        [self clearInfo];
+        [hangup setTitle:@"清除" forState:UIControlStateNormal];
+        [hangup removeTarget:self action:@selector(hangup) forControlEvents:UIControlEventTouchUpInside];
+        [hangup addTarget:self action:@selector(clearInfo) forControlEvents:UIControlEventTouchUpInside];
+        call.enabled = true;
+    });
 }
+
+-(Boolean)isCallinfoOnlyNumber{
+    if([callinfo.text isEqualToString:@""])
+        return false;
+    if([callinfo.text isEqualToString:@"請輸入分機號碼"])
+        return false;
+    return true;
+}
+
 -(void)clearInfo{
-    callinfo.text = @"";
+    callinfo.text = @"請輸入分機號碼";
 }
+
 -(void)DTMF:(SipDiagButton*)button{
+    
     [button playDiagSound];
+    
     if(current_call != PJSUA_INVALID_ID){
         if(pjsua_call_is_active(current_call) == PJ_TRUE){
             char temp[2];
@@ -101,17 +95,16 @@
             pjsua_call_dial_dtmf(current_call,&diag);
         }
     }
-    if([callinfo.text compare:@"請輸入分機號碼"] == 0){
+
+    if([callinfo.text compare:@"請輸入分機號碼"] == 0)
         callinfo.text = [[NSString alloc]initWithString:button.sign];
-    }
-    else{
+    else
         callinfo.text = [callinfo.text stringByAppendingString:button.sign];
-    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    uIViewController = self;
     
     pj_thread_desc a_thread_desc;
     pj_thread_t *a_thread;
@@ -182,6 +175,8 @@
         }
     }
     
+    pjsua_acc_config acc;
+    
     pjsua_acc_config_default(&acc);
     acc.id = pj_str("<sip:601@140.121.99.170>");
     acc.reg_uri = pj_str("sip:140.121.99.170");
@@ -199,6 +194,7 @@
     
     if (netStatus != NotReachable)
         pjsua_acc_add(&acc, PJ_TRUE, &acc_id);
+
 }
 
 

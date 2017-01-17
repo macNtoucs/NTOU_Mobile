@@ -7,27 +7,25 @@
 //
 
 #import "SipDiagButton.h"
-//@import AudioToolbox;
+#import <AVFoundation/AVFoundation.h>
 
 @implementation SipDiagButton
 @synthesize sign;
 
 -(void)registerDiagSound{
+    NSError* error = nil;
     NSString *prefix = @"Dtmf-";
+    myPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:[[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle]pathForResource: [prefix stringByAppendingString:sign] ofType:@"wav"]] error:&error];
     
-    pj_status_t status;
-    NSString *temp_ns = [[NSBundle mainBundle]pathForResource: [prefix stringByAppendingString:sign] ofType:@"wav"];
-    char temp_c[100];
-    strcpy(temp_c, [temp_ns UTF8String]);
-    pj_str_t temp = pj_str(temp_c);
-    status = pjsua_player_create(&temp,PJMEDIA_FILE_NO_LOOP, &player_id);
-    [prefix release];
+
 }
+
 -(void)playDiagSound{
-    pjsua_conf_connect(pjsua_player_get_conf_port(player_id),0);
-    pjsua_player_set_pos(player_id,0);
-    pj_thread_sleep(120);
-    pjsua_conf_disconnect(pjsua_player_get_conf_port(player_id),0);
+    if([myPlayer isPlaying]){
+        [myPlayer stop];
+        [myPlayer setCurrentTime:0.0];
+    }
+    [myPlayer play];
 }
 
 @end

@@ -10,15 +10,15 @@
 #import <pjsua.h>
 
 @interface SipDiagPadViewController : UIViewController{
-    pjsua_acc_config acc;
     pjsua_acc_id acc_id;
     pj_str_t NtouUri;
     pjsua_call_id current_call;
-    pjsua_call_info call_info;
-    UIButton *call;
     UIButton *hangup;
+    UIButton *call;
 }
 @property (assign,nonatomic)UILabel *callinfo;
++(SipDiagPadViewController*)getSipDiagPadViewController;
 -(void)makeCallToNTOU;
-
+-(void)hangup;
+-(void)SendDtmf;
 @end

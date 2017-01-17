@@ -73,20 +73,19 @@
 -(void)checkUpdate{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *lastUpdateTimeOld = [userDefaults stringForKey:@"SipPhoneLastUpdateTime"];
-    NSURL *url = [NSURL URLWithString:[@"http://140.121.197.209/work/" stringByAppendingString:@"getSipPhoneLastUpdate"]];
+    NSURL *url = [NSURL URLWithString:[@"http://172.20.10.6/work/" stringByAppendingString:@"getSipPhoneLastUpdate"]];
     NSString *lastUpdateTime = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
     
     if(!lastUpdateTimeOld)
         lastUpdateTimeOld = @"87"; //give it value to compare
     if([lastUpdateTimeOld compare:lastUpdateTime]!=0){
         [userDefaults setObject:lastUpdateTime forKey:@"SipPhoneLastUpdateTime"];
-        [userDefaults synchronize];
     }
     [self updateData];
     
 }
 -(void)updateData{
-    NSURL *url = [NSURL URLWithString:[@"http://140.121.197.209/work/" stringByAppendingString:@"getSipPhoneFullJson"]];
+    NSURL *url = [NSURL URLWithString:[@"http://172.20.10.6/work/" stringByAppendingString:@"getSipPhoneFullJson"]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NTOUContactInformation = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];

@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "pjsua.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface SipDiagButton : UIButton{
-    pjsua_player_id player_id;
+    AVAudioPlayer *myPlayer;
 }
 
 @property (nonatomic,assign)NSString *sign;
