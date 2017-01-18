@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SipPhoneUsuallyUseTableViewController : UITableViewController
+@interface SipPhoneUsuallyUseTableViewController : UITableViewController <UITableViewDataSource>
+{
+    NSMutableArray *usuallyUse;
+}
+
+-(void)addUsuallyUse:(NSDictionary*)data;
 
 @end

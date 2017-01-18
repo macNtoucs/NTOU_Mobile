@@ -13,6 +13,7 @@
 #import "SipHistoryTableViewController.h"
 #import "SipContactInformationTableViewController.h"
 #import "SipEmergencyViewController.h"
+#import "EmergencyViewController.h"
 
 @interface SipTabBarViewController : UITabBarController <UITabBarControllerDelegate>
 {
@@ -20,13 +21,12 @@
     SipHistoryTableViewController *view1;
     SipContactInformationTableViewController *view2;
     SipDiagPadViewController *view3;
-    SipEmergencyViewController *view4;
+    EmergencyViewController *view4;
 }
-
-@property (nonatomic,assign)NSArray *NTOUContactInformation;
 
 -(void)makeCallToNTOU:(NSString*)number;
 -(void)addNumberToHistory:(NSString*)number;
 -(void)checkUpdate;
+-(void)addUsuallyUse:(NSDictionary*)data;
 
 @end

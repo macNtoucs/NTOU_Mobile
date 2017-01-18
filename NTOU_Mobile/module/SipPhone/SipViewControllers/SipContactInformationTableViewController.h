@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SipContactInformationTableViewController : UITableViewController<UITableViewDataSource>
+@interface SipContactInformationTableViewController : UITableViewController<UITableViewDataSource,UISearchBarDelegate,UISearchControllerDelegate,UISearchResultsUpdating>
 {
     UISearchBar *searchBar;
+    NSArray* informations;
+    NSArray* filteredInformations;
 }
 
-
+@property (assign, nonatomic) UISearchController *searchController;
 @end

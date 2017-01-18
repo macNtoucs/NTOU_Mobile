@@ -70,7 +70,7 @@
     
     [result addObject:[[[LibraryModule alloc] init] autorelease]];//圖書館
     [result addObject:[[[ScheduleModule alloc] init] autorelease]];//行事曆
-    [result addObject:[[[EmergencyModule alloc] init] autorelease]];//緊急聯絡
+    //[result addObject:[[[EmergencyModule alloc] init] autorelease]];//緊急聯絡
     
     [result addObject:[[[SipPhoneModule alloc]init] autorelease]];//校內電話
     

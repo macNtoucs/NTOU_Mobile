@@ -10,10 +10,10 @@
 
 @interface SipHistoryTableViewController : UITableViewController <UITableViewDataSource>
 {
-    NSMutableArray *numbers;
+    NSMutableArray *history;
 }
 
--(void)addNumber:(NSString*)number;
+-(void)addNumberToHistory:(NSString*)number;
 
 
 @end

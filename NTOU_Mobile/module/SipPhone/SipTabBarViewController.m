@@ -8,10 +8,10 @@
 
 #import "SipTabBarViewController.h"
 #import "Reachability.h"
+#import "EmergencyViewController.h"
 
 @implementation SipTabBarViewController
 
-@synthesize NTOUContactInformation;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,8 +26,10 @@
     view2.tabBarItem = [[UITabBarItem new] initWithTitle:@"聯絡資訊" image:[UIImage imageNamed:@"SipButtons-Contactperson.png"] tag:2];
     view3 = [SipDiagPadViewController new];
     view3.tabBarItem = [[UITabBarItem new] initWithTitle:@"數字鍵盤" image:[UIImage imageNamed:@"SipButtons-Pad.png"] tag:3];
-    view4 = [SipEmergencyViewController new];
+    //view4 = [SipEmergencyViewController new];
+    view4 = [[[EmergencyViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
     view4.tabBarItem = [[UITabBarItem new] initWithTitle:@"緊急聯絡" image:[UIImage imageNamed:@"SipButtons-Warning.png"] tag:4];
+    
     
     self.viewControllers = [NSArray arrayWithObjects:view0,view1,view2,view3,view4,nil];
     
@@ -54,18 +56,19 @@
             break;
         case 1:
             self.title = @"通話紀錄";
-            [view1.tableView reloadData];
             break;
         case 2:
             self.title = @"聯絡資訊";
             break;
         case 3:
             self.title = @"數字鍵盤";
+            [self.navigationItem setRightBarButtonItem:nil];
             break;
         case 4:
             self.title = @"緊急聯絡";
+            [self.navigationItem setRightBarButtonItem:nil];
             break;
-        
+            
         default:
             break;
     }
@@ -73,31 +76,32 @@
 -(void)checkUpdate{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *lastUpdateTimeOld = [userDefaults stringForKey:@"SipPhoneLastUpdateTime"];
-    NSURL *url = [NSURL URLWithString:[@"http://172.20.10.6/work/" stringByAppendingString:@"getSipPhoneLastUpdate"]];
+    NSURL *url = [NSURL URLWithString:@"http://172.20.10.6/work/getSipPhoneLastUpdate"];
     NSString *lastUpdateTime = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
     
-    if(!lastUpdateTimeOld)
-        lastUpdateTimeOld = @"87"; //give it value to compare
-    if([lastUpdateTimeOld compare:lastUpdateTime]!=0){
+    if(!lastUpdateTimeOld || ![lastUpdateTimeOld isEqualToString:lastUpdateTime]){
         [userDefaults setObject:lastUpdateTime forKey:@"SipPhoneLastUpdateTime"];
+        [self updateData];
     }
-    [self updateData];
     
 }
 -(void)updateData{
-    NSURL *url = [NSURL URLWithString:[@"http://172.20.10.6/work/" stringByAppendingString:@"getSipPhoneFullJson"]];
+    NSURL *url = [NSURL URLWithString:@"http://172.20.10.6/work/getSipPhoneFullJson"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    NTOUContactInformation = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-    [NTOUContactInformation retain];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil] forKey:@"SipInformations"];
 }
 -(void)makeCallToNTOU:(NSString*)number{
     self.selectedIndex = 3;
     view3.callinfo.text = number;
     [view3 makeCallToNTOU];
 }
--(void)addNumberToHistory:(NSString *)number{
-    [view1 addNumber:number];
+-(void)addNumberToHistory:(NSString*)number{
+    [view1 addNumberToHistory:number];
 }
 
+-(void)addUsuallyUse:(NSDictionary*)data{
+    [view0 addUsuallyUse:data];
+}
 @end
