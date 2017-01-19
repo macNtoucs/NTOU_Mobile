@@ -31,7 +31,6 @@
     searchController.obscuresBackgroundDuringPresentation = NO;
     searchController.dimsBackgroundDuringPresentation = NO;
     searchController.hidesNavigationBarDuringPresentation = NO;
-    self.definesPresentationContext = YES;
     
     self.tableView.tableHeaderView = searchController.searchBar;
     
@@ -43,8 +42,13 @@
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(editMode)];
     [self.tabBarController.navigationItem setRightBarButtonItem:addButton];
+    [addButton release];
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    searchController.active = NO;
+}
 
 -(void)editMode{
     if(self.tableView.editing)
@@ -117,7 +121,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    searchController.active = NO;
     [(SipTabBarViewController*)self.tabBarController makeCallToNTOU:[[informations objectAtIndex:[indexPath row]]objectForKey:@"number"] ];
 }
 
@@ -137,6 +140,7 @@
     
     [filteredInformations release];
     filteredInformations = [informations filteredArrayUsingPredicate:preicate];
+    NSLog(@"%d",[filteredInformations retainCount]);
     [filteredInformations retain];
     
     [self.tableView reloadData];

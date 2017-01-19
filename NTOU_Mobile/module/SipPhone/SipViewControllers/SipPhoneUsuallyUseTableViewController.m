@@ -28,6 +28,7 @@
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(editMode)];
     [self.tabBarController.navigationItem setRightBarButtonItem:addButton];
+    [addButton release];
 }
 
 

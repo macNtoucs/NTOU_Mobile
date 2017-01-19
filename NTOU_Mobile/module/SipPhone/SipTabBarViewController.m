@@ -96,6 +96,7 @@
     self.selectedIndex = 3;
     view3.callinfo.text = number;
     [view3 makeCallToNTOU];
+    [self.navigationItem setRightBarButtonItem:nil];
 }
 -(void)addNumberToHistory:(NSString*)number{
     [view1 addNumberToHistory:number];
