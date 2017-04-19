@@ -21,7 +21,7 @@
 #import "StellarModule.h"
 #import "SettingModule.h"
 #import "LibraryModule.h"
-#include "FreshmenModuel.h"
+#import "OtherLinkModule.h"
 /*#import "NewsModule.h"
 
 
@@ -73,7 +73,7 @@
     
     [result addObject:[[[SettingModule alloc] init] autorelease]];//設定
     [result addObject:[[[AboutModule alloc] init] autorelease]];//關於
-    
+    [result addObject:[[[OtherLinkModule alloc] init] autorelease]];//其他連結
     
     
 	

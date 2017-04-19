@@ -68,6 +68,7 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
         dictionary = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
     }
      */
+    NSLog(@"GG:%@ URL:%@ POST:%@",dictionary,queryURL,finailPost);
     return dictionary;
     
 }

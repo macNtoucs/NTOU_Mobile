@@ -241,6 +241,9 @@
 		91A9049716E8A02600ECF2CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A9049616E8A02400ECF2CF /* SystemConfiguration.framework */; };
 		91BFE77E1DF00D9800F2C26B /* LifeMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91BFE77D1DF00D9800F2C26B /* LifeMedia.xcassets */; };
 		91CD4CB01E0BE670002E12B6 /* StreetViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CD4CAF1E0BE670002E12B6 /* StreetViewViewController.m */; };
+		91D7A1281E96496700B79396 /* OtherLinkModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D7A1271E96496700B79396 /* OtherLinkModule.m */; };
+		91D7A12A1E9649AD00B79396 /* OtherLink.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91D7A1291E9649AD00B79396 /* OtherLink.storyboard */; };
+		91D7A12D1E964B0200B79396 /* OtherLinkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D7A12C1E964B0200B79396 /* OtherLinkTableViewController.m */; };
 		B95DBE0C8031079CE32C85CE /* libPods-NTOU_Mobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B14CD421B70F5FDC571D151 /* libPods-NTOU_Mobile.a */; };
 		BA06A07516F2EE6600212CB9 /* ScheduleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06A06816F2EE6600212CB9 /* ScheduleModule.m */; };
 		BA06A07716F2EE6600212CB9 /* CalenderList_eng.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */; };
@@ -668,6 +671,11 @@
 		91BFE77D1DF00D9800F2C26B /* LifeMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = LifeMedia.xcassets; path = module/Life/LifeMedia.xcassets; sourceTree = "<group>"; };
 		91CD4CAE1E0BE670002E12B6 /* StreetViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreetViewViewController.h; sourceTree = "<group>"; };
 		91CD4CAF1E0BE670002E12B6 /* StreetViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreetViewViewController.m; sourceTree = "<group>"; };
+		91D7A1261E96496700B79396 /* OtherLinkModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OtherLinkModule.h; path = About/OtherLinkModule.h; sourceTree = "<group>"; };
+		91D7A1271E96496700B79396 /* OtherLinkModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OtherLinkModule.m; path = About/OtherLinkModule.m; sourceTree = "<group>"; };
+		91D7A1291E9649AD00B79396 /* OtherLink.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OtherLink.storyboard; sourceTree = "<group>"; };
+		91D7A12B1E964B0200B79396 /* OtherLinkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherLinkTableViewController.h; sourceTree = "<group>"; };
+		91D7A12C1E964B0200B79396 /* OtherLinkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherLinkTableViewController.m; sourceTree = "<group>"; };
 		BA06A06716F2EE6600212CB9 /* ScheduleModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleModule.h; sourceTree = "<group>"; };
 		BA06A06816F2EE6600212CB9 /* ScheduleModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleModule.m; sourceTree = "<group>"; };
 		BA06A06B16F2EE6600212CB9 /* CalenderList_eng.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CalenderList_eng.plist; sourceTree = "<group>"; };
@@ -1087,6 +1095,7 @@
 		91A9005016E854E500ECF2CF /* NTOU_Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				91D7A1251E9648E600B79396 /* OtherLink */,
 				1DA9F88219B3B2F900261C7E /* FreshmenEducation */,
 				1DD178E018FE7AB300621B67 /* library */,
 				C72B23EB176AE80800474235 /* Settings */,
@@ -1321,6 +1330,18 @@
 			);
 			name = Emergency;
 			path = module/Emergency;
+			sourceTree = "<group>";
+		};
+		91D7A1251E9648E600B79396 /* OtherLink */ = {
+			isa = PBXGroup;
+			children = (
+				91D7A1261E96496700B79396 /* OtherLinkModule.h */,
+				91D7A1271E96496700B79396 /* OtherLinkModule.m */,
+				91D7A1291E9649AD00B79396 /* OtherLink.storyboard */,
+				91D7A12B1E964B0200B79396 /* OtherLinkTableViewController.h */,
+				91D7A12C1E964B0200B79396 /* OtherLinkTableViewController.m */,
+			);
+			name = OtherLink;
 			sourceTree = "<group>";
 		};
 		BA06A06316F2EE6600212CB9 /* Calendar */ = {
@@ -1619,6 +1640,7 @@
 				1DD1792218FE7AB300621B67 /* LibraryFloor.plist in Resources */,
 				91756F4916F206F7001D724D /* Course in Resources */,
 				91756F4A16F206F7001D724D /* CourseInfo in Resources */,
+				91D7A12A1E9649AD00B79396 /* OtherLink.storyboard in Resources */,
 				91756F4D16F206F7001D724D /* Grade in Resources */,
 				91756F4F16F206F7001D724D /* Login in Resources */,
 				91756F5916F206F7001D724D /* MoodleID in Resources */,
@@ -1717,6 +1739,7 @@
 				1DD1793B18FE7AB300621B67 /* SearchResultViewController.m in Sources */,
 				91756FD916F20CC5001D724D /* ReaderThumbFetch.h in Sources */,
 				1DD1792418FE7AB300621B67 /* NewsViewController.m in Sources */,
+				91D7A1281E96496700B79396 /* OtherLinkModule.m in Sources */,
 				91756FDA16F20CC5001D724D /* ReaderThumbQueue.h in Sources */,
 				91756FDB16F20CC5001D724D /* ReaderThumbRender.h in Sources */,
 				1D66456D1909129400416722 /* HistoryTableViewController.m in Sources */,
@@ -1779,6 +1802,7 @@
 				1DD1793118FE7AB300621B67 /* LoginResResultViewController.m in Sources */,
 				91A9046916E899D200ECF2CF /* ShuttleModule.m in Sources */,
 				913ADD671DF5909800809F35 /* LifeButton.m in Sources */,
+				91D7A12D1E964B0200B79396 /* OtherLinkTableViewController.m in Sources */,
 				43BEDC1F19236E530091B024 /* NTOUShuttleButtonViewController.m in Sources */,
 				91A9047D16E899D200ECF2CF /* StationView.m in Sources */,
 				1DD1794218FE7AB300621B67 /* WOLSwitchViewController.m in Sources */,
